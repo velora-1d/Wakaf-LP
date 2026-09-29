@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Production build
+dist/
+build/
+
+# Logs & cache
+*.log
+.eslintcache
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
