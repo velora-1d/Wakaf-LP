@@ -8,142 +8,191 @@
   <link rel="apple-touch-icon" href="favicon.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-canvas: #060e18;
+      --bg-surface: #0a1727;
+      --bg-surface-elevated: #0f2238;
+      --bg-surface-card: #0d1e32;
+      --gold-primary: #d4af37;
+      --gold-light: #e6c86e;
+      --gold-dark: #b28f24;
+      --gold-surface: rgba(212, 175, 55, 0.08);
+      --gold-border: rgba(212, 175, 55, 0.28);
+      --border-hairline: rgba(255, 255, 255, 0.08);
+      --border-subtle: rgba(212, 175, 55, 0.18);
+      --border-prominent: rgba(212, 175, 55, 0.45);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #8494a7;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+    }
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     body {
-      background-color: #07192d;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
       font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px 12px;
+      padding: 32px 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     .sv-container {
       width: 100%;
-      max-width: 820px;
+      max-width: 840px;
       margin: 0 auto;
     }
     .sv-card {
       position: relative;
+      background: linear-gradient(180deg, #0d2035 0%, #091726 40%, #060e18 100%);
+      border: 1px solid var(--border-prominent);
+      border-radius: var(--radius-xl);
+      padding: 48px 32px 40px;
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1), 0 32px 80px -20px rgba(0, 0, 0, 0.75);
       overflow: hidden;
-      background: radial-gradient(circle at 50% 0%, #134277 0%, #08213e 60%, #05162a 100%);
-      border: 1px solid rgba(233, 184, 36, 0.45);
-      border-radius: 32px;
-      padding: 48px 24px 36px;
-      text-align: center;
-      color: #ffffff;
-      box-shadow: 0 25px 60px -15px rgba(5, 22, 42, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
-    .sv-glow-bg {
+    .sv-geo-backdrop {
       position: absolute;
-      top: -120px;
+      top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 450px;
-      height: 350px;
-      background: radial-gradient(circle, rgba(233, 184, 36, 0.18) 0%, rgba(19, 66, 119, 0) 70%);
-      pointer-events: none;
-      border-radius: 50%;
-    }
-    .sv-geo-svg {
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 720px;
-      max-width: 130%;
-      opacity: 0.12;
+      width: 760px;
+      max-width: 140%;
+      opacity: 0.055;
       pointer-events: none;
     }
     .sv-content-wrapper {
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
-    .sv-logo-box {
+
+    /* INSTITUTIONAL HEADER & CREST */
+    .sv-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .sv-crest-badge {
       display: inline-flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      background: #ffffff;
-      border: 2px solid #e9b824;
-      border-radius: 20px;
-      padding: 12px 24px;
+      gap: 12px;
+      background: rgba(10, 23, 39, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 18px 28px 14px;
       margin-bottom: 24px;
-      box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.45);
-      max-width: 90%;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 16px 36px -12px rgba(0, 0, 0, 0.5);
     }
     .sv-logo-img {
-      max-height: 95px;
+      max-height: 72px;
       width: auto;
       max-width: 100%;
       object-fit: contain;
       display: block;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
     }
     .sv-fallback-title {
       display: none;
       font-weight: 800;
-      font-size: 18px;
-      color: #0b3560;
-      letter-spacing: 0.5px;
+      font-size: 17px;
+      color: var(--text-primary);
+      letter-spacing: 1px;
     }
-    .sv-badge {
+    .sv-crest-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid var(--border-hairline);
+      padding-top: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .sv-meta-divider {
+      width: 4px;
+      height: 4px;
+      background: var(--gold-primary);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+    .sv-reg-number {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* CAMPAIGN HEADLINE */
+    .sv-campaign-badge {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 6px;
-      background: rgba(233, 184, 36, 0.12);
-      border: 1px solid rgba(233, 184, 36, 0.35);
-      color: #f7ce55;
+      gap: 8px;
+      background: var(--gold-surface);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1.5px;
-      padding: 6px 18px;
+      padding: 6px 16px;
       border-radius: 999px;
       text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .sv-badge-icon {
+      width: 14px;
+      height: 14px;
+      color: var(--gold-primary);
+    }
+    .sv-h1 {
+      font-size: clamp(26px, 4.5vw, 36px);
+      font-weight: 800;
+      line-height: 1.22;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
       margin-bottom: 12px;
-      max-width: 95%;
-      line-height: 1.4;
     }
-    .sv-section-title {
-      margin: 6px 0 12px;
-      font-size: clamp(24px, 4.5vw, 32px);
-      line-height: 1.28;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: -0.3px;
+    .sv-gold-highlight {
+      color: var(--gold-light);
+      font-weight: 800;
     }
-    .sv-gold-text {
-      color: #f7ce55;
-    }
-    .sv-lead-desc {
-      margin: 0 auto 28px;
-      max-width: 580px;
-      font-size: 15px;
+    .sv-lead-prose {
+      font-size: 15.5px;
       line-height: 1.7;
-      color: #c9d6e6;
-      font-weight: 400;
-    }
-    .sv-video-frame {
-      background: linear-gradient(180deg, rgba(233, 184, 36, 0.5) 0%, rgba(233, 184, 36, 0.15) 100%);
-      border-radius: 24px;
-      padding: 4px;
-      max-width: 700px;
+      color: var(--text-secondary);
+      max-width: 600px;
       margin: 0 auto;
-      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* VIDEO THEATER */
+    .sv-video-container {
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0.4) 0%, rgba(212, 175, 55, 0.1) 100%);
+      border-radius: var(--radius-lg);
+      padding: 3px;
+      max-width: 720px;
+      margin: 28px auto 8px;
+      box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.65);
     }
     .sv-video-aspect {
       position: relative;
       width: 100%;
       aspect-ratio: 16/9;
-      border-radius: 20px;
+      border-radius: calc(var(--radius-lg) - 3px);
       overflow: hidden;
-      background: #041220;
+      background: #02070e;
     }
     .sv-video-iframe,
     .sv-video-element {
@@ -164,9 +213,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: #041220;
+      background: #02070e;
       overflow: hidden;
-      text-decoration: none;
       border: 0;
       padding: 0;
     }
@@ -176,549 +224,661 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      filter: brightness(0.78);
       transition: transform 0.4s ease, filter 0.4s ease;
-      filter: brightness(0.82);
     }
     .sv-video-cover:hover .sv-video-thumb {
-      transform: scale(1.04);
-      filter: brightness(0.95);
+      transform: scale(1.03);
+      filter: brightness(0.9);
     }
     .sv-video-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(4, 18, 32, 0.25) 0%, rgba(4, 18, 32, 0.75) 100%);
+      background: radial-gradient(circle at center, rgba(2, 7, 14, 0.3) 0%, rgba(2, 7, 14, 0.8) 100%);
     }
-    .sv-play-btn {
+    .sv-play-button {
       position: relative;
       z-index: 2;
-      width: 76px;
-      height: 76px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #f7ce55 0%, #e9b824 100%);
-      box-shadow: 0 10px 28px rgba(233, 184, 36, 0.55), 0 0 0 8px rgba(233, 184, 36, 0.25);
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+      box-shadow: 0 10px 28px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #0b3560;
-      transition: all 0.3s ease;
+      color: #060e18;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .sv-video-cover:hover .sv-play-btn {
-      transform: scale(1.1);
-      box-shadow: 0 14px 34px rgba(233, 184, 36, 0.75), 0 0 0 12px rgba(233, 184, 36, 0.35);
+    .sv-video-cover:hover .sv-play-button {
+      transform: scale(1.08);
+      box-shadow: 0 14px 36px rgba(212, 175, 55, 0.7);
     }
-    .sv-play-icon {
-      width: 30px;
-      height: 30px;
+    .sv-play-svg {
+      width: 28px;
+      height: 28px;
       margin-left: 4px;
       fill: currentColor;
     }
-    .sv-play-caption {
+    .sv-play-label {
       position: relative;
       z-index: 2;
       margin-top: 14px;
       font-size: 13px;
       font-weight: 700;
-      color: #ffffff;
-      background: rgba(7, 25, 45, 0.8);
+      color: var(--text-primary);
+      background: rgba(6, 14, 24, 0.85);
       backdrop-filter: blur(8px);
       padding: 6px 18px;
       border-radius: 999px;
-      border: 1px solid rgba(233, 184, 36, 0.45);
+      border: 1px solid var(--border-prominent);
       letter-spacing: 0.5px;
-      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .sv-video-cover:hover .sv-play-caption {
-      background: rgba(7, 25, 45, 0.95);
-      border-color: rgba(233, 184, 36, 0.85);
-      color: #f7ce55;
+    .sv-play-label-icon {
+      width: 14px;
+      height: 14px;
+      color: var(--gold-primary);
     }
-    .sv-video-link-wrap {
+    .sv-video-yt-direct {
       text-align: center;
       margin-top: 8px;
     }
     .sv-yt-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-size: 12px;
-      color: #f7ce55;
+      color: var(--gold-light);
       text-decoration: none;
       opacity: 0.85;
+      transition: opacity 0.2s ease;
     }
-    .sv-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin: 44px auto 32px;
-      max-width: 380px;
+    .sv-yt-link:hover {
+      opacity: 1;
+      text-decoration: underline;
     }
-    .sv-divider-line-left {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(233, 184, 36, 0.7));
+    .sv-external-svg {
+      width: 13px;
+      height: 13px;
     }
-    .sv-divider-diamond {
-      width: 8px;
-      height: 8px;
-      background: #e9b824;
-      transform: rotate(45deg);
-      box-shadow: 0 0 8px #e9b824;
-    }
-    .sv-divider-line-right {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(270deg, transparent, rgba(233, 184, 36, 0.7));
-    }
-    .sv-sub-title {
-      margin: 6px 0 12px;
-      font-size: clamp(22px, 4vw, 28px);
-      line-height: 1.3;
-      font-weight: 700;
-      color: #ffffff;
-    }
-    .sv-sub-desc {
-      margin: 0 auto 24px;
-      max-width: 540px;
-      font-size: 15px;
-      line-height: 1.7;
-      color: #c9d6e6;
-    }
-    .sv-alokasi-header {
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    .sv-alokasi-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #f7ce55;
-      background: rgba(233, 184, 36, 0.1);
-      border: 1px solid rgba(233, 184, 36, 0.35);
-      padding: 5px 16px;
-      border-radius: 999px;
-      text-transform: uppercase;
-    }
-    .sv-pillars {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin: 0 auto 32px;
-      max-width: 680px;
+
+    /* OFFICIAL FINANCIAL STATEMENT & AUDIT LEDGER */
+    .sv-ledger-card {
+      background: var(--bg-surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px 24px;
+      margin: 28px auto 24px;
+      max-width: 720px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 16px 36px -10px rgba(0, 0, 0, 0.4);
       text-align: left;
     }
-    .sv-pillar-card {
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
-      border: 1px solid rgba(233, 184, 36, 0.28);
-      border-radius: 18px;
-      padding: 20px 18px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.4);
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-    }
-    .sv-pillar-card:hover {
-      border-color: rgba(233, 184, 36, 0.7);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 32px -8px rgba(233, 184, 36, 0.25);
-    }
-    .sv-pillar-top {
+    .sv-ledger-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 12px;
-    }
-    .sv-pillar-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: rgba(233, 184, 36, 0.15);
-      border: 1px solid rgba(233, 184, 36, 0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #f7ce55;
-    }
-    .sv-pillar-num {
-      font-size: 13px;
-      font-weight: 800;
-      color: rgba(247, 206, 85, 0.55);
-      letter-spacing: 1px;
-    }
-    .sv-pillar-chip {
-      display: inline-block;
-      font-size: 10.5px;
-      font-weight: 700;
-      color: #f7ce55;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-    .sv-pillar-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 6px;
-      line-height: 1.35;
-    }
-    .sv-pillar-desc {
-      font-size: 12.5px;
-      line-height: 1.6;
-      color: #b9cadc;
-    }
-    .sv-rek-card {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 26px 22px;
-      color: #0b3560;
-      max-width: 440px;
-      margin: 0 auto;
-      box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.45);
-      border: 2px solid rgba(233, 184, 36, 0.6);
-    }
-    .sv-rek-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px dashed #d1d9e2;
-      padding-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
       margin-bottom: 14px;
     }
-    .sv-bank-name {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: #00529c;
-    }
-    .sv-rek-tag {
-      font-size: 11px;
-      background: #eaf3fc;
-      color: #00529c;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 999px;
-    }
-    .sv-rek-number {
-      font-size: 27px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      color: #0b3560;
-      font-family: 'Courier New', Courier, monospace;
-      margin: 6px 0;
-    }
-    .sv-rek-owner {
-      font-size: 14px;
-      color: #475569;
-      font-weight: 500;
-    }
-    .sv-rek-owner-name {
-      color: #0b3560;
-    }
-    .sv-btn-scalev {
+    .sv-status-pill {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      margin-top: 18px;
-      background: linear-gradient(135deg, #f7ce55 0%, #e9b824 50%, #d49f12 100%);
-      color: #07192d;
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 15px;
-      padding: 14px 24px;
-      border-radius: 999px;
-      cursor: pointer;
-      box-shadow: 0 8px 24px -4px rgba(233, 184, 36, 0.55);
-      transition: all 0.25s ease;
-      box-sizing: border-box;
-      letter-spacing: 0.2px;
-    }
-    .sv-btn-scalev:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px -4px rgba(233, 184, 36, 0.75);
-      filter: brightness(1.06);
-    }
-    .sv-btn-scalev:active {
-      transform: translateY(0);
-    }
-    .sv-btn-copy {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       gap: 8px;
-      width: 100%;
-      margin-top: 10px;
-      background: rgba(11, 53, 96, 0.08);
-      color: #0b3560;
-      border: 1.5px solid rgba(11, 53, 96, 0.2);
-      font-weight: 700;
-      font-size: 13.5px;
-      padding: 12px 24px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-sizing: border-box;
-    }
-    .sv-btn-copy:hover {
-      background: rgba(11, 53, 96, 0.14);
-      border-color: #0b3560;
-      transform: translateY(-1px);
-    }
-    .sv-btn-copy:active {
-      transform: translateY(0);
-    }
-    .sv-btn-wa {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      margin-top: 12px;
-      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 13px 24px;
-      border-radius: 999px;
-      cursor: pointer;
-      box-shadow: 0 8px 20px -6px rgba(37, 211, 102, 0.4);
-      transition: all 0.25s ease;
-      box-sizing: border-box;
-    }
-    .sv-btn-wa:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px -6px rgba(37, 211, 102, 0.6);
-      filter: brightness(1.05);
-    }
-    .sv-btn-wa:active {
-      transform: translateY(0);
-    }
-    .sv-cs-info {
-      margin-top: 10px;
-      font-size: 11.5px;
-      color: #64748b;
-      line-height: 1.5;
-    }
-    .sv-cs-phone {
-      color: #0b3560;
-    }
-    .sv-quote {
-      margin: 26px 0 0;
-      font-size: 15px;
-      font-style: italic;
-      color: #f7ce55;
-      font-weight: 500;
-    }
-    .sv-location-wrapper {
-      margin-top: 32px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(233, 184, 36, 0.3);
-      max-width: 540px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-    .sv-location-header {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #f7ce55;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-bottom: 8px;
-    }
-    .sv-location-address {
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: #c9d6e6;
-      margin: 0 0 12px;
-    }
-    .sv-maps-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #f7ce55;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      border-bottom: 1px dashed rgba(247, 206, 85, 0.6);
-      padding-bottom: 2px;
-    }
-    /* Widget Transparansi & Progress Bar */
-    .sv-urgency-card {
-      background: linear-gradient(145deg, rgba(233, 184, 36, 0.08) 0%, rgba(11, 33, 63, 0.6) 100%);
-      border: 1.5px solid rgba(233, 184, 36, 0.35);
-      border-radius: 20px;
-      padding: 24px 20px;
-      margin: 28px auto 20px;
-      max-width: 680px;
-      box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.45);
-      position: relative;
-      text-align: left;
-    }
-    .sv-urgency-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(239, 68, 68, 0.15);
-      border: 1px solid rgba(239, 68, 68, 0.4);
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
       color: #fca5a5;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1.5px;
-      padding: 4px 12px;
+      padding: 5px 12px;
       border-radius: 999px;
       text-transform: uppercase;
-      margin-bottom: 12px;
     }
-    .sv-urgency-title {
-      font-size: clamp(17px, 3.5vw, 21px);
+    .sv-pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: #ef4444;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+      animation: svPulse 2s infinite;
+    }
+    @keyframes svPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+      }
+    }
+    .sv-land-spec {
+      font-size: 11.5px;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .sv-ledger-title {
+      font-size: clamp(17px, 3.2vw, 20px);
+      font-weight: 700;
+      color: var(--text-primary);
       line-height: 1.35;
       margin-bottom: 8px;
     }
-    .sv-urgency-desc {
+    .sv-ledger-desc {
       font-size: 13.5px;
-      line-height: 1.6;
-      color: #c9d6e6;
-      margin-bottom: 18px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
     }
-    .sv-metrics-grid {
+
+    /* FINANCIAL METRICS GRID (TABULAR DATA) */
+    .sv-metrics-table {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 18px;
     }
-    .sv-metric-item {
-      background: rgba(4, 18, 32, 0.5);
-      border: 1px solid rgba(233, 184, 36, 0.2);
-      border-radius: 12px;
-      padding: 10px 12px;
-      text-align: center;
+    .sv-metric-cell {
+      background: rgba(6, 14, 24, 0.6);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      text-align: left;
+    }
+    .sv-metric-cell.highlight {
+      border-color: var(--gold-border);
+      background: rgba(212, 175, 55, 0.04);
     }
     .sv-metric-label {
       font-size: 10.5px;
-      font-weight: 600;
-      color: #94a3b8;
+      font-weight: 700;
+      color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       margin-bottom: 4px;
     }
-    .sv-metric-val {
-      font-size: clamp(12.5px, 2.8vw, 15px);
-      font-weight: 800;
-      color: #f7ce55;
+    .sv-metric-amount {
+      font-size: clamp(13px, 2.5vw, 15.5px);
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.3px;
     }
-    .sv-metric-val.highlight {
-      color: #38bdf8;
+    .sv-metric-amount.gold {
+      color: var(--gold-light);
     }
-    .sv-progress-track {
+    .sv-metric-amount.dim {
+      color: var(--text-secondary);
+    }
+
+    /* PROGRESS TRACK WITH SCALE TICKS */
+    .sv-progress-wrapper {
+      margin-top: 14px;
+    }
+    .sv-progress-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      padding: 0 2px;
+    }
+    .sv-progress-bar {
       width: 100%;
-      height: 10px;
-      background: rgba(255, 255, 255, 0.1);
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 999px;
       overflow: hidden;
       position: relative;
     }
     .sv-progress-fill {
       width: 3.85%;
-      min-width: 14px;
+      min-width: 16px;
       height: 100%;
-      background: linear-gradient(90deg, #f5d061 0%, #e9b824 100%);
+      background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 100%);
       border-radius: 999px;
-      box-shadow: 0 0 10px rgba(233, 184, 36, 0.8);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
     }
-    .sv-progress-footer {
+    .sv-progress-note {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-top: 8px;
       font-size: 11.5px;
-      color: #94a3b8;
+      color: var(--text-muted);
     }
-    /* Green Building Grid */
-    .sv-gb-section {
-      margin: 28px auto 24px;
-      max-width: 680px;
+    .sv-progress-highlight {
+      color: var(--gold-light);
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* SECTION DIVIDER WITH SUBTLE CREST */
+    .sv-section-separator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 40px auto 32px;
+      max-width: 360px;
+    }
+    .sv-sep-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-subtle));
+    }
+    .sv-sep-line.reverse {
+      background: linear-gradient(270deg, transparent, var(--border-subtle));
+    }
+    .sv-sep-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--gold-primary);
+      opacity: 0.7;
+    }
+
+    /* ARCHITECTURAL CONCEPT (MODERN GREEN BUILDING) */
+    .sv-concept-section {
       text-align: left;
+      margin-bottom: 36px;
     }
-    .sv-gb-header {
+    .sv-section-head {
       text-align: center;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
     }
-    .sv-gb-header .sv-sub-title {
-      margin-top: 4px;
+    .sv-h2 {
+      font-size: clamp(22px, 3.8vw, 28px);
+      font-weight: 800;
+      line-height: 1.26;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 8px;
     }
-    .sv-gb-header .sv-sub-desc {
-      margin-bottom: 16px;
+    .sv-sub-prose {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto;
     }
-    .sv-gb-grid {
+    .sv-concept-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 14px;
+      max-width: 720px;
+      margin: 0 auto;
     }
-    .sv-gb-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(233, 184, 36, 0.2);
-      border-radius: 14px;
-      padding: 14px;
+    .sv-concept-card {
+      background: rgba(13, 30, 50, 0.45);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 16px;
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      transition: all 0.25s ease;
+      gap: 14px;
+      transition: border-color 0.25s ease, background 0.25s ease;
     }
-    .sv-gb-card:hover {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(233, 184, 36, 0.5);
-      transform: translateY(-2px);
+    .sv-concept-card:hover {
+      border-color: var(--gold-border);
+      background: rgba(13, 30, 50, 0.75);
     }
-    .sv-gb-icon {
+    .sv-concept-icon-wrap {
       flex-shrink: 0;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: rgba(233, 184, 36, 0.12);
-      border: 1px solid rgba(233, 184, 36, 0.35);
-      color: #f7ce55;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--gold-surface);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .sv-gb-card-title {
-      font-size: 13px;
+    .sv-concept-icon {
+      width: 20px;
+      height: 20px;
+    }
+    .sv-concept-title {
+      font-size: 13.5px;
       font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 3px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      line-height: 1.35;
     }
-    .sv-gb-card-desc {
+    .sv-concept-body {
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+
+    /* 4 PILAR ALOKASI DANA WAKAF */
+    .sv-pillars-section {
+      text-align: left;
+      margin-bottom: 36px;
+    }
+    .sv-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .sv-pillar-box {
+      background: linear-gradient(180deg, rgba(15, 34, 56, 0.6) 0%, rgba(10, 23, 39, 0.6) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px 18px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .sv-pillar-box:hover {
+      border-color: var(--border-prominent);
+      transform: translateY(-2px);
+    }
+    .sv-pillar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .sv-pillar-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-primary);
+      letter-spacing: 1px;
+    }
+    .sv-pillar-tag {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border-hairline);
+    }
+    .sv-pillar-h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+    .sv-pillar-text {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* DONATION TRANSACTIONS & BANK CERTIFICATE */
+    .sv-donation-section {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .sv-checkout-card {
+      background: linear-gradient(180deg, #11263e 0%, #0a1727 100%);
+      border: 1px solid var(--border-prominent);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      max-width: 480px;
+      margin: 0 auto;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 24px 50px -15px rgba(0, 0, 0, 0.65);
+      text-align: center;
+    }
+    .sv-checkout-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* SCALEV ONLINE CHECKOUT (PRIMARY CTA) */
+    .sv-btn-scalev {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: linear-gradient(135deg, #e6c86e 0%, #d4af37 50%, #b28f24 100%);
+      color: #060e18;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px -4px rgba(212, 175, 55, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      transition: filter 0.2s ease, transform 0.15s ease;
+      letter-spacing: -0.2px;
+    }
+    .sv-btn-scalev:hover {
+      filter: brightness(1.06);
+    }
+    .sv-btn-scalev:active {
+      transform: scale(0.985);
+    }
+    .sv-btn-icon {
+      width: 19px;
+      height: 19px;
+    }
+
+    /* MANUAL TRANSFER ACCORDION / PASSBOOK */
+    .sv-passbook-box {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-hairline);
+      text-align: left;
+    }
+    .sv-passbook-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .sv-bank-badge {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .sv-bank-branch {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .sv-passbook-number {
+      font-size: clamp(22px, 4.5vw, 26px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 4px;
+      user-select: all;
+    }
+    .sv-passbook-owner {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+    .sv-owner-name {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* COPY BUTTON (TACTILE TONE) */
+    .sv-btn-copy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      border: 1px solid var(--border-hairline);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+    .sv-btn-copy:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--border-subtle);
+    }
+    .sv-btn-copy:active {
+      transform: scale(0.985);
+    }
+
+    /* WHATSAPP CONFIRMATION */
+    .sv-btn-wa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      margin-top: 10px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+    .sv-btn-wa:hover {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: rgba(16, 185, 129, 0.6);
+    }
+    .sv-btn-wa:active {
+      transform: scale(0.985);
+    }
+    .sv-wa-svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* CS & VERIFICATION NOTICE */
+    .sv-trust-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
       font-size: 11.5px;
-      line-height: 1.5;
-      color: #a3b8cc;
+      color: var(--text-muted);
     }
-    @media (max-width: 600px) {
+    .sv-shield-icon {
+      width: 13px;
+      height: 13px;
+      color: var(--gold-primary);
+    }
+    .sv-cs-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* CITATION & LOCATION FOOTER */
+    .sv-quote-banner {
+      margin: 32px 0 24px;
+      font-size: 14.5px;
+      font-style: italic;
+      color: var(--gold-light);
+      text-align: center;
+      opacity: 0.92;
+    }
+    .sv-location-card {
+      border-top: 1px solid var(--border-hairline);
+      padding-top: 24px;
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .sv-loc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .sv-loc-pin {
+      width: 14px;
+      height: 14px;
+    }
+    .sv-loc-address {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    .sv-maps-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-light);
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px dashed var(--gold-border);
+      padding-bottom: 2px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .sv-maps-action:hover {
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    /* RESPONSIVE LAYOUT GUARDRAILS */
+    @media (max-width: 680px) {
       body {
-        padding: 12px 6px;
+        padding: 16px 8px;
       }
       .sv-card {
-        padding: 36px 16px 28px;
-        border-radius: 24px;
+        padding: 32px 16px 28px;
+        border-radius: var(--radius-lg);
       }
-      .sv-rek-number {
-        font-size: 22px !important;
-        letter-spacing: 1px !important;
+      .sv-crest-badge {
+        padding: 14px 18px 12px;
       }
-      .sv-pillars {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      .sv-metrics-grid {
+      .sv-metrics-table {
         grid-template-columns: 1fr;
         gap: 8px;
       }
-      .sv-gb-grid {
+      .sv-concept-grid {
         grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .sv-pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .sv-passbook-number {
+        font-size: 20px;
+        letter-spacing: 1px;
       }
     }
   </style>
@@ -728,11 +888,9 @@
 <div class="sv-container">
   <div class="sv-card">
 
-    <!-- Ornamen Latar Islami Geometris & Cahaya Halus -->
-    <div class="sv-glow-bg"></div>
-
-    <svg viewBox="0 0 400 200" class="sv-geo-svg" aria-hidden="true">
-      <g stroke="#e9b824" stroke-width="1.5">
+    <!-- Ornamen Latar Islami Geometris Arsitektural (Hairline Tracery) -->
+    <svg viewBox="0 0 400 200" class="sv-geo-backdrop" aria-hidden="true">
+      <g stroke="#d4af37" stroke-width="1.2">
         <line x1="200" y1="200" x2="200" y2="0"/>
         <line x1="200" y1="200" x2="120" y2="0"/>
         <line x1="200" y1="200" x2="280" y2="0"/>
@@ -741,45 +899,59 @@
         <line x1="200" y1="200" x2="0" y2="80"/>
         <line x1="200" y1="200" x2="400" y2="80"/>
         <circle cx="200" cy="90" r="45" fill="none" stroke-dasharray="4,4"/>
-        <circle cx="200" cy="90" r="70" fill="none" stroke-opacity="0.5"/>
+        <circle cx="200" cy="90" r="70" fill="none" stroke-opacity="0.4"/>
       </g>
     </svg>
 
     <div class="sv-content-wrapper">
 
-      <!-- LOGO AMAN (Proporsi Terkunci, Bebas Distorsi) -->
-      <div class="sv-logo-box">
-        <img
-          src="https://skillageislamic.sch.id/img/logo.webp"
-          onerror="this.onerror=null; this.src='logo_skill_village-removebg-preview.png'; this.onerror=()=>{ this.style.display='none'; const fb=document.getElementById('sv-fallback-title'); if(fb) fb.style.display='block'; };"
-          alt="Skill Village Islamic School"
-          class="sv-logo-img"
-        >
-        <div id="sv-fallback-title" class="sv-fallback-title">
-          SKILL VILLAGE ISLAMIC SCHOOL
+      <!-- INSTITUTIONAL CREST HEADER -->
+      <header class="sv-header">
+        <div class="sv-crest-badge">
+          <img
+            src="https://skillageislamic.sch.id/img/logo.webp"
+            onerror="this.onerror=null; this.src='logo_skill_village-removebg-preview.png'; this.onerror=()=>{ this.style.display='none'; const fb=document.getElementById('sv-fallback-title'); if(fb) fb.style.display='block'; };"
+            alt="Skill Village Islamic School"
+            class="sv-logo-img"
+          >
+          <div id="sv-fallback-title" class="sv-fallback-title">
+            SKILL VILLAGE ISLAMIC SCHOOL
+          </div>
+          <div class="sv-crest-meta">
+            <span>Global Waqf Village</span>
+            <span class="sv-meta-divider" aria-hidden="true"></span>
+            <span>Yayasan Permata Cendikia Indonesia</span>
+          </div>
+          <div class="sv-reg-number">
+            SK Kemenkumham RI No. AHU-0005721.AH.01.04
+          </div>
         </div>
-      </div>
 
-      <!-- Section Ajakan Wakaf Video -->
-      <div>
-        <div class="sv-badge">GLOBAL WAQF VILLAGE • YAYASAN PERMATA CENDIKIA INDONESIA</div>
-        <h2 class="sv-section-title">
-          Wakaf Pembangunan<br>
-          <span class="sv-gold-text">Garden Mosque Khoiru Ummah</span>
-        </h2>
-        <p class="sv-lead-desc">
-          Di sini para santri menjaga kalamullah, namun rumah sujudnya belum beratap. Simak video singkat berikut dan alirkan amal jariyah terbaik Anda.
-        </p>
-      </div>
+        <div>
+          <div class="sv-campaign-badge">
+            <svg class="sv-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span>Program Wakaf Abadi • Lahan 20 x 30 M</span>
+          </div>
+          <h1 class="sv-h1">
+            Wakaf Pembangunan<br>
+            <span class="sv-gold-highlight">Garden Mosque Khoiru Ummah</span>
+          </h1>
+          <p class="sv-lead-prose">
+            Di sini para santri menjaga kalamullah, namun rumah sujudnya belum beratap. Simak dokumentasi singkat berikut dan alirkan amal jariyah terbaik Anda.
+          </p>
+        </div>
+      </header>
 
-      <!-- Frame Video Elegan (Smart Video Cover: Anti Error 153) -->
-      <div class="sv-video-frame">
+      <!-- VIDEO THEATER (SMART COVER ANTI ERROR 153) -->
+      <div class="sv-video-container">
         <div id="sv-video-aspect" class="sv-video-aspect">
           <button
             type="button"
             class="sv-video-cover"
             onclick="playWakafVideo()"
-            aria-label="Putar Video Profil Wakaf Garden Mosque"
+            aria-label="Putar Video Dokumentasi Garden Mosque Khoiru Ummah"
           >
             <img
               src="https://i.ytimg.com/vi/gDJIL1bupyk/hqdefault.jpg"
@@ -787,300 +959,336 @@
               class="sv-video-thumb"
             >
             <span class="sv-video-overlay"></span>
-            <span class="sv-play-btn">
-              <svg class="sv-play-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <span class="sv-play-button">
+              <svg class="sv-play-svg" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8 5v14l11-7z"/>
               </svg>
             </span>
-            <span class="sv-play-caption">
-              ▶ Klik untuk Menonton Video
+            <span class="sv-play-label">
+              <svg class="sv-play-label-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <span>Putar Video Dokumentasi</span>
             </span>
           </button>
         </div>
       </div>
-      <div class="sv-video-link-wrap">
+
+      <div class="sv-video-yt-direct">
         <a
           href="https://youtu.be/gDJIL1bupyk?si=h5uP651xMhJ7Mlbp"
           target="_blank"
           rel="noopener noreferrer"
           class="sv-yt-link"
         >
-          ▶ Buka langsung di aplikasi / situs YouTube ➔
+          <span>Buka di Aplikasi YouTube</span>
+          <svg class="sv-external-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
         </a>
       </div>
 
-      <!-- Widget Urgensi & Transparansi Anggaran (Dokumen Resmi) -->
-      <div class="sv-urgency-card">
-        <div class="sv-urgency-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          URGENSI PEMBANGUNAN • LAHAN 20 X 30 M
+      <!-- OFFICIAL FINANCIAL STATEMENT & AUDIT LEDGER -->
+      <section class="sv-ledger-card" aria-labelledby="ledger-heading">
+        <div class="sv-ledger-header">
+          <div class="sv-status-pill">
+            <span class="sv-pulse-dot" aria-hidden="true"></span>
+            <span>Status: Terhenti Keterbatasan Dana</span>
+          </div>
+          <div class="sv-land-spec">
+            Spesifikasi: 20 × 30 Meter
+          </div>
         </div>
-        <h3 class="sv-urgency-title">
-          Kondisi Fisik Saat Ini: Pembangunan Terhenti Keterbatasan Dana
-        </h3>
-        <p class="sv-urgency-desc">
-          Progres fisik saat ini belum mencapai 0,05% dan terpaksa terhenti. Pertolongan dan gotong-royong kita semua sangat mendesak agar para santri penghafal Al-Qur'an segera memiliki rumah sujud beratap yang layak.
+
+        <h2 id="ledger-heading" class="sv-ledger-title">
+          Transparansi Realisasi Anggaran Pembangunan
+        </h2>
+        <p class="sv-ledger-desc">
+          Realisasi fisik saat ini belum mencapai 0,05% dan pembangunan terhenti. Dukungan gotong royong kaum muslimin sangat mendesak agar para santri penghafal Al-Qur'an segera memiliki rumah sujud beratap yang layak.
         </p>
 
-        <!-- Matriks Realisasi Anggaran -->
-        <div class="sv-metrics-grid">
-          <div class="sv-metric-item">
-            <div class="sv-metric-label">Dana Terkumpul</div>
-            <div class="sv-metric-val highlight">Rp 46.872.000</div>
+        <!-- Tabular Metrics Table -->
+        <div class="sv-metrics-table">
+          <div class="sv-metric-cell highlight">
+            <div class="sv-metric-label">Dana Terhimpun</div>
+            <div class="sv-metric-amount gold">Rp 46.872.000</div>
           </div>
-          <div class="sv-metric-item">
-            <div class="sv-metric-label">Target Anggaran</div>
-            <div class="sv-metric-val">Rp 1.215.753.350</div>
+          <div class="sv-metric-cell">
+            <div class="sv-metric-label">Total Anggaran</div>
+            <div class="sv-metric-amount dim">Rp 1.215.753.350</div>
           </div>
-          <div class="sv-metric-item">
+          <div class="sv-metric-cell">
             <div class="sv-metric-label">Sisa Kebutuhan</div>
-            <div class="sv-metric-val">Rp 1.168.881.350</div>
+            <div class="sv-metric-amount">Rp 1.168.881.350</div>
           </div>
         </div>
 
-        <!-- Visual Progress Bar -->
-        <div class="sv-progress-track">
-          <div class="sv-progress-fill"></div>
+        <!-- Progress Bar with Scale Ticks -->
+        <div class="sv-progress-wrapper">
+          <div class="sv-progress-scale">
+            <span>0%</span>
+            <span>25%</span>
+            <span>50%</span>
+            <span>75%</span>
+            <span>100% Target</span>
+          </div>
+          <div class="sv-progress-bar">
+            <div class="sv-progress-fill"></div>
+          </div>
+          <div class="sv-progress-note">
+            <span>Realisasi Saat Ini: <strong class="sv-progress-highlight">3,85%</strong></span>
+            <span>Target Selesai: <strong>100% Beratap Layak</strong></span>
+          </div>
         </div>
-        <div class="sv-progress-footer">
-          <span>Progres: <strong>3,85%</strong> terealisasi</span>
-          <span>Target Selesai: <strong>100% Beratap Layak</strong></span>
-        </div>
-      </div>
+      </section>
 
-      <!-- Section Konsep Modern Green Building & Fasilitas Santri -->
-      <div class="sv-gb-section">
-        <div class="sv-gb-header">
-          <div class="sv-badge">KONSEP KAWASAN TERPADU</div>
-          <h3 class="sv-sub-title">
-            Modern Green Building &amp; Cetak Santripreneur FAST
-          </h3>
-          <p class="sv-sub-desc">
-            Bukan sekadar masjid biasa, kawasan ini dirancang ramah lingkungan, mandiri energi, dan menjadi sentral peradaban keilmuan santri.
+      <!-- ARCHITECTURAL CONCEPT (MODERN GREEN BUILDING) -->
+      <section class="sv-concept-section" aria-labelledby="concept-heading">
+        <div class="sv-section-head">
+          <div class="sv-campaign-badge">
+            <svg class="sv-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Arsitektur Kawasan</span>
+          </div>
+          <h2 id="concept-heading" class="sv-h2">
+            Modern Green Building &amp; Santripreneur FAST
+          </h2>
+          <p class="sv-sub-prose">
+            Kawasan dirancang mandiri energi, terintegrasi siklus lingkungan hidup, dan menjadi pusat pembinaan karakter santri yang Fathonah, Amanah, Siddiq, dan Tabligh.
           </p>
         </div>
 
-        <div class="sv-gb-grid">
-          <div class="sv-gb-card">
-            <div class="sv-gb-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6a3 3 0 0 1 6 0v6"/></svg>
+        <div class="sv-concept-grid">
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6a3 3 0 0 1 6 0v6"/>
+              </svg>
             </div>
             <div>
-              <div class="sv-gb-card-title">Masjid Green Building &amp; Mezzanine</div>
-              <div class="sv-gb-card-desc">Area ibadah inti ramah lingkungan dilengkapi 2 sisi mezzanine di lantai 2 untuk kapasitas optimal santri.</div>
+              <div class="sv-concept-title">Masjid Green Building &amp; Mezzanine</div>
+              <div class="sv-concept-body">Ruang sujud beratap ramah lingkungan dengan mezzanine 2 sisi di lantai 2 untuk kapasitas optimal jamaah santri.</div>
             </div>
           </div>
 
-          <div class="sv-gb-card">
-            <div class="sv-gb-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
             </div>
             <div>
-              <div class="sv-gb-card-title">Skywalk Learning Room</div>
-              <div class="sv-gb-card-desc">Lantai 2 terhubung langsung dengan ruang pembelajaran dan studio kompetensi kejuruan santri.</div>
+              <div class="sv-concept-title">Skywalk Learning Room</div>
+              <div class="sv-concept-body">Lantai 2 terhubung langsung dengan ruang studio pembelajaran vokasi kejuruan dan teknologi masa depan santri.</div>
             </div>
           </div>
 
-          <div class="sv-gb-card">
-            <div class="sv-gb-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+              </svg>
             </div>
             <div>
-              <div class="sv-gb-card-title">Filtrasi Air Wudhu &amp; Aquaponik</div>
-              <div class="sv-gb-card-desc">Siklus air wudhu difiltrasi untuk kolam budidaya ikan lele &amp; nila terpadu serta kebun tanaman anggur.</div>
+              <div class="sv-concept-title">Filtrasi Air Wudhu &amp; Aquaponik</div>
+              <div class="sv-concept-body">Siklus air wudhu difiltrasi alami untuk budidaya ikan lele dan nila terpadu serta kebun tanaman anggur produktif.</div>
             </div>
           </div>
 
-          <div class="sv-gb-card">
-            <div class="sv-gb-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+              </svg>
             </div>
             <div>
-              <div class="sv-gb-card-title">Mandiri Energi Solar Cell</div>
-              <div class="sv-gb-card-desc">Pemanfaatan panel surya mandiri energi terbarukan untuk efisiensi operasional kawasan pesantren.</div>
+              <div class="sv-concept-title">Mandiri Energi Solar Cell</div>
+              <div class="sv-concept-body">Instalasi panel surya terbarukan guna memastikan operasional kawasan pesantren berlangsung efisien dan mandiri.</div>
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- SEPARATOR -->
+      <div class="sv-section-separator" aria-hidden="true">
+        <div class="sv-sep-line"></div>
+        <svg class="sv-sep-icon" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="12 2 15 9 22 12 15 15 12 22 9 15 2 12 9 9"/>
+        </svg>
+        <div class="sv-sep-line reverse"></div>
       </div>
 
-      <!-- Divider Ornamen -->
-      <div class="sv-divider">
-        <div class="sv-divider-line-left"></div>
-        <div class="sv-divider-diamond"></div>
-        <div class="sv-divider-line-right"></div>
-      </div>
-
-      <!-- Section Donasi / Rekening -->
-      <div>
-        <div class="sv-badge">INVESTASI AKHIRAT</div>
-        <h2 class="sv-sub-title">
-          Tunaikan Wakaf Jariyah Terbaik Anda
-        </h2>
-        <p class="sv-sub-desc">
-          Pahala pasif abadi dari setiap rakaat, sujud, dan lantunan Al-Qur'an para santri di Garden Mosque Khoiru Ummah.
-        </p>
-
-        <!-- 4 Pilar Alokasi Penyaluran Wakaf -->
-        <div class="sv-alokasi-header">
-          <span class="sv-alokasi-tag">4 PILAR ALOKASI DANA WAKAF</span>
+      <!-- 4 PILAR ALOKASI DANA WAKAF -->
+      <section class="sv-pillars-section" aria-labelledby="pillars-heading">
+        <div class="sv-section-head">
+          <div class="sv-campaign-badge">
+            <svg class="sv-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span>Penyaluran Amanah</span>
+          </div>
+          <h2 id="pillars-heading" class="sv-h2">
+            4 Pilar Alokasi Dana Wakaf
+          </h2>
+          <p class="sv-sub-prose">
+            Pahala jariyah mengalir berkesinambungan melalui alokasi terarah pada empat sektor utama pembangunan dan pendidikan santri.
+          </p>
         </div>
 
-        <div class="sv-pillars">
-          <!-- 1. Wakaf Pendidikan -->
-          <div class="sv-pillar-card">
-            <div class="sv-pillar-top">
-              <div class="sv-pillar-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                </svg>
-              </div>
+        <div class="sv-pillars-grid">
+          <!-- 01. Wakaf Pendidikan -->
+          <div class="sv-pillar-box">
+            <div class="sv-pillar-head">
               <span class="sv-pillar-num">01</span>
+              <span class="sv-pillar-tag">Pendidikan &amp; Dakwah</span>
             </div>
-            <span class="sv-pillar-chip">Pendidikan &amp; Dakwah</span>
-            <div class="sv-pillar-title">Wakaf Pendidikan</div>
-            <div class="sv-pillar-desc">Beasiswa santri dhuafa penghafal Al-Qur'an, pembinaan asatidz kompeten, serta kurikulum kejuruan &amp; vokasi teknologi masa depan.</div>
+            <h3 class="sv-pillar-h3">Wakaf Pendidikan</h3>
+            <p class="sv-pillar-text">Beasiswa santri dhuafa penghafal Al-Qur'an, pembinaan asatidz kompeten, serta kurikulum kejuruan &amp; vokasi teknologi masa depan.</p>
           </div>
 
-          <!-- 2. Wakaf Sarana dan Prasarana -->
-          <div class="sv-pillar-card">
-            <div class="sv-pillar-top">
-              <div class="sv-pillar-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2"/>
-                  <line x1="8" y1="21" x2="16" y2="21"/>
-                  <line x1="12" y1="17" x2="12" y2="21"/>
-                  <path d="M7 8h2m2 0h6"/>
-                </svg>
-              </div>
+          <!-- 02. Wakaf Sarana dan Prasarana -->
+          <div class="sv-pillar-box">
+            <div class="sv-pillar-head">
               <span class="sv-pillar-num">02</span>
+              <span class="sv-pillar-tag">Fasilitas Santri</span>
             </div>
-            <span class="sv-pillar-chip">Fasilitas Santri</span>
-            <div class="sv-pillar-title">Wakaf Sarana &amp; Prasarana</div>
-            <div class="sv-pillar-desc">Pengadaan fasilitas ruang belajar modern, perlengkapan ibadah santri, laboratorium komputer, dan sarana penunjang lingkungan asrama.</div>
+            <h3 class="sv-pillar-h3">Wakaf Sarana &amp; Prasarana</h3>
+            <p class="sv-pillar-text">Pengadaan fasilitas ruang belajar modern, perlengkapan ibadah santri, laboratorium komputer, dan sarana penunjang lingkungan asrama.</p>
           </div>
 
-          <!-- 3. Wakaf Produktif -->
-          <div class="sv-pillar-card">
-            <div class="sv-pillar-top">
-              <div class="sv-pillar-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 10a4 4 0 0 0-4-4H5a2 2 0 0 0-2 2v3a4 4 0 0 0 4 4h3"/>
-                  <path d="M12 14a4 4 0 0 1 4-4h3a2 2 0 0 1 2 2v3a4 4 0 0 1-4 4h-3"/>
-                  <line x1="12" y1="2" x2="12" y2="22"/>
-                </svg>
-              </div>
+          <!-- 03. Wakaf Produktif -->
+          <div class="sv-pillar-box">
+            <div class="sv-pillar-head">
               <span class="sv-pillar-num">03</span>
+              <span class="sv-pillar-tag">Kemandirian Pesantren</span>
             </div>
-            <span class="sv-pillar-chip">Kemandirian Pesantren</span>
-            <div class="sv-pillar-title">Wakaf Produktif</div>
-            <div class="sv-pillar-desc">Pengelolaan aset produktif pesantren (agribisnis, inkubasi santripreneur, dan unit usaha mandiri) untuk operasional berkelanjutan.</div>
+            <h3 class="sv-pillar-h3">Wakaf Produktif</h3>
+            <p class="sv-pillar-text">Pengelolaan aset produktif pesantren (agribisnis, inkubasi santripreneur, dan unit usaha mandiri) untuk operasional berkelanjutan.</p>
           </div>
 
-          <!-- 4. Wakaf Tanah dan Bangunan -->
-          <div class="sv-pillar-card">
-            <div class="sv-pillar-top">
-              <div class="sv-pillar-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 21h18"/>
-                  <path d="M5 21V9l7-5 7 5v12"/>
-                  <path d="M9 21v-6a3 3 0 0 1 6 0v6"/>
-                  <circle cx="12" cy="7" r="1"/>
-                </svg>
-              </div>
+          <!-- 04. Wakaf Tanah dan Bangunan -->
+          <div class="sv-pillar-box">
+            <div class="sv-pillar-head">
               <span class="sv-pillar-num">04</span>
+              <span class="sv-pillar-tag">Fisik &amp; Lahan Abadi</span>
             </div>
-            <span class="sv-pillar-chip">Fisik &amp; Lahan Abadi</span>
-            <div class="sv-pillar-title">Wakaf Tanah &amp; Bangunan</div>
-            <div class="sv-pillar-desc">Pembangunan fisik Garden Mosque Khoiru Ummah, asrama santri, dan perluasan lahan wakaf sebagai pusat peradaban generasi Qur'ani.</div>
+            <h3 class="sv-pillar-h3">Wakaf Tanah &amp; Bangunan</h3>
+            <p class="sv-pillar-text">Pembangunan fisik Garden Mosque Khoiru Ummah, asrama santri, dan perluasan lahan wakaf sebagai pusat peradaban generasi Qur'ani.</p>
           </div>
         </div>
+      </section>
 
-        <!-- Card Rekening Bank -->
-        <div class="sv-rek-card">
-
-          <div class="sv-rek-header">
-            <span class="sv-bank-name">BANK BSI</span>
-            <span class="sv-rek-tag">Cab. Nusantara Depok</span>
+      <!-- DONATION CHECKOUT CARD & BANK PASSBOOK -->
+      <section class="sv-donation-section" aria-labelledby="donation-heading">
+        <div class="sv-checkout-card">
+          <div id="donation-heading" class="sv-checkout-title">
+            Saluran Wakaf Resmi
           </div>
 
-          <div class="sv-rek-number">
-            7142 2637 63
-          </div>
-
-          <div class="sv-rek-owner">
-            a.n. <strong class="sv-rek-owner-name">Yayasan Permata Cendikia Indonesia</strong>
-          </div>
-
-          <!-- Tombol Donasi Online Otomatis (Scalev) -->
+          <!-- Scalev Online Checkout (Primary Action) -->
           <a
             href="https://velora-id.myscalev.com/p/wakaf-pembangunan-garden-mosque-khoiru-ummah"
             target="_blank"
             rel="noopener noreferrer"
             class="sv-btn-scalev"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="sv-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="2" y="5" width="20" height="14" rx="2"></rect>
               <line x1="2" y1="10" x2="22" y2="10"></line>
             </svg>
-            <span>Tunaikan Wakaf Online (QRIS &amp; VA)</span>
+            <span>Tunaikan Wakaf Online (QRIS &amp; Virtual Account)</span>
           </a>
 
-          <!-- Tombol Salin Interaktif -->
-          <button
-            type="button"
-            class="sv-btn-copy"
-            onclick="(function(btn){ const num = '7142263763'; if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(num).catch(() => {}); } else { const ta = document.createElement('textarea'); ta.value = num; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch(e){} document.body.removeChild(ta); } const txt = btn.querySelector('.btn-text'); const prev = txt.textContent; txt.textContent='Nomor Berhasil Disalin! ✓'; setTimeout(() => { txt.textContent = prev; }, 2500); })(this);"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            <span class="btn-text">Salin Nomor Rekening BSI (Manual)</span>
-          </button>
+          <!-- Manual Bank Transfer Passbook -->
+          <div class="sv-passbook-box">
+            <div class="sv-passbook-head">
+              <span class="sv-bank-badge">BANK SYARIAH INDONESIA (BSI)</span>
+              <span class="sv-bank-branch">KC Nusantara Depok</span>
+            </div>
+            <div class="sv-passbook-number">
+              7142 2637 63
+            </div>
+            <div class="sv-passbook-owner">
+              a.n. <strong class="sv-owner-name">Yayasan Permata Cendikia Indonesia</strong>
+            </div>
 
-          <!-- Tombol Konfirmasi WhatsApp CS / QRIS -->
-          <a
-            href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20Garden%20Mosque%20Khoiru%20Ummah%2C%20saya%20ingin%20konfirmasi%20donasi%20wakaf."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="sv-btn-wa"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
-            </svg>
-            <span>Konfirmasi Donasi via WhatsApp</span>
-          </a>
+            <!-- Copy Number Button -->
+            <button
+              type="button"
+              class="sv-btn-copy"
+              onclick="(function(btn){ const num = '7142263763'; if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(num).catch(() => {}); } else { const ta = document.createElement('textarea'); ta.value = num; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch(e){} document.body.removeChild(ta); } const txt = btn.querySelector('.btn-label-text'); const prev = txt.textContent; txt.textContent='Nomor Berhasil Disalin'; setTimeout(() => { txt.textContent = prev; }, 2500); })(this);"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span class="btn-label-text">Salin Nomor Rekening BSI (Manual)</span>
+            </button>
 
-          <div class="sv-cs-info">
-            ⚡ Verifikasi Otomatis via QRIS/VA • Hotline CS: <strong class="sv-cs-phone">+62 812-2683-2326</strong>
+            <!-- WhatsApp Confirmation Button -->
+            <a
+              href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20Garden%20Mosque%20Khoiru%20Ummah%2C%20saya%20ingin%20konfirmasi%20donasi%20wakaf."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sv-btn-wa"
+            >
+              <svg class="sv-wa-svg" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+              </svg>
+              <span>Konfirmasi Donasi via WhatsApp</span>
+            </a>
+          </div>
+
+          <div class="sv-trust-note">
+            <svg class="sv-shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+            <span>Verifikasi Otomatis Online • Layanan CS:</span>
+            <a href="tel:+6281226832326" class="sv-cs-link">+62 812-2683-2326</a>
           </div>
         </div>
 
-        <p class="sv-quote">
-          “Jazakumullahu khairan katsiran atas kebaikan &amp; keikhlasan Anda”
+        <p class="sv-quote-banner">
+          “Jazakumullahu khairan katsiran atas kebaikan dan keikhlasan Anda”
         </p>
 
-        <!-- Alamat Fisik / Lokasi Pembangunan -->
-        <div class="sv-location-wrapper">
-          <div class="sv-location-header">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            LOKASI PEMBANGUNAN &amp; KAMPUS SANTRI
+        <!-- OFFICIAL CAMPUS LOCATION -->
+        <div class="sv-location-card">
+          <div class="sv-loc-badge">
+            <svg class="sv-loc-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Lokasi Pembangunan &amp; Kampus Santri</span>
           </div>
-          <p class="sv-location-address">
+          <p class="sv-loc-address">
             G332+WWG, Jl. Raya Jonggol-Dayeuh Kp. Tegal Putat, RT.01/RW.06, Sukasirna, Kec. Jonggol, Kabupaten Bogor, Jawa Barat 16830
           </p>
           <a
             href="https://maps.google.com/?q=G332%2BWWG%2C+Jl.+Raya+Jonggol-Dayeuh+Kp.+Tegal+Putat%2C+RT.01%2FRW.06%2C+Sukasirna%2C+Kec.+Jonggol%2C+Kabupaten+Bogor%2C+Jawa+Barat+16830"
             target="_blank"
             rel="noopener noreferrer"
-            class="sv-maps-link"
+            class="sv-maps-action"
           >
-            <span>Buka Rute di Google Maps ➔</span>
+            <span>Buka Rute di Google Maps</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </a>
         </div>
-
-      </div>
+      </section>
 
     </div>
   </div>
