@@ -95,13 +95,23 @@
       margin-bottom: 24px;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 16px 36px -12px rgba(0, 0, 0, 0.5);
     }
+    .sv-logo-badge {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 10px 20px 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
     .sv-logo-img {
-      max-height: 72px;
-      width: auto;
+      height: auto;
+      max-height: 86px;
+      width: 220px;
       max-width: 100%;
       object-fit: contain;
       display: block;
-      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
     }
     .sv-fallback-title {
       display: none;
@@ -916,18 +926,16 @@
       <!-- INSTITUTIONAL CREST HEADER -->
       <header class="sv-header">
         <div class="sv-crest-badge">
-          <img
-            src="https://skillageislamic.sch.id/img/logo.webp"
-            onerror="this.onerror=null; this.src='logo_skill_village-removebg-preview.png'; this.onerror=()=>{ this.style.display='none'; const fb=document.getElementById('sv-fallback-title'); if(fb) fb.style.display='block'; };"
-            alt="Skill Village Islamic School"
-            class="sv-logo-img"
-          >
-          <div id="sv-fallback-title" class="sv-fallback-title">
-            SKILL VILLAGE ISLAMIC SCHOOL
+          <div class="sv-logo-badge">
+            <img
+              src="logo-gwav.png"
+              alt="Global Waqf Village - Wakaf untuk Ekosistem Pesantren"
+              class="sv-logo-img"
+              width="220"
+              height="108"
+            >
           </div>
           <div class="sv-crest-meta">
-            <span>Global Waqf Village</span>
-            <span class="sv-meta-divider" aria-hidden="true"></span>
             <span>Yayasan Permata Cendikia Indonesia</span>
           </div>
           <div class="sv-reg-number">
