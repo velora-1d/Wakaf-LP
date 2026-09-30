@@ -11,21 +11,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-canvas: #060e18;
-      --bg-surface: #0a1727;
-      --bg-surface-elevated: #0f2238;
-      --bg-surface-card: #0d1e32;
-      --gold-primary: #d4af37;
-      --gold-light: #e6c86e;
-      --gold-dark: #b28f24;
-      --gold-surface: rgba(212, 175, 55, 0.08);
-      --gold-border: rgba(212, 175, 55, 0.28);
-      --border-hairline: rgba(255, 255, 255, 0.08);
-      --border-subtle: rgba(212, 175, 55, 0.18);
-      --border-prominent: rgba(212, 175, 55, 0.45);
-      --text-primary: #f8fafc;
-      --text-secondary: #cbd5e1;
-      --text-muted: #8494a7;
+      --bg-canvas: #f2f5f3;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f8fafc;
+      --bg-surface-card: #f8fafc;
+      --brand-primary: #0c5e37;
+      --brand-dark: #073e23;
+      --brand-light: #16a34a;
+      --brand-surface: rgba(12, 94, 55, 0.06);
+      --brand-border: rgba(12, 94, 55, 0.16);
+      --gold-primary: #b45309;
+      --gold-light: #92400e;
+      --gold-dark: #78350f;
+      --gold-surface: rgba(180, 83, 9, 0.07);
+      --gold-border: rgba(180, 83, 9, 0.22);
+      --border-hairline: #e2e8f0;
+      --border-subtle: rgba(12, 94, 55, 0.12);
+      --border-prominent: rgba(12, 94, 55, 0.25);
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 20px;
@@ -56,11 +61,11 @@
     }
     .sv-card {
       position: relative;
-      background: linear-gradient(180deg, #0d2035 0%, #091726 40%, #060e18 100%);
-      border: 1px solid var(--border-prominent);
+      background: #ffffff;
+      border: 1px solid rgba(12, 94, 55, 0.15);
       border-radius: var(--radius-xl);
       padding: 48px 32px 40px;
-      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1), 0 32px 80px -20px rgba(0, 0, 0, 0.75);
+      box-shadow: 0 24px 60px -15px rgba(12, 94, 55, 0.08), 0 4px 16px -2px rgba(0, 0, 0, 0.03);
       overflow: hidden;
     }
     .sv-geo-backdrop {
@@ -70,7 +75,7 @@
       transform: translateX(-50%);
       width: 760px;
       max-width: 140%;
-      opacity: 0.055;
+      opacity: 0.045;
       pointer-events: none;
     }
     .sv-content-wrapper {
@@ -92,17 +97,16 @@
       border: none;
       box-shadow: none;
       padding: 0;
-      margin: 0 auto 28px;
+      margin: 0 auto 24px;
       max-width: 480px;
     }
     .sv-logo-img {
       height: auto;
-      max-height: 140px;
+      max-height: 145px;
       width: clamp(280px, 48vw, 380px);
       max-width: 100%;
       object-fit: contain;
       display: block;
-      filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.9)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
     }
     .sv-fallback-title {
       display: none;
@@ -116,17 +120,17 @@
       align-items: center;
       gap: 8px;
       border-top: 1px solid var(--border-hairline);
-      padding-top: 10px;
-      font-size: 11px;
+      padding-top: 12px;
+      font-size: 11.5px;
       font-weight: 700;
-      color: var(--gold-light);
+      color: var(--brand-primary);
       letter-spacing: 1.5px;
       text-transform: uppercase;
     }
     .sv-meta-divider {
       width: 4px;
       height: 4px;
-      background: var(--gold-primary);
+      background: var(--brand-primary);
       border-radius: 50%;
       opacity: 0.6;
     }
@@ -139,12 +143,12 @@
 
     .sv-arabic-greeting {
       font-family: 'Amiri', 'Traditional Arabic', serif;
-      font-size: clamp(21px, 4vw, 27px);
+      font-size: clamp(22px, 4.2vw, 28px);
       line-height: 1.8;
-      color: var(--gold-light);
+      color: var(--brand-primary);
       margin: 4px auto 16px;
-      text-shadow: 0 2px 14px rgba(212, 175, 55, 0.28);
       letter-spacing: 0.5px;
+      font-weight: 700;
     }
 
     /* CAMPAIGN HEADLINE */
@@ -152,9 +156,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--gold-surface);
-      border: 1px solid var(--gold-border);
-      color: var(--gold-light);
+      background: var(--brand-surface);
+      border: 1px solid var(--brand-border);
+      color: var(--brand-primary);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1.5px;
@@ -166,7 +170,7 @@
     .sv-badge-icon {
       width: 14px;
       height: 14px;
-      color: var(--gold-primary);
+      color: var(--brand-primary);
     }
     .sv-h1 {
       font-size: clamp(26px, 4.5vw, 36px);
@@ -177,7 +181,7 @@
       margin-bottom: 12px;
     }
     .sv-gold-highlight {
-      color: var(--gold-light);
+      color: var(--brand-primary);
       font-weight: 800;
     }
     .sv-lead-prose {
@@ -190,12 +194,12 @@
 
     /* VIDEO THEATER */
     .sv-video-container {
-      background: linear-gradient(180deg, rgba(212, 175, 55, 0.4) 0%, rgba(212, 175, 55, 0.1) 100%);
+      background: linear-gradient(180deg, rgba(12, 94, 55, 0.2) 0%, rgba(12, 94, 55, 0.06) 100%);
       border-radius: var(--radius-lg);
       padding: 3px;
       max-width: 720px;
       margin: 28px auto 8px;
-      box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 16px 40px -12px rgba(12, 94, 55, 0.12), 0 4px 16px -2px rgba(0, 0, 0, 0.04);
     }
     .sv-video-aspect {
       position: relative;
@@ -235,17 +239,17 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(0.78);
+      filter: brightness(0.82);
       transition: transform 0.4s ease, filter 0.4s ease;
     }
     .sv-video-cover:hover .sv-video-thumb {
       transform: scale(1.03);
-      filter: brightness(0.9);
+      filter: brightness(0.92);
     }
     .sv-video-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(2, 7, 14, 0.3) 0%, rgba(2, 7, 14, 0.8) 100%);
+      background: radial-gradient(circle at center, rgba(2, 7, 14, 0.25) 0%, rgba(2, 7, 14, 0.75) 100%);
     }
     .sv-play-button {
       position: relative;
@@ -253,17 +257,17 @@
       width: 72px;
       height: 72px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
-      box-shadow: 0 10px 28px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      background: linear-gradient(135deg, #16a34a 0%, #0c5e37 100%);
+      box-shadow: 0 10px 28px rgba(12, 94, 55, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #060e18;
+      color: #ffffff;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .sv-video-cover:hover .sv-play-button {
       transform: scale(1.08);
-      box-shadow: 0 14px 36px rgba(212, 175, 55, 0.7);
+      box-shadow: 0 14px 36px rgba(12, 94, 55, 0.6);
     }
     .sv-play-svg {
       width: 28px;
@@ -277,12 +281,12 @@
       margin-top: 14px;
       font-size: 13px;
       font-weight: 700;
-      color: var(--text-primary);
-      background: rgba(6, 14, 24, 0.85);
+      color: #ffffff;
+      background: rgba(12, 94, 55, 0.88);
       backdrop-filter: blur(8px);
       padding: 6px 18px;
       border-radius: 999px;
-      border: 1px solid var(--border-prominent);
+      border: 1px solid rgba(255, 255, 255, 0.35);
       letter-spacing: 0.5px;
       display: inline-flex;
       align-items: center;
@@ -291,7 +295,7 @@
     .sv-play-label-icon {
       width: 14px;
       height: 14px;
-      color: var(--gold-primary);
+      color: #86efac;
     }
     .sv-video-yt-direct {
       text-align: center;
@@ -302,13 +306,12 @@
       align-items: center;
       gap: 6px;
       font-size: 12px;
-      color: var(--gold-light);
+      color: var(--brand-primary);
       text-decoration: none;
-      opacity: 0.85;
+      font-weight: 600;
       transition: opacity 0.2s ease;
     }
     .sv-yt-link:hover {
-      opacity: 1;
       text-decoration: underline;
     }
     .sv-external-svg {
@@ -319,12 +322,12 @@
     /* OFFICIAL FINANCIAL STATEMENT & AUDIT LEDGER */
     .sv-ledger-card {
       background: var(--bg-surface-card);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-hairline);
       border-radius: var(--radius-lg);
       padding: 26px 24px;
       margin: 28px auto 24px;
       max-width: 720px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 16px 36px -10px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.04);
       text-align: left;
     }
     .sv-ledger-header {
@@ -339,9 +342,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(239, 68, 68, 0.12);
-      border: 1px solid rgba(239, 68, 68, 0.35);
-      color: #fca5a5;
+      background: rgba(220, 38, 38, 0.08);
+      border: 1px solid rgba(220, 38, 38, 0.25);
+      color: #dc2626;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1.5px;
@@ -352,26 +355,26 @@
     .sv-pulse-dot {
       width: 7px;
       height: 7px;
-      background: #ef4444;
+      background: #dc2626;
       border-radius: 50%;
-      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+      box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
       animation: svPulse 2s infinite;
     }
     @keyframes svPulse {
       0% {
-        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
       }
       70% {
-        box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+        box-shadow: 0 0 0 6px rgba(220, 38, 38, 0);
       }
       100% {
-        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
       }
     }
     .sv-land-spec {
       font-size: 11.5px;
       font-weight: 700;
-      color: var(--gold-light);
+      color: var(--brand-primary);
       letter-spacing: 1px;
       font-family: 'JetBrains Mono', monospace;
     }
@@ -397,15 +400,15 @@
       margin-bottom: 18px;
     }
     .sv-metric-cell {
-      background: rgba(6, 14, 24, 0.6);
+      background: #ffffff;
       border: 1px solid var(--border-hairline);
       border-radius: var(--radius-sm);
       padding: 12px 14px;
       text-align: left;
     }
     .sv-metric-cell.highlight {
-      border-color: var(--gold-border);
-      background: rgba(212, 175, 55, 0.04);
+      border-color: var(--brand-border);
+      background: rgba(12, 94, 55, 0.03);
     }
     .sv-metric-label {
       font-size: 10.5px;
@@ -424,7 +427,7 @@
       letter-spacing: -0.3px;
     }
     .sv-metric-amount.gold {
-      color: var(--gold-light);
+      color: var(--brand-primary);
     }
     .sv-metric-amount.dim {
       color: var(--text-secondary);
@@ -446,7 +449,7 @@
     .sv-progress-bar {
       width: 100%;
       height: 8px;
-      background: rgba(255, 255, 255, 0.08);
+      background: #e2e8f0;
       border-radius: 999px;
       overflow: hidden;
       position: relative;
@@ -455,9 +458,9 @@
       width: 3.85%;
       min-width: 16px;
       height: 100%;
-      background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 100%);
+      background: linear-gradient(90deg, #16a34a 0%, #0c5e37 100%);
       border-radius: 999px;
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      box-shadow: 0 0 10px rgba(12, 94, 55, 0.35);
     }
     .sv-progress-note {
       display: flex;
@@ -468,7 +471,7 @@
       color: var(--text-muted);
     }
     .sv-progress-highlight {
-      color: var(--gold-light);
+      color: var(--brand-primary);
       font-weight: 700;
       font-family: 'JetBrains Mono', monospace;
     }
@@ -485,16 +488,16 @@
     .sv-sep-line {
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-subtle));
+      background: linear-gradient(90deg, transparent, #e2e8f0);
     }
     .sv-sep-line.reverse {
-      background: linear-gradient(270deg, transparent, var(--border-subtle));
+      background: linear-gradient(270deg, transparent, #e2e8f0);
     }
     .sv-sep-icon {
       width: 16px;
       height: 16px;
-      color: var(--gold-primary);
-      opacity: 0.7;
+      color: var(--brand-primary);
+      opacity: 0.6;
     }
 
     /* ARCHITECTURAL CONCEPT (MODERN GREEN BUILDING) */
@@ -529,18 +532,19 @@
       margin: 0 auto;
     }
     .sv-concept-card {
-      background: rgba(13, 30, 50, 0.45);
+      background: #f8fafc;
       border: 1px solid var(--border-hairline);
       border-radius: var(--radius-md);
       padding: 16px;
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      transition: border-color 0.25s ease, background 0.25s ease;
+      transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
     }
     .sv-concept-card:hover {
-      border-color: var(--gold-border);
-      background: rgba(13, 30, 50, 0.75);
+      border-color: var(--brand-border);
+      background: #ffffff;
+      box-shadow: 0 6px 18px -4px rgba(12, 94, 55, 0.08);
     }
     .sv-concept-card.sv-concept-wide {
       grid-column: span 2;
@@ -550,9 +554,9 @@
       width: 40px;
       height: 40px;
       border-radius: var(--radius-sm);
-      background: var(--gold-surface);
-      border: 1px solid var(--gold-border);
-      color: var(--gold-light);
+      background: var(--brand-surface);
+      border: 1px solid var(--brand-border);
+      color: var(--brand-primary);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -587,16 +591,17 @@
       margin: 0 auto;
     }
     .sv-pillar-box {
-      background: linear-gradient(180deg, rgba(15, 34, 56, 0.6) 0%, rgba(10, 23, 39, 0.6) 100%);
-      border: 1px solid var(--border-subtle);
+      background: #ffffff;
+      border: 1px solid var(--border-hairline);
       border-radius: var(--radius-md);
       padding: 20px 18px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      transition: border-color 0.25s ease, transform 0.25s ease;
+      box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
     .sv-pillar-box:hover {
-      border-color: var(--border-prominent);
+      border-color: var(--brand-border);
       transform: translateY(-2px);
+      box-shadow: 0 8px 24px -4px rgba(12, 94, 55, 0.08);
     }
     .sv-pillar-head {
       display: flex;
@@ -608,19 +613,19 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       font-weight: 700;
-      color: var(--gold-primary);
+      color: var(--brand-primary);
       letter-spacing: 1px;
     }
     .sv-pillar-tag {
       font-size: 10px;
       font-weight: 700;
-      color: var(--text-muted);
+      color: var(--brand-primary);
       text-transform: uppercase;
       letter-spacing: 1px;
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--brand-surface);
       padding: 3px 8px;
       border-radius: 4px;
-      border: 1px solid var(--border-hairline);
+      border: 1px solid var(--brand-border);
     }
     .sv-pillar-h3 {
       font-size: 15px;
@@ -641,19 +646,19 @@
       margin-top: 10px;
     }
     .sv-checkout-card {
-      background: linear-gradient(180deg, #11263e 0%, #0a1727 100%);
-      border: 1px solid var(--border-prominent);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid #cbd5e1;
       border-radius: var(--radius-lg);
       padding: 28px 24px;
       max-width: 480px;
       margin: 0 auto;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 24px 50px -15px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.08);
       text-align: center;
     }
     .sv-checkout-title {
       font-size: 12px;
       font-weight: 700;
-      color: var(--gold-light);
+      color: var(--brand-primary);
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 16px;
@@ -666,20 +671,20 @@
       justify-content: center;
       gap: 10px;
       width: 100%;
-      background: linear-gradient(135deg, #e6c86e 0%, #d4af37 50%, #b28f24 100%);
-      color: #060e18;
+      background: linear-gradient(135deg, #107244 0%, #0c5e37 50%, #084326 100%);
+      color: #ffffff;
       text-decoration: none;
       font-weight: 800;
       font-size: 15px;
       padding: 15px 24px;
       border-radius: 999px;
       cursor: pointer;
-      box-shadow: 0 8px 24px -4px rgba(212, 175, 55, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 24px -4px rgba(12, 94, 55, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
       transition: filter 0.2s ease, transform 0.15s ease;
       letter-spacing: -0.2px;
     }
     .sv-btn-scalev:hover {
-      filter: brightness(1.06);
+      filter: brightness(1.08);
     }
     .sv-btn-scalev:active {
       transform: scale(0.985);
@@ -706,7 +711,7 @@
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 1.5px;
-      color: #38bdf8;
+      color: #0284c7;
       font-family: 'JetBrains Mono', monospace;
     }
     .sv-bank-branch {
@@ -731,8 +736,8 @@
       margin-bottom: 14px;
     }
     .sv-owner-name {
-      color: var(--gold-light);
-      font-weight: 600;
+      color: var(--brand-primary);
+      font-weight: 700;
     }
 
     /* COPY BUTTON (TACTILE TONE) */
@@ -742,19 +747,20 @@
       justify-content: center;
       gap: 8px;
       width: 100%;
-      background: rgba(255, 255, 255, 0.05);
+      background: #ffffff;
       color: var(--text-primary);
-      border: 1px solid var(--border-hairline);
+      border: 1px solid #cbd5e1;
       font-weight: 700;
       font-size: 13px;
       padding: 11px 20px;
       border-radius: 999px;
       cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
       transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
     }
     .sv-btn-copy:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--border-subtle);
+      background: #f8fafc;
+      border-color: #94a3b8;
     }
     .sv-btn-copy:active {
       transform: scale(0.985);
@@ -768,20 +774,20 @@
       gap: 9px;
       width: 100%;
       margin-top: 10px;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      color: #6ee7b7;
+      background: #10b981;
+      border: 1px solid #059669;
+      color: #ffffff;
       text-decoration: none;
       font-weight: 700;
       font-size: 13px;
       padding: 11px 20px;
       border-radius: 999px;
       cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+      transition: background 0.2s ease, filter 0.2s ease, transform 0.15s ease;
     }
     .sv-btn-wa:hover {
-      background: rgba(16, 185, 129, 0.25);
-      border-color: rgba(16, 185, 129, 0.6);
+      background: #059669;
     }
     .sv-btn-wa:active {
       transform: scale(0.985);
@@ -805,10 +811,10 @@
     .sv-shield-icon {
       width: 13px;
       height: 13px;
-      color: var(--gold-primary);
+      color: var(--brand-primary);
     }
     .sv-cs-link {
-      color: var(--text-secondary);
+      color: var(--brand-primary);
       text-decoration: none;
       font-weight: 700;
       font-family: 'JetBrains Mono', monospace;
@@ -819,9 +825,9 @@
       margin: 32px 0 24px;
       font-size: 14.5px;
       font-style: italic;
-      color: var(--gold-light);
+      color: var(--brand-primary);
       text-align: center;
-      opacity: 0.92;
+      font-weight: 600;
     }
     .sv-location-card {
       border-top: 1px solid var(--border-hairline);
@@ -834,7 +840,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: var(--gold-light);
+      color: var(--brand-primary);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1.5px;
@@ -855,17 +861,17 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: var(--gold-light);
+      color: var(--brand-primary);
       font-size: 12.5px;
       font-weight: 600;
       text-decoration: none;
-      border-bottom: 1px dashed var(--gold-border);
+      border-bottom: 1px dashed var(--brand-primary);
       padding-bottom: 2px;
       transition: color 0.2s ease, border-color 0.2s ease;
     }
     .sv-maps-action:hover {
-      color: #ffffff;
-      border-color: #ffffff;
+      color: var(--brand-dark);
+      border-color: var(--brand-dark);
     }
 
     /* RESPONSIVE LAYOUT GUARDRAILS */
@@ -909,7 +915,7 @@
 
     <!-- Ornamen Latar Islami Geometris Arsitektural (Hairline Tracery) -->
     <svg viewBox="0 0 400 200" class="sv-geo-backdrop" aria-hidden="true">
-      <g stroke="#d4af37" stroke-width="1.2">
+      <g stroke="#0c5e37" stroke-width="1.2">
         <line x1="200" y1="200" x2="200" y2="0"/>
         <line x1="200" y1="200" x2="120" y2="0"/>
         <line x1="200" y1="200" x2="280" y2="0"/>
