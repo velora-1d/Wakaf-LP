@@ -604,14 +604,15 @@
       margin-bottom: 14px;
     }
     .sv-khairi-prose-flow {
-      margin-top: 14px;
-      margin-bottom: 22px;
+      max-width: 620px;
+      margin: 12px auto 0;
+      text-align: center;
     }
     .sv-khairi-prose-p {
-      font-size: 14.5px;
-      line-height: 1.7;
+      font-size: 14px;
+      line-height: 1.65;
       color: var(--text-secondary);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .sv-khairi-prose-p:last-child {
       margin-bottom: 0;
@@ -1231,10 +1232,11 @@
         <div class="sv-section-head">
           <div class="sv-campaign-badge">
             <svg class="sv-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
+              <rect x="2" y="6" width="20" height="12" rx="2"/>
+              <circle cx="12" cy="12" r="2"/>
+              <path d="M6 12h.01M18 12h.01"/>
             </svg>
-            <span>01 WAKAF UANG</span>
+            <span>WAKAF UANG</span>
           </div>
           <h2 id="khairi-heading" class="sv-h2">
             Wakaf Khairi
@@ -1244,11 +1246,10 @@
           <p class="sv-sub-prose">
             Dukung pembangunan dan kelengkapan Masjid Khairu Ummah Sugro melalui wakaf uang yang disalurkan sesuai kebutuhan pembangunan dan fasilitas masjid.
           </p>
-        </div>
-
-        <div class="sv-khairi-prose-flow">
-          <p class="sv-khairi-prose-p">Salurkan wakaf Anda untuk pembangunan dan kelengkapan Masjid Khairu Ummah Sugro.</p>
-          <p class="sv-khairi-prose-p">Wakaf uang yang dihimpun akan dikelola dan dialokasikan sesuai kebutuhan pembangunan serta fasilitas masjid yang masih diperlukan.</p>
+          <div class="sv-khairi-prose-flow">
+            <p class="sv-khairi-prose-p">Salurkan wakaf Anda untuk pembangunan dan kelengkapan Masjid Khairu Ummah Sugro.</p>
+            <p class="sv-khairi-prose-p">Wakaf uang yang dihimpun akan dikelola dan dialokasikan sesuai kebutuhan pembangunan serta fasilitas masjid yang masih diperlukan.</p>
+          </div>
         </div>
 
         <!-- SISTEM FAQ WAKAF KHAIRI MURNI -->
