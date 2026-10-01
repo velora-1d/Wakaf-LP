@@ -718,47 +718,51 @@
       margin: 0;
     }
 
-    /* Tabel Kebutuhan di FAQ 2 & 3 */
-    .sv-faq-table-wrap {
-      overflow-x: auto;
-      margin-top: 10px;
+    /* Grid 3 Kolom untuk Poin Kebutuhan di FAQ 2 & 3 */
+    .sv-faq-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 860px) {
+      .sv-faq-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 540px) {
+      .sv-faq-grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .sv-faq-point {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px;
+      background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: var(--radius-sm);
-    }
-    .sv-kanban-table {
-      width: 100%;
-      border-collapse: collapse;
       font-size: 13px;
-    }
-    .sv-kanban-table tr {
-      border-bottom: 1px solid #f1f5f9;
-      transition: background 0.15s ease;
-    }
-    .sv-kanban-table tr:last-child {
-      border-bottom: none;
-    }
-    .sv-kanban-table tr:nth-child(even) {
-      background: #fafbfc;
-    }
-    .sv-kanban-table tr:hover {
-      background: #f1f5f9;
-    }
-    .sv-td-num {
-      width: 32px;
-      padding: 8px 6px 8px 14px;
-      color: #94a3b8;
-      font-size: 11.5px;
-      font-weight: 600;
-      font-family: 'JetBrains Mono', monospace;
-      text-align: center;
-      vertical-align: middle;
-    }
-    .sv-td-item {
-      padding: 8px 12px;
-      color: var(--text-primary);
-      font-weight: 500;
       line-height: 1.4;
-      vertical-align: middle;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .sv-faq-point:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .sv-faq-point-num {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+      flex-shrink: 0;
+      min-width: 20px;
+    }
+    .sv-faq-point-text {
+      font-weight: 600;
+      color: #1e293b;
+      word-break: break-word;
     }
 
     /* Aksi Barang di FAQ 4 */
@@ -1281,28 +1285,24 @@
             </summary>
             <div class="sv-faq-body">
               <p class="sv-faq-lead">Wakaf yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan material pembangunan, antara lain:</p>
-              <div class="sv-faq-table-wrap">
-                <table class="sv-kanban-table">
-                  <tbody>
-                    <tr><td class="sv-td-num">01</td><td class="sv-td-item">Semen</td></tr>
-                    <tr><td class="sv-td-num">02</td><td class="sv-td-item">Pasir</td></tr>
-                    <tr><td class="sv-td-num">03</td><td class="sv-td-item">Split</td></tr>
-                    <tr><td class="sv-td-num">04</td><td class="sv-td-item">Keramik 40×40</td></tr>
-                    <tr><td class="sv-td-num">05</td><td class="sv-td-item">Granit 60×60</td></tr>
-                    <tr><td class="sv-td-num">06</td><td class="sv-td-item">UNP 100 &amp; 150</td></tr>
-                    <tr><td class="sv-td-num">07</td><td class="sv-td-item">CNP 100 &amp; 150</td></tr>
-                    <tr><td class="sv-td-num">08</td><td class="sv-td-item">WF 75×150</td></tr>
-                    <tr><td class="sv-td-num">09</td><td class="sv-td-item">Hollow 4×4 &amp; 2×4</td></tr>
-                    <tr><td class="sv-td-num">10</td><td class="sv-td-item">Lantai Vinyl</td></tr>
-                    <tr><td class="sv-td-num">11</td><td class="sv-td-item">Panel Lantai GRC 12 mm</td></tr>
-                    <tr><td class="sv-td-num">12</td><td class="sv-td-item">Kawat Loket</td></tr>
-                    <tr><td class="sv-td-num">13</td><td class="sv-td-item">Hebel 10 &amp; 7</td></tr>
-                    <tr><td class="sv-td-num">14</td><td class="sv-td-item">Plafon</td></tr>
-                    <tr><td class="sv-td-num">15</td><td class="sv-td-item">Aluminium</td></tr>
-                    <tr><td class="sv-td-num">16</td><td class="sv-td-item">MEP</td></tr>
-                    <tr><td class="sv-td-num">17</td><td class="sv-td-item">Kaca</td></tr>
-                  </tbody>
-                </table>
+              <div class="sv-faq-grid-3">
+                <div class="sv-faq-point"><span class="sv-faq-point-num">01</span><span class="sv-faq-point-text">Semen</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">02</span><span class="sv-faq-point-text">Pasir</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">03</span><span class="sv-faq-point-text">Split</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">04</span><span class="sv-faq-point-text">Keramik 40×40</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">05</span><span class="sv-faq-point-text">Granit 60×60</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">06</span><span class="sv-faq-point-text">UNP 100 &amp; 150</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">07</span><span class="sv-faq-point-text">CNP 100 &amp; 150</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">08</span><span class="sv-faq-point-text">WF 75×150</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">09</span><span class="sv-faq-point-text">Hollow 4×4 &amp; 2×4</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">10</span><span class="sv-faq-point-text">Lantai Vinyl</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">11</span><span class="sv-faq-point-text">Panel Lantai GRC 12 mm</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">12</span><span class="sv-faq-point-text">Kawat Loket</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">13</span><span class="sv-faq-point-text">Hebel 10 &amp; 7</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">14</span><span class="sv-faq-point-text">Plafon</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">15</span><span class="sv-faq-point-text">Aluminium</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">16</span><span class="sv-faq-point-text">MEP</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">17</span><span class="sv-faq-point-text">Kaca</span></div>
               </div>
             </div>
           </details>
@@ -1317,23 +1317,19 @@
             </summary>
             <div class="sv-faq-body">
               <p class="sv-faq-lead">Wakaf juga diarahkan untuk melengkapi berbagai fasilitas yang menunjang penggunaan masjid, antara lain:</p>
-              <div class="sv-faq-table-wrap">
-                <table class="sv-kanban-table">
-                  <tbody>
-                    <tr><td class="sv-td-num">01</td><td class="sv-td-item">Sound System</td></tr>
-                    <tr><td class="sv-td-num">02</td><td class="sv-td-item">Multimedia &amp; Live Streaming</td></tr>
-                    <tr><td class="sv-td-num">03</td><td class="sv-td-item">Flipchart</td></tr>
-                    <tr><td class="sv-td-num">04</td><td class="sv-td-item">TV LED 50 Inch</td></tr>
-                    <tr><td class="sv-td-num">05</td><td class="sv-td-item">Stand TV</td></tr>
-                    <tr><td class="sv-td-num">06</td><td class="sv-td-item">Meja Lesehan</td></tr>
-                    <tr><td class="sv-td-num">07</td><td class="sv-td-item">Lemari Perlengkapan</td></tr>
-                    <tr><td class="sv-td-num">08</td><td class="sv-td-item">Mimbar Masjid</td></tr>
-                    <tr><td class="sv-td-num">09</td><td class="sv-td-item">Karpet Masjid</td></tr>
-                    <tr><td class="sv-td-num">10</td><td class="sv-td-item">Rak Sandal/Sepatu</td></tr>
-                    <tr><td class="sv-td-num">11</td><td class="sv-td-item">Jam Digital Masjid</td></tr>
-                    <tr><td class="sv-td-num">12</td><td class="sv-td-item">Kipas Angin</td></tr>
-                  </tbody>
-                </table>
+              <div class="sv-faq-grid-3">
+                <div class="sv-faq-point"><span class="sv-faq-point-num">01</span><span class="sv-faq-point-text">Sound System</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">02</span><span class="sv-faq-point-text">Multimedia &amp; Live Streaming</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">03</span><span class="sv-faq-point-text">Flipchart</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">04</span><span class="sv-faq-point-text">TV LED 50 Inch</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">05</span><span class="sv-faq-point-text">Stand TV</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">06</span><span class="sv-faq-point-text">Meja Lesehan</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">07</span><span class="sv-faq-point-text">Lemari Perlengkapan</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">08</span><span class="sv-faq-point-text">Mimbar Masjid</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">09</span><span class="sv-faq-point-text">Karpet Masjid</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">10</span><span class="sv-faq-point-text">Rak Sandal/Sepatu</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">11</span><span class="sv-faq-point-text">Jam Digital Masjid</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">12</span><span class="sv-faq-point-text">Kipas Angin</span></div>
               </div>
             </div>
           </details>
