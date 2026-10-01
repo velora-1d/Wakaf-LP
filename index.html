@@ -581,10 +581,56 @@
       color: var(--text-secondary);
     }
 
-    /* 4 PILAR ALOKASI DANA WAKAF */
-    .sv-pillars-section {
+    /* 01 WAKAF UANG — WAKAF KHAIRI */
+    .sv-khairi-section {
       text-align: left;
       margin-bottom: 36px;
+    }
+    .sv-khairi-sub {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--brand-primary);
+      margin-top: -4px;
+      margin-bottom: 10px;
+    }
+    .sv-khairi-tagline {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--gold-primary);
+      background: var(--gold-surface);
+      border: 1px solid var(--gold-border);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+    }
+    .sv-khairi-lead-box {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--brand-primary);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-bottom: 24px;
+    }
+    .sv-khairi-lead-p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .sv-khairi-lead-p:last-child {
+      margin-bottom: 0;
+    }
+    .sv-khairi-block {
+      margin-bottom: 24px;
+    }
+    .sv-khairi-block-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 14px;
     }
     .sv-pillars-grid {
       display: grid;
@@ -597,7 +643,7 @@
       background: #ffffff;
       border: 1px solid var(--border-hairline);
       border-radius: var(--radius-md);
-      padding: 16px 18px 16px;
+      padding: 16px 18px;
       box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.03);
       transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
@@ -606,36 +652,130 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 24px -4px rgba(12, 94, 55, 0.08);
     }
-    .sv-pillar-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    .sv-pillar-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--brand-primary);
-      letter-spacing: 1px;
-    }
-    .sv-pillar-tag {
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--brand-primary);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      background: var(--brand-surface);
-      padding: 3px 8px;
-      border-radius: 4px;
-      border: 1px solid var(--brand-border);
-    }
     .sv-pillar-h3 {
       font-size: 15px;
       font-weight: 700;
       color: var(--text-primary);
-      margin-bottom: 0;
+      margin-bottom: 6px;
       line-height: 1.35;
+    }
+    .sv-khairi-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .sv-khairi-card {
+      background: #ffffff;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+    }
+    .sv-khairi-subheading {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      margin-bottom: 6px;
+    }
+    .sv-khairi-intro {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    .sv-chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .sv-chip {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-primary);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 9999px;
+      padding: 5px 12px;
+      line-height: 1.4;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .sv-chip:hover {
+      background: var(--brand-surface);
+      border-color: var(--brand-border);
+      color: var(--brand-dark);
+    }
+    .sv-barang-card {
+      background-color: rgba(254, 252, 246, 0.7);
+      border: 1.5px dashed var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-top: 24px;
+      margin-bottom: 20px;
+    }
+    .sv-barang-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .sv-barang-p {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .sv-barang-action {
+      margin-top: 14px;
+    }
+    .sv-btn-cs {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #ffffff;
+      color: var(--brand-primary);
+      border: 1.5px solid var(--brand-primary);
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.2s ease;
+    }
+    .sv-btn-cs:hover {
+      background: var(--brand-primary);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .sv-khairi-cta-wrap {
+      text-align: center;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+    .sv-btn-wakaf-sekarang {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-dark) 100%);
+      color: #ffffff;
+      padding: 14px 24px;
+      font-size: 15px;
+      font-weight: 800;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      box-shadow: 0 8px 20px -4px rgba(12, 94, 55, 0.35);
+      letter-spacing: 0.5px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .sv-btn-wakaf-sekarang:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -4px rgba(12, 94, 55, 0.45);
     }
 
     /* DONATION TRANSACTIONS & BANK CERTIFICATE */
@@ -1225,60 +1365,128 @@
         <div class="sv-sep-line reverse"></div>
       </div>
 
-      <!-- 4 PILAR ALOKASI DANA WAKAF -->
-      <section class="sv-pillars-section" aria-labelledby="pillars-heading">
+      <!-- 01 WAKAF UANG — WAKAF KHAIRI -->
+      <section class="sv-khairi-section" aria-labelledby="khairi-heading">
         <div class="sv-section-head">
           <div class="sv-campaign-badge">
             <svg class="sv-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="10"/>
               <polyline points="12 6 12 12 16 14"/>
             </svg>
-            <span>Penyaluran Amanah</span>
+            <span>01 WAKAF UANG</span>
           </div>
-          <h2 id="pillars-heading" class="sv-h2">
-            4 Pilar Alokasi Dana Wakaf
+          <h2 id="khairi-heading" class="sv-h2">
+            Wakaf Khairi
           </h2>
+          <div class="sv-khairi-sub">Masjid Khairu Ummah Sugro</div>
+          <div class="sv-khairi-tagline">PEMBANGUNAN · FASILITAS MASJID</div>
           <p class="sv-sub-prose">
-            Pahala jariyah mengalir berkesinambungan melalui alokasi terarah pada empat sektor utama pembangunan dan pendidikan santri.
+            Dukung pembangunan dan kelengkapan Masjid Khairu Ummah Sugro melalui wakaf uang yang disalurkan sesuai kebutuhan pembangunan dan fasilitas masjid.
           </p>
         </div>
 
-        <div class="sv-pillars-grid">
-          <!-- 01. Wakaf Pendidikan -->
-          <div class="sv-pillar-box">
-            <div class="sv-pillar-head">
-              <span class="sv-pillar-num">01</span>
-              <span class="sv-pillar-tag">Pendidikan &amp; Dakwah</span>
+        <div class="sv-khairi-lead-box">
+          <p class="sv-khairi-lead-p">Salurkan wakaf Anda untuk pembangunan dan kelengkapan Masjid Khairu Ummah Sugro.</p>
+          <p class="sv-khairi-lead-p">Wakaf uang yang dihimpun akan dikelola dan dialokasikan sesuai kebutuhan pembangunan serta fasilitas masjid yang masih diperlukan.</p>
+        </div>
+
+        <!-- Alokasi Wakaf -->
+        <div class="sv-khairi-block">
+          <h3 class="sv-khairi-block-title">Alokasi Wakaf</h3>
+          <div class="sv-pillars-grid">
+            <!-- 01 — Pembangunan Masjid -->
+            <div class="sv-pillar-box">
+              <h4 class="sv-pillar-h3">01 — Pembangunan Masjid</h4>
+              <p class="sv-khairi-desc">Mendukung pemenuhan kebutuhan konstruksi dan material untuk penyelesaian pembangunan Masjid Khairu Ummah Sugro.</p>
             </div>
-            <h3 class="sv-pillar-h3">Wakaf Pendidikan</h3>
+
+            <!-- 02 — Fasilitas Masjid -->
+            <div class="sv-pillar-box">
+              <h4 class="sv-pillar-h3">02 — Fasilitas Masjid</h4>
+              <p class="sv-khairi-desc">Mendukung pengadaan perlengkapan dan fasilitas yang menunjang fungsi, kenyamanan, dan keberlangsungan kegiatan masjid.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kebutuhan Wakaf -->
+        <div class="sv-khairi-block">
+          <h3 class="sv-khairi-block-title">Kebutuhan Wakaf</h3>
+
+          <!-- Kebutuhan Pembangunan -->
+          <div class="sv-khairi-card">
+            <h4 class="sv-khairi-subheading">Kebutuhan Pembangunan</h4>
+            <p class="sv-khairi-intro">Wakaf yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan material pembangunan, antara lain:</p>
+            <div class="sv-chips-grid">
+              <span class="sv-chip">Semen</span>
+              <span class="sv-chip">Pasir</span>
+              <span class="sv-chip">Split</span>
+              <span class="sv-chip">Keramik 40×40</span>
+              <span class="sv-chip">Granit 60×60</span>
+              <span class="sv-chip">UNP 100 &amp; 150</span>
+              <span class="sv-chip">CNP 100 &amp; 150</span>
+              <span class="sv-chip">WF 75×150</span>
+              <span class="sv-chip">Hollow 4×4 &amp; 2×4</span>
+              <span class="sv-chip">Lantai Vinyl</span>
+              <span class="sv-chip">Panel Lantai GRC 12 mm</span>
+              <span class="sv-chip">Kawat Loket</span>
+              <span class="sv-chip">Hebel 10 &amp; 7</span>
+              <span class="sv-chip">Plafon</span>
+              <span class="sv-chip">Aluminium</span>
+              <span class="sv-chip">MEP</span>
+              <span class="sv-chip">Kaca</span>
+            </div>
           </div>
 
-          <!-- 02. Wakaf Sarana dan Prasarana -->
-          <div class="sv-pillar-box">
-            <div class="sv-pillar-head">
-              <span class="sv-pillar-num">02</span>
-              <span class="sv-pillar-tag">Fasilitas Santri</span>
+          <!-- Kebutuhan Fasilitas Masjid -->
+          <div class="sv-khairi-card">
+            <h4 class="sv-khairi-subheading">Kebutuhan Fasilitas Masjid</h4>
+            <p class="sv-khairi-intro">Wakaf juga diarahkan untuk melengkapi berbagai fasilitas yang menunjang penggunaan masjid, antara lain:</p>
+            <div class="sv-chips-grid">
+              <span class="sv-chip">Sound System</span>
+              <span class="sv-chip">Multimedia &amp; Live Streaming</span>
+              <span class="sv-chip">Flipchart</span>
+              <span class="sv-chip">TV LED 50 Inch</span>
+              <span class="sv-chip">Stand TV</span>
+              <span class="sv-chip">Meja Lesehan</span>
+              <span class="sv-chip">Lemari Perlengkapan</span>
+              <span class="sv-chip">Mimbar Masjid</span>
+              <span class="sv-chip">Karpet Masjid</span>
+              <span class="sv-chip">Rak Sandal/Sepatu</span>
+              <span class="sv-chip">Jam Digital Masjid</span>
+              <span class="sv-chip">Kipas Angin</span>
             </div>
-            <h3 class="sv-pillar-h3">Wakaf Sarana &amp; Prasarana</h3>
           </div>
+        </div>
 
-          <!-- 03. Wakaf Produktif -->
-          <div class="sv-pillar-box">
-            <div class="sv-pillar-head">
-              <span class="sv-pillar-num">03</span>
-              <span class="sv-pillar-tag">Kemandirian Pesantren</span>
-            </div>
-            <h3 class="sv-pillar-h3">Wakaf Produktif</h3>
+        <!-- Ingin Berwakaf dalam Bentuk Barang? -->
+        <div class="sv-barang-card">
+          <h3 class="sv-barang-title">Ingin Berwakaf dalam Bentuk Barang?</h3>
+          <p class="sv-barang-p">Program utama Wakaf Khairi Masjid Khairu Ummah Sugro dihimpun dalam bentuk wakaf uang.</p>
+          <p class="sv-barang-p">Bagi wakif yang ingin berkontribusi melalui material pembangunan atau fasilitas masjid secara langsung, silakan menghubungi Customer Service untuk memperoleh informasi mengenai kebutuhan yang masih tersedia serta mekanisme penyalurannya.</p>
+          <div class="sv-barang-action">
+            <a
+              href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%2C%20saya%20ingin%20berkonsultasi%20mengenai%20kontribusi%20wakaf%20dalam%20bentuk%20barang%2Fmaterial%20fasilitas%20Masjid%20Khairu%20Ummah%20Sugro."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sv-btn-cs"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+              </svg>
+              <span>HUBUNGI CUSTOMER SERVICE</span>
+            </a>
           </div>
+        </div>
 
-          <!-- 04. Wakaf Tanah dan Bangunan -->
-          <div class="sv-pillar-box">
-            <div class="sv-pillar-head">
-              <span class="sv-pillar-num">04</span>
-              <span class="sv-pillar-tag">Fisik &amp; Lahan Abadi</span>
-            </div>
-            <h3 class="sv-pillar-h3">Wakaf Tanah &amp; Bangunan</h3>
-          </div>
+        <!-- [ WAKAF SEKARANG ] -->
+        <div class="sv-khairi-cta-wrap">
+          <a href="#donation-heading" class="sv-btn-wakaf-sekarang">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
+            <span>WAKAF SEKARANG</span>
+          </a>
         </div>
       </section>
 
