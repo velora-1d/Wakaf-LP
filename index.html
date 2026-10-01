@@ -10,6 +10,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'LPMQ';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('fonts/LPMQ-Isep-Misbah.woff2') format('woff2'),
+           url('fonts/LPMQ-Isep-Misbah.ttf') format('truetype');
+    }
+
     :root {
       --bg-canvas: #f2f5f3;
       --bg-surface: #ffffff;
@@ -152,13 +161,13 @@
     }
 
     .sv-arabic-greeting {
-      font-family: 'Amiri', 'Traditional Arabic', serif;
+      font-family: 'LPMQ', 'Amiri', 'Traditional Arabic', serif;
       font-size: clamp(22px, 4.2vw, 28px);
-      line-height: 1.8;
+      line-height: 2;
       color: var(--brand-primary);
       margin: 4px auto 16px;
       letter-spacing: 0.5px;
-      font-weight: 700;
+      font-weight: 400;
     }
 
     /* CAMPAIGN HEADLINE */
@@ -725,19 +734,19 @@
       border-radius: var(--radius-md);
     }
     .sv-hadits-arabic {
-      font-family: 'Amiri', 'Traditional Arabic', serif;
-      font-size: clamp(18px, 3.5vw, 22px);
-      line-height: 2;
+      font-family: 'LPMQ', 'Amiri', 'Traditional Arabic', serif;
+      font-size: clamp(20px, 3.8vw, 24px);
+      line-height: 2.2;
       color: var(--brand-primary);
-      font-weight: 700;
+      font-weight: 400;
       margin-bottom: 6px;
     }
     .sv-hadits-takhrij {
-      font-family: 'Amiri', 'Traditional Arabic', serif;
-      font-size: 14.5px;
-      line-height: 1.8;
+      font-family: 'LPMQ', 'Amiri', 'Traditional Arabic', serif;
+      font-size: 15px;
+      line-height: 2;
       color: var(--gold-primary);
-      font-weight: 600;
+      font-weight: 400;
       margin-bottom: 12px;
     }
     .sv-hadits-translation {
