@@ -581,178 +581,139 @@
       color: var(--text-secondary);
     }
 
-    /* 01 WAKAF UANG — WAKAF KHAIRI */
+    /* 01 WAKAF UANG — WAKAF KHAIRI (Clean Editorial Flow — Zero Box Slop) */
     .sv-khairi-section {
       text-align: left;
-      margin-bottom: 36px;
+      margin-bottom: 40px;
     }
     .sv-khairi-sub {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
       color: var(--brand-primary);
-      margin-top: -4px;
-      margin-bottom: 10px;
+      margin-top: -2px;
+      margin-bottom: 6px;
     }
     .sv-khairi-tagline {
       display: inline-block;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       color: var(--gold-primary);
-      background: var(--gold-surface);
-      border: 1px solid var(--gold-border);
-      padding: 4px 10px;
-      border-radius: var(--radius-sm);
+      margin-bottom: 14px;
+    }
+    .sv-khairi-prose-flow {
+      margin-top: 14px;
+      margin-bottom: 28px;
+    }
+    .sv-khairi-prose-p {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+    .sv-khairi-prose-p:last-child {
+      margin-bottom: 0;
+    }
+    .sv-khairi-block {
+      margin-bottom: 30px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border-hairline);
+    }
+    .sv-khairi-block-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text-primary);
       margin-bottom: 16px;
+      letter-spacing: -0.2px;
     }
-    .sv-khairi-lead-box {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-left: 3px solid var(--brand-primary);
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      margin-bottom: 24px;
+    /* Alokasi 2-kolom bersih tanpa border card */
+    .sv-alokasi-flow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
     }
-    .sv-khairi-lead-p {
-      font-size: 14px;
+    .sv-alokasi-col {
+      position: relative;
+    }
+    .sv-alokasi-h4 {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .sv-alokasi-desc {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    /* Kebutuhan List murni tipografi mengalir */
+    .sv-kebutuhan-group {
+      margin-bottom: 22px;
+    }
+    .sv-kebutuhan-group:last-child {
+      margin-bottom: 0;
+    }
+    .sv-kebutuhan-h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .sv-kebutuhan-intro {
+      font-size: 13.5px;
       line-height: 1.6;
       color: var(--text-secondary);
       margin-bottom: 8px;
     }
-    .sv-khairi-lead-p:last-child {
-      margin-bottom: 0;
-    }
-    .sv-khairi-block {
-      margin-bottom: 24px;
-    }
-    .sv-khairi-block-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 14px;
-    }
-    .sv-pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .sv-pillar-box {
-      background: #ffffff;
-      border: 1px solid var(--border-hairline);
-      border-radius: var(--radius-md);
-      padding: 16px 18px;
-      box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.03);
-      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .sv-pillar-box:hover {
-      border-color: var(--brand-border);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px -4px rgba(12, 94, 55, 0.08);
-    }
-    .sv-pillar-h3 {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 6px;
-      line-height: 1.35;
-    }
-    .sv-khairi-desc {
+    .sv-khairi-item-flow {
       font-size: 13.5px;
-      line-height: 1.55;
-      color: var(--text-secondary);
+      line-height: 1.85;
+      color: var(--text-primary);
+      background: transparent;
       margin: 0;
     }
-    .sv-khairi-card {
-      background: #ffffff;
-      border: 1px solid var(--border-hairline);
-      border-radius: var(--radius-md);
-      padding: 18px 20px;
-      margin-bottom: 14px;
-      box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.03);
-    }
-    .sv-khairi-subheading {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--brand-dark);
-      margin-bottom: 6px;
-    }
-    .sv-khairi-intro {
-      font-size: 13.5px;
-      line-height: 1.55;
-      color: var(--text-secondary);
-      margin-bottom: 12px;
-    }
-    .sv-chips-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .sv-chip {
-      font-size: 12.5px;
-      font-weight: 500;
-      color: var(--text-primary);
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-hairline);
-      border-radius: 9999px;
-      padding: 5px 12px;
-      line-height: 1.4;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-    .sv-chip:hover {
-      background: var(--brand-surface);
-      border-color: var(--brand-border);
-      color: var(--brand-dark);
-    }
-    .sv-barang-card {
-      background-color: rgba(254, 252, 246, 0.7);
-      border: 1.5px dashed var(--gold-border);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      margin-top: 24px;
-      margin-bottom: 20px;
+    /* Alur Barang tanpa kotak kuning */
+    .sv-barang-flow {
+      padding-top: 24px;
+      border-top: 1px solid var(--border-hairline);
+      margin-top: 28px;
+      margin-bottom: 28px;
     }
     .sv-barang-title {
-      font-size: 16px;
+      font-size: 16.5px;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 8px;
     }
     .sv-barang-p {
       font-size: 13.5px;
-      line-height: 1.6;
+      line-height: 1.65;
       color: var(--text-secondary);
       margin-bottom: 8px;
     }
     .sv-barang-action {
-      margin-top: 14px;
+      margin-top: 12px;
     }
     .sv-btn-cs {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      background: #ffffff;
       color: var(--brand-primary);
-      border: 1.5px solid var(--brand-primary);
-      padding: 10px 18px;
-      border-radius: var(--radius-md);
       font-size: 13px;
       font-weight: 700;
-      text-decoration: none;
-      letter-spacing: 0.5px;
-      transition: all 0.2s ease;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      transition: color 0.2s ease;
     }
     .sv-btn-cs:hover {
-      background: var(--brand-primary);
-      color: #ffffff;
-      transform: translateY(-1px);
+      color: var(--brand-dark);
     }
     .sv-khairi-cta-wrap {
       text-align: center;
-      margin-top: 24px;
+      margin-top: 28px;
       margin-bottom: 8px;
     }
     .sv-btn-wakaf-sekarang {
@@ -761,10 +722,10 @@
       justify-content: center;
       gap: 10px;
       width: 100%;
-      max-width: 420px;
+      max-width: 440px;
       background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-dark) 100%);
       color: #ffffff;
-      padding: 14px 24px;
+      padding: 15px 24px;
       font-size: 15px;
       font-weight: 800;
       border-radius: var(--radius-md);
@@ -1035,9 +996,9 @@
       .sv-concept-card.sv-concept-wide {
         grid-column: span 1;
       }
-      .sv-pillars-grid {
+      .sv-alokasi-flow {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 16px;
       }
       .sv-passbook-number {
         font-size: 20px;
@@ -1385,25 +1346,25 @@
           </p>
         </div>
 
-        <div class="sv-khairi-lead-box">
-          <p class="sv-khairi-lead-p">Salurkan wakaf Anda untuk pembangunan dan kelengkapan Masjid Khairu Ummah Sugro.</p>
-          <p class="sv-khairi-lead-p">Wakaf uang yang dihimpun akan dikelola dan dialokasikan sesuai kebutuhan pembangunan serta fasilitas masjid yang masih diperlukan.</p>
+        <div class="sv-khairi-prose-flow">
+          <p class="sv-khairi-prose-p">Salurkan wakaf Anda untuk pembangunan dan kelengkapan Masjid Khairu Ummah Sugro.</p>
+          <p class="sv-khairi-prose-p">Wakaf uang yang dihimpun akan dikelola dan dialokasikan sesuai kebutuhan pembangunan serta fasilitas masjid yang masih diperlukan.</p>
         </div>
 
         <!-- Alokasi Wakaf -->
         <div class="sv-khairi-block">
           <h3 class="sv-khairi-block-title">Alokasi Wakaf</h3>
-          <div class="sv-pillars-grid">
+          <div class="sv-alokasi-flow">
             <!-- 01 — Pembangunan Masjid -->
-            <div class="sv-pillar-box">
-              <h4 class="sv-pillar-h3">01 — Pembangunan Masjid</h4>
-              <p class="sv-khairi-desc">Mendukung pemenuhan kebutuhan konstruksi dan material untuk penyelesaian pembangunan Masjid Khairu Ummah Sugro.</p>
+            <div class="sv-alokasi-col">
+              <h4 class="sv-alokasi-h4">01 — Pembangunan Masjid</h4>
+              <p class="sv-alokasi-desc">Mendukung pemenuhan kebutuhan konstruksi dan material untuk penyelesaian pembangunan Masjid Khairu Ummah Sugro.</p>
             </div>
 
             <!-- 02 — Fasilitas Masjid -->
-            <div class="sv-pillar-box">
-              <h4 class="sv-pillar-h3">02 — Fasilitas Masjid</h4>
-              <p class="sv-khairi-desc">Mendukung pengadaan perlengkapan dan fasilitas yang menunjang fungsi, kenyamanan, dan keberlangsungan kegiatan masjid.</p>
+            <div class="sv-alokasi-col">
+              <h4 class="sv-alokasi-h4">02 — Fasilitas Masjid</h4>
+              <p class="sv-alokasi-desc">Mendukung pengadaan perlengkapan dan fasilitas yang menunjang fungsi, kenyamanan, dan keberlangsungan kegiatan masjid.</p>
             </div>
           </div>
         </div>
@@ -1413,53 +1374,22 @@
           <h3 class="sv-khairi-block-title">Kebutuhan Wakaf</h3>
 
           <!-- Kebutuhan Pembangunan -->
-          <div class="sv-khairi-card">
-            <h4 class="sv-khairi-subheading">Kebutuhan Pembangunan</h4>
-            <p class="sv-khairi-intro">Wakaf yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan material pembangunan, antara lain:</p>
-            <div class="sv-chips-grid">
-              <span class="sv-chip">Semen</span>
-              <span class="sv-chip">Pasir</span>
-              <span class="sv-chip">Split</span>
-              <span class="sv-chip">Keramik 40×40</span>
-              <span class="sv-chip">Granit 60×60</span>
-              <span class="sv-chip">UNP 100 &amp; 150</span>
-              <span class="sv-chip">CNP 100 &amp; 150</span>
-              <span class="sv-chip">WF 75×150</span>
-              <span class="sv-chip">Hollow 4×4 &amp; 2×4</span>
-              <span class="sv-chip">Lantai Vinyl</span>
-              <span class="sv-chip">Panel Lantai GRC 12 mm</span>
-              <span class="sv-chip">Kawat Loket</span>
-              <span class="sv-chip">Hebel 10 &amp; 7</span>
-              <span class="sv-chip">Plafon</span>
-              <span class="sv-chip">Aluminium</span>
-              <span class="sv-chip">MEP</span>
-              <span class="sv-chip">Kaca</span>
-            </div>
+          <div class="sv-kebutuhan-group">
+            <h4 class="sv-kebutuhan-h4">Kebutuhan Pembangunan</h4>
+            <p class="sv-kebutuhan-intro">Wakaf yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan material pembangunan, antara lain:</p>
+            <p class="sv-khairi-item-flow">Semen · Pasir · Split · Keramik 40×40 · Granit 60×60 · UNP 100 &amp; 150 · CNP 100 &amp; 150 · WF 75×150 · Hollow 4×4 &amp; 2×4 · Lantai Vinyl · Panel Lantai GRC 12 mm · Kawat Loket · Hebel 10 &amp; 7 · Plafon · Aluminium · MEP · Kaca</p>
           </div>
 
           <!-- Kebutuhan Fasilitas Masjid -->
-          <div class="sv-khairi-card">
-            <h4 class="sv-khairi-subheading">Kebutuhan Fasilitas Masjid</h4>
-            <p class="sv-khairi-intro">Wakaf juga diarahkan untuk melengkapi berbagai fasilitas yang menunjang penggunaan masjid, antara lain:</p>
-            <div class="sv-chips-grid">
-              <span class="sv-chip">Sound System</span>
-              <span class="sv-chip">Multimedia &amp; Live Streaming</span>
-              <span class="sv-chip">Flipchart</span>
-              <span class="sv-chip">TV LED 50 Inch</span>
-              <span class="sv-chip">Stand TV</span>
-              <span class="sv-chip">Meja Lesehan</span>
-              <span class="sv-chip">Lemari Perlengkapan</span>
-              <span class="sv-chip">Mimbar Masjid</span>
-              <span class="sv-chip">Karpet Masjid</span>
-              <span class="sv-chip">Rak Sandal/Sepatu</span>
-              <span class="sv-chip">Jam Digital Masjid</span>
-              <span class="sv-chip">Kipas Angin</span>
-            </div>
+          <div class="sv-kebutuhan-group">
+            <h4 class="sv-kebutuhan-h4">Kebutuhan Fasilitas Masjid</h4>
+            <p class="sv-kebutuhan-intro">Wakaf juga diarahkan untuk melengkapi berbagai fasilitas yang menunjang penggunaan masjid, antara lain:</p>
+            <p class="sv-khairi-item-flow">Sound System · Multimedia &amp; Live Streaming · Flipchart · TV LED 50 Inch · Stand TV · Meja Lesehan · Lemari Perlengkapan · Mimbar Masjid · Karpet Masjid · Rak Sandal/Sepatu · Jam Digital Masjid · Kipas Angin</p>
           </div>
         </div>
 
         <!-- Ingin Berwakaf dalam Bentuk Barang? -->
-        <div class="sv-barang-card">
+        <div class="sv-barang-flow">
           <h3 class="sv-barang-title">Ingin Berwakaf dalam Bentuk Barang?</h3>
           <p class="sv-barang-p">Program utama Wakaf Khairi Masjid Khairu Ummah Sugro dihimpun dalam bentuk wakaf uang.</p>
           <p class="sv-barang-p">Bagi wakif yang ingin berkontribusi melalui material pembangunan atau fasilitas masjid secara langsung, silakan menghubungi Customer Service untuk memperoleh informasi mengenai kebutuhan yang masih tersedia serta mekanisme penyalurannya.</p>
