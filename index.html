@@ -581,19 +581,38 @@
       color: var(--gold-primary);
       margin-bottom: 14px;
     }
-    .sv-khairi-prose-flow {
-      max-width: 620px;
-      margin: 12px auto 0;
+    /* HADITS WAKAF & SEDEKAH JARIYAH */
+    .sv-hadits-card {
+      max-width: 680px;
+      margin: 16px auto 0;
       text-align: center;
+      padding: 18px 22px;
+      background: rgba(12, 94, 55, 0.03);
+      border: 1px solid var(--brand-border);
+      border-radius: var(--radius-md);
     }
-    .sv-khairi-prose-p {
-      font-size: 14px;
-      line-height: 1.65;
+    .sv-hadits-arabic {
+      font-family: 'Amiri', 'Traditional Arabic', serif;
+      font-size: clamp(18px, 3.5vw, 22px);
+      line-height: 2;
+      color: var(--brand-primary);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .sv-hadits-takhrij {
+      font-family: 'Amiri', 'Traditional Arabic', serif;
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .sv-hadits-translation {
+      font-size: 13.5px;
+      line-height: 1.7;
       color: var(--text-secondary);
-      margin-bottom: 8px;
-    }
-    .sv-khairi-prose-p:last-child {
-      margin-bottom: 0;
+      font-style: italic;
+      margin: 0;
     }
 
     /* SISTEM FAQ WAKAF KHAIRI MURNI */
@@ -1210,12 +1229,16 @@
           </h2>
           <div class="sv-khairi-sub">Masjid Khairu Ummah Sugro</div>
           <div class="sv-khairi-tagline">PEMBANGUNAN · FASILITAS MASJID</div>
-          <p class="sv-sub-prose">
-            Dukung pembangunan dan kelengkapan Masjid Khairu Ummah Sugro melalui wakaf uang yang disalurkan sesuai kebutuhan pembangunan dan fasilitas masjid.
-          </p>
-          <div class="sv-khairi-prose-flow">
-            <p class="sv-khairi-prose-p">Salurkan wakaf Anda untuk pembangunan dan kelengkapan Masjid Khairu Ummah Sugro.</p>
-            <p class="sv-khairi-prose-p">Wakaf uang yang dihimpun akan dikelola dan dialokasikan sesuai kebutuhan pembangunan serta fasilitas masjid yang masih diperlukan.</p>
+          <div class="sv-hadits-card">
+            <p class="sv-hadits-arabic" dir="rtl" lang="ar">
+              إِذَا مَاتَ الْإِنْسَانُ انْقَطَعَ عَنْهُ عَمَلُهُ إِلَّا مِنْ ثَلَاثَةٍ: إِلَّا مِنْ صَدَقَةٍ جَارِيَةٍ أَوْ عِلْمٍ يُنْتَفَعُ بِهِ أَوْ وَلَدٍ صَالِحٍ يَدْعُو لَهُ
+            </p>
+            <p class="sv-hadits-takhrij" dir="rtl" lang="ar">
+              – رواه مسلم والترمذيّ وأبو داود والنسائيّ وابن حبّان عن أبي هريرة
+            </p>
+            <p class="sv-hadits-translation">
+              Ketika seorang manusia meninggal dunia, maka amalannya terputus kecuali tiga hal, yaitu: sedekah jariyah, ilmu yang bermanfaat, dan anak shaleh yang mau mendoakannya. Hadits diriwayatkan oleh Imam Muslim, Imam at-Tirmidzi, Imam Abu Dawud, Imam an-Nasa`i, dan Imam Ibnu Hibban bersumber dari Sayyidina Abu Hurairah ra
+            </p>
           </div>
         </div>
 
