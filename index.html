@@ -635,15 +635,8 @@
       gap: 10px;
     }
     .sv-kanban-col-head {
-      padding-bottom: 10px;
-      border-bottom: 2.5px solid var(--brand-primary);
-      margin-bottom: 4px;
-    }
-    .sv-kanban-col-head.col-gold {
-      border-bottom-color: var(--gold-primary);
-    }
-    .sv-kanban-col-head.col-teal {
-      border-bottom-color: #0d9488;
+      padding-bottom: 4px;
+      margin-bottom: 2px;
     }
     .sv-kanban-col-title {
       font-size: 15px;
@@ -654,14 +647,17 @@
     .sv-kanban-col-sub {
       font-size: 13px;
       font-weight: 700;
-      color: var(--brand-dark);
+      color: var(--gold-primary);
       margin-top: 2px;
+    }
+    .sv-kanban-col-head.col-teal .sv-kanban-col-sub {
+      color: #0d9488;
     }
     .sv-kanban-card {
       background: #ffffff;
       border: 1px solid var(--border-hairline);
       border-radius: var(--radius-sm);
-      padding: 12px 14px;
+      padding: 13px 14px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
       display: flex;
       flex-direction: column;
@@ -688,77 +684,148 @@
       font-size: 12.5px;
       line-height: 1.55;
       color: var(--text-secondary);
-      margin: 0;
-    }
-    .sv-kanban-card-items {
-      font-size: 12.5px;
-      line-height: 1.75;
-      color: var(--text-primary);
-      margin-top: 4px;
+      margin: 0 0 4px;
     }
 
-    /* Alur Barang tanpa kotak kuning */
+    /* ACCORDION FAQ STYLE */
+    .sv-accordion {
+      background: #ffffff;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .sv-accordion:hover {
+      border-color: var(--brand-border);
+    }
+    .sv-accordion[open] {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border-color: #cbd5e1;
+    }
+    .sv-accordion-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 12px 14px;
+      background: #ffffff;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      transition: background 0.15s ease;
+    }
+    .sv-accordion-summary::-webkit-details-marker {
+      display: none;
+    }
+    .sv-accordion-summary:hover {
+      background: #f8fafc;
+    }
+    .sv-accordion-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      line-height: 1.35;
+    }
+    .sv-accordion-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--text-secondary);
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+    .sv-accordion[open] .sv-accordion-icon {
+      transform: rotate(180deg);
+      color: var(--brand-primary);
+    }
+    .sv-accordion-content {
+      padding: 0 14px 14px;
+      border-top: 1px solid #f1f5f9;
+      background: #ffffff;
+    }
+    .sv-accordion-content .sv-kanban-card-intro {
+      margin-top: 10px;
+    }
+
+    /* TABEL KEBUTUHAN WAKAF */
+    .sv-kanban-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      margin-top: 4px;
+    }
+    .sv-kanban-table tr {
+      border-bottom: 1px solid #f1f5f9;
+      transition: background 0.15s ease;
+    }
+    .sv-kanban-table tr:last-child {
+      border-bottom: none;
+    }
+    .sv-kanban-table tr:hover {
+      background: #f8fafc;
+    }
+    .sv-td-num {
+      width: 24px;
+      padding: 5px 4px 5px 0;
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .sv-td-item {
+      padding: 5px 6px;
+      color: var(--text-primary);
+      font-weight: 500;
+      line-height: 1.4;
+      vertical-align: middle;
+    }
+
+    /* INGIN BERWAKAF DALAM BENTUK BARANG */
     .sv-barang-flow {
-      padding-top: 22px;
-      border-top: 1px solid var(--border-hairline);
-      margin-top: 26px;
-      margin-bottom: 24px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 3.5px solid var(--brand-primary);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
     .sv-barang-title {
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 8px;
+      color: var(--text-heading);
+      margin: 0;
     }
     .sv-barang-p {
-      font-size: 13.5px;
-      line-height: 1.65;
+      font-size: 13px;
+      line-height: 1.6;
       color: var(--text-secondary);
-      margin-bottom: 8px;
+      margin: 0;
     }
     .sv-barang-action {
-      margin-top: 12px;
+      margin-top: 6px;
     }
     .sv-btn-cs {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--brand-primary);
-      font-size: 13px;
+      background: var(--brand-primary);
+      color: #ffffff;
+      font-size: 12.5px;
       font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      transition: color 0.2s ease;
+      text-decoration: none;
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 2px 6px rgba(12, 94, 55, 0.2);
+      transition: background 0.2s ease, transform 0.15s ease;
     }
     .sv-btn-cs:hover {
-      color: var(--brand-dark);
-    }
-    .sv-khairi-cta-wrap {
-      text-align: center;
-      margin-top: 24px;
-      margin-bottom: 8px;
-    }
-    .sv-btn-wakaf-sekarang {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      max-width: 440px;
-      background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-dark) 100%);
+      background: var(--brand-dark);
       color: #ffffff;
-      padding: 14px 24px;
-      font-size: 15px;
-      font-weight: 800;
-      border-radius: var(--radius-md);
-      text-decoration: none;
-      box-shadow: 0 8px 20px -4px rgba(12, 94, 55, 0.35);
-      letter-spacing: 0.5px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .sv-btn-wakaf-sekarang:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px -4px rgba(12, 94, 55, 0.45);
+      transform: translateY(-1px);
     }
 
     /* DONATION TRANSACTIONS & BANK CERTIFICATE */
@@ -1243,15 +1310,15 @@
               <div class="sv-kanban-col-title">Alokasi Wakaf</div>
             </div>
 
-            <!-- Card 01 — Pembangunan Masjid -->
+            <!-- Card 01 Pembangunan Masjid -->
             <div class="sv-kanban-card">
-              <div class="sv-kanban-card-title">01 — Pembangunan Masjid</div>
+              <div class="sv-kanban-card-title">01 Pembangunan Masjid</div>
               <p class="sv-kanban-card-body">Mendukung pemenuhan kebutuhan konstruksi dan material untuk penyelesaian pembangunan Masjid Khairu Ummah Sugro.</p>
             </div>
 
-            <!-- Card 02 — Fasilitas Masjid -->
+            <!-- Card 02 Fasilitas Masjid -->
             <div class="sv-kanban-card">
-              <div class="sv-kanban-card-title">02 — Fasilitas Masjid</div>
+              <div class="sv-kanban-card-title">02 Fasilitas Masjid</div>
               <p class="sv-kanban-card-body">Mendukung pengadaan perlengkapan dan fasilitas yang menunjang fungsi, kenyamanan, dan keberlangsungan kegiatan masjid.</p>
             </div>
           </div>
@@ -1263,12 +1330,38 @@
               <div class="sv-kanban-col-sub">Kebutuhan Pembangunan</div>
             </div>
 
-            <div class="sv-kanban-card">
-              <p class="sv-kanban-card-intro">Wakaf yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan material pembangunan, antara lain:</p>
-              <div class="sv-kanban-card-items">
-                Semen · Pasir · Split · Keramik 40×40 · Granit 60×60 · UNP 100 &amp; 150 · CNP 100 &amp; 150 · WF 75×150 · Hollow 4×4 &amp; 2×4 · Lantai Vinyl · Panel Lantai GRC 12 mm · Kawat Loket · Hebel 10 &amp; 7 · Plafon · Aluminium · MEP · Kaca
+            <details class="sv-accordion" open>
+              <summary class="sv-accordion-summary">
+                <span class="sv-accordion-title">Kebutuhan Pembangunan</span>
+                <svg class="sv-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </summary>
+              <div class="sv-accordion-content">
+                <p class="sv-kanban-card-intro">Wakaf yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan material pembangunan, antara lain:</p>
+                <table class="sv-kanban-table">
+                  <tbody>
+                    <tr><td class="sv-td-num">01</td><td class="sv-td-item">Semen</td></tr>
+                    <tr><td class="sv-td-num">02</td><td class="sv-td-item">Pasir</td></tr>
+                    <tr><td class="sv-td-num">03</td><td class="sv-td-item">Split</td></tr>
+                    <tr><td class="sv-td-num">04</td><td class="sv-td-item">Keramik 40×40</td></tr>
+                    <tr><td class="sv-td-num">05</td><td class="sv-td-item">Granit 60×60</td></tr>
+                    <tr><td class="sv-td-num">06</td><td class="sv-td-item">UNP 100 &amp; 150</td></tr>
+                    <tr><td class="sv-td-num">07</td><td class="sv-td-item">CNP 100 &amp; 150</td></tr>
+                    <tr><td class="sv-td-num">08</td><td class="sv-td-item">WF 75×150</td></tr>
+                    <tr><td class="sv-td-num">09</td><td class="sv-td-item">Hollow 4×4 &amp; 2×4</td></tr>
+                    <tr><td class="sv-td-num">10</td><td class="sv-td-item">Lantai Vinyl</td></tr>
+                    <tr><td class="sv-td-num">11</td><td class="sv-td-item">Panel Lantai GRC 12 mm</td></tr>
+                    <tr><td class="sv-td-num">12</td><td class="sv-td-item">Kawat Loket</td></tr>
+                    <tr><td class="sv-td-num">13</td><td class="sv-td-item">Hebel 10 &amp; 7</td></tr>
+                    <tr><td class="sv-td-num">14</td><td class="sv-td-item">Plafon</td></tr>
+                    <tr><td class="sv-td-num">15</td><td class="sv-td-item">Aluminium</td></tr>
+                    <tr><td class="sv-td-num">16</td><td class="sv-td-item">MEP</td></tr>
+                    <tr><td class="sv-td-num">17</td><td class="sv-td-item">Kaca</td></tr>
+                  </tbody>
+                </table>
               </div>
-            </div>
+            </details>
           </div>
 
           <!-- Column 3: Kebutuhan Wakaf - Kebutuhan Fasilitas Masjid -->
@@ -1278,12 +1371,33 @@
               <div class="sv-kanban-col-sub">Kebutuhan Fasilitas Masjid</div>
             </div>
 
-            <div class="sv-kanban-card">
-              <p class="sv-kanban-card-intro">Wakaf juga diarahkan untuk melengkapi berbagai fasilitas yang menunjang penggunaan masjid, antara lain:</p>
-              <div class="sv-kanban-card-items">
-                Sound System · Multimedia &amp; Live Streaming · Flipchart · TV LED 50 Inch · Stand TV · Meja Lesehan · Lemari Perlengkapan · Mimbar Masjid · Karpet Masjid · Rak Sandal/Sepatu · Jam Digital Masjid · Kipas Angin
+            <details class="sv-accordion" open>
+              <summary class="sv-accordion-summary">
+                <span class="sv-accordion-title">Kebutuhan Fasilitas Masjid</span>
+                <svg class="sv-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </summary>
+              <div class="sv-accordion-content">
+                <p class="sv-kanban-card-intro">Wakaf juga diarahkan untuk melengkapi berbagai fasilitas yang menunjang penggunaan masjid, antara lain:</p>
+                <table class="sv-kanban-table">
+                  <tbody>
+                    <tr><td class="sv-td-num">01</td><td class="sv-td-item">Sound System</td></tr>
+                    <tr><td class="sv-td-num">02</td><td class="sv-td-item">Multimedia &amp; Live Streaming</td></tr>
+                    <tr><td class="sv-td-num">03</td><td class="sv-td-item">Flipchart</td></tr>
+                    <tr><td class="sv-td-num">04</td><td class="sv-td-item">TV LED 50 Inch</td></tr>
+                    <tr><td class="sv-td-num">05</td><td class="sv-td-item">Stand TV</td></tr>
+                    <tr><td class="sv-td-num">06</td><td class="sv-td-item">Meja Lesehan</td></tr>
+                    <tr><td class="sv-td-num">07</td><td class="sv-td-item">Lemari Perlengkapan</td></tr>
+                    <tr><td class="sv-td-num">08</td><td class="sv-td-item">Mimbar Masjid</td></tr>
+                    <tr><td class="sv-td-num">09</td><td class="sv-td-item">Karpet Masjid</td></tr>
+                    <tr><td class="sv-td-num">10</td><td class="sv-td-item">Rak Sandal/Sepatu</td></tr>
+                    <tr><td class="sv-td-num">11</td><td class="sv-td-item">Jam Digital Masjid</td></tr>
+                    <tr><td class="sv-td-num">12</td><td class="sv-td-item">Kipas Angin</td></tr>
+                  </tbody>
+                </table>
               </div>
-            </div>
+            </details>
           </div>
         </div>
 
@@ -1305,17 +1419,6 @@
               <span>HUBUNGI CUSTOMER SERVICE</span>
             </a>
           </div>
-        </div>
-
-        <!-- [ WAKAF SEKARANG ] -->
-        <div class="sv-khairi-cta-wrap">
-          <a href="#donation-heading" class="sv-btn-wakaf-sekarang">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-              <line x1="2" y1="10" x2="22" y2="10"></line>
-            </svg>
-            <span>WAKAF SEKARANG</span>
-          </a>
         </div>
       </section>
 
