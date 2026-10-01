@@ -617,141 +617,118 @@
       margin-bottom: 0;
     }
 
-    /* KANBAN BOARD SYSTEM */
-    .sv-kanban-board {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin: 22px 0 26px;
-      align-items: stretch;
+    /* SISTEM FAQ WAKAF KHAIRI MURNI */
+    .sv-faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 24px 0 28px;
     }
-    .sv-kanban-col {
-      background: #f8fafc;
+    .sv-faq-item {
+      background: #ffffff;
       border: 1px solid var(--border-hairline);
       border-radius: var(--radius-md);
-      padding: 16px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .sv-kanban-col-head {
-      padding-bottom: 4px;
-      margin-bottom: 2px;
-    }
-    .sv-kanban-col-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-primary);
-      line-height: 1.35;
-    }
-    .sv-kanban-col-sub {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--gold-primary);
-      margin-top: 2px;
-    }
-    .sv-kanban-col-head.col-teal .sv-kanban-col-sub {
-      color: #0d9488;
-    }
-    .sv-kanban-card {
-      background: #ffffff;
-      border: 1px solid var(--border-hairline);
-      border-radius: var(--radius-sm);
-      padding: 13px 14px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: border-color 0.2s ease, transform 0.2s ease;
-    }
-    .sv-kanban-card:hover {
-      border-color: var(--brand-border);
-      transform: translateY(-1px);
-    }
-    .sv-kanban-card-title {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--brand-dark);
-      line-height: 1.35;
-    }
-    .sv-kanban-card-body {
-      font-size: 12.5px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-      margin: 0;
-    }
-    .sv-kanban-card-intro {
-      font-size: 12.5px;
-      line-height: 1.55;
-      color: var(--text-secondary);
-      margin: 0 0 4px;
-    }
-
-    /* ACCORDION FAQ STYLE */
-    .sv-accordion {
-      background: #ffffff;
-      border: 1px solid var(--border-hairline);
-      border-radius: var(--radius-sm);
       overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
-    .sv-accordion:hover {
-      border-color: var(--brand-border);
-    }
-    .sv-accordion[open] {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    .sv-faq-item:hover {
       border-color: #cbd5e1;
     }
-    .sv-accordion-summary {
+    .sv-faq-item[open] {
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .sv-faq-summary {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      padding: 12px 14px;
+      gap: 12px;
+      padding: 16px 20px;
       background: #ffffff;
       cursor: pointer;
       user-select: none;
       list-style: none;
       transition: background 0.15s ease;
     }
-    .sv-accordion-summary::-webkit-details-marker {
+    .sv-faq-summary::-webkit-details-marker {
       display: none;
     }
-    .sv-accordion-summary:hover {
+    .sv-faq-summary:hover {
       background: #f8fafc;
     }
-    .sv-accordion-title {
-      font-size: 13.5px;
+    .sv-faq-heading {
+      font-size: 15px;
       font-weight: 700;
-      color: var(--brand-dark);
-      line-height: 1.35;
+      color: var(--text-primary);
+      line-height: 1.4;
     }
-    .sv-accordion-icon {
-      width: 16px;
-      height: 16px;
+    .sv-faq-chevron {
+      width: 18px;
+      height: 18px;
       color: var(--text-secondary);
-      transition: transform 0.25s ease;
+      transition: transform 0.25s ease, color 0.2s ease;
       flex-shrink: 0;
     }
-    .sv-accordion[open] .sv-accordion-icon {
+    .sv-faq-item[open] .sv-faq-chevron {
       transform: rotate(180deg);
       color: var(--brand-primary);
     }
-    .sv-accordion-content {
-      padding: 0 14px 14px;
+    .sv-faq-body {
+      padding: 0 20px 20px;
       border-top: 1px solid #f1f5f9;
       background: #ffffff;
     }
-    .sv-accordion-content .sv-kanban-card-intro {
-      margin-top: 10px;
+    .sv-faq-lead {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 14px 0 12px;
     }
 
-    /* TABEL KEBUTUHAN WAKAF */
+    /* Sub-elemen Alokasi di FAQ 1 */
+    .sv-faq-alokasi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    @media (max-width: 680px) {
+      .sv-faq-alokasi-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+    .sv-faq-alokasi-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+    .sv-faq-alokasi-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      margin-bottom: 6px;
+    }
+    .sv-faq-alokasi-desc {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* Tabel Kebutuhan di FAQ 2 & 3 */
+    .sv-faq-table-wrap {
+      overflow-x: auto;
+      margin-top: 10px;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+    }
     .sv-kanban-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 12.5px;
-      margin-top: 4px;
+      font-size: 13px;
     }
     .sv-kanban-table tr {
       border-bottom: 1px solid #f1f5f9;
@@ -760,53 +737,33 @@
     .sv-kanban-table tr:last-child {
       border-bottom: none;
     }
+    .sv-kanban-table tr:nth-child(even) {
+      background: #fafbfc;
+    }
     .sv-kanban-table tr:hover {
-      background: #f8fafc;
+      background: #f1f5f9;
     }
     .sv-td-num {
-      width: 24px;
-      padding: 5px 4px 5px 0;
+      width: 32px;
+      padding: 8px 6px 8px 14px;
       color: #94a3b8;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 600;
       font-family: 'JetBrains Mono', monospace;
       text-align: center;
       vertical-align: middle;
     }
     .sv-td-item {
-      padding: 5px 6px;
+      padding: 8px 12px;
       color: var(--text-primary);
       font-weight: 500;
       line-height: 1.4;
       vertical-align: middle;
     }
 
-    /* INGIN BERWAKAF DALAM BENTUK BARANG */
-    .sv-barang-flow {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-left: 3.5px solid var(--brand-primary);
-      border-radius: var(--radius-md);
-      padding: 18px 20px;
-      margin-top: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .sv-barang-title {
-      font-size: 15.5px;
-      font-weight: 700;
-      color: var(--text-heading);
-      margin: 0;
-    }
-    .sv-barang-p {
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-      margin: 0;
-    }
-    .sv-barang-action {
-      margin-top: 6px;
+    /* Aksi Barang di FAQ 4 */
+    .sv-faq-barang-action {
+      margin-top: 14px;
     }
     .sv-btn-cs {
       display: inline-flex;
@@ -814,10 +771,10 @@
       gap: 8px;
       background: var(--brand-primary);
       color: #ffffff;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 700;
       text-decoration: none;
-      padding: 9px 16px;
+      padding: 10px 20px;
       border-radius: var(--radius-sm);
       box-shadow: 0 2px 6px rgba(12, 94, 55, 0.2);
       transition: background 0.2s ease, transform 0.15s ease;
@@ -1085,18 +1042,6 @@
       .sv-concept-card.sv-concept-wide {
         grid-column: span 1;
       }
-      .sv-kanban-board {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 12px;
-        gap: 14px;
-      }
-      .sv-kanban-col {
-        flex: 0 0 86%;
-        scroll-snap-align: start;
-      }
       .sv-passbook-number {
         font-size: 20px;
         letter-spacing: 1px;
@@ -1302,43 +1247,41 @@
           <p class="sv-khairi-prose-p">Wakaf uang yang dihimpun akan dikelola dan dialokasikan sesuai kebutuhan pembangunan serta fasilitas masjid yang masih diperlukan.</p>
         </div>
 
-        <!-- KANBAN BOARD SYSTEM -->
-        <div class="sv-kanban-board">
-          <!-- Column 1: Alokasi Wakaf -->
-          <div class="sv-kanban-col">
-            <div class="sv-kanban-col-head">
-              <div class="sv-kanban-col-title">Alokasi Wakaf</div>
+        <!-- SISTEM FAQ WAKAF KHAIRI MURNI -->
+        <div class="sv-faq-list">
+          <!-- FAQ 1: Alokasi Wakaf -->
+          <details class="sv-faq-item" open>
+            <summary class="sv-faq-summary">
+              <span class="sv-faq-heading">Alokasi Wakaf</span>
+              <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="sv-faq-body">
+              <div class="sv-faq-alokasi-grid">
+                <div class="sv-faq-alokasi-card">
+                  <div class="sv-faq-alokasi-title">01 Pembangunan Masjid</div>
+                  <p class="sv-faq-alokasi-desc">Mendukung pemenuhan kebutuhan konstruksi dan material untuk penyelesaian pembangunan Masjid Khairu Ummah Sugro.</p>
+                </div>
+                <div class="sv-faq-alokasi-card">
+                  <div class="sv-faq-alokasi-title">02 Fasilitas Masjid</div>
+                  <p class="sv-faq-alokasi-desc">Mendukung pengadaan perlengkapan dan fasilitas yang menunjang fungsi, kenyamanan, dan keberlangsungan kegiatan masjid.</p>
+                </div>
+              </div>
             </div>
+          </details>
 
-            <!-- Card 01 Pembangunan Masjid -->
-            <div class="sv-kanban-card">
-              <div class="sv-kanban-card-title">01 Pembangunan Masjid</div>
-              <p class="sv-kanban-card-body">Mendukung pemenuhan kebutuhan konstruksi dan material untuk penyelesaian pembangunan Masjid Khairu Ummah Sugro.</p>
-            </div>
-
-            <!-- Card 02 Fasilitas Masjid -->
-            <div class="sv-kanban-card">
-              <div class="sv-kanban-card-title">02 Fasilitas Masjid</div>
-              <p class="sv-kanban-card-body">Mendukung pengadaan perlengkapan dan fasilitas yang menunjang fungsi, kenyamanan, dan keberlangsungan kegiatan masjid.</p>
-            </div>
-          </div>
-
-          <!-- Column 2: Kebutuhan Wakaf - Kebutuhan Pembangunan -->
-          <div class="sv-kanban-col">
-            <div class="sv-kanban-col-head col-gold">
-              <div class="sv-kanban-col-title">Kebutuhan Wakaf</div>
-              <div class="sv-kanban-col-sub">Kebutuhan Pembangunan</div>
-            </div>
-
-            <details class="sv-accordion" open>
-              <summary class="sv-accordion-summary">
-                <span class="sv-accordion-title">Kebutuhan Pembangunan</span>
-                <svg class="sv-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </summary>
-              <div class="sv-accordion-content">
-                <p class="sv-kanban-card-intro">Wakaf yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan material pembangunan, antara lain:</p>
+          <!-- FAQ 2: Kebutuhan Wakaf - Kebutuhan Pembangunan -->
+          <details class="sv-faq-item" open>
+            <summary class="sv-faq-summary">
+              <span class="sv-faq-heading">Kebutuhan Wakaf: Kebutuhan Pembangunan</span>
+              <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="sv-faq-body">
+              <p class="sv-faq-lead">Wakaf yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan material pembangunan, antara lain:</p>
+              <div class="sv-faq-table-wrap">
                 <table class="sv-kanban-table">
                   <tbody>
                     <tr><td class="sv-td-num">01</td><td class="sv-td-item">Semen</td></tr>
@@ -1361,25 +1304,20 @@
                   </tbody>
                 </table>
               </div>
-            </details>
-          </div>
-
-          <!-- Column 3: Kebutuhan Wakaf - Kebutuhan Fasilitas Masjid -->
-          <div class="sv-kanban-col">
-            <div class="sv-kanban-col-head col-teal">
-              <div class="sv-kanban-col-title">Kebutuhan Wakaf</div>
-              <div class="sv-kanban-col-sub">Kebutuhan Fasilitas Masjid</div>
             </div>
+          </details>
 
-            <details class="sv-accordion" open>
-              <summary class="sv-accordion-summary">
-                <span class="sv-accordion-title">Kebutuhan Fasilitas Masjid</span>
-                <svg class="sv-accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </summary>
-              <div class="sv-accordion-content">
-                <p class="sv-kanban-card-intro">Wakaf juga diarahkan untuk melengkapi berbagai fasilitas yang menunjang penggunaan masjid, antara lain:</p>
+          <!-- FAQ 3: Kebutuhan Wakaf - Kebutuhan Fasilitas Masjid -->
+          <details class="sv-faq-item">
+            <summary class="sv-faq-summary">
+              <span class="sv-faq-heading">Kebutuhan Wakaf: Kebutuhan Fasilitas Masjid</span>
+              <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="sv-faq-body">
+              <p class="sv-faq-lead">Wakaf juga diarahkan untuk melengkapi berbagai fasilitas yang menunjang penggunaan masjid, antara lain:</p>
+              <div class="sv-faq-table-wrap">
                 <table class="sv-kanban-table">
                   <tbody>
                     <tr><td class="sv-td-num">01</td><td class="sv-td-item">Sound System</td></tr>
@@ -1397,28 +1335,35 @@
                   </tbody>
                 </table>
               </div>
-            </details>
-          </div>
-        </div>
+            </div>
+          </details>
 
-        <!-- Ingin Berwakaf dalam Bentuk Barang? -->
-        <div class="sv-barang-flow">
-          <h3 class="sv-barang-title">Ingin Berwakaf dalam Bentuk Barang?</h3>
-          <p class="sv-barang-p">Program utama Wakaf Khairi Masjid Khairu Ummah Sugro dihimpun dalam bentuk wakaf uang.</p>
-          <p class="sv-barang-p">Bagi wakif yang ingin berkontribusi melalui material pembangunan atau fasilitas masjid secara langsung, silakan menghubungi Customer Service untuk memperoleh informasi mengenai kebutuhan yang masih tersedia serta mekanisme penyalurannya.</p>
-          <div class="sv-barang-action">
-            <a
-              href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%2C%20saya%20ingin%20berkonsultasi%20mengenai%20kontribusi%20wakaf%20dalam%20bentuk%20barang%2Fmaterial%20fasilitas%20Masjid%20Khairu%20Ummah%20Sugro."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="sv-btn-cs"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+          <!-- FAQ 4: Ingin Berwakaf dalam Bentuk Barang? -->
+          <details class="sv-faq-item">
+            <summary class="sv-faq-summary">
+              <span class="sv-faq-heading">Ingin Berwakaf dalam Bentuk Barang?</span>
+              <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
-              <span>HUBUNGI CUSTOMER SERVICE</span>
-            </a>
-          </div>
+            </summary>
+            <div class="sv-faq-body">
+              <p class="sv-faq-lead">Program utama Wakaf Khairi Masjid Khairu Ummah Sugro dihimpun dalam bentuk wakaf uang.</p>
+              <p class="sv-faq-lead">Bagi wakif yang ingin berkontribusi melalui material pembangunan atau fasilitas masjid secara langsung, silakan menghubungi Customer Service untuk memperoleh informasi mengenai kebutuhan yang masih tersedia serta mekanisme penyalurannya.</p>
+              <div class="sv-faq-barang-action">
+                <a
+                  href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%2C%20saya%20ingin%20berkonsultasi%20mengenai%20kontribusi%20wakaf%20dalam%20bentuk%20barang%2Fmaterial%20fasilitas%20Masjid%20Khairu%20Ummah%20Sugro."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sv-btn-cs"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+                  </svg>
+                  <span>HUBUNGI CUSTOMER SERVICE</span>
+                </a>
+              </div>
+            </div>
+          </details>
         </div>
       </section>
 
