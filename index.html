@@ -117,28 +117,33 @@
     }
     .sv-crest-meta {
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       border-top: 1px solid var(--border-hairline);
       padding-top: 12px;
       font-size: 11.5px;
       font-weight: 700;
       color: var(--brand-primary);
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
     .sv-meta-divider {
       width: 4px;
       height: 4px;
-      background: var(--brand-primary);
+      background: var(--text-muted);
       border-radius: 50%;
       opacity: 0.6;
+      flex-shrink: 0;
     }
     .sv-reg-number {
-      font-size: 10.5px;
+      font-size: 11px;
       color: var(--text-muted);
       letter-spacing: 0.5px;
       font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      text-transform: none;
     }
 
     .sv-arabic-greeting {
@@ -1216,9 +1221,8 @@
           >
           <div class="sv-crest-meta">
             <span>Yayasan Permata Cendekia Indonesia</span>
-          </div>
-          <div class="sv-reg-number">
-            SK Kemenkumham RI No. AHU-0005721.AH.01.04
+            <span class="sv-meta-divider" aria-hidden="true"></span>
+            <span class="sv-reg-number">SK Kemenkumham RI No. AHU-0005721.AH.01.04</span>
           </div>
         </div>
 
