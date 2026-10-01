@@ -536,28 +536,82 @@
     .sv-concept-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 18px 20px;
+      border-radius: 16px;
+      overflow: hidden;
       display: flex;
-      align-items: flex-start;
-      gap: 16px;
+      flex-direction: column;
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
       transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
                   box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
                   transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .sv-concept-card:hover {
-      border-color: rgba(12, 94, 55, 0.32);
-      box-shadow: 0 10px 25px -5px rgba(12, 94, 55, 0.08), 0 8px 10px -6px rgba(12, 94, 55, 0.03);
-      transform: translateY(-2px);
+      border-color: rgba(12, 94, 55, 0.35);
+      box-shadow: 0 12px 28px -6px rgba(12, 94, 55, 0.12), 0 6px 12px -4px rgba(12, 94, 55, 0.04);
+      transform: translateY(-3px);
     }
     .sv-concept-card.sv-concept-wide {
       grid-column: span 2;
     }
+    .sv-concept-media-wrap {
+      position: relative;
+      width: 100%;
+      height: 175px;
+      background: #f1f5f9;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .sv-concept-card.sv-concept-wide .sv-concept-media-wrap {
+      height: 220px;
+    }
+    .sv-concept-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+    .sv-concept-card:hover .sv-concept-img {
+      transform: scale(1.05);
+    }
+    .sv-concept-media-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.45) 100%);
+      pointer-events: none;
+    }
+    .sv-concept-media-pill {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      letter-spacing: 0.3px;
+    }
+    .sv-concept-media-pill svg {
+      width: 11px;
+      height: 11px;
+    }
+    .sv-concept-content {
+      padding: 16px 18px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      flex: 1;
+    }
     .sv-concept-icon-wrap {
       flex-shrink: 0;
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
       background: rgba(12, 94, 55, 0.06);
       border: 1px solid rgba(12, 94, 55, 0.14);
@@ -572,8 +626,8 @@
       border-color: rgba(12, 94, 55, 0.25);
     }
     .sv-concept-icon {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
     }
     .sv-concept-text {
       flex: 1;
@@ -591,6 +645,70 @@
       font-size: 12.5px;
       line-height: 1.55;
       color: #475569;
+    }
+
+    /* LIGHTBOX MODAL FOR ARCHITECTURAL RENDERS */
+    .sv-lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .sv-lightbox-modal.active {
+      display: flex;
+    }
+    .sv-lightbox-box {
+      position: relative;
+      max-width: 900px;
+      width: 100%;
+      background: #0f172a;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .sv-lightbox-img {
+      width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      display: block;
+      background: #000;
+    }
+    .sv-lightbox-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      background: #0b1120;
+      color: #ffffff;
+    }
+    .sv-lightbox-caption {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+    .sv-lightbox-close {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease;
+    }
+    .sv-lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.25);
     }
 
     /* 01 WAKAF UANG — WAKAF KHAIRI (KANBAN BOARD REALISASI KEBUTUHAN) */
@@ -1399,131 +1517,275 @@
         <div class="sv-concept-grid">
           <!-- 01. Masjid Green Building -->
           <div class="sv-concept-card">
-            <div class="sv-concept-icon-wrap" aria-hidden="true">
-              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <path d="M9 22V12h6v10"/>
-              </svg>
+            <div class="sv-concept-media-wrap" onclick="openDesignModal('gambar design/interior masjid.jpg', 'Masjid Green Building - Interior & Mezzanine')" title="Klik untuk memperbesar render 3D">
+              <img
+                src="gambar design/interior masjid.jpg"
+                alt="Render 3D Interior Masjid Green Building"
+                class="sv-concept-img"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="sv-concept-media-overlay" aria-hidden="true"></div>
+              <div class="sv-concept-media-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span>Render 3D</span>
+              </div>
             </div>
-            <div class="sv-concept-text">
-              <div class="sv-concept-title">Masjid Green Building</div>
-              <div class="sv-concept-body">Sebagai area inti, dilengkapi dua sisi mezzanine di lantai 2.</div>
+            <div class="sv-concept-content">
+              <div class="sv-concept-icon-wrap" aria-hidden="true">
+                <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <path d="M9 22V12h6v10"/>
+                </svg>
+              </div>
+              <div class="sv-concept-text">
+                <div class="sv-concept-title">Masjid Green Building</div>
+                <div class="sv-concept-body">Sebagai area inti, dilengkapi dua sisi mezzanine di lantai 2.</div>
+              </div>
             </div>
           </div>
 
           <!-- 02. Skywalk Learning Room -->
           <div class="sv-concept-card">
-            <div class="sv-concept-icon-wrap" aria-hidden="true">
-              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
-                <line x1="8" y1="18" x2="16" y2="18"/>
-              </svg>
+            <div class="sv-concept-media-wrap" onclick="openDesignModal('gambar design/skywalk learning room.jpg', 'Skywalk Learning Room - Lantai 2')" title="Klik untuk memperbesar render 3D">
+              <img
+                src="gambar design/skywalk learning room.jpg"
+                alt="Render 3D Skywalk Learning Room"
+                class="sv-concept-img"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="sv-concept-media-overlay" aria-hidden="true"></div>
+              <div class="sv-concept-media-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span>Render 3D</span>
+              </div>
             </div>
-            <div class="sv-concept-text">
-              <div class="sv-concept-title">Skywalk Learning Room</div>
-              <div class="sv-concept-body">Di lantai 2 yang terhubung dengan ruang-ruang pembelajaran.</div>
+            <div class="sv-concept-content">
+              <div class="sv-concept-icon-wrap" aria-hidden="true">
+                <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+                  <line x1="8" y1="18" x2="16" y2="18"/>
+                </svg>
+              </div>
+              <div class="sv-concept-text">
+                <div class="sv-concept-title">Skywalk Learning Room</div>
+                <div class="sv-concept-body">Di lantai 2 yang terhubung dengan ruang-ruang pembelajaran.</div>
+              </div>
             </div>
           </div>
 
           <!-- 03. GH Learning Area -->
           <div class="sv-concept-card">
-            <div class="sv-concept-icon-wrap" aria-hidden="true">
-              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 21h10"/>
-                <path d="M12 21v-7"/>
-                <path d="M6 6a6 6 0 0 0 12 0H6z"/>
-                <path d="M12 6V3"/>
-              </svg>
+            <div class="sv-concept-media-wrap" onclick="openDesignModal('gambar design/gh learning area.jpg', 'GH Learning Area - Tanaman Rambat Anggur')" title="Klik untuk memperbesar render 3D">
+              <img
+                src="gambar design/gh learning area.jpg"
+                alt="Render 3D GH Learning Area"
+                class="sv-concept-img"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="sv-concept-media-overlay" aria-hidden="true"></div>
+              <div class="sv-concept-media-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span>Render 3D</span>
+              </div>
             </div>
-            <div class="sv-concept-text">
-              <div class="sv-concept-title">GH Learning Area</div>
-              <div class="sv-concept-body">Dengan tanaman rambat anggur sebagai ruang belajar berbasis lingkungan.</div>
+            <div class="sv-concept-content">
+              <div class="sv-concept-icon-wrap" aria-hidden="true">
+                <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 21h10"/>
+                  <path d="M12 21v-7"/>
+                  <path d="M6 6a6 6 0 0 0 12 0H6z"/>
+                  <path d="M12 6V3"/>
+                </svg>
+              </div>
+              <div class="sv-concept-text">
+                <div class="sv-concept-title">GH Learning Area</div>
+                <div class="sv-concept-body">Dengan tanaman rambat anggur sebagai ruang belajar berbasis lingkungan.</div>
+              </div>
             </div>
           </div>
 
           <!-- 04. Area Wudhu I dan II -->
           <div class="sv-concept-card">
-            <div class="sv-concept-icon-wrap" aria-hidden="true">
-              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-              </svg>
+            <div class="sv-concept-media-wrap" onclick="openDesignModal('gambar design/tempat wudu.jpg', 'Area Wudhu I dan II - Sistem Filtrasi Air Terpadu')" title="Klik untuk memperbesar render 3D">
+              <img
+                src="gambar design/tempat wudu.jpg"
+                alt="Render 3D Area Wudhu I dan II"
+                class="sv-concept-img"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="sv-concept-media-overlay" aria-hidden="true"></div>
+              <div class="sv-concept-media-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span>Render 3D</span>
+              </div>
             </div>
-            <div class="sv-concept-text">
-              <div class="sv-concept-title">Area Wudhu I dan II</div>
-              <div class="sv-concept-body">Dilengkapi sistem filtrasi air untuk dimanfaatkan dalam sistem budidaya ikan lele (recirculating aquaculture/empang lele).</div>
+            <div class="sv-concept-content">
+              <div class="sv-concept-icon-wrap" aria-hidden="true">
+                <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                </svg>
+              </div>
+              <div class="sv-concept-text">
+                <div class="sv-concept-title">Area Wudhu I dan II</div>
+                <div class="sv-concept-body">Dilengkapi sistem filtrasi air untuk dimanfaatkan dalam sistem budidaya ikan lele (recirculating aquaculture/empang lele).</div>
+              </div>
             </div>
           </div>
 
           <!-- 05. Learning Studio & Workshop -->
           <div class="sv-concept-card">
-            <div class="sv-concept-icon-wrap" aria-hidden="true">
-              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-              </svg>
+            <div class="sv-concept-media-wrap" onclick="openDesignModal('gambar design/workshop.jpg', 'Learning Studio & Workshop - Bisnis Konstruksi & Properti')" title="Klik untuk memperbesar render 3D">
+              <img
+                src="gambar design/workshop.jpg"
+                alt="Render 3D Learning Studio & Workshop"
+                class="sv-concept-img"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="sv-concept-media-overlay" aria-hidden="true"></div>
+              <div class="sv-concept-media-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span>Render 3D</span>
+              </div>
             </div>
-            <div class="sv-concept-text">
-              <div class="sv-concept-title">Learning Studio &amp; Workshop</div>
-              <div class="sv-concept-body">Untuk kompetensi Bisnis Konstruksi dan Properti.</div>
+            <div class="sv-concept-content">
+              <div class="sv-concept-icon-wrap" aria-hidden="true">
+                <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                  <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                </svg>
+              </div>
+              <div class="sv-concept-text">
+                <div class="sv-concept-title">Learning Studio &amp; Workshop</div>
+                <div class="sv-concept-body">Untuk kompetensi Bisnis Konstruksi dan Properti.</div>
+              </div>
             </div>
           </div>
 
           <!-- 06. Aquaponic/Hydroponic Learning Area -->
           <div class="sv-concept-card">
-            <div class="sv-concept-icon-wrap" aria-hidden="true">
-              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M16.2 7.8C15 9 13.5 9.5 12 9.5s-3-.5-4.2-1.7M12 9.5V22M8 15h8"/>
-              </svg>
+            <div class="sv-concept-media-wrap" onclick="openDesignModal('gambar design/wudu 2.jpg', 'Aquaponic & Hydroponic - Sistem Filtrasi Air Terpadu')" title="Klik untuk memperbesar render 3D">
+              <img
+                src="gambar design/wudu 2.jpg"
+                alt="Render 3D Sistem Sirkulasi & Filtrasi Air Asrama"
+                class="sv-concept-img"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="sv-concept-media-overlay" aria-hidden="true"></div>
+              <div class="sv-concept-media-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span>Render 3D</span>
+              </div>
             </div>
-            <div class="sv-concept-text">
-              <div class="sv-concept-title">Aquaponic/Hydroponic Learning Area</div>
-              <div class="sv-concept-body">Serta sistem filter air asrama untuk mendukung pemanfaatan air dalam budidaya ikan lele dan nila.</div>
+            <div class="sv-concept-content">
+              <div class="sv-concept-icon-wrap" aria-hidden="true">
+                <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M16.2 7.8C15 9 13.5 9.5 12 9.5s-3-.5-4.2-1.7M12 9.5V22M8 15h8"/>
+                </svg>
+              </div>
+              <div class="sv-concept-text">
+                <div class="sv-concept-title">Aquaponic/Hydroponic Learning Area</div>
+                <div class="sv-concept-body">Serta sistem filter air asrama untuk mendukung pemanfaatan air dalam budidaya ikan lele dan nila.</div>
+              </div>
             </div>
           </div>
 
           <!-- 07. Pengembangan Solar Cell -->
           <div class="sv-concept-card">
-            <div class="sv-concept-icon-wrap" aria-hidden="true">
-              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="4"/>
-                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-              </svg>
+            <div class="sv-concept-media-wrap" onclick="openDesignModal('gambar design/belakang masjid.jpg', 'Pengembangan Solar Cell - Kawasan Mandiri Energi Terbarukan')" title="Klik untuk memperbesar render 3D">
+              <img
+                src="gambar design/belakang masjid.jpg"
+                alt="Render 3D Arsitektur Atap Ramah Energi & Solar Cell"
+                class="sv-concept-img"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="sv-concept-media-overlay" aria-hidden="true"></div>
+              <div class="sv-concept-media-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span>Render 3D</span>
+              </div>
             </div>
-            <div class="sv-concept-text">
-              <div class="sv-concept-title">Pengembangan Solar Cell</div>
-              <div class="sv-concept-body">Sebagai sumber energi terbarukan kawasan.</div>
+            <div class="sv-concept-content">
+              <div class="sv-concept-icon-wrap" aria-hidden="true">
+                <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="4"/>
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                </svg>
+              </div>
+              <div class="sv-concept-text">
+                <div class="sv-concept-title">Pengembangan Solar Cell</div>
+                <div class="sv-concept-body">Sebagai sumber energi terbarukan kawasan.</div>
+              </div>
             </div>
           </div>
 
           <!-- 08. Green House Hortikultura Area -->
           <div class="sv-concept-card">
-            <div class="sv-concept-icon-wrap" aria-hidden="true">
-              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
-              </svg>
+            <div class="sv-concept-media-wrap" onclick="openDesignModal('gambar design/gh learning area 2.jpg', 'Green House Hortikultura Area - Pusat Pembelajaran & Produksi')" title="Klik untuk memperbesar render 3D">
+              <img
+                src="gambar design/gh learning area 2.jpg"
+                alt="Render 3D Green House Hortikultura Area"
+                class="sv-concept-img"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="sv-concept-media-overlay" aria-hidden="true"></div>
+              <div class="sv-concept-media-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span>Render 3D</span>
+              </div>
             </div>
-            <div class="sv-concept-text">
-              <div class="sv-concept-title">Green House Hortikultura Area</div>
-              <div class="sv-concept-body">Sebagai pusat pembelajaran dan produksi pertanian.</div>
+            <div class="sv-concept-content">
+              <div class="sv-concept-icon-wrap" aria-hidden="true">
+                <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </div>
+              <div class="sv-concept-text">
+                <div class="sv-concept-title">Green House Hortikultura Area</div>
+                <div class="sv-concept-body">Sebagai pusat pembelajaran dan produksi pertanian.</div>
+              </div>
             </div>
           </div>
 
           <!-- 09. Masjid Hub, Sinergi & Marketing Center -->
           <div class="sv-concept-card sv-concept-wide">
-            <div class="sv-concept-icon-wrap" aria-hidden="true">
-              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="18" cy="5" r="3"/>
-                <circle cx="6" cy="12" r="3"/>
-                <circle cx="18" cy="19" r="3"/>
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-              </svg>
+            <div class="sv-concept-media-wrap" onclick="openDesignModal('gambar design/belakang masjid (2).jpg', 'Masjid Hub, Sinergi & Marketing Center - Integrasi Kawasan')" title="Klik untuk memperbesar render 3D">
+              <img
+                src="gambar design/belakang masjid (2).jpg"
+                alt="Render 3D Masjid Hub, Sinergi & Marketing Center"
+                class="sv-concept-img"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="sv-concept-media-overlay" aria-hidden="true"></div>
+              <div class="sv-concept-media-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span>Render 3D Kawasan</span>
+              </div>
             </div>
-            <div class="sv-concept-text">
-              <div class="sv-concept-title">Masjid Hub, Sinergi &amp; Marketing Center</div>
-              <div class="sv-concept-body">Sebagai pusat integrasi kegiatan, kolaborasi, dan pemasaran.</div>
+            <div class="sv-concept-content">
+              <div class="sv-concept-icon-wrap" aria-hidden="true">
+                <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="18" cy="5" r="3"/>
+                  <circle cx="6" cy="12" r="3"/>
+                  <circle cx="18" cy="19" r="3"/>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                </svg>
+              </div>
+              <div class="sv-concept-text">
+                <div class="sv-concept-title">Masjid Hub, Sinergi &amp; Marketing Center</div>
+                <div class="sv-concept-body">Sebagai pusat integrasi kegiatan, kolaborasi, dan pemasaran.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -1636,6 +1898,20 @@
   </div>
 </div>
 
+<!-- LIGHTBOX MODAL PREVIEW RENDER 3D -->
+<div id="sv-lightbox-modal" class="sv-lightbox-modal" onclick="if(event.target===this)closeDesignModal()" role="dialog" aria-modal="true" aria-label="Pratinjau Render 3D">
+  <div class="sv-lightbox-box">
+    <img id="sv-lightbox-img" src="" alt="" class="sv-lightbox-img">
+    <div class="sv-lightbox-footer">
+      <div id="sv-lightbox-caption" class="sv-lightbox-caption"></div>
+      <button type="button" class="sv-lightbox-close" onclick="closeDesignModal()" aria-label="Tutup pratinjau">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <span>Tutup</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <script>
   function playWakafVideo() {
     var container = document.getElementById('sv-video-aspect');
@@ -1666,6 +1942,33 @@
       container.appendChild(iframe);
     }
   }
+
+  function openDesignModal(src, title) {
+    var modal = document.getElementById('sv-lightbox-modal');
+    var img = document.getElementById('sv-lightbox-img');
+    var cap = document.getElementById('sv-lightbox-caption');
+    if (modal && img && cap) {
+      img.src = src;
+      img.alt = title;
+      cap.textContent = title;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeDesignModal() {
+    var modal = document.getElementById('sv-lightbox-modal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeDesignModal();
+    }
+  });
 </script>
 </body>
 </html>
