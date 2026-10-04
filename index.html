@@ -233,7 +233,7 @@
     }
     .sv-bento-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 14px;
       max-width: 660px;
       margin: 20px auto 0;
@@ -241,7 +241,6 @@
     }
     @media (max-width: 640px) {
       .sv-bento-grid {
-        grid-template-columns: 1fr;
         gap: 12px;
       }
     }
@@ -286,10 +285,12 @@
       margin-bottom: 8px;
     }
     .sv-bento-desc {
-      font-size: 13px;
+      font-size: 13.5px;
       line-height: 1.65;
       color: #475569;
       margin: 0;
+      text-align: justify;
+      text-justify: inter-word;
     }
     .sv-campaign-intro {
       margin: 24px auto 16px;
