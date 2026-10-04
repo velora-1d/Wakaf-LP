@@ -216,17 +216,29 @@
       color: var(--brand-primary);
       font-weight: 700;
     }
-    .sv-lead-sub {
-      font-size: 13.5px;
-      line-height: 1.65;
-      color: #55695d;
-      max-width: 600px;
-      margin: 0 auto;
+    .sv-gvf-intro {
+      max-width: 640px;
+      margin: 16px auto 0;
+      text-align: center;
+    }
+    .sv-gvf-intro-p {
+      font-size: clamp(14px, 2vw, 15px);
+      line-height: 1.7;
+      color: #334155;
+      margin: 0 auto 12px;
       text-wrap: balance;
     }
-    .sv-lead-sub strong {
+    .sv-gvf-intro-p:last-child {
+      margin-bottom: 0;
+    }
+    .sv-gvf-intro-p strong {
       color: var(--brand-primary);
-      font-weight: 600;
+      font-weight: 700;
+    }
+    .sv-campaign-intro {
+      text-align: center;
+      margin-top: 28px;
+      margin-bottom: 20px;
     }
     .sv-video-callout {
       text-align: center;
@@ -1464,21 +1476,13 @@
           </div>
         </div>
 
-        <p class="sv-arabic-greeting" lang="ar" dir="rtl">
-          السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ
-        </p>
-
-        <div>
-          <h1 class="sv-h1">
-            Donasi Pembangunan<br>
-            <span class="sv-gold-highlight">Masjid Khairu Ummah Sugro</span>
-          </h1>
-          <p class="sv-lead-prose">
-            Mari bersama mewujudkan kawasan <strong>Garden Mosque Khairu Ummah Sugro</strong> di Pesantren Integratif Holistik SMK Skill Village Islamic School sebagai ruang ibadah, pendidikan, dan kebermanfaatan bagi santri serta masyarakat.
+        <!-- TEKS PENGANTAR GLOBAL VILLAGE FUND (SETELAH LOGO) -->
+        <div class="sv-gvf-intro">
+          <p class="sv-gvf-intro-p">
+            <strong>Global Village Fund</strong> merupakan wadah kontribusi kebaikan yang menghubungkan dukungan para donatur dengan berbagai program yang memberikan manfaat bagi masyarakat. Setiap kontribusi diarahkan untuk menjawab kebutuhan nyata dan menghadirkan kebermanfaatan yang berkelanjutan.
           </p>
-
-          <p class="sv-lead-sub">
-            Inisiatif ini dihimpun melalui <strong>Global Village Fund</strong>, wadah kontribusi kebaikan yang menghubungkan kepedulian para donatur dengan kebutuhan nyata guna menghadirkan kemanfaatan yang berkelanjutan.
+          <p class="sv-gvf-intro-p">
+            Dalam program ini, Global Village Fund mendukung pembangunan <strong>Masjid Khairu Ummah Sugro</strong> di Pesantren Integratif Holistik SMK Skill Village Islamic School sebagai ruang ibadah, pendidikan, dan kebermanfaatan bagi santri serta masyarakat.
           </p>
         </div>
       </header>
@@ -1541,6 +1545,20 @@
           </svg>
         </a>
       </div>
+
+      <!-- CAMPAIGN TITLE & GREETING -->
+      <section class="sv-campaign-intro" aria-labelledby="campaign-heading">
+        <p class="sv-arabic-greeting" lang="ar" dir="rtl">
+          السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ
+        </p>
+        <h1 id="campaign-heading" class="sv-h1">
+          Donasi Pembangunan<br>
+          <span class="sv-gold-highlight">Masjid Khairu Ummah Sugro</span>
+        </h1>
+        <p class="sv-lead-prose">
+          Mari bersama mewujudkan kawasan <strong>Garden Mosque Khairu Ummah Sugro</strong>, Pusat Pesantren Ecosystems for Self-Reliance and Social Impact • Pesantren Integratif Holistik SMK Skill Village Islamic School.
+        </p>
+      </section>
 
       <!-- OFFICIAL FINANCIAL STATEMENT & AUDIT LEDGER -->
       <section class="sv-ledger-card" aria-labelledby="ledger-heading">
@@ -1929,61 +1947,7 @@
 
 
 
-      <!-- SECTION KHUSUS: LAYANAN ZAKAT & WAKAF -->
-      <section class="sv-zw-section" aria-labelledby="zw-heading">
-        <div class="sv-zw-card">
-          <div class="sv-zw-header">
-            <div class="sv-zw-badge">
-              <svg class="sv-zw-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-              </svg>
-              <span>Layanan Syariah Terpadu</span>
-            </div>
-            <h2 id="zw-heading" class="sv-zw-title">
-              Layanan Zakat &amp; Wakaf
-            </h2>
-            <p class="sv-zw-lead">
-              Global Village Fund juga menyediakan layanan Zakat dan Wakaf sebagai bagian dari ikhtiar menghadirkan kebermanfaatan yang lebih luas. Bagi donatur yang ingin menyalurkan Zakat atau wakaf untuk mendukung kebermanfaatan Masjid Khairu Ummah Sugro, prosesnya dapat dikonsultasikan secara manual melalui Customer Service.
-            </p>
-          </div>
-
-          <div class="sv-zw-grid">
-            <!-- 01 - Zakat Mal -->
-            <div class="sv-zw-box">
-              <span class="sv-zw-box-tag">01 • Layanan Zakat</span>
-              <div class="sv-zw-box-name">Zakat Mal</div>
-              <p class="sv-zw-box-text">
-                Zakat Mal diperuntukkan bagi harta yang telah memenuhi ketentuan zakat. Perhitungan dan konsultasi mengenai kewajiban zakat serta penyalurannya dilakukan secara manual melalui Customer Service sesuai ketentuan yang berlaku.
-              </p>
-            </div>
-
-            <!-- 02 - Wakaf Uang -->
-            <div class="sv-zw-box">
-              <span class="sv-zw-box-tag">02 • Layanan Wakaf</span>
-              <div class="sv-zw-box-name">Wakaf Uang</div>
-              <p class="sv-zw-box-text">
-                Wakaf Uang dapat diarahkan untuk mendukung Wakaf Pembangunan dan Wakaf Fasilitas Masjid Khairu Ummah Sugro, sebagai bagian dari upaya menghadirkan manfaat yang berkelanjutan bagi kegiatan ibadah dan keagamaan.
-              </p>
-            </div>
-          </div>
-
-          <div class="sv-zw-action-wrap">
-            <a
-              href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%20Global%20Village%20Fund%2C%20saya%20ingin%20berkonsultasi%20mengenai%20penyaluran%20Zakat%20Mal%20%2F%20Wakaf%20Uang%20untuk%20Masjid%20Khairu%20Ummah%20Sugro."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="sv-btn-zw"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
-              </svg>
-              <span>Konsultasi Zakat &amp; Wakaf via WhatsApp</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- DONATION CHECKOUT CARD & BANK PASSBOOK -->
+      <!-- METODE PEMBAYARAN: SALURAN DONASI RESMI -->
       <section class="sv-donation-section" aria-labelledby="donation-heading">
         <div class="sv-checkout-card">
           <div id="donation-heading" class="sv-checkout-title">
@@ -2052,6 +2016,61 @@
             <a href="tel:+6281226832326" class="sv-cs-link">+62&nbsp;812&#8209;2683&#8209;2326</a>
           </div>
         </div>
+      </section>
+
+      <!-- SECTION KHUSUS: LAYANAN ZAKAT & WAKAF -->
+      <section class="sv-zw-section" aria-labelledby="zw-heading">
+        <div class="sv-zw-card">
+          <div class="sv-zw-header">
+            <div class="sv-zw-badge">
+              <svg class="sv-zw-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              <span>Layanan Syariah Terpadu</span>
+            </div>
+            <h2 id="zw-heading" class="sv-zw-title">
+              Layanan Zakat &amp; Wakaf
+            </h2>
+            <p class="sv-zw-lead">
+              Global Village Fund juga menyediakan layanan Zakat dan Wakaf sebagai bagian dari ikhtiar menghadirkan kebermanfaatan yang lebih luas. Bagi donatur yang ingin menyalurkan Zakat atau wakaf untuk mendukung kebermanfaatan Masjid Khairu Ummah Sugro, prosesnya dapat dikonsultasikan secara manual melalui Customer Service.
+            </p>
+          </div>
+
+          <div class="sv-zw-grid">
+            <!-- 01 - Zakat Mal -->
+            <div class="sv-zw-box">
+              <span class="sv-zw-box-tag">01 • Layanan Zakat</span>
+              <div class="sv-zw-box-name">Zakat Mal</div>
+              <p class="sv-zw-box-text">
+                Zakat Mal diperuntukkan bagi harta yang telah memenuhi ketentuan zakat. Perhitungan dan konsultasi mengenai kewajiban zakat serta penyalurannya dilakukan secara manual melalui Customer Service sesuai ketentuan yang berlaku.
+              </p>
+            </div>
+
+            <!-- 02 - Wakaf Uang -->
+            <div class="sv-zw-box">
+              <span class="sv-zw-box-tag">02 • Layanan Wakaf</span>
+              <div class="sv-zw-box-name">Wakaf Uang</div>
+              <p class="sv-zw-box-text">
+                Wakaf Uang dapat diarahkan untuk mendukung Wakaf Pembangunan dan Wakaf Fasilitas Masjid Khairu Ummah Sugro, sebagai bagian dari upaya menghadirkan manfaat yang berkelanjutan bagi kegiatan ibadah dan keagamaan.
+              </p>
+            </div>
+          </div>
+
+          <div class="sv-zw-action-wrap">
+            <a
+              href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%20Global%20Village%20Fund%2C%20saya%20ingin%20berkonsultasi%20mengenai%20penyaluran%20Zakat%20Mal%20%2F%20Wakaf%20Uang%20untuk%20Masjid%20Khairu%20Ummah%20Sugro."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sv-btn-zw"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+              </svg>
+              <span>Konsultasi Zakat &amp; Wakaf via WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </section>
 
         <p class="sv-quote-banner">
           “Terima kasih atas kebaikan dan keikhlasan Anda. Semoga setiap kontribusi yang diberikan menjadi amal yang membawa kebermanfaatan.”
