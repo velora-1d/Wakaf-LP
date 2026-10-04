@@ -944,22 +944,16 @@
       margin: 14px 0 12px;
     }
 
-    /* Sub-elemen Alokasi di FAQ 1 */
+    /* Sub-elemen Alokasi di FAQ (Susunan Vertikal ke Bawah) */
     .sv-faq-alokasi-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
       margin-top: 16px;
       margin-bottom: 14px;
     }
     .sv-faq-lead-sm {
       font-size: 13px;
-    }
-    @media (max-width: 680px) {
-      .sv-faq-alokasi-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
     }
     .sv-faq-alokasi-card {
       background: #f8fafc;
@@ -980,21 +974,20 @@
       margin: 0;
     }
 
-    /* Grid 3 Kolom untuk Poin Kebutuhan di FAQ 2 & 3 */
+    /* Kolom Mengalir ke Bawah untuk Poin Kebutuhan di FAQ 2 & 3 */
     .sv-faq-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px 12px;
+      column-count: 3;
+      column-gap: 12px;
       margin-top: 12px;
     }
     @media (max-width: 860px) {
       .sv-faq-grid-3 {
-        grid-template-columns: repeat(2, 1fr);
+        column-count: 2;
       }
     }
     @media (max-width: 540px) {
       .sv-faq-grid-3 {
-        grid-template-columns: 1fr;
+        column-count: 1;
       }
     }
     .sv-faq-point {
@@ -1007,6 +1000,10 @@
       border-radius: var(--radius-sm);
       font-size: 13px;
       line-height: 1.4;
+      margin-bottom: 8px;
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
       transition: background 0.15s ease, border-color 0.15s ease;
     }
     .sv-faq-point:hover {
@@ -1069,25 +1066,7 @@
       max-width: 660px;
       margin: 0 auto 24px;
     }
-    .sv-zw-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 14px;
-      background: var(--brand-surface);
-      border: 1px solid var(--brand-border);
-      color: var(--brand-primary);
-      font-size: 11.5px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      border-radius: 9999px;
-      margin-bottom: 10px;
-    }
-    .sv-zw-badge-icon {
-      width: 14px;
-      height: 14px;
-    }
+
     .sv-zw-title {
       font-size: clamp(20px, 3.5vw, 24px);
       font-weight: 800;
@@ -1100,80 +1079,44 @@
       color: var(--text-secondary);
       margin: 0;
     }
-    .sv-zw-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    @media (max-width: 680px) {
-      .sv-zw-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-    }
-    .sv-zw-box {
-      background: #ffffff;
-      border: 1px solid var(--border-hairline);
-      border-radius: var(--radius-md);
-      padding: 18px 20px;
+    .sv-zw-accordion-list {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
-      transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      gap: 14px;
     }
-    .sv-zw-box:hover {
-      border-color: var(--brand-border);
-      box-shadow: 0 6px 16px rgba(12, 94, 55, 0.06);
-      transform: translateY(-1px);
+
+    .sv-zw-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      margin: 14px 0 16px;
+      padding: 12px 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
     }
-    .sv-zw-box-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--gold-primary);
-      letter-spacing: 1px;
-      margin-bottom: 6px;
-    }
-    .sv-zw-box-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--brand-primary);
-      margin-bottom: 8px;
-    }
-    .sv-zw-box-text {
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-      margin: 0;
-    }
-    .sv-zw-action-wrap {
-      text-align: center;
-    }
-    .sv-btn-zw {
+    .sv-zw-feature-item {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: rgba(12, 94, 55, 0.05);
-      border: 1.5px solid var(--brand-primary);
-      color: var(--brand-primary);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 13.5px;
-      padding: 11px 22px;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all 0.2s ease;
+      gap: 7px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
     }
-    .sv-btn-zw:hover {
-      background: var(--brand-primary);
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(12, 94, 55, 0.2);
+    .sv-zw-check {
+      width: 15px;
+      height: 15px;
+      color: var(--brand-light);
+      flex-shrink: 0;
     }
-    .sv-btn-zw:active {
-      transform: scale(0.985);
+    .sv-zw-btn-wrap {
+      margin-top: 14px;
+    }
+    @media (max-width: 540px) {
+      .sv-zw-features {
+        flex-direction: column;
+        gap: 8px;
+      }
     }
 
     /* DONATION TRANSACTIONS & BANK CERTIFICATE */
@@ -1716,21 +1659,21 @@
             <div class="sv-faq-body">
               <div class="sv-faq-alokasi-grid">
                 <div class="sv-faq-alokasi-card">
-                  <div class="sv-faq-alokasi-title">01 Pembangunan Masjid</div>
+                  <div class="sv-faq-alokasi-title">Pembangunan Masjid</div>
                   <p class="sv-faq-alokasi-desc">Mendukung kebutuhan konstruksi dan material untuk menyelesaikan pembangunan Masjid Khairu Ummah Sugro.</p>
                 </div>
                 <div class="sv-faq-alokasi-card">
-                  <div class="sv-faq-alokasi-title">02 Fasilitas Masjid</div>
+                  <div class="sv-faq-alokasi-title">Fasilitas Masjid</div>
                   <p class="sv-faq-alokasi-desc">Mendukung pengadaan fasilitas dan perlengkapan untuk menunjang kegiatan ibadah, dakwah, dan pembelajaran di Masjid Khairu Ummah Sugro.</p>
                 </div>
               </div>
             </div>
           </details>
 
-          <!-- FAQ 2: 01 Infak - Kebutuhan Pembangunan -->
+          <!-- FAQ 2: Infak - Kebutuhan Pembangunan -->
           <details class="sv-faq-item" open>
             <summary class="sv-faq-summary">
-              <span class="sv-faq-heading">01 Infak: Kebutuhan Pembangunan</span>
+              <span class="sv-faq-heading">Infak: Kebutuhan Pembangunan</span>
               <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -1759,10 +1702,10 @@
             </div>
           </details>
 
-          <!-- FAQ 3: 02 Sedekah - Fasilitas & Kegiatan Masjid -->
+          <!-- FAQ 3: Sedekah - Fasilitas & Kegiatan Masjid -->
           <details class="sv-faq-item">
             <summary class="sv-faq-summary">
-              <span class="sv-faq-heading">02 Sedekah: Fasilitas &amp; Kegiatan Masjid</span>
+              <span class="sv-faq-heading">Sedekah: Fasilitas &amp; Kegiatan Masjid</span>
               <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -2088,12 +2031,6 @@
       <section class="sv-zw-section" aria-labelledby="zw-heading">
         <div class="sv-zw-card">
           <div class="sv-zw-header">
-            <div class="sv-zw-badge">
-              <svg class="sv-zw-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-              </svg>
-              <span>Layanan Syariah Terpadu</span>
-            </div>
             <h2 id="zw-heading" class="sv-zw-title">
               Layanan Zakat &amp; Wakaf
             </h2>
@@ -2102,44 +2039,96 @@
             </p>
           </div>
 
-          <div class="sv-zw-grid">
-            <!-- 01 - Zakat Mal -->
-            <div class="sv-zw-box">
-              <span class="sv-zw-box-tag">01 • Layanan Zakat</span>
-              <div class="sv-zw-box-name">Zakat Mal</div>
-              <p class="sv-zw-box-text">
-                Zakat Mal diperuntukkan bagi harta yang telah memenuhi ketentuan zakat. Perhitungan dan konsultasi mengenai kewajiban zakat serta penyalurannya dilakukan secara manual melalui Customer Service sesuai ketentuan yang berlaku.
-              </p>
-            </div>
+          <div class="sv-zw-accordion-list">
+            <!-- Zakat Mal -->
+            <details class="sv-faq-item" open>
+              <summary class="sv-faq-summary">
+                <span class="sv-faq-heading">Zakat Mal</span>
+                <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </summary>
+              <div class="sv-faq-body">
+                <p class="sv-faq-lead">
+                  Zakat Mal diperuntukkan bagi harta yang telah memenuhi ketentuan nishab dan haul zakat. Perhitungan dan konsultasi mengenai kewajiban zakat serta penyalurannya dilakukan secara terpercaya melalui Customer Service sesuai ketentuan syariat.
+                </p>
+                <div class="sv-zw-features">
+                  <div class="sv-zw-feature-item">
+                    <svg class="sv-zw-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Perhitungan &amp; Konsultasi Nishab Syar'i</span>
+                  </div>
+                  <div class="sv-zw-feature-item">
+                    <svg class="sv-zw-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Akad Penyaluran &amp; Bukti Tanda Terima Resmi</span>
+                  </div>
+                </div>
+                <div class="sv-zw-btn-wrap">
+                  <a
+                    href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%20Global%20Village%20Fund%2C%20saya%20ingin%20berkonsultasi%20mengenai%20perhitungan%20dan%20penyaluran%20Zakat%20Mal%20untuk%20Masjid%20Khairu%20Ummah%20Sugro."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="sv-btn-cs"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+                    </svg>
+                    <span>Konsultasi Zakat Mal via WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+            </details>
 
-            <!-- 02 - Wakaf Uang -->
-            <div class="sv-zw-box">
-              <span class="sv-zw-box-tag">02 • Layanan Wakaf</span>
-              <div class="sv-zw-box-name">Wakaf Uang</div>
-              <p class="sv-zw-box-text">
-                Wakaf Uang dapat diarahkan untuk mendukung Wakaf Pembangunan dan Wakaf Fasilitas Masjid Khairu Ummah Sugro, sebagai bagian dari upaya menghadirkan manfaat yang berkelanjutan bagi kegiatan ibadah dan keagamaan.
-              </p>
-            </div>
-          </div>
-
-          <div class="sv-zw-action-wrap">
-            <a
-              href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%20Global%20Village%20Fund%2C%20saya%20ingin%20berkonsultasi%20mengenai%20penyaluran%20Zakat%20Mal%20%2F%20Wakaf%20Uang%20untuk%20Masjid%20Khairu%20Ummah%20Sugro."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="sv-btn-zw"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
-              </svg>
-              <span>Konsultasi Zakat &amp; Wakaf via WhatsApp</span>
-            </a>
+            <!-- Wakaf Uang -->
+            <details class="sv-faq-item" open>
+              <summary class="sv-faq-summary">
+                <span class="sv-faq-heading">Wakaf Uang</span>
+                <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </summary>
+              <div class="sv-faq-body">
+                <p class="sv-faq-lead">
+                  Wakaf Uang diarahkan untuk mendukung pembangunan fisik dan penyediaan fasilitas jangka panjang Masjid Khairu Ummah Sugro, sebagai ikhtiar menghadirkan manfaat dan pahala jariyah yang berkelanjutan bagi santri serta umat.
+                </p>
+                <div class="sv-zw-features">
+                  <div class="sv-zw-feature-item">
+                    <svg class="sv-zw-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Pahala Mengalir (Amal Jariyah) Abadi</span>
+                  </div>
+                  <div class="sv-zw-feature-item">
+                    <svg class="sv-zw-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Penerbitan Ikrar &amp; Sertifikat Wakaf Resmi</span>
+                  </div>
+                </div>
+                <div class="sv-zw-btn-wrap">
+                  <a
+                    href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%20Global%20Village%20Fund%2C%20saya%20ingin%20berkonsultasi%20mengenai%20penyaluran%20Wakaf%20Uang%20untuk%20Masjid%20Khairu%20Ummah%20Sugro."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="sv-btn-cs"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+                    </svg>
+                    <span>Konsultasi Wakaf Uang via WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+            </details>
           </div>
         </div>
       </section>
 
       <!-- CLOSING & OFFICIAL CAMPUS LOCATION -->
-      <section class="sv-location-section" aria-label="Lokasi Kampus Santri">
+      <section class="sv-location-section" aria-label="Lokasi Pembangunan">
         <p class="sv-quote-banner">
           “Terima kasih atas kebaikan dan keikhlasan Anda. Semoga setiap kontribusi yang diberikan menjadi amal yang membawa kebermanfaatan.”
         </p>
@@ -2151,7 +2140,7 @@
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
               <circle cx="12" cy="10" r="3"/>
             </svg>
-            <span>Lokasi Pembangunan &amp; Kampus Santri</span>
+            <span>Lokasi Pembangunan</span>
           </div>
           <p class="sv-loc-address">
             G332+WWG, Jl. Raya Jonggol-Dayeuh Kp. Tegal Putat, RT.01/RW.06, Sukasirna, Kec. Jonggol, Kabupaten Bogor, Jawa Barat 16830
