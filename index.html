@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wakaf Garden Mosque Khoiru Ummah Sugro | Global Waqf Village</title>
+  <title>Donasi Pembangunan Masjid Khairu Ummah Sugro | Global Village Fund</title>
+  <meta name="description" content="Global Village Fund • Donasi Pembangunan Masjid Khairu Ummah Sugro di Pesantren Integratif Holistik SMK Skill Village Islamic School. Infaq, Sedekah, serta Layanan Zakat & Wakaf.">
   <link rel="icon" type="image/webp" href="favicon.webp">
   <link rel="apple-touch-icon" href="favicon.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -687,7 +688,7 @@
       background: rgba(255, 255, 255, 0.25);
     }
 
-    /* 01 WAKAF UANG — WAKAF KHAIRI (KANBAN BOARD REALISASI KEBUTUHAN) */
+    /* 01 DONASI (INFAQ & SEDEKAH) - REALISASI KEBUTUHAN */
     .sv-khairi-section {
       text-align: left;
       margin-top: 24px;
@@ -723,38 +724,60 @@
       color: var(--gold-primary);
       margin-bottom: 14px;
     }
-    /* HADITS WAKAF & SEDEKAH JARIYAH */
-    .sv-hadits-card {
-      max-width: 680px;
-      margin: 16px auto 0;
+    /* VIDEO INTRO PROSE */
+    .sv-video-intro {
       text-align: center;
-      padding: 18px 22px;
-      background: rgba(12, 94, 55, 0.03);
+      max-width: 660px;
+      margin: 18px auto 14px;
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* QURAN CARD: QS. AL-BAQARAH 261 */
+    .sv-quran-card {
+      max-width: 720px;
+      margin: 18px auto 0;
+      text-align: center;
+      padding: 22px 24px;
+      background: rgba(12, 94, 55, 0.035);
       border: 1px solid var(--brand-border);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
+      position: relative;
     }
-    .sv-hadits-arabic {
-      font-family: 'LPMQ', 'Amiri', 'Traditional Arabic', serif;
-      font-size: clamp(20px, 3.8vw, 24px);
-      line-height: 2.2;
-      color: var(--brand-primary);
-      font-weight: 400;
-      margin-bottom: 6px;
-    }
-    .sv-hadits-takhrij {
-      font-family: 'LPMQ', 'Amiri', 'Traditional Arabic', serif;
-      font-size: 15px;
-      line-height: 2;
+    .sv-quran-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: var(--gold-surface);
+      border: 1px solid var(--gold-border);
       color: var(--gold-primary);
-      font-weight: 400;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
       margin-bottom: 12px;
     }
-    .sv-hadits-translation {
+    .sv-quran-arabic {
+      font-family: 'LPMQ', 'Amiri', 'Traditional Arabic', serif;
+      font-size: clamp(20px, 3.8vw, 24px);
+      line-height: 2.3;
+      color: var(--brand-primary);
+      font-weight: 400;
+      margin-bottom: 14px;
+      direction: rtl;
+    }
+    .sv-quran-translation {
       font-size: 13.5px;
       line-height: 1.7;
       color: var(--text-secondary);
-      font-style: italic;
       margin: 0;
+      text-align: center;
+    }
+    .sv-quran-translation strong {
+      color: var(--text-primary);
     }
 
     /* SISTEM FAQ WAKAF KHAIRI MURNI */
@@ -927,6 +950,130 @@
       background: var(--brand-dark);
       color: #ffffff;
       transform: translateY(-1px);
+    }
+
+    /* SECTION LAYANAN ZAKAT & WAKAF */
+    .sv-zw-section {
+      margin: 38px 0 32px;
+      text-align: center;
+    }
+    .sv-zw-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid rgba(12, 94, 55, 0.2);
+      border-radius: var(--radius-xl);
+      padding: 32px 24px;
+      box-shadow: 0 12px 30px -10px rgba(12, 94, 55, 0.08);
+      text-align: left;
+    }
+    .sv-zw-header {
+      text-align: center;
+      max-width: 660px;
+      margin: 0 auto 24px;
+    }
+    .sv-zw-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: var(--brand-surface);
+      border: 1px solid var(--brand-border);
+      color: var(--brand-primary);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      border-radius: 9999px;
+      margin-bottom: 10px;
+    }
+    .sv-zw-badge-icon {
+      width: 14px;
+      height: 14px;
+    }
+    .sv-zw-title {
+      font-size: clamp(20px, 3.5vw, 24px);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .sv-zw-lead {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .sv-zw-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 680px) {
+      .sv-zw-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+    .sv-zw-box {
+      background: #ffffff;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    .sv-zw-box:hover {
+      border-color: var(--brand-border);
+      box-shadow: 0 6px 16px rgba(12, 94, 55, 0.06);
+      transform: translateY(-1px);
+    }
+    .sv-zw-box-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold-primary);
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .sv-zw-box-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--brand-primary);
+      margin-bottom: 8px;
+    }
+    .sv-zw-box-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .sv-zw-action-wrap {
+      text-align: center;
+    }
+    .sv-btn-zw {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: #0f766e;
+      border: 1px solid #0d9488;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13.5px;
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(15, 118, 110, 0.3);
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .sv-btn-zw:hover {
+      background: #115e59;
+    }
+    .sv-btn-zw:active {
+      transform: scale(0.985);
     }
 
     /* DONATION TRANSACTIONS & BANK CERTIFICATE */
@@ -1228,11 +1375,11 @@
       <header class="sv-header">
         <div class="sv-crest-badge">
           <img
-            src="logo-gwav.png"
-            alt="Global Waqf Village - Wakaf Pesantren Ecosystems for Self-Reliance and Social Impact"
+            src="logo-gvf.png"
+            alt="Global Village Fund - Yayasan Permata Cendekia Indonesia"
             class="sv-logo-img"
-            width="240"
-            height="120"
+            width="320"
+            height="140"
           >
           <div class="sv-crest-meta">
             <span>Yayasan Permata Cendekia Indonesia</span>
@@ -1247,14 +1394,22 @@
 
         <div>
           <h1 class="sv-h1">
-            Wakaf Pembangunan<br>
-            <span class="sv-gold-highlight">Garden Mosque Khoiru Ummah Sugro</span>
+            Donasi Pembangunan<br>
+            <span class="sv-gold-highlight">Masjid Khairu Ummah Sugro</span>
           </h1>
           <p class="sv-lead-prose">
-            Mari bersama mewujudkan kawasan Garden Mosque Khairu Ummah Sugro, Pusat Pesantren Ecosystems for Self-Reliance and Social Impact — Pesantren Integratif Holistik SMK Skill Village Islamic School.
+            Global Village Fund merupakan wadah kontribusi kebaikan yang menghubungkan dukungan para donatur dengan berbagai program yang memberikan manfaat bagi masyarakat. Setiap kontribusi diarahkan untuk menjawab kebutuhan nyata dan menghadirkan kebermanfaatan yang berkelanjutan.
+          </p>
+          <p class="sv-lead-prose" style="margin-top: 10px;">
+            Dalam program ini, Global Village Fund mendukung pembangunan Masjid Khairu Ummah Sugro di Pesantren Integratif Holistik SMK Skill Village Islamic School sebagai ruang ibadah, pendidikan, dan kebermanfaatan bagi santri serta masyarakat.
           </p>
         </div>
       </header>
+
+      <!-- PENGANTAR VIDEO IKHTIAR -->
+      <p class="sv-video-intro">
+        Simak lebih dekat semangat, visi, dan ikhtiar Global Village Fund melalui video berikut:
+      </p>
 
       <!-- VIDEO THEATER (SMART COVER ANTI ERROR 153) -->
       <div class="sv-video-container">
@@ -1263,11 +1418,11 @@
             type="button"
             class="sv-video-cover"
             onclick="playWakafVideo()"
-            aria-label="Putar Video Dokumentasi Garden Mosque Khoiru Ummah Sugro"
+            aria-label="Putar Video Dokumentasi Donasi Pembangunan Masjid Khairu Ummah Sugro"
           >
             <img
               src="https://i.ytimg.com/vi/tNLWXp0kbtg/hqdefault.jpg"
-              alt="Thumbnail Video Wakaf Garden Mosque Khoiru Ummah Sugro"
+              alt="Thumbnail Video Donasi Pembangunan Masjid Khairu Ummah Sugro"
               class="sv-video-thumb"
             >
             <span class="sv-video-overlay"></span>
@@ -1353,32 +1508,38 @@
       </section>
 
 
-      <!-- 01 WAKAF UANG — WAKAF KHAIRI (KANBAN REALISASI KEBUTUHAN) -->
-      <section class="sv-khairi-section" aria-labelledby="khairi-heading">
+      <!-- PILIHAN DONASI: INFAQ & SEDEKAH MASJID KHAIRU UMMAH SUGRO -->
+      <section class="sv-khairi-section" aria-labelledby="donasi-heading">
         <div class="sv-section-head">
-          <h2 id="khairi-heading" class="sv-h2">
-            Wakaf Khairi
+          <h2 id="donasi-heading" class="sv-h2">
+            Pilihan Donasi
           </h2>
-          <div class="sv-khairi-sub">Masjid Khairu Ummah Sugro</div>
-          <div class="sv-hadits-card">
-            <p class="sv-hadits-arabic" dir="rtl" lang="ar">
-              إِذَا مَاتَ الْإِنْسَانُ انْقَطَعَ عَنْهُ عَمَلُهُ إِلَّا مِنْ ثَلَاثَةٍ: إِلَّا مِنْ صَدَقَةٍ جَارِيَةٍ أَوْ عِلْمٍ يُنْتَفَعُ بِهِ أَوْ وَلَدٍ صَالِحٍ يَدْعُو لَهُ
+          <div class="sv-khairi-sub">Infaq &amp; Sedekah • Masjid Khairu Ummah Sugro</div>
+          
+          <!-- DALIL SYAR'I: QS. AL-BAQARAH: 261 -->
+          <div class="sv-quran-card">
+            <div class="sv-quran-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              <span>QS. Al-Baqarah: 261</span>
+            </div>
+            <p class="sv-quran-arabic" lang="ar">
+              مَّثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنبَتَتْ سَبْعَ سَنَابِلَ فِي كُلِّ سُنبُلَةٍ مِّائَةُ حَبَّةٍ ۗ وَاللَّهُ يُضَاعِفُ لِمَن يَشَاءُ ۗ وَاللَّهُ وَاسِعٌ عَلِيمٌ
             </p>
-            <p class="sv-hadits-takhrij" dir="rtl" lang="ar">
-              – رواه مسلم والترمذيّ وأبو داود والنسائيّ وابن حبّان عن أبي هريرة
-            </p>
-            <p class="sv-hadits-translation">
-              Ketika seorang manusia meninggal dunia, maka amalannya terputus kecuali tiga hal, yaitu: sedekah jariyah, ilmu yang bermanfaat, dan anak shaleh yang mau mendoakannya. Hadits diriwayatkan oleh Imam Muslim, Imam at-Tirmidzi, Imam Abu Dawud, Imam an-Nasa`i, dan Imam Ibnu Hibban bersumber dari Sayyidina Abu Hurairah ra
+            <p class="sv-quran-translation">
+              <strong>Terjemahan:</strong> "Perumpamaan orang-orang yang menginfakkan hartanya di jalan Allah adalah serupa dengan sebutir biji yang menumbuhkan tujuh tangkai, pada setiap tangkai ada seratus biji. Allah melipatgandakan (ganjaran) bagi siapa yang Dia kehendaki. Dan Allah Mahaluas (karunia-Nya) lagi Maha Mengetahui."
             </p>
           </div>
         </div>
 
-        <!-- SISTEM FAQ WAKAF KHAIRI MURNI -->
+        <!-- SISTEM FAQ ALOKASI & KEBUTUHAN DONASI -->
         <div class="sv-faq-list">
-          <!-- FAQ 1: Alokasi Wakaf -->
+          <!-- FAQ 1: Alokasi Donasi -->
           <details class="sv-faq-item" open>
             <summary class="sv-faq-summary">
-              <span class="sv-faq-heading">Alokasi Wakaf</span>
+              <span class="sv-faq-heading">Alokasi Donasi</span>
               <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -1387,26 +1548,26 @@
               <div class="sv-faq-alokasi-grid">
                 <div class="sv-faq-alokasi-card">
                   <div class="sv-faq-alokasi-title">01 Pembangunan Masjid</div>
-                  <p class="sv-faq-alokasi-desc">Mendukung pemenuhan kebutuhan konstruksi dan material untuk penyelesaian pembangunan Masjid Khairu Ummah Sugro.</p>
+                  <p class="sv-faq-alokasi-desc">Mendukung kebutuhan konstruksi dan material untuk menyelesaikan pembangunan Masjid Khairu Ummah Sugro.</p>
                 </div>
                 <div class="sv-faq-alokasi-card">
                   <div class="sv-faq-alokasi-title">02 Fasilitas Masjid</div>
-                  <p class="sv-faq-alokasi-desc">Mendukung pengadaan perlengkapan dan fasilitas yang menunjang fungsi, kenyamanan, dan keberlangsungan kegiatan masjid.</p>
+                  <p class="sv-faq-alokasi-desc">Mendukung pengadaan fasilitas dan perlengkapan untuk menunjang kegiatan ibadah, dakwah, dan pembelajaran di Masjid Khairu Ummah Sugro.</p>
                 </div>
               </div>
             </div>
           </details>
 
-          <!-- FAQ 2: Kebutuhan Wakaf - Kebutuhan Pembangunan -->
+          <!-- FAQ 2: 01 Infak - Kebutuhan Pembangunan -->
           <details class="sv-faq-item" open>
             <summary class="sv-faq-summary">
-              <span class="sv-faq-heading">Kebutuhan Wakaf: Kebutuhan Pembangunan</span>
+              <span class="sv-faq-heading">01 Infak: Kebutuhan Pembangunan</span>
               <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </summary>
             <div class="sv-faq-body">
-              <p class="sv-faq-lead">Wakaf yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan material pembangunan, antara lain:</p>
+              <p class="sv-faq-lead">Infak yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan konstruksi dan material untuk penyelesaian pembangunan Masjid Khairu Ummah Sugro, antara lain:</p>
               <div class="sv-faq-grid-3">
                 <div class="sv-faq-point"><span class="sv-faq-point-num">01</span><span class="sv-faq-point-text">Semen</span></div>
                 <div class="sv-faq-point"><span class="sv-faq-point-num">02</span><span class="sv-faq-point-text">Pasir</span></div>
@@ -1429,19 +1590,19 @@
             </div>
           </details>
 
-          <!-- FAQ 3: Kebutuhan Wakaf - Kebutuhan Fasilitas Masjid -->
+          <!-- FAQ 3: 02 Sedekah - Fasilitas & Kegiatan Masjid -->
           <details class="sv-faq-item">
             <summary class="sv-faq-summary">
-              <span class="sv-faq-heading">Kebutuhan Wakaf: Kebutuhan Fasilitas Masjid</span>
+              <span class="sv-faq-heading">02 Sedekah: Fasilitas &amp; Kegiatan Masjid</span>
               <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </summary>
             <div class="sv-faq-body">
-              <p class="sv-faq-lead">Wakaf juga diarahkan untuk melengkapi berbagai fasilitas yang menunjang penggunaan masjid, antara lain:</p>
+              <p class="sv-faq-lead">Sedekah yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan fasilitas, perlengkapan, dan kegiatan di Masjid Khairu Ummah Sugro, antara lain:</p>
               <div class="sv-faq-grid-3">
                 <div class="sv-faq-point"><span class="sv-faq-point-num">01</span><span class="sv-faq-point-text">Sound System</span></div>
-                <div class="sv-faq-point"><span class="sv-faq-point-num">02</span><span class="sv-faq-point-text">Multimedia &amp; Live Streaming</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">02</span><span class="sv-faq-point-text">Multimedia Live Streaming</span></div>
                 <div class="sv-faq-point"><span class="sv-faq-point-num">03</span><span class="sv-faq-point-text">Flipchart</span></div>
                 <div class="sv-faq-point"><span class="sv-faq-point-num">04</span><span class="sv-faq-point-text">TV LED 50 Inch</span></div>
                 <div class="sv-faq-point"><span class="sv-faq-point-num">05</span><span class="sv-faq-point-text">Stand TV</span></div>
@@ -1449,27 +1610,40 @@
                 <div class="sv-faq-point"><span class="sv-faq-point-num">07</span><span class="sv-faq-point-text">Lemari Perlengkapan</span></div>
                 <div class="sv-faq-point"><span class="sv-faq-point-num">08</span><span class="sv-faq-point-text">Mimbar Masjid</span></div>
                 <div class="sv-faq-point"><span class="sv-faq-point-num">09</span><span class="sv-faq-point-text">Karpet Masjid</span></div>
-                <div class="sv-faq-point"><span class="sv-faq-point-num">10</span><span class="sv-faq-point-text">Rak Sandal/Sepatu</span></div>
-                <div class="sv-faq-point"><span class="sv-faq-point-num">11</span><span class="sv-faq-point-text">Jam Digital Masjid</span></div>
-                <div class="sv-faq-point"><span class="sv-faq-point-num">12</span><span class="sv-faq-point-text">Kipas Angin</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">10</span><span class="sv-faq-point-text">Rak Sandal/ Sepatu</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">11</span><span class="sv-faq-point-text">Jam Digital</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">12</span><span class="sv-faq-point-text">Kipas</span></div>
               </div>
             </div>
           </details>
 
-          <!-- FAQ 4: Ingin Berwakaf dalam Bentuk Barang? -->
+          <!-- FAQ 4: Ingin Berdonasi dalam Bentuk Barang? -->
           <details class="sv-faq-item">
             <summary class="sv-faq-summary">
-              <span class="sv-faq-heading">Ingin Berwakaf dalam Bentuk Barang?</span>
+              <span class="sv-faq-heading">Ingin Berdonasi dalam Bentuk Barang?</span>
               <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </summary>
             <div class="sv-faq-body">
-              <p class="sv-faq-lead">Program utama Wakaf Khairi Masjid Khairu Ummah Sugro dihimpun dalam bentuk wakaf uang.</p>
-              <p class="sv-faq-lead">Bagi wakif yang ingin berkontribusi melalui material pembangunan atau fasilitas masjid secara langsung, silakan menghubungi Customer Service untuk memperoleh informasi mengenai kebutuhan yang masih tersedia serta mekanisme penyalurannya.</p>
+              <p class="sv-faq-lead">Setiap barang yang Anda salurkan menjadi bagian dari proses terwujudnya Masjid Khairu Ummah Sugro. Pilih kebutuhan yang ingin Anda dukung melalui infak dalam bentuk material pembangunan atau sedekah dalam bentuk fasilitas dan perlengkapan masjid.</p>
+              
+              <div class="sv-faq-alokasi-grid" style="margin-top: 14px; margin-bottom: 14px;">
+                <div class="sv-faq-alokasi-card">
+                  <div class="sv-faq-alokasi-title">Infak dalam Bentuk Barang</div>
+                  <p class="sv-faq-alokasi-desc">Setiap material yang Anda salurkan menjadi bagian dari proses terwujudnya Masjid Khairu Ummah Sugro. Pilih kebutuhan yang ingin Anda dukung dan ikut berkontribusi melalui infak dalam bentuk barang.</p>
+                </div>
+                <div class="sv-faq-alokasi-card">
+                  <div class="sv-faq-alokasi-title">Sedekah dalam Bentuk Barang</div>
+                  <p class="sv-faq-alokasi-desc">Setiap fasilitas dan perlengkapan yang Anda salurkan turut mendukung kelengkapan dan pemanfaatan Masjid Khairu Ummah Sugro. Pilih kebutuhan yang ingin Anda dukung dan berkontribusilah melalui sedekah berupa barang.</p>
+                </div>
+              </div>
+
+              <p class="sv-faq-lead" style="font-size: 13px;">Untuk menyalurkan donasi barang, silakan hubungi Customer Service melalui WhatsApp dengan menyampaikan jenis dan jumlah barang yang ingin didonasikan. Tim kami akan membantu proses konfirmasi dan memberikan informasi mengenai penyerahan donasi.</p>
+              
               <div class="sv-faq-barang-action">
                 <a
-                  href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%2C%20saya%20ingin%20berkonsultasi%20mengenai%20kontribusi%20wakaf%20dalam%20bentuk%20barang%2Fmaterial%20fasilitas%20Masjid%20Khairu%20Ummah%20Sugro."
+                  href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%20Global%20Village%20Fund%2C%20saya%20ingin%20berdonasi%20barang%20(material%2Ffasilitas)%20untuk%20Masjid%20Khairu%20Ummah%20Sugro."
                   target="_blank"
                   rel="noopener noreferrer"
                   class="sv-btn-cs"
@@ -1477,7 +1651,7 @@
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
                   </svg>
-                  <span>HUBUNGI CUSTOMER SERVICE</span>
+                  <span>Konfirmasi Donasi Barang via WhatsApp</span>
                 </a>
               </div>
             </div>
@@ -1670,11 +1844,65 @@
 
 
 
+      <!-- SECTION KHUSUS: LAYANAN ZAKAT & WAKAF -->
+      <section class="sv-zw-section" aria-labelledby="zw-heading">
+        <div class="sv-zw-card">
+          <div class="sv-zw-header">
+            <div class="sv-zw-badge">
+              <svg class="sv-zw-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              <span>Layanan Syariah Terpadu</span>
+            </div>
+            <h2 id="zw-heading" class="sv-zw-title">
+              Layanan Zakat &amp; Wakaf
+            </h2>
+            <p class="sv-zw-lead">
+              Global Village Fund juga menyediakan layanan Zakat dan Wakaf sebagai bagian dari ikhtiar menghadirkan kebermanfaatan yang lebih luas. Bagi donatur yang ingin menyalurkan Zakat atau wakaf untuk mendukung kebermanfaatan Masjid Khairu Ummah Sugro, prosesnya dapat dikonsultasikan secara manual melalui Customer Service.
+            </p>
+          </div>
+
+          <div class="sv-zw-grid">
+            <!-- 01 - Zakat Mal -->
+            <div class="sv-zw-box">
+              <span class="sv-zw-box-tag">01 • Layanan Zakat</span>
+              <div class="sv-zw-box-name">Zakat Mal</div>
+              <p class="sv-zw-box-text">
+                Zakat Mal diperuntukkan bagi harta yang telah memenuhi ketentuan zakat. Perhitungan dan konsultasi mengenai kewajiban zakat serta penyalurannya dilakukan secara manual melalui Customer Service sesuai ketentuan yang berlaku.
+              </p>
+            </div>
+
+            <!-- 02 - Wakaf Uang -->
+            <div class="sv-zw-box">
+              <span class="sv-zw-box-tag">02 • Layanan Wakaf</span>
+              <div class="sv-zw-box-name">Wakaf Uang</div>
+              <p class="sv-zw-box-text">
+                Wakaf Uang dapat diarahkan untuk mendukung Wakaf Pembangunan dan Wakaf Fasilitas Masjid Khairu Ummah Sugro, sebagai bagian dari upaya menghadirkan manfaat yang berkelanjutan bagi kegiatan ibadah dan keagamaan.
+              </p>
+            </div>
+          </div>
+
+          <div class="sv-zw-action-wrap">
+            <a
+              href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%20Global%20Village%20Fund%2C%20saya%20ingin%20berkonsultasi%20mengenai%20penyaluran%20Zakat%20Mal%20%2F%20Wakaf%20Uang%20untuk%20Masjid%20Khairu%20Ummah%20Sugro."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sv-btn-zw"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+              </svg>
+              <span>Konsultasi Zakat &amp; Wakaf via WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <!-- DONATION CHECKOUT CARD & BANK PASSBOOK -->
       <section class="sv-donation-section" aria-labelledby="donation-heading">
         <div class="sv-checkout-card">
           <div id="donation-heading" class="sv-checkout-title">
-            Saluran Wakaf Resmi
+            Saluran Donasi Resmi
           </div>
 
           <!-- Scalev Online Checkout (Primary Action) -->
@@ -1688,7 +1916,7 @@
               <rect x="2" y="5" width="20" height="14" rx="2"></rect>
               <line x1="2" y1="10" x2="22" y2="10"></line>
             </svg>
-            <span>Tunaikan Wakaf Online (QRIS &amp; Virtual Account)</span>
+            <span>Tunaikan Donasi Online (QRIS &amp; Virtual Account)</span>
           </a>
 
           <!-- Manual Bank Transfer Passbook -->
@@ -1718,7 +1946,7 @@
 
             <!-- WhatsApp Confirmation Button -->
             <a
-              href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20Garden%20Mosque%20Khoiru%20Ummah%20Sugro%2C%20saya%20ingin%20konfirmasi%20donasi%20wakaf."
+              href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20Global%20Village%20Fund%2C%20saya%20ingin%20konfirmasi%20donasi%20untuk%20Masjid%20Khairu%20Ummah%20Sugro."
               target="_blank"
               rel="noopener noreferrer"
               class="sv-btn-wa"
@@ -1741,7 +1969,7 @@
         </div>
 
         <p class="sv-quote-banner">
-          “Jazakumullahu khairan katsiran atas kebaikan dan keikhlasan Anda”
+          “Terima kasih atas kebaikan dan keikhlasan Anda. Semoga setiap kontribusi yang diberikan menjadi amal yang membawa kebermanfaatan.”
         </p>
 
         <!-- OFFICIAL CAMPUS LOCATION -->
@@ -1809,7 +2037,7 @@
     } else {
       var iframe = document.createElement('iframe');
       iframe.src = 'https://www.youtube.com/embed/tNLWXp0kbtg?autoplay=1&rel=0';
-      iframe.title = 'Wakaf Pembangunan Garden Mosque Khoiru Ummah Sugro';
+      iframe.title = 'Donasi Pembangunan Masjid Khairu Ummah Sugro | Global Village Fund';
       iframe.className = 'sv-video-iframe';
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
       iframe.referrerPolicy = 'strict-origin-when-cross-origin';
