@@ -1293,21 +1293,54 @@
       color: var(--text-secondary);
       margin-bottom: 12px;
     }
-    .sv-maps-action {
+    .sv-maps-frame-wrap {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      margin: 16px auto 14px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-hairline);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+      background: #f1f5f9;
+    }
+    .sv-maps-iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .sv-maps-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .sv-btn-maps {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      background: #ffffff;
       color: var(--brand-primary);
-      font-size: 12.5px;
-      font-weight: 600;
+      border: 1.5px solid var(--brand-border);
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
       text-decoration: none;
-      border-bottom: 1px dashed var(--brand-primary);
-      padding-bottom: 2px;
-      transition: color 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 2px 6px rgba(12, 94, 55, 0.08);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
     }
-    .sv-maps-action:hover {
+    .sv-btn-maps:hover {
+      background: var(--brand-surface);
+      border-color: var(--brand-primary);
       color: var(--brand-dark);
-      border-color: var(--brand-dark);
+      transform: translateY(-1px);
+    }
+    .sv-btn-maps:active {
+      transform: scale(0.985);
     }
 
     /* RESPONSIVE LAYOUT GUARDRAILS */
@@ -1984,17 +2017,34 @@
           <p class="sv-loc-address">
             G332+WWG, Jl. Raya Jonggol-Dayeuh Kp. Tegal Putat, RT.01/RW.06, Sukasirna, Kec. Jonggol, Kabupaten Bogor, Jawa Barat 16830
           </p>
-          <a
-            href="https://maps.google.com/?q=G332%2BWWG%2C+Jl.+Raya+Jonggol-Dayeuh+Kp.+Tegal+Putat%2C+RT.01%2FRW.06%2C+Sukasirna%2C+Kec.+Jonggol%2C+Kabupaten+Bogor%2C+Jawa+Barat+16830"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="sv-maps-action"
-          >
-            <span>Buka Rute ke Skill Village</span>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
+
+          <!-- INTERACTIVE EMBEDDED GOOGLE MAPS -->
+          <div class="sv-maps-frame-wrap">
+            <iframe
+              class="sv-maps-iframe"
+              src="https://maps.google.com/maps?q=G332%2BWWG%2C+Jl.+Raya+Jonggol-Dayeuh+Kp.+Tegal+Putat%2C+RT.01%2FRW.06%2C+Sukasirna%2C+Kec.+Jonggol%2C+Kabupaten+Bogor%2C+Jawa+Barat+16830&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Peta Lokasi Pembangunan Masjid Khairu Ummah Sugro di Sukasirna Jonggol"
+              aria-label="Peta Google Maps Lokasi Pembangunan"
+            ></iframe>
+          </div>
+
+          <div class="sv-maps-cta-row">
+            <a
+              href="https://maps.google.com/?q=G332%2BWWG%2C+Jl.+Raya+Jonggol-Dayeuh+Kp.+Tegal+Putat%2C+RT.01%2FRW.06%2C+Sukasirna%2C+Kec.+Jonggol%2C+Kabupaten+Bogor%2C+Jawa+Barat+16830"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sv-btn-maps"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              <span>Buka di Google Maps (Aplikasi / Rute)</span>
+            </a>
+          </div>
         </div>
       </section>
 
