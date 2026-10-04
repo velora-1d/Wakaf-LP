@@ -166,9 +166,10 @@
       font-size: clamp(22px, 4.2vw, 28px);
       line-height: 2;
       color: var(--brand-primary);
-      margin: 4px auto 16px;
+      margin: 4px auto 12px;
       letter-spacing: 0.5px;
       font-weight: 400;
+      text-align: center;
     }
 
     /* CAMPAIGN HEADLINE */
@@ -195,50 +196,94 @@
     .sv-h1 {
       font-size: clamp(26px, 4.5vw, 36px);
       font-weight: 800;
-      line-height: 1.22;
+      line-height: 1.25;
       letter-spacing: -0.025em;
       color: var(--text-primary);
-      margin-bottom: 12px;
+      margin: 0 auto 12px;
+      text-align: center;
+      width: 100%;
     }
     .sv-gold-highlight {
       color: var(--brand-primary);
       font-weight: 800;
     }
     .sv-lead-prose {
-      font-size: clamp(15px, 2vw, 16px);
+      font-size: clamp(14px, 2vw, 15.5px);
       line-height: 1.7;
       color: #24352b;
       max-width: 620px;
-      margin: 0 auto 10px;
+      margin: 0 auto 14px;
       text-wrap: balance;
+      text-align: center;
     }
     .sv-lead-prose strong {
       color: var(--brand-primary);
       font-weight: 700;
     }
-    .sv-gvf-intro {
-      max-width: 640px;
-      margin: 16px auto 0;
-      text-align: center;
+    .sv-bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 660px;
+      margin: 20px auto 0;
+      text-align: left;
     }
-    .sv-gvf-intro-p {
-      font-size: clamp(14px, 2vw, 15px);
-      line-height: 1.7;
-      color: #334155;
-      margin: 0 auto 12px;
-      text-wrap: balance;
+    @media (max-width: 640px) {
+      .sv-bento-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
     }
-    .sv-gvf-intro-p:last-child {
-      margin-bottom: 0;
+    .sv-bento-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-top: 3px solid var(--brand-primary);
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
-    .sv-gvf-intro-p strong {
-      color: var(--brand-primary);
+    .sv-bento-card:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px -2px rgba(15, 23, 42, 0.08);
+    }
+    .sv-bento-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
       font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--brand-primary);
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      padding: 3px 9px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+    .sv-bento-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .sv-bento-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #475569;
+      margin: 0;
     }
     .sv-campaign-intro {
+      margin: 24px auto 16px;
+      max-width: 660px;
       text-align: center;
-      margin-top: 28px;
-      margin-bottom: 20px;
     }
     .sv-video-callout {
       text-align: center;
@@ -1476,14 +1521,49 @@
           </div>
         </div>
 
-        <!-- TEKS PENGANTAR GLOBAL VILLAGE FUND (SETELAH LOGO) -->
-        <div class="sv-gvf-intro">
-          <p class="sv-gvf-intro-p">
-            <strong>Global Village Fund</strong> merupakan wadah kontribusi kebaikan yang menghubungkan dukungan para donatur dengan berbagai program yang memberikan manfaat bagi masyarakat. Setiap kontribusi diarahkan untuk menjawab kebutuhan nyata dan menghadirkan kebermanfaatan yang berkelanjutan.
+        <!-- CAMPAIGN TITLE & GREETING (DI ATAS VIDEO & CENTER) -->
+        <div class="sv-campaign-intro">
+          <p class="sv-arabic-greeting" lang="ar" dir="rtl">
+            السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ
           </p>
-          <p class="sv-gvf-intro-p">
-            Dalam program ini, Global Village Fund mendukung pembangunan <strong>Masjid Khairu Ummah Sugro</strong> di Pesantren Integratif Holistik SMK Skill Village Islamic School sebagai ruang ibadah, pendidikan, dan kebermanfaatan bagi santri serta masyarakat.
+          <h1 id="campaign-heading" class="sv-h1">
+            Donasi Pembangunan<br>
+            <span class="sv-gold-highlight">Masjid Khairu Ummah Sugro</span>
+          </h1>
+          <p class="sv-lead-prose">
+            Mari bersama mewujudkan kawasan <strong>Garden Mosque Khairu Ummah Sugro</strong>, Pusat Pesantren Ecosystems for Self-Reliance and Social Impact • Pesantren Integratif Holistik SMK Skill Village Islamic School.
           </p>
+        </div>
+
+        <!-- DUAL BENTO CARDS: GLOBAL VILLAGE FUND & MASJID KHAIRU UMMAH SUGRO -->
+        <div class="sv-bento-grid">
+          <div class="sv-bento-card">
+            <span class="sv-bento-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+              <span>Wadah Kebaikan</span>
+            </span>
+            <h2 class="sv-bento-title">Global Village Fund</h2>
+            <p class="sv-bento-desc">
+              Merupakan wadah kontribusi kebaikan yang menghubungkan dukungan para donatur dengan berbagai program yang memberikan manfaat bagi masyarakat. Setiap kontribusi diarahkan untuk menjawab kebutuhan nyata dan menghadirkan kebermanfaatan yang berkelanjutan.
+            </p>
+          </div>
+
+          <div class="sv-bento-card">
+            <span class="sv-bento-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6a3 3 0 0 1 6 0v6"/>
+              </svg>
+              <span>Fokus Program</span>
+            </span>
+            <h2 class="sv-bento-title">Masjid Khairu Ummah Sugro</h2>
+            <p class="sv-bento-desc">
+              Dalam program ini, Global Village Fund mendukung pembangunan <strong>Masjid Khairu Ummah Sugro</strong> di Pesantren Integratif Holistik SMK Skill Village Islamic School sebagai ruang ibadah, pendidikan, dan kebermanfaatan bagi santri serta masyarakat.
+            </p>
+          </div>
         </div>
       </header>
 
@@ -1545,20 +1625,6 @@
           </svg>
         </a>
       </div>
-
-      <!-- CAMPAIGN TITLE & GREETING -->
-      <section class="sv-campaign-intro" aria-labelledby="campaign-heading">
-        <p class="sv-arabic-greeting" lang="ar" dir="rtl">
-          السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ
-        </p>
-        <h1 id="campaign-heading" class="sv-h1">
-          Donasi Pembangunan<br>
-          <span class="sv-gold-highlight">Masjid Khairu Ummah Sugro</span>
-        </h1>
-        <p class="sv-lead-prose">
-          Mari bersama mewujudkan kawasan <strong>Garden Mosque Khairu Ummah Sugro</strong>, Pusat Pesantren Ecosystems for Self-Reliance and Social Impact • Pesantren Integratif Holistik SMK Skill Village Islamic School.
-        </p>
-      </section>
 
       <!-- OFFICIAL FINANCIAL STATEMENT & AUDIT LEDGER -->
       <section class="sv-ledger-card" aria-labelledby="ledger-heading">
