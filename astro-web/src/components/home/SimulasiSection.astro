@@ -1,467 +1,752 @@
 ---
 // src/components/home/SimulasiSection.astro
-// Fitur Simulasi & Kalkulator Wakaf Interaktif ala Fitur "Simulasi Biaya" ISAVO
+// Simulasi wakaf, struktur mengikuti halaman isavo.co.id/simulasi-renovasi:
+// kolom kiri = kartu form bernomor dengan opsi radio, kolom kanan = ringkasan sticky.
+
+const programs = [
+  {
+    id: 'lahan',
+    label: 'Pembebasan Lahan',
+    hint: 'Rp 150.000 / m²',
+    desc: 'Lahan kawasan masjid & sekolah di Sukasirna, Jonggol. Disertifikatkan sebagai tanah wakaf.',
+    unit: 'm²',
+    qtyLabel: 'Luas lahan',
+    options: [
+      { label: 'Lahan Kawasan Masjid & Sekolah', price: 150000, desc: 'Harga per meter persegi, sudah termasuk biaya pengurusan akta ikrar wakaf.' },
+    ],
+    presets: [1, 3, 5, 10],
+  },
+  {
+    id: 'material',
+    label: 'Material Konstruksi',
+    hint: 'Mulai Rp 75.000',
+    desc: 'Material untuk pembangunan Masjid Khairu Ummah, dibelanjakan sesuai RAB proyek.',
+    unit: 'paket',
+    qtyLabel: 'Jumlah paket',
+    options: [
+      { label: 'Semen 50 kg', price: 75000, desc: '1 sak, untuk pengecoran kolom dan plester dinding.' },
+      { label: 'Bata Ringan ½ m³', price: 250000, desc: 'Setara ±41 buah bata ringan 10 cm untuk dinding.' },
+      { label: 'Granit 60×60', price: 500000, desc: '5 dus, penutup lantai ruang salat utama.' },
+      { label: 'Rangka Atap Baja Ringan', price: 1000000, desc: 'Satu bentang rangka C75 beserta reng.' },
+    ],
+    presets: [1, 2, 5, 10],
+  },
+  {
+    id: 'tunai',
+    label: 'Wakaf Uang',
+    hint: 'Nominal bebas',
+    desc: 'Dialokasikan ke kebutuhan paling mendesak: sanitasi, wudhu, dan operasional sekolah.',
+    unit: '',
+    qtyLabel: '',
+    options: [
+      { label: 'Rp 50.000', price: 50000, desc: '' },
+      { label: 'Rp 100.000', price: 100000, desc: '' },
+      { label: 'Rp 250.000', price: 250000, desc: '' },
+      { label: 'Rp 500.000', price: 500000, desc: '' },
+    ],
+    presets: [],
+  },
+];
+
+const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
 ---
 
-<section class="gvf-section gvf-simulasi-section" id="simulasi">
+<section class="gvf-section sim-section" id="simulasi">
   <div class="gvf-container">
-    <div class="gvf-section-header reveal-on-scroll">
-      <span class="gvf-badge gvf-badge-blue">FITUR INTERAKTIF</span>
-      <h2 class="gvf-section-title">Simulasi &amp; Kalkulator Wakaf</h2>
-      <p class="gvf-section-subtitle">
-        Hitung dan tentukan porsi kebaikan jariyah Anda. Pilih paket pembebasan meter lahan, dukungan material masjid, atau wakaf uang bebas dengan kalkulasi transparan.
+    <header class="sim-header reveal-on-scroll">
+      <h2 class="sim-title">Simulasi Wakaf</h2>
+      <p class="sim-subtitle">
+        Pilih program dan jumlahnya, lalu lihat rincian nilai wakaf Anda.<br />
+        Seluruh dana tercatat dan dilaporkan terbuka kepada wakif.
       </p>
-    </div>
+    </header>
 
-    <div class="gvf-simulasi-box reveal-on-scroll delay-100">
-      <!-- Tab Controls -->
-      <div class="gvf-calc-tabs">
-        <button type="button" class="gvf-calc-tab active" data-tab="lahan">
-          <span>Wakaf Meter Lahan</span>
-        </button>
-        <button type="button" class="gvf-calc-tab" data-tab="material">
-          <span>Material Konstruksi</span>
-        </button>
-        <button type="button" class="gvf-calc-tab" data-tab="uang">
-          <span>Wakaf Uang Tunai</span>
-        </button>
-      </div>
-
-      <!-- Tab Content 1: Lahan -->
-      <div class="gvf-calc-body active" id="calc-lahan">
-        <div class="gvf-calc-grid">
-          <div class="gvf-calc-controls">
-            <label class="gvf-calc-label">Pilih Luas Lahan Wakaf yang Ingin Dibebaskan:</label>
-            <div class="gvf-options-grid">
-              <button type="button" class="gvf-opt-btn active" data-val="1" data-price="150000">1 Meter² (Rp 150rb)</button>
-              <button type="button" class="gvf-opt-btn" data-val="3" data-price="450000">3 Meter² (Rp 450rb)</button>
-              <button type="button" class="gvf-opt-btn" data-val="5" data-price="750000">5 Meter² (Rp 750rb)</button>
-              <button type="button" class="gvf-opt-btn" data-val="10" data-price="1500000">10 Meter² (Rp 1,5 Jt)</button>
-            </div>
-
-            <div class="gvf-custom-input-wrap">
-              <label for="custom-meter-input" class="gvf-sublabel">Atau Masukkan Jumlah Meter Custom:</label>
-              <div class="gvf-input-group">
-                <input type="number" id="custom-meter-input" min="1" max="1000" placeholder="Contoh: 7" class="gvf-input-field" />
-                <span class="gvf-input-suffix">Meter²</span>
-              </div>
-            </div>
+    <div class="sim-grid">
+      <!-- Kolom kiri: form -->
+      <div class="sim-form reveal-on-scroll delay-100">
+        <div class="sim-card">
+          <h3 class="sim-card-title">1. Pilih Program</h3>
+          <div class="sim-options sim-options--program" role="radiogroup" aria-label="Program wakaf">
+            {programs.map((p, i) => (
+              <label class:list={['sim-option', { active: i === 0 }]} data-program={p.id}>
+                <input type="radio" name="sim-program" value={p.id} checked={i === 0} />
+                <span class="sim-option-label">{p.label}</span>
+                <span class="sim-option-price">{p.hint}</span>
+                <span class="sim-option-desc">{p.desc}</span>
+              </label>
+            ))}
           </div>
+        </div>
 
-          <!-- Result Display Column -->
-          <div class="gvf-calc-result-box">
-            <span class="gvf-result-badge">Estimasi Investasi Akhirat</span>
-            <div class="gvf-result-total" id="lahan-total-display">Rp 150.000</div>
-            <p class="gvf-result-desc" id="lahan-desc-display">
-              Setara dengan pembebasan <strong>1 m² lahan abadi</strong> untuk kawasan ibadah dan pendidikan santri di Sukasirna Jonggol.
-            </p>
-            <a
-              id="lahan-cta-btn"
-              href="https://velora-id.myscalev.com/p/wakaf-pembangunan-garden-mosque-khoiru-ummah"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="gvf-btn gvf-btn-primary gvf-btn-block"
-            >
-              <span>Tunaikan Wakaf Ini</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
+        <div class="sim-card">
+          <h3 class="sim-card-title">2. Rincian</h3>
+
+          {programs.map((p, i) => (
+            <div class="sim-panel" data-panel={p.id} hidden={i !== 0}>
+              {p.options.length > 1 && (
+                <div class="sim-group">
+                  <h4 class="sim-group-name">{p.id === 'tunai' ? 'Nominal' : 'Jenis material'}</h4>
+                  <div class:list={['sim-options', { 'sim-options--compact': p.id === 'tunai' }]}>
+                    {p.options.map((o, j) => (
+                      <label class:list={['sim-option', { active: (p.id === 'tunai' ? j === 1 : j === 0) }]}>
+                        <input
+                          type="radio"
+                          name={`sim-opt-${p.id}`}
+                          value={j}
+                          data-price={o.price}
+                          data-label={o.label}
+                          checked={p.id === 'tunai' ? j === 1 : j === 0}
+                        />
+                        <span class="sim-option-label">{o.label}</span>
+                        {p.id !== 'tunai' && <span class="sim-option-price">{rupiah(o.price)} / paket</span>}
+                        {o.desc && <span class="sim-option-desc">{o.desc}</span>}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {p.options.length === 1 && (
+                <input type="hidden" name={`sim-opt-${p.id}`} value="0" data-price={p.options[0].price} data-label={p.options[0].label} />
+              )}
+
+              {p.id === 'tunai' ? (
+                <div class="sim-group">
+                  <h4 class="sim-group-name">Atau tulis nominal sendiri</h4>
+                  <div class="sim-field">
+                    <span class="sim-field-prefix">Rp</span>
+                    <input
+                      type="number"
+                      inputmode="numeric"
+                      class="sim-input"
+                      id="sim-custom-tunai"
+                      min="10000"
+                      step="10000"
+                      placeholder="300000"
+                    />
+                  </div>
+                  <p class="sim-note">Minimal Rp 10.000.</p>
+                </div>
+              ) : (
+                <div class="sim-group">
+                  <h4 class="sim-group-name">{p.qtyLabel}</h4>
+                  <div class="sim-qty-row">
+                    <div class="sim-stepper">
+                      <button type="button" class="sim-step" data-step="-1" aria-label="Kurangi">−</button>
+                      <input
+                        type="number"
+                        inputmode="numeric"
+                        class="sim-input sim-qty"
+                        data-qty={p.id}
+                        id={`sim-qty-${p.id}`}
+                        min="1"
+                        max="1000"
+                        value="1"
+                        aria-label={p.qtyLabel}
+                      />
+                      <span class="sim-qty-unit">{p.unit}</span>
+                      <button type="button" class="sim-step" data-step="1" aria-label="Tambah">+</button>
+                    </div>
+                    <div class="sim-presets">
+                      {p.presets.map((n) => (
+                        <button type="button" class="sim-preset" data-preset={n}>{n} {p.unit}</button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
-      <!-- Tab Content 2: Material -->
-      <div class="gvf-calc-body" id="calc-material">
-        <div class="gvf-calc-grid">
-          <div class="gvf-calc-controls">
-            <label class="gvf-calc-label">Pilih Paket Dukungan Material Bangunan:</label>
-            <div class="gvf-options-grid">
-              <button type="button" class="gvf-opt-btn active" data-mat="semen" data-price="75000">1 Sak Semen (Rp 75rb)</button>
-              <button type="button" class="gvf-opt-btn" data-mat="hebel" data-price="250000">1/2 Kubik Hebel (Rp 250rb)</button>
-              <button type="button" class="gvf-opt-btn" data-mat="keramik" data-price="500000">5 Dus Granit 60×60 (Rp 500rb)</button>
-              <button type="button" class="gvf-opt-btn" data-mat="atap" data-price="1000000">Rangka Baja / Atap (Rp 1 Jt)</button>
-            </div>
-          </div>
+      <!-- Kolom kanan: ringkasan -->
+      <aside class="sim-summary reveal-on-scroll delay-200" aria-live="polite">
+        <h3 class="sim-summary-title">Ringkasan Wakaf</h3>
 
-          <div class="gvf-calc-result-box">
-            <span class="gvf-result-badge">Dukungan Fisik Masjid</span>
-            <div class="gvf-result-total" id="material-total-display">Rp 75.000</div>
-            <p class="gvf-result-desc" id="material-desc-display">
-              Mendukung pengadaan <strong>1 Sak Semen</strong> untuk pengecoran dan dinding Masjid Khairu Ummah Sugro.
-            </p>
-            <a
-              id="material-cta-btn"
-              href="https://velora-id.myscalev.com/p/wakaf-pembangunan-garden-mosque-khoiru-ummah"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="gvf-btn gvf-btn-primary gvf-btn-block"
-            >
-              <span>Salurkan Material Ini</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
+        <table class="sim-table">
+          <tbody>
+            <tr><td>Program</td><td id="sum-program">Pembebasan Lahan</td></tr>
+            <tr><td>Item</td><td id="sum-item">Lahan Kawasan Masjid &amp; Sekolah</td></tr>
+            <tr id="sum-row-price"><td>Harga satuan</td><td id="sum-price">Rp 150.000</td></tr>
+            <tr id="sum-row-qty"><td>Jumlah</td><td id="sum-qty">1 m²</td></tr>
+            <tr><td>Lokasi</td><td>Sukasirna, Jonggol, Bogor</td></tr>
+          </tbody>
+        </table>
+
+        <div class="sim-total">
+          <span class="sim-total-label">Total Wakaf</span>
+          <span class="sim-total-value" id="sum-total">Rp 150.000</span>
         </div>
-      </div>
 
-      <!-- Tab Content 3: Uang Tunai -->
-      <div class="gvf-calc-body" id="calc-uang">
-        <div class="gvf-calc-grid">
-          <div class="gvf-calc-controls">
-            <label class="gvf-calc-label">Pilih Nominal Infaq / Wakaf Bebas:</label>
-            <div class="gvf-options-grid">
-              <button type="button" class="gvf-opt-btn" data-amt="50000">Rp 50.000</button>
-              <button type="button" class="gvf-opt-btn active" data-amt="100000">Rp 100.000</button>
-              <button type="button" class="gvf-opt-btn" data-amt="250000">Rp 250.000</button>
-              <button type="button" class="gvf-opt-btn" data-amt="500000">Rp 500.000</button>
-            </div>
+        <a
+          id="sim-wa"
+          class="sim-btn sim-btn--primary"
+          href="https://wa.me/6281226832326"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.47 9.47 0 0 1-4.83-1.32l-.35-.21-3.59.94.96-3.5-.23-.36a9.46 9.46 0 0 1-1.45-5.05c0-5.23 4.26-9.49 9.5-9.49 2.54 0 4.92.99 6.71 2.79a9.43 9.43 0 0 1 2.78 6.71c0 5.24-4.26 9.49-9.49 9.49zm8.08-17.57A11.35 11.35 0 0 0 12.04.5C5.74.5.62 5.62.62 11.92c0 2.01.53 3.98 1.53 5.71L.52 23.5l6.01-1.58a11.4 11.4 0 0 0 5.5 1.4h.01c6.3 0 11.42-5.12 11.42-11.42 0-3.05-1.19-5.92-3.34-8.07z"/>
+          </svg>
+          Kirim ke Admin via WhatsApp
+        </a>
+        <a
+          class="sim-btn sim-btn--ghost"
+          href="https://velora-id.myscalev.com/p/wakaf-pembangunan-garden-mosque-khoiru-ummah"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Langsung bayar (QRIS / VA)
+        </a>
 
-            <div class="gvf-custom-input-wrap">
-              <label for="custom-uang-input" class="gvf-sublabel">Atau Ketik Nominal Suka-suka (Rp):</label>
-              <input type="number" id="custom-uang-input" step="10000" min="10000" placeholder="Contoh: 300000" class="gvf-input-field" />
-            </div>
-          </div>
-
-          <div class="gvf-calc-result-box">
-            <span class="gvf-result-badge">Infaq / Wakaf Tunai</span>
-            <div class="gvf-result-total" id="uang-total-display">Rp 100.000</div>
-            <p class="gvf-result-desc">
-              Donasi dialokasikan langsung untuk percepatan penyelesaian ruang ibadah dan sanitasi mendesak Masjid Khairu Ummah.
-            </p>
-            <a
-              id="uang-cta-btn"
-              href="https://velora-id.myscalev.com/p/wakaf-pembangunan-garden-mosque-khoiru-ummah"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="gvf-btn gvf-btn-primary gvf-btn-block"
-            >
-              <span>Bayar via QRIS / VA</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
+        <p class="sim-disclaimer">
+          Angka di atas adalah simulasi. Setelah dana diterima, admin mengirimkan bukti
+          penerimaan dan laporan penggunaan dana secara berkala ke nomor WhatsApp Anda.
+        </p>
+      </aside>
     </div>
   </div>
 </section>
 
 <style>
-  .gvf-simulasi-section {
+  .sim-section {
     background-color: var(--gvf-surface-50);
   }
 
-  .gvf-section-header {
+  .sim-header {
     text-align: center;
-    max-width: 680px;
+    max-width: 720px;
     margin: 0 auto 3rem;
   }
 
-  .gvf-section-title {
+  .sim-title {
     font-size: clamp(2rem, 3.2vw, 2.75rem);
     font-weight: 800;
     color: var(--gvf-text-heading);
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.85rem;
   }
 
-  .gvf-section-subtitle {
-    font-size: 1.05rem;
-    color: var(--gvf-text-body);
-    line-height: 1.7;
+  .sim-subtitle {
+    font-size: 1rem;
+    color: var(--gvf-text-muted);
+    line-height: 1.75;
   }
 
-  .gvf-simulasi-box {
-    background-color: var(--gvf-white);
-    border-radius: var(--gvf-radius-xl);
-    border: var(--gvf-border-subtle);
-    box-shadow: var(--gvf-shadow-lg);
-    padding: 2.5rem;
-    max-width: 980px;
+  .sim-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 1.75rem;
+    align-items: start;
+    max-width: 1140px;
     margin: 0 auto;
   }
 
-  .gvf-calc-tabs {
-    display: flex;
-    gap: 0.75rem;
-    border-bottom: var(--gvf-border-subtle);
+  /* Kartu form */
+  .sim-card {
+    background: var(--gvf-white);
+    border: 1px solid var(--gvf-surface-200);
+    border-radius: 10px;
+    padding: 1.75rem;
+  }
+
+  .sim-card + .sim-card {
+    margin-top: 1.25rem;
+  }
+
+  .sim-card-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--gvf-text-heading);
     padding-bottom: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--gvf-surface-200);
   }
 
-  .gvf-calc-tab {
-    background: transparent;
-    border: none;
-    padding: 0.65rem 1.5rem;
+  .sim-group + .sim-group {
+    margin-top: 1.5rem;
+  }
+
+  .sim-group-name {
     font-size: 0.9375rem;
-    font-weight: 700;
-    color: var(--gvf-text-muted);
-    border-radius: var(--gvf-radius-full);
-    cursor: pointer;
-    transition: all var(--gvf-transition-fast);
-  }
-
-  .gvf-calc-tab.active {
-    background-color: var(--gvf-blue-light);
-    color: var(--gvf-blue-vibrant);
-  }
-
-  .gvf-calc-body {
-    display: none;
-  }
-
-  .gvf-calc-body.active {
-    display: block;
-  }
-
-  .gvf-calc-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 2.5rem;
-    align-items: center;
-  }
-
-  .gvf-calc-label {
-    display: block;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--gvf-text-heading);
-    margin-bottom: 1rem;
-  }
-
-  .gvf-options-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.85rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .gvf-opt-btn {
-    background-color: var(--gvf-surface-50);
-    border: var(--gvf-border-subtle);
-    border-radius: var(--gvf-radius-md);
-    padding: 0.85rem 1rem;
-    font-size: 0.875rem;
     font-weight: 600;
     color: var(--gvf-text-heading);
-    cursor: pointer;
-    text-align: center;
-    transition: all var(--gvf-transition-fast);
-  }
-
-  .gvf-opt-btn:hover {
-    border-color: rgba(9, 105, 218, 0.4);
-    background-color: var(--gvf-blue-ice);
-  }
-
-  .gvf-opt-btn.active {
-    border-color: var(--gvf-blue-vibrant);
-    background-color: var(--gvf-blue-light);
-    color: var(--gvf-blue-vibrant);
-    font-weight: 700;
-  }
-
-  .gvf-custom-input-wrap {
-    margin-top: 1rem;
-  }
-
-  .gvf-sublabel {
-    display: block;
-    font-size: 0.8125rem;
-    color: var(--gvf-text-muted);
-    margin-bottom: 0.5rem;
-  }
-
-  .gvf-input-group {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  .gvf-input-field {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: var(--gvf-border-subtle);
-    border-radius: var(--gvf-radius-md);
-    font-size: 0.9375rem;
-    font-family: inherit;
-    background-color: var(--gvf-surface-50);
-    outline: none;
-    transition: border-color var(--gvf-transition-fast);
-  }
-
-  .gvf-input-field:focus {
-    border-color: var(--gvf-blue-vibrant);
-    background-color: var(--gvf-white);
-  }
-
-  .gvf-input-suffix {
-    position: absolute;
-    right: 1rem;
-    color: var(--gvf-text-muted);
-    font-size: 0.875rem;
-    font-weight: 600;
-  }
-
-  /* Result Box */
-  .gvf-calc-result-box {
-    background: linear-gradient(135deg, var(--gvf-navy-dark) 0%, var(--gvf-navy-primary) 100%);
-    border-radius: var(--gvf-radius-lg);
-    padding: 2.25rem 2rem;
-    color: var(--gvf-white);
-    text-align: center;
-    box-shadow: var(--gvf-shadow-lg);
-  }
-
-  .gvf-result-badge {
-    display: inline-block;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #38bdf8;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 0.25rem 0.75rem;
-    border-radius: var(--gvf-radius-full);
-    margin-bottom: 1rem;
-  }
-
-  .gvf-result-total {
-    font-size: 2.25rem;
-    font-weight: 800;
-    color: var(--gvf-white);
-    font-family: monospace;
-    letter-spacing: -0.02em;
     margin-bottom: 0.75rem;
   }
 
-  .gvf-result-desc {
-    font-size: 0.875rem;
-    color: #cbd5e1;
-    line-height: 1.6;
-    margin-bottom: 1.75rem;
+  /* Opsi radio ala .kelas-option */
+  .sim-options {
+    display: grid;
+    gap: 0.75rem;
   }
 
-  .gvf-result-desc strong {
+  .sim-options--program {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sim-options--compact {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sim-option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.95rem 1rem 0.95rem 2.6rem;
+    border: 1px solid var(--gvf-surface-200);
+    border-radius: 8px;
+    background: var(--gvf-white);
+    cursor: pointer;
+    transition: border-color var(--gvf-transition-fast), background-color var(--gvf-transition-fast);
+  }
+
+  .sim-option:hover {
+    border-color: var(--gvf-surface-300);
+  }
+
+  .sim-option input[type='radio'] {
+    position: absolute;
+    left: 1rem;
+    top: 1.1rem;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--gvf-blue-vibrant);
+  }
+
+  .sim-option.active {
+    border-color: var(--gvf-blue-vibrant);
+    background: var(--gvf-blue-ice);
+  }
+
+  .sim-option:has(input:focus-visible) {
+    outline: 2px solid var(--gvf-blue-vibrant);
+    outline-offset: 2px;
+  }
+
+  .sim-option-label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--gvf-text-heading);
+    line-height: 1.35;
+  }
+
+  .sim-option-price {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gvf-blue-vibrant);
+  }
+
+  .sim-option-desc {
+    font-size: 0.8125rem;
+    color: var(--gvf-text-muted);
+    line-height: 1.5;
+  }
+
+  /* Input jumlah */
+  .sim-qty-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+  }
+
+  .sim-stepper {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--gvf-surface-200);
+    border-radius: 8px;
+    background: var(--gvf-white);
+    overflow: hidden;
+  }
+
+  .sim-step {
+    width: 42px;
+    height: 44px;
+    border: none;
+    background: var(--gvf-surface-50);
+    font-size: 1.125rem;
+    color: var(--gvf-text-heading);
+    cursor: pointer;
+  }
+
+  .sim-step:hover {
+    background: var(--gvf-surface-100);
+  }
+
+  .sim-input {
+    font-family: inherit;
+    font-size: 0.9375rem;
+    color: var(--gvf-text-heading);
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+
+  .sim-qty {
+    width: 64px;
+    height: 44px;
+    text-align: right;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    -moz-appearance: textfield;
+  }
+
+  .sim-qty::-webkit-outer-spin-button,
+  .sim-qty::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .sim-qty-unit {
+    padding: 0 0.75rem 0 0.35rem;
+    font-size: 0.875rem;
+    color: var(--gvf-text-muted);
+  }
+
+  .sim-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .sim-preset {
+    padding: 0.45rem 0.8rem;
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--gvf-text-body);
+    background: var(--gvf-white);
+    border: 1px solid var(--gvf-surface-200);
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .sim-preset:hover,
+  .sim-preset.active {
+    border-color: var(--gvf-blue-vibrant);
+    color: var(--gvf-blue-vibrant);
+  }
+
+  .sim-field {
+    display: flex;
+    align-items: center;
+    max-width: 320px;
+    border: 1px solid var(--gvf-surface-200);
+    border-radius: 8px;
+    background: var(--gvf-white);
+  }
+
+  .sim-field:focus-within {
+    border-color: var(--gvf-blue-vibrant);
+  }
+
+  .sim-field-prefix {
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gvf-text-muted);
+    border-right: 1px solid var(--gvf-surface-200);
+    line-height: 44px;
+  }
+
+  .sim-field .sim-input {
+    flex: 1;
+    height: 44px;
+    padding: 0 0.85rem;
+  }
+
+  .sim-note {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--gvf-text-muted);
+  }
+
+  /* Ringkasan ala .simulasi-summary */
+  .sim-summary {
+    position: sticky;
+    top: 100px;
+    background: var(--gvf-white);
+    border: 1px solid var(--gvf-surface-200);
+    border-radius: 10px;
+    padding: 1.75rem;
+  }
+
+  .sim-summary-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--gvf-text-heading);
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gvf-surface-200);
+  }
+
+  .sim-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0 0;
+  }
+
+  .sim-table td {
+    padding: 0.7rem 0;
+    font-size: 0.875rem;
+    border-bottom: 1px dashed var(--gvf-surface-200);
+    vertical-align: top;
+  }
+
+  .sim-table td:first-child {
+    color: var(--gvf-text-muted);
+    width: 38%;
+  }
+
+  .sim-table td:last-child {
+    text-align: right;
+    color: var(--gvf-text-heading);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sim-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--gvf-surface-200);
+  }
+
+  .sim-total-label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--gvf-text-heading);
+  }
+
+  .sim-total-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--gvf-blue-vibrant);
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sim-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.9rem 1rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color var(--gvf-transition-fast), border-color var(--gvf-transition-fast);
+  }
+
+  .sim-btn--primary {
+    background: var(--gvf-blue-vibrant);
     color: var(--gvf-white);
   }
 
-  .gvf-btn-block {
-    width: 100%;
+  .sim-btn--primary:hover {
+    background: var(--gvf-blue-hover);
   }
 
-  @media (max-width: 900px) {
-    .gvf-calc-grid {
+  .sim-btn--ghost {
+    margin-top: 0.65rem;
+    color: var(--gvf-text-heading);
+    border: 1px solid var(--gvf-surface-200);
+  }
+
+  .sim-btn--ghost:hover {
+    border-color: var(--gvf-text-heading);
+  }
+
+  .sim-disclaimer {
+    margin-top: 1.25rem;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--gvf-text-muted);
+  }
+
+  @media (max-width: 1024px) {
+    .sim-grid {
       grid-template-columns: 1fr;
     }
-    .gvf-simulasi-box {
-      padding: 1.5rem;
+    .sim-summary {
+      position: static;
     }
-    .gvf-calc-tabs {
-      overflow-x: auto;
-      white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .sim-options--program {
+      grid-template-columns: 1fr;
+    }
+    .sim-options--compact {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .sim-card,
+    .sim-summary {
+      padding: 1.25rem;
     }
   }
 </style>
 
 <script>
-  // Tab Switching
-  const tabs = document.querySelectorAll('.gvf-calc-tab');
-  const bodies = document.querySelectorAll('.gvf-calc-body');
+  const root = document.getElementById('simulasi');
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.getAttribute('data-tab');
-      tabs.forEach(t => t.classList.remove('active'));
-      bodies.forEach(b => b.classList.remove('active'));
+  if (root) {
+    const fmt = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
+    const $ = <T extends Element = HTMLElement>(sel: string) => root.querySelector<T>(sel);
 
-      tab.classList.add('active');
-      const activeBody = document.getElementById(`calc-${target}`);
-      if (activeBody) activeBody.classList.add('active');
-    });
-  });
+    const programNames: Record<string, string> = {
+      lahan: 'Pembebasan Lahan',
+      material: 'Material Konstruksi',
+      tunai: 'Wakaf Uang',
+    };
+    const units: Record<string, string> = { lahan: 'm²', material: 'paket', tunai: '' };
 
-  // Lahan Calculation
-  const lahanBtns = document.querySelectorAll('#calc-lahan .gvf-opt-btn');
-  const customLahanInput = document.getElementById('custom-meter-input') as HTMLInputElement;
-  const lahanTotalDisplay = document.getElementById('lahan-total-display');
-  const lahanDescDisplay = document.getElementById('lahan-desc-display');
+    const sum = {
+      program: $('#sum-program'),
+      item: $('#sum-item'),
+      price: $('#sum-price'),
+      qty: $('#sum-qty'),
+      rowPrice: $('#sum-row-price'),
+      rowQty: $('#sum-row-qty'),
+      total: $('#sum-total'),
+      wa: $<HTMLAnchorElement>('#sim-wa'),
+    };
 
-  function updateLahan(meters: number) {
-    const pricePerMeter = 150000;
-    const total = meters * pricePerMeter;
-    if (lahanTotalDisplay) {
-      lahanTotalDisplay.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    const customTunai = $<HTMLInputElement>('#sim-custom-tunai');
+
+    const currentProgram = () =>
+      root.querySelector<HTMLInputElement>('input[name="sim-program"]:checked')?.value ?? 'lahan';
+
+    const selectedOption = (pid: string) =>
+      root.querySelector<HTMLInputElement>(
+        `input[name="sim-opt-${pid}"]:checked, input[type="hidden"][name="sim-opt-${pid}"]`
+      );
+
+    const qtyOf = (pid: string) => {
+      const el = root.querySelector<HTMLInputElement>(`[data-qty="${pid}"]`);
+      const n = parseInt(el?.value ?? '1', 10);
+      return Number.isFinite(n) && n > 0 ? n : 1;
+    };
+
+    function syncActive(group: Element | null) {
+      group?.querySelectorAll('.sim-option').forEach((opt) => {
+        const input = opt.querySelector('input');
+        opt.classList.toggle('active', !!input?.checked);
+      });
     }
-    if (lahanDescDisplay) {
-      lahanDescDisplay.innerHTML = `Setara dengan pembebasan <strong>${meters} m² lahan abadi</strong> untuk kawasan ibadah dan pendidikan santri di Sukasirna Jonggol.`;
+
+    function syncPresets(pid: string) {
+      const panel = root.querySelector(`[data-panel="${pid}"]`);
+      const q = qtyOf(pid);
+      panel?.querySelectorAll<HTMLButtonElement>('.sim-preset').forEach((b) => {
+        b.classList.toggle('active', Number(b.dataset.preset) === q);
+      });
     }
-  }
 
-  lahanBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      lahanBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      if (customLahanInput) customLahanInput.value = '';
-      const m = parseInt(btn.getAttribute('data-val') || '1', 10);
-      updateLahan(m);
-    });
-  });
+    function render() {
+      const pid = currentProgram();
+      const opt = selectedOption(pid);
+      let price = Number(opt?.dataset.price ?? 0);
+      let item = opt?.dataset.label ?? '-';
+      let qty = 1;
 
-  if (customLahanInput) {
-    customLahanInput.addEventListener('input', () => {
-      const val = parseInt(customLahanInput.value, 10);
-      if (!isNaN(val) && val > 0) {
-        lahanBtns.forEach(b => b.classList.remove('active'));
-        updateLahan(val);
+      if (pid === 'tunai') {
+        const custom = parseInt(customTunai?.value ?? '', 10);
+        if (Number.isFinite(custom) && custom >= 10000) {
+          price = custom;
+          item = 'Nominal pilihan sendiri';
+        }
+      } else {
+        qty = qtyOf(pid);
+        syncPresets(pid);
       }
-    });
-  }
 
-  // Material Calculation
-  const materialBtns = document.querySelectorAll('#calc-material .gvf-opt-btn');
-  const matTotalDisplay = document.getElementById('material-total-display');
-  const matDescDisplay = document.getElementById('material-desc-display');
+      const total = price * qty;
+      const isTunai = pid === 'tunai';
 
-  materialBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      materialBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const price = parseInt(btn.getAttribute('data-price') || '75000', 10);
-      const text = btn.textContent || '';
-      if (matTotalDisplay) matTotalDisplay.textContent = `Rp ${price.toLocaleString('id-ID')}`;
-      if (matDescDisplay) matDescDisplay.innerHTML = `Mendukung pengadaan <strong>${text}</strong> untuk percepatan pembangunan fisik Masjid Khairu Ummah Sugro.`;
-    });
-  });
+      if (sum.program) sum.program.textContent = programNames[pid];
+      if (sum.item) sum.item.textContent = item;
+      if (sum.price) sum.price.textContent = fmt(price);
+      if (sum.qty) sum.qty.textContent = `${qty} ${units[pid]}`;
+      if (sum.rowPrice) sum.rowPrice.hidden = isTunai;
+      if (sum.rowQty) sum.rowQty.hidden = isTunai;
+      if (sum.total) sum.total.textContent = fmt(total);
 
-  // Uang Tunai Calculation
-  const uangBtns = document.querySelectorAll('#calc-uang .gvf-opt-btn');
-  const customUangInput = document.getElementById('custom-uang-input') as HTMLInputElement;
-  const uangTotalDisplay = document.getElementById('uang-total-display');
-
-  uangBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      uangBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      if (customUangInput) customUangInput.value = '';
-      const amt = parseInt(btn.getAttribute('data-amt') || '100000', 10);
-      if (uangTotalDisplay) uangTotalDisplay.textContent = `Rp ${amt.toLocaleString('id-ID')}`;
-    });
-  });
-
-  if (customUangInput) {
-    customUangInput.addEventListener('input', () => {
-      const amt = parseInt(customUangInput.value, 10);
-      if (!isNaN(amt) && amt > 0) {
-        uangBtns.forEach(b => b.classList.remove('active'));
-        if (uangTotalDisplay) uangTotalDisplay.textContent = `Rp ${amt.toLocaleString('id-ID')}`;
+      if (sum.wa) {
+        const lines = [
+          'Assalamualaikum Admin GVF,',
+          'saya ingin menunaikan wakaf dengan rincian berikut:',
+          `- Program: ${programNames[pid]}`,
+          `- Item: ${item}`,
+          ...(isTunai ? [] : [`- Jumlah: ${qty} ${units[pid]} x ${fmt(price)}`]),
+          `- Total: ${fmt(total)}`,
+          '',
+          'Mohon info rekening / cara pembayarannya.',
+        ];
+        sum.wa.href = `https://wa.me/6281226832326?text=${encodeURIComponent(lines.join('\n'))}`;
       }
+    }
+
+    // Ganti program
+    root.querySelectorAll<HTMLInputElement>('input[name="sim-program"]').forEach((r) => {
+      r.addEventListener('change', () => {
+        syncActive(root.querySelector('.sim-options--program'));
+        root.querySelectorAll<HTMLElement>('.sim-panel').forEach((p) => {
+          p.hidden = p.dataset.panel !== r.value;
+        });
+        render();
+      });
     });
+
+    // Opsi di dalam panel
+    root.querySelectorAll<HTMLInputElement>('.sim-panel input[type="radio"]').forEach((r) => {
+      r.addEventListener('change', () => {
+        syncActive(r.closest('.sim-options'));
+        if (r.name === 'sim-opt-tunai' && customTunai) customTunai.value = '';
+        render();
+      });
+    });
+
+    // Stepper & preset
+    root.querySelectorAll<HTMLElement>('.sim-panel').forEach((panel) => {
+      const input = panel.querySelector<HTMLInputElement>('.sim-qty');
+      if (!input) return;
+
+      panel.querySelectorAll<HTMLButtonElement>('.sim-step').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const next = Math.min(1000, Math.max(1, (parseInt(input.value, 10) || 1) + Number(btn.dataset.step)));
+          input.value = String(next);
+          render();
+        });
+      });
+
+      panel.querySelectorAll<HTMLButtonElement>('.sim-preset').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          input.value = btn.dataset.preset ?? '1';
+          render();
+        });
+      });
+
+      input.addEventListener('input', render);
+    });
+
+    // Nominal bebas
+    customTunai?.addEventListener('input', () => {
+      const v = parseInt(customTunai.value, 10);
+      const group = root.querySelector('[data-panel="tunai"] .sim-options');
+      if (Number.isFinite(v) && v >= 10000) {
+        group?.querySelectorAll<HTMLInputElement>('input').forEach((i) => (i.checked = false));
+        syncActive(group);
+      }
+      render();
+    });
+
+    render();
   }
 </script>
