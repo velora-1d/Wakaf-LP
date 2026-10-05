@@ -5,10 +5,10 @@
 ---
 
 <footer class="footer-section overflow-hidden" id="tentang-kami">
-  <!-- Exact ISAVO Living Room Background Image -->
+  <!-- Exact ISAVO Architectural Backdrop with Masjid Khairu Ummah Interior -->
   <div
     class="footer-bg"
-    style="background-image: url('/footer-bg.webp');"
+    style="background-image: url('/gambar design/interior masjid.jpg');"
     aria-hidden="true"
   ></div>
 
@@ -101,9 +101,9 @@
     </div>
   </div>
 
-  <!-- Giant 480px Bottom Watermark ala ISAVO [isavo] -->
+  <!-- Giant Bottom Watermark ala ISAVO [gvf] -->
   <div class="footer-text" aria-hidden="true">
-    <span>isavo</span>
+    <span>gvf</span>
   </div>
 </footer>
 
@@ -444,31 +444,35 @@
     font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif !important;
     background: linear-gradient(179.69deg, #fffaf2 0.27%, rgba(255, 251, 244, 0) 90.85%) !important;
     -webkit-text-fill-color: transparent !important;
-    opacity: 0.64 !important;
+    opacity: 0.58 !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
-    font-size: 480px !important;
+    font-size: clamp(160px, 25vw, 420px) !important;
     line-height: 1 !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     display: inline-block !important;
-    letter-spacing: -0.04em !important;
+    letter-spacing: 0.12em !important;
+    text-transform: lowercase !important;
   }
 
   @media (max-width: 1199px) {
     .footer-text span {
-      font-size: 380px !important;
+      font-size: clamp(140px, 22vw, 340px) !important;
+      letter-spacing: 0.10em !important;
     }
   }
 
   @media only screen and (max-width: 992px) {
     .footer-text span {
-      font-size: 260px !important;
+      font-size: clamp(110px, 18vw, 240px) !important;
+      letter-spacing: 0.08em !important;
     }
   }
 
   @media only screen and (max-width: 767px) {
     .footer-text span {
-      font-size: 90px !important;
+      font-size: 80px !important;
+      letter-spacing: 0.06em !important;
     }
   }
 </style>
