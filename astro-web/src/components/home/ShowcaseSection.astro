@@ -1,404 +1,454 @@
 ---
 // src/components/home/ShowcaseSection.astro
-// Portofolio Proyek & Dokumentasi Riil ala ISAVO (isavo.co.id/portofolio)
+// Exact ISAVO "Gallery" Section: Giant Background Watermark + Dual-Row Scroll Parallax
 ---
 
-<section class="isavo-project-section" id="portofolio">
-  <!-- Blueprint watermark background -->
-  <div class="isavo-blueprint-bg" aria-hidden="true">
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="projectGrid" width="60" height="60" patternUnits="userSpaceOnUse">
-          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(9, 105, 218, 0.04)" stroke-width="1"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#projectGrid)" />
-    </svg>
+<section class="isavo-gallery-section" id="galeri">
+  <div id="dokumentasi" class="isavo-anchor-target"></div>
+
+  <!-- Giant Background Watermark ala ISAVO [Gallery] -->
+  <div class="gallary-text" aria-hidden="true">
+    <span>Gallery</span>
   </div>
 
-  <div class="isavo-container">
-    <!-- Section Heading Split (Left Tag, Right Big Title) -->
-    <div class="isavo-heading-row">
-      <div class="isavo-heading-left">
-        <span class="isavo-sub-tag">PROYEK KAMI</span>
-      </div>
-      <div class="isavo-heading-right">
-        <h2 class="isavo-main-title">
-          Portofolio <span class="isavo-blue-accent">yang mencerminkan</span> amanah &amp; ikhtiar kami
-        </h2>
-        <p class="isavo-sub-desc">
-          Dokumentasi riil pembangunan Kawasan Wakaf Terpadu Global Village Fund di Sukasirna, Jonggol. Setiap pilar dan dinding berdiri atas doa serta kontribusi para wakif.
-        </p>
-      </div>
-    </div>
-
-    <!-- Carousel Header Bar: Filter Pills & Nav Arrows -->
-    <div class="isavo-carousel-toolbar">
-      <div class="isavo-filter-pills" id="projectFilterGroup">
-        <button type="button" class="isavo-filter-pill active" data-filter="all">Semua Proyek</button>
-        <button type="button" class="isavo-filter-pill" data-filter="ibadah">Fasilitas Ibadah</button>
-        <button type="button" class="isavo-filter-pill" data-filter="pendidikan">Pendidikan &amp; Asrama</button>
-        <button type="button" class="isavo-filter-pill" data-filter="agro">Agro-Technopark</button>
+  <!-- Row 1: Horizontal Scroll Track (Moves Left on Scroll Down) -->
+  <div class="gallary-wrap wrap-1">
+    <div class="gallery-scroll-wrap" id="galleryRow1">
+      <!-- Item 1: Wide Architectural Facade -->
+      <div class="gallary-scroll-item card-wide">
+        <img
+          src="/gambar design/belakang masjid.jpg"
+          alt="Masterplan Lanskap Belakang Masjid"
+          loading="lazy"
+          class="gallery-img"
+        />
       </div>
 
-      <div class="isavo-nav-arrows">
-        <button type="button" class="isavo-arrow-btn" id="prevProjectBtn" aria-label="Geser ke kiri">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-        </button>
-        <button type="button" class="isavo-arrow-btn" id="nextProjectBtn" aria-label="Geser ke kanan">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Horizontal Scroll Carousel Track -->
-  <div class="isavo-carousel-container">
-    <div class="isavo-carousel-track" id="projectTrack">
-      <!-- Item 1: Garden Mosque Khairu Ummah -->
-      <div class="isavo-project-card" data-category="ibadah">
-        <div class="isavo-card-img-wrap">
-          <img
-            src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (2).jpeg"
-            alt="Struktur Utama Garden Mosque Khairu Ummah"
-            class="isavo-card-img"
-            loading="lazy"
-          />
-          <span class="isavo-card-pill">ARSITEKTUR &amp; MASJID</span>
-        </div>
-        <div class="isavo-card-info">
-          <h3 class="isavo-card-title">Garden Mosque Khairu Ummah</h3>
-          <span class="isavo-card-meta">Pusat Ibadah &amp; Pembinaan <br/> Sukasirna, Jonggol • 2026</span>
-        </div>
+      <!-- Item 2: Interior Masjid -->
+      <div class="gallary-scroll-item card-large">
+        <img
+          src="/gambar design/interior masjid.jpg"
+          alt="Interior Masjid Green Building"
+          loading="lazy"
+          class="gallery-img"
+        />
       </div>
 
-      <!-- Item 2: SMK Skill Village Islamic School -->
-      <div class="isavo-project-card" data-category="pendidikan">
-        <div class="isavo-card-img-wrap">
-          <img
-            src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.03 (1).jpeg"
-            alt="Rangka Atap & Asrama SMK Skill Village"
-            class="isavo-card-img"
-            loading="lazy"
-          />
-          <span class="isavo-card-pill">BANGUNAN PENDIDIKAN</span>
-        </div>
-        <div class="isavo-card-info">
-          <h3 class="isavo-card-title">SMK Skill Village Islamic School</h3>
-          <span class="isavo-card-meta">Asrama &amp; Ruang Teori Santri <br/> Sukasirna, Jonggol • 2026</span>
-        </div>
+      <!-- Item 3: Field Construction Real -->
+      <div class="gallary-scroll-item card-medium">
+        <img
+          src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (2).jpeg"
+          alt="Struktur Tiang & Rangka Beton"
+          loading="lazy"
+          class="gallery-img"
+        />
       </div>
 
-      <!-- Item 3: Agro-Technopark Budidaya Anggur -->
-      <div class="isavo-project-card" data-category="agro">
-        <div class="isavo-card-img-wrap">
-          <img
-            src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg"
-            alt="Agro-Technopark Pemuliaan Anggur"
-            class="isavo-card-img"
-            loading="lazy"
-          />
-          <span class="isavo-card-pill">WAKAF PRODUKTIF</span>
-        </div>
-        <div class="isavo-card-info">
-          <h3 class="isavo-card-title">Kebun Anggur Edukatif</h3>
-          <span class="isavo-card-meta">Kemandirian Pangan &amp; Wirausaha <br/> Sukasirna, Jonggol • 2026</span>
-        </div>
+      <!-- Item 4: Skywalk Learning Room -->
+      <div class="gallary-scroll-item card-wide">
+        <img
+          src="/gambar design/skywalk learning room.jpg"
+          alt="Skywalk Learning Room Lantai 2"
+          loading="lazy"
+          class="gallery-img"
+        />
       </div>
 
-      <!-- Item 4: Dinding Hebel & Sirkulasi Roster Islami -->
-      <div class="isavo-project-card" data-category="ibadah">
-        <div class="isavo-card-img-wrap">
-          <img
-            src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.05 (1).jpeg"
-            alt="Dinding Bata Ringan dan Ornamen Roster"
-            class="isavo-card-img"
-            loading="lazy"
-          />
-          <span class="isavo-card-pill">ARSITEKTUR ISLAMI</span>
-        </div>
-        <div class="isavo-card-info">
-          <h3 class="isavo-card-title">Fasad Sirkulasi Roster Alami</h3>
-          <span class="isavo-card-meta">Pencahayaan &amp; Angin Segar <br/> Sukasirna, Jonggol • 2026</span>
-        </div>
+      <!-- Item 5: Field Progress Wall -->
+      <div class="gallary-scroll-item card-compact">
+        <img
+          src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.05 (1).jpeg"
+          alt="Pemasangan Dinding Bata Ringan"
+          loading="lazy"
+          class="gallery-img"
+        />
       </div>
 
-      <!-- Item 5: Fasilitas Sanitasi & Wudhu -->
-      <div class="isavo-project-card" data-category="ibadah">
-        <div class="isavo-card-img-wrap">
-          <img
-            src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg"
-            alt="Instalasi Sanitasi dan Wudhu Santri"
-            class="isavo-card-img"
-            loading="lazy"
-          />
-          <span class="isavo-card-pill">SARANA SANITASI</span>
-        </div>
-        <div class="isavo-card-info">
-          <h3 class="isavo-card-title">Instalasi Wudhu &amp; Air Bersih</h3>
-          <span class="isavo-card-meta">Kebutuhan Vital 150+ Santri <br/> Sukasirna, Jonggol • 2026</span>
-        </div>
+      <!-- Item 6: Learning Studio & Workshop -->
+      <div class="gallary-scroll-item card-large">
+        <img
+          src="/gambar design/learning studio & workshop.jpg"
+          alt="Learning Studio & Workshop"
+          loading="lazy"
+          class="gallery-img"
+        />
       </div>
 
-      <!-- Item 6: Balai Pertemuan & Ruang Komunal -->
-      <div class="isavo-project-card" data-category="pendidikan">
-        <div class="isavo-card-img-wrap">
-          <img
-            src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.05.jpeg"
-            alt="Pusat Pembinaan Komunal"
-            class="isavo-card-img"
-            loading="lazy"
-          />
-          <span class="isavo-card-pill">SARANA KOMUNAL</span>
-        </div>
-        <div class="isavo-card-info">
-          <h3 class="isavo-card-title">Balai Pelatihan &amp; Adab</h3>
-          <span class="isavo-card-meta">Laboratorium Karakter Santri <br/> Sukasirna, Jonggol • 2026</span>
-        </div>
+      <!-- Item 7: Field Roof Construction -->
+      <div class="gallary-scroll-item card-medium">
+        <img
+          src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.03 (1).jpeg"
+          alt="Rangka Kuda-Kuda Baja Atap"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+
+      <!-- Item 8: GH Learning Area -->
+      <div class="gallary-scroll-item card-wide">
+        <img
+          src="/gambar design/gh learning area.jpg"
+          alt="Green House Learning Area"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+
+      <!-- Loop Duplicate for Infinite Smooth Flow -->
+      <div class="gallary-scroll-item card-wide" aria-hidden="true">
+        <img
+          src="/gambar design/belakang masjid.jpg"
+          alt="Masterplan Lanskap Belakang Masjid"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+      <div class="gallary-scroll-item card-large" aria-hidden="true">
+        <img
+          src="/gambar design/interior masjid.jpg"
+          alt="Interior Masjid Green Building"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+      <div class="gallary-scroll-item card-medium" aria-hidden="true">
+        <img
+          src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (2).jpeg"
+          alt="Struktur Tiang & Rangka Beton"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+      <div class="gallary-scroll-item card-wide" aria-hidden="true">
+        <img
+          src="/gambar design/skywalk learning room.jpg"
+          alt="Skywalk Learning Room Lantai 2"
+          loading="lazy"
+          class="gallery-img"
+        />
       </div>
     </div>
   </div>
+
+  <!-- Row 2: Horizontal Scroll Track (Moves Right on Scroll Down) -->
+  <div class="gallary-wrap wrap-2">
+    <div class="gallery-scroll-wrap" id="galleryRow2">
+      <!-- Item 1: Field Sanitary Installation -->
+      <div class="gallary-scroll-item card-compact">
+        <img
+          src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg"
+          alt="Instalasi Sanitasi & Saluran Air"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+
+      <!-- Item 2: Tempat Wudhu 3D Render -->
+      <div class="gallary-scroll-item card-large">
+        <img
+          src="/gambar design/tempat wudu.jpg"
+          alt="Desain Area Tempat Wudhu"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+
+      <!-- Item 3: Wide Modern Facade -->
+      <div class="gallary-scroll-item card-wide">
+        <img
+          src="/gambar design/belakang masjid (2).jpg"
+          alt="Fasad Bangunan Terbuka Hijau"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+
+      <!-- Item 4: Agro-Technopark Field -->
+      <div class="gallary-scroll-item card-medium">
+        <img
+          src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg"
+          alt="Lahan Kebun Wakaf Produktif"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+
+      <!-- Item 5: Mezzanine & Interior 2 -->
+      <div class="gallary-scroll-item card-wide">
+        <img
+          src="/gambar design/interior mesjid 2.jpg"
+          alt="Area Shalat Mezzanine Lantai 2"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+
+      <!-- Item 6: Panel Surya & Eco System -->
+      <div class="gallary-scroll-item card-compact">
+        <img
+          src="/gambar design/panel surya.jpg"
+          alt="Instalasi Energi Mandiri Solar Panel"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+
+      <!-- Item 7: Field Side Progress -->
+      <div class="gallary-scroll-item card-large">
+        <img
+          src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.06 (2).jpeg"
+          alt="Dinding Luar dan Penataan Drainase"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+
+      <!-- Item 8: Workshop Konstruksi -->
+      <div class="gallary-scroll-item card-medium">
+        <img
+          src="/gambar design/workshop.jpg"
+          alt="Workshop Pertukangan & Pelatihan Santri"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+
+      <!-- Loop Duplicate for Infinite Smooth Flow -->
+      <div class="gallary-scroll-item card-compact" aria-hidden="true">
+        <img
+          src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg"
+          alt="Instalasi Sanitasi & Saluran Air"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+      <div class="gallary-scroll-item card-large" aria-hidden="true">
+        <img
+          src="/gambar design/tempat wudu.jpg"
+          alt="Desain Area Tempat Wudhu"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+      <div class="gallary-scroll-item card-wide" aria-hidden="true">
+        <img
+          src="/gambar design/belakang masjid (2).jpg"
+          alt="Fasad Bangunan Terbuka Hijau"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+      <div class="gallary-scroll-item card-medium" aria-hidden="true">
+        <img
+          src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg"
+          alt="Lahan Kebun Wakaf Produktif"
+          loading="lazy"
+          class="gallery-img"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Lightbox Modal -->
+  <dialog id="isavoGalleryModal" class="gallery-lightbox">
+    <div class="lightbox-inner">
+      <button type="button" class="lightbox-close" id="closeLightboxBtn" aria-label="Tutup Pratinjau">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <img id="lightboxImage" src="" alt="Pratinjau Galeri" class="lightbox-img" />
+      <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+  </dialog>
 </section>
 
 <script>
-  // Filter and Slider Logic for ISAVO Project Carousel
-  const track = document.getElementById('projectTrack');
-  const prevBtn = document.getElementById('prevProjectBtn');
-  const nextBtn = document.getElementById('nextProjectBtn');
-  const filterPills = document.querySelectorAll('.isavo-filter-pill');
-  const cards = document.querySelectorAll('.isavo-project-card');
+  // Exact ISAVO Parallax Scroll Animation for Gallery Section
+  const section = document.getElementById('galeri');
+  const row1 = document.getElementById('galleryRow1');
+  const row2 = document.getElementById('galleryRow2');
 
-  // Horizontal Navigation Buttons
-  if (track && prevBtn && nextBtn) {
-    const scrollStep = 380;
-    prevBtn.addEventListener('click', () => {
-      track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
-    });
+  let currentTranslate1 = 0;
+  let currentTranslate2 = -350; // Initial start offset for row 2 to balance view
+  let targetTranslate1 = 0;
+  let targetTranslate2 = -350;
 
-    nextBtn.addEventListener('click', () => {
-      track.scrollBy({ left: scrollStep, behavior: 'smooth' });
-    });
+  // Track scroll position smoothly
+  const updateParallax = () => {
+    if (!section || !row1 || !row2) return;
+
+    const rect = section.getBoundingClientRect();
+    const windowH = window.innerHeight;
+
+    // Check if section is active/near viewport
+    if (rect.top < windowH + 400 && rect.bottom > -400) {
+      // Calculate how far the section has progressed through viewport (-1 to 1)
+      const progress = (windowH - rect.top) / (windowH + rect.height);
+      
+      // Speed multiplier for scroll motion
+      const scrollShift = (progress - 0.5) * 750;
+
+      targetTranslate1 = -scrollShift - 150;
+      targetTranslate2 = scrollShift - 320;
+    }
+  };
+
+  // Lerp smoothing animation loop
+  const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
+
+  const animate = () => {
+    currentTranslate1 = lerp(currentTranslate1, targetTranslate1, 0.08);
+    currentTranslate2 = lerp(currentTranslate2, targetTranslate2, 0.08);
+
+    if (row1) {
+      row1.style.transform = `translate3d(${currentTranslate1.toFixed(2)}px, 0, 0)`;
+    }
+    if (row2) {
+      row2.style.transform = `translate3d(${currentTranslate2.toFixed(2)}px, 0, 0)`;
+    }
+
+    requestAnimationFrame(animate);
+  };
+
+  requestAnimationFrame(animate);
+
+  // Bind to window scroll & Lenis
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  if ((window as any).lenis) {
+    (window as any).lenis.on('scroll', updateParallax);
   }
+  updateParallax();
 
-  // Category Filter
-  filterPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      filterPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
+  // Lightbox Modal Logic
+  const modal = document.getElementById('isavoGalleryModal') as HTMLDialogElement | null;
+  const modalImg = document.getElementById('lightboxImage') as HTMLImageElement | null;
+  const modalCaption = document.getElementById('lightboxCaption');
+  const closeBtn = document.getElementById('closeLightboxBtn');
 
-      const filter = pill.getAttribute('data-filter');
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        if (filter === 'all' || cat === filter) {
-          (card as HTMLElement).style.display = 'block';
-        } else {
-          (card as HTMLElement).style.display = 'none';
-        }
-      });
+  document.querySelectorAll('.gallary-scroll-item').forEach((item) => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      if (img && modal && modalImg) {
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+        if (modalCaption) modalCaption.textContent = img.alt;
+        modal.showModal();
+      }
     });
   });
+
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => modal.close());
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.close();
+    });
+  }
 </script>
 
 <style>
-  .isavo-project-section {
+  .isavo-gallery-section {
     position: relative;
-    padding: 130px 0 110px 0;
-    background-color: #f8fafc;
+    padding: 70px 0 90px 0;
+    background-color: #ffffff;
     overflow: hidden;
+    user-select: none;
   }
 
-  .isavo-blueprint-bg {
+  .isavo-anchor-target {
     position: absolute;
-    top: 0;
+    top: -85px;
     left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 0;
   }
 
-  .isavo-container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 24px;
+  /* Giant Background Watermark Text ala ISAVO */
+  .gallary-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .gallary-text span {
+    font-size: clamp(6.5rem, 16vw, 15rem);
+    font-weight: 900;
+    color: rgba(15, 23, 42, 0.04);
+    letter-spacing: -0.04em;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    line-height: 1;
+    display: inline-block;
+  }
+
+  /* Rows Wrapper */
+  .gallary-wrap {
     position: relative;
     z-index: 1;
-  }
-
-  /* Heading Row */
-  .isavo-heading-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    margin-bottom: 48px;
-  }
-
-  .isavo-heading-left {
-    flex: 0 0 240px;
-  }
-
-  .isavo-sub-tag {
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #0969da;
-    display: inline-block;
-    padding: 6px 16px;
-    background-color: rgba(9, 105, 218, 0.08);
-    border-radius: 9999px;
-  }
-
-  .isavo-heading-right {
-    flex: 1;
-  }
-
-  .isavo-main-title {
-    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
-    font-weight: 800;
-    color: #16171a;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
-    margin: 0 0 16px 0;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-  }
-
-  .isavo-blue-accent {
-    color: #0969da;
-  }
-
-  .isavo-sub-desc {
-    font-size: 1.05rem;
-    color: #555c68;
-    line-height: 1.65;
-    max-width: 720px;
-    margin: 0;
-  }
-
-  /* Carousel Toolbar: Pills & Navigation Arrows */
-  .isavo-carousel-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 36px;
-    flex-wrap: wrap;
-  }
-
-  .isavo-filter-pills {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #ffffff;
-    padding: 6px 8px;
-    border-radius: 9999px;
-    border: 1px solid rgba(226, 232, 240, 0.9);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-  }
-
-  .isavo-filter-pill {
-    border: none;
-    background: transparent;
-    padding: 8px 18px;
-    border-radius: 9999px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #64748b;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
-    font-family: inherit;
-  }
-
-  .isavo-filter-pill:hover {
-    color: #0f172a;
-  }
-
-  .isavo-filter-pill.active {
-    background-color: #0969da;
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(9, 105, 218, 0.3);
-  }
-
-  .isavo-nav-arrows {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .isavo-arrow-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid rgba(203, 213, 225, 0.8);
-    background-color: #ffffff;
-    color: #1e293b;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  }
-
-  .isavo-arrow-btn:hover {
-    background-color: #0969da;
-    border-color: #0969da;
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(9, 105, 218, 0.25);
-  }
-
-  /* Carousel Track & Cards */
-  .isavo-carousel-container {
     width: 100%;
     overflow: hidden;
-    padding: 0 24px 20px 24px;
+    padding: 10px 0;
   }
 
-  .isavo-carousel-track {
+  .gallary-wrap.wrap-1 {
+    margin-bottom: 20px;
+  }
+
+  /* The Moving Flex Track */
+  .gallery-scroll-wrap {
     display: flex;
-    gap: 28px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 20px;
+    align-items: center;
+    gap: 22px;
+    width: max-content;
+    will-change: transform;
   }
 
-  .isavo-carousel-track::-webkit-scrollbar {
-    display: none;
-  }
-
-  .isavo-project-card {
-    flex: 0 0 350px;
-    scroll-snap-align: start;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  .isavo-card-img-wrap {
+  /* Gallery Item Cards */
+  .gallary-scroll-item {
     position: relative;
-    width: 100%;
-    height: 380px;
-    border-radius: 20px;
+    border-radius: 14px;
     overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+    border: 1px solid rgba(15, 23, 42, 0.08);
     background-color: #0f172a;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    flex-shrink: 0;
   }
 
-  .isavo-project-card:hover .isavo-card-img-wrap {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(9, 105, 218, 0.12);
+  .gallary-scroll-item:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+    z-index: 2;
   }
 
-  .isavo-card-img {
+  /* Varied Card Dimensions ala ISAVO Editorial Rhythm */
+  .card-wide {
+    width: 480px;
+    height: 270px;
+  }
+
+  .card-large {
+    width: 400px;
+    height: 270px;
+  }
+
+  .card-medium {
+    width: 330px;
+    height: 270px;
+  }
+
+  .card-compact {
+    width: 250px;
+    height: 270px;
+  }
+
+  .gallery-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -406,88 +456,98 @@
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  .isavo-project-card:hover .isavo-card-img {
+  .gallary-scroll-item:hover .gallery-img {
     transform: scale(1.08);
   }
 
-  .isavo-card-pill {
+  /* Lightbox Modal */
+  .gallery-lightbox {
+    border: none;
+    border-radius: 16px;
+    padding: 0;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .gallery-lightbox::backdrop {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+  }
+
+  .lightbox-inner {
+    position: relative;
+    background: #0f172a;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .lightbox-close {
     position: absolute;
-    top: 18px;
-    left: 18px;
-    background: rgba(15, 23, 42, 0.72);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: #ffffff;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    padding: 6px 14px;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s;
   }
 
-  /* Card Bottom Info */
-  .isavo-card-info {
-    padding-top: 18px;
+  .lightbox-close:hover {
+    background: #0969da;
   }
 
-  .isavo-card-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #16171a;
-    margin: 0 0 6px 0;
-    letter-spacing: -0.02em;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-    transition: color 0.25s ease;
-  }
-
-  .isavo-project-card:hover .isavo-card-title {
-    color: #0969da;
-  }
-
-  .isavo-card-meta {
-    font-size: 0.88rem;
-    color: #64748b;
-    line-height: 1.5;
+  .lightbox-img {
     display: block;
+    max-width: 85vw;
+    max-height: 78vh;
+    object-fit: contain;
+    margin: 0 auto;
   }
 
-  @media (max-width: 1024px) {
-    .isavo-heading-row {
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .isavo-heading-left {
-      flex: none;
-    }
-
-    .isavo-project-card {
-      flex: 0 0 300px;
-    }
-
-    .isavo-card-img-wrap {
-      height: 320px;
-    }
+  .lightbox-caption {
+    padding: 12px 20px;
+    background: #091322;
+    color: #e2e8f0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  @media (max-width: 640px) {
-    .isavo-project-section {
-      padding: 90px 0 70px 0;
+  @media (max-width: 768px) {
+    .isavo-gallery-section {
+      padding: 50px 0 70px 0;
     }
 
-    .isavo-project-card {
-      flex: 0 0 270px;
+    .card-wide {
+      width: 320px;
+      height: 200px;
     }
 
-    .isavo-card-img-wrap {
-      height: 290px;
+    .card-large {
+      width: 270px;
+      height: 200px;
     }
 
-    .isavo-carousel-toolbar {
-      flex-direction: column;
-      align-items: flex-start;
+    .card-medium {
+      width: 220px;
+      height: 200px;
+    }
+
+    .card-compact {
+      width: 180px;
+      height: 200px;
     }
   }
 </style>
