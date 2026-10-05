@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wakaf Garden Mosque Khoiru Ummah Sugro | Global Waqf Village</title>
+  <link rel="icon" type="image/webp" href="favicon.webp">
+  <link rel="apple-touch-icon" href="favicon.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #f2f5f3;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f8fafc;
+      --bg-surface-card: #f8fafc;
+      --brand-primary: #0c5e37;
+      --brand-dark: #073e23;
+      --brand-light: #16a34a;
+      --brand-surface: rgba(12, 94, 55, 0.06);
+      --brand-border: rgba(12, 94, 55, 0.16);
+      --gold-primary: #b45309;
+      --gold-light: #92400e;
+      --gold-dark: #78350f;
+      --gold-surface: rgba(180, 83, 9, 0.07);
+      --gold-border: rgba(180, 83, 9, 0.22);
+      --border-hairline: #e2e8f0;
+      --border-subtle: rgba(12, 94, 55, 0.12);
+      --border-prominent: rgba(12, 94, 55, 0.25);
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .sv-container {
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+    .sv-card {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid rgba(12, 94, 55, 0.15);
+      border-radius: var(--radius-xl);
+      padding: 48px 32px 40px;
+      box-shadow: 0 24px 60px -15px rgba(12, 94, 55, 0.08), 0 4px 16px -2px rgba(0, 0, 0, 0.03);
+      overflow: hidden;
+    }
+    .sv-geo-backdrop {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 760px;
+      max-width: 140%;
+      opacity: 0.045;
+      pointer-events: none;
+    }
+    .sv-content-wrapper {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* INSTITUTIONAL HEADER & CREST */
+    .sv-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .sv-crest-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0 auto 24px;
+      max-width: 480px;
+    }
+    .sv-logo-img {
+      height: auto;
+      max-height: 145px;
+      width: clamp(280px, 48vw, 380px);
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .sv-fallback-title {
+      display: none;
+      font-weight: 800;
+      font-size: 17px;
+      color: var(--text-primary);
+      letter-spacing: 1px;
+    }
+    .sv-crest-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid var(--border-hairline);
+      padding-top: 12px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--brand-primary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .sv-meta-divider {
+      width: 4px;
+      height: 4px;
+      background: var(--brand-primary);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+    .sv-reg-number {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .sv-arabic-greeting {
+      font-family: 'Amiri', 'Traditional Arabic', serif;
+      font-size: clamp(22px, 4.2vw, 28px);
+      line-height: 1.8;
+      color: var(--brand-primary);
+      margin: 4px auto 16px;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+
+    /* CAMPAIGN HEADLINE */
+    .sv-campaign-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-surface);
+      border: 1px solid var(--brand-border);
+      color: var(--brand-primary);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .sv-badge-icon {
+      width: 14px;
+      height: 14px;
+      color: var(--brand-primary);
+    }
+    .sv-h1 {
+      font-size: clamp(26px, 4.5vw, 36px);
+      font-weight: 800;
+      line-height: 1.22;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .sv-gold-highlight {
+      color: var(--brand-primary);
+      font-weight: 800;
+    }
+    .sv-lead-prose {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 660px;
+      margin: 0 auto;
+    }
+    .sv-lead-prose + .sv-lead-prose {
+      margin-top: 10px;
+    }
+
+    /* VIDEO THEATER */
+    .sv-video-container {
+      background: linear-gradient(180deg, rgba(12, 94, 55, 0.2) 0%, rgba(12, 94, 55, 0.06) 100%);
+      border-radius: var(--radius-lg);
+      padding: 3px;
+      max-width: 720px;
+      margin: 28px auto 8px;
+      box-shadow: 0 16px 40px -12px rgba(12, 94, 55, 0.12), 0 4px 16px -2px rgba(0, 0, 0, 0.04);
+    }
+    .sv-video-aspect {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: calc(var(--radius-lg) - 3px);
+      overflow: hidden;
+      background: #02070e;
+    }
+    .sv-video-iframe,
+    .sv-video-element {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      object-fit: cover;
+    }
+    .sv-video-cover {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #02070e;
+      overflow: hidden;
+      border: 0;
+      padding: 0;
+    }
+    .sv-video-thumb {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.82);
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+    .sv-video-cover:hover .sv-video-thumb {
+      transform: scale(1.03);
+      filter: brightness(0.92);
+    }
+    .sv-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(2, 7, 14, 0.25) 0%, rgba(2, 7, 14, 0.75) 100%);
+    }
+    .sv-play-button {
+      position: relative;
+      z-index: 2;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #16a34a 0%, #0c5e37 100%);
+      box-shadow: 0 10px 28px rgba(12, 94, 55, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .sv-video-cover:hover .sv-play-button {
+      transform: scale(1.08);
+      box-shadow: 0 14px 36px rgba(12, 94, 55, 0.6);
+    }
+    .sv-play-svg {
+      width: 28px;
+      height: 28px;
+      margin-left: 4px;
+      fill: currentColor;
+    }
+    .sv-play-label {
+      position: relative;
+      z-index: 2;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      background: rgba(12, 94, 55, 0.88);
+      backdrop-filter: blur(8px);
+      padding: 6px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sv-play-label-icon {
+      width: 14px;
+      height: 14px;
+      color: #86efac;
+    }
+    .sv-video-yt-direct {
+      text-align: center;
+      margin-top: 8px;
+    }
+    .sv-yt-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--brand-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+    .sv-yt-link:hover {
+      text-decoration: underline;
+    }
+    .sv-external-svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    /* OFFICIAL FINANCIAL STATEMENT & AUDIT LEDGER */
+    .sv-ledger-card {
+      background: var(--bg-surface-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 26px 24px;
+      margin: 28px auto 24px;
+      max-width: 720px;
+      box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.04);
+      text-align: left;
+    }
+    .sv-ledger-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .sv-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(220, 38, 38, 0.08);
+      border: 1px solid rgba(220, 38, 38, 0.25);
+      color: #dc2626;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+    }
+    .sv-pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: #dc2626;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+      animation: svPulse 2s infinite;
+    }
+    @keyframes svPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 6px rgba(220, 38, 38, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+      }
+    }
+    .sv-land-spec {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--brand-primary);
+      letter-spacing: 1px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .sv-ledger-title {
+      font-size: clamp(17px, 3.2vw, 20px);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.35;
+      margin-bottom: 18px;
+    }
+    .sv-ledger-desc {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    /* FINANCIAL METRICS GRID (TABULAR DATA) */
+    .sv-metrics-table {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .sv-metric-cell {
+      background: #ffffff;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      text-align: left;
+    }
+    .sv-metric-cell.highlight {
+      border-color: var(--brand-border);
+      background: rgba(12, 94, 55, 0.03);
+    }
+    .sv-metric-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
+    }
+    .sv-metric-amount {
+      font-size: clamp(13px, 2.5vw, 15.5px);
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.3px;
+    }
+    .sv-metric-amount.gold {
+      color: var(--brand-primary);
+    }
+    .sv-metric-amount.dim {
+      color: var(--text-secondary);
+    }
+
+    /* PROGRESS TRACK WITH SCALE TICKS */
+    .sv-progress-wrapper {
+      margin-top: 14px;
+    }
+    .sv-progress-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      padding: 0 2px;
+    }
+    .sv-progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+    .sv-progress-fill {
+      width: 3.85%;
+      min-width: 16px;
+      height: 100%;
+      background: linear-gradient(90deg, #16a34a 0%, #0c5e37 100%);
+      border-radius: 999px;
+      box-shadow: 0 0 10px rgba(12, 94, 55, 0.35);
+    }
+    .sv-progress-note {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+    .sv-progress-highlight {
+      color: var(--brand-primary);
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+
+
+    /* ARCHITECTURAL CONCEPT (MODERN GREEN BUILDING) */
+    .sv-concept-section {
+      text-align: left;
+      margin-bottom: 36px;
+    }
+    .sv-section-head {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    .sv-h2 {
+      font-size: clamp(22px, 3.8vw, 28px);
+      font-weight: 800;
+      line-height: 1.26;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .sv-sub-prose {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .sv-concept-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .sv-concept-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+    .sv-concept-card:hover {
+      border-color: var(--brand-border);
+      background: #ffffff;
+      box-shadow: 0 6px 18px -4px rgba(12, 94, 55, 0.08);
+    }
+    .sv-concept-card.sv-concept-wide {
+      grid-column: span 2;
+    }
+    .sv-concept-icon-wrap {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--brand-surface);
+      border: 1px solid var(--brand-border);
+      color: var(--brand-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sv-concept-icon {
+      width: 20px;
+      height: 20px;
+    }
+    .sv-concept-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+    .sv-concept-body {
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+
+    /* 01 WAKAF UANG — WAKAF KHAIRI (KANBAN BOARD REALISASI KEBUTUHAN) */
+    .sv-khairi-section {
+      text-align: left;
+      margin-top: 24px;
+      margin-bottom: 36px;
+    }
+    .sv-khairi-sub {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--brand-primary);
+      margin-top: -2px;
+      margin-bottom: 6px;
+    }
+    .sv-khairi-tagline {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--gold-primary);
+      margin-bottom: 14px;
+    }
+    /* HADITS WAKAF & SEDEKAH JARIYAH */
+    .sv-hadits-card {
+      max-width: 680px;
+      margin: 16px auto 0;
+      text-align: center;
+      padding: 18px 22px;
+      background: rgba(12, 94, 55, 0.03);
+      border: 1px solid var(--brand-border);
+      border-radius: var(--radius-md);
+    }
+    .sv-hadits-arabic {
+      font-family: 'Amiri', 'Traditional Arabic', serif;
+      font-size: clamp(18px, 3.5vw, 22px);
+      line-height: 2;
+      color: var(--brand-primary);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .sv-hadits-takhrij {
+      font-family: 'Amiri', 'Traditional Arabic', serif;
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .sv-hadits-translation {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* SISTEM FAQ WAKAF KHAIRI MURNI */
+    .sv-faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 24px 0 28px;
+    }
+    .sv-faq-item {
+      background: #ffffff;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .sv-faq-item:hover {
+      border-color: #cbd5e1;
+    }
+    .sv-faq-item[open] {
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .sv-faq-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px;
+      background: #ffffff;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      transition: background 0.15s ease;
+    }
+    .sv-faq-summary::-webkit-details-marker {
+      display: none;
+    }
+    .sv-faq-summary:hover {
+      background: #f8fafc;
+    }
+    .sv-faq-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .sv-faq-chevron {
+      width: 18px;
+      height: 18px;
+      color: var(--text-secondary);
+      transition: transform 0.25s ease, color 0.2s ease;
+      flex-shrink: 0;
+    }
+    .sv-faq-item[open] .sv-faq-chevron {
+      transform: rotate(180deg);
+      color: var(--brand-primary);
+    }
+    .sv-faq-body {
+      padding: 0 20px 20px;
+      border-top: 1px solid #f1f5f9;
+      background: #ffffff;
+    }
+    .sv-faq-lead {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 14px 0 12px;
+    }
+
+    /* Sub-elemen Alokasi di FAQ 1 */
+    .sv-faq-alokasi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    @media (max-width: 680px) {
+      .sv-faq-alokasi-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+    .sv-faq-alokasi-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+    .sv-faq-alokasi-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      margin-bottom: 6px;
+    }
+    .sv-faq-alokasi-desc {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* Grid 3 Kolom untuk Poin Kebutuhan di FAQ 2 & 3 */
+    .sv-faq-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 860px) {
+      .sv-faq-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 540px) {
+      .sv-faq-grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .sv-faq-point {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      line-height: 1.4;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .sv-faq-point:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .sv-faq-point-num {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+      flex-shrink: 0;
+      min-width: 20px;
+    }
+    .sv-faq-point-text {
+      font-weight: 600;
+      color: #1e293b;
+      word-break: break-word;
+    }
+
+    /* Aksi Barang di FAQ 4 */
+    .sv-faq-barang-action {
+      margin-top: 14px;
+    }
+    .sv-btn-cs {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-primary);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 2px 6px rgba(12, 94, 55, 0.2);
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .sv-btn-cs:hover {
+      background: var(--brand-dark);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* DONATION TRANSACTIONS & BANK CERTIFICATE */
+    .sv-donation-section {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .sv-checkout-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      max-width: 480px;
+      margin: 0 auto;
+      box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+    .sv-checkout-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--brand-primary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* SCALEV ONLINE CHECKOUT (PRIMARY CTA) */
+    .sv-btn-scalev {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: linear-gradient(135deg, #107244 0%, #0c5e37 50%, #084326 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 15px 24px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      box-shadow: 0 8px 24px -4px rgba(12, 94, 55, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transition: filter 0.2s ease, transform 0.15s ease;
+      letter-spacing: -0.2px;
+    }
+    .sv-btn-scalev:hover {
+      filter: brightness(1.08);
+    }
+    .sv-btn-scalev:active {
+      transform: scale(0.985);
+    }
+    .sv-btn-icon {
+      width: 19px;
+      height: 19px;
+    }
+
+    /* MANUAL TRANSFER ACCORDION / PASSBOOK */
+    .sv-passbook-box {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-hairline);
+      text-align: center;
+    }
+    .sv-passbook-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .sv-bank-badge {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #0284c7;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .sv-bank-branch {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .sv-passbook-number {
+      font-size: clamp(22px, 4.5vw, 26px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+      margin-bottom: 4px;
+      user-select: all;
+    }
+    .sv-passbook-owner {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .sv-owner-name {
+      color: var(--brand-primary);
+      font-weight: 700;
+    }
+
+    /* COPY BUTTON (TACTILE TONE) */
+    .sv-btn-copy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: #ffffff;
+      color: var(--text-primary);
+      border: 1px solid #cbd5e1;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 11px 20px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+    .sv-btn-copy:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .sv-btn-copy:active {
+      transform: scale(0.985);
+    }
+
+    /* WHATSAPP CONFIRMATION */
+    .sv-btn-wa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      margin-top: 10px;
+      background: #10b981;
+      border: 1px solid #059669;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 11px 20px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+      transition: background 0.2s ease, filter 0.2s ease, transform 0.15s ease;
+    }
+    .sv-btn-wa:hover {
+      background: #059669;
+    }
+    .sv-btn-wa:active {
+      transform: scale(0.985);
+    }
+    .sv-wa-svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* CS & VERIFICATION NOTICE */
+    .sv-trust-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+    .sv-shield-icon {
+      width: 13px;
+      height: 13px;
+      color: var(--brand-primary);
+    }
+    .sv-cs-link {
+      color: var(--brand-primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* CITATION & LOCATION FOOTER */
+    .sv-quote-banner {
+      margin: 32px 0 24px;
+      font-size: 14.5px;
+      font-style: italic;
+      color: var(--brand-primary);
+      text-align: center;
+      font-weight: 600;
+    }
+    .sv-location-card {
+      border-top: 1px solid var(--border-hairline);
+      padding-top: 24px;
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .sv-loc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--brand-primary);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .sv-loc-pin {
+      width: 14px;
+      height: 14px;
+    }
+    .sv-loc-address {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    .sv-maps-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--brand-primary);
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px dashed var(--brand-primary);
+      padding-bottom: 2px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .sv-maps-action:hover {
+      color: var(--brand-dark);
+      border-color: var(--brand-dark);
+    }
+
+    /* RESPONSIVE LAYOUT GUARDRAILS */
+    @media (max-width: 680px) {
+      body {
+        padding: 16px 8px;
+      }
+      .sv-card {
+        padding: 32px 16px 28px;
+        border-radius: var(--radius-lg);
+      }
+      .sv-crest-badge {
+        padding: 0;
+      }
+      .sv-metrics-table {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .sv-concept-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .sv-concept-card.sv-concept-wide {
+        grid-column: span 1;
+      }
+      .sv-passbook-number {
+        font-size: 20px;
+        letter-spacing: 1px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sv-container">
+  <div class="sv-card">
+
+    <!-- Ornamen Latar Islami Geometris Arsitektural (Hairline Tracery) -->
+    <svg viewBox="0 0 400 200" class="sv-geo-backdrop" aria-hidden="true">
+      <g stroke="#0c5e37" stroke-width="1.2">
+        <line x1="200" y1="200" x2="200" y2="0"/>
+        <line x1="200" y1="200" x2="120" y2="0"/>
+        <line x1="200" y1="200" x2="280" y2="0"/>
+        <line x1="200" y1="200" x2="40" y2="15"/>
+        <line x1="200" y1="200" x2="360" y2="15"/>
+        <line x1="200" y1="200" x2="0" y2="80"/>
+        <line x1="200" y1="200" x2="400" y2="80"/>
+        <circle cx="200" cy="90" r="45" fill="none" stroke-dasharray="4,4"/>
+        <circle cx="200" cy="90" r="70" fill="none" stroke-opacity="0.4"/>
+      </g>
+    </svg>
+
+    <div class="sv-content-wrapper">
+
+      <!-- INSTITUTIONAL CREST HEADER -->
+      <header class="sv-header">
+        <div class="sv-crest-badge">
+          <img
+            src="logo-gwav.png"
+            alt="Global Waqf Village - Wakaf Pesantren Ecosystems for Self-Reliance and Social Impact"
+            class="sv-logo-img"
+            width="240"
+            height="120"
+          >
+          <div class="sv-crest-meta">
+            <span>Yayasan Permata Cendekia Indonesia</span>
+          </div>
+          <div class="sv-reg-number">
+            SK Kemenkumham RI No. AHU-0005721.AH.01.04
+          </div>
+        </div>
+
+        <p class="sv-arabic-greeting" lang="ar" dir="rtl">
+          السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ
+        </p>
+
+        <div>
+          <div class="sv-campaign-badge">
+            <svg class="sv-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span>Program Wakaf Abadi • Lahan 20 x 30 M</span>
+          </div>
+          <h1 class="sv-h1">
+            Wakaf Pembangunan<br>
+            <span class="sv-gold-highlight">Garden Mosque Khoiru Ummah Sugro</span>
+          </h1>
+          <p class="sv-lead-prose">
+            Mari bersama wujudkan kawasan Garden Mosque Khoiru Ummah Sugro, pusat ibadah dan pendidikan, kemandirian kawasan terpadu di bawah naungan Pesantren Integratif Holistik SMK Skill Village Islamic School.
+          </p>
+          <p class="sv-lead-prose">
+            Salurkan kontribusi terbaikmu melalui Wakaf, Zakat, Infaq dan Sedekah untuk mencetak generasi santripreneur berkarakter FAST (Fatonah, Amanah, Siddiq, Tabligh).
+          </p>
+        </div>
+      </header>
+
+      <!-- VIDEO THEATER (SMART COVER ANTI ERROR 153) -->
+      <div class="sv-video-container">
+        <div id="sv-video-aspect" class="sv-video-aspect">
+          <button
+            type="button"
+            class="sv-video-cover"
+            onclick="playWakafVideo()"
+            aria-label="Putar Video Dokumentasi Garden Mosque Khoiru Ummah Sugro"
+          >
+            <img
+              src="https://i.ytimg.com/vi/tNLWXp0kbtg/hqdefault.jpg"
+              alt="Thumbnail Video Wakaf Garden Mosque Khoiru Ummah Sugro"
+              class="sv-video-thumb"
+            >
+            <span class="sv-video-overlay"></span>
+            <span class="sv-play-button">
+              <svg class="sv-play-svg" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </span>
+            <span class="sv-play-label">
+              <svg class="sv-play-label-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <span>Putar Video Dokumentasi</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="sv-video-yt-direct">
+        <a
+          href="https://youtu.be/tNLWXp0kbtg?si=fatnQ7JT6N4wWat6"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="sv-yt-link"
+        >
+          <span>Buka di Aplikasi YouTube</span>
+          <svg class="sv-external-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- OFFICIAL FINANCIAL STATEMENT & AUDIT LEDGER -->
+      <section class="sv-ledger-card" aria-labelledby="ledger-heading">
+        <div class="sv-ledger-header">
+          <div class="sv-status-pill">
+            <span class="sv-pulse-dot" aria-hidden="true"></span>
+            <span>Status: Terhenti Keterbatasan Dana</span>
+          </div>
+          <div class="sv-land-spec">
+            Spesifikasi: 20 × 30 Meter
+          </div>
+        </div>
+
+        <h2 id="ledger-heading" class="sv-ledger-title">
+          Transparansi Realisasi Anggaran Pembangunan
+        </h2>
+
+        <!-- Tabular Metrics Table -->
+        <div class="sv-metrics-table">
+          <div class="sv-metric-cell highlight">
+            <div class="sv-metric-label">Dana Terhimpun</div>
+            <div class="sv-metric-amount gold">Rp 46.872.000</div>
+          </div>
+          <div class="sv-metric-cell">
+            <div class="sv-metric-label">Total Anggaran</div>
+            <div class="sv-metric-amount dim">Rp 1.215.753.350</div>
+          </div>
+          <div class="sv-metric-cell">
+            <div class="sv-metric-label">Sisa Kebutuhan</div>
+            <div class="sv-metric-amount">Rp 1.168.881.350</div>
+          </div>
+        </div>
+
+        <!-- Progress Bar with Scale Ticks -->
+        <div class="sv-progress-wrapper">
+          <div class="sv-progress-scale">
+            <span>0%</span>
+            <span>25%</span>
+            <span>50%</span>
+            <span>75%</span>
+            <span>100% Target</span>
+          </div>
+          <div class="sv-progress-bar">
+            <div class="sv-progress-fill"></div>
+          </div>
+          <div class="sv-progress-note">
+            <span>Realisasi Saat Ini: <strong class="sv-progress-highlight">3,85%</strong></span>
+            <span>Target Selesai: <strong>100% Beratap Layak</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 01 WAKAF UANG — WAKAF KHAIRI (KANBAN REALISASI KEBUTUHAN) -->
+      <section class="sv-khairi-section" aria-labelledby="khairi-heading">
+        <div class="sv-section-head">
+          <h2 id="khairi-heading" class="sv-h2">
+            Wakaf Khairi
+          </h2>
+          <div class="sv-khairi-sub">Masjid Khairu Ummah Sugro</div>
+          <div class="sv-hadits-card">
+            <p class="sv-hadits-arabic" dir="rtl" lang="ar">
+              إِذَا مَاتَ الْإِنْسَانُ انْقَطَعَ عَنْهُ عَمَلُهُ إِلَّا مِنْ ثَلَاثَةٍ: إِلَّا مِنْ صَدَقَةٍ جَارِيَةٍ أَوْ عِلْمٍ يُنْتَفَعُ بِهِ أَوْ وَلَدٍ صَالِحٍ يَدْعُو لَهُ
+            </p>
+            <p class="sv-hadits-takhrij" dir="rtl" lang="ar">
+              – رواه مسلم والترمذيّ وأبو داود والنسائيّ وابن حبّان عن أبي هريرة
+            </p>
+            <p class="sv-hadits-translation">
+              Ketika seorang manusia meninggal dunia, maka amalannya terputus kecuali tiga hal, yaitu: sedekah jariyah, ilmu yang bermanfaat, dan anak shaleh yang mau mendoakannya. Hadits diriwayatkan oleh Imam Muslim, Imam at-Tirmidzi, Imam Abu Dawud, Imam an-Nasa`i, dan Imam Ibnu Hibban bersumber dari Sayyidina Abu Hurairah ra
+            </p>
+          </div>
+        </div>
+
+        <!-- SISTEM FAQ WAKAF KHAIRI MURNI -->
+        <div class="sv-faq-list">
+          <!-- FAQ 1: Alokasi Wakaf -->
+          <details class="sv-faq-item" open>
+            <summary class="sv-faq-summary">
+              <span class="sv-faq-heading">Alokasi Wakaf</span>
+              <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="sv-faq-body">
+              <div class="sv-faq-alokasi-grid">
+                <div class="sv-faq-alokasi-card">
+                  <div class="sv-faq-alokasi-title">01 Pembangunan Masjid</div>
+                  <p class="sv-faq-alokasi-desc">Mendukung pemenuhan kebutuhan konstruksi dan material untuk penyelesaian pembangunan Masjid Khairu Ummah Sugro.</p>
+                </div>
+                <div class="sv-faq-alokasi-card">
+                  <div class="sv-faq-alokasi-title">02 Fasilitas Masjid</div>
+                  <p class="sv-faq-alokasi-desc">Mendukung pengadaan perlengkapan dan fasilitas yang menunjang fungsi, kenyamanan, dan keberlangsungan kegiatan masjid.</p>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- FAQ 2: Kebutuhan Wakaf - Kebutuhan Pembangunan -->
+          <details class="sv-faq-item" open>
+            <summary class="sv-faq-summary">
+              <span class="sv-faq-heading">Kebutuhan Wakaf: Kebutuhan Pembangunan</span>
+              <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="sv-faq-body">
+              <p class="sv-faq-lead">Wakaf yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan material pembangunan, antara lain:</p>
+              <div class="sv-faq-grid-3">
+                <div class="sv-faq-point"><span class="sv-faq-point-num">01</span><span class="sv-faq-point-text">Semen</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">02</span><span class="sv-faq-point-text">Pasir</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">03</span><span class="sv-faq-point-text">Split</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">04</span><span class="sv-faq-point-text">Keramik 40×40</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">05</span><span class="sv-faq-point-text">Granit 60×60</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">06</span><span class="sv-faq-point-text">UNP 100 &amp; 150</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">07</span><span class="sv-faq-point-text">CNP 100 &amp; 150</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">08</span><span class="sv-faq-point-text">WF 75×150</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">09</span><span class="sv-faq-point-text">Hollow 4×4 &amp; 2×4</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">10</span><span class="sv-faq-point-text">Lantai Vinyl</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">11</span><span class="sv-faq-point-text">Panel Lantai GRC 12 mm</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">12</span><span class="sv-faq-point-text">Kawat Loket</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">13</span><span class="sv-faq-point-text">Hebel 10 &amp; 7</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">14</span><span class="sv-faq-point-text">Plafon</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">15</span><span class="sv-faq-point-text">Aluminium</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">16</span><span class="sv-faq-point-text">MEP</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">17</span><span class="sv-faq-point-text">Kaca</span></div>
+              </div>
+            </div>
+          </details>
+
+          <!-- FAQ 3: Kebutuhan Wakaf - Kebutuhan Fasilitas Masjid -->
+          <details class="sv-faq-item">
+            <summary class="sv-faq-summary">
+              <span class="sv-faq-heading">Kebutuhan Wakaf: Kebutuhan Fasilitas Masjid</span>
+              <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="sv-faq-body">
+              <p class="sv-faq-lead">Wakaf juga diarahkan untuk melengkapi berbagai fasilitas yang menunjang penggunaan masjid, antara lain:</p>
+              <div class="sv-faq-grid-3">
+                <div class="sv-faq-point"><span class="sv-faq-point-num">01</span><span class="sv-faq-point-text">Sound System</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">02</span><span class="sv-faq-point-text">Multimedia &amp; Live Streaming</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">03</span><span class="sv-faq-point-text">Flipchart</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">04</span><span class="sv-faq-point-text">TV LED 50 Inch</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">05</span><span class="sv-faq-point-text">Stand TV</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">06</span><span class="sv-faq-point-text">Meja Lesehan</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">07</span><span class="sv-faq-point-text">Lemari Perlengkapan</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">08</span><span class="sv-faq-point-text">Mimbar Masjid</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">09</span><span class="sv-faq-point-text">Karpet Masjid</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">10</span><span class="sv-faq-point-text">Rak Sandal/Sepatu</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">11</span><span class="sv-faq-point-text">Jam Digital Masjid</span></div>
+                <div class="sv-faq-point"><span class="sv-faq-point-num">12</span><span class="sv-faq-point-text">Kipas Angin</span></div>
+              </div>
+            </div>
+          </details>
+
+          <!-- FAQ 4: Ingin Berwakaf dalam Bentuk Barang? -->
+          <details class="sv-faq-item">
+            <summary class="sv-faq-summary">
+              <span class="sv-faq-heading">Ingin Berwakaf dalam Bentuk Barang?</span>
+              <svg class="sv-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="sv-faq-body">
+              <p class="sv-faq-lead">Program utama Wakaf Khairi Masjid Khairu Ummah Sugro dihimpun dalam bentuk wakaf uang.</p>
+              <p class="sv-faq-lead">Bagi wakif yang ingin berkontribusi melalui material pembangunan atau fasilitas masjid secara langsung, silakan menghubungi Customer Service untuk memperoleh informasi mengenai kebutuhan yang masih tersedia serta mekanisme penyalurannya.</p>
+              <div class="sv-faq-barang-action">
+                <a
+                  href="https://wa.me/6281226832326?text=Assalamualaikum%20Customer%20Service%2C%20saya%20ingin%20berkonsultasi%20mengenai%20kontribusi%20wakaf%20dalam%20bentuk%20barang%2Fmaterial%20fasilitas%20Masjid%20Khairu%20Ummah%20Sugro."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sv-btn-cs"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+                  </svg>
+                  <span>HUBUNGI CUSTOMER SERVICE</span>
+                </a>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ARCHITECTURAL CONCEPT (MODERN GREEN BUILDING) -->
+      <section class="sv-concept-section" aria-labelledby="concept-heading">
+        <div class="sv-section-head">
+          <div class="sv-campaign-badge">
+            <svg class="sv-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Arsitektur Kawasan</span>
+          </div>
+          <h2 id="concept-heading" class="sv-h2">
+            Modern Green Building &amp; Santripreneur FAST
+          </h2>
+          <p class="sv-sub-prose">
+            Kawasan dirancang mandiri energi, terintegrasi siklus lingkungan hidup, dan menjadi pusat pembinaan karakter santri yang Fathonah, Amanah, Siddiq, dan Tabligh.
+          </p>
+        </div>
+
+        <div class="sv-concept-grid">
+          <!-- 01. Masjid Green Building -->
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6a3 3 0 0 1 6 0v6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="sv-concept-title">Masjid Green Building</div>
+              <div class="sv-concept-body">Sebagai area inti, dilengkapi dua sisi mezzanine di lantai 2.</div>
+            </div>
+          </div>
+
+          <!-- 02. Skywalk Learning Room -->
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="sv-concept-title">Skywalk Learning Room</div>
+              <div class="sv-concept-body">Di lantai 2 yang terhubung dengan ruang-ruang pembelajaran.</div>
+            </div>
+          </div>
+
+          <!-- 03. GH Learning Area -->
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 20h10M12 20v-8M12 12c0-3.5 2.5-6 6-6-1 3.5-3.5 6-6 6zm0 0c0-3.5-2.5-6-6-6 1 3.5 3.5 6 6 6z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="sv-concept-title">GH Learning Area</div>
+              <div class="sv-concept-body">Dengan tanaman rambat anggur sebagai ruang belajar berbasis lingkungan.</div>
+            </div>
+          </div>
+
+          <!-- 04. Area Wudhu I dan II -->
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="sv-concept-title">Area Wudhu I dan II</div>
+              <div class="sv-concept-body">Dilengkapi sistem filtrasi air untuk dimanfaatkan dalam sistem budidaya ikan lele (recirculating aquaculture/empang lele).</div>
+            </div>
+          </div>
+
+          <!-- 05. Learning Studio & Workshop -->
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+            </div>
+            <div>
+              <div class="sv-concept-title">Learning Studio &amp; Workshop</div>
+              <div class="sv-concept-body">Untuk kompetensi Bisnis Konstruksi dan Properti.</div>
+            </div>
+          </div>
+
+          <!-- 06. Aquaponic/Hydroponic Learning Area -->
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M16.2 7.8C15 9 13.5 9.5 12 9.5s-3-.5-4.2-1.7M12 9.5V22M8 15h8"/>
+              </svg>
+            </div>
+            <div>
+              <div class="sv-concept-title">Aquaponic/Hydroponic Learning Area</div>
+              <div class="sv-concept-body">Serta sistem filter air asrama untuk mendukung pemanfaatan air dalam budidaya ikan lele dan nila.</div>
+            </div>
+          </div>
+
+          <!-- 07. Pengembangan Solar Cell -->
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+              </svg>
+            </div>
+            <div>
+              <div class="sv-concept-title">Pengembangan Solar Cell</div>
+              <div class="sv-concept-body">Sebagai sumber energi terbarukan kawasan.</div>
+            </div>
+          </div>
+
+          <!-- 08. Green House Hortikultura Area -->
+          <div class="sv-concept-card">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <div>
+              <div class="sv-concept-title">Green House Hortikultura Area</div>
+              <div class="sv-concept-body">Sebagai pusat pembelajaran dan produksi pertanian.</div>
+            </div>
+          </div>
+
+          <!-- 09. Masjid Hub, Sinergi & Marketing Center -->
+          <div class="sv-concept-card sv-concept-wide">
+            <div class="sv-concept-icon-wrap" aria-hidden="true">
+              <svg class="sv-concept-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+            </div>
+            <div>
+              <div class="sv-concept-title">Masjid Hub, Sinergi &amp; Marketing Center</div>
+              <div class="sv-concept-body">Sebagai pusat integrasi kegiatan, kolaborasi, dan pemasaran.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DONATION CHECKOUT CARD & BANK PASSBOOK -->
+      <section class="sv-donation-section" aria-labelledby="donation-heading">
+        <div class="sv-checkout-card">
+          <div id="donation-heading" class="sv-checkout-title">
+            Saluran Wakaf Resmi
+          </div>
+
+          <!-- Scalev Online Checkout (Primary Action) -->
+          <a
+            href="https://velora-id.myscalev.com/p/wakaf-pembangunan-garden-mosque-khoiru-ummah"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sv-btn-scalev"
+          >
+            <svg class="sv-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
+            <span>Tunaikan Wakaf Online (QRIS &amp; Virtual Account)</span>
+          </a>
+
+          <!-- Manual Bank Transfer Passbook -->
+          <div class="sv-passbook-box">
+            <div class="sv-passbook-head">
+              <span class="sv-bank-badge">BANK SYARIAH INDONESIA (BSI)</span>
+            </div>
+            <div class="sv-passbook-number">
+              7142 2637 63
+            </div>
+            <div class="sv-passbook-owner">
+              a.n. <strong class="sv-owner-name">Yayasan Permata Cendekia Indonesia</strong>
+            </div>
+
+            <!-- Copy Number Button -->
+            <button
+              type="button"
+              class="sv-btn-copy"
+              onclick="(function(btn){ const num = '7142263763'; if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(num).catch(() => {}); } else { const ta = document.createElement('textarea'); ta.value = num; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch(e){} document.body.removeChild(ta); } const txt = btn.querySelector('.btn-label-text'); const prev = txt.textContent; txt.textContent='Nomor Berhasil Disalin'; setTimeout(() => { txt.textContent = prev; }, 2500); })(this);"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span class="btn-label-text">Salin Nomor Rekening BSI (Manual)</span>
+            </button>
+
+            <!-- WhatsApp Confirmation Button -->
+            <a
+              href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20Garden%20Mosque%20Khoiru%20Ummah%20Sugro%2C%20saya%20ingin%20konfirmasi%20donasi%20wakaf."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sv-btn-wa"
+            >
+              <svg class="sv-wa-svg" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+              </svg>
+              <span>Konfirmasi Donasi via WhatsApp</span>
+            </a>
+          </div>
+
+          <div class="sv-trust-note">
+            <svg class="sv-shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+            <span>Verifikasi Otomatis Online • Layanan CS:</span>
+            <a href="tel:+6281226832326" class="sv-cs-link">+62&nbsp;812&#8209;2683&#8209;2326</a>
+          </div>
+        </div>
+
+        <p class="sv-quote-banner">
+          “Jazakumullahu khairan katsiran atas kebaikan dan keikhlasan Anda”
+        </p>
+
+        <!-- OFFICIAL CAMPUS LOCATION -->
+        <div class="sv-location-card">
+          <div class="sv-loc-badge">
+            <svg class="sv-loc-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Lokasi Pembangunan &amp; Kampus Santri</span>
+          </div>
+          <p class="sv-loc-address">
+            G332+WWG, Jl. Raya Jonggol-Dayeuh Kp. Tegal Putat, RT.01/RW.06, Sukasirna, Kec. Jonggol, Kabupaten Bogor, Jawa Barat 16830
+          </p>
+          <a
+            href="https://maps.google.com/?q=G332%2BWWG%2C+Jl.+Raya+Jonggol-Dayeuh+Kp.+Tegal+Putat%2C+RT.01%2FRW.06%2C+Sukasirna%2C+Kec.+Jonggol%2C+Kabupaten+Bogor%2C+Jawa+Barat+16830"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sv-maps-action"
+          >
+            <span>Buka Rute ke Skill Village</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function playWakafVideo() {
+    var container = document.getElementById('sv-video-aspect');
+    if (!container) return;
+
+    if (window.location.protocol === 'file:') {
+      var video = document.createElement('video');
+      video.className = 'sv-video-element';
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      var source = document.createElement('source');
+      source.src = 'https://s3.skillage-mart.com/skillage-website/konten-YPCI.mp4';
+      source.type = 'video/mp4';
+      video.appendChild(source);
+      container.innerHTML = '';
+      container.appendChild(video);
+      video.play().catch(function() {});
+    } else {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/tNLWXp0kbtg?autoplay=1&rel=0';
+      iframe.title = 'Wakaf Pembangunan Garden Mosque Khoiru Ummah Sugro';
+      iframe.className = 'sv-video-iframe';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+      container.innerHTML = '';
+      container.appendChild(iframe);
+    }
+  }
+</script>
+</body>
+</html>
