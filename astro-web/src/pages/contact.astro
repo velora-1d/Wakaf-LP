@@ -1,0 +1,77 @@
+---
+// src/pages/contact.astro
+// Exact ISAVO Contact Page (isavo.co.id/contact)
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactSection from '../components/home/ContactSection.astro';
+---
+
+<BaseLayout
+  title="Hubungi Kami • Global Village Fund"
+  description="Konsultasi program wakaf produktif, wakaf pembangunan masjid, dan pendidikan SMK Skill Village Islamic School bersama nazhir resmi Global Village Fund."
+>
+  <!-- Hero Inner Page Title ala ISAVO -->
+  <section class="isavo-inner-hero">
+    <div class="isavo-inner-container">
+      <div class="isavo-inner-breadcrumb">
+        <a href="/">Home</a>
+        <span class="isavo-sep">/</span>
+        <span class="isavo-current">Hubungi Kami</span>
+      </div>
+      <h1 class="isavo-inner-title">Hubungi Kami</h1>
+    </div>
+  </section>
+
+  <!-- Contact Form & Info Section -->
+  <ContactSection />
+</BaseLayout>
+
+<style>
+  .isavo-inner-hero {
+    background-color: #0f172a;
+    padding: 140px 0 60px 0;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .isavo-inner-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .isavo-inner-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .isavo-inner-breadcrumb a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .isavo-inner-breadcrumb a:hover {
+    color: #ffffff;
+  }
+
+  .isavo-sep {
+    color: #64748b;
+  }
+
+  .isavo-current {
+    color: #0969da;
+  }
+
+  .isavo-inner-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+  }
+</style>

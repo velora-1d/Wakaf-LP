@@ -1,0 +1,463 @@
+---
+// src/components/home/ContactSection.astro
+// Exact ISAVO Contact Section UI/UX & Animations (isavo.co.id/contact)
+---
+
+<section class="isavo-contact-section reveal-on-scroll" id="rekening">
+  <div id="kontak" class="isavo-anchor-target"></div>
+
+  <div class="isavo-contact-container">
+    <!-- Header Row Split: Left Tag, Right Big Title -->
+    <div class="isavo-contact-header-wrap">
+      <div class="isavo-pill-tag">
+        <span class="isavo-pill-dot"></span>
+        <span class="isavo-pill-text">GET IN TOUCH</span>
+      </div>
+
+      <div class="isavo-contact-heading-grid">
+        <div class="isavo-heading-left">
+          <span class="isavo-sub-badge">HUBUNGI KAMI</span>
+        </div>
+        <div class="isavo-heading-right">
+          <h2 class="isavo-contact-main-title">
+            Punya Niat Wakaf <span class="isavo-blue-accent">&amp; Pertanyaan?</span><br />
+            Wujudkan Bersama Kami
+          </h2>
+          <p class="isavo-contact-subtitle">
+            Bicaralah dengan tim pengurus dan nazhir kami — tanpa kewajiban, tanpa tekanan. Kami siap memandu Anda dari niat awal, pemilihan akad, hingga penerbitan akta ikrar wakaf resmi.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content: 2-Column Split (Left Info, Right Form) -->
+    <div class="isavo-contact-body-grid">
+      <!-- Left Column: Contact Cards -->
+      <div class="isavo-contact-info-col">
+        <div class="isavo-info-card">
+          <div class="isavo-info-item">
+            <span class="isavo-info-label">Alamat Kantor &amp; Lokasi</span>
+            <p class="isavo-info-text">
+              Kampus SMK Skill Village Islamic School, <br />
+              Desa Sukasirna, Kec. Jonggol, <br />
+              Kabupaten Bogor, Jawa Barat 16830
+            </p>
+          </div>
+
+          <div class="isavo-info-item">
+            <span class="isavo-info-label">Kontak Resmi</span>
+            <a href="tel:+6281226832326" class="isavo-info-link isavo-link-phone">
+              +62 812-2683-2326
+            </a>
+            <a
+              href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20GVF%2C%20saya%20ingin%20konsultasi%20program%20wakaf."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="isavo-info-link isavo-link-wa"
+            >
+              WhatsApp Fast Response &rarr;
+            </a>
+            <a href="mailto:info@globalvillagefund.org" class="isavo-info-link">
+              info@globalvillagefund.org
+            </a>
+          </div>
+
+          <div class="isavo-info-item">
+            <span class="isavo-info-label">Sosial Media</span>
+            <div class="isavo-social-links-stacked">
+              <a href="https://instagram.com/globalvillagefund" target="_blank" rel="noopener noreferrer" class="isavo-info-link">
+                Instagram @globalvillagefund
+              </a>
+              <a href="https://globalvillagefund.org" target="_blank" rel="noopener noreferrer" class="isavo-info-link">
+                Website: www.globalvillagefund.org
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Consultation Form ala ISAVO -->
+      <div class="isavo-contact-form-col">
+        <form id="isavoContactForm" class="isavo-contact-form">
+          <div class="isavo-form-row">
+            <div class="isavo-form-group">
+              <label for="contactFullName" class="isavo-form-label">Nama Lengkap *</label>
+              <input
+                type="text"
+                id="contactFullName"
+                name="fullname"
+                class="isavo-form-input"
+                placeholder="Nama lengkap Anda"
+                required
+              />
+            </div>
+            <div class="isavo-form-group">
+              <label for="contactPhone" class="isavo-form-label">Telepon / WhatsApp *</label>
+              <input
+                type="tel"
+                id="contactPhone"
+                name="phone"
+                class="isavo-form-input"
+                placeholder="0812-3456-7890"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="isavo-form-row">
+            <div class="isavo-form-group">
+              <label for="contactEmail" class="isavo-form-label">Alamat Email *</label>
+              <input
+                type="email"
+                id="contactEmail"
+                name="email"
+                class="isavo-form-input"
+                placeholder="contoh@email.com"
+                required
+              />
+            </div>
+            <div class="isavo-form-group">
+              <label for="contactService" class="isavo-form-label">Pilihan Program *</label>
+              <select id="contactService" name="service" class="isavo-form-input isavo-form-select" required>
+                <option value="" disabled selected>-- Pilih Program Wakaf --</option>
+                <option value="Wakaf Masjid Khairu Ummah">Wakaf Masjid Khairu Ummah</option>
+                <option value="Wakaf SMK Skill Village">Wakaf SMK Skill Village Islamic School</option>
+                <option value="Wakaf Produktif Agro-Technopark">Wakaf Produktif Kebun Anggur</option>
+                <option value="Konsultasi Akad & Niat Wakaf">Konsultasi Akad &amp; Niat Wakaf</option>
+                <option value="Lainnya">Pertanyaan Lainnya</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="isavo-form-group isavo-form-full">
+            <label for="contactMessage" class="isavo-form-label">Pesan / Pertanyaan *</label>
+            <textarea
+              id="contactMessage"
+              name="message"
+              rows="4"
+              class="isavo-form-input isavo-form-textarea"
+              placeholder="Ceritakan rencana, niat wakaf, atau pertanyaan yang ingin Anda konsultasikan..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="isavo-submit-btn" id="contactSubmitBtn">
+            <span>Kirim Pesan / Konsultasi Sekarang</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Handle Contact Form Submission to WhatsApp Fast Response
+  const form = document.getElementById('isavoContactForm') as HTMLFormElement | null;
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = (document.getElementById('contactFullName') as HTMLInputElement)?.value || '';
+      const phone = (document.getElementById('contactPhone') as HTMLInputElement)?.value || '';
+      const email = (document.getElementById('contactEmail') as HTMLInputElement)?.value || '';
+      const service = (document.getElementById('contactService') as HTMLSelectElement)?.value || '';
+      const message = (document.getElementById('contactMessage') as HTMLTextAreaElement)?.value || '';
+
+      const waText = encodeURIComponent(
+        `Assalamualaikum Admin Global Village Fund,\n\nSaya ingin berkonsultasi mengenai program wakaf:\n` +
+        `• Nama: ${name}\n` +
+        `• No. Kontak: ${phone}\n` +
+        `• Email: ${email}\n` +
+        `• Pilihan Program: ${service}\n` +
+        `• Pesan: ${message}`
+      );
+
+      window.open(`https://wa.me/6281226832326?text=${waText}`, '_blank');
+    });
+  }
+</script>
+
+<style>
+  .isavo-contact-section {
+    position: relative;
+    padding: 100px 0 120px 0;
+    background-color: #f7f9fc;
+    overflow: hidden;
+  }
+
+  .isavo-anchor-target {
+    position: absolute;
+    top: -85px;
+    left: 0;
+  }
+
+  .isavo-contact-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header Wrap */
+  .isavo-contact-header-wrap {
+    margin-bottom: 4rem;
+  }
+
+  .isavo-pill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  }
+
+  .isavo-pill-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0969da;
+    border-radius: 50%;
+  }
+
+  .isavo-pill-text {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #0f172a;
+    text-transform: uppercase;
+    font-family: 'Golos Text', sans-serif;
+  }
+
+  .isavo-contact-heading-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  .isavo-sub-badge {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0969da;
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: rgba(9, 105, 218, 0.08);
+    border-radius: 9999px;
+    font-family: 'Golos Text', sans-serif;
+  }
+
+  .isavo-contact-main-title {
+    font-size: clamp(2.3rem, 4vw, 3.4rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    margin: 0 0 1rem 0;
+  }
+
+  .isavo-blue-accent {
+    color: #0969da;
+  }
+
+  .isavo-contact-subtitle {
+    font-size: 1.05rem;
+    color: #64748b;
+    line-height: 1.65;
+    max-width: 720px;
+    margin: 0;
+  }
+
+  /* Body 2-Col Grid */
+  .isavo-contact-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 3.5rem;
+    align-items: flex-start;
+  }
+
+  /* Left Column: Info Card */
+  .isavo-info-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .isavo-info-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0969da;
+    margin-bottom: 0.6rem;
+    font-family: 'Golos Text', sans-serif;
+  }
+
+  .isavo-info-text {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #334155;
+    margin: 0;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .isavo-info-link {
+    display: block;
+    font-size: 0.95rem;
+    color: #334155;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .isavo-info-link:hover {
+    color: #0969da;
+  }
+
+  .isavo-link-phone {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+  }
+
+  .isavo-link-wa {
+    color: #10b981;
+    font-weight: 700;
+  }
+
+  .isavo-link-wa:hover {
+    color: #059669;
+  }
+
+  .isavo-social-links-stacked {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  /* Right Column: Form */
+  .isavo-contact-form {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .isavo-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .isavo-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .isavo-form-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1e293b;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .isavo-form-input {
+    width: 100%;
+    padding: 0.85rem 1.15rem;
+    font-size: 0.92rem;
+    color: #0f172a;
+    background-color: #f8fafc;
+    border: 1px solid rgba(203, 213, 225, 0.8);
+    border-radius: 10px;
+    transition: all 0.25s ease;
+    font-family: inherit;
+    box-sizing: border-box;
+  }
+
+  .isavo-form-input:focus {
+    outline: none;
+    background-color: #ffffff;
+    border-color: #0969da;
+    box-shadow: 0 0 0 4px rgba(9, 105, 218, 0.12);
+  }
+
+  .isavo-form-select {
+    cursor: pointer;
+  }
+
+  .isavo-form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .isavo-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background-color: #0969da;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 4px 14px rgba(9, 105, 218, 0.25);
+    margin-top: 0.5rem;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .isavo-submit-btn:hover {
+    background-color: #0858b8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(9, 105, 218, 0.35);
+  }
+
+  @media (max-width: 1024px) {
+    .isavo-contact-heading-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .isavo-contact-body-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .isavo-contact-section {
+      padding: 60px 0 80px 0;
+    }
+    .isavo-form-row {
+      grid-template-columns: 1fr;
+    }
+    .isavo-info-card,
+    .isavo-contact-form {
+      padding: 1.5rem;
+    }
+  }
+</style>
