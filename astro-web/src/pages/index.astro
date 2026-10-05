@@ -1,0 +1,42 @@
+---
+// src/pages/index.astro
+// Halaman Utama GVF Presisi 100% Mengadopsi Desain UI/UX ISAVO (isavo.co.id)
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/home/HeroSection.astro';
+import PillarsSection from '../components/home/PillarsSection.astro';
+import AboutSplitSection from '../components/home/AboutSplitSection.astro';
+import InteractiveServicesSection from '../components/home/InteractiveServicesSection.astro';
+import WaterfallWorkflowSection from '../components/home/WaterfallWorkflowSection.astro';
+import ShowcaseSection from '../components/home/ShowcaseSection.astro';
+import SimulasiSection from '../components/home/SimulasiSection.astro';
+import DonationSection from '../components/home/DonationSection.astro';
+---
+
+<BaseLayout
+  title="Global Village Fund • Wakaf Produktif & Pendidikan Berkelanjutan"
+  description="Kawasan Wakaf Terpadu seluas ±3 hektare di Jonggol Bogor. Memadukan Garden Mosque Khairu Ummah, SMK Skill Village Islamic School, dan Agro-Technopark."
+>
+  <!-- 1. Hero Section (Arsitek • Kontraktor • Interior) -->
+  <HeroSection />
+
+  <!-- 2. "Satu Solusi Untuk Anda" 3-Card Section -->
+  <PillarsSection />
+
+  <!-- 3. Screenshot 1: "Tempat Dimana Rumah Impian Menjadi Kenyataan" Dark Split Section -->
+  <AboutSplitSection />
+
+  <!-- 4. Screenshot 2: "Jelajahi Layanan Desain Interior" Interactive Tabbed Showcase + 4-Column Stats -->
+  <InteractiveServicesSection />
+
+  <!-- 5. Screenshot 3: "Cara Kami Bekerja" Descending 4-Card Waterfall Process -->
+  <WaterfallWorkflowSection />
+
+  <!-- Galeri & Dokumentasi Proyek -->
+  <ShowcaseSection />
+
+  <!-- Simulasi & Kalkulator Wakaf ala "Simulasi Biaya" -->
+  <SimulasiSection />
+
+  <!-- Saluran Donasi Resmi & Rekening Bank BSI -->
+  <DonationSection />
+</BaseLayout>

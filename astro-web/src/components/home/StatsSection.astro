@@ -1,0 +1,107 @@
+---
+// src/components/home/StatsSection.astro
+// Metrik Counter Prestasi 4 Kolom ala ISAVO
+---
+
+<section class="gvf-stats-section" id="transparansi">
+  <div class="gvf-container">
+    <div class="gvf-stats-grid">
+      <!-- Stat 1 -->
+      <div class="gvf-stat-card reveal-on-scroll delay-100">
+        <div class="gvf-stat-number">Rp 46,8 Jt+</div>
+        <div class="gvf-stat-label">Dana Terhimpun</div>
+        <div class="gvf-stat-sub">Dari total kebutuhan Rp 1,21 Miliar pembangunan masjid</div>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="gvf-stat-card reveal-on-scroll delay-200">
+        <div class="gvf-stat-number">±3 Hektare</div>
+        <div class="gvf-stat-label">Luas Kawasan Terpadu</div>
+        <div class="gvf-stat-sub">Lahan produktif di Desa Sukasirna, Kec. Jonggol, Kab. Bogor</div>
+      </div>
+
+      <!-- Stat 3 -->
+      <div class="gvf-stat-card reveal-on-scroll delay-300">
+        <div class="gvf-stat-number">100% Syariah</div>
+        <div class="gvf-stat-label">Akad Wakaf &amp; Infaq</div>
+        <div class="gvf-stat-sub">Diawasi kepatuhan syariah dan akuntabilitas publik</div>
+      </div>
+
+      <!-- Stat 4 -->
+      <div class="gvf-stat-card reveal-on-scroll delay-400">
+        <div class="gvf-stat-number">3 Pilar Utama</div>
+        <div class="gvf-stat-label">Ekosistem Terintegrasi</div>
+        <div class="gvf-stat-sub">Pendidikan Vokasi, Rumah Ibadah &amp; Agro-Technopark</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gvf-stats-section {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+    background-color: var(--gvf-white);
+    border-top: var(--gvf-border-subtle);
+    border-bottom: var(--gvf-border-subtle);
+  }
+
+  .gvf-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .gvf-stat-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border-radius: var(--gvf-radius-lg);
+    background-color: var(--gvf-surface-50);
+    border: var(--gvf-border-subtle);
+    transition: all var(--gvf-transition-smooth);
+  }
+
+  .gvf-stat-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(9, 105, 218, 0.3);
+    box-shadow: var(--gvf-shadow-md);
+  }
+
+  .gvf-stat-number {
+    font-size: clamp(1.85rem, 2.5vw, 2.35rem);
+    font-weight: 800;
+    color: var(--gvf-blue-vibrant);
+    font-family: monospace;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+    line-height: 1.15;
+  }
+
+  .gvf-stat-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gvf-text-heading);
+    margin-bottom: 0.35rem;
+  }
+
+  .gvf-stat-sub {
+    font-size: 0.8125rem;
+    color: var(--gvf-text-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 1024px) {
+    .gvf-stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .gvf-stats-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

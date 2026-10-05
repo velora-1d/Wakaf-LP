@@ -1,0 +1,467 @@
+---
+// src/components/home/SimulasiSection.astro
+// Fitur Simulasi & Kalkulator Wakaf Interaktif ala Fitur "Simulasi Biaya" ISAVO
+---
+
+<section class="gvf-section gvf-simulasi-section" id="simulasi">
+  <div class="gvf-container">
+    <div class="gvf-section-header reveal-on-scroll">
+      <span class="gvf-badge gvf-badge-blue">FITUR INTERAKTIF</span>
+      <h2 class="gvf-section-title">Simulasi &amp; Kalkulator Wakaf</h2>
+      <p class="gvf-section-subtitle">
+        Hitung dan tentukan porsi kebaikan jariyah Anda. Pilih paket pembebasan meter lahan, dukungan material masjid, atau wakaf uang bebas dengan kalkulasi transparan.
+      </p>
+    </div>
+
+    <div class="gvf-simulasi-box reveal-on-scroll delay-100">
+      <!-- Tab Controls -->
+      <div class="gvf-calc-tabs">
+        <button type="button" class="gvf-calc-tab active" data-tab="lahan">
+          <span>Wakaf Meter Lahan</span>
+        </button>
+        <button type="button" class="gvf-calc-tab" data-tab="material">
+          <span>Material Konstruksi</span>
+        </button>
+        <button type="button" class="gvf-calc-tab" data-tab="uang">
+          <span>Wakaf Uang Tunai</span>
+        </button>
+      </div>
+
+      <!-- Tab Content 1: Lahan -->
+      <div class="gvf-calc-body active" id="calc-lahan">
+        <div class="gvf-calc-grid">
+          <div class="gvf-calc-controls">
+            <label class="gvf-calc-label">Pilih Luas Lahan Wakaf yang Ingin Dibebaskan:</label>
+            <div class="gvf-options-grid">
+              <button type="button" class="gvf-opt-btn active" data-val="1" data-price="150000">1 Meter² (Rp 150rb)</button>
+              <button type="button" class="gvf-opt-btn" data-val="3" data-price="450000">3 Meter² (Rp 450rb)</button>
+              <button type="button" class="gvf-opt-btn" data-val="5" data-price="750000">5 Meter² (Rp 750rb)</button>
+              <button type="button" class="gvf-opt-btn" data-val="10" data-price="1500000">10 Meter² (Rp 1,5 Jt)</button>
+            </div>
+
+            <div class="gvf-custom-input-wrap">
+              <label for="custom-meter-input" class="gvf-sublabel">Atau Masukkan Jumlah Meter Custom:</label>
+              <div class="gvf-input-group">
+                <input type="number" id="custom-meter-input" min="1" max="1000" placeholder="Contoh: 7" class="gvf-input-field" />
+                <span class="gvf-input-suffix">Meter²</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Display Column -->
+          <div class="gvf-calc-result-box">
+            <span class="gvf-result-badge">Estimasi Investasi Akhirat</span>
+            <div class="gvf-result-total" id="lahan-total-display">Rp 150.000</div>
+            <p class="gvf-result-desc" id="lahan-desc-display">
+              Setara dengan pembebasan <strong>1 m² lahan abadi</strong> untuk kawasan ibadah dan pendidikan santri di Sukasirna Jonggol.
+            </p>
+            <a
+              id="lahan-cta-btn"
+              href="https://velora-id.myscalev.com/p/wakaf-pembangunan-garden-mosque-khoiru-ummah"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="gvf-btn gvf-btn-primary gvf-btn-block"
+            >
+              <span>Tunaikan Wakaf Ini</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content 2: Material -->
+      <div class="gvf-calc-body" id="calc-material">
+        <div class="gvf-calc-grid">
+          <div class="gvf-calc-controls">
+            <label class="gvf-calc-label">Pilih Paket Dukungan Material Bangunan:</label>
+            <div class="gvf-options-grid">
+              <button type="button" class="gvf-opt-btn active" data-mat="semen" data-price="75000">1 Sak Semen (Rp 75rb)</button>
+              <button type="button" class="gvf-opt-btn" data-mat="hebel" data-price="250000">1/2 Kubik Hebel (Rp 250rb)</button>
+              <button type="button" class="gvf-opt-btn" data-mat="keramik" data-price="500000">5 Dus Granit 60×60 (Rp 500rb)</button>
+              <button type="button" class="gvf-opt-btn" data-mat="atap" data-price="1000000">Rangka Baja / Atap (Rp 1 Jt)</button>
+            </div>
+          </div>
+
+          <div class="gvf-calc-result-box">
+            <span class="gvf-result-badge">Dukungan Fisik Masjid</span>
+            <div class="gvf-result-total" id="material-total-display">Rp 75.000</div>
+            <p class="gvf-result-desc" id="material-desc-display">
+              Mendukung pengadaan <strong>1 Sak Semen</strong> untuk pengecoran dan dinding Masjid Khairu Ummah Sugro.
+            </p>
+            <a
+              id="material-cta-btn"
+              href="https://velora-id.myscalev.com/p/wakaf-pembangunan-garden-mosque-khoiru-ummah"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="gvf-btn gvf-btn-primary gvf-btn-block"
+            >
+              <span>Salurkan Material Ini</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content 3: Uang Tunai -->
+      <div class="gvf-calc-body" id="calc-uang">
+        <div class="gvf-calc-grid">
+          <div class="gvf-calc-controls">
+            <label class="gvf-calc-label">Pilih Nominal Infaq / Wakaf Bebas:</label>
+            <div class="gvf-options-grid">
+              <button type="button" class="gvf-opt-btn" data-amt="50000">Rp 50.000</button>
+              <button type="button" class="gvf-opt-btn active" data-amt="100000">Rp 100.000</button>
+              <button type="button" class="gvf-opt-btn" data-amt="250000">Rp 250.000</button>
+              <button type="button" class="gvf-opt-btn" data-amt="500000">Rp 500.000</button>
+            </div>
+
+            <div class="gvf-custom-input-wrap">
+              <label for="custom-uang-input" class="gvf-sublabel">Atau Ketik Nominal Suka-suka (Rp):</label>
+              <input type="number" id="custom-uang-input" step="10000" min="10000" placeholder="Contoh: 300000" class="gvf-input-field" />
+            </div>
+          </div>
+
+          <div class="gvf-calc-result-box">
+            <span class="gvf-result-badge">Infaq / Wakaf Tunai</span>
+            <div class="gvf-result-total" id="uang-total-display">Rp 100.000</div>
+            <p class="gvf-result-desc">
+              Donasi dialokasikan langsung untuk percepatan penyelesaian ruang ibadah dan sanitasi mendesak Masjid Khairu Ummah.
+            </p>
+            <a
+              id="uang-cta-btn"
+              href="https://velora-id.myscalev.com/p/wakaf-pembangunan-garden-mosque-khoiru-ummah"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="gvf-btn gvf-btn-primary gvf-btn-block"
+            >
+              <span>Bayar via QRIS / VA</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gvf-simulasi-section {
+    background-color: var(--gvf-surface-50);
+  }
+
+  .gvf-section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3rem;
+  }
+
+  .gvf-section-title {
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    font-weight: 800;
+    color: var(--gvf-text-heading);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .gvf-section-subtitle {
+    font-size: 1.05rem;
+    color: var(--gvf-text-body);
+    line-height: 1.7;
+  }
+
+  .gvf-simulasi-box {
+    background-color: var(--gvf-white);
+    border-radius: var(--gvf-radius-xl);
+    border: var(--gvf-border-subtle);
+    box-shadow: var(--gvf-shadow-lg);
+    padding: 2.5rem;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .gvf-calc-tabs {
+    display: flex;
+    gap: 0.75rem;
+    border-bottom: var(--gvf-border-subtle);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .gvf-calc-tab {
+    background: transparent;
+    border: none;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--gvf-text-muted);
+    border-radius: var(--gvf-radius-full);
+    cursor: pointer;
+    transition: all var(--gvf-transition-fast);
+  }
+
+  .gvf-calc-tab.active {
+    background-color: var(--gvf-blue-light);
+    color: var(--gvf-blue-vibrant);
+  }
+
+  .gvf-calc-body {
+    display: none;
+  }
+
+  .gvf-calc-body.active {
+    display: block;
+  }
+
+  .gvf-calc-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .gvf-calc-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gvf-text-heading);
+    margin-bottom: 1rem;
+  }
+
+  .gvf-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .gvf-opt-btn {
+    background-color: var(--gvf-surface-50);
+    border: var(--gvf-border-subtle);
+    border-radius: var(--gvf-radius-md);
+    padding: 0.85rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gvf-text-heading);
+    cursor: pointer;
+    text-align: center;
+    transition: all var(--gvf-transition-fast);
+  }
+
+  .gvf-opt-btn:hover {
+    border-color: rgba(9, 105, 218, 0.4);
+    background-color: var(--gvf-blue-ice);
+  }
+
+  .gvf-opt-btn.active {
+    border-color: var(--gvf-blue-vibrant);
+    background-color: var(--gvf-blue-light);
+    color: var(--gvf-blue-vibrant);
+    font-weight: 700;
+  }
+
+  .gvf-custom-input-wrap {
+    margin-top: 1rem;
+  }
+
+  .gvf-sublabel {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--gvf-text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .gvf-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .gvf-input-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: var(--gvf-border-subtle);
+    border-radius: var(--gvf-radius-md);
+    font-size: 0.9375rem;
+    font-family: inherit;
+    background-color: var(--gvf-surface-50);
+    outline: none;
+    transition: border-color var(--gvf-transition-fast);
+  }
+
+  .gvf-input-field:focus {
+    border-color: var(--gvf-blue-vibrant);
+    background-color: var(--gvf-white);
+  }
+
+  .gvf-input-suffix {
+    position: absolute;
+    right: 1rem;
+    color: var(--gvf-text-muted);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  /* Result Box */
+  .gvf-calc-result-box {
+    background: linear-gradient(135deg, var(--gvf-navy-dark) 0%, var(--gvf-navy-primary) 100%);
+    border-radius: var(--gvf-radius-lg);
+    padding: 2.25rem 2rem;
+    color: var(--gvf-white);
+    text-align: center;
+    box-shadow: var(--gvf-shadow-lg);
+  }
+
+  .gvf-result-badge {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #38bdf8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--gvf-radius-full);
+    margin-bottom: 1rem;
+  }
+
+  .gvf-result-total {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--gvf-white);
+    font-family: monospace;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .gvf-result-desc {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  .gvf-result-desc strong {
+    color: var(--gvf-white);
+  }
+
+  .gvf-btn-block {
+    width: 100%;
+  }
+
+  @media (max-width: 900px) {
+    .gvf-calc-grid {
+      grid-template-columns: 1fr;
+    }
+    .gvf-simulasi-box {
+      padding: 1.5rem;
+    }
+    .gvf-calc-tabs {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+</style>
+
+<script>
+  // Tab Switching
+  const tabs = document.querySelectorAll('.gvf-calc-tab');
+  const bodies = document.querySelectorAll('.gvf-calc-body');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-tab');
+      tabs.forEach(t => t.classList.remove('active'));
+      bodies.forEach(b => b.classList.remove('active'));
+
+      tab.classList.add('active');
+      const activeBody = document.getElementById(`calc-${target}`);
+      if (activeBody) activeBody.classList.add('active');
+    });
+  });
+
+  // Lahan Calculation
+  const lahanBtns = document.querySelectorAll('#calc-lahan .gvf-opt-btn');
+  const customLahanInput = document.getElementById('custom-meter-input') as HTMLInputElement;
+  const lahanTotalDisplay = document.getElementById('lahan-total-display');
+  const lahanDescDisplay = document.getElementById('lahan-desc-display');
+
+  function updateLahan(meters: number) {
+    const pricePerMeter = 150000;
+    const total = meters * pricePerMeter;
+    if (lahanTotalDisplay) {
+      lahanTotalDisplay.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    }
+    if (lahanDescDisplay) {
+      lahanDescDisplay.innerHTML = `Setara dengan pembebasan <strong>${meters} m² lahan abadi</strong> untuk kawasan ibadah dan pendidikan santri di Sukasirna Jonggol.`;
+    }
+  }
+
+  lahanBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      lahanBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (customLahanInput) customLahanInput.value = '';
+      const m = parseInt(btn.getAttribute('data-val') || '1', 10);
+      updateLahan(m);
+    });
+  });
+
+  if (customLahanInput) {
+    customLahanInput.addEventListener('input', () => {
+      const val = parseInt(customLahanInput.value, 10);
+      if (!isNaN(val) && val > 0) {
+        lahanBtns.forEach(b => b.classList.remove('active'));
+        updateLahan(val);
+      }
+    });
+  }
+
+  // Material Calculation
+  const materialBtns = document.querySelectorAll('#calc-material .gvf-opt-btn');
+  const matTotalDisplay = document.getElementById('material-total-display');
+  const matDescDisplay = document.getElementById('material-desc-display');
+
+  materialBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      materialBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const price = parseInt(btn.getAttribute('data-price') || '75000', 10);
+      const text = btn.textContent || '';
+      if (matTotalDisplay) matTotalDisplay.textContent = `Rp ${price.toLocaleString('id-ID')}`;
+      if (matDescDisplay) matDescDisplay.innerHTML = `Mendukung pengadaan <strong>${text}</strong> untuk percepatan pembangunan fisik Masjid Khairu Ummah Sugro.`;
+    });
+  });
+
+  // Uang Tunai Calculation
+  const uangBtns = document.querySelectorAll('#calc-uang .gvf-opt-btn');
+  const customUangInput = document.getElementById('custom-uang-input') as HTMLInputElement;
+  const uangTotalDisplay = document.getElementById('uang-total-display');
+
+  uangBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      uangBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (customUangInput) customUangInput.value = '';
+      const amt = parseInt(btn.getAttribute('data-amt') || '100000', 10);
+      if (uangTotalDisplay) uangTotalDisplay.textContent = `Rp ${amt.toLocaleString('id-ID')}`;
+    });
+  });
+
+  if (customUangInput) {
+    customUangInput.addEventListener('input', () => {
+      const amt = parseInt(customUangInput.value, 10);
+      if (!isNaN(amt) && amt > 0) {
+        uangBtns.forEach(b => b.classList.remove('active'));
+        if (uangTotalDisplay) uangTotalDisplay.textContent = `Rp ${amt.toLocaleString('id-ID')}`;
+      }
+    });
+  }
+</script>

@@ -1,0 +1,270 @@
+---
+// src/components/home/PillarsSection.astro
+// Exact ISAVO "Satu Solusi Untuk Anda" 3-Card Section Replication (Screenshot 2)
+---
+
+<section class="isavo-services-section" id="pilar">
+  <!-- Subtle Blueprint Wireframe Architectural Watermark Background ala ISAVO -->
+  <div class="isavo-blueprint-bg" aria-hidden="true">
+    <svg viewBox="0 0 1200 600" fill="none" stroke="rgba(15, 23, 42, 0.04)" stroke-width="1.2">
+      <path d="M50 550 L350 150 L550 250 L850 50 L1150 450" />
+      <path d="M100 550 L400 150 L600 250 L900 50" />
+      <line x1="50" y1="550" x2="1150" y2="550" />
+      <line x1="350" y1="150" x2="350" y2="550" />
+      <line x1="550" y1="250" x2="550" y2="550" />
+      <line x1="850" y1="50" x2="850" y2="550" />
+      <rect x="380" y="200" width="80" height="120" />
+      <rect x="480" y="200" width="50" height="80" />
+      <rect x="680" y="160" width="120" height="180" />
+    </svg>
+  </div>
+
+  <div class="isavo-services-container">
+    <!-- Top Header Layout ala ISAVO -->
+    <div class="isavo-services-header reveal-on-scroll">
+      <div class="isavo-header-left">
+        <!-- Tag Pill: • LAYANAN KAMI -->
+        <div class="isavo-pill-tag">
+          <span class="isavo-pill-dot"></span>
+          <span class="isavo-pill-text">PROGRAM UNGGULAN</span>
+        </div>
+
+        <!-- Headline: Satu [Solusi] Untuk Anda -->
+        <h2 class="isavo-services-title">
+          Satu <span class="isavo-highlight-blue">Ekosistem</span> Untuk<br />
+          Umat
+        </h2>
+      </div>
+
+      <div class="isavo-header-right">
+        <p class="isavo-services-desc">
+          Ekosistem Terpadu dari Hulu ke Hilir. <strong class="isavo-bold-highlight">Garden Mosque, Skill Village, dan Agro-Technopark</strong> dalam satu kawasan. Praktis, akuntabel, dan siap menghadirkan kemandirian ekonomi serta dampak sosial berkelanjutan.
+        </p>
+      </div>
+    </div>
+
+    <!-- 3 White Rounded Floating Cards Grid ala ISAVO -->
+    <div class="isavo-cards-grid">
+      <!-- Card 1: Architecture Design -> Garden Mosque -->
+      <div class="isavo-card reveal-on-scroll delay-100">
+        <div class="isavo-card-head">
+          <h3 class="isavo-card-title">Garden Mosque</h3>
+          <!-- Geometric Line-art Icon ala ISAVO (Gold/Bronze/Blue hairline) -->
+          <div class="isavo-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="#d97706" stroke-width="1.3">
+              <path d="M20 5 L35 20 L20 35 L5 20 Z" />
+              <path d="M20 12 L28 20 L20 28 L12 20 Z" />
+              <line x1="20" y1="5" x2="20" y2="35" />
+              <line x1="5" y1="20" x2="35" y2="20" />
+            </svg>
+          </div>
+        </div>
+        <p class="isavo-card-text">
+          Pusat spiritual dan ekologi komunitas. Konsep green building di dalam taman mini "FIRDAUS", mezanin 2 lantai, skywalk learning room, serta sistem filtrasi air wudhu terpadu yang ramah lingkungan.
+        </p>
+      </div>
+
+      <!-- Card 2: Construction -> Skill Village Islamic School -->
+      <div class="isavo-card reveal-on-scroll delay-200">
+        <div class="isavo-card-head">
+          <h3 class="isavo-card-title">Skill Village</h3>
+          <div class="isavo-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="#d97706" stroke-width="1.3">
+              <rect x="8" y="8" width="24" height="24" rx="4" />
+              <line x1="8" y1="16" x2="32" y2="16" />
+              <line x1="8" y1="24" x2="32" y2="24" />
+              <line x1="16" y1="8" x2="16" y2="32" />
+              <line x1="24" y1="8" x2="24" y2="32" />
+            </svg>
+          </div>
+        </div>
+        <p class="isavo-card-text">
+          Pesantren Integratif Holistik jenjang SMK. Menyiapkan generasi santri kompeten di bidang Bisnis Konstruksi & Properti (BKP) dan Agribisnis berkarakter FAST (Fathanah, Amanah, Siddiq, dan Tabligh).
+        </p>
+      </div>
+
+      <!-- Card 3: Interior -> Agro-Technopark & Green Waqf -->
+      <div class="isavo-card reveal-on-scroll delay-300">
+        <div class="isavo-card-head">
+          <h3 class="isavo-card-title">Agro-Technopark</h3>
+          <div class="isavo-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="#d97706" stroke-width="1.3">
+              <circle cx="20" cy="20" r="14" />
+              <path d="M12 20 Q20 10 28 20" />
+              <path d="M12 20 Q20 30 28 20" />
+              <line x1="20" y1="6" x2="20" y2="34" />
+            </svg>
+          </div>
+        </div>
+        <p class="isavo-card-text">
+          Pusat kemandirian pangan dan energi mandiri. Mengintegrasikan greenhouse pemuliaan anggur, hortikultura organik, aquaponik lele-nila, serta instalasi panel surya terbarukan kawasan.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .isavo-services-section {
+    position: relative;
+    background-color: #f7f8fa; /* Soft clean off-white background identical to screenshot */
+    padding-top: 100px;
+    padding-bottom: 120px;
+    overflow: hidden;
+  }
+
+  /* Architectural Blueprint Line Watermark */
+  .isavo-blueprint-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7;
+  }
+
+  .isavo-services-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  /* Header Two-Column Layout ala ISAVO */
+  .isavo-services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: flex-end;
+    margin-bottom: 4.5rem;
+  }
+
+  .isavo-pill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  }
+
+  .isavo-pill-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0969da; /* Blue vibrant accent */
+    border-radius: 50%;
+  }
+
+  .isavo-pill-text {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #0f172a;
+    text-transform: uppercase;
+    font-family: 'Golos Text', sans-serif;
+  }
+
+  .isavo-services-title {
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+  }
+
+  .isavo-highlight-blue {
+    color: #0969da; /* Blue accent instead of red */
+  }
+
+  .isavo-services-desc {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #64748b;
+    margin: 0;
+    max-width: 580px;
+  }
+
+  .isavo-bold-highlight {
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  /* 3 White Rounded Floating Cards */
+  .isavo-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .isavo-card {
+    background-color: #ffffff;
+    border-radius: 28px; /* High radius identical to screenshot */
+    padding: 3rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(15, 23, 42, 0.04);
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .isavo-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+  }
+
+  .isavo-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .isavo-card-title {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+  }
+
+  .isavo-card-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+
+  .isavo-card-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #64748b;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .isavo-services-header {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .isavo-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .isavo-services-container {
+      padding: 0 1.5rem;
+    }
+    .isavo-services-section {
+      padding-top: 70px;
+      padding-bottom: 80px;
+    }
+  }
+</style>

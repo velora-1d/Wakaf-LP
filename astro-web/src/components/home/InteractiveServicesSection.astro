@@ -1,0 +1,474 @@
+---
+// src/components/home/InteractiveServicesSection.astro
+// Exact ISAVO "Jelajahi Layanan Desain Interior Kami Yang Menyeluruh" Interactive Split + Stats (Screenshot 2)
+---
+
+<section class="isavo-interactive-section" id="layanan">
+  <div class="isavo-interactive-container">
+    <!-- Header ala ISAVO Screenshot 2 -->
+    <div class="isavo-interactive-header reveal-on-scroll">
+      <div class="isavo-head-tag">
+        <span class="isavo-tag-dot"></span>
+        <span class="isavo-tag-text">PROGRAM UNGGULAN</span>
+      </div>
+
+      <h2 class="isavo-interactive-title">
+        Jelajahi <span class="isavo-accent-blue">Ekosistem Wakaf</span><br />
+        <span class="isavo-accent-blue">Terpadu</span> Kami Yang<br />
+        Menyeluruh
+      </h2>
+
+      <p class="isavo-interactive-sub">
+        Kami mengkhususkan diri dalam mewujudkan visi kemandirian umat menjadi kenyataan. Jelajahi pilar wakaf produktif, sarana ibadah modern, dan pendidikan kejuruan kami yang dibuat dengan presisi.
+      </p>
+    </div>
+
+    <!-- Interactive 2-Column Split: Image Preview (Left) & 4-Item List (Right) -->
+    <div class="isavo-interactive-split">
+      <!-- Left: Big Rounded Card (28px radius) with Floating Glass Caption -->
+      <div class="isavo-preview-card reveal-on-scroll delay-100">
+        <div class="isavo-preview-media">
+          <img
+            id="preview-img"
+            src="/gambar design/interior masjid.jpg"
+            alt="Pembangunan Garden Mosque"
+            class="isavo-preview-image"
+          />
+        </div>
+
+        <!-- Glass Caption Card at Bottom Inside Image ala ISAVO -->
+        <div class="isavo-glass-caption">
+          <p id="preview-caption-text">
+            Solusi desain arsitektur hijau &amp; ramah lingkungan untuk pusat ibadah, mezanin dua lantai, dan ruang belajar santri.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: Interactive 4-Item List with Hairline Dividers ala ISAVO -->
+      <div class="isavo-services-list reveal-on-scroll delay-200">
+        <!-- Item 01 -->
+        <button
+          type="button"
+          class="isavo-service-item is-active"
+          data-index="0"
+          data-img="/gambar design/interior masjid.jpg"
+          data-caption="Solusi desain arsitektur hijau &amp; ramah lingkungan untuk pusat ibadah, mezanin dua lantai, dan ruang belajar santri."
+        >
+          <div class="isavo-item-left">
+            <span class="isavo-item-num">01</span>
+            <span class="isavo-item-title">Garden Mosque Khairu Ummah</span>
+          </div>
+          <div class="isavo-item-arrow-wrap">
+            <span class="isavo-item-arrow-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="isavo-arrow-svg">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </div>
+        </button>
+
+        <!-- Item 02 -->
+        <button
+          type="button"
+          class="isavo-service-item"
+          data-index="1"
+          data-img="/gambar design/skywalk learning room.jpg"
+          data-caption="Pesantren vokasi holistik jenjang SMK dengan kurikulum Konstruksi &amp; Agribisnis berkarakter FAST."
+        >
+          <div class="isavo-item-left">
+            <span class="isavo-item-num">02</span>
+            <span class="isavo-item-title">SMK Skill Village Islamic School</span>
+          </div>
+          <div class="isavo-item-arrow-wrap">
+            <span class="isavo-item-arrow-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="isavo-arrow-svg">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </div>
+        </button>
+
+        <!-- Item 03 -->
+        <button
+          type="button"
+          class="isavo-service-item"
+          data-index="2"
+          data-img="/gambar design/gh learning area.jpg"
+          data-caption="Laboratorium agro-technopark pemuliaan anggur, hortikultura organik, dan ketahanan pangan mandiri pesantren."
+        >
+          <div class="isavo-item-left">
+            <span class="isavo-item-num">03</span>
+            <span class="isavo-item-title">Agro-Technopark &amp; Pangan Mandiri</span>
+          </div>
+          <div class="isavo-item-arrow-wrap">
+            <span class="isavo-item-arrow-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="isavo-arrow-svg">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </div>
+        </button>
+
+        <!-- Item 04 -->
+        <button
+          type="button"
+          class="isavo-service-item"
+          data-index="3"
+          data-img="/gambar design/tempat wudu.jpg"
+          data-caption="Instalasi sanitasi wudhu terpadu, sumur bor artesis, dan sistem daur ulang air ramah lingkungan."
+        >
+          <div class="isavo-item-left">
+            <span class="isavo-item-num">04</span>
+            <span class="isavo-item-title">Infrastruktur Sanitasi &amp; Air Bersih</span>
+          </div>
+          <div class="isavo-item-arrow-wrap">
+            <span class="isavo-item-arrow-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="isavo-arrow-svg">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- 4-Column Clean Stats Counter Row ala ISAVO Screenshot 2 -->
+    <div class="isavo-stats-bar reveal-on-scroll delay-300">
+      <div class="isavo-stat-col">
+        <div class="isavo-stat-num">±3 Ha</div>
+        <div class="isavo-stat-lbl">Luas Kawasan Terpadu</div>
+        <div class="isavo-stat-sub">Sukasirna, Jonggol, Bogor</div>
+      </div>
+
+      <div class="isavo-stat-col">
+        <div class="isavo-stat-num">150+</div>
+        <div class="isavo-stat-lbl">Santri &amp; Jamaah Terlayani</div>
+        <div class="isavo-stat-sub">Generasi FAST masa depan</div>
+      </div>
+
+      <div class="isavo-stat-col">
+        <div class="isavo-stat-num">100% ⭐</div>
+        <div class="isavo-stat-lbl">Kepatuhan Syariah &amp; Legal</div>
+        <div class="isavo-stat-sub">SK Kemenkumham RI resmi</div>
+      </div>
+
+      <div class="isavo-stat-col">
+        <div class="isavo-stat-num">3 Pilar</div>
+        <div class="isavo-stat-lbl">Ekosistem Terintegrasi</div>
+        <div class="isavo-stat-sub">Masjid, Sekolah &amp; Agro</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Client Interactivity Script -->
+<script>
+  const serviceItems = document.querySelectorAll('.isavo-service-item');
+  const previewImg = document.getElementById('preview-img') as HTMLImageElement;
+  const captionText = document.getElementById('preview-caption-text');
+
+  serviceItems.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      serviceItems.forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      const imgSrc = btn.getAttribute('data-img');
+      const caption = btn.getAttribute('data-caption');
+
+      if (previewImg && imgSrc) {
+        previewImg.style.opacity = '0';
+        previewImg.style.transform = 'scale(0.97)';
+        setTimeout(() => {
+          previewImg.src = imgSrc;
+          previewImg.style.opacity = '1';
+          previewImg.style.transform = 'scale(1)';
+        }, 180);
+      }
+
+      if (captionText && caption) {
+        captionText.style.opacity = '0';
+        setTimeout(() => {
+          captionText.innerHTML = caption;
+          captionText.style.opacity = '1';
+        }, 180);
+      }
+    });
+  });
+</script>
+
+<style>
+  .isavo-interactive-section {
+    position: relative;
+    background-color: #ffffff;
+    padding-top: 100px;
+    padding-bottom: 110px;
+    overflow: hidden;
+  }
+
+  .isavo-interactive-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  /* Header ala ISAVO Screenshot 2 */
+  .isavo-interactive-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .isavo-head-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #f1f5f9;
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+  }
+
+  .isavo-tag-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0969da;
+    border-radius: 50%;
+  }
+
+  .isavo-tag-text {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #0f172a;
+    text-transform: uppercase;
+    font-family: 'Golos Text', sans-serif;
+  }
+
+  .isavo-interactive-title {
+    font-size: clamp(2.4rem, 4.4vw, 4rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    margin-bottom: 1.25rem;
+  }
+
+  .isavo-accent-blue {
+    color: #0969da;
+  }
+
+  .isavo-interactive-sub {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #64748b;
+    max-width: 720px;
+    margin: 0;
+  }
+
+  /* 2-Column Split */
+  .isavo-interactive-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    margin-bottom: 5.5rem;
+  }
+
+  /* Left: Preview Card with 28px Radius */
+  .isavo-preview-card {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    height: 480px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+    background-color: #0d1117;
+  }
+
+  .isavo-preview-media {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .isavo-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.35s ease, transform 0.4s ease;
+  }
+
+  /* Glass Floating Box at Bottom Inside Image ala ISAVO */
+  .isavo-glass-caption {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    background: rgba(18, 20, 24, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .isavo-glass-caption p {
+    font-size: 0.9375rem;
+    color: #f1f5f9;
+    line-height: 1.55;
+    margin: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  /* Right: Interactive List */
+  .isavo-services-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .isavo-service-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.85rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.25s ease;
+  }
+
+  .isavo-item-left {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .isavo-item-num {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #94a3b8;
+    font-family: monospace;
+    transition: color 0.25s ease;
+  }
+
+  .isavo-item-title {
+    font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    transition: color 0.25s ease;
+  }
+
+  /* Arrow Circle ala ISAVO */
+  .isavo-item-arrow-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #f1f5f9;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .isavo-arrow-svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ACTIVE STATE ALA ISAVO (Red/Blue Colored Text & Filled Blue Circle) */
+  .isavo-service-item.is-active .isavo-item-num {
+    color: #0969da;
+  }
+
+  .isavo-service-item.is-active .isavo-item-title {
+    color: #0969da;
+  }
+
+  .isavo-service-item.is-active .isavo-item-arrow-circle {
+    background-color: #0969da;
+    color: #ffffff;
+    transform: rotate(45deg);
+    box-shadow: 0 4px 14px rgba(9, 105, 218, 0.4);
+  }
+
+  .isavo-service-item:hover:not(.is-active) .isavo-item-title {
+    color: #0969da;
+  }
+
+  .isavo-service-item:hover:not(.is-active) .isavo-item-arrow-circle {
+    background-color: #e2e8f0;
+    transform: translateX(4px);
+  }
+
+  /* 4-Column Clean Stats Counter Row ala ISAVO Screenshot 2 */
+  .isavo-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding-top: 3.5rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .isavo-stat-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .isavo-stat-num {
+    font-size: clamp(2.5rem, 3.8vw, 3.5rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    margin-bottom: 0.5rem;
+  }
+
+  .isavo-stat-lbl {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.25rem;
+  }
+
+  .isavo-stat-sub {
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 1024px) {
+    .isavo-interactive-split {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .isavo-preview-card {
+      height: 380px;
+    }
+    .isavo-stats-bar {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .isavo-interactive-container {
+      padding: 0 1.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .isavo-stats-bar {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

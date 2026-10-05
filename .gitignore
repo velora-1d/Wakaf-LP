@@ -10,6 +10,7 @@ build/
 *.log
 .eslintcache
 .cache/
+.astro/
 
 # OS files
 .DS_Store

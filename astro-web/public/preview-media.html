@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Preview Media LP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f0f4f8; margin: 0; padding: 24px; color: #1e293b; }
+    h1 { color: #0f172a; margin-bottom: 8px; font-size: 1.5rem; }
+    p { margin-bottom: 24px; color: #64748b; font-size: 0.95rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #cbd5e1; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .card img { width: 100%; height: 260px; object-fit: cover; display: block; background: #e2e8f0; }
+    .info { padding: 12px 16px; }
+    .num { display: inline-block; background: #2563eb; color: #fff; font-size: 12px; font-weight: bold; border-radius: 4px; padding: 2px 6px; margin-bottom: 6px; }
+    .name { font-size: 13px; font-weight: 600; color: #334155; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <h1>Preview 12 Foto Media LP</h1>
+  <p>Daftar foto dari folder Downloads/Media LP. Akses cepat untuk referensi penempatan di Landing Page.</p>
+  <div class="grid" id="container"></div>
+
+  <script>
+    const images = [
+      "WhatsApp Image 2026-10-05 at 09.22.03.jpeg",
+      "WhatsApp Image 2026-10-05 at 09.22.03 (1).jpeg",
+      "WhatsApp Image 2026-10-05 at 09.22.04.jpeg",
+      "WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg",
+      "WhatsApp Image 2026-10-05 at 09.22.04 (2).jpeg",
+      "WhatsApp Image 2026-10-05 at 09.22.04 (3).jpeg",
+      "WhatsApp Image 2026-10-05 at 09.22.05.jpeg",
+      "WhatsApp Image 2026-10-05 at 09.22.05 (1).jpeg",
+      "WhatsApp Image 2026-10-05 at 09.22.05 (2).jpeg",
+      "WhatsApp Image 2026-10-05 at 09.22.06.jpeg",
+      "WhatsApp Image 2026-10-05 at 09.22.06 (1).jpeg",
+      "WhatsApp Image 2026-10-05 at 09.22.06 (2).jpeg"
+    ];
+
+    const c = document.getElementById('container');
+    images.forEach((img, idx) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <a href="/media-lp/${encodeURIComponent(img)}" target="_blank">
+          <img src="/media-lp/${encodeURIComponent(img)}" alt="Foto ${idx+1}">
+        </a>
+        <div class="info">
+          <span class="num">Foto #${idx+1}</span>
+          <div class="name">${img}</div>
+        </div>
+      `;
+      c.appendChild(card);
+    });
+  </script>
+</body>
+</html>

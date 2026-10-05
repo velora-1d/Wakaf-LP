@@ -1,0 +1,276 @@
+---
+// src/components/home/DonationSection.astro
+// Saluran Donasi Resmi & Rekening Bank BSI dengan tombol salin instan
+---
+
+<section class="gvf-section gvf-donation-section" id="rekening">
+  <div class="gvf-container">
+    <div class="gvf-checkout-card reveal-on-scroll">
+      <span class="gvf-badge gvf-badge-blue">SALURAN RESMI</span>
+      <h2 class="gvf-checkout-heading">Tunaikan Wakaf &amp; Infaq Sekarang</h2>
+      <p class="gvf-checkout-lead">
+        Setiap rupiah yang Anda salurkan menjadi investasi abadi yang pahalanya terus mengalir sepanjang masa.
+      </p>
+
+      <!-- Online Scalev Action Button -->
+      <a
+        href="https://velora-id.myscalev.com/p/wakaf-pembangunan-garden-mosque-khoiru-ummah"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="gvf-btn gvf-btn-primary gvf-btn-checkout"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+          <line x1="2" y1="10" x2="22" y2="10"></line>
+        </svg>
+        <span>Tunaikan Donasi Online (QRIS &amp; Virtual Account)</span>
+      </a>
+
+      <!-- Divider -->
+      <div class="gvf-or-divider">
+        <span>atau Transfer Manual ke Rekening Resmi</span>
+      </div>
+
+      <!-- Bank BSI Passbook Card -->
+      <div class="gvf-passbook-box">
+        <div class="gvf-passbook-header">
+          <span class="gvf-bank-title">BANK SYARIAH INDONESIA (BSI)</span>
+          <span class="gvf-bank-badge-code">KODE: 451</span>
+        </div>
+
+        <div class="gvf-passbook-number" id="bsi-acc-number">
+          7142 2637 63
+        </div>
+
+        <div class="gvf-passbook-owner">
+          a.n. <strong>Yayasan Permata Cendekia Indonesia</strong>
+        </div>
+
+        <!-- Copy Number Button -->
+        <button type="button" class="gvf-btn gvf-btn-secondary gvf-btn-copy" id="btn-copy-acc">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span id="btn-copy-text">Salin Nomor Rekening BSI</span>
+        </button>
+
+        <!-- WhatsApp Confirmation Button -->
+        <a
+          href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20Global%20Village%20Fund%2C%20saya%20sudah%20menyalurkan%20donasi%2Fwakaf%20dan%20ingin%20konfirmasi."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="gvf-btn gvf-btn-wa"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.52 3.48A11.93 11.93 0 0 0 12.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.17 1.6 5.99L0 24l6.23-1.63a11.9 11.9 0 0 0 5.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.88h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.23-.38a9.92 9.92 0 0 1-1.52-5.27c0-5.49 4.47-9.96 9.97-9.96 2.66 0 5.16 1.04 7.04 2.92a9.9 9.9 0 0 1 2.92 7.04c0 5.5-4.47 9.96-9.97 9.96zm5.46-7.46c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.52-.07-.15-.68-1.64-.93-2.24-.24-.6-.49-.51-.68-.52l-.58-.01c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/>
+          </svg>
+          <span>Konfirmasi Donasi via WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Trust Assurance Note -->
+      <div class="gvf-trust-assurance">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <polyline points="9 12 11 14 15 10"></polyline>
+        </svg>
+        <span>Verifikasi Otomatis Terhubung • Layanan CS Siap Membantu 24/7</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gvf-donation-section {
+    background-color: var(--gvf-white);
+  }
+
+  .gvf-checkout-card {
+    background: linear-gradient(180deg, #ffffff 0%, var(--gvf-surface-50) 100%);
+    border: var(--gvf-border-subtle);
+    border-radius: var(--gvf-radius-xl);
+    padding: 3.5rem 2.5rem;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: var(--gvf-shadow-xl);
+  }
+
+  .gvf-checkout-heading {
+    font-size: clamp(1.85rem, 3vw, 2.35rem);
+    font-weight: 800;
+    color: var(--gvf-text-heading);
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .gvf-checkout-lead {
+    font-size: 1rem;
+    color: var(--gvf-text-body);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .gvf-btn-checkout {
+    width: 100%;
+    padding: 1.1rem;
+    font-size: 1.05rem;
+  }
+
+  .gvf-or-divider {
+    position: relative;
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .gvf-or-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--gvf-surface-200);
+  }
+
+  .gvf-or-divider span {
+    position: relative;
+    background-color: #f8fafc;
+    padding: 0 1rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--gvf-text-muted);
+  }
+
+  .gvf-passbook-box {
+    background-color: var(--gvf-white);
+    border: var(--gvf-border-subtle);
+    border-radius: var(--gvf-radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--gvf-shadow-sm);
+  }
+
+  .gvf-passbook-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .gvf-bank-title {
+    font-size: 0.8125rem;
+    font-weight: 800;
+    color: var(--gvf-blue-vibrant);
+    letter-spacing: 0.05em;
+  }
+
+  .gvf-bank-badge-code {
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: var(--gvf-text-muted);
+  }
+
+  .gvf-passbook-number {
+    font-size: clamp(1.85rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--gvf-text-heading);
+    font-family: monospace;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.35rem;
+    user-select: all;
+  }
+
+  .gvf-passbook-owner {
+    font-size: 0.875rem;
+    color: var(--gvf-text-body);
+    margin-bottom: 1.5rem;
+  }
+
+  .gvf-passbook-owner strong {
+    color: var(--gvf-navy-primary);
+  }
+
+  .gvf-btn-copy {
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 0.9375rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .gvf-btn-wa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    background-color: #10b981;
+    color: var(--gvf-white);
+    border-radius: var(--gvf-radius-full);
+    text-decoration: none;
+    transition: all var(--gvf-transition-smooth);
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+  }
+
+  .gvf-btn-wa:hover {
+    background-color: #059669;
+    transform: translateY(-2px);
+  }
+
+  .gvf-trust-assurance {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+    font-size: 0.8125rem;
+    color: var(--gvf-text-muted);
+  }
+
+  .gvf-trust-assurance svg {
+    color: var(--gvf-blue-vibrant);
+  }
+
+  @media (max-width: 640px) {
+    .gvf-checkout-card {
+      padding: 2rem 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  const copyBtn = document.getElementById('btn-copy-acc');
+  const copyText = document.getElementById('btn-copy-text');
+  const accNum = '7142263763';
+
+  if (copyBtn && copyText) {
+    copyBtn.addEventListener('click', () => {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(accNum);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = accNum;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch(e){}
+        document.body.removeChild(ta);
+      }
+
+      const orig = copyText.textContent;
+      copyText.textContent = '✓ Nomor Berhasil Disalin!';
+      copyBtn.style.borderColor = '#10b981';
+      copyBtn.style.color = '#10b981';
+
+      setTimeout(() => {
+        copyText.textContent = orig;
+        copyBtn.style.borderColor = '';
+        copyBtn.style.color = '';
+      }, 2500);
+    });
+  }
+</script>

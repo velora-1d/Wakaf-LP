@@ -1,0 +1,152 @@
+---
+// src/components/layout/TopBar.astro
+// Fungsional Top Bar ala ISAVO: Quick WhatsApp Contact, Phone & Email
+---
+
+<div class="gvf-topbar">
+  <div class="gvf-container gvf-topbar-inner">
+    <div class="gvf-topbar-left">
+      <span class="gvf-topbar-item">
+        <svg class="gvf-topbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <span>Jonggol, Bogor — Yayasan Permata Cendekia Indonesia</span>
+      </span>
+      <span class="gvf-topbar-divider"></span>
+      <span class="gvf-topbar-item">
+        <span class="gvf-badge-sku">SK Kemenkumham: AHU-0005721.AH.01.04</span>
+      </span>
+    </div>
+
+    <div class="gvf-topbar-right">
+      <a href="mailto:info@globalvillagefund.org" class="gvf-topbar-link">
+        <svg class="gvf-topbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span>info@globalvillagefund.org</span>
+      </a>
+
+      <span class="gvf-topbar-divider"></span>
+
+      <a
+        href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20Global%20Village%20Fund%2C%20saya%20ingin%20konsultasi%20program%20wakaf."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="gvf-topbar-wa"
+      >
+        <span class="gvf-pulse-dot"></span>
+        <span>Chat CS: +62 812-2683-2326 (Balas Cepat)</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .gvf-topbar {
+    background-color: var(--gvf-navy-dark);
+    color: var(--gvf-text-light);
+    font-size: 0.8125rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 50;
+  }
+
+  .gvf-topbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .gvf-topbar-left,
+  .gvf-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .gvf-topbar-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .gvf-topbar-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--gvf-blue-vibrant);
+    flex-shrink: 0;
+  }
+
+  .gvf-topbar-divider {
+    width: 1px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .gvf-badge-sku {
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-family: monospace;
+  }
+
+  .gvf-topbar-link {
+    color: var(--gvf-text-light);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color var(--gvf-transition-fast);
+  }
+
+  .gvf-topbar-link:hover {
+    color: var(--gvf-white);
+  }
+
+  .gvf-topbar-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #86efac;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--gvf-transition-fast);
+  }
+
+  .gvf-topbar-wa:hover {
+    color: #bbf7d0;
+  }
+
+  .gvf-pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    animation: gvfPulse 2s infinite;
+  }
+
+  @keyframes gvfPulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .gvf-topbar-left {
+      display: none;
+    }
+    .gvf-topbar-inner {
+      justify-content: center;
+    }
+  }
+</style>

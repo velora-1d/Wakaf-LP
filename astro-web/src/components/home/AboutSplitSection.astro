@@ -1,0 +1,387 @@
+---
+// src/components/home/AboutSplitSection.astro
+// Exact ISAVO "Tempat Dimana Rumah Impian Anda Menjadi Kenyataan" Split Section (Screenshot 3)
+---
+
+<section class="isavo-about-section" id="tentang-kami">
+  <!-- Atmospheric Dark Background Image with Gradient Overlay ala ISAVO -->
+  <div class="isavo-about-ambient-bg" aria-hidden="true"></div>
+
+  <!-- Giant Translucent Watermark Text in Background ala ISAVO: "ISAVO" -> "GVF" -->
+  <div class="isavo-watermark" aria-hidden="true">GVF</div>
+
+  <div class="isavo-about-container">
+    <!-- Left Column: Content & Checklist -->
+    <div class="isavo-about-left reveal-on-scroll">
+      <!-- Tag Pill with Dot ala ISAVO: • BERDIRI SEJAK 2014 -->
+      <div class="isavo-about-pill">
+        <span class="isavo-about-dot"></span>
+        <span class="isavo-about-tag-text">BERDIRI SEJAK 2014</span>
+      </div>
+
+      <!-- Giant Title with Colored Highlight Text ala ISAVO -->
+      <h2 class="isavo-about-title">
+        Tempat Dimana<br />
+        Amanah Wakaf Anda<br />
+        <span class="isavo-accent-blue">Menjadi</span><br />
+        <span class="isavo-accent-blue">Keberkahan</span>
+      </h2>
+
+      <!-- 2-Column Checklist (4 Items with Square Icons ala ISAVO) -->
+      <div class="isavo-checklist-grid">
+        <div class="isavo-check-item">
+          <span class="isavo-check-square" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" class="isavo-square-icon">
+              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="#0969da" stroke-width="2" />
+            </svg>
+          </span>
+          <span class="isavo-check-label">Tanpa Potongan Biaya — amanah tersalurkan 100%</span>
+        </div>
+
+        <div class="isavo-check-item">
+          <span class="isavo-check-square" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" class="isavo-square-icon">
+              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="#0969da" stroke-width="2" />
+            </svg>
+          </span>
+          <span class="isavo-check-label">Persetujuan Syariah di setiap akad &amp; rencana proyek</span>
+        </div>
+
+        <div class="isavo-check-item">
+          <span class="isavo-check-square" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" class="isavo-square-icon">
+              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="#0969da" stroke-width="2" />
+            </svg>
+          </span>
+          <span class="isavo-check-label">Kualitas hasil pembangunan terjamin &amp; berkelanjutan</span>
+        </div>
+
+        <div class="isavo-check-item">
+          <span class="isavo-check-square" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" class="isavo-square-icon">
+              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="#0969da" stroke-width="2" />
+            </svg>
+          </span>
+          <span class="isavo-check-label">Laporan Progres Visual selama proses konstruksi</span>
+        </div>
+      </div>
+
+      <!-- Description Paragraph ala ISAVO -->
+      <p class="isavo-about-desc">
+        <strong>Yayasan Permata Cendekia Indonesia</strong> telah menjadi mitra terpercaya umat sejak 2014 — menggabungkan layanan sarana ibadah, pendidikan kejuruan mandiri, dan ketahanan pangan dalam satu atap. Kami menghilangkan kerumitan mengelola banyak saluran, mewujudkan kebaikan abadi Anda dengan presisi, transparansi, dan kepedulian.
+      </p>
+
+      <!-- Pill Button with Circle Arrow ala ISAVO -->
+      <div class="isavo-about-btn-wrap">
+        <a href="#simulasi" class="isavo-btn-outline-pill-dark">
+          <span class="isavo-btn-text">Lebih Lanjut Tentang Kami</span>
+          <span class="isavo-btn-arrow-circle-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="isavo-arrow-icon">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Column: Framed Portrait Image with 28px Radius ala ISAVO -->
+    <div class="isavo-about-right reveal-on-scroll delay-200">
+      <div class="isavo-portrait-frame">
+        <img
+          src="/gambar design/belakang masjid.jpg"
+          alt="Desain Arsitektur Modern Garden Mosque"
+          class="isavo-portrait-img"
+          loading="lazy"
+        />
+        <!-- Circular Floating Badge ala ISAVO (Right Corner) -->
+        <div class="isavo-circle-badge">
+          <span class="isavo-circle-num">100%</span>
+          <span class="isavo-circle-lbl">Amanah</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .isavo-about-section {
+    position: relative;
+    background-color: #16171a; /* Dark charcoal background identical to screenshot 1 */
+    padding-top: 120px;
+    padding-bottom: 130px;
+    overflow: hidden;
+  }
+
+  /* Ambient dark interior mood background on the left ala ISAVO */
+  .isavo-about-ambient-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(90deg, rgba(18, 20, 24, 0.95) 0%, rgba(18, 20, 24, 0.88) 50%, rgba(18, 20, 24, 0.96) 100%),
+      url('/gambar design/interior masjid.jpg');
+    background-size: cover;
+    background-position: left center;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Giant Translucent Watermark Text in Background ala ISAVO */
+  .isavo-watermark {
+    position: absolute;
+    bottom: -40px;
+    left: 4%;
+    font-size: clamp(8rem, 16vw, 15rem);
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.025);
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    z-index: 1;
+    line-height: 0.8;
+    user-select: none;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .isavo-about-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* Left Column */
+  .isavo-about-left {
+    max-width: 680px;
+  }
+
+  /* Tag Pill with Dot */
+  .isavo-about-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
+    margin-bottom: 2rem;
+  }
+
+  .isavo-about-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0969da; /* Blue vibrant accent */
+    border-radius: 50%;
+  }
+
+  .isavo-about-tag-text {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    font-family: 'Golos Text', sans-serif;
+  }
+
+  /* Giant Title with Highlight Text */
+  .isavo-about-title {
+    font-size: clamp(2.6rem, 4.5vw, 4.25rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin-bottom: 2.25rem;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .isavo-accent-blue {
+    color: #0969da; /* Blue vibrant accent matching user preferences */
+  }
+
+  /* 2-Column Checklist Grid (4 items) */
+  .isavo-checklist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .isavo-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .isavo-check-square {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .isavo-square-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  .isavo-check-label {
+    font-size: 0.9375rem;
+    color: #e2e8f0;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* Description */
+  .isavo-about-desc {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #94a3b8;
+    margin-bottom: 2.5rem;
+  }
+
+  .isavo-about-desc strong {
+    color: #ffffff;
+  }
+
+  /* Button Outlined with Circle Arrow */
+  .isavo-btn-outline-pill-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    padding: 0.45rem 0.55rem 0.45rem 1.65rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .isavo-btn-outline-pill-dark:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .isavo-btn-text {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .isavo-btn-arrow-circle-blue {
+    width: 38px;
+    height: 38px;
+    background-color: #0969da; /* Blue vibrant */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+  }
+
+  .isavo-btn-outline-pill-dark:hover .isavo-btn-arrow-circle-blue {
+    transform: rotate(45deg);
+    background-color: #0052cc;
+  }
+
+  .isavo-arrow-icon {
+    width: 17px;
+    height: 17px;
+  }
+
+  /* Right Column: Framed Portrait Image */
+  .isavo-portrait-frame {
+    position: relative;
+    border-radius: 28px; /* High radius matching screenshot 3 */
+    overflow: hidden;
+    height: 600px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    background-color: #02070e;
+  }
+
+  .isavo-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .isavo-portrait-frame:hover .isavo-portrait-img {
+    transform: scale(1.04);
+  }
+
+  /* Floating Circular Badge */
+  .isavo-circle-badge {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    width: 80px;
+    height: 80px;
+    background: #0969da;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    animation: isavoBadgeFloat 3.2s ease-in-out infinite;
+  }
+
+  @keyframes isavoBadgeFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .isavo-circle-num {
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1;
+    font-family: monospace;
+  }
+
+  .isavo-circle-lbl {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 1024px) {
+    .isavo-about-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      padding: 0 1.5rem;
+    }
+    .isavo-checklist-grid {
+      grid-template-columns: 1fr;
+    }
+    .isavo-portrait-frame {
+      height: 400px;
+    }
+    .isavo-about-section {
+      padding-top: 70px;
+      padding-bottom: 80px;
+    }
+  }
+</style>
