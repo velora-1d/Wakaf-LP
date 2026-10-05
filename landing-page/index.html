@@ -578,13 +578,13 @@
       color: var(--text-secondary);
     }
 
-    /* DONOR LIST TABLE (TRANSPARANSI DONATUR) */
-    .sv-donors-container {
+    /* DONOR PREVIEW COMPACT BOX */
+    .sv-donors-preview-box {
       margin-top: 24px;
       padding-top: 20px;
       border-top: 1px dashed var(--border-hairline);
     }
-    .sv-donors-head {
+    .sv-donors-preview-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -592,72 +592,264 @@
       margin-bottom: 14px;
       flex-wrap: wrap;
     }
-    .sv-donors-title {
+    .sv-donors-preview-title {
       font-size: 14px;
       font-weight: 700;
       color: var(--text-primary);
+      margin: 0 0 2px 0;
+    }
+    .sv-donors-preview-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
       margin: 0;
     }
-    .sv-donors-search {
-      position: relative;
-      width: 220px;
-    }
-    .sv-donors-search input {
-      width: 100%;
-      padding: 6px 12px 6px 30px;
+    .sv-donors-count-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
       border-radius: 999px;
-      border: 1px solid var(--border-hairline);
-      font-size: 12px;
+      background: rgba(12, 94, 55, 0.08);
+      color: var(--brand-primary);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .sv-donors-highlight-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .sv-donor-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
       background: #ffffff;
-      outline: none;
-      font-family: inherit;
-      color: var(--text-primary);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .sv-donors-search input:focus {
-      border-color: var(--brand-primary);
-      box-shadow: 0 0 0 2px rgba(12, 94, 55, 0.12);
-    }
-    .sv-donors-search svg {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 14px;
-      height: 14px;
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-    .sv-donors-table-wrap {
-      overflow-x: auto;
+      border: 1px solid var(--border-hairline);
       border-radius: var(--radius-sm);
-      border: 1px solid var(--border-hairline);
-      background: #ffffff;
+      padding: 10px 14px;
+      transition: transform 0.15s ease, border-color 0.15s ease;
     }
-    .sv-donors-tbl {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12.5px;
-      text-align: left;
+    .sv-donor-card:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-1px);
     }
-    .sv-col-right {
-      text-align: right;
+    .sv-donor-card.featured {
+      background: rgba(12, 94, 55, 0.025);
+      border-color: rgba(12, 94, 55, 0.2);
     }
-    .sv-bento-subtag {
-      display: block;
-      text-align: center;
+    .sv-donor-card-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .sv-donor-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.25;
+    }
+    .sv-badge-material {
+      display: inline-block;
+      margin-top: 2px;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+    .sv-badge-wakaf {
+      display: inline-block;
+      margin-top: 2px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .sv-donor-amount {
+      font-size: 13.5px;
       font-weight: 700;
       color: var(--brand-primary);
-      margin: 12px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+      flex-shrink: 0;
     }
-    .sv-field-badge-icon {
-      width: 13px;
-      height: 13px;
+    .sv-donors-cta-wrap {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .sv-open-donors-modal-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid var(--border-hairline);
+      color: var(--text-primary);
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .sv-open-donors-modal-btn:hover {
+      background: rgba(12, 94, 55, 0.05);
+      border-color: var(--brand-primary);
       color: var(--brand-primary);
     }
-    .sv-donors-tbl th {
+
+    /* MODAL OVERLAY & POPUP BOX */
+    .sv-donors-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      animation: svFadeIn 0.2s ease-out;
+    }
+    .sv-donors-modal-overlay.active {
+      display: flex;
+    }
+    @keyframes svFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .sv-donors-modal-box {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      animation: svSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes svSlideUp {
+      from { transform: translateY(20px) scale(0.97); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .sv-donors-modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid #f1f5f9;
       background: #f8fafc;
-      padding: 10px 12px;
+    }
+    .sv-donors-modal-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0 0 4px 0;
+      letter-spacing: -0.01em;
+    }
+    .sv-donors-modal-sub {
+      font-size: 12px;
+      color: #64748b;
+      margin: 0;
+    }
+    .sv-donors-modal-close {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+    .sv-donors-modal-close:hover {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #dc2626;
+    }
+    .sv-donors-modal-search {
+      position: relative;
+      padding: 12px 24px;
+      border-bottom: 1px solid #f1f5f9;
+      background: #ffffff;
+    }
+    .sv-donors-modal-search input {
+      width: 100%;
+      padding: 9px 14px 9px 38px;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      font-size: 13px;
+      outline: none;
+      font-family: inherit;
+      color: #0f172a;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .sv-donors-modal-search input:focus {
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(12, 94, 55, 0.12);
+    }
+    .sv-donors-modal-search svg {
+      position: absolute;
+      left: 36px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: #94a3b8;
+      pointer-events: none;
+    }
+    .sv-donors-modal-scroll {
+      overflow-y: auto;
+      padding: 12px 24px 20px;
+      flex: 1;
+      max-height: 480px;
+    }
+    .sv-donors-full-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sv-donors-modal-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      background: #f8fafc;
+      border-top: 1px solid #f1f5f9;
+      font-size: 11.5px;
+      color: #64748b;
+    }
+    .sv-donors-modal-close-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .sv-donors-modal-close-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .sv-donors-tbl th {
       font-weight: 700;
       font-size: 11px;
       color: var(--text-muted);
@@ -1913,75 +2105,59 @@
           </div>
         </div>
 
-        <!-- DAFTAR DONATUR TERVERIFIKASI (36 Donatur - Tanpa Kolom Sisa Target) -->
-        <div class="sv-donors-container">
-          <div class="sv-donors-head">
-            <h3 class="sv-donors-title">Daftar Donatur &amp; Pewakif Terverifikasi (36 Donatur)</h3>
-            <div class="sv-donors-search">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" id="legacyDonorSearch" placeholder="Cari nama donatur..." autocomplete="off">
+        <!-- DAFTAR DONATUR TERVERIFIKASI (Solusi 2: Compact 4-Card Preview + Modal Pop-up) -->
+        <div class="sv-donors-preview-box">
+          <div class="sv-donors-preview-head">
+            <div>
+              <h3 class="sv-donors-preview-title">Daftar Pewakif &amp; Donatur Terverifikasi</h3>
+              <p class="sv-donors-preview-sub">Tercatat 36 transaksi gotong royong wakaf pembangunan.</p>
+            </div>
+            <span class="sv-donors-count-badge">36 Donatur</span>
+          </div>
+
+          <!-- Highlight 4 Donatur Teratas (Material & Kontribusi Terbesar di Atas) -->
+          <div class="sv-donors-highlight-list">
+            <div class="sv-donor-card featured">
+              <div class="sv-donor-card-left">
+                <div class="sv-donor-name">Bapak Syifa</div>
+                <span class="sv-badge-material">30 Sak Semen</span>
+              </div>
+              <div class="sv-donor-amount">Rp 1.650.000</div>
+            </div>
+
+            <div class="sv-donor-card featured">
+              <div class="sv-donor-card-left">
+                <div class="sv-donor-name">Indra Wardiana</div>
+                <span class="sv-badge-material">10 Sak Semen</span>
+              </div>
+              <div class="sv-donor-amount">Rp 550.000</div>
+            </div>
+
+            <div class="sv-donor-card">
+              <div class="sv-donor-card-left">
+                <div class="sv-donor-name">Agustina</div>
+                <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+              </div>
+              <div class="sv-donor-amount">Rp 10.000.000</div>
+            </div>
+
+            <div class="sv-donor-card">
+              <div class="sv-donor-card-left">
+                <div class="sv-donor-name">Hamba Allah</div>
+                <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+              </div>
+              <div class="sv-donor-amount">Rp 4.000.000</div>
             </div>
           </div>
 
-          <div class="sv-donors-table-wrap">
-            <table class="sv-donors-tbl" id="legacyDonorTable">
-              <thead>
-                <tr>
-                  <th class="sv-col-no">No</th>
-                  <th>Nama Donatur</th>
-                  <th class="sv-col-right">Nominal (Rp)</th>
-                  <th>Keterangan</th>
-                </tr>
-              </thead>
-              <tbody id="legacyDonorBody">
-                <tr class="sv-donor-row"><td class="sv-col-no">1</td><td><strong>Hamba Allah</strong></td><td class="sv-col-nominal">Rp 4.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">2</td><td><strong>Hamba Allah</strong></td><td class="sv-col-nominal">Rp 4.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">3</td><td><strong>Hamba Allah</strong></td><td class="sv-col-nominal">Rp 3.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">4</td><td><strong>Agustina</strong></td><td class="sv-col-nominal">Rp 10.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">5</td><td><strong>Ahmad Kosim</strong></td><td class="sv-col-nominal">Rp 1.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">6</td><td><strong>Indra Wardiana</strong></td><td class="sv-col-nominal">Rp 550.000</td><td><span class="sv-badge-ket">10 Sak Semen</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">7</td><td><strong>Bapak Azzam</strong></td><td class="sv-col-nominal">Rp 200.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">8</td><td><strong>Bapak Ruhdi</strong></td><td class="sv-col-nominal">Rp 300.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">9</td><td><strong>Nunik Sri Rahayuningsih</strong></td><td class="sv-col-nominal">Rp 1.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">10</td><td><strong>Teti Ismi Riani</strong></td><td class="sv-col-nominal">Rp 500.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">11</td><td><strong>Hamba Allah (Ortu Jojo)</strong></td><td class="sv-col-nominal">Rp 500.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">12</td><td><strong>Abi Almun</strong></td><td class="sv-col-nominal">Rp 250.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">13</td><td><strong>Nova Sari Yanti</strong></td><td class="sv-col-nominal">Rp 400.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">14</td><td><strong>Dr Erwin</strong></td><td class="sv-col-nominal">Rp 2.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">15</td><td><strong>Ummi Zuhdan</strong></td><td class="sv-col-nominal">Rp 200.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">16</td><td><strong>Bapak Syifa</strong></td><td class="sv-col-nominal">Rp 1.650.000</td><td><span class="sv-badge-ket">30 Sak Semen</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">17</td><td><strong>Nurhasanah</strong></td><td class="sv-col-nominal">Rp 50.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">18</td><td><strong>Wali Santri Angkatan 3</strong></td><td class="sv-col-nominal">Rp 172.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">19</td><td><strong>Hamba Allah</strong></td><td class="sv-col-nominal">Rp 150.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">20</td><td><strong>Ahmad Romli</strong></td><td class="sv-col-nominal">Rp 500.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">21</td><td><strong>Wali Ariqoh</strong></td><td class="sv-col-nominal">Rp 300.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">22</td><td><strong>Ummi Rajwa</strong></td><td class="sv-col-nominal">Rp 200.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">23</td><td><strong>Ummi Zhafran</strong></td><td class="sv-col-nominal">Rp 500.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">24</td><td><strong>Senen Kromomedjo bin Kromokarso</strong></td><td class="sv-col-nominal">Rp 2.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">25</td><td><strong>Tiyem Siking binti Sowikromo</strong></td><td class="sv-col-nominal">Rp 2.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">26</td><td><strong>Sukino Marsono bin Martosemito</strong></td><td class="sv-col-nominal">Rp 2.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">27</td><td><strong>Kaniyem binti Sowikromo</strong></td><td class="sv-col-nominal">Rp 2.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">28</td><td><strong>Sukarno bin Senen Kromomedjo</strong></td><td class="sv-col-nominal">Rp 2.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">29</td><td><strong>Suparni binti Sukino Marsono</strong></td><td class="sv-col-nominal">Rp 2.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">30</td><td><strong>PT. Isa Building Workshop</strong></td><td class="sv-col-nominal">Rp 1.000.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">31</td><td><strong>Firman Riansyah</strong></td><td class="sv-col-nominal">Rp 500.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">32</td><td><strong>Abdul Rahman Syahputra</strong></td><td class="sv-col-nominal">Rp 500.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">33</td><td><strong>Farid Wibisono</strong></td><td class="sv-col-nominal">Rp 500.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">34</td><td><strong>Abi Rudiansyah</strong></td><td class="sv-col-nominal">Rp 200.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">35</td><td><strong>Ariqoh Walfitroh</strong></td><td class="sv-col-nominal">Rp 250.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-                <tr class="sv-donor-row"><td class="sv-col-no">36</td><td><strong>Anugrah Roffiq Ramadhan</strong></td><td class="sv-col-nominal">Rp 500.000</td><td><span class="sv-ket-faint">-</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="sv-donors-more-wrap">
-            <button type="button" class="sv-donors-more-btn" id="legacyToggleDonors">
-              <span id="legacyToggleText">Tampilkan Seluruh 36 Donatur</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <polyline points="6 9 12 15 18 9"></polyline>
+          <!-- Trigger Modal Button -->
+          <div class="sv-donors-cta-wrap">
+            <button type="button" class="sv-open-donors-modal-btn" onclick="openDonorsModal()">
+              <span>Lihat Seluruh 36 Donatur &amp; Pencarian</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
               </svg>
             </button>
           </div>
@@ -2140,7 +2316,7 @@
         </div>
 
         <div class="sv-field-footer-note">
-          📍 Dokumentasi fisik autentik di Kampus Skill Village Islamic School, Desa Sukasirna, Jonggol, Bogor.
+          Dokumentasi fisik autentik di Kampus Skill Village Islamic School, Desa Sukasirna, Jonggol, Bogor.
         </div>
       </section>
 
@@ -2770,52 +2946,481 @@
     }
   });
 
-  // DONOR TABLE SEARCH & TOGGLE EXPAND
+  // MODAL DAFTAR DONATUR LOGIC (OPEN / CLOSE / SEARCH)
+  function openDonorsModal() {
+    var modal = document.getElementById('sv-donors-modal');
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      var searchInput = document.getElementById('modalDonorSearchInput');
+      if (searchInput) {
+        setTimeout(function() { searchInput.focus(); }, 150);
+      }
+    }
+  }
+
+  function closeDonorsModal() {
+    var modal = document.getElementById('sv-donors-modal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function handleDonorsModalOverlayClick(e) {
+    if (e.target && e.target.id === 'sv-donors-modal') {
+      closeDonorsModal();
+    }
+  }
+
   (function() {
-    var searchInput = document.getElementById('legacyDonorSearch');
-    var toggleBtn = document.getElementById('legacyToggleDonors');
-    var toggleText = document.getElementById('legacyToggleText');
-    var rows = document.querySelectorAll('.sv-donor-row');
-    var isExpanded = false;
-    var INITIAL_LIMIT = 10;
-
-    function filterRows() {
-      var q = searchInput ? searchInput.value.toLowerCase().trim() : '';
-      for (var i = 0; i < rows.length; i++) {
-        var text = rows[i].textContent.toLowerCase();
-        if (q.length > 0) {
-          rows[i].style.display = text.indexOf(q) !== -1 ? '' : 'none';
-        } else {
-          if (isExpanded || i < INITIAL_LIMIT) {
-            rows[i].style.display = '';
-          } else {
-            rows[i].style.display = 'none';
-          }
-        }
-      }
-      if (toggleBtn) {
-        toggleBtn.style.display = q.length > 0 ? 'none' : 'inline-flex';
-      }
-    }
-
-    if (rows.length > 0) {
-      filterRows();
-    }
-
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', function() {
-        isExpanded = !isExpanded;
-        if (toggleText) {
-          toggleText.textContent = isExpanded ? 'Tampilkan 10 Teratas' : 'Tampilkan Seluruh 36 Donatur';
-        }
-        filterRows();
-      });
-    }
+    var searchInput = document.getElementById('modalDonorSearchInput');
+    var rows = document.querySelectorAll('.sv-modal-donor-item');
 
     if (searchInput) {
-      searchInput.addEventListener('input', filterRows);
+      searchInput.addEventListener('input', function() {
+        var q = searchInput.value.toLowerCase().trim();
+        for (var i = 0; i < rows.length; i++) {
+          var text = rows[i].textContent.toLowerCase();
+          rows[i].style.display = (q === '' || text.indexOf(q) !== -1) ? '' : 'none';
+        }
+      });
     }
   })();
 </script>
+
+<!-- MODAL DAFTAR 36 DONATUR LENGKAP -->
+<div id="sv-donors-modal" class="sv-donors-modal-overlay" onclick="handleDonorsModalOverlayClick(event)">
+  <div class="sv-donors-modal-box">
+    <div class="sv-donors-modal-head">
+      <div>
+        <h3 class="sv-donors-modal-title">Daftar Seluruh Donatur &amp; Pewakif</h3>
+        <p class="sv-donors-modal-sub">36 Transaksi Terverifikasi • Total Rp 46.872.000</p>
+      </div>
+      <button type="button" class="sv-donors-modal-close" onclick="closeDonorsModal()" aria-label="Tutup Jendela">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Search Input -->
+    <div class="sv-donors-modal-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" id="modalDonorSearchInput" placeholder="Ketik nama donatur untuk mencari..." autocomplete="off">
+    </div>
+
+    <!-- Scrollable 36 Items (Material Pinned at the Top, No Minus Signs) -->
+    <div class="sv-donors-modal-scroll">
+      <div class="sv-donors-full-list" id="modalDonorFullList">
+        <!-- 01 Material: Bapak Syifa -->
+        <div class="sv-donor-card featured sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Bapak Syifa</div>
+              <span class="sv-badge-material">30 Sak Semen</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 1.650.000</div>
+        </div>
+
+        <!-- 02 Material: Indra Wardiana -->
+        <div class="sv-donor-card featured sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Indra Wardiana</div>
+              <span class="sv-badge-material">10 Sak Semen</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 550.000</div>
+        </div>
+
+        <!-- 03 Agustina -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Agustina</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 10.000.000</div>
+        </div>
+
+        <!-- 04 Hamba Allah -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Hamba Allah</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 4.000.000</div>
+        </div>
+
+        <!-- 05 Hamba Allah -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Hamba Allah</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 4.000.000</div>
+        </div>
+
+        <!-- 06 Hamba Allah -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Hamba Allah</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 3.000.000</div>
+        </div>
+
+        <!-- 07 Senen Kromomedjo bin Kromokarso -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Senen Kromomedjo bin Kromokarso</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 2.000.000</div>
+        </div>
+
+        <!-- 08 Tiyem Siking binti Sowikromo -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Tiyem Siking binti Sowikromo</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 2.000.000</div>
+        </div>
+
+        <!-- 09 Sukino Marsono bin Martosemito -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Sukino Marsono bin Martosemito</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 2.000.000</div>
+        </div>
+
+        <!-- 10 Kaniyem binti Sowikromo -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Kaniyem binti Sowikromo</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 2.000.000</div>
+        </div>
+
+        <!-- 11 Sukarno bin Senen Kromomedjo -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Sukarno bin Senen Kromomedjo</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 2.000.000</div>
+        </div>
+
+        <!-- 12 Suparni binti Sukino Marsono -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Suparni binti Sukino Marsono</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 2.000.000</div>
+        </div>
+
+        <!-- 13 Dr Erwin -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Dr Erwin</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 2.000.000</div>
+        </div>
+
+        <!-- 14 Ahmad Kosim -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Ahmad Kosim</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 1.000.000</div>
+        </div>
+
+        <!-- 15 Nunik Sri Rahayuningsih -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Nunik Sri Rahayuningsih</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 1.000.000</div>
+        </div>
+
+        <!-- 16 PT. Isa Building Workshop -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">PT. Isa Building Workshop</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 1.000.000</div>
+        </div>
+
+        <!-- 17 Teti Ismi Riani -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Teti Ismi Riani</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 500.000</div>
+        </div>
+
+        <!-- 18 Hamba Allah (Ortu Jojo) -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Hamba Allah (Ortu Jojo)</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 500.000</div>
+        </div>
+
+        <!-- 19 Ahmad Romli -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Ahmad Romli</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 500.000</div>
+        </div>
+
+        <!-- 20 Ummi Zhafran -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Ummi Zhafran</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 500.000</div>
+        </div>
+
+        <!-- 21 Firman Riansyah -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Firman Riansyah</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 500.000</div>
+        </div>
+
+        <!-- 22 Abdul Rahman Syahputra -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Abdul Rahman Syahputra</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 500.000</div>
+        </div>
+
+        <!-- 23 Farid Wibisono -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Farid Wibisono</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 500.000</div>
+        </div>
+
+        <!-- 24 Anugrah Roffiq Ramadhan -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Anugrah Roffiq Ramadhan</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 500.000</div>
+        </div>
+
+        <!-- 25 Nova Sari Yanti -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Nova Sari Yanti</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 400.000</div>
+        </div>
+
+        <!-- 26 Bapak Ruhdi -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Bapak Ruhdi</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 300.000</div>
+        </div>
+
+        <!-- 27 Wali Ariqoh -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Wali Ariqoh</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 300.000</div>
+        </div>
+
+        <!-- 28 Abi Almun -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Abi Almun</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 250.000</div>
+        </div>
+
+        <!-- 29 Ariqoh Walfitroh -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Ariqoh Walfitroh</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 250.000</div>
+        </div>
+
+        <!-- 30 Bapak Azzam -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Bapak Azzam</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 200.000</div>
+        </div>
+
+        <!-- 31 Ummi Zuhdan -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Ummi Zuhdan</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 200.000</div>
+        </div>
+
+        <!-- 32 Ummi Rajwa -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Ummi Rajwa</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 200.000</div>
+        </div>
+
+        <!-- 33 Abi Rudiansyah -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Abi Rudiansyah</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 200.000</div>
+        </div>
+
+        <!-- 34 Wali Santri Angkatan 3 -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Wali Santri Angkatan 3</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 172.000</div>
+        </div>
+
+        <!-- 35 Hamba Allah -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Hamba Allah</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 150.000</div>
+        </div>
+
+        <!-- 36 Nurhasanah -->
+        <div class="sv-donor-card sv-modal-donor-item">
+          <div class="sv-donor-card-left">
+            <div>
+              <div class="sv-donor-name">Nurhasanah</div>
+              <span class="sv-badge-wakaf">Wakaf Pembangunan</span>
+            </div>
+          </div>
+          <div class="sv-donor-amount">Rp 50.000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="sv-donors-modal-foot">
+      <span>Transparansi Wakaf Global Village Fund</span>
+      <button type="button" class="sv-donors-modal-close-btn" onclick="closeDonorsModal()">Tutup</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
