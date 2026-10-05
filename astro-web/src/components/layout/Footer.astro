@@ -1,184 +1,238 @@
 ---
 // src/components/layout/Footer.astro
-// Exact ISAVO Footer UI/UX Design: Moody Interior Backdrop, 4-Col Grid, Large Contacts, & Giant "gvf" Watermark
+// Exact ISAVO Footer UI/UX Design (isavo.co.id)
+// Exact CSS, 4-Col Center-Aligned Grid, Living Room Background, & 480px "isavo" Watermark
 ---
 
-<footer class="isavo-footer-section" id="tentang-kami">
-  <!-- Architectural Interior Backdrop Image ala ISAVO -->
+<footer class="footer-section overflow-hidden" id="tentang-kami">
+  <!-- Exact ISAVO Living Room Background Image -->
   <div
-    class="isavo-footer-bg"
-    style="background-image: url('/gambar design/interior masjid.jpg');"
+    class="footer-bg"
+    style="background-image: url('/footer-bg.webp');"
     aria-hidden="true"
   ></div>
 
-  <!-- Dark Atmospheric Shade Overlay -->
-  <div class="isavo-footer-shade" aria-hidden="true"></div>
+  <!-- Exact ISAVO Backdrop Blur Shade -->
+  <div class="footer-shade" aria-hidden="true"></div>
 
-  <div class="isavo-footer-container">
-    <div class="isavo-footer-wrap">
-      <!-- Col 1: Logo Box, Tagline, & Physical Address -->
-      <div class="isavo-footer-col isavo-col-brand">
-        <div class="isavo-brand-header">
-          <!-- Boxed Logo ala [ISAVO] -->
-          <a href="/" class="isavo-boxed-logo" aria-label="Global Village Fund Beranda">
-            <span class="isavo-boxed-text">GVF</span>
-          </a>
+  <div class="container container-2">
+    <div class="row footer-wrap">
+      <!-- Col 1: Centered Brand Box, Tagline & Physical Address -->
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="footer-widget">
+          <div class="widget-header">
+            <div class="footer-logo">
+              <a href="/" class="isavo-boxed-logo" aria-label="Global Village Fund Beranda">
+                <span class="isavo-boxed-text">GVF</span>
+              </a>
+            </div>
+          </div>
+          <p class="mb-10">
+            #WakafBerkelanjutan — Pendidikan · <br />
+            Ibadah · Agro-Technopark
+          </p>
+          <p class="mb-0">
+            Kampus SMK Skill Village Islamic School, <br />
+            Desa Sukasirna, Kec. Jonggol, <br />
+            Kabupaten Bogor, Jawa Barat 16830
+          </p>
         </div>
-
-        <p class="isavo-footer-tagline">
-          #WakafBerkelanjutan — Pendidikan · <br />
-          Ibadah · Agro-Technopark
-        </p>
-
-        <p class="isavo-footer-address">
-          Kampus SMK Skill Village Islamic School, <br />
-          Desa Sukasirna, Kec. Jonggol, <br />
-          Kabupaten Bogor, Jawa Barat 16830
-        </p>
       </div>
 
-      <!-- Col 2: Navigation Links 1 -->
-      <div class="isavo-footer-col isavo-col-nav">
-        <ul class="isavo-footer-nav-list">
-          <li><a href="/" class="isavo-nav-item">Home</a></li>
-          <li><a href="/#pilar" class="isavo-nav-item">Program</a></li>
-          <li><a href="/portofolio" class="isavo-nav-item">Portofolio</a></li>
-          <li><a href="/#tentang-kami" class="isavo-nav-item">Tentang Kami</a></li>
-        </ul>
+      <!-- Col 2: Centered Navigation 1 -->
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="footer-widget footer-col-2">
+          <ul class="footer-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#pilar">Program</a></li>
+            <li><a href="/portofolio">Portofolio</a></li>
+            <li><a href="/#tentang-kami">Tentang Kami</a></li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Col 3: Navigation Links 2 -->
-      <div class="isavo-footer-col isavo-col-nav">
-        <ul class="isavo-footer-nav-list">
-          <li><a href="/#dokumentasi" class="isavo-nav-item">Galeri</a></li>
-          <li><a href="/contact" class="isavo-nav-item">Kontak</a></li>
-          <li><a href="/#simulasi" class="isavo-nav-item">Simulasi</a></li>
-          <li><a href="/#pengurus" class="isavo-nav-item">Pengurus</a></li>
-        </ul>
+      <!-- Col 3: Centered Navigation 2 -->
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="footer-widget footer-col-2 pl-0">
+          <ul class="footer-list">
+            <li><a href="/#dokumentasi">Galeri</a></li>
+            <li><a href="/contact">Kontak</a></li>
+            <li><a href="/#simulasi">Simulasi</a></li>
+            <li><a href="/#pengurus">Pengurus</a></li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Col 4: Large Contacts & Social Links -->
-      <div class="isavo-footer-col isavo-col-contact">
-        <div class="isavo-contact-group">
-          <a class="isavo-big-number" href="tel:+6281226832326">
-            +62 812 2683 2326
-          </a>
-          <a class="isavo-big-mail" href="https://globalvillagefund.org">
-            www.globalvillagefund.org
-          </a>
-          <div class="isavo-social-row">
-            <a
-              href="https://instagram.com/globalvillagefund"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="isavo-social-link"
-            >Instagram</a>
-            <span class="isavo-social-sep">-</span>
-            <a
-              href="https://wa.me/6281226832326"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="isavo-social-link"
-            >WhatsApp</a>
-            <span class="isavo-social-sep">-</span>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="isavo-social-link"
-            >YouTube</a>
+      <!-- Col 4: Centered Contacts & Socials -->
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="footer-widget">
+          <div class="footer-address">
+            <a class="number" href="tel:+6281226832326">+62 812 2683 2326</a>
+            <a class="mail" href="https://globalvillagefund.org">www.globalvillagefund.org</a>
+            <ul class="social-list">
+              <li>
+                <a
+                  href="https://instagram.com/globalvillagefund"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Instagram</a>
+              </li>
+              <li class="social-sep">-</li>
+              <li>
+                <a
+                  href="https://wa.me/6281226832326"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >WhatsApp</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Centered Copyright Line -->
-    <div class="isavo-copyright-area">
-      <p class="isavo-copyright-text">
-        &copy; {new Date().getFullYear()} GLOBAL VILLAGE FUND • YAYASAN PERMATA CENDEKIA INDONESIA. All Rights Reserved.
-      </p>
+  <!-- Copyright Bar -->
+  <div class="copyright-area">
+    <div class="container container-2">
+      <div class="copyright-content">
+        <p>© {new Date().getFullYear()} GLOBAL VILLAGE FUND • YAYASAN PERMATA CENDEKIA INDONESIA. All Rights Reserved.</p>
+      </div>
     </div>
   </div>
 
-  <!-- Giant Faint Bottom Text Watermark ala ISAVO [isavo] -->
-  <div class="isavo-giant-watermark" aria-hidden="true">
-    <span>gvf</span>
+  <!-- Giant 480px Bottom Watermark ala ISAVO [isavo] -->
+  <div class="footer-text" aria-hidden="true">
+    <span>isavo</span>
   </div>
 </footer>
 
 <style is:global>
   /* ==========================================================================
-     ISAVO FOOTER BULLETPROOF EXACT STYLING
+     EXACT ISAVO FOOTER STYLES (from isavo.co.id production CSS)
      ========================================================================== */
-  .isavo-footer-section {
+
+  .footer-section {
+    z-index: 1 !important;
+    padding-bottom: 395px !important;
     position: relative !important;
-    padding-top: 100px !important;
-    padding-bottom: 40px !important;
-    color: #ffffff !important;
-    background-color: #0b1120 !important;
     overflow: hidden !important;
+    background-color: #0b1120 !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
 
-  /* Architectural Interior Image Backdrop */
-  .isavo-footer-bg {
-    position: absolute !important;
-    inset: 0 !important;
+  @media only screen and (max-width: 992px) {
+    .footer-section {
+      padding-bottom: 250px !important;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .footer-section {
+      padding-bottom: 120px !important;
+    }
+  }
+
+  /* Exact ISAVO Background with .footer-bg:before overlay */
+  .footer-section .footer-bg {
+    content: "" !important;
+    z-index: -2 !important;
+    background-position: 50% 50% !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
     width: 100% !important;
     height: 100% !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    filter: brightness(0.6) contrast(1.1) !important;
-    z-index: 1 !important;
-    pointer-events: none !important;
-  }
-
-  /* Dark Atmospheric Shade Overlay */
-  .isavo-footer-shade {
     position: absolute !important;
-    inset: 0 !important;
-    background: linear-gradient(
-      180deg,
-      rgba(10, 15, 29, 0.88) 0%,
-      rgba(9, 14, 26, 0.93) 40%,
-      rgba(7, 11, 22, 0.97) 100%
-    ) !important;
-    z-index: 2 !important;
-    backdrop-filter: blur(2px) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+
+  .footer-section .footer-bg:before {
+    background-color: #000000 !important;
+    content: "" !important;
+    opacity: 0.72 !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 1 !important;
+  }
+
+  /* Exact ISAVO Backdrop Blur Shade (Top 550px) */
+  .footer-section .footer-shade {
+    opacity: 0.3 !important;
+    -webkit-backdrop-filter: blur(29px) !important;
+    backdrop-filter: blur(29px) !important;
+    z-index: -1 !important;
+    background: #272625a3 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    width: 100% !important;
+    height: 550px !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
     pointer-events: none !important;
   }
 
-  .isavo-footer-container {
-    position: relative !important;
-    z-index: 3 !important;
+  .container-2 {
     max-width: 1360px !important;
     margin: 0 auto !important;
-    padding: 0 2.5rem !important;
+    padding: 0 2rem !important;
+    position: relative !important;
+    z-index: 3 !important;
     box-sizing: border-box !important;
   }
 
-  /* 4-Column Grid */
-  .isavo-footer-wrap {
+  /* Exact ISAVO 4-Column Wrap Grid */
+  .footer-wrap {
+    padding: 130px 0 100px !important;
     display: grid !important;
-    grid-template-columns: 1.4fr 0.9fr 0.9fr 1.6fr !important;
-    gap: 3.5rem !important;
-    padding-bottom: 50px !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2rem !important;
     align-items: flex-start !important;
   }
 
-  /* Col 1: Brand & Address */
-  .isavo-brand-header {
-    margin-bottom: 1.5rem !important;
+  @media only screen and (max-width: 1024px) {
+    .footer-wrap {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 3rem !important;
+      padding: 90px 0 60px !important;
+    }
   }
 
+  @media only screen and (max-width: 640px) {
+    .footer-wrap {
+      grid-template-columns: 1fr !important;
+      gap: 2.5rem !important;
+      padding: 70px 0 40px !important;
+    }
+  }
+
+  /* Exact ISAVO Center-Aligned Widget */
+  .footer-widget {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .footer-widget .widget-header {
+    margin-bottom: 30px !important;
+  }
+
+  .footer-widget .widget-header .footer-logo {
+    max-width: 170px !important;
+    margin: 0 auto !important;
+  }
+
+  /* ISAVO Boxed Logo Frame */
   .isavo-boxed-logo {
     display: inline-block !important;
-    border: 2px solid rgba(255, 255, 255, 0.85) !important;
-    border-radius: 10px !important;
-    padding: 6px 18px !important;
+    border: 2px solid #ffffff !important;
+    border-radius: 8px !important;
+    padding: 6px 20px !important;
     text-decoration: none !important;
     transition: all 0.25s ease !important;
   }
@@ -189,199 +243,232 @@
   }
 
   .isavo-boxed-text {
-    font-size: 1.35rem !important;
-    font-weight: 900 !important;
-    letter-spacing: 0.08em !important;
-    color: #ffffff !important;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif !important;
-  }
-
-  .isavo-footer-tagline {
-    font-size: 0.92rem !important;
-    font-weight: 700 !important;
-    line-height: 1.55 !important;
-    color: #ffffff !important;
-    margin: 0 0 1.25rem 0 !important;
-    letter-spacing: -0.01em !important;
-    font-family: 'Golos Text', sans-serif !important;
-  }
-
-  .isavo-footer-address {
-    font-size: 0.88rem !important;
-    line-height: 1.65 !important;
-    color: #94a3b8 !important;
-    margin: 0 !important;
-    font-family: 'Golos Text', sans-serif !important;
-  }
-
-  /* Col 2 & 3: Navigation Links */
-  .isavo-footer-nav-list {
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1.15rem !important;
-  }
-
-  .isavo-nav-item {
-    font-size: 0.98rem !important;
-    font-weight: 700 !important;
-    color: #ffffff !important;
-    text-decoration: none !important;
-    letter-spacing: -0.01em !important;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif !important;
-    transition: color 0.2s ease, transform 0.2s ease !important;
-    display: inline-block !important;
-  }
-
-  .isavo-nav-item:hover {
-    color: #38bdf8 !important;
-    transform: translateX(4px) !important;
-  }
-
-  /* Col 4: Contacts & Socials */
-  .isavo-contact-group {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-end !important;
-    text-align: right !important;
-  }
-
-  .isavo-big-number {
-    font-size: clamp(1.4rem, 2.2vw, 2.1rem) !important;
-    font-weight: 900 !important;
-    color: #ffffff !important;
-    text-decoration: none !important;
-    letter-spacing: -0.02em !important;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif !important;
-    margin-bottom: 0.35rem !important;
-    line-height: 1.2 !important;
-    transition: color 0.2s ease !important;
-  }
-
-  .isavo-big-number:hover {
-    color: #38bdf8 !important;
-  }
-
-  .isavo-big-mail {
-    font-size: clamp(1.15rem, 1.7vw, 1.6rem) !important;
+    font-size: 1.45rem !important;
     font-weight: 800 !important;
+    letter-spacing: 0.12em !important;
     color: #ffffff !important;
-    text-decoration: none !important;
-    letter-spacing: -0.02em !important;
     font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif !important;
-    margin-bottom: 1.75rem !important;
-    line-height: 1.2 !important;
-    transition: color 0.2s ease !important;
   }
 
-  .isavo-big-mail:hover {
-    color: #38bdf8 !important;
-  }
-
-  .isavo-social-row {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.75rem !important;
-  }
-
-  .isavo-social-link {
-    font-size: 0.9rem !important;
-    font-weight: 700 !important;
-    color: #cbd5e1 !important;
-    text-decoration: none !important;
-    transition: color 0.2s ease !important;
-    font-family: 'Golos Text', sans-serif !important;
-  }
-
-  .isavo-social-link:hover {
+  .footer-widget p {
     color: #ffffff !important;
-  }
-
-  .isavo-social-sep {
-    color: #64748b !important;
-    font-size: 0.9rem !important;
-  }
-
-  /* Centered Copyright */
-  .isavo-copyright-area {
-    padding-top: 32px !important;
-    padding-bottom: 70px !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif !important;
+    margin: 0 !important;
     text-align: center !important;
   }
 
-  .isavo-copyright-text {
-    font-size: 0.85rem !important;
-    color: #94a3b8 !important;
+  .footer-widget p.mb-10 {
+    margin-bottom: 12px !important;
+  }
+
+  .footer-widget p.mb-0 {
+    margin-bottom: 0 !important;
+    color: #cbd5e1 !important;
+    font-size: 15px !important;
+  }
+
+  /* Navigation Lists */
+  .footer-widget .footer-list {
+    padding: 0 !important;
+    list-style: none !important;
     margin: 0 !important;
-    letter-spacing: 0.01em !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .footer-widget .footer-list li {
+    color: #adadad !important;
+  }
+
+  .footer-widget .footer-list li:not(:last-of-type) {
+    margin-bottom: 20px !important;
+  }
+
+  .footer-widget .footer-list li a {
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif !important;
+    color: #ffffff !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    text-decoration: none !important;
+    position: relative !important;
+    transition: all 0.3s ease-in-out !important;
+    display: inline-block !important;
+  }
+
+  .footer-widget .footer-list li a:before {
+    background-color: #0969da !important;
+    content: "" !important;
+    cursor: pointer !important;
+    width: 0 !important;
+    height: 1px !important;
+    transition: all 0.3s ease-in-out !important;
+    position: absolute !important;
+    bottom: -4px !important;
+    left: 0 !important;
+  }
+
+  .footer-widget .footer-list li a:hover {
+    color: #0969da !important;
+  }
+
+  .footer-widget .footer-list li a:hover:before {
+    width: 100% !important;
+  }
+
+  /* Col 4 Contacts */
+  .footer-widget .footer-address {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .footer-widget .footer-address .number,
+  .footer-widget .footer-address .mail {
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif !important;
+    color: #ffffff !important;
+    font-size: clamp(22px, 1.9vw, 30px) !important;
+    font-weight: 700 !important;
+    display: inline-block !important;
+    position: relative !important;
+    text-decoration: none !important;
+    line-height: 1.3 !important;
+    margin-bottom: 6px !important;
+    transition: all 0.3s ease-in-out !important;
+  }
+
+  .footer-widget .footer-address .mail {
+    font-size: clamp(18px, 1.5vw, 24px) !important;
+    margin-bottom: 25px !important;
+    color: #f1f5f9 !important;
+  }
+
+  .footer-widget .footer-address .number:before,
+  .footer-widget .footer-address .mail:before {
+    background-color: #0969da !important;
+    content: "" !important;
+    cursor: pointer !important;
+    width: 0 !important;
+    height: 1px !important;
+    transition: all 0.3s ease-in-out !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+  }
+
+  .footer-widget .footer-address .number:hover,
+  .footer-widget .footer-address .mail:hover {
+    color: #0969da !important;
+  }
+
+  .footer-widget .footer-address .number:hover:before,
+  .footer-widget .footer-address .mail:hover:before {
+    width: 100% !important;
+  }
+
+  /* Social List */
+  .footer-widget .social-list {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+
+  .footer-widget .social-list li a {
+    color: #d0d0d0 !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
     font-family: 'Golos Text', sans-serif !important;
   }
 
-  /* Giant Faint Bottom Text Watermark ala ISAVO [isavo] */
-  .isavo-giant-watermark {
+  .footer-widget .social-list li a:hover {
+    color: #0969da !important;
+  }
+
+  .footer-widget .social-list .social-sep {
+    color: #64748b !important;
+    font-size: 15px !important;
+  }
+
+  /* Copyright Area */
+  .copyright-area {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 30px 0 !important;
+    position: relative !important;
+    z-index: 3 !important;
+    width: 100% !important;
+  }
+
+  .copyright-content {
+    text-align: center !important;
+  }
+
+  .copyright-content p {
+    color: #d0d0d0 !important;
+    font-size: 15px !important;
+    font-family: 'Golos Text', sans-serif !important;
+    margin: 0 !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  /* Giant 480px Bottom Watermark ala ISAVO [isavo] */
+  .footer-text {
+    z-index: 1 !important;
     position: absolute !important;
-    bottom: -35px !important;
+    bottom: -72px !important;
     left: 50% !important;
-    transform: translateX(-50%) !important;
+    transform: translate(-50%) !important;
     pointer-events: none !important;
     user-select: none !important;
-    z-index: 2 !important;
     width: 100% !important;
     text-align: center !important;
     white-space: nowrap !important;
   }
 
-  .isavo-giant-watermark span {
-    font-size: clamp(7.5rem, 21vw, 20rem) !important;
-    font-weight: 900 !important;
-    color: rgba(255, 255, 255, 0.045) !important;
-    letter-spacing: -0.05em !important;
-    line-height: 0.8 !important;
-    display: inline-block !important;
+  @media only screen and (max-width: 767px) {
+    .footer-text {
+      bottom: 0 !important;
+    }
+  }
+
+  .footer-text span {
     font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif !important;
+    background: linear-gradient(179.69deg, #fffaf2 0.27%, rgba(255, 251, 244, 0) 90.85%) !important;
+    -webkit-text-fill-color: transparent !important;
+    opacity: 0.64 !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    font-size: 480px !important;
+    line-height: 1 !important;
+    font-weight: 700 !important;
+    display: inline-block !important;
+    letter-spacing: -0.04em !important;
   }
 
-  @media (max-width: 1024px) {
-    .isavo-footer-wrap {
-      grid-template-columns: 1fr 1fr !important;
-      gap: 2.5rem !important;
-    }
-
-    .isavo-contact-group {
-      align-items: flex-start !important;
-      text-align: left !important;
+  @media (max-width: 1199px) {
+    .footer-text span {
+      font-size: 380px !important;
     }
   }
 
-  @media (max-width: 640px) {
-    .isavo-footer-section {
-      padding-top: 60px !important;
+  @media only screen and (max-width: 992px) {
+    .footer-text span {
+      font-size: 260px !important;
     }
+  }
 
-    .isavo-footer-wrap {
-      grid-template-columns: 1fr !important;
-      gap: 2rem !important;
-      padding-bottom: 40px !important;
-    }
-
-    .isavo-contact-group {
-      align-items: flex-start !important;
-      text-align: left !important;
-    }
-
-    .isavo-big-number {
-      font-size: 1.45rem !important;
-    }
-
-    .isavo-big-mail {
-      font-size: 1.2rem !important;
-      margin-bottom: 1.25rem !important;
-    }
-
-    .isavo-copyright-area {
-      padding-bottom: 50px !important;
+  @media only screen and (max-width: 767px) {
+    .footer-text span {
+      font-size: 90px !important;
     }
   }
 </style>
