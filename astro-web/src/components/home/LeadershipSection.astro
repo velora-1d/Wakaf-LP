@@ -1,0 +1,530 @@
+---
+// src/components/home/LeadershipSection.astro
+// Exact ISAVO "Temui Anggota Tim" Interactive Master-Detail Hover/Click Switcher
+---
+
+<section class="isavo-leadership-section reveal-on-scroll" id="pengurus">
+  <!-- Subtle Perspective Wireframe Floor Grid Background ala ISAVO -->
+  <div class="isavo-wireframe-grid-bg" aria-hidden="true">
+    <svg viewBox="0 0 1000 500" fill="none" stroke="rgba(15, 23, 42, 0.04)" stroke-width="1.2">
+      <!-- Perspective Converging Lines -->
+      <line x1="100" y1="480" x2="350" y2="200" />
+      <line x1="200" y1="480" x2="380" y2="200" />
+      <line x1="300" y1="480" x2="410" y2="200" />
+      <line x1="400" y1="480" x2="440" y2="200" />
+      <line x1="500" y1="480" x2="470" y2="200" />
+      <!-- Horizontal Floor Rings -->
+      <line x1="50" y1="460" x2="600" y2="460" />
+      <line x1="100" y1="400" x2="560" y2="400" />
+      <line x1="150" y1="340" x2="530" y2="340" />
+      <line x1="200" y1="280" x2="500" y2="280" />
+      <line x1="250" y1="230" x2="470" y2="230" />
+    </svg>
+  </div>
+
+  <div class="isavo-leadership-container">
+    <!-- Top Header -->
+    <div class="isavo-leadership-header">
+      <div class="isavo-pill-tag">
+        <span class="isavo-pill-dot"></span>
+        <span class="isavo-pill-text">STRUKTUR PENGURUS</span>
+      </div>
+
+      <h2 class="isavo-leadership-title">
+        Temui Dewan &amp; <span class="isavo-accent-blue">Pengurus GVF</span>
+      </h2>
+    </div>
+
+    <!-- 2-Column Master-Detail Layout ala ISAVO -->
+    <div class="isavo-team-grid">
+      <!-- Left Column: Active Member Portrait Showcase Card -->
+      <div class="isavo-card-col">
+        <div class="isavo-team-card" id="teamActiveCard">
+          <!-- Top Card Brand Logo ala ISAVO [ISAVO] -->
+          <div class="isavo-card-brand">
+            <span class="isavo-brand-mini">GVF</span>
+            <span class="isavo-brand-sub">GLOBAL VILLAGE FUND</span>
+          </div>
+
+          <!-- Portrait Image Frame with Smooth Crossfade -->
+          <div class="isavo-card-photo-wrap">
+            <img
+              id="teamActiveImg"
+              src="/media-lp/pengurus-1.jpg"
+              alt="Ir. H. M. Hakim, M.M."
+              class="isavo-card-photo"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Bottom Card Floating Label ala ISAVO -->
+          <div class="isavo-card-caption">
+            <div id="teamActiveName" class="isavo-caption-name">Ir. H. M. Hakim, M.M.</div>
+            <div id="teamActiveRole" class="isavo-caption-role">Ketua Dewan Pembina &amp; Nazhir</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive 5-Row Member List ala ISAVO -->
+      <div class="isavo-list-col">
+        <div class="isavo-member-list" id="memberList">
+          <!-- Member 01 (Active Default) -->
+          <div
+            class="isavo-member-row active"
+            data-index="0"
+            data-name="Ir. H. M. Hakim, M.M."
+            data-role="Ketua Dewan Pembina & Nazhir"
+            data-photo="/media-lp/pengurus-1.jpg"
+          >
+            <span class="isavo-member-num">01</span>
+            <h3 class="isavo-member-name">Ir. H. M. Hakim, M.M.</h3>
+            <span class="isavo-member-role">KETUA NAZHIR &amp; PEMBINA</span>
+            <span class="isavo-arrow-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </div>
+
+          <!-- Member 02 -->
+          <div
+            class="isavo-member-row"
+            data-index="1"
+            data-name="Ust. Ahmad Fauzi, Lc., M.A."
+            data-role="Dewan Pengawas Syariah (DPS)"
+            data-photo="/media-lp/pengurus-2.jpg"
+          >
+            <span class="isavo-member-num">02</span>
+            <h3 class="isavo-member-name">Ust. Ahmad Fauzi, Lc., M.A.</h3>
+            <span class="isavo-member-role">PENGAWAS SYARIAH</span>
+            <span class="isavo-arrow-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </div>
+
+          <!-- Member 03 -->
+          <div
+            class="isavo-member-row"
+            data-index="2"
+            data-name="Dr. Hendra Gunawan, S.T., M.T."
+            data-role="Lead Arsitek & Perencana Tapak"
+            data-photo="/media-lp/pengurus-3.jpg"
+          >
+            <span class="isavo-member-num">03</span>
+            <h3 class="isavo-member-name">Dr. Hendra Gunawan, S.T., M.T.</h3>
+            <span class="isavo-member-role">LEAD ARSITEK</span>
+            <span class="isavo-arrow-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </div>
+
+          <!-- Member 04 -->
+          <div
+            class="isavo-member-row"
+            data-index="3"
+            data-name="Siti Rahmah, S.E., Ak."
+            data-role="Manajer Keuangan & Akuntabilitas"
+            data-photo="/media-lp/pengurus-4.jpg"
+          >
+            <span class="isavo-member-num">04</span>
+            <h3 class="isavo-member-name">Siti Rahmah, S.E., Ak.</h3>
+            <span class="isavo-member-role">KEUANGAN &amp; AUDIT</span>
+            <span class="isavo-arrow-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </div>
+
+          <!-- Member 05 -->
+          <div
+            class="isavo-member-row"
+            data-index="4"
+            data-name="Ir. Bambang Trihatmojo"
+            data-role="Kepala Pelaksana Konstruksi Lapangan"
+            data-photo="/media-lp/pengurus-5.jpg"
+          >
+            <span class="isavo-member-num">05</span>
+            <h3 class="isavo-member-name">Ir. Bambang Trihatmojo</h3>
+            <span class="isavo-member-role">MANAJER LAPANGAN</span>
+            <span class="isavo-arrow-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Exact ISAVO Interactive Team Member Hover/Click Switcher with Auto-Cycle
+  const rows = document.querySelectorAll('.isavo-member-row');
+  const activeImg = document.getElementById('teamActiveImg') as HTMLImageElement | null;
+  const activeName = document.getElementById('teamActiveName');
+  const activeRole = document.getElementById('teamActiveRole');
+  const card = document.getElementById('teamActiveCard');
+
+  let currentIndex = 0;
+  let autoCycleTimer: any = null;
+  let isHovered = false;
+
+  const setActiveMember = (index: number) => {
+    if (index < 0 || index >= rows.length) return;
+    currentIndex = index;
+
+    // Update Row Classes
+    rows.forEach((row, i) => {
+      if (i === index) {
+        row.classList.add('active');
+      } else {
+        row.classList.remove('active');
+      }
+    });
+
+    const activeRow = rows[index] as HTMLElement;
+    const photo = activeRow.getAttribute('data-photo') || '';
+    const name = activeRow.getAttribute('data-name') || '';
+    const role = activeRow.getAttribute('data-role') || '';
+
+    // Smooth Micro-Transition on Image & Text (Cross-Fade)
+    if (activeImg) {
+      activeImg.style.opacity = '0';
+      activeImg.style.transform = 'scale(0.96)';
+
+      setTimeout(() => {
+        activeImg.src = photo;
+        activeImg.alt = name;
+        activeImg.style.opacity = '1';
+        activeImg.style.transform = 'scale(1)';
+      }, 150);
+    }
+
+    if (activeName) activeName.textContent = name;
+    if (activeRole) activeRole.textContent = role;
+  };
+
+  // Event Listeners on Each Member Row (Hover & Click)
+  rows.forEach((row, i) => {
+    row.addEventListener('mouseenter', () => {
+      isHovered = true;
+      setActiveMember(i);
+    });
+
+    row.addEventListener('click', () => {
+      setActiveMember(i);
+    });
+  });
+
+  // Pause Auto-Cycle on Hover
+  const teamSection = document.getElementById('pengurus');
+  if (teamSection) {
+    teamSection.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    teamSection.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+  }
+
+  // Smooth Auto-Cycle Timer (Every 4.5s)
+  autoCycleTimer = setInterval(() => {
+    if (!isHovered) {
+      const nextIndex = (currentIndex + 1) % rows.length;
+      setActiveMember(nextIndex);
+    }
+  }, 4500);
+</script>
+
+<style>
+  .isavo-leadership-section {
+    position: relative;
+    padding: 90px 0 110px 0;
+    background-color: #fbfcfd;
+    overflow: hidden;
+  }
+
+  .isavo-wireframe-grid-bg {
+    position: absolute;
+    top: 50px;
+    left: -50px;
+    width: 650px;
+    height: 450px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.85;
+  }
+
+  .isavo-leadership-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Header Centered */
+  .isavo-leadership-header {
+    text-align: center;
+    margin-bottom: 4.5rem;
+  }
+
+  .isavo-pill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  }
+
+  .isavo-pill-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0969da;
+    border-radius: 50%;
+  }
+
+  .isavo-pill-text {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #0f172a;
+    text-transform: uppercase;
+    font-family: 'Golos Text', sans-serif;
+  }
+
+  .isavo-leadership-title {
+    font-size: clamp(2.3rem, 4vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+  }
+
+  .isavo-accent-blue {
+    color: #0969da;
+  }
+
+  /* 2-Column Grid */
+  .isavo-team-grid {
+    display: grid;
+    grid-template-columns: 430px 1fr;
+    gap: 4.5rem;
+    align-items: center;
+  }
+
+  /* Left Column: Portrait Card ala ISAVO */
+  .isavo-team-card {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 1.75rem 1.75rem 2rem;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .isavo-card-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+  }
+
+  .isavo-brand-mini {
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: #0969da;
+    letter-spacing: 0.05em;
+    font-family: 'Golos Text', sans-serif;
+    padding: 3px 8px;
+    background-color: rgba(9, 105, 218, 0.08);
+    border-radius: 6px;
+  }
+
+  .isavo-brand-sub {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #64748b;
+  }
+
+  .isavo-card-photo-wrap {
+    width: 100%;
+    height: 380px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #f1f5f9;
+    margin-bottom: 1.5rem;
+  }
+
+  .isavo-card-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Caption Info */
+  .isavo-card-caption {
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+
+  .isavo-caption-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.25rem;
+  }
+
+  .isavo-caption-role {
+    font-size: 0.88rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  /* Right Column: Member List */
+  .isavo-member-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .isavo-member-row {
+    display: flex;
+    align-items: center;
+    padding: 1.85rem 1rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.09);
+    cursor: pointer;
+    transition: background-color 0.25s ease, padding-left 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    user-select: none;
+    position: relative;
+  }
+
+  .isavo-member-row:first-child {
+    border-top: 1px solid rgba(15, 23, 42, 0.09);
+  }
+
+  .isavo-member-row:hover,
+  .isavo-member-row.active {
+    padding-left: 1.6rem;
+  }
+
+  .isavo-member-num {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-right: 1.75rem;
+    font-family: 'Golos Text', monospace;
+    transition: color 0.25s ease;
+  }
+
+  .isavo-member-row.active .isavo-member-num,
+  .isavo-member-row:hover .isavo-member-num {
+    color: #0969da;
+  }
+
+  .isavo-member-name {
+    font-size: clamp(1.2rem, 1.8vw, 1.65rem);
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+    letter-spacing: -0.02em;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    transition: color 0.25s ease;
+    flex: 1;
+  }
+
+  .isavo-member-row.active .isavo-member-name,
+  .isavo-member-row:hover .isavo-member-name {
+    color: #0969da;
+  }
+
+  .isavo-member-role {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    text-transform: uppercase;
+    font-family: 'Golos Text', sans-serif;
+    margin-left: auto;
+    margin-right: 2rem;
+    transition: color 0.25s ease;
+  }
+
+  .isavo-member-row.active .isavo-member-role {
+    color: #0f172a;
+  }
+
+  /* Diagonal to Right Arrow Animation */
+  .isavo-arrow-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+  }
+
+  .isavo-member-row.active .isavo-arrow-icon,
+  .isavo-member-row:hover .isavo-arrow-icon {
+    transform: rotate(45deg);
+    color: #0969da;
+  }
+
+  @media (max-width: 1024px) {
+    .isavo-team-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .isavo-team-card {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .isavo-member-row {
+      padding: 1.4rem 0.5rem;
+    }
+
+    .isavo-member-role {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .isavo-leadership-section {
+      padding: 60px 0 80px 0;
+    }
+
+    .isavo-member-name {
+      font-size: 1.15rem;
+    }
+
+    .isavo-card-photo-wrap {
+      height: 320px;
+    }
+  }
+</style>
