@@ -275,50 +275,55 @@
   let targetTranslate1 = 0;
   let targetTranslate2 = -350;
 
-  // Track scroll position smoothly
-  const updateParallax = () => {
-    if (!section || !row1 || !row2) return;
+  // Hanya hitung parallax saat section dekat viewport
+  let isNear = true;
+  if (section && 'IntersectionObserver' in window) {
+    new IntersectionObserver(
+      (entries) => {
+        isNear = entries[0]?.isIntersecting ?? true;
+        if (isNear) updateParallax();
+      },
+      { rootMargin: '400px 0px 400px 0px' }
+    ).observe(section);
+  }
+
+  // Lenis sudah menghaluskan scroll, jadi transform langsung diterapkan (tanpa lerp ganda)
+  function updateParallax() {
+    if (!section || !row1 || !row2 || !isNear) return;
 
     const rect = section.getBoundingClientRect();
     const windowH = window.innerHeight;
 
-    // Check if section is active/near viewport
-    if (rect.top < windowH + 400 && rect.bottom > -400) {
-      // Calculate how far the section has progressed through viewport (-1 to 1)
-      const progress = (windowH - rect.top) / (windowH + rect.height);
-      
-      // Speed multiplier for scroll motion
-      const scrollShift = (progress - 0.5) * 750;
+    // Progres section melewati viewport (0 - 1)
+    const progress = (windowH - rect.top) / (windowH + rect.height);
+    const scrollShift = (progress - 0.5) * 750;
 
-      targetTranslate1 = -scrollShift - 150;
-      targetTranslate2 = scrollShift - 320;
-    }
+    targetTranslate1 = -scrollShift - 150;
+    targetTranslate2 = scrollShift - 320;
+    currentTranslate1 = targetTranslate1;
+    currentTranslate2 = targetTranslate2;
+
+    row1.style.transform = `translate3d(${currentTranslate1.toFixed(2)}px, 0, 0)`;
+    row2.style.transform = `translate3d(${currentTranslate2.toFixed(2)}px, 0, 0)`;
+  }
+
+  // Bind ke Lenis, baik Lenis sudah siap sebelum maupun sesudah script ini jalan.
+  // Fallback ke scroll native bila Lenis tidak ada (mis. touch device / gagal load).
+  let boundToLenis = false;
+  const bindLenis = (lenis: any) => {
+    if (boundToLenis || !lenis) return;
+    boundToLenis = true;
+    window.removeEventListener('scroll', updateParallax);
+    lenis.on('scroll', updateParallax);
   };
 
-  // Lerp smoothing animation loop
-  const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
-
-  const animate = () => {
-    currentTranslate1 = lerp(currentTranslate1, targetTranslate1, 0.08);
-    currentTranslate2 = lerp(currentTranslate2, targetTranslate2, 0.08);
-
-    if (row1) {
-      row1.style.transform = `translate3d(${currentTranslate1.toFixed(2)}px, 0, 0)`;
-    }
-    if (row2) {
-      row2.style.transform = `translate3d(${currentTranslate2.toFixed(2)}px, 0, 0)`;
-    }
-
-    requestAnimationFrame(animate);
-  };
-
-  requestAnimationFrame(animate);
-
-  // Bind to window scroll & Lenis
   window.addEventListener('scroll', updateParallax, { passive: true });
   if ((window as any).lenis) {
-    (window as any).lenis.on('scroll', updateParallax);
+    bindLenis((window as any).lenis);
+  } else {
+    window.addEventListener('lenis:ready', (e) => bindLenis((e as CustomEvent).detail), { once: true });
   }
+  window.addEventListener('resize', updateParallax, { passive: true });
   updateParallax();
 
   // Lightbox Modal Logic

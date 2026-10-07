@@ -1,7 +1,7 @@
 ---
 // src/components/home/SimulasiSection.astro
 // Simulasi wakaf, struktur mengikuti halaman isavo.co.id/simulasi-renovasi:
-// kolom kiri = kartu form bernomor dengan opsi radio, kolom kanan = ringkasan sticky.
+// kolom kiri = panel form (pilih program + rincian), kolom kanan = ringkasan sticky.
 
 const programs = [
   {
@@ -56,7 +56,7 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
     <header class="sim-header reveal-on-scroll">
       <h2 class="sim-title">Simulasi Wakaf</h2>
       <p class="sim-subtitle">
-        Pilih program dan jumlahnya, lalu lihat rincian nilai wakaf Anda.<br />
+        Pilih program dan jumlahnya, lalu lihat rincian nilai wakaf Anda.
         Seluruh dana tercatat dan dilaporkan terbuka kepada wakif.
       </p>
     </header>
@@ -64,8 +64,8 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
     <div class="sim-grid">
       <!-- Kolom kiri: form -->
       <div class="sim-form reveal-on-scroll delay-100">
-        <div class="sim-card">
-          <h3 class="sim-card-title">1. Pilih Program</h3>
+        <div class="sim-block">
+          <h3 class="sim-block-title">Pilih program</h3>
           <div class="sim-options sim-options--program" role="radiogroup" aria-label="Program wakaf">
             {programs.map((p, i) => (
               <label class:list={['sim-option', { active: i === 0 }]} data-program={p.id}>
@@ -78,9 +78,7 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
           </div>
         </div>
 
-        <div class="sim-card">
-          <h3 class="sim-card-title">2. Rincian</h3>
-
+        <div class="sim-block">
           {programs.map((p, i) => (
             <div class="sim-panel" data-panel={p.id} hidden={i !== 0}>
               {p.options.length > 1 && (
@@ -98,7 +96,7 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
                           checked={p.id === 'tunai' ? j === 1 : j === 0}
                         />
                         <span class="sim-option-label">{o.label}</span>
-                        {p.id !== 'tunai' && <span class="sim-option-price">{rupiah(o.price)} / paket</span>}
+                        {p.id !== 'tunai' && <span class="sim-option-price">{rupiah(o.price)}</span>}
                         {o.desc && <span class="sim-option-desc">{o.desc}</span>}
                       </label>
                     ))}
@@ -162,20 +160,19 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
 
       <!-- Kolom kanan: ringkasan -->
       <aside class="sim-summary reveal-on-scroll delay-200" aria-live="polite">
-        <h3 class="sim-summary-title">Ringkasan Wakaf</h3>
+        <h3 class="sim-summary-title">Ringkasan</h3>
 
-        <table class="sim-table">
-          <tbody>
-            <tr><td>Program</td><td id="sum-program">Pembebasan Lahan</td></tr>
-            <tr><td>Item</td><td id="sum-item">Lahan Kawasan Masjid &amp; Sekolah</td></tr>
-            <tr id="sum-row-price"><td>Harga satuan</td><td id="sum-price">Rp 150.000</td></tr>
-            <tr id="sum-row-qty"><td>Jumlah</td><td id="sum-qty">1 m²</td></tr>
-            <tr><td>Lokasi</td><td>Sukasirna, Jonggol, Bogor</td></tr>
-          </tbody>
-        </table>
+        <dl class="sim-list">
+          <div><dt>Program</dt><dd id="sum-program">Pembebasan Lahan</dd></div>
+          <div><dt>Item</dt><dd id="sum-item">Lahan Kawasan Masjid &amp; Sekolah</dd></div>
+          <div id="sum-row-qty">
+            <dt>Jumlah</dt>
+            <dd><span id="sum-qty">1 m²</span> × <span id="sum-price">Rp 150.000</span></dd>
+          </div>
+        </dl>
 
         <div class="sim-total">
-          <span class="sim-total-label">Total Wakaf</span>
+          <span class="sim-total-label">Total wakaf</span>
           <span class="sim-total-value" id="sum-total">Rp 150.000</span>
         </div>
 
@@ -201,8 +198,9 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
         </a>
 
         <p class="sim-disclaimer">
-          Angka di atas adalah simulasi. Setelah dana diterima, admin mengirimkan bukti
-          penerimaan dan laporan penggunaan dana secara berkala ke nomor WhatsApp Anda.
+          Lokasi proyek: Sukasirna, Jonggol, Bogor. Angka di atas adalah simulasi. Setelah dana
+          diterima, admin mengirimkan bukti penerimaan dan laporan penggunaan dana secara berkala
+          ke nomor WhatsApp Anda.
         </p>
       </aside>
     </div>
@@ -216,108 +214,96 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
 
   .sim-header {
     text-align: center;
-    max-width: 720px;
-    margin: 0 auto 3rem;
+    max-width: 640px;
+    margin: 0 auto 2.75rem;
   }
 
   .sim-title {
-    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    font-size: clamp(1.875rem, 3vw, 2.5rem);
     font-weight: 800;
+    letter-spacing: -0.02em;
     color: var(--gvf-text-heading);
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.75rem;
   }
 
   .sim-subtitle {
     font-size: 1rem;
+    line-height: 1.7;
     color: var(--gvf-text-muted);
-    line-height: 1.75;
+    text-wrap: balance;
   }
 
   .sim-grid {
     display: grid;
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: 1.75rem;
+    gap: 1.5rem;
     align-items: start;
-    max-width: 1140px;
+    max-width: 1080px;
     margin: 0 auto;
   }
 
-  /* Kartu form */
-  .sim-card {
+  /* Panel form: satu kartu, langkah dipisah jarak + garis tipis */
+  .sim-form,
+  .sim-summary {
     background: var(--gvf-white);
     border: 1px solid var(--gvf-surface-200);
-    border-radius: 10px;
-    padding: 1.75rem;
+    border-radius: var(--gvf-radius-lg);
+    padding: 2rem;
   }
 
-  .sim-card + .sim-card {
-    margin-top: 1.25rem;
+  .sim-block + .sim-block {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gvf-surface-100);
   }
 
-  .sim-card-title {
-    font-size: 1.125rem;
+  .sim-block-title,
+  .sim-group-name {
+    font-size: 1rem;
     font-weight: 700;
     color: var(--gvf-text-heading);
-    padding-bottom: 1rem;
-    margin-bottom: 1.25rem;
-    border-bottom: 1px solid var(--gvf-surface-200);
+    margin-bottom: 0.875rem;
   }
 
   .sim-group + .sim-group {
-    margin-top: 1.5rem;
+    margin-top: 1.75rem;
   }
 
-  .sim-group-name {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--gvf-text-heading);
-    margin-bottom: 0.75rem;
-  }
-
-  /* Opsi radio ala .kelas-option */
+  /* Opsi: baris penuh — radio | nama + deskripsi | harga */
   .sim-options {
     display: grid;
-    gap: 0.75rem;
-  }
-
-  .sim-options--program {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .sim-options--compact {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.625rem;
   }
 
   .sim-option {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding: 0.95rem 1rem 0.95rem 2.6rem;
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr) auto;
+    grid-template-areas:
+      'radio label price'
+      '.     desc  desc';
+    column-gap: 0.875rem;
+    row-gap: 0.25rem;
+    align-items: start;
+    padding: 1rem 1.125rem;
     border: 1px solid var(--gvf-surface-200);
-    border-radius: 8px;
+    border-radius: var(--gvf-radius-md);
     background: var(--gvf-white);
     cursor: pointer;
-    transition: border-color var(--gvf-transition-fast), background-color var(--gvf-transition-fast);
+    transition:
+      border-color var(--gvf-transition-fast),
+      background-color var(--gvf-transition-fast),
+      box-shadow var(--gvf-transition-fast);
   }
 
   .sim-option:hover {
     border-color: var(--gvf-surface-300);
   }
 
-  .sim-option input[type='radio'] {
-    position: absolute;
-    left: 1rem;
-    top: 1.1rem;
-    width: 16px;
-    height: 16px;
-    margin: 0;
-    accent-color: var(--gvf-blue-vibrant);
-  }
-
   .sim-option.active {
     border-color: var(--gvf-blue-vibrant);
     background: var(--gvf-blue-ice);
+    box-shadow: 0 0 0 1px var(--gvf-blue-vibrant);
   }
 
   .sim-option:has(input:focus-visible) {
@@ -325,59 +311,129 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
     outline-offset: 2px;
   }
 
+  /* Radio kustom agar tampil sama di semua browser */
+  .sim-option input[type='radio'] {
+    grid-area: radio;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    margin: 1px 0 0;
+    border: 1.5px solid var(--gvf-surface-300);
+    border-radius: 50%;
+    background: var(--gvf-white);
+    cursor: pointer;
+    transition: border-color var(--gvf-transition-fast), box-shadow var(--gvf-transition-fast);
+  }
+
+  .sim-option input[type='radio']:checked {
+    border-color: var(--gvf-blue-vibrant);
+    background: var(--gvf-blue-vibrant);
+    box-shadow: inset 0 0 0 4px var(--gvf-white);
+  }
+
   .sim-option-label {
-    font-size: 0.9375rem;
+    grid-area: label;
+    font-size: 1rem;
     font-weight: 600;
+    line-height: 1.4;
     color: var(--gvf-text-heading);
-    line-height: 1.35;
   }
 
   .sim-option-price {
-    font-size: 0.875rem;
+    grid-area: price;
+    font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--gvf-blue-vibrant);
+    line-height: 1.5;
+    color: var(--gvf-text-heading);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    text-align: right;
   }
 
   .sim-option-desc {
-    font-size: 0.8125rem;
+    grid-area: desc;
+    font-size: 0.875rem;
+    line-height: 1.55;
     color: var(--gvf-text-muted);
-    line-height: 1.5;
   }
 
-  /* Input jumlah */
+  /* Nominal wakaf uang: chip ringkas tanpa lingkaran radio */
+  .sim-options--compact {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sim-options--compact .sim-option {
+    display: flex;
+    justify-content: center;
+    padding: 0.875rem 0.5rem;
+  }
+
+  .sim-options--compact .sim-option input[type='radio'] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+  }
+
+  .sim-options--compact .sim-option-label {
+    font-size: 0.9375rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Input jumlah — stepper dan preset sama tinggi (48px) */
   .sim-qty-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.75rem 1rem;
+    gap: 0.75rem;
   }
 
   .sim-stepper {
     display: inline-flex;
     align-items: center;
+    height: 48px;
     border: 1px solid var(--gvf-surface-200);
-    border-radius: 8px;
+    border-radius: var(--gvf-radius-md);
     background: var(--gvf-white);
     overflow: hidden;
   }
 
   .sim-step {
-    width: 42px;
-    height: 44px;
+    width: 48px;
+    height: 100%;
     border: none;
-    background: var(--gvf-surface-50);
-    font-size: 1.125rem;
+    background: var(--gvf-white);
+    font-family: inherit;
+    font-size: 1.25rem;
+    line-height: 1;
     color: var(--gvf-text-heading);
     cursor: pointer;
+    transition: background-color var(--gvf-transition-fast);
+  }
+
+  .sim-step:first-child {
+    border-right: 1px solid var(--gvf-surface-200);
+  }
+
+  .sim-step:last-child {
+    border-left: 1px solid var(--gvf-surface-200);
   }
 
   .sim-step:hover {
-    background: var(--gvf-surface-100);
+    background: var(--gvf-surface-50);
+  }
+
+  .sim-step:focus-visible {
+    outline: 2px solid var(--gvf-blue-vibrant);
+    outline-offset: -2px;
   }
 
   .sim-input {
     font-family: inherit;
-    font-size: 0.9375rem;
+    font-size: 1rem;
     color: var(--gvf-text-heading);
     border: none;
     outline: none;
@@ -385,8 +441,8 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
   }
 
   .sim-qty {
-    width: 64px;
-    height: 44px;
+    width: 56px;
+    height: 100%;
     text-align: right;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
@@ -400,8 +456,8 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
   }
 
   .sim-qty-unit {
-    padding: 0 0.75rem 0 0.35rem;
-    font-size: 0.875rem;
+    padding: 0 0.875rem 0 0.375rem;
+    font-size: 0.9375rem;
     color: var(--gvf-text-muted);
   }
 
@@ -412,121 +468,144 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
   }
 
   .sim-preset {
-    padding: 0.45rem 0.8rem;
+    height: 48px;
+    padding: 0 1.125rem;
     font-family: inherit;
-    font-size: 0.8125rem;
+    font-size: 0.9375rem;
     font-weight: 500;
     color: var(--gvf-text-body);
     background: var(--gvf-white);
     border: 1px solid var(--gvf-surface-200);
-    border-radius: 6px;
+    border-radius: var(--gvf-radius-md);
     cursor: pointer;
+    transition:
+      border-color var(--gvf-transition-fast),
+      color var(--gvf-transition-fast),
+      background-color var(--gvf-transition-fast);
   }
 
-  .sim-preset:hover,
+  .sim-preset:hover {
+    border-color: var(--gvf-surface-300);
+  }
+
   .sim-preset.active {
     border-color: var(--gvf-blue-vibrant);
     color: var(--gvf-blue-vibrant);
+    background: var(--gvf-blue-ice);
+    box-shadow: 0 0 0 1px var(--gvf-blue-vibrant);
+  }
+
+  .sim-preset:focus-visible {
+    outline: 2px solid var(--gvf-blue-vibrant);
+    outline-offset: 2px;
   }
 
   .sim-field {
     display: flex;
     align-items: center;
     max-width: 320px;
+    height: 48px;
     border: 1px solid var(--gvf-surface-200);
-    border-radius: 8px;
+    border-radius: var(--gvf-radius-md);
     background: var(--gvf-white);
+    overflow: hidden;
+    transition: border-color var(--gvf-transition-fast), box-shadow var(--gvf-transition-fast);
   }
 
   .sim-field:focus-within {
     border-color: var(--gvf-blue-vibrant);
+    box-shadow: 0 0 0 1px var(--gvf-blue-vibrant);
   }
 
   .sim-field-prefix {
-    padding: 0 0.75rem;
-    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 600;
     color: var(--gvf-text-muted);
+    background: var(--gvf-surface-50);
     border-right: 1px solid var(--gvf-surface-200);
-    line-height: 44px;
   }
 
   .sim-field .sim-input {
     flex: 1;
-    height: 44px;
-    padding: 0 0.85rem;
+    height: 100%;
+    padding: 0 0.875rem;
+    font-variant-numeric: tabular-nums;
   }
 
   .sim-note {
     margin-top: 0.5rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     color: var(--gvf-text-muted);
   }
 
-  /* Ringkasan ala .simulasi-summary */
+  /* Ringkasan */
   .sim-summary {
     position: sticky;
     top: 100px;
-    background: var(--gvf-white);
-    border: 1px solid var(--gvf-surface-200);
-    border-radius: 10px;
-    padding: 1.75rem;
   }
 
   .sim-summary-title {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--gvf-text-heading);
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--gvf-surface-200);
+    margin-bottom: 1rem;
   }
 
-  .sim-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0.5rem 0 0;
+  .sim-list {
+    margin: 0;
+    border-top: 1px solid var(--gvf-surface-100);
   }
 
-  .sim-table td {
-    padding: 0.7rem 0;
-    font-size: 0.875rem;
-    border-bottom: 1px dashed var(--gvf-surface-200);
-    vertical-align: top;
+  .sim-list > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.25rem;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--gvf-surface-100);
   }
 
-  .sim-table td:first-child {
+  .sim-list > div[hidden] {
+    display: none;
+  }
+
+  .sim-list dt {
+    flex-shrink: 0;
+    font-size: 0.9375rem;
     color: var(--gvf-text-muted);
-    width: 38%;
   }
 
-  .sim-table td:last-child {
-    text-align: right;
-    color: var(--gvf-text-heading);
+  .sim-list dd {
+    margin: 0;
+    font-size: 0.9375rem;
     font-weight: 500;
+    color: var(--gvf-text-heading);
+    text-align: right;
     font-variant-numeric: tabular-nums;
   }
 
   .sim-total {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    padding: 1.25rem 0;
-    margin-bottom: 1.25rem;
-    border-bottom: 1px solid var(--gvf-surface-200);
+    display: grid;
+    gap: 0.25rem;
+    padding: 1.5rem 0;
   }
 
   .sim-total-label {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--gvf-text-heading);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gvf-text-muted);
   }
 
   .sim-total-value {
-    font-size: 1.75rem;
+    font-size: clamp(1.875rem, 2.6vw, 2.25rem);
     font-weight: 800;
-    color: var(--gvf-blue-vibrant);
+    line-height: 1.1;
     letter-spacing: -0.02em;
+    color: var(--gvf-text-heading);
     font-variant-numeric: tabular-nums;
   }
 
@@ -536,12 +615,20 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
     justify-content: center;
     gap: 0.5rem;
     width: 100%;
-    padding: 0.9rem 1rem;
-    font-size: 0.9375rem;
+    height: 52px;
+    padding: 0 1rem;
+    font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
-    border-radius: 8px;
-    transition: background-color var(--gvf-transition-fast), border-color var(--gvf-transition-fast);
+    border-radius: var(--gvf-radius-md);
+    transition:
+      background-color var(--gvf-transition-fast),
+      border-color var(--gvf-transition-fast);
+  }
+
+  .sim-btn:focus-visible {
+    outline: 2px solid var(--gvf-blue-vibrant);
+    outline-offset: 2px;
   }
 
   .sim-btn--primary {
@@ -554,18 +641,19 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
   }
 
   .sim-btn--ghost {
-    margin-top: 0.65rem;
+    margin-top: 0.625rem;
     color: var(--gvf-text-heading);
     border: 1px solid var(--gvf-surface-200);
   }
 
   .sim-btn--ghost:hover {
-    border-color: var(--gvf-text-heading);
+    border-color: var(--gvf-surface-300);
+    background: var(--gvf-surface-50);
   }
 
   .sim-disclaimer {
     margin-top: 1.25rem;
-    font-size: 0.78rem;
+    font-size: 0.875rem;
     line-height: 1.6;
     color: var(--gvf-text-muted);
   }
@@ -579,16 +667,26 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
     }
   }
 
-  @media (max-width: 720px) {
-    .sim-options--program {
-      grid-template-columns: 1fr;
+  @media (max-width: 560px) {
+    .sim-form,
+    .sim-summary {
+      padding: 1.25rem;
+    }
+    .sim-option {
+      grid-template-columns: 20px minmax(0, 1fr);
+      grid-template-areas:
+        'radio label'
+        '.     price'
+        '.     desc';
+    }
+    .sim-option-price {
+      text-align: left;
     }
     .sim-options--compact {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .sim-card,
-    .sim-summary {
-      padding: 1.25rem;
+    .sim-preset {
+      padding: 0 0.875rem;
     }
   }
 </style>
