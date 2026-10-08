@@ -12,10 +12,10 @@ const { program } = Astro.props;
 
 // Daftar link program untuk sticky sidebar
 const programNavLinks = [
-  { slug: 'wakaf', name: 'Wakaf Produktif & Lahan', badge: 'Abadi' },
-  { slug: 'zakat', name: 'Zakat Maal & Profesi', badge: 'Wajib 2.5%' },
-  { slug: 'infaq', name: 'Infaq Pembangunan', badge: 'Fleksibel' },
-  { slug: 'sedekah', name: 'Sedekah Subuh & Pangan', badge: 'Harian' },
+  { slug: 'wakaf', name: 'Wakaf', badge: 'Abadi' },
+  { slug: 'infaq', name: 'Infaq', badge: 'Fleksibel' },
+  { slug: 'zakat', name: 'Zakat', badge: 'Wajib' },
+  { slug: 'sedekah', name: 'Sedekah', badge: 'Harian' },
 ];
 
 // Value box vector SVG icons (Pahala Abadi, BWI, Akta AIW, Laporan Transparan)
@@ -422,32 +422,38 @@ const valueBoxIcons = [
   </section>
 
   <!-- =========================================================================
-       SECTION 8: FAQ SYARIAH & FORM KONFIRMASI AKAD (BOTTOM BANNER ALA ISAVO)
+  <!-- =========================================================================
+       SECTION 8: FAQ SYARIAH & FORM KONFIRMASI AKAD (PERSIS ISAVO STYLE)
        ========================================================================= -->
   <section class="isavo-faq-section pt-100 pb-100" id="faq">
     <div class="isavo-container">
-      <div class="isavo-section-heading text-center reveal-on-scroll">
-        <div class="isavo-pill-tag">
-          <span class="isavo-pill-dot"></span>
-          <span>{program.faqBadge}</span>
+      <div class="isavo-faq-header-row reveal-on-scroll">
+        <div class="faq-badge-col">
+          <div class="isavo-pill-tag">
+            <span class="pill-dot"></span>
+            <span>{program.faqBadge || 'FAQ'}</span>
+          </div>
         </div>
-        <h2 class="isavo-section-title">
-          {program.faqTitle.split(' ')[0]} <span class="accent-blue">{program.faqTitle.split(' ').slice(1).join(' ')}</span>
-        </h2>
-        <p class="isavo-section-desc">Panduan fiqih dan kejelasan syarat akad demi kemantapan hati donatur.</p>
+        <div class="faq-title-col">
+          <h2 class="isavo-faq-title">
+            Pertanyaan <span>{program.faqTitle ? (program.faqTitle.replace(/^Pertanyaan\s*/i, '')) : 'Seputar Akad & Fiqih Wakaf'}</span>
+          </h2>
+          <p class="isavo-faq-desc">Panduan fiqih dan kejelasan syarat akad demi kemantapan hati donatur.</p>
+        </div>
       </div>
 
-      <!-- Accordion FAQ Interaktif -->
-      <div class="faq-accordion-wrap mt-50 max-w-800 mx-auto">
+      <!-- Accordion FAQ — ISAVO Real Pattern: no box card, thin divider, clean +/- icon -->
+      <div class="isavo-faq-accordion mt-40">
         {program.faqs.map((faq, idx) => (
-          <details class={`isavo-faq-item reveal-on-scroll delay-${(idx + 1) * 100}`} open={idx === 0}>
-            <summary class="faq-summary">
-              <span class="faq-question">{faq.question}</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
+          <details class={`isavo-accordion-item reveal-on-scroll delay-${(idx + 1) * 100}`} open={idx === 0}>
+            <summary class="isavo-accordion-summary">
+              <span class="isavo-accordion-question">{faq.question}</span>
+              <span class="isavo-accordion-toggle" aria-hidden="true">
+                <span class="toggle-icon-plus">+</span>
+                <span class="toggle-icon-minus">−</span>
+              </span>
             </summary>
-            <div class="faq-content">
+            <div class="isavo-accordion-body">
               <p>{faq.answer}</p>
             </div>
           </details>
@@ -683,28 +689,46 @@ const valueBoxIcons = [
 
 <style>
   /* =========================================================================
-     DESIGN TOKENS & RESET KHUSUS TEMPLATE PROGRAM ALA ISAVO (BEBAS WARNA UNGU)
+     DESIGN TOKENS — HARD COPY DARI ISAVO (isavo.co.id) + ADAPTASI GVF
+     Font: Cal Sans (heading) + Golos Text (body) — SAMA PERSIS ISAVO
      ========================================================================= */
+  @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Golos+Text:wght@400..900&display=swap');
+
   :root {
+    /* Font System — ISAVO asli */
+    --tl-ff-heading: 'Cal Sans', serif;
+    --tl-ff-body: 'Golos Text', sans-serif;
+
+    /* Color System — adaptasi GVF (merah ISAVO → biru/emerald GVF) */
+    --tl-color-heading-primary: #191919;   /* ISAVO: #191919 */
+    --tl-color-text-body: #4d4d52;         /* ISAVO: #4d4d52 */
+    --tl-color-theme-primary: #059669;     /* ISAVO: #ed3237 → GVF: emerald */
+    --tl-color-theme-secondary: #0369a1;   /* Biru GVF */
+    --tl-color-bg-1: #1c1c1d;             /* ISAVO: #1c1c1d */
+    --tl-color-border-1: #e3e3e8;         /* ISAVO: #e3e3e8 */
+    --tl-color-grey-1: #59585d;           /* ISAVO: #59585d */
+    --tl-color-grey-2: #9f9fa4;           /* ISAVO: #9f9fa4 */
+
+    /* Legacy aliases (dipertahankan untuk bagian yang belum di-refactor) */
     --isavo-navy: #0a2540;
-    --isavo-dark: #0f172a;
-    --isavo-blue: #0284c7;
-    --isavo-blue-hover: #0369a1;
+    --isavo-dark: #191919;
+    --isavo-blue: #0369a1;
+    --isavo-blue-hover: #025e8d;
     --isavo-blue-soft: #f0f7ff;
     --isavo-blue-border: #bae6fd;
     --isavo-emerald: #059669;
     --isavo-emerald-soft: #ecfdf5;
-    --isavo-border: rgba(15, 23, 42, 0.08);
-    --isavo-bg-light: #f8fafc;
-    --isavo-text-muted: #64748b;
+    --isavo-border: #e3e3e8;
+    --isavo-bg-light: #f4f4f4;  /* ISAVO: #f8f8f8 / warm grey */
+    --isavo-text-muted: #9f9fa4;
   }
 
   .accent-blue {
-    color: var(--isavo-blue);
+    color: var(--tl-color-theme-secondary);
   }
 
   .bg-light {
-    background-color: var(--isavo-bg-light);
+    background-color: var(--isavo-bg-light); /* #f4f4f4 warm grey ISAVO */
   }
 
   .pt-100 { padding-top: 100px; }
@@ -718,54 +742,132 @@ const valueBoxIcons = [
 
   .isavo-container {
     width: 100%;
-    max-width: 1240px;
+    max-width: 1425px; /* container-2 ISAVO */
     margin-left: auto;
     margin-right: auto;
     padding-left: 24px;
     padding-right: 24px;
   }
 
-  /* Section Heading Pattern ala ISAVO */
+  /* =========================================================================
+     SECTION HEADING PATTERN — HARD COPY ISAVO
+     Struktur: .section-heading-wrap (row) → kiri: sub-heading | kanan: section-title
+     ========================================================================= */
+  .isavo-section-heading {
+    width: 100%;
+    max-width: 1192px;
+    margin: 0 auto 60px;
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .isavo-section-heading.centered {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .isavo-section-heading .sub-heading-col {
+    flex: 0 0 auto;
+    min-width: 180px;
+  }
+
+  .isavo-section-heading .title-col {
+    flex: 1;
+    min-width: 260px;
+  }
+
+  /* Sub-heading pill — ISAVO style */
+  .isavo-sub-heading {
+    font-family: var(--tl-ff-heading);
+    color: var(--tl-color-heading-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid rgba(114, 114, 114, 0.18);
+    border-radius: 100px;
+    margin-bottom: 20px;
+    padding: 7px 19px 7px 28px;
+    font-size: 12px;
+    font-weight: 400;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .isavo-sub-heading::before {
+    content: '';
+    background-color: var(--tl-color-theme-primary);
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+  }
+
+  /* Main section title — ISAVO Cal Sans big */
+  .isavo-section-title {
+    font-family: var(--tl-ff-heading);
+    font-size: clamp(2.2rem, 4vw, 3.75rem);
+    font-weight: 400;
+    color: var(--tl-color-heading-primary);
+    line-height: 1.1;
+    margin-bottom: 0;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    overflow: hidden;
+  }
+
+  .isavo-section-title span {
+    color: var(--tl-color-theme-primary);
+  }
+
+  .isavo-section-desc {
+    font-family: var(--tl-ff-body);
+    font-size: 1rem;
+    color: var(--tl-color-text-body);
+    max-width: 720px;
+    line-height: 1.75;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  /* Pill tag legacy (tetap ada untuk bagian yang pakai) */
   .isavo-pill-tag {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 14px;
-    background-color: var(--isavo-blue-soft);
-    border: 1px solid var(--isavo-blue-border);
+    padding: 7px 19px 7px 28px;
+    background-color: transparent;
+    border: 1px solid rgba(114, 114, 114, 0.18);
     border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--isavo-blue);
+    font-size: 12px;
+    font-weight: 400;
+    font-family: var(--tl-ff-heading);
+    letter-spacing: 1px;
+    color: var(--tl-color-heading-primary);
     text-transform: uppercase;
     margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .isavo-pill-dot {
-    width: 7px;
-    height: 7px;
+  .isavo-pill-tag::before {
+    content: '';
+    background-color: var(--tl-color-theme-primary);
     border-radius: 50%;
-    background-color: var(--isavo-blue);
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
   }
 
-  .isavo-section-title {
-    font-size: clamp(2rem, 3.5vw, 2.75rem);
-    font-weight: 800;
-    color: var(--isavo-navy);
-    line-height: 1.25;
-    margin-bottom: 16px;
-    letter-spacing: -0.02em;
-  }
-
-  .isavo-section-desc {
-    font-size: 1.05rem;
-    color: var(--isavo-text-muted);
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
-  }
+  .isavo-pill-dot { display: none; } /* Diganti ::before pseudo-element */
 
   /* =========================================================================
      1. HERO HEADER & BREADCRUMB
@@ -783,7 +885,7 @@ const valueBoxIcons = [
   .isavo-header-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(10, 18, 30, 0.58);
+    background: linear-gradient(180deg, rgba(8, 15, 26, 0.78) 0%, rgba(8, 15, 26, 0.65) 50%, rgba(8, 15, 26, 0.88) 100%);
   }
 
   .isavo-header-container {
@@ -798,14 +900,14 @@ const valueBoxIcons = [
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: rgba(2, 132, 199, 0.25);
-    border: 1px solid rgba(186, 230, 253, 0.4);
+    background-color: rgba(2, 132, 199, 0.35);
+    border: 1px solid rgba(186, 230, 253, 0.6);
     padding: 6px 14px;
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.08em;
-    color: #bae6fd;
+    color: #e0f2fe;
     margin-bottom: 20px;
   }
 
@@ -824,50 +926,56 @@ const valueBoxIcons = [
     margin-bottom: 18px;
     max-width: 850px;
     color: #ffffff !important;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
   }
 
   .isavo-header-subtitle {
     font-size: 1.15rem;
     line-height: 1.7;
-    color: #f1f5f9 !important;
+    color: #f8fafc !important;
     max-width: 750px;
     margin-bottom: 28px;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
   }
 
   .isavo-header-breadcrumb {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 10px;
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: #cbd5e1;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    padding: 6px 18px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .isavo-header-breadcrumb a {
-    color: #cbd5e1;
+    color: #e2e8f0 !important;
     text-decoration: none;
     transition: color 0.2s;
+    font-weight: 500;
   }
 
   .isavo-header-breadcrumb a:hover {
-    color: #ffffff;
+    color: #ffffff !important;
   }
 
   .isavo-header-breadcrumb .sep {
-    color: #64748b;
+    color: #94a3b8;
   }
 
   .isavo-header-breadcrumb .current {
-    color: #38bdf8;
-    font-weight: 600;
+    color: #38bdf8 !important;
+    font-weight: 700;
   }
 
   /* =========================================================================
      2. EXACT ISAVO 3-COLUMN PRICING GRID & CARD DESIGN (DARI ISAVO.CO.ID)
      ========================================================================= */
   .isavo-pricing-section {
-    background-color: #f8f8f8;
+    background-color: #f8f8f8; /* Warm grey ISAVO asli */
   }
 
   .isavo-pricing-grid-3 {
@@ -886,72 +994,72 @@ const valueBoxIcons = [
     }
   }
 
+  /* Pricing Card — HARD COPY ISAVO flat surface */
   .arch-pricing-card {
     background-color: #ffffff;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #e3e3e8; /* ISAVO: --tl-color-border-1 */
     border-radius: 20px;
     flex-direction: column;
     height: 100%;
     padding: 38px 28px;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
     display: flex;
     position: relative;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    box-shadow: none; /* ISAVO: flat! box-shadow none di default */
   }
 
   .arch-pricing-card:hover {
     transform: translateY(-4px);
-    border-color: #cbd5e1;
-    box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* ISAVO hover shadow */
   }
 
   .arch-pricing-card.popular {
-    border: 2px solid #0284c7;
-    box-shadow: 0 14px 32px -6px rgba(2, 132, 199, 0.12);
+    border: 2px solid var(--tl-color-theme-primary);
   }
 
   .arch-pricing-card .pricing-badge {
-    background: #0284c7;
+    background: var(--tl-color-theme-primary);
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     border-radius: 9999px;
     padding: 4px 16px;
     font-size: 11px;
-    font-weight: 800;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 700;
+    font-family: var(--tl-ff-heading);
     position: absolute;
     top: -13px;
     right: 50%;
     transform: translateX(50%);
     white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
   }
 
   .arch-pricing-card .plan-title {
+    font-family: var(--tl-ff-heading);
     text-align: center;
     margin-bottom: 4px;
-    font-size: 24px;
-    font-weight: 600;
-    color: #0f172a;
-    letter-spacing: -0.01em;
+    font-size: 26px;
+    font-weight: 400; /* Cal Sans natural weight ISAVO */
+    color: var(--tl-color-heading-primary);
+    letter-spacing: 0;
   }
 
   .arch-pricing-card .plan-subtitle {
-    color: var(--isavo-text-muted);
+    font-family: var(--tl-ff-body);
+    color: var(--tl-color-grey-1);
     text-align: center;
     margin-bottom: 20px;
     font-size: 14px;
   }
 
   .arch-pricing-card .plan-price {
-    font-family: inherit;
-    color: #0f172a;
+    font-family: var(--tl-ff-body);
+    color: var(--tl-color-heading-primary);
     text-align: center;
     margin-bottom: 4px;
     font-size: 36px;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     line-height: 1.1;
   }
 
@@ -975,7 +1083,7 @@ const valueBoxIcons = [
   }
 
   .arch-pricing-card .plan-duration {
-    color: var(--isavo-blue);
+    color: var(--tl-color-theme-primary);
     text-align: center;
     margin-bottom: 20px;
     font-size: 13px;
@@ -983,15 +1091,16 @@ const valueBoxIcons = [
   }
 
   .arch-pricing-card .plan-deliverables-heading {
-    color: #64748b;
+    font-family: var(--tl-ff-heading);
+    color: var(--tl-color-heading-primary);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--tl-color-border-1);
     margin-top: 16px;
     margin-bottom: 12px;
     padding-top: 16px;
-    font-size: 12px;
-    font-weight: 800;
+    font-size: 11px;
+    font-weight: 400;
     display: block;
     text-align: left;
   }
@@ -1006,12 +1115,13 @@ const valueBoxIcons = [
   }
 
   .arch-pricing-card .plan-features li {
-    border-bottom: 1px solid #f8fafc;
-    color: #334155;
+    border-bottom: 1px solid #f4f4f4;
+    color: var(--tl-color-text-body);
     align-items: flex-start;
     gap: 10px;
     padding: 10px 0;
     font-size: 13.5px;
+    font-family: var(--tl-ff-body);
     line-height: 1.5;
     display: flex;
   }
@@ -1020,9 +1130,10 @@ const valueBoxIcons = [
     border-bottom: none;
   }
 
+  /* Checkmark circle — ISAVO solid red → GVF solid emerald */
   .arch-pricing-card .plan-features li .check-icon-circle {
-    color: #0284c7;
-    background: #e0f2fe;
+    color: #ffffff;
+    background: var(--tl-color-theme-primary);
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -1034,8 +1145,8 @@ const valueBoxIcons = [
   }
 
   .arch-pricing-card .plan-features li strong {
-    color: #0f172a;
-    font-weight: 600;
+    color: var(--tl-color-heading-primary);
+    font-weight: 700;
   }
 
   .arch-pricing-card .plan-btn-wrap {
@@ -1047,20 +1158,21 @@ const valueBoxIcons = [
   }
 
   /* =========================================================================
-     EXACT ISAVO BUTTON DESIGN & ROTATING ARROW ANIMATION (.tl-primary-btn)
+     BUTTON — HARD COPY ISAVO .tl-primary-btn
+     Pill transparan, icon lingkaran solid, arrow rotate -45deg→0
      ========================================================================= */
   .tl-primary-btn {
-    font-family: inherit;
-    color: #0f172a;
+    font-family: var(--tl-ff-heading); /* Cal Sans — sama persis ISAVO */
+    color: var(--tl-color-heading-primary);
     text-transform: capitalize;
     z-index: 1;
     background-color: transparent;
-    border: 1px solid #94a3b8;
+    border: 1px solid #9f9fa4a3; /* ISAVO border color */
     border-radius: 100px;
     align-items: center;
-    padding: 8px 10px 8px 24px;
-    font-size: 15px;
-    font-weight: 600;
+    padding: 10px 15px 10px 25px; /* ISAVO padding asli */
+    font-size: 16px;
+    font-weight: 400; /* Cal Sans normal weight */
     line-height: 1;
     transition: all .3s ease-in-out;
     display: inline-flex;
@@ -1069,12 +1181,12 @@ const valueBoxIcons = [
     overflow: hidden;
     text-decoration: none;
     width: 100%;
-    max-width: 280px;
+    max-width: 300px;
   }
 
   .tl-primary-btn:before {
-    content: "";
-    background: var(--isavo-blue);
+    content: '';
+    background: var(--tl-color-theme-primary); /* GVF Emerald (ISAVO: merah) */
     transform-origin: 100%;
     transition: transform .4s cubic-bezier(.4, 0, .2, 1);
     z-index: -1;
@@ -1085,7 +1197,7 @@ const valueBoxIcons = [
 
   .tl-primary-btn:hover {
     color: #ffffff;
-    border: 1px solid var(--isavo-blue);
+    border: 1px solid var(--tl-color-theme-primary);
   }
 
   .tl-primary-btn:hover:before {
@@ -1093,34 +1205,36 @@ const valueBoxIcons = [
     transform: scaleX(1);
   }
 
+  /* Icon lingkaran solid — ISAVO: merah solid, GVF: emerald solid */
   .tl-primary-btn .icon {
-    background-color: var(--isavo-blue);
+    background-color: var(--tl-color-theme-primary);
     color: #ffffff;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    width: 38px;
-    height: 38px;
-    margin-left: 12px;
+    width: 40px;  /* ISAVO: 40px */
+    height: 40px;
+    margin-left: 10px;
     transition: all .3s ease-in-out;
     display: flex;
     flex-shrink: 0;
   }
 
+  /* Arrow icon — ISAVO: rotate(-45deg) saat rest, rotate(0) saat hover */
   .tl-primary-btn .btn-arrow-icon {
     width: 16px;
     height: 16px;
     transition: all .3s ease-in-out;
-    transform: rotate(-45deg); /* Diam (Rest): Menghadap diagonal miring ↗ */
+    transform: rotate(-45deg); /* Rest: diagonal ↗ */
   }
 
   .tl-primary-btn:hover .btn-arrow-icon {
-    transform: rotate(0deg); /* Hover: Berputar mulus ke kanan → */
+    transform: rotate(0deg); /* Hover: lurus → */
   }
 
   .tl-primary-btn:hover .icon {
-    background-color: #ffffff;
-    color: var(--isavo-blue);
+    background-color: var(--tl-color-theme-primary);
+    color: #ffffff;
   }
 
   /* =========================================================================
@@ -1143,18 +1257,23 @@ const valueBoxIcons = [
 
   .sidebar-widget {
     background: #ffffff;
-    border: 1px solid var(--isavo-border);
+    border: 1px solid var(--tl-color-border-1);
     border-radius: 16px;
     padding: 28px;
-    box-shadow: 0 4px 20px rgba(10, 37, 64, 0.04);
+    box-shadow: none; /* ISAVO flat */
+  }
+
+  .sidebar-widget:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* Hover saja */
   }
 
   .widget-title {
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--isavo-navy);
+    font-family: var(--tl-ff-heading);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--tl-color-heading-primary);
     margin-bottom: 20px;
-    border-bottom: 2px solid var(--isavo-blue-soft);
+    border-bottom: 1px solid var(--tl-color-border-1);
     padding-bottom: 12px;
   }
 
@@ -1190,18 +1309,19 @@ const valueBoxIcons = [
   }
 
   .prog-nav-item.active {
-    background: var(--isavo-navy);
+    background: var(--tl-color-heading-primary); /* #191919 */
     color: #ffffff;
     font-weight: 700;
-    box-shadow: 0 4px 12px rgba(10, 37, 64, 0.2);
+    box-shadow: none;
   }
 
   .prog-nav-badge {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
+    font-weight: 700;
     padding: 3px 8px;
     border-radius: 6px;
-    background: rgba(2, 132, 199, 0.15);
-    color: var(--isavo-blue);
+    background: #e2e8f0;
+    color: #0369a1 !important;
   }
 
   .prog-nav-item.active .prog-nav-badge {
@@ -1218,10 +1338,10 @@ const valueBoxIcons = [
   }
 
   .cta-tag {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.08em;
-    color: #38bdf8;
+    color: #38bdf8 !important;
   }
 
   .cta-title {
@@ -1229,12 +1349,13 @@ const valueBoxIcons = [
     font-weight: 800;
     margin: 8px 0 12px;
     line-height: 1.35;
+    color: #ffffff !important;
   }
 
   .cta-desc {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     line-height: 1.6;
-    color: #94a3b8;
+    color: #cbd5e1 !important;
     margin-bottom: 20px;
   }
 
@@ -1244,7 +1365,7 @@ const valueBoxIcons = [
     gap: 10px;
     font-size: 1.15rem;
     font-weight: 800;
-    color: #ffffff;
+    color: #ffffff !important;
     margin-bottom: 20px;
   }
 
@@ -1296,10 +1417,11 @@ const valueBoxIcons = [
   }
 
   .article-title {
+    font-family: var(--tl-ff-heading);
     font-size: clamp(1.8rem, 3vw, 2.3rem);
-    font-weight: 800;
-    color: var(--isavo-navy);
-    line-height: 1.3;
+    font-weight: 400;
+    color: var(--tl-color-heading-primary);
+    line-height: 1.2;
     margin-bottom: 18px;
   }
 
@@ -1309,6 +1431,7 @@ const valueBoxIcons = [
     color: #1e293b;
     font-weight: 500;
     margin-bottom: 16px;
+    text-align: justify;
   }
 
   .article-p {
@@ -1316,6 +1439,7 @@ const valueBoxIcons = [
     line-height: 1.8;
     color: #475569;
     margin-bottom: 18px;
+    text-align: justify;
   }
 
   /* Value Box Grid */
@@ -1383,9 +1507,10 @@ const valueBoxIcons = [
   }
 
   .value-box-desc {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     line-height: 1.6;
-    color: var(--isavo-text-muted);
+    color: #475569 !important;
+    text-align: justify;
   }
 
   /* =========================================================================
@@ -1497,10 +1622,11 @@ const valueBoxIcons = [
   }
 
   .gallery-title {
+    font-family: var(--tl-ff-heading);
     font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--isavo-navy);
-    line-height: 1.4;
+    font-weight: 400;
+    color: var(--tl-color-heading-primary);
+    line-height: 1.3;
     margin-bottom: 8px;
   }
 
@@ -1574,18 +1700,20 @@ const valueBoxIcons = [
   }
 
   .process-step-title {
+    font-family: var(--tl-ff-heading);
     font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--isavo-navy);
+    font-weight: 400;
+    color: var(--tl-color-heading-primary);
     margin-bottom: 10px;
-    line-height: 1.35;
+    line-height: 1.3;
   }
 
   .process-step-desc {
-    font-size: 0.88rem;
-    color: var(--isavo-text-muted);
+    font-size: 0.9rem;
+    color: #374151 !important;
     line-height: 1.6;
     margin: 0;
+    text-align: justify;
   }
 
   /* =========================================================================
@@ -1594,12 +1722,13 @@ const valueBoxIcons = [
   .leadership-quote-lead {
     font-size: 1.05rem;
     font-style: italic;
-    color: #334155;
+    color: #1e293b !important;
     max-width: 800px;
     margin: 20px auto 0;
     line-height: 1.7;
     position: relative;
     padding: 0 20px;
+    text-align: justify;
   }
 
   .isavo-leaders-grid {
@@ -1660,23 +1789,24 @@ const valueBoxIcons = [
   .leader-name {
     font-size: 1.25rem;
     font-weight: 800;
-    color: var(--isavo-navy);
+    color: #0f172a !important;
     margin-bottom: 6px;
   }
 
   .leader-cred {
-    font-size: 0.82rem;
-    color: var(--isavo-blue);
-    font-weight: 600;
+    font-size: 0.84rem;
+    color: #0052cc !important;
+    font-weight: 700;
     margin-bottom: 14px;
   }
 
   .leader-quote {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     font-style: italic;
-    color: var(--isavo-text-muted);
-    line-height: 1.6;
+    color: #334155 !important;
+    line-height: 1.65;
     margin-top: auto;
+    text-align: justify;
   }
 
   /* =========================================================================
@@ -1737,28 +1867,29 @@ const valueBoxIcons = [
 
   .reg-badge {
     display: inline-block;
-    background: var(--isavo-blue-soft);
-    border: 1px solid var(--isavo-blue-border);
-    color: var(--isavo-blue);
-    font-size: 0.75rem;
+    background: #e0f2fe;
+    border: 1px solid #bae6fd;
+    color: #0369a1 !important;
+    font-size: 0.78rem;
     font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 4px;
+    padding: 3px 10px;
+    border-radius: 6px;
     font-family: monospace;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .leg-auth {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #334155;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #0f172a !important;
     margin-bottom: 4px;
   }
 
   .leg-desc {
-    font-size: 0.8rem;
-    color: var(--isavo-text-muted);
-    line-height: 1.5;
+    font-size: 0.84rem;
+    color: #334155 !important;
+    line-height: 1.55;
+    text-align: justify;
   }
 
   /* Bank Accounts List */
@@ -1881,81 +2012,154 @@ const valueBoxIcons = [
   }
 
   /* =========================================================================
-     8. FAQ SYARIAH (Pure shadcn Accordion Architecture)
+  /* =========================================================================
+     FAQ — EXACT 1:1 ISAVO ACCORDION STYLE
+     Horizontal header split, minimal border lines, clean +/- indicators
      ========================================================================= */
-  .faq-accordion-wrap {
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+  .isavo-faq-section {
+    background-color: #f8fafc;
   }
 
-  .isavo-faq-item {
+  .isavo-faq-header-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    align-items: flex-start;
+    margin-bottom: 50px;
+  }
+
+  @media (max-width: 991px) {
+    .isavo-faq-header-row {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .faq-badge-col {
+    padding-top: 8px;
+  }
+
+  .isavo-faq-title {
+    font-family: var(--tl-ff-body);
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-weight: 800;
+    color: #191919;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+  }
+
+  .isavo-faq-title span {
+    color: #0052cc;
+    display: block;
+  }
+
+  .isavo-faq-desc {
+    font-size: 1.05rem;
+    color: #64748b;
+    margin: 0;
+    max-width: 680px;
+    line-height: 1.6;
+  }
+
+  /* Accordion wrap */
+  .isavo-faq-accordion {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .isavo-accordion-item {
+    border-bottom: 1px solid #e2e8f0;
     background: transparent;
-    border: none;
-    border-bottom: 1px solid #f1f5f9;
-    padding: 0 28px;
-    transition: background 0.2s ease;
+    transition: all 0.2s ease;
   }
 
-  .isavo-faq-item:last-child {
-    border-bottom: none;
+  .isavo-accordion-item:first-child {
+    border-top: 1px solid #e2e8f0;
   }
 
-  .isavo-faq-item[open] {
-    background: #f8fafc;
-    box-shadow: none;
-  }
-
-  .faq-summary {
+  .isavo-accordion-summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0;
-    font-size: 1.02rem;
-    font-weight: 700;
-    color: #0f172a;
+    padding: 24px 0;
     cursor: pointer;
     list-style: none;
     user-select: none;
+    gap: 24px;
   }
 
-  .faq-summary::-webkit-details-marker {
+  .isavo-accordion-summary::-webkit-details-marker {
     display: none;
   }
 
-  .faq-chevron {
-    width: 18px;
-    height: 18px;
-    color: #64748b;
-    transition: transform 0.25s ease, color 0.25s ease;
+  .isavo-accordion-question {
+    font-family: var(--tl-ff-body);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #191919;
+    line-height: 1.4;
+    flex: 1;
+    transition: color 0.2s ease;
+  }
+
+  .isavo-accordion-item[open] .isavo-accordion-question {
+    color: #0052cc;
+  }
+
+  .isavo-accordion-toggle {
+    font-family: monospace, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: #191919;
     flex-shrink: 0;
   }
 
-  .isavo-faq-item[open] .faq-chevron {
-    transform: rotate(180deg);
-    color: #0284c7;
+  .toggle-icon-minus {
+    display: none;
+    color: #0052cc;
+    font-weight: 700;
   }
 
-  .faq-content {
-    padding: 0 0 20px;
-    font-size: 0.92rem;
-    line-height: 1.7;
-    color: #64748b;
-    border: none;
+  .toggle-icon-plus {
+    display: block;
+  }
+
+  .isavo-accordion-item[open] .toggle-icon-plus {
+    display: none;
+  }
+
+  .isavo-accordion-item[open] .toggle-icon-minus {
+    display: block;
+  }
+
+  .isavo-accordion-body {
+    padding: 0 0 28px;
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: #4b5563;
+    max-width: 900px;
+  }
+
+  .isavo-accordion-body p {
     margin: 0;
+    text-align: justify;
   }
 
-  /* Bottom Consultation Banner ala ISAVO Newsletter Banner */
+  /* Bottom Consultation Banner */
   .isavo-bottom-banner {
-    background: linear-gradient(135deg, #0a2540 0%, #0f172a 100%);
+    background: #111827;
     border-radius: 20px;
     padding: 50px 40px;
     color: #ffffff;
-    box-shadow: 0 20px 40px rgba(10, 37, 64, 0.15);
+    box-shadow: none;
   }
 
   .banner-inner {
@@ -1970,11 +2174,12 @@ const valueBoxIcons = [
     font-weight: 800;
     line-height: 1.3;
     margin-bottom: 8px;
+    color: #ffffff !important;
   }
 
   .banner-desc {
     font-size: 0.95rem;
-    color: #94a3b8;
+    color: #94a3b8 !important;
     max-width: 620px;
     line-height: 1.6;
     margin: 0;
@@ -1992,14 +2197,14 @@ const valueBoxIcons = [
     font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
-    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35);
+    box-shadow: 0 6px 18px rgba(0, 82, 204, 0.35);
     transition: all 0.25s ease;
   }
 
   .isavo-banner-btn:hover {
-    background: var(--isavo-blue-hover);
+    background: #0043a8;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45);
+    box-shadow: 0 8px 24px rgba(0, 82, 204, 0.45);
   }
 
   .isavo-banner-btn svg {

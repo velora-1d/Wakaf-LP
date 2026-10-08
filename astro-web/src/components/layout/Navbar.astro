@@ -12,10 +12,10 @@ const currentPath = Astro.url.pathname;
     </a>
 
     <!-- Desktop Navigation Menu -->
+    <!-- Desktop Navigation Menu -->
     <nav class="isavo-nav-desktop" aria-label="Navigasi Utama">
       <ul class="isavo-nav-list">
         <li><a href="/" class={`isavo-nav-link ${currentPath === '/' ? 'active' : ''}`}>Home</a></li>
-        <li><a href="/#tentang-kami" class="isavo-nav-link">Tentang Kami</a></li>
         <li class="isavo-has-dropdown">
           <a href="/#program" class={`isavo-nav-link ${currentPath.startsWith('/program') ? 'active' : ''}`}>
             <span>Program</span>
@@ -24,15 +24,12 @@ const currentPath = Astro.url.pathname;
             </svg>
           </a>
           <ul class="isavo-dropdown-menu">
-            <li><a href="/program/wakaf">Masjid Khairu Ummah Sugro</a></li>
-            <li><a href="/program/infaq">Pendidikan & Vokasi Santri</a></li>
-            <li><a href="/program/wakaf">Wakaf Produktif Abadi</a></li>
-            <li><a href="/program/sedekah">Skill Teaching Factory</a></li>
+            <li><a href="/program/wakaf">Wakaf</a></li>
+            <li><a href="/program/infaq">Infaq</a></li>
+            <li><a href="/program/zakat">Zakat</a></li>
+            <li><a href="/program/sedekah">Sedekah</a></li>
           </ul>
         </li>
-        <li><a href="/#donasi" class="isavo-nav-link">Donasi</a></li>
-        <li><a href="/program/zakat" class="isavo-nav-link">Zakat</a></li>
-        <li><a href="/program/wakaf" class="isavo-nav-link">Wakaf</a></li>
         <li><a href="/#kemitraan" class="isavo-nav-link">Kemitraan</a></li>
         <li><a href="/#dampak" class="isavo-nav-link">Dampak</a></li>
         <li><a href="/contact" class={`isavo-nav-link ${currentPath === '/contact' ? 'active' : ''}`}>Kontak</a></li>
@@ -88,11 +85,10 @@ const currentPath = Astro.url.pathname;
       </div>
       <nav class="isavo-drawer-nav">
         <a href="/">Home</a>
-        <a href="/#tentang-kami">Tentang Kami</a>
-        <a href="/#program">Program</a>
-        <a href="/#donasi">Donasi</a>
-        <a href="/program/zakat">Zakat</a>
         <a href="/program/wakaf">Wakaf</a>
+        <a href="/program/infaq">Infaq</a>
+        <a href="/program/zakat">Zakat</a>
+        <a href="/program/sedekah">Sedekah</a>
         <a href="/#kemitraan">Kemitraan</a>
         <a href="/#dampak">Dampak</a>
         <a href="/contact">Kontak</a>
