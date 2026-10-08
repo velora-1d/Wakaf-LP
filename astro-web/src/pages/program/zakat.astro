@@ -1,0 +1,10 @@
+---
+// src/pages/program/zakat.astro
+// Halaman Program Zakat Maal & Profesi 2.5%
+import ProgramLayout from '../../layouts/ProgramLayout.astro';
+import { programsData } from '../../data/programs';
+
+const program = programsData.zakat;
+---
+
+<ProgramLayout program={program} />

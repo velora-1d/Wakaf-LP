@@ -1,0 +1,10 @@
+---
+// src/pages/program/sedekah.astro
+// Halaman Program Sedekah Subuh & Pangan Santri
+import ProgramLayout from '../../layouts/ProgramLayout.astro';
+import { programsData } from '../../data/programs';
+
+const program = programsData.sedekah;
+---
+
+<ProgramLayout program={program} />

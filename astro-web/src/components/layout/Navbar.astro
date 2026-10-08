@@ -16,16 +16,17 @@ const currentPath = Astro.url.pathname;
       <ul class="isavo-nav-list">
         <li><a href="/" class={`isavo-nav-link ${currentPath === '/' ? 'active' : ''}`}>Home</a></li>
         <li class="isavo-has-dropdown">
-          <a href="/#pilar" class="isavo-nav-link">
+          <a href="/program/wakaf" class={`isavo-nav-link ${currentPath.startsWith('/program') ? 'active' : ''}`}>
             <span>Program</span>
             <svg class="isavo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </a>
           <ul class="isavo-dropdown-menu">
-            <li><a href="/#pilar">Masjid Khairu Ummah</a></li>
-            <li><a href="/#pilar">Skill Village Islamic School</a></li>
-            <li><a href="/#pilar">Green Waqf Agro-Technopark</a></li>
+            <li><a href="/program/wakaf">Wakaf Produktif & Lahan</a></li>
+            <li><a href="/program/zakat">Zakat Maal & Profesi</a></li>
+            <li><a href="/program/infaq">Infaq Pembangunan</a></li>
+            <li><a href="/program/sedekah">Sedekah Subuh & Pangan</a></li>
           </ul>
         </li>
         <li><a href="/portofolio" class={`isavo-nav-link ${currentPath === '/portofolio' ? 'active' : ''}`}>Portofolio</a></li>
@@ -103,7 +104,10 @@ const currentPath = Astro.url.pathname;
       </div>
       <nav class="isavo-drawer-nav">
         <a href="/">Home</a>
-        <a href="/#pilar">Program Wakaf</a>
+        <a href="/program/wakaf">Wakaf Produktif & Lahan</a>
+        <a href="/program/zakat">Zakat Maal & Profesi</a>
+        <a href="/program/infaq">Infaq Pembangunan</a>
+        <a href="/program/sedekah">Sedekah Subuh & Pangan</a>
         <a href="/portofolio">Portofolio</a>
         <a href="/#tentang-kami">Tentang Kami</a>
         <a href="/#dokumentasi">Galeri</a>

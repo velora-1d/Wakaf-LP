@@ -1,0 +1,10 @@
+---
+// src/pages/program/wakaf.astro
+// Halaman Program Wakaf Produktif & Pendidikan Terpadu
+import ProgramLayout from '../../layouts/ProgramLayout.astro';
+import { programsData } from '../../data/programs';
+
+const program = programsData.wakaf;
+---
+
+<ProgramLayout program={program} />
