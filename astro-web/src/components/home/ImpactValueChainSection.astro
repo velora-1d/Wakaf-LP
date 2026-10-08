@@ -1,39 +1,73 @@
 ---
 // src/components/home/ImpactValueChainSection.astro
-// Section 10: Impact Value Chain — Ketika Kebaikan Bertumbuh, Dampaknya Ikut Meluas
+// Section 10: Impact Value Chain — Modern Connected Process Pipeline & shadcn-style Bento Cards
 const chainSteps = [
-  { step: '01', title: 'DONASI', desc: 'Amanah donatur dihimpun' },
-  { step: '02', title: 'FASILITAS & PROGRAM', desc: 'Dibangun sarana fisik' },
-  { step: '03', title: 'PEMBELAJARAN', desc: 'Santri belajar & beradab' },
-  { step: '04', title: 'KETERAMPILAN', desc: 'Praktik industri nyata' },
-  { step: '05', title: 'KEMANDIRIAN', desc: 'Unit usaha bergulir' },
-  { step: '06', title: 'DAMPAK LUAS', desc: 'Umat berdaya & makmur' }
+  { 
+    step: '01', 
+    title: 'Donasi & Amanah', 
+    desc: 'Penghimpunan dana halal dari donatur perorangan & korporasi.',
+    tag: 'INPUT'
+  },
+  { 
+    step: '02', 
+    title: 'Fasilitas & Sarana', 
+    desc: 'Konstruksi fisik masjid, ruang belajar vokasi & technopark.',
+    tag: 'ASET FISIK'
+  },
+  { 
+    step: '03', 
+    title: 'Pembelajaran Adab', 
+    desc: 'Kurikulum terpadu ilmu syariah, akhlak & sains teknologi.',
+    tag: 'EDUKASI'
+  },
+  { 
+    step: '04', 
+    title: 'Praktik Industri', 
+    desc: 'Teaching factory dan magang 4 pilar kompetensi terapan.',
+    tag: 'KOMPETENSI'
+  },
+  { 
+    step: '05', 
+    title: 'Kemandirian Usaha', 
+    desc: 'Unit usaha produktif agro & wakaf mandiri bergulir.',
+    tag: 'SUSTAINABILITY'
+  },
+  { 
+    step: '06', 
+    title: 'Dampak Peradaban', 
+    desc: 'Generasi berdaya, ekonomi tumbuh, dan pahala abadi.',
+    tag: 'OUTCOME'
+  }
 ];
 
 const beneficiaries = [
   {
     role: 'Untuk Santri',
     tag: 'TALENTA MUDA',
-    text: 'Memperoleh bekal ilmu syariah, penguatan karakter adab, keterampilan vokasi bersertifikat, dan pengalaman kerja riil.',
-    color: '#0284c7'
+    text: 'Memperoleh bekal ilmu syariah, penguatan karakter adab, keterampilan vokasi bersertifikat nasional, dan pengalaman kerja riil.',
+    color: '#0284c7',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>`
   },
   {
     role: 'Untuk Pesantren',
     tag: 'LEMBAGA BERKELANJUTAN',
     text: 'Memiliki ekosistem sarana modern dan unit usaha produktif mandiri yang menopang keberlangsungan dakwah jangka panjang.',
-    color: '#059669'
+    color: '#059669',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`
   },
   {
     role: 'Untuk Masyarakat',
     tag: 'EKONOMI & DAKWAH',
-    text: 'Mendapat fasilitas ibadah ramah lingkungan, peluang pemberdayaan ekonomi lokal, dan transfer teknologi aplikatif.',
-    color: '#d97706'
+    text: 'Mendapat fasilitas ibadah ramah lingkungan, peluang pemberdayaan ekonomi lokal, dan transfer teknologi terapan.',
+    color: '#d97706',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
   },
   {
     role: 'Untuk Mitra',
     tag: 'KOLABORASI SOSIAL',
     text: 'Memperoleh wadah kolaborasi sosial (CSR/ESG) yang akuntabel, transparan, dan berdampak sistemik langsung ke akar rumput.',
-    color: '#0ea5e9'
+    color: '#0ea5e9',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`
   }
 ];
 ---
@@ -43,7 +77,7 @@ const beneficiaries = [
     <div class="impact-header text-center reveal-on-scroll">
       <div class="impact-pill">
         <span class="pill-dot"></span>
-        <span>10 • MEASURABLE IMPACT</span>
+        <span>10 • MEASURABLE IMPACT PIPELINE</span>
       </div>
       <h2 class="impact-title">Ketika Kebaikan Bertumbuh, Dampaknya Ikut Meluas.</h2>
       <p class="impact-lead">
@@ -51,47 +85,108 @@ const beneficiaries = [
       </p>
     </div>
 
-    <!-- Value Chain Step Flow (Horizontal on Desktop) -->
-    <div class="chain-flow-wrap reveal-on-scroll delay-100">
-      <div class="chain-flow-track">
-        {chainSteps.map((s, idx) => (
-          <div class="chain-step-card">
-            <span class="step-num">{s.step}</span>
-            <h4 class="step-title">{s.title}</h4>
-            <p class="step-desc">{s.desc}</p>
-            {idx < chainSteps.length - 1 && (
-              <span class="step-arrow" aria-hidden="true">→</span>
-            )}
-          </div>
-        ))}
+    <!-- Modern Connected Process Pipeline (shadcn / Craft Stepper) -->
+    <div class="pipeline-card reveal-on-scroll delay-100">
+      <div class="pipeline-header">
+        <div class="pipeline-status">
+          <span class="pipeline-pulse-dot"></span>
+          <span class="pipeline-badge-text">ALUR RANTAI TRANSFORMASI NILAI YPCI</span>
+        </div>
+        <span class="pipeline-counter">6 TAHAP BERKESINAMBUNGAN</span>
+      </div>
+
+      <div class="pipeline-track-wrapper">
+        <div class="pipeline-track">
+          <!-- Background continuous connection line -->
+          <div class="pipeline-line-bg" aria-hidden="true"></div>
+
+          {chainSteps.map((s) => (
+            <div class="pipeline-step-node">
+              <div class="node-bullet-wrap">
+                <span class="node-bullet">
+                  <span class="node-num">{s.step}</span>
+                </span>
+              </div>
+              <div class="node-meta">
+                <span class="node-tag">{s.tag}</span>
+                <h4 class="node-title">{s.title}</h4>
+                <p class="node-desc">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
 
-    <!-- 4 Beneficiaries Grid -->
-    <div class="beneficiaries-grid mt-60">
+    <!-- 4 Beneficiaries Grid: shadcn Card Architecture -->
+    <div class="beneficiaries-grid mt-50">
       {beneficiaries.map((b, idx) => (
-        <div class={`benefit-card reveal-on-scroll delay-${(idx + 1) * 100}`} style={`--card-tint: ${b.color};`}>
-          <div class="benefit-top">
-            <span class="benefit-tag">{b.tag}</span>
-            <div class="benefit-indicator"></div>
+        <div class={`shadcn-card reveal-on-scroll delay-${(idx + 1) * 100}`} style={`--card-accent: ${b.color};`}>
+          <!-- Top Accent Border Indicator -->
+          <div class="card-accent-strip"></div>
+
+          <div class="card-header">
+            <div class="card-badge-row">
+              <span class="badge-status">
+                <span class="badge-dot"></span>
+                <span>{b.tag}</span>
+              </span>
+              <span class="badge-icon" set:html={b.icon} />
+            </div>
+            <h3 class="card-title">{b.role}</h3>
           </div>
-          <h3 class="benefit-role">{b.role}</h3>
-          <p class="benefit-text">{b.text}</p>
+
+          <div class="card-body">
+            <p class="card-text">{b.text}</p>
+          </div>
         </div>
       ))}
     </div>
 
-    <!-- YPCI Fast Character Badge Box -->
-    <div class="ypci-character-box reveal-on-scroll mt-50">
-      <div class="char-badge-left">
-        <span class="char-eyebrow">STANDAR LULUSAN SANTRI YPCI</span>
-        <h4 class="char-title">Generasi Alim, FAST, Kompeten, dan Kontributif</h4>
+    <!-- YPCI FAST Character Bento Banner -->
+    <div class="fast-bento-banner reveal-on-scroll mt-40">
+      <div class="bento-badge-group">
+        <div class="bento-icon-shield">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
+        </div>
+        <div>
+          <span class="bento-eyebrow">STANDAR LULUSAN SANTRI YPCI</span>
+          <h4 class="bento-title">Generasi Alim, FAST, Kompeten, dan Kontributif</h4>
+        </div>
       </div>
-      <div class="char-pills-right">
-        <span class="pill-fast"><strong>F</strong>athanah (Cerdas)</span>
-        <span class="pill-fast"><strong>A</strong>manah (Terpercaya)</span>
-        <span class="pill-fast"><strong>S</strong>iddiq (Jujur)</span>
-        <span class="pill-fast"><strong>T</strong>abligh (Komunikatif)</span>
+
+      <div class="fast-pills-row">
+        <div class="fast-pill-item">
+          <span class="fast-letter">F</span>
+          <div class="fast-info">
+            <span class="fast-name">Fathanah</span>
+            <span class="fast-sub">Cerdas & Solutif</span>
+          </div>
+        </div>
+        <div class="fast-pill-item">
+          <span class="fast-letter">A</span>
+          <div class="fast-info">
+            <span class="fast-name">Amanah</span>
+            <span class="fast-sub">Dapat Dipercaya</span>
+          </div>
+        </div>
+        <div class="fast-pill-item">
+          <span class="fast-letter">S</span>
+          <div class="fast-info">
+            <span class="fast-name">Siddiq</span>
+            <span class="fast-sub">Jujur & Berintegritas</span>
+          </div>
+        </div>
+        <div class="fast-pill-item">
+          <span class="fast-letter">T</span>
+          <div class="fast-info">
+            <span class="fast-name">Tabligh</span>
+            <span class="fast-sub">Komunikatif & Dakwah</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -100,7 +195,7 @@ const beneficiaries = [
 <style>
   .impact-section {
     position: relative;
-    padding: 110px 0 120px;
+    padding: 100px 0 120px;
     background-color: #ffffff;
     border-bottom: 1px solid #e2e8f0;
   }
@@ -120,8 +215,8 @@ const beneficiaries = [
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: rgba(2, 132, 199, 0.1);
-    border: 1px solid rgba(2, 132, 199, 0.25);
+    background-color: rgba(2, 132, 199, 0.08);
+    border: 1px solid rgba(2, 132, 199, 0.2);
     padding: 6px 14px;
     border-radius: 9999px;
     font-size: 0.75rem;
@@ -153,193 +248,368 @@ const beneficiaries = [
     color: #64748b;
   }
 
-  /* Chain Flow Horizontal Track */
-  .chain-flow-wrap {
-    overflow-x: auto;
-    padding-bottom: 12px;
-  }
-
-  .chain-flow-track {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 16px;
-    min-width: 960px;
-  }
-
-  .chain-step-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    padding: 22px 18px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.25s ease;
-  }
-
-  .chain-step-card:hover {
+  /* 1. Connected Process Pipeline (shadcn / Craft Stepper) */
+  .pipeline-card {
     background: #ffffff;
-    border-color: #0284c7;
-    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.08);
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 32px 32px 36px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
   }
 
-  .step-num {
-    font-size: 0.8rem;
-    font-weight: 900;
-    color: #0284c7;
-    font-family: monospace;
-    margin-bottom: 6px;
+  .pipeline-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
-  .step-title {
-    font-size: 0.92rem;
+  .pipeline-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pipeline-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+  }
+
+  .pipeline-badge-text {
+    font-size: 0.75rem;
     font-weight: 800;
+    letter-spacing: 0.08em;
     color: #0f172a;
-    letter-spacing: 0.01em;
-    margin-bottom: 6px;
   }
 
-  .step-desc {
-    font-size: 0.82rem;
-    line-height: 1.45;
+  .pipeline-counter {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
     color: #64748b;
   }
 
-  .step-arrow {
+  .pipeline-track-wrapper {
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .pipeline-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    min-width: 980px;
+  }
+
+  /* Connecting track line passing through nodes */
+  .pipeline-line-bg {
     position: absolute;
-    right: -14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #cbd5e1;
-    font-size: 1.1rem;
-    font-weight: 800;
+    top: 20px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #0284c7 0%, #38bdf8 50%, #059669 100%);
+    opacity: 0.35;
+    z-index: 1;
+  }
+
+  .pipeline-step-node {
+    position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 0 8px;
+    transition: transform 0.25s ease;
   }
 
-  .mt-60 {
-    margin-top: 50px;
+  .node-bullet-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
   }
 
-  .mt-50 {
-    margin-top: 40px;
+  .node-bullet {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 2px solid #0284c7;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.15);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
   }
 
-  /* Beneficiaries Grid */
+  .node-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #0284c7;
+  }
+
+  .pipeline-step-node:hover .node-bullet {
+    background: #0284c7;
+    transform: scale(1.08);
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  }
+
+  .pipeline-step-node:hover .node-num {
+    color: #ffffff;
+  }
+
+  .node-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .node-tag {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    text-transform: uppercase;
+  }
+
+  .node-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .node-desc {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #64748b;
+    margin: 4px 0 0;
+  }
+
+  /* 2. shadcn Card Architecture for Beneficiaries */
   .beneficiaries-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
   }
 
-  .benefit-card {
-    background: #f8fafc;
+  .shadcn-card {
+    background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 28px 24px;
+    border-radius: 16px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .benefit-card::before {
-    content: '';
+  .card-accent-strip {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--card-tint);
+    right: 0;
+    height: 3px;
+    background: var(--card-accent);
   }
 
-  .benefit-card:hover {
-    background: #ffffff;
-    transform: translateY(-5px);
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  .shadcn-card:hover {
     border-color: #cbd5e1;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
   }
 
-  .benefit-top {
+  .card-header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 14px;
   }
 
-  .benefit-tag {
-    font-size: 0.72rem;
+  .card-badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.06em;
-    color: var(--card-tint);
+    color: var(--card-accent);
   }
 
-  .benefit-indicator {
-    width: 8px;
-    height: 8px;
+  .badge-dot {
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: var(--card-tint);
+    background: var(--card-accent);
   }
 
-  .benefit-role {
-    font-size: 1.25rem;
+  .badge-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: var(--card-accent);
+    border: 1px solid #f1f5f9;
+  }
+
+  .badge-icon :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
     font-weight: 800;
     color: #0f172a;
-    margin-bottom: 12px;
+    letter-spacing: -0.015em;
+    margin: 0;
   }
 
-  .benefit-text {
-    font-size: 0.92rem;
+  .card-body {
+    flex: 1;
+  }
+
+  .card-text {
+    font-size: 0.88rem;
     line-height: 1.6;
     color: #64748b;
+    margin: 0;
   }
 
-  /* YPCI Character Box */
-  .ypci-character-box {
-    background: #f1f5f9;
+  /* 3. FAST Bento Banner */
+  .fast-bento-banner {
+    background: #f8fafc;
     border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 24px 30px;
+    border-radius: 18px;
+    padding: 24px 28px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
     flex-wrap: wrap;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
   }
 
-  .char-eyebrow {
-    font-size: 0.72rem;
-    font-weight: 800;
+  .bento-badge-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .bento-icon-shield {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #e0f2fe;
     color: #0284c7;
-    letter-spacing: 0.08em;
-    display: block;
-    margin-bottom: 4px;
+    border: 1px solid rgba(2, 132, 199, 0.2);
   }
 
-  .char-title {
-    font-size: 1.2rem;
+  .bento-icon-shield svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .bento-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .bento-title {
+    font-size: 1.05rem;
     font-weight: 800;
     color: #0f172a;
+    margin: 0;
   }
 
-  .char-pills-right {
+  .fast-pills-row {
     display: flex;
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
   }
 
-  .pill-fast {
+  .fast-pill-item {
     background: #ffffff;
-    border: 1px solid #cbd5e1;
-    padding: 6px 14px;
-    border-radius: 9999px;
-    font-size: 0.85rem;
-    color: #334155;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 8px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
   }
 
-  .pill-fast strong {
+  .fast-pill-item:hover {
+    border-color: #0284c7;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
+  }
+
+  .fast-letter {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95rem;
+    font-weight: 900;
     color: #0284c7;
+    width: 24px;
+    height: 24px;
+    background: #f0f9ff;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fast-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fast-name {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+  }
+
+  .fast-sub {
+    font-size: 0.7rem;
+    color: #64748b;
+  }
+
+  .mt-50 {
+    margin-top: 40px;
+  }
+
+  .mt-40 {
+    margin-top: 32px;
   }
 
   @media (max-width: 1024px) {
@@ -348,13 +618,19 @@ const beneficiaries = [
     }
   }
 
+  @media (max-width: 768px) {
+    .fast-bento-banner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
   @media (max-width: 640px) {
     .beneficiaries-grid {
       grid-template-columns: 1fr;
     }
-    .ypci-character-box {
-      flex-direction: column;
-      align-items: flex-start;
+    .pipeline-card {
+      padding: 20px 16px;
     }
   }
 </style>

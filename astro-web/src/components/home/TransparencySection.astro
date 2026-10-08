@@ -163,7 +163,14 @@ const auditPoints = [
   .audit-item {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
+    gap: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .audit-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
   .audit-check-icon {
