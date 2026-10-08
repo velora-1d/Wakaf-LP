@@ -62,10 +62,6 @@ const valueBoxIcons = [
   <section class="isavo-pricing-section pt-100 pb-100" id="paket-donasi">
     <div class="isavo-container">
       <div class="isavo-section-heading text-center reveal-on-scroll">
-        <div class="isavo-pill-tag">
-          <span class="isavo-pill-dot"></span>
-          <span>DESIGN PACKAGE PRICING</span>
-        </div>
         <h2 class="isavo-section-title">
           {program.pricingHeading.split(' ').slice(0, 2).join(' ')} <span class="accent-blue">{program.pricingHeading.split(' ').slice(2).join(' ')}</span>
         </h2>
@@ -198,10 +194,6 @@ const valueBoxIcons = [
             </div>
 
             <div class="article-body reveal-on-scroll">
-              <div class="isavo-pill-tag">
-                <span class="isavo-pill-dot"></span>
-                <span>{program.deepDiveBadge}</span>
-              </div>
               <h2 class="article-title">{program.deepDiveTitle}</h2>
               <p class="article-lead">{program.deepDiveLead}</p>
               <p class="article-p">{program.deepDiveStory1}</p>
@@ -232,10 +224,6 @@ const valueBoxIcons = [
   <section class="isavo-gallery-section pt-100 pb-100" id="galeri-lapangan">
     <div class="isavo-container">
       <div class="isavo-section-heading text-center reveal-on-scroll">
-        <div class="isavo-pill-tag">
-          <span class="isavo-pill-dot"></span>
-          <span>{program.galleryBadge}</span>
-        </div>
         <h2 class="isavo-section-title">
           {program.galleryTitle.split(' ')[0]} <span class="accent-blue">{program.galleryTitle.split(' ').slice(1).join(' ')}</span>
         </h2>
@@ -282,10 +270,6 @@ const valueBoxIcons = [
   <section class="isavo-process-section pt-100 pb-100 bg-light" id="alur-penyaluran">
     <div class="isavo-container">
       <div class="isavo-section-heading text-center reveal-on-scroll">
-        <div class="isavo-pill-tag">
-          <span class="isavo-pill-dot"></span>
-          <span>TRANSPARANSI PROSES</span>
-        </div>
         <h2 class="isavo-section-title">
           {program.workflowHeading.split(' ')[0]} <span class="accent-blue">{program.workflowHeading.split(' ').slice(1).join(' ')}</span>
         </h2>
@@ -313,10 +297,6 @@ const valueBoxIcons = [
   <section class="isavo-leadership-section pt-100 pb-100" id="kepengurusan">
     <div class="isavo-container">
       <div class="isavo-section-heading text-center reveal-on-scroll">
-        <div class="isavo-pill-tag">
-          <span class="isavo-pill-dot"></span>
-          <span>{program.leadershipBadge}</span>
-        </div>
         <h2 class="isavo-section-title">
           {program.leadershipTitle.split(' ')[0]} <span class="accent-blue">{program.leadershipTitle.split(' ').slice(1).join(' ')}</span>
         </h2>
@@ -349,10 +329,6 @@ const valueBoxIcons = [
   <section class="isavo-legalitas-section pt-100 pb-100 bg-light" id="rekening">
     <div class="isavo-container">
       <div class="isavo-section-heading text-center reveal-on-scroll">
-        <div class="isavo-pill-tag">
-          <span class="isavo-pill-dot"></span>
-          <span>{program.legalitasBadge}</span>
-        </div>
         <h2 class="isavo-section-title">
           {program.legalitasTitle.split(' ')[0]} <span class="accent-blue">{program.legalitasTitle.split(' ').slice(1).join(' ')}</span>
         </h2>
@@ -428,12 +404,7 @@ const valueBoxIcons = [
   <section class="isavo-faq-section pt-100 pb-100" id="faq">
     <div class="isavo-container">
       <div class="isavo-faq-header-row reveal-on-scroll">
-        <div class="faq-badge-col">
-          <div class="isavo-pill-tag">
-            <span class="pill-dot"></span>
-            <span>{program.faqBadge || 'FAQ'}</span>
-          </div>
-        </div>
+        <div class="faq-badge-col"></div>
         <div class="faq-title-col">
           <h2 class="isavo-faq-title">
             Pertanyaan <span>{program.faqTitle ? (program.faqTitle.replace(/^Pertanyaan\s*/i, '')) : 'Seputar Akad & Fiqih Wakaf'}</span>
