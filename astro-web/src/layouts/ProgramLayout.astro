@@ -49,60 +49,73 @@ const programNavLinks = [
   </section>
 
   <!-- =========================================================================
-       SECTION 2: PILIHAN PAKET AKAD & DONASI (PRICING TABLE ALA ISAVO)
+       SECTION 2: PILIHAN PAKET AKAD & DONASI (EXACT ISAVO 3-COLUMN PRICING)
        ========================================================================= -->
   <section class="isavo-pricing-section pt-100 pb-100" id="paket-donasi">
     <div class="isavo-container">
       <div class="isavo-section-heading text-center reveal-on-scroll">
         <div class="isavo-pill-tag">
           <span class="isavo-pill-dot"></span>
-          <span>PAKET AKAD TERUKUR</span>
+          <span>DESIGN PACKAGE PRICING</span>
         </div>
         <h2 class="isavo-section-title">
-          {program.pricingHeading.split(' ')[0]} <span class="accent-blue">{program.pricingHeading.split(' ').slice(1).join(' ')}</span>
+          {program.pricingHeading.split(' ').slice(0, 2).join(' ')} <span class="accent-blue">{program.pricingHeading.split(' ').slice(2).join(' ')}</span>
         </h2>
         <p class="isavo-section-desc">{program.pricingSubheading}</p>
       </div>
 
-      <div class="isavo-pricing-grid mt-50">
+      <!-- Exact 3 Columns Grid ala ISAVO -->
+      <div class="isavo-pricing-grid-3 mt-50">
         {program.packages.map((pkg, index) => (
           <div
-            class={`isavo-pricing-card reveal-on-scroll delay-${(index + 1) * 100} ${pkg.isPopular ? 'popular' : ''}`}
+            class={`isavo-arch-pricing-card reveal-on-scroll delay-${(index + 1) * 100} ${pkg.isPopular ? 'popular' : ''}`}
             id={`pkg-${pkg.id}`}
           >
-            {pkg.isPopular && <div class="isavo-pricing-popular-badge">Paling Utama</div>}
+            {pkg.isPopular && <span class="pricing-popular-badge">Paling Populer</span>}
             
-            <div class="card-head">
-              <span class="akad-note">{pkg.akadNote}</span>
+            <div class="plan-head">
               <h3 class="plan-title">{pkg.title}</h3>
               <p class="plan-subtitle">{pkg.subtitle}</p>
             </div>
 
-            <div class="plan-price-wrap">
-              <span class="price-val">{pkg.price}</span>
-              <span class="price-unit">{pkg.priceUnit}</span>
+            <div class="plan-price-block">
+              <div class="price-row">
+                <span class="currency">{pkg.pricePrefix || 'Rp '}</span>
+                <span class="amount">{pkg.priceAmount}</span>
+                <span class="period">{pkg.priceUnit}</span>
+              </div>
+              <p class="plan-price-desc">{pkg.priceDesc}</p>
+              <p class="plan-duration">{pkg.estimation}</p>
             </div>
 
-            <div class="plan-divider"></div>
+            <div class={`plan-divider-line ${pkg.isPopular ? 'accent-line' : ''}`}></div>
 
-            <div class="plan-deliverables-header">Penyaluran & Manfaat:</div>
-            <ul class="plan-features">
+            <div class="plan-deliverables-header">WHAT DO YOU GET:</div>
+            
+            <ul class="plan-features-list">
               {pkg.deliverables.map(item => (
                 <li>
-                  <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span>{item}</span>
+                  <span class="check-icon-circle">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <span class="feature-text">
+                    <strong>{item.bold}</strong> — {item.text}
+                  </span>
                 </li>
               ))}
             </ul>
 
-            <div class="card-action">
-              <a href="#rekening" class={`isavo-btn-plan ${pkg.isPopular ? 'btn-primary' : 'btn-outline'}`}>
-                <span>{pkg.ctaText}</span>
-                <svg viewBox="0 0 20 20" fill="currentColor" class="btn-arrow">
-                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
+            <div class="plan-btn-wrap">
+              <a href="#rekening" class="isavo-pricing-btn">
+                <span class="btn-text">{pkg.ctaText}</span>
+                <span class="btn-arrow-circle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-arrow-icon">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </span>
               </a>
             </div>
           </div>
@@ -735,40 +748,40 @@ const programNavLinks = [
   }
 
   /* =========================================================================
-     2. PRICING TABLE AKAD & DONASI
+     2. EXACT ISAVO 3-COLUMN PRICING GRID & CARD DESIGN
      ========================================================================= */
-  .isavo-pricing-grid {
+  .isavo-pricing-grid-3 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
     align-items: stretch;
   }
 
-  .isavo-pricing-card {
+  .isavo-arch-pricing-card {
     position: relative;
     background: #ffffff;
-    border: 1px solid var(--isavo-border);
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
-    padding: 36px 28px;
+    padding: 44px 32px 36px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 20px rgba(10, 37, 64, 0.04);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
   }
 
-  .isavo-pricing-card:hover {
+  .isavo-arch-pricing-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px -10px rgba(2, 132, 199, 0.12);
-    border-color: var(--isavo-blue-border);
+    box-shadow: 0 20px 45px -10px rgba(2, 132, 199, 0.14);
+    border-color: #bae6fd;
   }
 
-  .isavo-pricing-card.popular {
+  /* POPULAR CARD - EXACT ISAVO VIBRANT BLUE OUTLINE */
+  .isavo-arch-pricing-card.popular {
     border: 2px solid var(--isavo-blue);
-    background: linear-gradient(180deg, #ffffff 0%, var(--isavo-blue-soft) 100%);
-    box-shadow: 0 12px 35px -8px rgba(2, 132, 199, 0.16);
+    box-shadow: 0 12px 35px -8px rgba(2, 132, 199, 0.18);
   }
 
-  .isavo-pricing-popular-badge {
+  .pricing-popular-badge {
     position: absolute;
     top: -14px;
     left: 50%;
@@ -779,146 +792,206 @@ const programNavLinks = [
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    padding: 4px 14px;
+    padding: 5px 18px;
     border-radius: 9999px;
-    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+    white-space: nowrap;
   }
 
-  .akad-note {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--isavo-blue);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .plan-head {
+    text-align: center;
+    margin-bottom: 24px;
   }
 
   .plan-title {
-    font-size: 1.35rem;
+    font-size: 1.55rem;
     font-weight: 800;
-    color: var(--isavo-navy);
-    margin: 8px 0 4px;
+    color: #0f172a;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
   }
 
   .plan-subtitle {
-    font-size: 0.85rem;
-    color: var(--isavo-text-muted);
+    font-size: 0.88rem;
+    color: #64748b;
+    margin: 0;
   }
 
-  .plan-price-wrap {
-    margin: 20px 0 16px;
+  .plan-price-block {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .price-row {
     display: flex;
     align-items: baseline;
-    gap: 6px;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 8px;
   }
 
-  .price-val {
-    font-size: 1.85rem;
+  .price-row .currency {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .price-row .amount {
+    font-size: 2.35rem;
     font-weight: 900;
-    color: var(--isavo-navy);
+    color: #0f172a;
     letter-spacing: -0.02em;
+    line-height: 1;
   }
 
-  .price-unit {
+  .price-row .period {
+    font-size: 0.95rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .plan-price-desc {
+    font-size: 0.82rem;
+    color: #94a3b8;
+    font-style: italic;
+    margin: 0 0 6px;
+  }
+
+  .plan-duration {
     font-size: 0.85rem;
-    color: var(--isavo-text-muted);
+    color: var(--isavo-blue);
+    font-weight: 600;
+    margin: 0;
   }
 
-  .plan-divider {
+  /* HORIZONTAL DIVIDER LINE ALA ISAVO */
+  .plan-divider-line {
     height: 1px;
-    background: var(--isavo-border);
-    margin: 10px 0 20px;
+    background: #e2e8f0;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .plan-divider-line.accent-line {
+    background: var(--isavo-blue);
+    height: 1.5px;
   }
 
   .plan-deliverables-header {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--isavo-navy);
-    margin-bottom: 14px;
+    color: #0f172a;
+    margin-bottom: 18px;
   }
 
-  .plan-features {
+  .plan-features-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 30px;
+    margin: 0 0 36px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
     flex-grow: 1;
   }
 
-  .plan-features li {
+  .plan-features-list li {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
     font-size: 0.88rem;
-    line-height: 1.5;
+    line-height: 1.55;
     color: #334155;
   }
 
-  .check-icon {
+  .check-icon-circle {
     width: 18px;
     height: 18px;
-    color: var(--isavo-emerald);
+    color: var(--isavo-blue);
     flex-shrink: 0;
     margin-top: 2px;
-    transition: transform 0.2s ease;
   }
 
-  .plan-features li:hover .check-icon {
-    transform: scale(1.2);
+  .check-icon-circle svg {
+    width: 100%;
+    height: 100%;
   }
 
-  .card-action {
+  .feature-text strong {
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  /* =========================================================================
+     EXACT ISAVO BUTTON DESIGN & ROTATING ARROW ANIMATION
+     ========================================================================= */
+  .plan-btn-wrap {
     margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
-  .isavo-btn-plan {
+  .isavo-pricing-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 280px;
+    background: #ffffff;
+    border: 1.5px solid #1e293b;
+    padding: 6px 8px 6px 24px;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  }
+
+  .isavo-pricing-btn .btn-text {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+  }
+
+  .isavo-pricing-btn .btn-arrow-circle {
+    width: 38px;
+    height: 38px;
+    background-color: var(--isavo-blue);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 14px 20px;
-    border-radius: 9999px;
-    font-size: 0.88rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.25s ease;
-  }
-
-  .btn-primary {
-    background: var(--isavo-blue);
     color: #ffffff;
-    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.28);
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.25s ease;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+    flex-shrink: 0;
   }
 
-  .btn-primary:hover {
-    background: var(--isavo-blue-hover);
+  .isavo-pricing-btn .btn-arrow-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* HOVER ANIMATION PERSIS ALA ISAVO */
+  .isavo-pricing-btn:hover {
+    background-color: var(--isavo-blue);
+    border-color: var(--isavo-blue);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35);
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.28);
   }
 
-  .btn-outline {
-    background: #ffffff;
-    color: var(--isavo-navy);
-    border: 1.5px solid var(--isavo-navy);
-  }
-
-  .btn-outline:hover {
-    background: var(--isavo-navy);
+  .isavo-pricing-btn:hover .btn-text {
     color: #ffffff;
   }
 
-  .btn-arrow {
-    width: 16px;
-    height: 16px;
-    transition: transform 0.2s ease;
-  }
-
-  .isavo-btn-plan:hover .btn-arrow {
-    transform: translateX(4px);
+  .isavo-pricing-btn:hover .btn-arrow-circle {
+    background-color: #ffffff;
+    color: var(--isavo-blue);
+    transform: rotate(45deg);
   }
 
   /* =========================================================================
