@@ -30,8 +30,8 @@ const currentPath = Astro.url.pathname;
             <li><a href="/program/wakaf">Wakaf</a></li>
           </ul>
         </li>
-        <li><a href="/#kemitraan" class="isavo-nav-link">Kemitraan</a></li>
-        <li><a href="/#dampak" class="isavo-nav-link">Dampak</a></li>
+        <li><a href="/kemitraan" class={`isavo-nav-link ${currentPath === '/kemitraan' ? 'active' : ''}`}>Kemitraan</a></li>
+        <li><a href="/dampak" class={`isavo-nav-link ${currentPath === '/dampak' ? 'active' : ''}`}>Dampak</a></li>
         <li><a href="/contact" class={`isavo-nav-link ${currentPath === '/contact' ? 'active' : ''}`}>Kontak</a></li>
       </ul>
     </nav>
@@ -89,8 +89,8 @@ const currentPath = Astro.url.pathname;
         <a href="/program/infaq">Infaq</a>
         <a href="/program/zakat">Zakat</a>
         <a href="/program/wakaf">Wakaf</a>
-        <a href="/#kemitraan">Kemitraan</a>
-        <a href="/#dampak">Dampak</a>
+        <a href="/kemitraan">Kemitraan</a>
+        <a href="/dampak">Dampak</a>
         <a href="/contact">Kontak</a>
       </nav>
       <div class="isavo-drawer-bottom">

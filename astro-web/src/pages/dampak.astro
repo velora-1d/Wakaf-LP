@@ -1,0 +1,98 @@
+---
+// src/pages/dampak.astro
+// Halaman Khusus Laporan Dampak Sosial & Rantai Transformasi Nilai Global Village Fund
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ImpactValueChainSection from '../components/home/ImpactValueChainSection.astro';
+import FinalCtaSection from '../components/home/FinalCtaSection.astro';
+---
+
+<BaseLayout
+  title="Dampak Sosial & Keberlanjutan • Global Village Fund"
+  description="Laporan transformasi nilai kebaikan: bagaimana setiap amanah donatur bertransformasi menjadi kemandirian santri, ketahanan pangan, dan kemaslahatan umat berkelanjutan."
+>
+  <!-- Hero Inner Page Title -->
+  <section class="isavo-inner-hero">
+    <div class="isavo-inner-container">
+      <div class="isavo-inner-breadcrumb">
+        <a href="/">Home</a>
+        <span class="isavo-sep">/</span>
+        <span class="isavo-current">Dampak</span>
+      </div>
+      <h1 class="isavo-inner-title">Dampak & Keberlanjutan</h1>
+      <p class="isavo-inner-subtitle">
+        Ketika kebaikan bertumbuh, dampaknya meluas. Kami memastikan setiap rupiah amanah bertransformasi menjadi kemampuan nyata yang mandiri dan berkesinambungan.
+      </p>
+    </div>
+  </section>
+
+  <!-- Konten Rantai Transformasi & Dampak Nyata -->
+  <ImpactValueChainSection />
+
+  <!-- CTA Penutup -->
+  <FinalCtaSection />
+</BaseLayout>
+
+<style>
+  .isavo-inner-hero {
+    background-color: #0f172a;
+    padding: 140px 0 60px 0;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .isavo-inner-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .isavo-inner-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .isavo-inner-breadcrumb a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .isavo-inner-breadcrumb a:hover {
+    color: #ffffff;
+  }
+
+  .isavo-sep {
+    color: #64748b;
+  }
+
+  .isavo-current {
+    color: #0969da;
+  }
+
+  .isavo-inner-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem 0;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .isavo-inner-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #94a3b8;
+    max-width: 780px;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .isavo-inner-hero {
+      padding: 110px 0 40px 0;
+    }
+  }
+</style>
