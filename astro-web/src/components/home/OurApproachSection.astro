@@ -2,49 +2,57 @@
 // src/components/home/OurApproachSection.astro
 // Modul 6 Tahap Pendekatan & Transformasi (Modular 3x2 Matrix sesuai Desain Referensi)
 
-const approachModules = [
+interface ApproachModule {
+  num: string;
+  name: string;
+  focus: string;
+  desc: string;
+  bgClass: string;
+}
+
+const approachModules: ApproachModule[] = [
   {
     num: '1',
     name: 'Kebaikan',
     focus: 'Filantropi & Wakaf Umat',
     desc: 'Menghimpun amanah infaq, sedekah, zakat, dan wakaf produktif secara transparan dari para donatur dan masyarakat luas.',
-    bgClass: 'cell-shade-1'
+    bgClass: 'cell-shade-1',
   },
   {
     num: '2',
     name: 'Pendidikan',
     focus: 'Karakter & Fasilitas Pembelajaran',
     desc: 'Membangun sarana belajar representatif, masjid beradab, dan kurikulum FAST sebagai fondasi akhlak santri.',
-    bgClass: 'cell-shade-2'
+    bgClass: 'cell-shade-2',
   },
   {
     num: '3',
     name: 'Kompetensi',
     focus: 'Vokasi & Keterampilan Riil',
     desc: 'Membekali santri keahlian vokasi terapan (arsitektur, agriteknologi, digital) melalui laboratorium praktik nyata.',
-    bgClass: 'cell-shade-3'
+    bgClass: 'cell-shade-3',
   },
   {
     num: '4',
     name: 'Kemandirian',
     focus: 'Agroteknopreneur & Unit Usaha',
     desc: 'Mengembangkan unit usaha mandiri pesantren (Greenhouse, Agro-Technopark) agar mandiri tanpa terus bergantung donasi.',
-    bgClass: 'cell-shade-4'
+    bgClass: 'cell-shade-4',
   },
   {
     num: '5',
     name: 'Kolaborasi',
     focus: 'Kemitraan Industri & Komunitas',
     desc: 'Menyambungkan santri dengan dunia industri, asosiasi profesi, akademisi, dan jaringan pasar terpercaya.',
-    bgClass: 'cell-shade-5'
+    bgClass: 'cell-shade-5',
   },
   {
     num: '6',
     name: 'Dampak Sosial',
     focus: 'Muzakki Baru & Berdaya',
     desc: 'Mencetak lulusan berdaya saing yang mandiri secara ekonomi dan kembali menebar manfaat luas sebagai muzakki baru.',
-    bgClass: 'cell-shade-6'
-  }
+    bgClass: 'cell-shade-6',
+  },
 ];
 ---
 
@@ -68,7 +76,7 @@ const approachModules = [
     <div class="matrix-card-wrapper reveal-on-scroll delay-100">
       <div class="matrix-grid">
         {approachModules.map((item) => (
-          <div class={`matrix-cell ${item.bgClass}`}>
+          <div class:list={['matrix-cell', item.bgClass]}>
             <!-- Badge Angka Kotak Oranye/Kuning -->
             <div class="badge-square">
               <span>{item.num}</span>
