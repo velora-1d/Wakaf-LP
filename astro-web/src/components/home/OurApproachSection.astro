@@ -8,48 +8,42 @@ const approachModules = [
     name: 'Kebaikan',
     focus: 'Filantropi & Wakaf Umat',
     desc: 'Menghimpun amanah infaq, sedekah, zakat, dan wakaf produktif secara transparan dari para donatur dan masyarakat luas.',
-    bgClass: 'cell-white',
-    isDark: false
+    bgClass: 'cell-shade-1'
   },
   {
     num: '2',
     name: 'Pendidikan',
     focus: 'Karakter & Fasilitas Pembelajaran',
     desc: 'Membangun sarana belajar representatif, masjid beradab, dan kurikulum FAST sebagai fondasi akhlak santri.',
-    bgClass: 'cell-blue-ice',
-    isDark: false
+    bgClass: 'cell-shade-2'
   },
   {
     num: '3',
     name: 'Kompetensi',
     focus: 'Vokasi & Keterampilan Riil',
     desc: 'Membekali santri keahlian vokasi terapan (arsitektur, agriteknologi, digital) melalui laboratorium praktik nyata.',
-    bgClass: 'cell-blue-soft',
-    isDark: false
+    bgClass: 'cell-shade-3'
   },
   {
     num: '4',
     name: 'Kemandirian',
     focus: 'Agroteknopreneur & Unit Usaha',
     desc: 'Mengembangkan unit usaha mandiri pesantren (Greenhouse, Agro-Technopark) agar mandiri tanpa terus bergantung donasi.',
-    bgClass: 'cell-blue-royal',
-    isDark: true
+    bgClass: 'cell-shade-4'
   },
   {
     num: '5',
     name: 'Kolaborasi',
     focus: 'Kemitraan Industri & Komunitas',
     desc: 'Menyambungkan santri dengan dunia industri, asosiasi profesi, akademisi, dan jaringan pasar terpercaya.',
-    bgClass: 'cell-blue-deep',
-    isDark: true
+    bgClass: 'cell-shade-5'
   },
   {
     num: '6',
     name: 'Dampak Sosial',
     focus: 'Muzakki Baru & Berdaya',
     desc: 'Mencetak lulusan berdaya saing yang mandiri secara ekonomi dan kembali menebar manfaat luas sebagai muzakki baru.',
-    bgClass: 'cell-blue-navy',
-    isDark: true
+    bgClass: 'cell-shade-6'
   }
 ];
 ---
@@ -74,7 +68,7 @@ const approachModules = [
     <div class="matrix-card-wrapper reveal-on-scroll delay-100">
       <div class="matrix-grid">
         {approachModules.map((item) => (
-          <div class={`matrix-cell ${item.bgClass} ${item.isDark ? 'theme-dark' : 'theme-light'}`}>
+          <div class={`matrix-cell ${item.bgClass}`}>
             <!-- Badge Angka Kotak Oranye/Kuning -->
             <div class="badge-square">
               <span>{item.num}</span>
@@ -174,29 +168,29 @@ const approachModules = [
     justify-content: flex-start;
   }
 
-  /* Palette Baris Atas & Bawah (Tema Biru Kalem, Tidak Terlalu Pekat) */
-  .cell-white {
+  /* Palette 6 Blok Bernuansa Pastel Bersih & Lembut (Sama Sekali Tidak Pekat) */
+  .cell-shade-1 {
     background-color: #ffffff;
   }
 
-  .cell-blue-ice {
-    background-color: #f1f6fb;
+  .cell-shade-2 {
+    background-color: #f6faff;
   }
 
-  .cell-blue-soft {
-    background-color: #dbe7f4;
+  .cell-shade-3 {
+    background-color: #edf5fd;
   }
 
-  .cell-blue-royal {
-    background-color: #4079b3;
+  .cell-shade-4 {
+    background-color: #e4f0fc;
   }
 
-  .cell-blue-deep {
-    background-color: #2b5f94;
+  .cell-shade-5 {
+    background-color: #d8e9fa;
   }
 
-  .cell-blue-navy {
-    background-color: #1c4774;
+  .cell-shade-6 {
+    background-color: #cbe2f7;
   }
 
   /* Badge Square (Kotak Kuning/Oranye) */
@@ -212,7 +206,7 @@ const approachModules = [
     align-items: center;
     justify-content: center;
     margin-bottom: 22px;
-    box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
+    box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25);
   }
 
   /* Titles */
@@ -223,14 +217,7 @@ const approachModules = [
     letter-spacing: -0.02em;
     margin: 0 0 6px 0;
     font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-  }
-
-  .theme-light .cell-title {
-    color: #111827;
-  }
-
-  .theme-dark .cell-title {
-    color: #ffffff;
+    color: #0f172a;
   }
 
   /* Focus Subtitle */
@@ -240,14 +227,7 @@ const approachModules = [
     margin-bottom: 16px;
     display: inline-block;
     letter-spacing: 0.01em;
-  }
-
-  .theme-light .cell-focus {
-    color: #0284c7; /* Ocean blue for light bg */
-  }
-
-  .theme-dark .cell-focus {
-    color: #93c5fd; /* Soft bright blue for dark navy bg */
+    color: #0284c7; /* Ocean blue */
   }
 
   /* Description Body */
@@ -255,14 +235,7 @@ const approachModules = [
     font-size: 0.95rem;
     line-height: 1.65;
     margin: 0;
-  }
-
-  .theme-light .cell-desc {
     color: #475569;
-  }
-
-  .theme-dark .cell-desc {
-    color: #e2e8f0;
   }
 
   /* Responsive Breakpoints */
