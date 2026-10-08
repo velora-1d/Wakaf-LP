@@ -1,14 +1,15 @@
 ---
 // src/components/layout/Navbar.astro
-// Exact ISAVO Header: Dark Bar, Boxed Logo, Call Info, Pill Button, Grid Icon
+// Exact ISAVO Header: Transparent overlay at rest, Sticky on scroll (#191919), Glassmorphism circle trigger, White animated dropdown
 const currentPath = Astro.url.pathname;
 ---
 
 <header class="isavo-header" id="main-header">
   <div class="isavo-header-inner">
-    <!-- Brand Box Logo ala ISAVO [ISAVO] -->
-    <a href="/" class="isavo-brand-box" aria-label="Global Village Fund Beranda">
+    <!-- Brand Logo ala ISAVO (Clean typography without bulky box border) -->
+    <a href="/" class="isavo-brand" aria-label="Global Village Fund Beranda">
       <span class="isavo-brand-text">GVF</span>
+      <span class="isavo-brand-tag">ZISWAF</span>
     </a>
 
     <!-- Desktop Navigation Menu -->
@@ -51,37 +52,47 @@ const currentPath = Astro.url.pathname;
 
     <!-- Right Header Actions ala ISAVO -->
     <div class="isavo-header-right">
-      <!-- Call Us Phone -->
+      <!-- Call Us Phone Widget -->
       <a href="tel:+6281226832326" class="isavo-phone-widget">
-        <svg class="isavo-phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-        </svg>
+        <span class="isavo-phone-icon-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+        </span>
         <div class="isavo-phone-text">
           <span class="isavo-phone-label">Call Us Phone</span>
           <span class="isavo-phone-number">0812-2683-2326</span>
         </div>
       </a>
 
-      <!-- Pill Button ala ISAVO (Blue accent instead of red) -->
-      <a href="#simulasi" class="isavo-btn-pill-cta">
-        <svg class="isavo-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <rect x="2" y="3" width="20" height="18" rx="2"></rect>
-          <line x1="8" y1="7" x2="16" y2="7"></line>
-          <line x1="8" y1="11" x2="16" y2="11"></line>
-          <line x1="8" y1="15" x2="12" y2="15"></line>
+      <!-- Pill Button CTA ("Simulasi Wakaf" ala ISAVO Simulasi Biaya) -->
+      <a href="#simulasi" class="isavo-header-cta-btn">
+        <svg class="cta-calc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+          <line x1="8" y1="6" x2="16" y2="6"></line>
+          <line x1="16" y1="14" x2="16" y2="18"></line>
+          <path d="M16 10h.01"></path>
+          <path d="M12 10h.01"></path>
+          <path d="M8 10h.01"></path>
+          <path d="M12 14h.01"></path>
+          <path d="M8 14h.01"></path>
+          <path d="M12 18h.01"></path>
+          <path d="M8 18h.01"></path>
         </svg>
         <span>Simulasi Wakaf</span>
-        <svg class="isavo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <polyline points="6 9 12 15 18 9"></polyline>
+        <svg class="cta-chevron-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
         </svg>
       </a>
 
-      <!-- 4-Dots Grid Icon Button ala ISAVO -->
-      <a href="#rekening" class="isavo-grid-btn" aria-label="Menu Ekstra">
-        <span class="isavo-dot"></span>
-        <span class="isavo-dot"></span>
-        <span class="isavo-dot"></span>
-        <span class="isavo-dot"></span>
+      <!-- Circle Glassmorphism Sidebar Icon Button ala ISAVO -->
+      <a href="#rekening" class="isavo-sidebar-circle-btn" aria-label="Menu Ekstra">
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+          <rect x="0" y="0" width="6" height="6" rx="1.5" fill="currentColor"></rect>
+          <rect x="10" y="0" width="6" height="6" rx="1.5" fill="currentColor"></rect>
+          <rect x="0" y="10" width="6" height="6" rx="1.5" fill="currentColor"></rect>
+          <rect x="10" y="10" width="6" height="6" rx="1.5" fill="currentColor"></rect>
+        </svg>
       </a>
 
       <!-- Mobile Hamburger Toggle -->
@@ -97,8 +108,9 @@ const currentPath = Astro.url.pathname;
   <div class="isavo-drawer" id="isavo-drawer">
     <div class="isavo-drawer-panel">
       <div class="isavo-drawer-top">
-        <div class="isavo-brand-box">
+        <div class="isavo-brand">
           <span class="isavo-brand-text">GVF</span>
+          <span class="isavo-brand-tag">ZISWAF</span>
         </div>
         <button type="button" class="isavo-drawer-close" id="isavo-close">&times;</button>
       </div>
@@ -115,7 +127,7 @@ const currentPath = Astro.url.pathname;
         <a href="/contact">Kontak</a>
       </nav>
       <div class="isavo-drawer-bottom">
-        <a href="#simulasi" class="isavo-btn-pill-cta" style="width: 100%; justify-content: center;">
+        <a href="#simulasi" class="isavo-header-cta-btn" style="width: 100%; justify-content: center;">
           Simulasi Wakaf
         </a>
       </div>
@@ -124,51 +136,76 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <style>
+  /* ISAVO Header: Transparent Overlay at Rest, Smooth Sticky on Scroll */
+  @keyframes menuSticky {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   .isavo-header {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 999;
-    background: rgba(18, 20, 24, 0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 1rem 2.5rem;
-    transition: all 0.3s ease;
+    background-color: transparent;
+    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .isavo-header.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #191919;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    animation: menuSticky 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .isavo-header-inner {
     width: 100%;
-    max-width: 1440px;
+    max-width: 1280px;
     margin: 0 auto;
+    padding: 24px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: padding 0.3s ease;
   }
 
-  /* Logo Kotak Persegi Panjang ala [ISAVO] */
-  .isavo-brand-box {
-    border: 2px solid #ffffff;
-    border-radius: 8px;
-    padding: 0.35rem 1.15rem;
+  .isavo-header.fixed .isavo-header-inner {
+    padding: 14px 24px;
+  }
+
+  /* Brand Logo (Clean modern typography like ISAVO) */
+  .isavo-brand {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
     text-decoration: none;
-    transition: all 0.25s ease;
-  }
-
-  .isavo-brand-box:hover {
-    background-color: rgba(255, 255, 255, 0.15);
   }
 
   .isavo-brand-text {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: 1.85rem;
+    font-weight: 900;
     color: #ffffff;
-    letter-spacing: 0.12em;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .isavo-brand-tag {
+    font-size: 0.65rem;
+    font-weight: 800;
+    background-color: #0284c7;
+    color: #ffffff;
+    padding: 3px 8px;
+    border-radius: 9999px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   /* Desktop Nav */
@@ -180,7 +217,7 @@ const currentPath = Astro.url.pathname;
   .isavo-nav-list {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.75rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -189,178 +226,210 @@ const currentPath = Astro.url.pathname;
   .isavo-nav-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.35rem;
     color: #ffffff;
     text-decoration: none;
-    font-size: 0.9375rem;
+    font-size: 0.95rem;
     font-weight: 600;
     transition: color 0.2s ease;
   }
 
   .isavo-nav-link:hover,
   .isavo-nav-link.active {
-    color: #0969da; /* Blue accent instead of red */
+    color: #38bdf8;
   }
 
   .isavo-chevron {
     width: 12px;
     height: 12px;
+    transition: transform 0.2s ease;
   }
 
-  /* Dropdown */
   .isavo-has-dropdown {
     position: relative;
   }
 
+  .isavo-has-dropdown:hover .isavo-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Dropdown Menu White Card ala ISAVO */
   .isavo-dropdown-menu {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 14px);
     left: 0;
-    min-width: 220px;
-    background: #1c1c1c;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 0.5rem;
-    list-style: none;
+    min-width: 240px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 10px 0;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.16);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(8px);
-    transition: all 0.2s ease;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transform: rotateX(-20deg) translateY(8px);
+    transform-origin: top;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    list-style: none;
+    margin: 0;
+    z-index: 1000;
   }
 
   .isavo-has-dropdown:hover .isavo-dropdown-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: rotateX(0deg) translateY(0);
   }
 
   .isavo-dropdown-menu li a {
+    color: #0f172a;
+    padding: 9px 22px;
+    font-size: 0.88rem;
+    font-weight: 500;
     display: block;
-    padding: 0.6rem 0.85rem;
-    color: #e2e8f0;
     text-decoration: none;
-    font-size: 0.875rem;
-    border-radius: 8px;
-    transition: background 0.15s ease, color 0.15s ease;
+    transition: all 0.2s ease;
   }
 
   .isavo-dropdown-menu li a:hover {
-    background: rgba(9, 105, 218, 0.2);
-    color: #38bdf8;
+    color: #0284c7;
+    background: #f8fafc;
+    padding-left: 26px;
   }
 
-  /* Right Action Widgets */
+  /* Right Header Actions */
   .isavo-header-right {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 18px;
   }
 
+  /* Phone Widget */
   .isavo-phone-widget {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 10px;
     text-decoration: none;
-    color: #ffffff;
   }
 
-  .isavo-phone-icon {
-    width: 20px;
-    height: 20px;
+  .isavo-phone-icon-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #ffffff;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .isavo-phone-widget:hover .isavo-phone-icon-circle {
+    background: #0284c7;
+    transform: scale(1.05);
+  }
+
+  .isavo-phone-icon-circle svg {
+    width: 18px;
+    height: 18px;
   }
 
   .isavo-phone-text {
     display: flex;
     flex-direction: column;
-    line-height: 1.2;
   }
 
   .isavo-phone-label {
-    font-size: 0.6875rem;
+    font-size: 0.68rem;
     color: #94a3b8;
-    text-transform: capitalize;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
   }
 
   .isavo-phone-number {
-    font-size: 0.9375rem;
-    font-weight: 700;
+    font-size: 0.95rem;
     color: #ffffff;
-    font-family: monospace;
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
-  /* Pill Button ala ISAVO [Simulasi Biaya ⌵] */
-  .isavo-btn-pill-cta {
+  /* Header CTA Button (Simulasi Wakaf) */
+  .isavo-header-cta-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background-color: #0969da; /* Blue vibrant */
+    gap: 8px;
+    background-color: #0284c7;
     color: #ffffff;
-    font-size: 0.875rem;
+    text-decoration: none;
+    border-radius: 100px;
+    padding: 10px 20px;
+    font-size: 0.88rem;
     font-weight: 700;
-    padding: 0.75rem 1.6rem;
-    border-radius: 9999px;
-    text-decoration: none;
-    transition: all 0.25s ease;
-    box-shadow: 0 4px 15px rgba(9, 105, 218, 0.35);
+    letter-spacing: -0.01em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
   }
 
-  .isavo-btn-pill-cta:hover {
-    background-color: #0052cc;
+  .isavo-header-cta-btn:hover {
+    background-color: #0369a1;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(9, 105, 218, 0.5);
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45);
   }
 
-  .isavo-btn-icon {
-    width: 15px;
-    height: 15px;
+  .cta-calc-icon {
+    width: 16px;
+    height: 16px;
   }
 
-  /* 4-Dots Grid Icon [ :: ] */
-  .isavo-grid-btn {
-    width: 44px;
-    height: 44px;
+  .cta-chevron-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Circle Glassmorphism Sidebar Icon Button ala ISAVO */
+  .isavo-sidebar-circle-btn {
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(8px);
-    display: grid;
-    grid-template-columns: repeat(2, 6px);
-    gap: 4px;
-    align-content: center;
+    background: rgba(216, 218, 223, 0.13);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(29px);
+    -webkit-backdrop-filter: blur(29px);
+    display: flex;
+    align-items: center;
     justify-content: center;
+    color: #ffffff;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
   }
 
-  .isavo-grid-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
-  }
-
-  .isavo-dot {
-    width: 5px;
-    height: 5px;
-    background-color: #ffffff;
-    border-radius: 1px;
+  .isavo-sidebar-circle-btn:hover {
+    background-color: #0284c7;
+    border-color: #0284c7;
+    transform: rotate(90deg);
   }
 
   /* Mobile Toggle */
   .isavo-mobile-toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
-    background: transparent;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
     border: none;
+    border-radius: 8px;
+    padding: 8px;
     cursor: pointer;
-    padding: 6px;
   }
 
   .isavo-mobile-toggle span {
-    width: 24px;
+    display: block;
+    width: 100%;
     height: 2px;
-    background-color: #ffffff;
+    background: #ffffff;
     border-radius: 2px;
+    transition: all 0.25s ease;
   }
 
   /* Mobile Drawer */
@@ -368,9 +437,8 @@ const currentPath = Astro.url.pathname;
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(6px);
-    z-index: 200;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 1000;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
@@ -385,15 +453,15 @@ const currentPath = Astro.url.pathname;
     position: absolute;
     top: 0;
     right: 0;
-    width: 80%;
-    max-width: 320px;
+    width: 85%;
+    max-width: 360px;
     height: 100%;
-    background: #161616;
+    background: #111827;
     padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .isavo-drawer.open .isavo-drawer-panel {
@@ -426,12 +494,12 @@ const currentPath = Astro.url.pathname;
   .isavo-drawer-nav a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 600;
   }
 
   .isavo-drawer-nav a:hover {
-    color: #0969da;
+    color: #38bdf8;
   }
 
   .isavo-drawer-bottom {
@@ -448,13 +516,28 @@ const currentPath = Astro.url.pathname;
     .isavo-drawer {
       display: flex;
     }
-    .isavo-header {
-      padding: 1rem 1.5rem;
+    .isavo-header-inner {
+      padding: 16px 20px;
     }
   }
 </style>
 
 <script>
+  // Dynamic Scroll Listener for Sticky State (Identik ISAVO .primary-header.fixed)
+  const header = document.getElementById('main-header');
+
+  const onScroll = () => {
+    if (window.scrollY > 40) {
+      header?.classList.add('fixed');
+    } else {
+      header?.classList.remove('fixed');
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile Drawer Toggle
   const toggle = document.getElementById('isavo-toggle');
   const close = document.getElementById('isavo-close');
   const drawer = document.getElementById('isavo-drawer');
