@@ -17,6 +17,14 @@ const programNavLinks = [
   { slug: 'infaq', name: 'Infaq Pembangunan', badge: 'Fleksibel' },
   { slug: 'sedekah', name: 'Sedekah Subuh & Pangan', badge: 'Harian' },
 ];
+
+// Value box vector SVG icons (Pahala Abadi, BWI, Akta AIW, Laporan Transparan)
+const valueBoxIcons = [
+  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>`,
+  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
+  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`
+];
 ---
 
 <BaseLayout
@@ -93,8 +101,8 @@ const programNavLinks = [
               {pkg.deliverables.map(item => (
                 <li>
                   <span class="check-icon-circle">
-                    <svg viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                   </span>
                   <span>
@@ -205,10 +213,7 @@ const programNavLinks = [
               {program.valueBoxes.map((vb, idx) => (
                 <div class={`value-box-item reveal-on-scroll delay-${(idx + 1) * 100}`}>
                   <div class="value-box-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <polyline points="12 6 12 12 14 14"></polyline>
-                    </svg>
+                    <Fragment set:html={valueBoxIcons[idx % valueBoxIcons.length]} />
                   </div>
                   <h4 class="value-box-title">{vb.title}</h4>
                   <p class="value-box-desc">{vb.description}</p>
@@ -290,10 +295,12 @@ const programNavLinks = [
       <div class="isavo-process-grid mt-50">
         {program.workflowSteps.map((step, idx) => (
           <div class={`process-card reveal-on-scroll delay-${(idx + 1) * 100}`}>
-            <div class="process-num-badge">{step.number}</div>
+            <div class="process-card-header">
+              <span class="process-num-pill">{step.number}</span>
+              <span class="process-step-indicator">LANGKAH {idx + 1}</span>
+            </div>
             <h3 class="process-step-title">{step.title}</h3>
             <p class="process-step-desc">{step.description}</p>
-            <div class="process-corner-number">{step.number}</div>
           </div>
         ))}
       </div>
@@ -881,43 +888,44 @@ const programNavLinks = [
 
   .arch-pricing-card {
     background-color: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
     flex-direction: column;
     height: 100%;
-    padding: 40px 30px;
-    transition: all .3s ease-in-out;
+    padding: 38px 28px;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     position: relative;
-    box-shadow: none; /* RATA (FLAT) PERSIS SEPERTI ISAVO, TIDAK MELAYANG 3D */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
   }
 
   .arch-pricing-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* EFEK SHADOW SANGAT HALUS HANYA SAAT HOVER */
+    border-color: #cbd5e1;
+    box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
   }
 
   .arch-pricing-card.popular {
-    border-color: var(--isavo-blue);
-    border-width: 2px;
-    box-shadow: none; /* POPULAR TETAP FLAT DENGAN BORDER BIRU TEGAS */
+    border: 2px solid #0284c7;
+    box-shadow: 0 14px 32px -6px rgba(2, 132, 199, 0.12);
   }
 
   .arch-pricing-card .pricing-badge {
-    background-color: var(--isavo-blue);
-    color: #fff;
+    background: #0284c7;
+    color: #ffffff;
     text-transform: uppercase;
-    letter-spacing: .5px;
-    border-radius: 0 0 12px 12px;
-    padding: 6px 20px;
-    font-size: 12px;
-    font-weight: 600;
+    letter-spacing: 0.06em;
+    border-radius: 9999px;
+    padding: 4px 16px;
+    font-size: 11px;
+    font-weight: 800;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     position: absolute;
-    top: 0;
+    top: -13px;
     right: 50%;
-    transform: translate(50%);
+    transform: translateX(50%);
     white-space: nowrap;
-    box-shadow: none; /* TIDAK MELAYANG */
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
   }
 
   .arch-pricing-card .plan-title {
@@ -975,15 +983,17 @@ const programNavLinks = [
   }
 
   .arch-pricing-card .plan-deliverables-heading {
-    color: #0f172a;
+    color: #64748b;
     text-transform: uppercase;
-    letter-spacing: .5px;
-    border-bottom: 2px solid var(--isavo-blue);
+    letter-spacing: 0.06em;
+    border-top: 1px solid #f1f5f9;
+    margin-top: 16px;
     margin-bottom: 12px;
-    padding-bottom: 6px;
-    font-size: 14px;
-    font-weight: 700;
-    display: inline-block;
+    padding-top: 16px;
+    font-size: 12px;
+    font-weight: 800;
+    display: block;
+    text-align: left;
   }
 
   .arch-pricing-card .plan-features {
@@ -996,12 +1006,12 @@ const programNavLinks = [
   }
 
   .arch-pricing-card .plan-features li {
-    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    border-bottom: 1px solid #f8fafc;
     color: #334155;
     align-items: flex-start;
     gap: 10px;
     padding: 10px 0;
-    font-size: 14px;
+    font-size: 13.5px;
     line-height: 1.5;
     display: flex;
   }
@@ -1011,11 +1021,16 @@ const programNavLinks = [
   }
 
   .arch-pricing-card .plan-features li .check-icon-circle {
-    color: var(--isavo-blue);
+    color: #0284c7;
+    background: #e0f2fe;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    width: 18px;
-    height: 18px;
-    margin-top: 2px;
+    margin-top: 1px;
   }
 
   .arch-pricing-card .plan-features li strong {
@@ -1312,32 +1327,52 @@ const programNavLinks = [
 
   .value-box-item {
     background: #ffffff;
-    border: 1px solid var(--isavo-border);
-    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
     padding: 24px;
-    transition: transform 0.25s ease, border-color 0.25s ease;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .value-box-item:hover {
-    transform: translateY(-4px);
-    border-color: var(--isavo-blue);
+    transform: translateY(-3px);
+    border-color: #cbd5e1;
+    box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.08);
   }
 
   .value-box-icon {
-    width: 44px;
-    height: 44px;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    max-width: 38px;
+    max-height: 38px;
     border-radius: 10px;
-    background: var(--isavo-blue-soft);
-    color: var(--isavo-blue);
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #0284c7;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 14px;
+    transition: all 0.25s ease;
+    overflow: hidden;
+    flex-shrink: 0;
   }
 
+  .value-box-item:hover .value-box-icon {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+  }
+
+  .value-box-icon :global(svg),
   .value-box-icon svg {
-    width: 22px;
-    height: 22px;
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+    display: block;
   }
 
   .value-box-title {
@@ -1476,68 +1511,81 @@ const programNavLinks = [
   }
 
   /* =========================================================================
-     5. PROCESS ALUR 4 LANGKAH ALA ISAVO
+     5. PROCESS ALUR 4 LANGKAH (shadcn Linear Stepper Architecture)
      ========================================================================= */
   .isavo-process-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+
+  @media (max-width: 1024px) {
+    .isavo-process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .isavo-process-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .process-card {
-    position: relative;
     background: #ffffff;
-    border: 1px solid var(--isavo-border);
-    border-radius: 16px;
-    padding: 36px 24px;
-    overflow: hidden;
-    box-shadow: 0 4px 18px rgba(10, 37, 64, 0.03);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 28px 22px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
   }
 
   .process-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--isavo-blue);
+    transform: translateY(-3px);
+    border-color: #cbd5e1;
+    box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
   }
 
-  .process-num-badge {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: var(--isavo-blue);
-    color: #ffffff;
-    font-size: 1.25rem;
-    font-weight: 900;
+  .process-card-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 22px;
-    box-shadow: 0 6px 14px rgba(2, 132, 199, 0.3);
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .process-num-pill {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+
+  .process-step-indicator {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #64748b;
+    text-transform: uppercase;
   }
 
   .process-step-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 800;
     color: var(--isavo-navy);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     line-height: 1.35;
   }
 
   .process-step-desc {
     font-size: 0.88rem;
     color: var(--isavo-text-muted);
-    line-height: 1.65;
-  }
-
-  .process-corner-number {
-    position: absolute;
-    bottom: -15px;
-    right: 10px;
-    font-size: 5.5rem;
-    font-weight: 900;
-    color: rgba(10, 37, 64, 0.03);
-    pointer-events: none;
-    user-select: none;
+    line-height: 1.6;
+    margin: 0;
   }
 
   /* =========================================================================
@@ -1722,10 +1770,16 @@ const programNavLinks = [
 
   .bank-card {
     background: #ffffff;
-    border: 1.5px solid var(--isavo-blue-border);
-    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
     padding: 22px;
-    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.06);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+  }
+
+  .bank-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.08);
   }
 
   .bank-card-top {
@@ -1736,23 +1790,24 @@ const programNavLinks = [
   }
 
   .bank-name {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     font-weight: 800;
-    color: var(--isavo-navy);
+    color: #0f172a;
   }
 
   .bank-code {
     font-size: 0.75rem;
-    color: var(--isavo-text-muted);
+    color: #64748b;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 
   .account-num-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--isavo-bg-light);
-    border: 1px dashed var(--isavo-blue);
-    border-radius: 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
     padding: 10px 16px;
     margin-bottom: 10px;
   }
@@ -1760,20 +1815,20 @@ const programNavLinks = [
   .acc-num {
     font-size: 1.35rem;
     font-weight: 800;
-    color: var(--isavo-blue);
-    font-family: monospace;
-    letter-spacing: 0.06em;
+    color: #0f172a;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: 0.05em;
   }
 
   .btn-copy-acc {
     display: flex;
     align-items: center;
     gap: 6px;
-    background: var(--isavo-blue);
+    background: #0a2540;
     color: #ffffff;
     border: none;
     border-radius: 6px;
-    padding: 6px 14px;
+    padding: 7px 14px;
     font-size: 0.8rem;
     font-weight: 700;
     cursor: pointer;
@@ -1781,11 +1836,11 @@ const programNavLinks = [
   }
 
   .btn-copy-acc:hover {
-    background: var(--isavo-blue-hover);
+    background: #0284c7;
   }
 
   .btn-copy-acc.copied {
-    background: var(--isavo-emerald);
+    background: #059669;
   }
 
   .btn-copy-acc svg {
@@ -1794,61 +1849,75 @@ const programNavLinks = [
   }
 
   .bank-holder {
-    font-size: 0.85rem;
-    color: #475569;
+    font-size: 0.84rem;
+    color: #64748b;
+  }
+
+  .bank-holder strong {
+    color: #0f172a;
   }
 
   .qris-box-mini {
     background: #ffffff;
-    border: 1px solid var(--isavo-border);
-    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
     padding: 20px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
   }
 
   .qris-tag {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 800;
-    color: var(--isavo-emerald);
+    letter-spacing: 0.06em;
+    color: #059669;
     margin-bottom: 6px;
   }
 
   .qris-box-mini p {
     font-size: 0.82rem;
-    color: var(--isavo-text-muted);
+    color: #64748b;
     line-height: 1.6;
     margin: 0;
   }
 
   /* =========================================================================
-     8. FAQ SYARIAH & BOTTOM BANNER ALA ISAVO
+     8. FAQ SYARIAH (Pure shadcn Accordion Architecture)
      ========================================================================= */
   .faq-accordion-wrap {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
   }
 
   .isavo-faq-item {
-    background: #ffffff;
-    border: 1px solid var(--isavo-border);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: border-color 0.2s;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #f1f5f9;
+    padding: 0 28px;
+    transition: background 0.2s ease;
+  }
+
+  .isavo-faq-item:last-child {
+    border-bottom: none;
   }
 
   .isavo-faq-item[open] {
-    border-color: var(--isavo-blue);
-    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.08);
+    background: #f8fafc;
+    box-shadow: none;
   }
 
   .faq-summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 24px;
-    font-size: 1.05rem;
+    padding: 20px 0;
+    font-size: 1.02rem;
     font-weight: 700;
-    color: var(--isavo-navy);
+    color: #0f172a;
     cursor: pointer;
     list-style: none;
     user-select: none;
@@ -1861,23 +1930,23 @@ const programNavLinks = [
   .faq-chevron {
     width: 18px;
     height: 18px;
-    color: var(--isavo-blue);
-    transition: transform 0.3s ease;
+    color: #64748b;
+    transition: transform 0.25s ease, color 0.25s ease;
     flex-shrink: 0;
   }
 
   .isavo-faq-item[open] .faq-chevron {
     transform: rotate(180deg);
+    color: #0284c7;
   }
 
   .faq-content {
-    padding: 0 24px 22px;
+    padding: 0 0 20px;
     font-size: 0.92rem;
     line-height: 1.7;
-    color: #475569;
-    border-top: 1px solid var(--isavo-blue-soft);
-    margin-top: 4px;
-    padding-top: 16px;
+    color: #64748b;
+    border: none;
+    margin: 0;
   }
 
   /* Bottom Consultation Banner ala ISAVO Newsletter Banner */
