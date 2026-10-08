@@ -1,0 +1,280 @@
+---
+// src/components/home/DonationChannelsSection.astro
+// Section 07: Donation Channels — 5 Opsi Saluran Kebaikan
+const channels = [
+  {
+    tag: 'RUTIN & FLEKSIBEL',
+    title: 'INFAK & SEDEKAH',
+    desc: 'Untuk mendukung kebutuhan santri, pangan harian, dan operasional program dakwah yang sedang berjalan aktif.',
+    actionText: 'Salurkan Infak',
+    link: '/program/sedekah'
+  },
+  {
+    tag: 'KEWAJIBAN SYARIAH',
+    title: 'ZAKAT MAAL & PROFESI',
+    desc: 'Salurkan zakat melalui layanan terverifikasi YPCI sesuai 8 asnaf peruntukan syariah yang sah dan akuntabel.',
+    actionText: 'Tunaikan Zakat',
+    link: '/program/zakat'
+  },
+  {
+    tag: 'NILAI ABADI',
+    title: 'WAKAF UANG & LAHAN',
+    desc: 'Bangun manfaat yang terus bertumbuh tanpa henti melalui instrumen wakaf uang produktif mulai Rp 50.000.',
+    actionText: 'Ikrar Wakaf',
+    link: '/program/wakaf'
+  },
+  {
+    tag: 'SARANA & MATERIAL',
+    title: 'DONASI BARANG / FASILITAS',
+    desc: 'Dukungan konkret berupa material semen, besi, solar cell, perlengkapan laboratorium, atau bibit greenhouse.',
+    actionText: 'Donasi Fasilitas',
+    link: '/program/infaq'
+  },
+  {
+    tag: 'KOLABORASI STRATEGIS',
+    title: 'KEMITRAAN MULTIPIHAK',
+    desc: 'Dukungan institusional skala luas bersama perusahaan (CSR), kampus, dan lembaga donor nasional.',
+    actionText: 'Bangun Sinergi',
+    link: '#kemitraan'
+  }
+];
+---
+
+<section class="donation-channels-section" id="donasi">
+  <div class="donation-channels-container">
+    <div class="donation-channels-header text-center reveal-on-scroll">
+      <div class="channels-pill">
+        <span class="pill-dot"></span>
+        <span>07 • DONATION CHANNELS</span>
+      </div>
+      <h2 class="channels-title">Anda Tidak Harus Menunggu untuk Berbuat Baik.</h2>
+      <p class="channels-subtitle">Ada banyak cara untuk mengambil bagian dan melipatgandakan pahala jariyah Anda:</p>
+    </div>
+
+    <div class="channels-grid">
+      {channels.map((ch, idx) => (
+        <div class={`channel-card reveal-on-scroll delay-${(idx + 1) * 100}`}>
+          <div class="channel-top">
+            <span class="channel-tag">{ch.tag}</span>
+            <span class="channel-idx">0{idx + 1}</span>
+          </div>
+
+          <h3 class="channel-title">{ch.title}</h3>
+          <p class="channel-desc">{ch.desc}</p>
+
+          <a href={ch.link} class="channel-btn">
+            <span>{ch.actionText}</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-arrow">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <div class="channels-footer-cta text-center reveal-on-scroll mt-60">
+      <a href="#rekening" class="channels-pill-cta">
+        <span>Pilih Cara Anda Berkontribusi</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="cta-arrow-right">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .donation-channels-section {
+    position: relative;
+    padding: 110px 0 120px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .donation-channels-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .donation-channels-header {
+    max-width: 860px;
+    margin: 0 auto 60px;
+  }
+
+  .channels-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(229, 57, 53, 0.08);
+    border: 1px solid rgba(229, 57, 53, 0.25);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #e53935;
+    margin-bottom: 20px;
+  }
+
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #e53935;
+    border-radius: 50%;
+  }
+
+  .channels-title {
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #0f172a;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+  }
+
+  .channels-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+  }
+
+  .channels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .channel-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 30px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .channel-card:hover {
+    background: #ffffff;
+    transform: translateY(-5px);
+    border-color: #0284c7;
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.08);
+  }
+
+  .channel-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  .channel-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    background: rgba(2, 132, 199, 0.08);
+    padding: 4px 10px;
+    border-radius: 9999px;
+  }
+
+  .channel-idx {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #cbd5e1;
+    font-family: monospace;
+  }
+
+  .channel-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+
+  .channel-desc {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: #64748b;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+
+  .channel-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 10px 18px;
+    border-radius: 9999px;
+    color: #0f172a;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .btn-arrow {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.25s ease;
+  }
+
+  .channel-card:hover .channel-btn {
+    background: #0284c7;
+    border-color: #0284c7;
+    color: #ffffff;
+  }
+
+  .channel-card:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  .mt-60 {
+    margin-top: 50px;
+  }
+
+  .channels-pill-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #e53935 0%, #d32f2f 100%);
+    color: #ffffff;
+    padding: 14px 34px;
+    border-radius: 9999px;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(229, 57, 53, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .channels-pill-cta:hover {
+    background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(229, 57, 53, 0.55);
+  }
+
+  .cta-arrow-right {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media (max-width: 1024px) {
+    .channels-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .channels-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

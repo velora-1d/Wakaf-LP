@@ -1,0 +1,366 @@
+---
+// src/components/home/FeaturedCampaignSection.astro
+// Section 08: Featured Campaign — Bantu Menyelesaikan Masjid Khairu Ummah Sugro
+const collectedAmount = "Rp 348.500.000";
+const targetAmount = "Rp 1.250.000.000";
+const percentage = 28;
+---
+
+<section class="featured-campaign-section" id="campaign-masjid">
+  <div class="featured-campaign-container">
+    <div class="campaign-card reveal-on-scroll">
+      <!-- Left Content: Campaign Info, Metrics, & CTAs -->
+      <div class="campaign-content">
+        <div class="campaign-pill">
+          <span class="pill-dot"></span>
+          <span>08 • FEATURED CAMPAIGN</span>
+        </div>
+
+        <h2 class="campaign-title">
+          Bantu Menyelesaikan<br />
+          Masjid Khairu Ummah Sugro
+        </h2>
+
+        <div class="campaign-verses">
+          <span>Satu bangunan.</span>
+          <span class="dot-sep">•</span>
+          <span>Satu ruang ibadah.</span>
+          <span class="dot-sep">•</span>
+          <span>Satu pusat kebaikan bagi ekosistem pesantren.</span>
+        </div>
+
+        <p class="campaign-desc">
+          Masjid ramah lingkungan dengan konsep green architecture di kawasan Jonggol Bogor. Menjadi pusat ibadah harian santri, salat berjamaah warga sekitar, kajian adab, dan pusat koordinasi ekosistem ABCFG.
+        </p>
+
+        <!-- Live Donation Progress Bar -->
+        <div class="progress-container">
+          <div class="progress-labels">
+            <div class="collected-wrap">
+              <span class="prog-meta-lbl">Terkumpul Saat Ini:</span>
+              <span class="prog-meta-val">{collectedAmount}</span>
+            </div>
+            <div class="target-wrap">
+              <span class="prog-meta-lbl">Target Pembangunan:</span>
+              <span class="prog-meta-val target">{targetAmount}</span>
+            </div>
+          </div>
+
+          <div class="progress-bar-bg" role="progressbar" aria-valuenow={percentage} aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar-fill" style={`width: ${percentage}%;`}>
+              <span class="progress-pct-badge">{percentage}%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dual CTA Buttons -->
+        <div class="campaign-cta-wrap">
+          <a href="#donasi" class="campaign-btn-primary">
+            <svg class="heart-svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span>Donasi Sekarang</span>
+          </a>
+
+          <a href="/program/wakaf" class="campaign-btn-outline">
+            <span>Lihat Detail Campaign</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="arrow-svg">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Visual: Architectural 3D Rendering of the Mosque -->
+      <div class="campaign-media">
+        <img
+          src="/gambar design/belakang masjid (2).jpg"
+          alt="Desain Arsitektur Masjid Khairu Ummah Sugro"
+          class="campaign-img"
+          loading="lazy"
+        />
+        <div class="campaign-media-overlay"></div>
+        <div class="campaign-floating-badge">
+          <span class="badge-num">±3 Hektare</span>
+          <span class="badge-sub">Kawasan Terpadu Jonggol</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-campaign-section {
+    position: relative;
+    padding: 100px 0 110px;
+    background-color: #121417;
+  }
+
+  .featured-campaign-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .campaign-card {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    background: #1a1d23;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .campaign-content {
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .campaign-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(229, 57, 53, 0.15);
+    border: 1px solid rgba(229, 57, 53, 0.35);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #ff6b6b;
+    margin-bottom: 22px;
+    align-self: flex-start;
+  }
+
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #e53935;
+    border-radius: 50%;
+  }
+
+  .campaign-title {
+    font-size: clamp(2.2rem, 3.6vw, 3.1rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #ffffff;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+  }
+
+  .campaign-verses {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #38bdf8;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+
+  .dot-sep {
+    color: #64748b;
+  }
+
+  .campaign-desc {
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: #94a3b8;
+    margin-bottom: 36px;
+  }
+
+  /* Progress Bar Container */
+  .progress-container {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 24px 26px;
+    margin-bottom: 36px;
+  }
+
+  .progress-labels {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .prog-meta-lbl {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .prog-meta-val {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #38bdf8;
+    letter-spacing: -0.01em;
+  }
+
+  .prog-meta-val.target {
+    color: #ffffff;
+  }
+
+  .progress-bar-bg {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    overflow: visible;
+    position: relative;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0284c7 0%, #38bdf8 100%);
+    border-radius: 9999px;
+    position: relative;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .progress-pct-badge {
+    position: absolute;
+    right: -14px;
+    top: -28px;
+    background: #0284c7;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  /* CTA Wrap */
+  .campaign-cta-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .campaign-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #e53935 0%, #d32f2f 100%);
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 9999px;
+    font-size: 0.98rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(229, 57, 53, 0.45);
+    transition: all 0.3s ease;
+  }
+
+  .campaign-btn-primary:hover {
+    background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(229, 57, 53, 0.6);
+  }
+
+  .heart-svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .campaign-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 14px 26px;
+    border-radius: 9999px;
+    font-size: 0.98rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .campaign-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .arrow-svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.25s ease;
+  }
+
+  .campaign-btn-outline:hover .arrow-svg {
+    transform: translateX(3px);
+  }
+
+  /* Right Media */
+  .campaign-media {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .campaign-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 480px;
+  }
+
+  .campaign-media-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #1a1d23 0%, rgba(26, 29, 35, 0.2) 60%, rgba(26, 29, 35, 0.05) 100%);
+  }
+
+  .campaign-floating-badge {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 16px 22px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .badge-num {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #38bdf8;
+    display: block;
+    line-height: 1.1;
+  }
+
+  .badge-sub {
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    font-weight: 500;
+  }
+
+  @media (max-width: 1024px) {
+    .campaign-card {
+      grid-template-columns: 1fr;
+    }
+    .campaign-media {
+      max-height: 380px;
+    }
+    .campaign-img {
+      min-height: 340px;
+    }
+  }
+</style>

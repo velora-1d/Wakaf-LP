@@ -1,0 +1,280 @@
+---
+// src/components/home/OurProgramsSection.astro
+// Section 06: Our Programs — 4 Kartu Program Interaktif yang Bisa Diklik
+const programs = [
+  {
+    id: 'masjid',
+    icon: '🕌',
+    title: 'Masjid Khairu Ummah Sugro',
+    category: 'PUSAT IBADAH & ADAB',
+    desc: 'Mendukung pembangunan dan pengembangan masjid sebagai bagian dari pusat aktivitas kepesantrenan dan ekosistem pembelajaran holistik.',
+    image: '/gambar design/belakang masjid.jpg',
+    btnText: 'Dukung Program',
+    link: '/program/wakaf'
+  },
+  {
+    id: 'pendidikan',
+    icon: '🎓',
+    title: 'Pendidikan & Kompetensi Santri',
+    category: 'VOKASI & BEASISWA',
+    desc: 'Mendukung pengembangan santri melalui pendidikan vokasi SMK terpadu, teaching factory, sarana belajar, dan pembentukan karakter FAST.',
+    image: '/gambar design/skywalk learning room.jpg',
+    btnText: 'Lihat Program',
+    link: '/program/infaq'
+  },
+  {
+    id: 'wakaf-produktif',
+    icon: '🌱',
+    title: 'Wakaf Produktif Kawasan',
+    category: 'ASET ABADI UMAT',
+    desc: 'Membangun aset produktif abadi yang memberikan manfaat ekonomi berkelanjutan untuk kemandirian operasional pesantren.',
+    image: '/gambar design/gh learning area.jpg',
+    btnText: 'Wakaf Sekarang',
+    link: '/program/wakaf'
+  },
+  {
+    id: 'teaching-factory',
+    icon: '💡',
+    title: 'Skill & Teaching Factory',
+    category: 'PRAKTIK 4 PILAR YPCI',
+    desc: 'Ruang belajar berbasis praktik di 4 bidang fokus YPCI: Pertanian Modern, Rekayasa Teknologi, Konstruksi & Properti, serta Bisnis Digital.',
+    image: '/gambar design/workshop.jpg',
+    btnText: 'Lihat Ekosistem',
+    link: '/program/sedekah'
+  }
+];
+---
+
+<section class="our-programs-section" id="program">
+  <div class="our-programs-container">
+    <div class="our-programs-header text-center reveal-on-scroll">
+      <div class="programs-pill">
+        <span class="pill-dot"></span>
+        <span>06 • OUR PROGRAMS</span>
+      </div>
+      <h2 class="programs-title">Program yang Bisa Anda Dukung</h2>
+      <p class="programs-desc">
+        Setiap inisiatif dirancang terukur dan terarah. Klik kartu program di bawah untuk melihat rincian rencana, akad, dan progres penyalurannya:
+      </p>
+    </div>
+
+    <div class="programs-grid">
+      {programs.map((prog, idx) => (
+        <div class={`program-card reveal-on-scroll delay-${(idx + 1) * 100}`} id={`card-${prog.id}`}>
+          <div class="prog-img-wrap">
+            <img src={prog.image} alt={prog.title} class="prog-img" loading="lazy" />
+            <div class="prog-img-overlay"></div>
+            <span class="prog-cat-badge">{prog.category}</span>
+          </div>
+
+          <div class="prog-content">
+            <div class="prog-title-row">
+              <span class="prog-emoji" aria-hidden="true">{prog.icon}</span>
+              <h3 class="prog-title">{prog.title}</h3>
+            </div>
+            <p class="prog-desc">{prog.desc}</p>
+
+            <a href={prog.link} class="prog-cta-btn">
+              <span>{prog.btnText}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="cta-arrow">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .our-programs-section {
+    position: relative;
+    padding: 110px 0 120px;
+    background-color: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .our-programs-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .our-programs-header {
+    max-width: 780px;
+    margin: 0 auto 60px;
+  }
+
+  .programs-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(2, 132, 199, 0.1);
+    border: 1px solid rgba(2, 132, 199, 0.25);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    margin-bottom: 20px;
+  }
+
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0284c7;
+    border-radius: 50%;
+  }
+
+  .programs-title {
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #0f172a;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+  }
+
+  .programs-desc {
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: #64748b;
+  }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .program-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  }
+
+  .program-card:hover {
+    transform: translateY(-6px);
+    border-color: #cbd5e1;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.09);
+  }
+
+  .prog-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+  }
+
+  .prog-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .program-card:hover .prog-img {
+    transform: scale(1.06);
+  }
+
+  .prog-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.55) 100%);
+  }
+
+  .prog-cat-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 20px;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    color: #0f172a;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .prog-content {
+    padding: 32px 30px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .prog-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .prog-emoji {
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  .prog-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.015em;
+  }
+
+  .prog-desc {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: #64748b;
+    margin-bottom: 26px;
+    flex: 1;
+  }
+
+  .prog-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+    padding: 12px 22px;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  }
+
+  .cta-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.25s ease;
+  }
+
+  .program-card:hover .prog-cta-btn {
+    background: #0284c7;
+    border-color: #0284c7;
+    color: #ffffff;
+  }
+
+  .program-card:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 900px) {
+    .programs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
