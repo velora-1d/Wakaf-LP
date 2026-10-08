@@ -1,0 +1,272 @@
+---
+// src/components/home/CollaborateSection.astro
+// Section 12: Collaborate — Matriks Kemitraan 5 Stakeholder YPCI
+const partners = [
+  {
+    role: 'Perguruan Tinggi',
+    badge: 'AKADEMIK & RISET',
+    desc: 'Pengembangan kurikulum vokasi, transfer teknologi aplikatif, riset pertanian, dan beasiswa lanjutan.',
+    icon: '🎓'
+  },
+  {
+    role: 'Perusahaan & Industri',
+    badge: 'CSR, ESG & MAGANG',
+    desc: 'Keahlian teknologi, fasilitas teaching factory, penyaluran magang santri, dan penyerapan kerja.',
+    icon: '🏢'
+  },
+  {
+    role: 'Funding Partner',
+    badge: 'LEMBAGA FILANTROPI',
+    desc: 'Pendanaan program, hibah modal usaha mandiri, dan dukungan keberlanjutan investasi wakaf produktif.',
+    icon: '💼'
+  },
+  {
+    role: 'Pemerintah',
+    badge: 'REGULASI & FASILITASI',
+    desc: 'Harmonisasi kebijakan pesantren vokasi bersama Kemenag, BWI, Kemendikbudristek, dan Pemda setempat.',
+    icon: '🏛️'
+  },
+  {
+    role: 'Masyarakat & Relawan',
+    badge: 'KOMUNITAS & MENTOR',
+    desc: 'Dukungan moril, tenaga ahli sukarela, pembinaan adab santri, dan kolaborasi ekonomi kerakyatan.',
+    icon: '🤝'
+  }
+];
+---
+
+<section class="collaborate-section" id="kemitraan">
+  <div class="collaborate-container">
+    <div class="collaborate-header text-center reveal-on-scroll">
+      <div class="collaborate-pill">
+        <span class="pill-dot"></span>
+        <span>12 • COLLABORATE & PARTNERSHIP</span>
+      </div>
+      <h2 class="collaborate-title">Tidak Semua Orang Memberi dengan Cara yang Sama.</h2>
+      <p class="collaborate-lead">
+        Ada yang memberikan dana. Ada yang memberikan ilmu. Ada yang memberikan fasilitas. Ada yang membuka jaringan industri, serta meluangkan waktu dan keahlian. Semuanya adalah pilar penting ekosistem ini.
+      </p>
+    </div>
+
+    <!-- 5 Stakeholders Grid -->
+    <div class="collaborate-grid">
+      {partners.map((p, idx) => (
+        <div class={`partner-card reveal-on-scroll delay-${(idx + 1) * 100}`}>
+          <div class="partner-top">
+            <span class="partner-emoji">{p.icon}</span>
+            <span class="partner-badge">{p.badge}</span>
+          </div>
+
+          <h3 class="partner-role">{p.role}</h3>
+          <p class="partner-desc">{p.desc}</p>
+        </div>
+      ))}
+
+      <!-- Special CTA Card for Inquiries -->
+      <div class="partner-card cta-card reveal-on-scroll delay-500">
+        <div class="cta-inner">
+          <span class="cta-eyebrow">SINERGI STRATEGIS</span>
+          <h3 class="cta-title">Siap Bermitra dengan GVF?</h3>
+          <p class="cta-desc">Mari berdiskusi bagaimana institusi atau keahlian Anda dapat berkolaborasi.</p>
+          <a
+            href="https://wa.me/6281226832326?text=Halo%20Admin%20GVF%2C%20saya%20tertarik%20membahas%20kemitraan%20strategis."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="partner-btn"
+          >
+            <span>Bangun Kemitraan</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="arrow-svg">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .collaborate-section {
+    position: relative;
+    padding: 110px 0 120px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .collaborate-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .collaborate-header {
+    max-width: 860px;
+    margin: 0 auto 60px;
+  }
+
+  .collaborate-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(2, 132, 199, 0.1);
+    border: 1px solid rgba(2, 132, 199, 0.25);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    margin-bottom: 20px;
+  }
+
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0284c7;
+    border-radius: 50%;
+  }
+
+  .collaborate-title {
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #0f172a;
+    letter-spacing: -0.025em;
+    margin-bottom: 18px;
+  }
+
+  .collaborate-lead {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #64748b;
+  }
+
+  .collaborate-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .partner-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .partner-card:hover {
+    background: #ffffff;
+    transform: translateY(-5px);
+    border-color: #0284c7;
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.08);
+  }
+
+  .partner-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  .partner-emoji {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .partner-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: #e0f2fe;
+    color: #0284c7;
+  }
+
+  .partner-role {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+
+  .partner-desc {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: #64748b;
+  }
+
+  /* Special CTA Card */
+  .partner-card.cta-card {
+    background: linear-gradient(135deg, #0a2540 0%, #0f172a 100%);
+    border: none;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(10, 37, 64, 0.2);
+    justify-content: center;
+  }
+
+  .cta-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #38bdf8;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .cta-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 8px;
+  }
+
+  .cta-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #94a3b8;
+    margin-bottom: 22px;
+  }
+
+  .partner-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #0284c7;
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .partner-btn:hover {
+    background: #0369a1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.45);
+  }
+
+  .arrow-svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 1024px) {
+    .collaborate-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .collaborate-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
