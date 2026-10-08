@@ -1,64 +1,122 @@
 ---
 // src/components/home/HeroSection.astro
-// Exact ISAVO Hero Section Replication (Screenshot 1)
+// Hero Slider 4 Slide Sesuai Urutan Program: Shodaqoh, Infaq, Zakat, Wakaf
+// Desain sinematik ala ISAVO dengan kepatuhan prinsip typeui-fundamentals
+
+const heroSlides = [
+  {
+    id: 'ekosistem',
+    index: '01',
+    label: 'Ekosistem & Kebermanfaatan',
+    badge: 'FOSTERING PESANTREN ECOSYSTEMS',
+    title: 'Membangun Ekosistem Pesantren.<br />Menghadirkan Kebermanfaatan.',
+    lead: 'Global Village Fund adalah wadah kebaikan dan kolaborasi untuk memperkuat ekosistem pesantren menuju kemandirian dan dampak sosial.',
+    sub: 'Fostering Pesantren Ecosystems for Self-Reliance and Social Impact — menghubungkan pendidikan, karakter, dan pemberdayaan nyata.',
+    image: '/gambar design/interior mesjid 2.jpg',
+    primaryCta: { text: 'Jelajahi Program', href: '#program-kebaikan' },
+    secondaryCta: { text: 'Dukung Kebaikan', href: '#donasi' }
+  },
+  {
+    id: 'pendidikan',
+    index: '02',
+    label: 'Pendidikan & Kompetensi',
+    badge: 'PENDIDIKAN, KOMPETENSI & KARAKTER',
+    title: 'Menumbuhkan Potensi,<br />Membangun Kemandirian.',
+    lead: 'Mendukung pendidikan, pengembangan kompetensi, dan pembentukan karakter santri sebagai bekal untuk menghadapi masa depan.',
+    sub: 'Mencetak generasi berakhlak mulia dengan penguasaan teknologi terapan dan kesiapan mandiri secara profesional.',
+    image: '/gambar design/learning studio & workshop.jpg',
+    primaryCta: { text: 'Lihat Program', href: '/program/sedekah' },
+    secondaryCta: { text: 'Dukung Beasiswa', href: '#donasi' }
+  },
+  {
+    id: 'masjid',
+    index: '03',
+    label: 'Masjid Khairu Ummah',
+    badge: 'PUSAT IBADAH & PEMBELAJARAN',
+    title: 'Satu Rumah Allah,<br />Tumbuh Banyak Kebaikan.',
+    lead: 'Bersama-sama menyelesaikan pembangunan Masjid Khairu Ummah Sugro sebagai bagian dari ekosistem pembelajaran dan kebermanfaatan pesantren.',
+    sub: 'Pusat ibadah, pembinaan karakter FAST, dan ruang kolaborasi keumatan yang memancarkan manfaat abadi lintas generasi.',
+    image: '/gambar design/interior masjid.jpg',
+    primaryCta: { text: 'Dukung Pembangunan', href: '/program/wakaf' },
+    secondaryCta: { text: 'Detail Masjid', href: '#masjid-sugro' }
+  },
+  {
+    id: 'kemandirian',
+    index: '04',
+    label: 'Kemandirian & Lingkungan',
+    badge: 'AGRO-TECHNOPARK & KEMANDIRIAN',
+    title: 'Dari Pesantren,<br />Tumbuh Kemandirian.',
+    lead: 'Mengembangkan ekosistem pendidikan, lingkungan, dan kewirausahaan yang saling terhubung untuk menciptakan manfaat yang berkelanjutan.',
+    sub: 'Kawasan terpadu ±3 hektare di Jonggol Bogor yang memadukan agriteknologi, ketahanan pangan, dan inkubasi wirausaha santri.',
+    image: '/gambar design/belakang masjid.jpg',
+    primaryCta: { text: 'Jelajahi Ekosistem', href: '#pendekatan' },
+    secondaryCta: { text: 'Kolaborasi Bersama', href: '#kolaborasi' }
+  }
+];
 ---
 
-<section class="isavo-hero">
-  <!-- Full-Screen Hero Background with Cinematic Dark Overlay -->
-  <div class="isavo-hero-bg" aria-hidden="true">
-    <img
-      src="/gambar design/interior masjid.jpg"
-      alt="Global Village Fund"
-      class="isavo-hero-img"
-    />
-    <div class="isavo-hero-overlay"></div>
+<section class="isavo-hero" id="hero-carousel" aria-roledescription="carousel" aria-label="Program Unggulan Global Village Fund">
+  <!-- Multi-Slide Backgrounds with Cinematic Crossfade & Ambient Zoom -->
+  <div class="hero-bgs-container" aria-hidden="true">
+    {heroSlides.map((slide, i) => (
+      <div class={`hero-bg-item ${i === 0 ? 'is-active' : ''}`} data-bg-index={i}>
+        <img
+          src={slide.image}
+          alt={slide.label}
+          class="hero-bg-img"
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+        <div class="hero-bg-overlay"></div>
+      </div>
+    ))}
   </div>
 
   <div class="isavo-hero-container">
-    <div class="isavo-hero-content">
-      <!-- Tag Pill with Dot ala ISAVO: • #WADAHKEBAIKANDANKOLABORASI -->
-      <div class="isavo-tag-pill isavo-hero-anim isavo-anim-1">
-        <span class="isavo-tag-dot"></span>
-        <span class="isavo-tag-text">#WADAHKEBAIKANDANKOLABORASI</span>
-      </div>
+    <!-- Slides Content Deck -->
+    <div class="hero-slides-deck">
+      {heroSlides.map((slide, i) => (
+        <div
+          class={`hero-slide-pane ${i === 0 ? 'is-active' : ''}`}
+          data-slide-index={i}
+          role="tabpanel"
+          aria-label={`Slide ${slide.index}: ${slide.label}`}
+        >
+          <!-- Tag Pill with Blue Dot -->
+          <div class="isavo-tag-pill">
+            <span class="isavo-tag-dot"></span>
+            <span class="isavo-tag-text">{slide.badge}</span>
+          </div>
 
-      <!-- Giant Bold Title ala ISAVO -->
-      <h1 class="isavo-hero-title isavo-hero-anim isavo-anim-2">
-        Kebaikan yang Tumbuh<br />
-        Menjadi Kebermanfaatan
-      </h1>
+          <!-- Display Heading (typeui principle: line-height tight, crisp contrast) -->
+          <h1 class="isavo-hero-title" set:html={slide.title} />
 
-      <!-- Supporting Prose ala ISAVO -->
-      <div class="isavo-hero-sub isavo-hero-anim isavo-anim-3">
-        <p>
-          Global Village Fund adalah wadah kebaikan dan kolaborasi yang dikembangkan oleh <strong>Yayasan Permata Cendekia Indonesia (YPCI)</strong> untuk membangun ekosistem pesantren yang mandiri, berkarakter, terampil, dan memberikan dampak nyata bagi masyarakat.
-        </p>
-        <p style="margin-top: 12px; font-size: 0.98rem; opacity: 0.92;">
-          Melalui donasi, zakat, wakaf, dan kemitraan, setiap dukungan diarahkan untuk memperkuat pendidikan, pengembangan kompetensi, kemandirian, serta keberlanjutan ekosistem pesantren.
-        </p>
-      </div>
+          <!-- Narrative Subtext -->
+          <div class="isavo-hero-sub">
+            <p>{slide.lead}</p>
+            <p class="hero-sub-secondary">{slide.sub}</p>
+          </div>
 
-      <!-- Dual Pill Buttons ala ISAVO (Donasi Sekarang + Lihat Program) -->
-      <div class="isavo-hero-cta-wrap isavo-hero-anim isavo-anim-4">
-        <!-- Primary Action: Donasi Sekarang (Red Pill) -->
-        <a href="#donasi" class="isavo-btn-primary-pill">
-          <svg class="cta-heart-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-          <span>Donasi Sekarang</span>
-        </a>
+          <!-- Matched Height Action Buttons (typeui principle: adjacent buttons match height) -->
+          <div class="isavo-hero-cta-wrap">
+            <a href={slide.secondaryCta.href} class="isavo-btn-primary-pill">
+              <svg class="cta-heart-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>{slide.secondaryCta.text}</span>
+            </a>
 
-        <!-- Secondary Action: Lihat Program (Outlined Pill) -->
-        <a href="#program" class="isavo-btn-outline-pill">
-          <span class="isavo-btn-text">Lihat Program</span>
-          <span class="isavo-btn-arrow-circle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="isavo-arrow-icon">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </span>
-        </a>
-      </div>
+            <a href={slide.primaryCta.href} class="isavo-btn-outline-pill">
+              <span class="isavo-btn-text">{slide.primaryCta.text}</span>
+              <span class="isavo-btn-arrow-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="isavo-arrow-icon">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -71,13 +129,14 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 140px;
-    padding-bottom: 80px;
+    padding-top: 130px;
+    padding-bottom: 70px;
     overflow: hidden;
-    background-color: #0d1117;
+    background-color: #070e17;
   }
 
-  .isavo-hero-bg {
+  /* Multi-slide Background Layer */
+  .hero-bgs-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -87,30 +146,40 @@
     overflow: hidden;
   }
 
-  /* Slow cinematic background zoom-in on page load ala ISAVO */
-  .isavo-hero-img {
+  .hero-bg-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
+    transform: scale(1);
+  }
+
+  .hero-bg-item.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hero-bg-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
-    filter: brightness(0.9);
-    animation: isavoHeroZoom 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    transform-origin: center center;
-    will-change: transform;
+    filter: brightness(0.85);
+    transform: scale(1.0);
+    transition: transform 7s cubic-bezier(0.1, 0.9, 0.2, 1);
   }
 
-  @keyframes isavoHeroZoom {
-    0% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1.0);
-    }
+  .hero-bg-item.is-active .hero-bg-img {
+    transform: scale(1.06);
   }
 
-  /* Deep cinematic dark overlay so white typography pops crisply ala ISAVO */
-  .isavo-hero-overlay {
+  /* Deep cinematic dark overlay (typeui contrast safety) */
+  .hero-bg-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -118,84 +187,66 @@
     height: 100%;
     background: linear-gradient(
       90deg,
-      rgba(10, 15, 24, 0.94) 0%,
-      rgba(10, 15, 24, 0.82) 45%,
-      rgba(10, 15, 24, 0.45) 100%
+      rgba(7, 14, 23, 0.95) 0%,
+      rgba(7, 14, 23, 0.82) 48%,
+      rgba(7, 14, 23, 0.45) 100%
     );
   }
 
+  /* typeui principle: 1280px standard container */
   .isavo-hero-container {
     position: relative;
     z-index: 10;
     width: 100%;
-    max-width: 1440px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 3rem;
+    padding: 0 32px;
   }
 
-  .isavo-hero-content {
-    max-width: 820px;
+  .hero-slides-deck {
+    max-width: 840px;
+    position: relative;
+    padding-top: 20px;
   }
 
-  /* Staggered entrance animations ala ISAVO */
-  .isavo-hero-anim {
+  /* Slide Pane Transition */
+  .hero-slide-pane {
+    display: none;
     opacity: 0;
-    transform: translateY(28px);
-    animation: isavoSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    will-change: opacity, transform;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .isavo-anim-1 {
-    animation-delay: 0.15s;
+  .hero-slide-pane.is-active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .isavo-anim-2 {
-    animation-delay: 0.3s;
-  }
-
-  .isavo-anim-3 {
-    animation-delay: 0.45s;
-  }
-
-  .isavo-anim-4 {
-    animation-delay: 0.6s;
-  }
-
-  @keyframes isavoSlideUp {
-    0% {
-      opacity: 0;
-      transform: translateY(28px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Tag Pill with dot ala ISAVO: #SOLUSISATUPINTU */
+  /* Tag Pill with dot ala ISAVO */
   .isavo-tag-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 0.4rem 1.05rem;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 16px;
     border-radius: 9999px;
-    margin-bottom: 2rem;
+    margin-bottom: 24px;
   }
 
   .isavo-tag-dot {
     width: 7px;
     height: 7px;
-    background-color: #0969da; /* Blue vibrant accent */
+    background-color: var(--gvf-blue-vibrant, #0969da);
     border-radius: 50%;
-    box-shadow: 0 0 8px #0969da;
+    box-shadow: 0 0 10px #0969da;
   }
 
   .isavo-tag-text {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 0.08em;
     color: #ffffff;
@@ -203,117 +254,116 @@
     font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
   }
 
-  /* Giant Title ala ISAVO */
+  /* Giant Display Title (typeui principle: line-height: 1.04, margin-bottom 28px) */
   .isavo-hero-title {
-    font-size: clamp(3.2rem, 6.2vw, 5.75rem);
+    font-size: clamp(2.8rem, 5.2vw, 4.8rem);
     font-weight: 800;
-    line-height: 1.06;
+    line-height: 1.05;
     letter-spacing: -0.03em;
     color: #ffffff;
-    margin-bottom: 1.85rem;
+    margin-bottom: 24px;
     font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   }
 
   .isavo-hero-sub {
-    max-width: 760px;
-    margin-bottom: 2.75rem;
+    max-width: 720px;
+    margin-bottom: 36px;
   }
 
   .isavo-hero-sub p {
-    font-size: 1.15rem;
-    line-height: 1.75;
-    color: #f1f5f9 !important;
+    font-size: 1.0625rem;
+    line-height: 1.68;
+    color: #e2e8f0;
     font-weight: 400;
-    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
-    text-align: justify;
-    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    margin-bottom: 10px;
   }
 
-  .isavo-hero-sub p:last-child {
-    margin-bottom: 0;
+  .hero-sub-secondary {
+    font-size: 0.9375rem !important;
+    color: #94a3b8 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 0 !important;
   }
 
-  .isavo-hero-sub strong {
-    color: #ffffff !important;
-    font-weight: 700;
-  }
-
+  /* Buttons Row (Matching box height: 50px) */
   .isavo-hero-cta-wrap {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 16px;
     flex-wrap: wrap;
   }
 
-  /* Primary Pill (Red Gradient ala ISAVO) */
   .isavo-btn-primary-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
+    justify-content: center;
+    gap: 10px;
+    height: 50px;
     background: linear-gradient(135deg, #e53935 0%, #d32f2f 100%);
     color: #ffffff;
-    padding: 0.92rem 2.2rem;
+    padding: 0 28px;
     border-radius: 9999px;
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 700;
     text-decoration: none;
     letter-spacing: 0.01em;
-    box-shadow: 0 8px 24px rgba(229, 57, 53, 0.45);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    white-space: nowrap;
+    box-shadow: 0 8px 20px rgba(229, 57, 53, 0.4);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
 
   .isavo-btn-primary-pill:hover {
-    background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(229, 57, 53, 0.6);
+    box-shadow: 0 12px 28px rgba(229, 57, 53, 0.55);
   }
 
   .cta-heart-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     color: #ffffff;
   }
 
-  /* Outlined Pill Button with Circle Arrow ala ISAVO */
   .isavo-btn-outline-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.95rem;
-    background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1.5px solid rgba(255, 255, 255, 0.5);
-    padding: 0.45rem 0.55rem 0.45rem 1.65rem;
+    height: 50px;
+    gap: 14px;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 0 6px 0 24px;
     border-radius: 9999px;
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    white-space: nowrap;
+    transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   }
 
   .isavo-btn-outline-pill:hover {
-    background-color: rgba(255, 255, 255, 0.18);
+    background-color: rgba(255, 255, 255, 0.15);
     border-color: #ffffff;
     transform: translateY(-2px);
   }
 
   .isavo-btn-text {
-    font-size: 0.95rem;
+    font-size: 0.9375rem;
     font-weight: 700;
     color: #ffffff;
-    letter-spacing: 0.01em;
   }
 
   .isavo-btn-arrow-circle {
-    width: 40px;
-    height: 40px;
-    background-color: #0969da; /* Blue vibrant accent */
+    width: 38px;
+    height: 38px;
+    background-color: var(--gvf-blue-vibrant, #0969da);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.25s ease;
-    box-shadow: 0 4px 12px rgba(9, 105, 218, 0.4);
+    transition: transform 0.3s ease, background-color 0.25s ease;
+    box-shadow: 0 4px 12px rgba(9, 105, 218, 0.35);
   }
 
   .isavo-btn-outline-pill:hover .isavo-btn-arrow-circle {
@@ -322,20 +372,89 @@
   }
 
   .isavo-arrow-icon {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 
   @media (max-width: 900px) {
     .isavo-hero-container {
-      padding: 0 1.5rem;
+      padding: 0 20px;
     }
     .isavo-hero {
-      padding-top: 120px;
-      min-height: 90vh;
-    }
-    .isavo-hero-sub br {
-      display: none;
+      padding-top: 110px;
+      padding-bottom: 60px;
     }
   }
 </style>
+
+<script>
+  function initHeroCarousel() {
+    const root = document.getElementById('hero-carousel');
+    if (!root) return;
+
+    const bgItems = root.querySelectorAll<HTMLElement>('.hero-bg-item');
+    const slidePanes = root.querySelectorAll<HTMLElement>('.hero-slide-pane');
+
+    const totalSlides = slidePanes.length;
+    let currentIndex = 0;
+    let slideTimer: ReturnType<typeof setInterval> | null = null;
+    const DURATION = 6000;
+
+    function goToSlide(index: number) {
+      if (index === currentIndex) return;
+      currentIndex = (index + totalSlides) % totalSlides;
+      updateUI();
+      resetTimer();
+    }
+
+    function updateUI() {
+      // 1. Update background images
+      bgItems.forEach((bg, idx) => {
+        bg.classList.toggle('is-active', idx === currentIndex);
+      });
+
+      // 2. Update slide content panes
+      slidePanes.forEach((pane, idx) => {
+        pane.classList.toggle('is-active', idx === currentIndex);
+      });
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    function resetTimer() {
+      if (slideTimer) clearInterval(slideTimer);
+      slideTimer = setInterval(nextSlide, DURATION);
+    }
+
+    // Keyboard navigation (Left / Right arrow keys)
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Pause on hover
+    root.addEventListener('mouseenter', () => {
+      if (slideTimer) clearInterval(slideTimer);
+    });
+    root.addEventListener('mouseleave', () => {
+      resetTimer();
+    });
+
+    // Start initial timer
+    resetTimer();
+  }
+
+  // Run on initial load and Astro page transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroCarousel);
+  } else {
+    initHeroCarousel();
+  }
+  document.addEventListener('astro:page-load', initHeroCarousel);
+</script>

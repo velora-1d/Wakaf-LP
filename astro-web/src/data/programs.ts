@@ -434,7 +434,7 @@ export const programsData: Record<string, ProgramData> = {
           { bold: 'Hisab Sesuai Nisab Emas', text: 'Simpanan mengendap 1 tahun hijriyah dibersihkan haknya' },
           { bold: 'Pemberdayaan Ekonomi', text: 'Bantuan modal usaha mikro untuk keluarga mustahik sekitar Jonggol' },
           { bold: 'Akta Pengesahan Muzakki', text: 'Dokumen legalitas penunaian zakat berkekuatan syariah' },
-          { bold: 'Doa Khusus Santri', text: 'Didoakan dalam halaqah subuh santri penghafal Al-Quran' },
+          { bold: 'Doa Khusus Santri', text: 'Didoakan dalam halaqah santri penghafal Al-Quran' },
           { bold: 'Laporan Audit Lembaga', text: 'Transparansi pemisahan rekening zakat yang ketat' }
         ],
         ctaText: 'Konsultasi Sekarang'
@@ -505,7 +505,7 @@ export const programsData: Record<string, ProgramData> = {
         title: 'Kajian Fiqih & Halaqah Quran',
         category: 'Bina Spiritual',
         image: '/gambar design/interior mesjid 2.jpg',
-        status: 'Rutinitas Ba\'da Subuh',
+        status: 'Rutinitas Harian',
         caption: 'Membentuk karakter santri berakhlak mulia dan mutqin dalam hafalan Al-Quran.'
       },
       {
@@ -826,28 +826,28 @@ export const programsData: Record<string, ProgramData> = {
 
   sedekah: {
     slug: 'sedekah',
-    title: 'Sedekah Subuh & Pangan Santri',
-    heroSubtitle: 'Awali Hari dengan Doa Malaikat, Cukupi Nutrisi Santri Penghafal Quran di Pondok Pesantren.',
-    categoryBadge: '#SEDEKAH SUBUH & PANGAN SANTRI',
+    title: 'Shodaqoh & Pangan Santri',
+    heroSubtitle: 'Alirkan Kebaikan & Keberkahan, Cukupi Nutrisi Santri Penghafal Al-Qur’an di Pondok Pesantren.',
+    categoryBadge: '#SHODAQOH & PANGAN SANTRI',
     heroBgImage: '/gambar design/interior mesjid 2.jpg',
     
-    pricingHeading: 'Pilih Paket Sedekah Pangan',
-    pricingSubheading: 'Sedekah harian untuk menjamin makanan bergizi santri dan aksi cepat tanggap kemanusiaan bagi dhuafa sekitar Jonggol.',
+    pricingHeading: 'Pilih Paket Shodaqoh Pangan',
+    pricingSubheading: 'Shodaqoh harian untuk menjamin makanan bergizi santri dan aksi cepat tanggap kemanusiaan bagi dhuafa sekitar Jonggol.',
     packages: [
       {
-        id: 'sedekah-subuh-harian',
-        title: 'Sedekah Subuh Harian',
-        subtitle: 'Paket Rutin Fajar Berkah',
+        id: 'sedekah-rutin-harian',
+        title: 'Shodaqoh Rutin Harian',
+        subtitle: 'Paket Rutin Harian Berkah',
         pricePrefix: 'Rp ',
         priceAmount: '20.000',
         priceUnit: '/ hari',
         priceDesc: 'Konsisten bernilai besar di hadapan Allah',
-        estimation: 'Didoakan malaikat yang turun setiap subuh',
+        estimation: 'Didoakan para santri penghafal Quran',
         isPopular: true,
         deliverables: [
-          { bold: 'Didoakan Santri Quran', text: 'Disebut dalam doa bersama ba\'da salat subuh berjamaah' },
-          { bold: 'Doa Malaikat Fajar', text: 'Mendapat keutamaan doa malaikat pemohon ganti rezeki melimpah' },
-          { bold: 'Pengingat Otomatis', text: 'Fitur notifikasi pengingat sedekah fajar via WhatsApp' },
+          { bold: 'Didoakan Santri Quran', text: 'Disebut dalam doa bersama para santri berjamaah' },
+          { bold: 'Keberkahan Rezeki', text: 'Mendapat keutamaan sedekah pemohon ganti rezeki yang berkah' },
+          { bold: 'Pengingat Otomatis', text: 'Fitur notifikasi pengingat shodaqoh harian via WhatsApp' },
           { bold: 'Kebaikan Konsisten', text: 'Amalan yang dicintai Allah adalah amalan yang dawam/rutin' }
         ],
         ctaText: 'Konsultasi Sekarang'
@@ -890,17 +890,17 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     
-    deepDiveBadge: 'BERKAH TIAP PAGI',
+    deepDiveBadge: 'BERKAH TIAP HARI',
     deepDiveTitle: 'Memastikan Santri Penghafal Quran Tumbuh Sehat & Fokus Belajar',
-    deepDiveLead: 'Rasulullah SAW bersabda: "Tidak ada satu subuh pun yang dialami hamba-hamba Allah kecuali turun dua malaikat. Salah satunya berdoa: Ya Allah, berikanlah ganti bagi orang yang berinfak."',
-    deepDiveStory1: 'Di Pesantren Skill Village, ratusan santri memulai hari sejak pukul 03.30 pagi untuk tahajud, tilawah Al-Quran, dan dilanjutkan sekolah vokasi hingga sore hari. Mereka membutuhkan asupan gizi yang cukup agar tetap sehat dan fokus menyerap ilmu.',
-    deepDiveStory2: 'Sedekah Subuh Anda langsung disalurkan ke dapur umum pesantren untuk pengadaan beras, lauk berprotein, sayur mayur, dan buah-buahan segar. Setiap butir beras yang mereka konsumsi menjadi energi yang mengalirkan pahala kebaikan ke rekening akhirat Anda.',
+    deepDiveLead: 'Rasulullah SAW bersabda: "Sedekah itu memadamkan dosa sebagaimana air memadamkan api." (HR. Tirmidzi)',
+    deepDiveStory1: 'Di Pesantren Skill Village, ratusan santri memulai hari untuk tahajud, tilawah Al-Quran, dan dilanjutkan sekolah vokasi hingga sore hari. Mereka membutuhkan asupan gizi yang cukup agar tetap sehat dan fokus menyerap ilmu.',
+    deepDiveStory2: 'Shodaqoh Anda langsung disalurkan ke dapur umum pesantren untuk pengadaan beras, lauk berprotein, sayur mayur, dan buah-buahan segar. Setiap butir beras yang mereka konsumsi menjadi energi yang mengalirkan pahala kebaikan ke rekening akhirat Anda.',
     deepDiveBannerImage: '/gambar design/interior mesjid 2.jpg',
     valueBoxes: [
       {
         icon: 'sunrise',
-        title: 'Doa Malaikat di Waktu Subuh',
-        description: 'Mendapat keutamaan doa malaikat yang memohonkan ganti rezeki berlipat.'
+        title: 'Keberkahan & Kelapangan Rezeki',
+        description: 'Mendapat keutamaan sedekah yang memohonkan ganti rezeki berlipat.'
       },
       {
         icon: 'smile',
@@ -949,12 +949,12 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     
-    workflowHeading: 'Cara Mudah Memulai Kebiasaan Sedekah Subuh',
+    workflowHeading: 'Cara Mudah Memulai Kebiasaan Shodaqoh Rutin',
     workflowSteps: [
       {
         number: '01',
-        title: 'Siapkan Niat Saat Bangun Subuh',
-        description: 'Buka web GVF sesaat setelah shalat subuh atau simpan QRIS sedekah di ponsel Anda.'
+        title: 'Siapkan Niat Tulus Berbagi',
+        description: 'Buka website GVF atau simpan QRIS shodaqoh di ponsel Anda.'
       },
       {
         number: '02',
@@ -969,7 +969,7 @@ export const programsData: Record<string, ProgramData> = {
       {
         number: '04',
         title: 'Raih Ketenangan & Keberkahan',
-        description: 'Memulai hari dengan sedekah menjauhkan marabahaya dan membuka pintu rezeki yang berkah.'
+        description: 'Menjadikan shodaqoh sebagai amalan rutin menjauhkan marabahaya dan membuka pintu rezeki yang berkah.'
       }
     ],
     
@@ -993,8 +993,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     
-    legalitasBadge: 'LEGALITAS & REKENING SEDEKAH',
-    legalitasTitle: 'Rekening Resmi Sedekah Subuh & Pangan Santri',
+    legalitasBadge: 'LEGALITAS & REKENING SHODAQOH',
+    legalitasTitle: 'Rekening Resmi Shodaqoh & Pangan Santri',
     legalities: [
       {
         institution: 'Kemenkumham RI',
@@ -1018,19 +1018,19 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     
-    faqBadge: 'FAQ SEDEKAH SUBUH',
-    faqTitle: 'Pertanyaan Seputar Sedekah Subuh',
+    faqBadge: 'FAQ SHODAQOH',
+    faqTitle: 'Pertanyaan Seputar Shodaqoh',
     faqs: [
       {
-        question: 'Kapan waktu terbaik menunaikan sedekah subuh?',
-        answer: 'Waktu terbaik adalah antara adzan subuh berkumandang hingga terbit fajar (syuruq). Pada waktu inilah malaikat turun khusus mendoakan orang-orang yang berinfak.'
+        question: 'Kapan waktu terbaik menunaikan shodaqoh?',
+        answer: 'Shodaqoh dapat ditunaikan kapan saja sepanjang hari, baik di pagi hari maupun saat melihat kesempatan berbuat kebaikan bagi sesama.'
       },
       {
-        question: 'Apakah boleh sedekah subuh dilakukan secara transfer digital?',
+        question: 'Apakah boleh shodaqoh dilakukan secara transfer digital?',
         answer: 'Sangat boleh. Transfer digital maupun scan QRIS langsung memindahkan kepemilikan dana Anda untuk kepentingan umat, sah secara syar\'i dan lebih cepat dimanfaatkan santri.'
       }
     ],
-    ctaBannerHeading: 'Jadikan Sedekah Subuh Sebagai Rutinitas Harian',
-    ctaBannerText: 'Simpan nomor rekening atau QRIS resmi GVF untuk memudahkan Anda bersedekah setiap fajar menyapa.'
+    ctaBannerHeading: 'Jadikan Shodaqoh Sebagai Rutinitas Harian',
+    ctaBannerText: 'Simpan nomor rekening atau QRIS resmi GVF untuk memudahkan Anda berinfaq dan bersedekah setiap hari.'
   }
 };

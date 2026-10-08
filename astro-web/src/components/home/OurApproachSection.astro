@@ -2,119 +2,89 @@
 // src/components/home/OurApproachSection.astro
 // Section 04: Ekosistem Terpadu Berpusat pada Masjid (Editorial Architecture Style ala ISAVO)
 
-const pillars = [
+const approachSteps = [
   {
-    num: '01',
-    category: 'ACADEMY',
-    title: 'Pendidikan Sains & Vokasi',
-    role: 'Ilmu, Adab & Pembelajaran Terpadu',
-    desc: 'Kurikulum integratif SMK Skill Village Islamic School memadukan pendalaman adab islami, penguasaan sains modern, serta keterampilan vokasi siap kerja yang adaptif dengan kebutuhan era digital.'
+    step: '01',
+    name: 'Kebaikan',
+    focus: 'Filantropi & Wakaf Umat',
+    desc: 'Menghimpun amanah infaq, sedekah, zakat, dan wakaf produktif secara transparan dari para donatur dan masyarakat luas.'
   },
   {
-    num: '02',
-    category: 'SKILLS',
-    title: 'Keterampilan Terapan Nyata',
-    role: 'Kompetensi Lapangan & Portofolio',
-    desc: 'Laboratorium praktik riil di bidang arsitektur konstruksi, agribisnis ramah lingkungan, digital multimedia, dan manajemen wirausaha agar santri memiliki daya saing nyata.'
+    step: '02',
+    name: 'Pendidikan',
+    focus: 'Karakter & Fasilitas Pembelajaran',
+    desc: 'Membangun sarana belajar representatif, masjid beradab, dan kurikulum FAST sebagai fondasi akhlak santri.'
   },
   {
-    num: '03',
-    category: 'BUSINESS',
-    title: 'Unit Usaha Mandiri Pesantren',
-    role: 'Praktik Industri & Ketahanan Finansial',
-    desc: 'Pengembangan unit bisnis mandiri seperti Agro-Technopark, Green Waqf, dan Teaching Factory yang menopang kemandirian operasional pesantren tanpa ketergantungan penuh pada donasi.'
+    step: '03',
+    name: 'Kompetensi',
+    focus: 'Vokasi & Keterampilan Riil',
+    desc: 'Membekali santri keahlian vokasi terapan (arsitektur, agriteknologi, digital) melalui laboratorium praktik nyata.'
   },
   {
-    num: '04',
-    category: 'FAMILY & COMMUNITY',
-    title: 'Keluarga & Pemberdayaan Warga',
-    role: 'Sinergi Orang Tua & Masyarakat Sukasirna',
-    desc: 'Pelibatan aktif wali santri dan warga sekitar dalam ekosistem dakwah, pelatihan ketahanan pangan keluarga, serta program kemitraan sosial yang berdaya guna secara berkesinambungan.'
+    step: '04',
+    name: 'Kemandirian',
+    focus: 'Agroteknopreneur & Unit Usaha',
+    desc: 'Mengembangkan unit usaha mandiri pesantren (Greenhouse, Agro-Technopark) agar mandiri tanpa terus bergantung donasi.'
   },
   {
-    num: '05',
-    category: 'INDUSTRY',
-    title: 'Kemitraan Dunia Usaha & Industri',
-    role: 'Penyaluran Magang & Karir Profesional',
-    desc: 'Kolaborasi strategis bersama asosiasi industri, kontraktor, perusahaan teknologi, dan mitra korporasi nasional untuk kurikulum selaras dan program penyerapan lulusan berprestasi.'
+    step: '05',
+    name: 'Kolaborasi',
+    focus: 'Kemitraan Industri & Komunitas',
+    desc: 'Menyambungkan santri dengan dunia industri, asosiasi profesi, akademisi, dan jaringan pasar terpercaya.'
   },
   {
-    num: '06',
-    category: 'GOVERNMENT',
-    title: 'Regulasi Pemerintah & Filantropi',
-    role: 'Kepatuhan Legalitas & Tata Kelola Syariah',
-    desc: 'Harmonisasi kepatuhan tata kelola wakaf dan regulasi pendidikan bersama Badan Wakaf Indonesia (BWI), Kementerian Agama, Kemendikbudristek, serta jejaring filantropi formal.'
+    step: '06',
+    name: 'Dampak Sosial',
+    focus: 'Muzakki Baru & Berdaya',
+    desc: 'Mencetak lulusan berdaya saing yang mandiri secara ekonomi dan kembali menebar manfaat luas sebagai muzakki baru.'
   }
 ];
 ---
 
 <section class="approach-section" id="pendekatan">
   <div class="approach-container">
-    <!-- Section Heading ala ISAVO -->
+    <!-- Section Heading -->
     <div class="approach-header reveal-on-scroll">
       <div class="isavo-pill-tag">
         <span class="pill-dot"></span>
-        <span>EKOSISTEM TERPADU • ABCFG</span>
+        <span>OUR APPROACH • CARA KERJA</span>
       </div>
       <h2 class="approach-title">
-        Membangun Ekosistem Berkelanjutan,<br />
-        <span>Bukan Sekadar Program Sesaat</span>
+        Dari Kebaikan Menjadi Kebermanfaatan.
       </h2>
       <p class="approach-desc">
-        Model ini dikembangkan oleh <strong>Yayasan Permata Cendekia Indonesia (YPCI)</strong> melalui integrasi <em>Academy, Business, Community, Family, and Government (ABCFG)</em> yang berpusat pada masjid, melahirkan kemandirian umat yang tangguh dan berdaya saing.
+        Kami percaya bahwa dukungan yang tepat dapat membangun kemampuan, bukan hanya memenuhi kebutuhan sesaat. Inilah yang menjadi pembeda Global Village Fund.
       </p>
     </div>
 
-    <!-- 1. Poros Sentral: Masjid Khairu Ummah (Showcase Master Hub) -->
-    <div class="center-hub-card reveal-on-scroll">
-      <div class="hub-main-content">
-        <div class="hub-tag">
-          <span class="hub-dot"></span>
-          <span>POROS SENTRAL EKOSISTEM</span>
-        </div>
-        <h3 class="hub-title">Masjid & Pembinaan Karakter Ruhani</h3>
-        <p class="hub-lead">Jantung spiritual, pembinaan adab santri, dan pusat integrasi seluruh aktivitas peradaban.</p>
-        <p class="hub-desc">
-          Masjid bukan hanya tempat shalat berjamaah, melainkan episentrum pembentukan integritas, etos kerja amanah, serta ruang musyawarah strategis yang menyatukan seluruh elemen pendidikan, wirausaha, dan pengabdian masyarakat.
-        </p>
-      </div>
-
-      <div class="hub-pillars-aside">
-        <div class="hub-pilar-row">
-          <div class="pilar-index">A</div>
-          <div>
-            <h4 class="pilar-h">Fondasi Iman & Adab</h4>
-            <p class="pilar-p">Pembiasaan ibadah yaumiyah dan adab mulia sebagai kompas moral santri dan civitas.</p>
-          </div>
-        </div>
-        <div class="hub-pilar-row">
-          <div class="pilar-index">B</div>
-          <div>
-            <h4 class="pilar-h">Integrasi Sains & Syariah</h4>
-            <p class="pilar-p">Pengkajian fiqih muamalah dan ilmu terapan agar setiap karya bernilai ibadah.</p>
-          </div>
-        </div>
-        <div class="hub-pilar-row">
-          <div class="pilar-index">C</div>
-          <div>
-            <h4 class="pilar-h">Poros Sosial Masyarakat</h4>
-            <p class="pilar-p">Pusat penyerapan aspirasi, silaturahim jamaah, dan gerakan filantropi warga sekitar.</p>
-          </div>
-        </div>
+    <!-- Core Value Statement Banner (Clean Architectural Callout) -->
+    <div class="approach-manifesto reveal-on-scroll">
+      <div class="manifesto-inner">
+        <span class="manifesto-tag">PRINSIP PENDEKATAN GVF</span>
+        <blockquote class="manifesto-quote">
+          “Kami percaya bahwa dukungan yang tepat dapat membangun kemampuan, bukan hanya memenuhi kebutuhan sesaat.”
+        </blockquote>
       </div>
     </div>
 
-    <!-- 2. The 6 Pillars Grid: Flat, Clean, Architectural Cards (No AI Slop Borders) -->
-    <div class="approach-grid mt-40">
-      {pillars.map((pillar, idx) => (
-        <div class={`approach-card reveal-on-scroll delay-${(idx + 1) * 100}`}>
-          <div class="card-meta">
-            <span class="card-num">{pillar.num}</span>
-            <span class="card-category">{pillar.category}</span>
+    <!-- 6-Stage Horizontal Transformation Chain Grid -->
+    <div class="approach-chain-grid">
+      {approachSteps.map((item, idx) => (
+        <div class={`chain-card reveal-on-scroll delay-${(idx + 1) * 100}`}>
+          <div class="chain-meta">
+            <span class="chain-step">{item.step}</span>
+            {idx < approachSteps.length - 1 && (
+              <span class="chain-arrow" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 10h12M12 5l5 5-5 5" />
+                </svg>
+              </span>
+            )}
           </div>
-          <h3 class="card-title">{pillar.title}</h3>
-          <span class="card-role">{pillar.role}</span>
-          <p class="card-desc">{pillar.desc}</p>
+          <h3 class="chain-name">{item.name}</h3>
+          <span class="chain-focus">{item.focus}</span>
+          <p class="chain-desc">{item.desc}</p>
         </div>
       ))}
     </div>
@@ -186,214 +156,122 @@ const pillars = [
     margin: 0;
   }
 
-  /* 1. Center Hub Card (Masjid): Architecture Showcase Structure */
-  .center-hub-card {
-    background: #0f172a; /* Solid deep navy slate */
+  /* Manifesto Callout Banner */
+  .approach-manifesto {
+    background: #0f172a;
+    border-radius: 20px;
+    padding: 36px 40px;
+    margin-bottom: 48px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 48px;
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 48px;
-    color: #ffffff;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-    position: relative;
-    overflow: hidden;
   }
 
-  @media (max-width: 991px) {
-    .center-hub-card {
-      grid-template-columns: 1fr;
-      padding: 32px 24px;
-      gap: 36px;
-    }
-  }
-
-  .hub-main-content {
+  .manifesto-inner {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 12px;
   }
 
-  .hub-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0, 82, 204, 0.25);
-    border: 1px solid rgba(56, 189, 248, 0.4);
-    color: #38bdf8;
+  .manifesto-tag {
     font-size: 0.72rem;
     font-weight: 800;
-    letter-spacing: 0.08em;
-    padding: 5px 12px;
-    border-radius: 9999px;
-    margin-bottom: 18px;
-    align-self: flex-start;
-  }
-
-  .hub-dot {
-    width: 6px;
-    height: 6px;
-    background-color: #38bdf8;
-    border-radius: 50%;
-  }
-
-  .hub-title {
-    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
-    font-weight: 800;
-    line-height: 1.2;
-    color: #ffffff;
-    margin-bottom: 14px;
-  }
-
-  .hub-lead {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #93c5fd;
-    line-height: 1.6;
-    margin-bottom: 16px;
-  }
-
-  .hub-desc {
-    font-size: 0.95rem;
-    line-height: 1.75;
-    color: #cbd5e1;
-    text-align: justify;
-    margin: 0;
-  }
-
-  .hub-pillars-aside {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-    border-left: 1px solid rgba(255, 255, 255, 0.12);
-    padding-left: 40px;
-  }
-
-  @media (max-width: 991px) {
-    .hub-pillars-aside {
-      border-left: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      padding-left: 0;
-      padding-top: 28px;
-    }
-  }
-
-  .hub-pilar-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .pilar-index {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    letter-spacing: 0.1em;
     color: #38bdf8;
-    font-weight: 800;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    text-transform: uppercase;
   }
 
-  .pilar-h {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 4px;
-  }
-
-  .pilar-p {
-    font-size: 0.85rem;
-    color: #94a3b8;
-    line-height: 1.55;
+  .manifesto-quote {
     margin: 0;
-    text-align: justify;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: 700;
+    line-height: 1.5;
+    color: #ffffff;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
   }
 
-  /* 2. The 6 Pillars Grid: Architectural Flat Cards (No AI Rainbow Stripes) */
-  .approach-grid {
+  /* 6-Stage Transformation Chain Grid */
+  .approach-chain-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    margin-top: 36px;
   }
 
   @media (max-width: 1024px) {
-    .approach-grid {
+    .approach-chain-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 640px) {
-    .approach-grid {
+    .approach-chain-grid {
       grid-template-columns: 1fr;
     }
   }
 
-  .approach-card {
+  .chain-card {
     background: #ffffff;
-    border: 1px solid #e3e3e8; /* Crisp ISAVO border */
+    border: 1px solid #e2e8f0;
     border-radius: 18px;
-    padding: 34px 28px;
+    padding: 32px 28px;
     display: flex;
     flex-direction: column;
-    transition: all 0.25s ease;
-    box-shadow: none; /* Flat surface by default ala ISAVO */
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .approach-card:hover {
+  .chain-card:hover {
     transform: translateY(-4px);
-    border-color: #cbd5e1;
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    border-color: #cbd5e1;
   }
 
-  .card-meta {
+  .chain-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 
-  .card-num {
+  .chain-step {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.95rem;
     font-weight: 800;
     color: #0052cc;
-    letter-spacing: -0.02em;
+    background: #eff6ff;
+    padding: 4px 10px;
+    border-radius: 8px;
   }
 
-  .card-category {
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    color: #64748b;
-    text-transform: uppercase;
+  .chain-arrow {
+    width: 20px;
+    height: 20px;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .card-title {
-    font-size: 1.25rem;
+  .chain-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .chain-name {
+    font-size: 1.35rem;
     font-weight: 800;
     color: #0f172a;
-    line-height: 1.3;
+    line-height: 1.25;
     margin-bottom: 6px;
     letter-spacing: -0.01em;
   }
 
-  .card-role {
+  .chain-focus {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #0052cc;
-    margin-bottom: 16px;
+    color: #0969da;
+    margin-bottom: 14px;
     display: inline-block;
   }
 
-  .card-desc {
+  .chain-desc {
     font-size: 0.92rem;
     line-height: 1.7;
     color: #475569;

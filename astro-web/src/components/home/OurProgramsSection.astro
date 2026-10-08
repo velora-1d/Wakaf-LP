@@ -3,58 +3,58 @@
 // Section 06: Our Programs — 4 Kartu Program Interaktif yang Bisa Diklik
 const programs = [
   {
-    id: 'masjid',
+    id: 'masjid-khairu-ummah',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-1.5 2-3 3.5-3 5.5a3 3 0 1 0 6 0c0-2-1.5-3.5-3-5.5z"></path><path d="M4 21V10l8-5 8 5v11H4z"></path><path d="M9 21v-6a3 3 0 0 1 6 0v6"></path></svg>`,
     title: 'Masjid Khairu Ummah Sugro',
-    category: 'PUSAT IBADAH & ADAB',
-    desc: 'Mendukung pembangunan dan pengembangan masjid sebagai bagian dari pusat aktivitas kepesantrenan dan ekosistem pembelajaran holistik.',
-    image: '/gambar design/belakang masjid.jpg',
-    btnText: 'Dukung Program',
+    category: 'MASJID & RUMAH KEBAIKAN',
+    desc: 'Pembangunan masjid sebagai ruang ibadah, pembelajaran terpadu, pembinaan karakter FAST, dan ruang kebermanfaatan bersama masyarakat.',
+    image: '/gambar design/interior mesjid 2.jpg',
+    btnText: 'Lihat Program & Donasi',
     link: '/program/wakaf'
   },
   {
-    id: 'pendidikan',
+    id: 'pendidikan-vokasi',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>`,
-    title: 'Pendidikan & Kompetensi Santri',
-    category: 'VOKASI & BEASISWA',
-    desc: 'Mendukung pengembangan santri melalui pendidikan vokasi SMK terpadu, teaching factory, sarana belajar, dan pembentukan karakter FAST.',
-    image: '/gambar design/skywalk learning room.jpg',
-    btnText: 'Lihat Program',
+    title: 'Pendidikan Vokasi & Karakter',
+    category: 'SMK SKILL VILLAGE',
+    desc: 'Menghadirkan fasilitas pembelajaran vokasi integratif, laboratorium teknologi, dan beasiswa santri berprestasi agar mandiri dan berdaya.',
+    image: '/gambar design/learning studio & workshop.jpg',
+    btnText: 'Dukung Beasiswa Santri',
+    link: '/program/sedekah'
+  },
+  {
+    id: 'agro-technopark',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22v-9"></path><path d="M12 13a6 6 0 0 0 6-6c0-3-2-5-5-5a6 6 0 0 0-6 6c0 3 2 5 5 5z"></path><path d="M6 13a6 6 0 0 1 6-6"></path></svg>`,
+    title: 'Agro-Technopark & Pangan',
+    category: 'KETAHANAN & KEMANDIRIAN',
+    desc: 'Inkubasi bisnis santri di bidang pertanian presisi (greenhouse) dan energi surya untuk menopang kebutuhan pangan harian serta kemandirian ekonomi.',
+    image: '/gambar design/gh learning area.jpg',
+    btnText: 'Jelajahi Inisiatif Mandiri',
     link: '/program/infaq'
   },
   {
-    id: 'wakaf-produktif',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22v-9"></path><path d="M12 13a6 6 0 0 0 6-6c0-3-2-5-5-5a6 6 0 0 0-6 6c0 3 2 5 5 5z"></path><path d="M6 13a6 6 0 0 1 6-6"></path></svg>`,
-    title: 'Wakaf Produktif Kawasan',
-    category: 'ASET ABADI UMAT',
-    desc: 'Membangun aset produktif abadi yang memberikan manfaat ekonomi berkelanjutan untuk kemandirian operasional pesantren.',
-    image: '/gambar design/gh learning area.jpg',
-    btnText: 'Wakaf Sekarang',
-    link: '/program/wakaf'
-  },
-  {
-    id: 'teaching-factory',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z"></path></svg>`,
-    title: 'Skill & Teaching Factory',
-    category: 'PRAKTIK 4 PILAR YPCI',
-    desc: 'Ruang belajar berbasis praktik di 4 bidang fokus YPCI: Pertanian Modern, Rekayasa Teknologi, Konstruksi & Properti, serta Bisnis Digital.',
+    id: 'kemitraan-multipihak',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+    title: 'Kemitraan Multipihak',
+    category: 'KOLABORASI STRATEGIS',
+    desc: 'Membuka ruang sinergi bagi korporasi (CSR), perguruan tinggi, dunia industri, dan lembaga zakat untuk mengembangkan model pesantren berdaya.',
     image: '/gambar design/workshop.jpg',
-    btnText: 'Lihat Ekosistem',
-    link: '/program/sedekah'
+    btnText: 'Konsultasi Kemitraan',
+    link: '#kolaborasi'
   }
 ];
 ---
 
-<section class="our-programs-section" id="program">
+<section class="our-programs-section" id="program-kebaikan">
   <div class="our-programs-container">
     <div class="our-programs-header text-center reveal-on-scroll">
       <div class="programs-pill">
         <span class="pill-dot"></span>
-        <span>06 • OUR PROGRAMS</span>
+        <span>PROGRAM KEBAIKAN • EKOSISTEM</span>
       </div>
-      <h2 class="programs-title">Program yang Bisa Anda Dukung</h2>
+      <h2 class="programs-title">Program Kebaikan</h2>
       <p class="programs-desc">
-        Setiap inisiatif dirancang terukur dan terarah. Klik kartu program di bawah untuk melihat rincian rencana, akad, dan progres penyalurannya:
+        Setiap program dirancang untuk menjadi bagian dari ekosistem yang saling menguatkan—menghubungkan ibadah, pendidikan, ketahanan pangan, dan kemandirian nyata.
       </p>
     </div>
 
