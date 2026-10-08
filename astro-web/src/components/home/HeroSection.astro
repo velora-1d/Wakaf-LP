@@ -8,7 +8,6 @@ const heroSlides = [
     id: 'slide-1',
     index: '01',
     label: 'Brand Utama',
-    badge: 'FOSTERING PESANTREN ECOSYSTEMS FOR SELF-RELIANCE AND SOCIAL IMPACT',
     title: 'Membangun Ekosistem Pesantren.<br />Menghadirkan Kebermanfaatan.',
     lead: 'Global Village Fund adalah wadah kebaikan dan kolaborasi untuk memperkuat ekosistem pesantren menuju kemandirian dan dampak sosial.',
     taglineEn: 'Fostering Pesantren Ecosystems for Self-Reliance and Social Impact',
@@ -84,12 +83,6 @@ const heroSlides = [
           role="tabpanel"
           aria-label={`Slide ${slide.index}: ${slide.label}`}
         >
-          <!-- Tag Pill -->
-          <div class="isavo-tag-pill">
-            <span class="isavo-tag-dot"></span>
-            <span class="isavo-tag-text">{slide.badge}</span>
-          </div>
-
           <!-- Display Heading (typeui principle: line-height tight, crisp contrast) -->
           <h1 class="isavo-hero-title" set:html={slide.title} />
 
