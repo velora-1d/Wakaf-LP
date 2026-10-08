@@ -58,23 +58,34 @@ const approachSteps = [
       </p>
     </div>
 
-    <!-- 6-Stage Horizontal Transformation Chain Grid Persis Screenshot 1 -->
-    <div class="approach-chain-grid">
-      {approachSteps.map((item, idx) => (
-        <div class={`chain-card reveal-on-scroll delay-${(idx + 1) * 100}`}>
-          <div class="chain-meta">
-            <span class="chain-step">{item.step}</span>
-            <span class="chain-arrow" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M4 10h12M12 5l5 5-5 5" />
-              </svg>
-            </span>
+    <!-- Diagram Alur Rantai Transformasi 6 Tahap (Process Step Flow, Bukan Kotak-Kotak Biasa) -->
+    <div class="process-flow-container">
+      <div class="process-flow-track" aria-hidden="true"></div>
+
+      <div class="process-steps-list">
+        {approachSteps.map((item, idx) => (
+          <div class={`process-step-item reveal-on-scroll delay-${(idx + 1) * 100}`}>
+            <!-- Step Marker Node -->
+            <div class="step-marker-col">
+              <div class="step-node-badge">
+                <span>{item.step}</span>
+              </div>
+              {idx < approachSteps.length - 1 && (
+                <div class="step-connector-line"></div>
+              )}
+            </div>
+
+            <!-- Step Content Body -->
+            <div class="step-content-body">
+              <div class="step-title-row">
+                <h3 class="step-title">{item.name}</h3>
+                <span class="step-focus-badge">{item.focus}</span>
+              </div>
+              <p class="step-description">{item.desc}</p>
+            </div>
           </div>
-          <h3 class="chain-name">{item.name}</h3>
-          <span class="chain-focus">{item.focus}</span>
-          <p class="chain-desc">{item.desc}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -142,102 +153,118 @@ const approachSteps = [
     margin: 0;
   }
 
-  /* 6-Stage Transformation Chain Grid Persis Screenshot 1 (3 Kolom x 2 Baris) */
-  .approach-chain-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+  /* Connected Process Flow Diagram (Bukan Kotak-Kotak Lepas) */
+  .process-flow-container {
+    max-width: 920px;
+    margin: 0 auto;
+    position: relative;
+    padding: 20px 0;
   }
 
-  @media (max-width: 1024px) {
-    .approach-chain-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 640px) {
-    .approach-chain-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .chain-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 32px 28px;
+  .process-steps-list {
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    gap: 0;
   }
 
-  .chain-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-    border-color: #93c5fd;
+  .process-step-item {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 24px;
+    position: relative;
   }
 
-  .chain-meta {
+  /* Node Marker Column */
+  .step-marker-col {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    position: relative;
   }
 
-  .chain-step {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.95rem;
+  .step-node-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #0969da;
+    color: #ffffff;
     font-weight: 800;
-    color: #0052cc;
-    background: #eff6ff;
-    padding: 5px 12px;
-    border-radius: 8px;
-  }
-
-  .chain-arrow {
-    width: 22px;
-    height: 22px;
-    color: #94a3b8;
+    font-size: 1.05rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s ease, color 0.2s ease;
+    box-shadow: 0 4px 14px rgba(9, 105, 218, 0.35);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    z-index: 2;
+    flex-shrink: 0;
   }
 
-  .chain-card:hover .chain-arrow {
-    color: #0052cc;
-    transform: translateX(3px);
+  .step-connector-line {
+    width: 2px;
+    flex-grow: 1;
+    min-height: 44px;
+    background: linear-gradient(180deg, #93c5fd 0%, #dbeafe 100%);
+    margin: 8px 0;
   }
 
-  .chain-arrow svg {
-    width: 20px;
-    height: 20px;
+  /* Content Column */
+  .step-content-body {
+    padding-bottom: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
-  .chain-name {
+  .step-title-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .step-title {
     font-size: 1.45rem;
     font-weight: 800;
     color: #0f172a;
-    line-height: 1.2;
-    margin-bottom: 6px;
-    letter-spacing: -0.015em;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
     font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-  }
-
-  .chain-focus {
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: #0969da;
-    margin-bottom: 16px;
-    display: inline-block;
-  }
-
-  .chain-desc {
-    font-size: 0.92rem;
-    line-height: 1.65;
-    color: #64748b;
-    text-align: left;
     margin: 0;
+  }
+
+  .step-focus-badge {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 3px 12px;
+    border-radius: 9999px;
+    letter-spacing: 0.02em;
+  }
+
+  .step-description {
+    font-size: 0.98rem;
+    line-height: 1.68;
+    color: #475569;
+    margin: 0;
+    max-width: 680px;
+  }
+
+  @media (max-width: 640px) {
+    .process-step-item {
+      grid-template-columns: 50px 1fr;
+      gap: 16px;
+    }
+
+    .step-node-badge {
+      width: 40px;
+      height: 40px;
+      font-size: 0.9rem;
+    }
+
+    .step-title {
+      font-size: 1.25rem;
+    }
   }
 </style>
