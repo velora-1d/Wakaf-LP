@@ -1,6 +1,6 @@
 ---
 // src/components/layout/Navbar.astro
-// Exact ISAVO Header: Boxed Logo, Clean Nav, Phone Widget, Pill CTA, 4-Dots Circle Trigger
+// Exact ISAVO Header: Boxed Logo [GVF], Transparent overlay at top, Sticky animated on scroll (#121417), Phone Handset, Pill CTA, 4-Dots Circle Trigger
 const currentPath = Astro.url.pathname;
 ---
 
@@ -130,26 +130,49 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <style>
-  /* Header Container */
+  /* Header Container: Transparan saat di puncak (scroll = 0), Meluncur sticky saat scroll */
+  @keyframes menuSticky {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   .isavo-header {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 999;
+    background-color: transparent;
+    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .isavo-header.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: #121417; /* Solid sleek charcoal black persis screenshot ISAVO */
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    animation: menuSticky 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .isavo-header-inner {
     width: 100%;
     max-width: 1360px;
     margin: 0 auto;
-    padding: 16px 28px;
+    padding: 24px 28px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: padding 0.3s ease;
+  }
+
+  .isavo-header.fixed .isavo-header-inner {
+    padding: 14px 28px;
   }
 
   /* 1. Boxed Logo ala ISAVO [ISAVO] */
@@ -174,7 +197,7 @@ const currentPath = Astro.url.pathname;
   }
 
   .isavo-boxed-logo:hover {
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.15);
   }
 
   /* 2. Desktop Nav */
@@ -497,6 +520,20 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
+  // Dynamic Scroll Listener for Sticky State (Identik ISAVO .primary-header.fixed)
+  const header = document.getElementById('main-header');
+
+  const onScroll = () => {
+    if (window.scrollY > 40) {
+      header?.classList.add('fixed');
+    } else {
+      header?.classList.remove('fixed');
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
   // Mobile Drawer Toggle
   const toggle = document.getElementById('isavo-toggle');
   const close = document.getElementById('isavo-close');
