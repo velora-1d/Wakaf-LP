@@ -1,0 +1,303 @@
+---
+// src/components/home/OurApproachSection.astro
+// Section 04: Our Approach — Ekosistem ABCFG Berpusat pada Masjid
+const ecosystemNodes = [
+  {
+    tag: 'PUSAT INTI',
+    title: 'MASJID',
+    role: 'Iman, Ibadah & Karakter',
+    desc: 'Jantung spiritual, pembinaan adab santri, dan pusat integrasi seluruh aktivitas ekosistem.',
+    isCenter: true,
+    accent: '#059669',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-1.5 2-3 3.5-3 5.5a3 3 0 1 0 6 0c0-2-1.5-3.5-3-5.5z"></path><path d="M4 21V10l8-5 8 5v11H4z"></path><path d="M9 21v-6a3 3 0 0 1 6 0v6"></path></svg>`
+  },
+  {
+    tag: 'ACADEMY',
+    title: 'PENDIDIKAN',
+    role: 'Ilmu & Pembelajaran',
+    desc: 'Kurikulum integratif SMK Skill Village Islamic School memadukan sains, adab, dan kurikulum vokasi.',
+    accent: '#0284c7',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>`
+  },
+  {
+    tag: 'SKILLS',
+    title: 'KETERAMPILAN',
+    role: 'Kompetensi & Pengalaman',
+    desc: 'Laboratorium praktik di bidang Konstruksi, Agribisnis, Teknologi, dan Bisnis Digital.',
+    accent: '#d97706',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>`
+  },
+  {
+    tag: 'BUSINESS',
+    title: 'USAHA',
+    role: 'Praktik & Kemandirian',
+    desc: 'Unit usaha mandiri pesantren (Agro-Technopark, Green Waqf) yang menopang keberlanjutan operasional.',
+    accent: '#2563eb',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`
+  },
+  {
+    tag: 'FAMILY & COMMUNITY',
+    title: 'KELUARGA & KOMUNITAS',
+    role: 'Dukungan & Kolaborasi',
+    desc: 'Pelibatan wali santri dan warga sekitar dalam program pemberdayaan ekonomi dan dakwah berkala.',
+    accent: '#7c3aed',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
+  },
+  {
+    tag: 'INDUSTRY',
+    title: 'INDUSTRI',
+    role: 'Pengalaman Dunia Nyata',
+    desc: 'Kemitraan magang, teaching factory, dan penyerapan lulusan bersama mitra korporasi terverifikasi.',
+    accent: '#ea580c',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`
+  },
+  {
+    tag: 'GOVERNMENT',
+    title: 'PEMERINTAH & MITRA',
+    role: 'Penguatan Ekosistem',
+    desc: 'Harmonisasi regulasi pesantren mandiri bersama Kemenag, BWI, dan asosiasi filantropi nasional.',
+    accent: '#0891b2',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4"></path></svg>`
+  }
+];
+---
+
+<section class="approach-section" id="pendekatan">
+  <div class="approach-container">
+    <div class="approach-header text-center reveal-on-scroll">
+      <div class="approach-pill">
+        <span class="pill-dot"></span>
+        <span>04 • OUR APPROACH</span>
+      </div>
+      <h2 class="approach-title">
+        Kami Membangun Ekosistem,<br />
+        Bukan Sekadar Menjalankan Program.
+      </h2>
+      <p class="approach-desc">
+        Model ini dikembangkan oleh <strong>Yayasan Permata Cendekia Indonesia (YPCI)</strong> melalui ekosistem <em>Academy, Business, Community, Family, and Government (ABCFG)</em> yang berpusat pada masjid. Di dalamnya, seluruh pilar saling terhubung dan menguatkan.
+      </p>
+    </div>
+
+    <!-- Cluster Grid of 7 Elements -->
+    <div class="approach-grid">
+      {ecosystemNodes.map((node, idx) => (
+        <div
+          class={`approach-card ${node.isCenter ? 'center-hub' : ''} reveal-on-scroll delay-${(idx + 1) * 100}`}
+          style={`--node-accent: ${node.accent};`}
+        >
+          <div class="node-top">
+            <span class="node-tag">{node.tag}</span>
+            <div class="node-icon">
+              <Fragment set:html={node.icon} />
+            </div>
+          </div>
+          <h3 class="node-title">{node.title}</h3>
+          <span class="node-role">{node.role}</span>
+          <p class="node-desc">{node.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .approach-section {
+    position: relative;
+    padding: 110px 0 120px;
+    background-color: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .approach-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .approach-header {
+    max-width: 860px;
+    margin: 0 auto 60px;
+  }
+
+  .approach-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(2, 132, 199, 0.1);
+    border: 1px solid rgba(2, 132, 199, 0.25);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    margin-bottom: 20px;
+  }
+
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0284c7;
+    border-radius: 50%;
+  }
+
+  .approach-title {
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #0f172a;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+  }
+
+  .approach-desc {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: #64748b;
+  }
+
+  /* Grid Layout: 3 Columns, with First Center-Hub spanning visually */
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .approach-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 30px 26px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .approach-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--node-accent);
+  }
+
+  .approach-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+    border-color: #cbd5e1;
+  }
+
+  /* Special Center Hub Card (MASJID) */
+  .approach-card.center-hub {
+    grid-column: span 3;
+    background: linear-gradient(135deg, #0a2540 0%, #0f172a 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 12px 35px rgba(10, 37, 64, 0.22);
+  }
+
+  .approach-card.center-hub .node-tag {
+    background: rgba(5, 150, 105, 0.25);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.4);
+  }
+
+  .approach-card.center-hub .node-title {
+    color: #ffffff;
+    font-size: 1.6rem;
+  }
+
+  .approach-card.center-hub .node-role {
+    color: #38bdf8;
+    font-size: 1.05rem;
+  }
+
+  .approach-card.center-hub .node-desc {
+    color: #cbd5e1;
+    font-size: 1rem;
+    max-width: 800px;
+  }
+
+  .approach-card.center-hub .node-icon {
+    background: rgba(255, 255, 255, 0.1);
+    color: #34d399;
+  }
+
+  .node-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  .node-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: #f1f5f9;
+    color: #475569;
+  }
+
+  .node-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--node-accent);
+  }
+
+  .node-icon :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+
+  .node-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .node-role {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--node-accent);
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+
+  .node-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #64748b;
+  }
+
+  @media (max-width: 1024px) {
+    .approach-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .approach-card.center-hub {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .approach-grid {
+      grid-template-columns: 1fr;
+    }
+    .approach-card.center-hub {
+      grid-column: span 1;
+    }
+  }
+</style>

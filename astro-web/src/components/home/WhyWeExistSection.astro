@@ -1,0 +1,330 @@
+---
+// src/components/home/WhyWeExistSection.astro
+// Section 03: Why We Exist — Data Urgensi Sosial & Rantai Transformasi Nilai
+---
+
+<section class="why-exist-section" id="why-we-exist">
+  <div class="why-exist-container">
+    <div class="why-exist-grid">
+      <!-- Left Column: Problem Narrative & Transformation Steps -->
+      <div class="why-exist-left reveal-on-scroll">
+        <div class="why-exist-pill">
+          <span class="pill-dot"></span>
+          <span>03 • WHY WE EXIST</span>
+        </div>
+
+        <h2 class="why-exist-title">
+          Masih Banyak Potensi yang Belum Menjadi Kesempatan.
+        </h2>
+
+        <p class="why-exist-lead">
+          Pesantren memiliki basis sosial yang luar biasa besar di Indonesia. Namun kenyataannya, pendidikan, penguatan karakter, keterampilan vokasi, dan integrasi dunia kerja masih sering berjalan dalam ruang-ruang yang terpisah.
+        </p>
+
+        <p class="why-exist-sub">
+          Karena itu, kami tidak ingin kebaikan berhenti pada bantuan sesaat. Kami ingin dukungan yang diberikan dapat ikut membangun ruang belajar, kompetensi riil, kemandirian ekonomi, dan kesempatan untuk tumbuh bersama.
+        </p>
+
+        <!-- Transformation Steps (Bantuan -> Kesempatan -> Pembelajaran -> Kebermanfaatan) -->
+        <div class="transformation-box">
+          <h3 class="trans-title">Arah Transformasi Kebaikan:</h3>
+          <div class="trans-steps-list">
+            <div class="trans-item">
+              <span class="trans-from">Dari Bantuan</span>
+              <span class="trans-arrow">→</span>
+              <span class="trans-to">Menjadi <strong>Kesempatan</strong></span>
+            </div>
+            <div class="trans-item">
+              <span class="trans-from">Dari Fasilitas</span>
+              <span class="trans-arrow">→</span>
+              <span class="trans-to">Menjadi <strong>Pembelajaran</strong></span>
+            </div>
+            <div class="trans-item">
+              <span class="trans-from">Dari Dukungan</span>
+              <span class="trans-arrow">→</span>
+              <span class="trans-to">Menjadi <strong>Kebermanfaatan</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Impressive Data Cards & Infographic Box -->
+      <div class="why-exist-right reveal-on-scroll delay-200">
+        <!-- Big Stat Card 1: 42.849 Pesantren -->
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-number">42.849</span>
+            <span class="stat-badge">Kemenag RI</span>
+          </div>
+          <h4 class="stat-label">Lembaga Pesantren di Indonesia</h4>
+          <p class="stat-desc">
+            Basis sosial dan ekosistem pendidikan Islam terbesar dengan potensi kemandirian umat yang belum terintegrasi optimal.
+          </p>
+        </div>
+
+        <!-- Big Stat Card 2: 6,3 Juta Santri -->
+        <div class="stat-card highlight-card">
+          <div class="stat-top">
+            <span class="stat-number">~6,3 Juta</span>
+            <span class="stat-badge gold">Generasi Santri</span>
+          </div>
+          <h4 class="stat-label">Santri Membutuhkan Ruang Praktik</h4>
+          <p class="stat-desc">
+            Potensi talenta muda berkarakter luhur yang siap bertransformasi menjadi tenaga terampil dan wirausahawan mandiri.
+          </p>
+        </div>
+
+        <!-- Quote Callout Box -->
+        <div class="why-quote-card">
+          <div class="quote-icon-wrap" aria-hidden="true">“</div>
+          <p class="quote-text">
+            “Kebaikan terbaik bukanlah yang habis dinikmati hari ini, melainkan yang terus mencetak manusia-manusia mandiri dan berdaya guna.”
+          </p>
+          <span class="quote-author">— Yayasan Permata Cendekia Indonesia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-exist-section {
+    position: relative;
+    padding: 110px 0 120px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .why-exist-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .why-exist-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .why-exist-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(229, 57, 53, 0.08);
+    border: 1px solid rgba(229, 57, 53, 0.25);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #e53935;
+    margin-bottom: 20px;
+  }
+
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #e53935;
+    border-radius: 50%;
+  }
+
+  .why-exist-title {
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #0f172a;
+    letter-spacing: -0.025em;
+    margin-bottom: 24px;
+  }
+
+  .why-exist-lead {
+    font-size: 1.12rem;
+    line-height: 1.7;
+    color: #334155;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .why-exist-sub {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #64748b;
+    margin-bottom: 36px;
+  }
+
+  /* Transformation Steps Box */
+  .transformation-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 28px 30px;
+  }
+
+  .trans-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #0284c7;
+    margin-bottom: 16px;
+  }
+
+  .trans-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .trans-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.98rem;
+    color: #1e293b;
+    background: #ffffff;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .trans-from {
+    color: #64748b;
+    font-weight: 500;
+    min-width: 100px;
+  }
+
+  .trans-arrow {
+    color: #e53935;
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+
+  .trans-to strong {
+    color: #0284c7;
+    font-weight: 800;
+  }
+
+  /* Right Column Cards */
+  .why-exist-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .stat-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 32px 28px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    border-color: #cbd5e1;
+  }
+
+  .stat-card.highlight-card {
+    background: linear-gradient(135deg, #0a2540 0%, #0f172a 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 10px 30px rgba(10, 37, 64, 0.18);
+  }
+
+  .stat-card.highlight-card .stat-number {
+    color: #38bdf8;
+  }
+
+  .stat-card.highlight-card .stat-label {
+    color: #ffffff;
+  }
+
+  .stat-card.highlight-card .stat-desc {
+    color: #94a3b8;
+  }
+
+  .stat-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .stat-number {
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+    line-height: 1;
+  }
+
+  .stat-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: #e0f2fe;
+    color: #0284c7;
+  }
+
+  .stat-badge.gold {
+    background: rgba(217, 119, 6, 0.2);
+    color: #fbbf24;
+  }
+
+  .stat-label {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+
+  .stat-desc {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: #64748b;
+  }
+
+  .why-quote-card {
+    background: #f8fafc;
+    border-left: 4px solid #0284c7;
+    border-radius: 0 16px 16px 0;
+    padding: 20px 24px;
+    position: relative;
+  }
+
+  .quote-icon-wrap {
+    font-size: 3rem;
+    font-family: serif;
+    color: rgba(2, 132, 199, 0.25);
+    line-height: 1;
+    position: absolute;
+    top: 6px;
+    right: 18px;
+  }
+
+  .quote-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-style: italic;
+    color: #334155;
+    margin-bottom: 8px;
+  }
+
+  .quote-author {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #0284c7;
+  }
+
+  @media (max-width: 1024px) {
+    .why-exist-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+</style>
