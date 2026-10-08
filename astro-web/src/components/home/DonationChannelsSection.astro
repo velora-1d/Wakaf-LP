@@ -1,41 +1,54 @@
 ---
 // src/components/home/DonationChannelsSection.astro
-// Section 07: Donation Channels — 5 Opsi Saluran Kebaikan
+// Section 07: Donation Channels — 6 Opsi Saluran Kebaikan (shadcn Card System)
 const channels = [
   {
     tag: 'RUTIN & FLEKSIBEL',
     title: 'INFAK & SEDEKAH',
     desc: 'Untuk mendukung kebutuhan santri, pangan harian, dan operasional program dakwah yang sedang berjalan aktif.',
     actionText: 'Salurkan Infak',
-    link: '/program/sedekah'
+    link: '/program/sedekah',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path><circle cx="18" cy="12" r="2"></circle></svg>`
   },
   {
     tag: 'KEWAJIBAN SYARIAH',
     title: 'ZAKAT MAAL & PROFESI',
     desc: 'Salurkan zakat melalui layanan terverifikasi YPCI sesuai 8 asnaf peruntukan syariah yang sah dan akuntabel.',
     actionText: 'Tunaikan Zakat',
-    link: '/program/zakat'
+    link: '/program/zakat',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="3" x2="12" y2="21"></line><path d="M5 21h14"></path><path d="M4 7l8-4 8 4"></path><circle cx="7" cy="14" r="3"></circle><circle cx="17" cy="14" r="3"></circle></svg>`
   },
   {
     tag: 'NILAI ABADI',
     title: 'WAKAF UANG & LAHAN',
     desc: 'Bangun manfaat yang terus bertumbuh tanpa henti melalui instrumen wakaf uang produktif mulai Rp 50.000.',
     actionText: 'Ikrar Wakaf',
-    link: '/program/wakaf'
+    link: '/program/wakaf',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`
   },
   {
     tag: 'SARANA & MATERIAL',
     title: 'DONASI BARANG / FASILITAS',
     desc: 'Dukungan konkret berupa material semen, besi, solar cell, perlengkapan laboratorium, atau bibit greenhouse.',
     actionText: 'Donasi Fasilitas',
-    link: '/program/infaq'
+    link: '/program/infaq',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`
   },
   {
     tag: 'KOLABORASI STRATEGIS',
     title: 'KEMITRAAN MULTIPIHAK',
     desc: 'Dukungan institusional skala luas bersama perusahaan (CSR), kampus, dan lembaga donor nasional.',
     actionText: 'Bangun Sinergi',
-    link: '#kemitraan'
+    link: '#kemitraan',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
+  },
+  {
+    tag: 'ASISTENSI & AKAD',
+    title: 'KONSULTASI & JEMPUT DONASI',
+    desc: 'Bantuan hitung nisab zakat, konsultasi akad wakaf tunai, atau layanan jemput donasi resmi langsung dari tim kami.',
+    actionText: 'Konsultasi Tim',
+    link: 'https://wa.me/6287865994786?text=Halo%20Tim%20GVF,%20saya%20ingin%20konsultasi%20layanan%20donasi',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`
   }
 ];
 ---
@@ -55,8 +68,13 @@ const channels = [
       {channels.map((ch, idx) => (
         <div class={`channel-card reveal-on-scroll delay-${(idx + 1) * 100}`}>
           <div class="channel-top">
-            <span class="channel-tag">{ch.tag}</span>
-            <span class="channel-idx">0{idx + 1}</span>
+            <div class="channel-tag-group">
+              <span class="channel-num">0{idx + 1}</span>
+              <span class="channel-tag">{ch.tag}</span>
+            </div>
+            <div class="channel-icon-box">
+              <Fragment set:html={ch.icon} />
+            </div>
           </div>
 
           <h3 class="channel-title">{ch.title}</h3>
@@ -64,7 +82,7 @@ const channels = [
 
           <a href={ch.link} class="channel-btn">
             <span>{ch.actionText}</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-arrow">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
@@ -76,7 +94,7 @@ const channels = [
     <div class="channels-footer-cta text-center reveal-on-scroll mt-60">
       <a href="#rekening" class="channels-pill-cta">
         <span>Pilih Cara Anda Berkontribusi</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="cta-arrow-right">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="cta-arrow-right">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
@@ -143,61 +161,103 @@ const channels = [
   .channels-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 22px;
   }
 
   .channel-card {
-    background: #f8fafc;
+    background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 30px 26px;
+    border-radius: 18px;
+    padding: 28px 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .channel-card:hover {
-    background: #ffffff;
-    transform: translateY(-5px);
-    border-color: #0284c7;
-    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.08);
+    border-color: #cbd5e1;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
   }
 
   .channel-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+  }
+
+  .channel-tag-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .channel-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #e53935;
+    background: #fee2e2;
+    padding: 3px 8px;
+    border-radius: 6px;
   }
 
   .channel-tag {
-    font-size: 0.72rem;
+    font-size: 0.65rem;
     font-weight: 800;
-    letter-spacing: 0.08em;
-    color: #0284c7;
-    background: rgba(2, 132, 199, 0.08);
-    padding: 4px 10px;
-    border-radius: 9999px;
+    letter-spacing: 0.06em;
+    color: #64748b;
+    text-transform: uppercase;
   }
 
-  .channel-idx {
-    font-size: 1.2rem;
-    font-weight: 900;
-    color: #cbd5e1;
-    font-family: monospace;
+  .channel-icon-box {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    max-width: 38px;
+    max-height: 38px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e53935;
+    transition: all 0.25s ease;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .channel-card:hover .channel-icon-box {
+    background: #e53935;
+    color: #ffffff;
+    border-color: #e53935;
+  }
+
+  .channel-icon-box :global(svg),
+  .channel-icon-box svg {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+    display: block;
   }
 
   .channel-title {
-    font-size: 1.25rem;
+    font-size: 1.18rem;
     font-weight: 800;
     color: #0f172a;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     margin-bottom: 10px;
+    line-height: 1.3;
   }
 
   .channel-desc {
-    font-size: 0.94rem;
+    font-size: 0.88rem;
     line-height: 1.6;
     color: #64748b;
     margin-bottom: 24px;
@@ -208,12 +268,12 @@ const channels = [
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    background: #ffffff;
+    background: #f8fafc;
     border: 1px solid #e2e8f0;
     padding: 10px 18px;
     border-radius: 9999px;
     color: #0f172a;
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     font-weight: 700;
     text-decoration: none;
     transition: all 0.25s ease;

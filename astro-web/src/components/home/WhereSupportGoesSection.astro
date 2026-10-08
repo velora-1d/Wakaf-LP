@@ -1,42 +1,52 @@
 ---
 // src/components/home/WhereSupportGoesSection.astro
-// Section 05: Where Your Support Goes — Transparansi Alokasi 6 Pilar Kebaikan
+// Section 05: Where Your Support Goes — Asymmetric Bento Grid Transparansi Alokasi 6 Pilar
 const supportPillars = [
   {
     num: '01',
-    title: 'Pendidikan',
-    desc: 'Mendukung pengembangan pembelajaran, beasiswa tahfidz, adab, dan kompetensi santri terpadu.',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`
+    title: 'Pendidikan & Beasiswa Santri',
+    category: 'PILAR UTAMA',
+    isFeatured: true,
+    desc: 'Mendukung kurikulum terpadu ilmu syariah, sains modern, pembentukan karakter FAST, dan pembiayaan beasiswa santri berprestasi dari berbagai pelosok negeri.',
+    stats: '40% Fokus Ekosistem',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`
   },
   {
     num: '02',
-    title: 'Fasilitas',
-    desc: 'Membangun dan melengkapi ruang serta sarana ramah lingkungan yang menunjang aktivitas pendidikan.',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path></svg>`
+    title: 'Fasilitas & Sarana Hijau',
+    category: 'INFRASTRUKTUR',
+    desc: 'Membangun dan melengkapi ruang belajar hemat energi, sanitasi terpadu, mezanin masjid, dan sarana ramah lingkungan di Jonggol Bogor.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path></svg>`
   },
   {
     num: '03',
-    title: 'Keterampilan',
-    desc: 'Mendukung pengembangan skill, teaching factory, laboratorium, dan pengalaman praktik dunia riil.',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`
+    title: 'Keterampilan & Teaching Factory',
+    category: 'VOKASI TERAPAN',
+    desc: 'Pengadaan laboratorium praktik dan teaching factory di 4 bidang: Pertanian Modern, Rekayasa Teknologi, Konstruksi, dan Bisnis Digital.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`
   },
   {
     num: '04',
-    title: 'Kemandirian',
-    desc: 'Mengembangkan unit usaha dan aset produktif kawasan yang menopang keberlanjutan masa depan.',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`
+    title: 'Kemandirian & Unit Usaha',
+    category: 'EKONOMI SANTRI',
+    desc: 'Inkubasi unit usaha pesantren seperti greenhouse hidroponik dan olahan pangan yang menopang keberlangsungan dakwah.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`
   },
   {
     num: '05',
-    title: 'Wakaf Produktif',
-    desc: 'Membangun aset abadi yang memiliki nilai manfaat jangka panjang dan potensi pertumbuhan ekonomi umat.',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`
+    title: 'Wakaf Produktif Abadi',
+    category: 'ASET BERKELANJUTAN',
+    isFeatured: true,
+    desc: 'Investasi pada aset produktif riil yang nilai pokoknya dijaga abadi sesuai syariat, dengan dividen manfaat sosial dialirkan terus-menerus ke beasiswa santri.',
+    stats: 'Nilai Pokok Abadi',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`
   },
   {
     num: '06',
-    title: 'Pemberdayaan',
-    desc: 'Membuka ruang kolaborasi multipihak dan kesempatan agar santri serta masyarakat sekitar dapat berkembang.',
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
+    title: 'Pemberdayaan Masyarakat Sekitar',
+    category: 'DAMPAK SOSIAL',
+    desc: 'Program transfer teknologi pertanian dan pelibatan warga lokal Jonggol untuk bersama-sama menggerakkan ekonomi kerakyatan.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
   }
 ];
 ---
@@ -54,17 +64,33 @@ const supportPillars = [
       </p>
     </div>
 
-    <div class="support-goes-grid">
+    <!-- Asymmetric Bento Grid (shadcn-inspired Architecture) -->
+    <div class="bento-allocation-grid">
       {supportPillars.map((item, idx) => (
-        <div class={`support-card reveal-on-scroll delay-${(idx + 1) * 100}`}>
-          <div class="card-head">
-            <span class="card-num">{item.num}</span>
-            <div class="card-icon">
+        <div class={`bento-card reveal-on-scroll delay-${(idx + 1) * 100} ${item.isFeatured ? 'is-featured' : ''}`}>
+          <div class="bento-card-top">
+            <div class="bento-badge-group">
+              <span class="bento-num">{item.num}</span>
+              <span class="bento-tag">{item.category}</span>
+            </div>
+            <div class="bento-icon-box">
               <Fragment set:html={item.icon} />
             </div>
           </div>
-          <h3 class="card-title">{item.title}</h3>
-          <p class="card-desc">{item.desc}</p>
+
+          <div class="bento-card-content">
+            <h3 class="bento-card-title">{item.title}</h3>
+            <p class="bento-card-desc">{item.desc}</p>
+          </div>
+
+          {item.stats && (
+            <div class="bento-card-footer">
+              <span class="bento-stats-badge">
+                <span class="stats-dot"></span>
+                <span>{item.stats}</span>
+              </span>
+            </div>
+          )}
         </div>
       ))}
     </div>
@@ -74,7 +100,7 @@ const supportPillars = [
 <style>
   .support-goes-section {
     position: relative;
-    padding: 110px 0 120px;
+    padding: 100px 0 120px;
     background-color: #ffffff;
     border-bottom: 1px solid #f1f5f9;
   }
@@ -87,15 +113,15 @@ const supportPillars = [
 
   .support-goes-header {
     max-width: 820px;
-    margin: 0 auto 60px;
+    margin: 0 auto 50px;
   }
 
   .support-goes-pill {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: rgba(2, 132, 199, 0.1);
-    border: 1px solid rgba(2, 132, 199, 0.25);
+    background-color: rgba(2, 132, 199, 0.08);
+    border: 1px solid rgba(2, 132, 199, 0.2);
     padding: 6px 14px;
     border-radius: 9999px;
     font-size: 0.75rem;
@@ -118,7 +144,7 @@ const supportPillars = [
     line-height: 1.15;
     color: #0f172a;
     letter-spacing: -0.025em;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 
   .support-goes-desc {
@@ -127,94 +153,165 @@ const supportPillars = [
     color: #64748b;
   }
 
-  .support-goes-grid {
+  /* Asymmetric Bento Grid */
+  .bento-allocation-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 26px;
+    gap: 22px;
   }
 
-  .support-card {
-    background: #f8fafc;
+  .bento-card {
+    background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 32px 28px;
+    border-radius: 18px;
+    padding: 28px 24px;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    justify-content: space-between;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
   }
 
-  .support-card:hover {
-    background: #ffffff;
-    transform: translateY(-5px);
+  .bento-card:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
+  }
+
+  /* Featured Bento Cards (Highlighted with subtle tint & border) */
+  .bento-card.is-featured {
+    background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+    border-color: rgba(2, 132, 199, 0.3);
+  }
+
+  .bento-card.is-featured:hover {
     border-color: #0284c7;
-    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.08);
+    box-shadow: 0 14px 32px -6px rgba(2, 132, 199, 0.12);
   }
 
-  .card-head {
+  .bento-card-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 22px;
+    margin-bottom: 18px;
   }
 
-  .card-num {
-    font-size: 1.4rem;
-    font-weight: 900;
-    color: #cbd5e1;
-    letter-spacing: -0.02em;
-    font-family: monospace;
-    transition: color 0.3s ease;
+  .bento-badge-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
-  .support-card:hover .card-num {
+  .bento-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.8rem;
+    font-weight: 800;
     color: #0284c7;
+    background: #e0f2fe;
+    padding: 3px 8px;
+    border-radius: 6px;
   }
 
-  .card-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: #ffffff;
+  .bento-tag {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #64748b;
+    text-transform: uppercase;
+  }
+
+  .bento-icon-box {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    max-width: 38px;
+    max-height: 38px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #0284c7;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
+    overflow: hidden;
+    flex-shrink: 0;
   }
 
-  .card-icon :global(svg) {
-    width: 22px;
-    height: 22px;
-  }
-
-  .support-card:hover .card-icon {
+  .bento-card:hover .bento-icon-box {
     background: #0284c7;
     color: #ffffff;
+    border-color: #0284c7;
   }
 
-  .card-title {
-    font-size: 1.3rem;
+  .bento-icon-box :global(svg),
+  .bento-icon-box svg {
+    width: 20px !important;
+    height: 20px !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
+    display: block;
+  }
+
+  .bento-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bento-card-title {
+    font-size: 1.15rem;
     font-weight: 800;
     color: #0f172a;
-    letter-spacing: -0.01em;
-    margin-bottom: 10px;
+    letter-spacing: -0.015em;
+    margin: 0;
+    line-height: 1.3;
   }
 
-  .card-desc {
-    font-size: 0.95rem;
-    line-height: 1.65;
+  .bento-card-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
     color: #64748b;
+    margin: 0;
+  }
+
+  .bento-card-footer {
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .bento-stats-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #0284c7;
+    background: rgba(2, 132, 199, 0.08);
+    padding: 4px 10px;
+    border-radius: 9999px;
+  }
+
+  .stats-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #0284c7;
   }
 
   @media (max-width: 1024px) {
-    .support-goes-grid {
+    .bento-allocation-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 640px) {
-    .support-goes-grid {
+    .bento-allocation-grid {
       grid-template-columns: 1fr;
     }
   }
