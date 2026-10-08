@@ -502,98 +502,107 @@ const programNavLinks = [
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
 
-      // 1. ISAVO .slide-anim (Pricing cards & element slides)
-      gsap.utils.toArray<HTMLElement>('.slide-anim').forEach((t) => {
-        const s = t.dataset.direction || 'bottom';
-        const o = parseInt(t.dataset.offset || '60', 10);
-        const r = parseFloat(t.dataset.delay || '0') || 0;
-        const n: gsap.TweenVars = { opacity: 0 };
-        
-        if (s === 'left') n.x = -o;
-        else if (s === 'right') n.x = o;
-        else if (s === 'bottom') n.y = o;
-        else if (s === 'top') n.y = -o;
-        
-        gsap.set(t, n);
-        gsap.fromTo(
-          t,
-          n,
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            duration: 0.8,
-            delay: r,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: t,
-              start: 'top 95%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          }
-        );
-      });
-
-      // 2. ISAVO .fade-top (Heading & titles)
-      gsap.utils.toArray<HTMLElement>('.fade-top').forEach((t) => {
-        gsap.set(t, { opacity: 0, y: -30 });
-        gsap.fromTo(
-          t,
-          { opacity: 0, y: -30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: t,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          }
-        );
-      });
-
-      // 3. ISAVO .fade-wrapper (Staggered items)
-      gsap.utils.toArray<HTMLElement>('.fade-wrapper').forEach((t) => {
-        const s = t.querySelectorAll(':scope > *');
-        gsap.set(s, { opacity: 0, y: 30 });
-        gsap.fromTo(
-          s,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: t,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          }
-        );
-      });
-
-      // 4. GSAP Handler for general reveal elements (.reveal-on-scroll)
-      gsap.utils.toArray<HTMLElement>('.reveal-on-scroll').forEach((el) => {
-        gsap.set(el, { opacity: 0, y: 30 });
-        gsap.to(el, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 88%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
+      const initAnimations = () => {
+        // 1. ISAVO .slide-anim (Pricing cards & element slides)
+        gsap.utils.toArray<HTMLElement>('.slide-anim').forEach((t) => {
+          const s = t.dataset.direction || 'bottom';
+          const o = parseInt(t.dataset.offset || '60', 10);
+          const r = parseFloat(t.dataset.delay || '0') || 0;
+          const n: gsap.TweenVars = { opacity: 0 };
+          
+          if (s === 'left') n.x = -o;
+          else if (s === 'right') n.x = o;
+          else if (s === 'bottom') n.y = o;
+          else if (s === 'top') n.y = -o;
+          
+          gsap.set(t, n);
+          gsap.fromTo(
+            t,
+            n,
+            {
+              opacity: 1,
+              x: 0,
+              y: 0,
+              duration: 0.8,
+              delay: r,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: t,
+                start: 'top 95%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+            }
+          );
         });
+
+        // 2. ISAVO .fade-top (Heading & titles)
+        gsap.utils.toArray<HTMLElement>('.fade-top').forEach((t) => {
+          gsap.set(t, { opacity: 0, y: -30 });
+          gsap.fromTo(
+            t,
+            { opacity: 0, y: -30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: t,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+            }
+          );
+        });
+
+        // 3. ISAVO .fade-wrapper (Staggered items)
+        gsap.utils.toArray<HTMLElement>('.fade-wrapper').forEach((t) => {
+          const s = t.querySelectorAll(':scope > *');
+          gsap.set(s, { opacity: 0, y: 30 });
+          gsap.fromTo(
+            s,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: t,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+                once: true,
+              },
+            }
+          );
+        });
+
+        // 4. GSAP Handler for general reveal elements (.reveal-on-scroll)
+        gsap.utils.toArray<HTMLElement>('.reveal-on-scroll').forEach((el) => {
+          gsap.set(el, { opacity: 0, y: 30 });
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+              once: true,
+            },
+          });
+        });
+
+        ScrollTrigger.refresh();
+      };
+
+      // Double requestAnimationFrame persis seperti ISAVO bundle agar layout stabil
+      requestAnimationFrame(() => {
+        requestAnimationFrame(initAnimations);
       });
     }
 
@@ -848,6 +857,10 @@ const programNavLinks = [
   /* =========================================================================
      2. EXACT ISAVO 3-COLUMN PRICING GRID & CARD DESIGN (DARI ISAVO.CO.ID)
      ========================================================================= */
+  .isavo-pricing-section {
+    background-color: #f8f8f8;
+  }
+
   .isavo-pricing-grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -866,7 +879,7 @@ const programNavLinks = [
 
   .arch-pricing-card {
     background-color: #ffffff;
-    border: 1px solid rgba(15, 23, 42, 0.1);
+    border: 1px solid #e5e7eb;
     border-radius: 24px;
     flex-direction: column;
     height: 100%;
@@ -874,17 +887,18 @@ const programNavLinks = [
     transition: all .3s ease-in-out;
     display: flex;
     position: relative;
-    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+    box-shadow: none; /* RATA (FLAT) PERSIS SEPERTI ISAVO, TIDAK MELAYANG 3D */
   }
 
   .arch-pricing-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* EFEK SHADOW SANGAT HALUS HANYA SAAT HOVER */
   }
 
   .arch-pricing-card.popular {
     border-color: var(--isavo-blue);
     border-width: 2px;
+    box-shadow: none; /* POPULAR TETAP FLAT DENGAN BORDER BIRU TEGAS */
   }
 
   .arch-pricing-card .pricing-badge {
@@ -901,7 +915,7 @@ const programNavLinks = [
     right: 50%;
     transform: translate(50%);
     white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    box-shadow: none; /* TIDAK MELAYANG */
   }
 
   .arch-pricing-card .plan-title {
