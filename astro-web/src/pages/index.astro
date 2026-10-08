@@ -3,6 +3,7 @@
 // Halaman Utama GVF Presisi 100% Mengadopsi Desain UI/UX ISAVO (isavo.co.id)
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/home/HeroSection.astro';
+import QuickActionBar from '../components/home/QuickActionBar.astro';
 import PillarsSection from '../components/home/PillarsSection.astro';
 import AboutSplitSection from '../components/home/AboutSplitSection.astro';
 import InteractiveServicesSection from '../components/home/InteractiveServicesSection.astro';
@@ -17,8 +18,11 @@ import ContactSection from '../components/home/ContactSection.astro';
   title="Global Village Fund • Wakaf Produktif & Pendidikan Berkelanjutan"
   description="Kawasan Wakaf Terpadu seluas ±3 hektare di Jonggol Bogor. Memadukan Garden Mosque Khairu Ummah, SMK Skill Village Islamic School, dan Agro-Technopark."
 >
-  <!-- 1. Hero Section (Arsitek • Kontraktor • Interior) -->
+  <!-- 1. Hero Section -->
   <HeroSection />
+
+  <!-- 1.5 Quick Action Cards Bar (Donasi, Zakat, Wakaf, Kemitraan) -->
+  <QuickActionBar />
 
   <!-- 2. "Satu Solusi Untuk Anda" 3-Card Section -->
   <PillarsSection />

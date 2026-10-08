@@ -15,36 +15,26 @@ const currentPath = Astro.url.pathname;
     <nav class="isavo-nav-desktop" aria-label="Navigasi Utama">
       <ul class="isavo-nav-list">
         <li><a href="/" class={`isavo-nav-link ${currentPath === '/' ? 'active' : ''}`}>Home</a></li>
-        <li class="isavo-has-dropdown">
-          <a href="/program/wakaf" class={`isavo-nav-link ${currentPath.startsWith('/program') ? 'active' : ''}`}>
-            <span>Layanan</span>
-            <svg class="isavo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </a>
-          <ul class="isavo-dropdown-menu">
-            <li><a href="/program/wakaf">Wakaf Produktif & Lahan</a></li>
-            <li><a href="/program/zakat">Zakat Maal & Profesi</a></li>
-            <li><a href="/program/infaq">Infaq Pembangunan</a></li>
-            <li><a href="/program/sedekah">Sedekah Subuh & Pangan</a></li>
-          </ul>
-        </li>
-        <li><a href="/portofolio" class={`isavo-nav-link ${currentPath === '/portofolio' ? 'active' : ''}`}>Portofolio</a></li>
         <li><a href="/#tentang-kami" class="isavo-nav-link">Tentang Kami</a></li>
-        <li><a href="/#dokumentasi" class="isavo-nav-link">Galeri</a></li>
         <li class="isavo-has-dropdown">
-          <a href="/#simulasi" class="isavo-nav-link">
-            <span>Simulasi</span>
+          <a href="/#program" class={`isavo-nav-link ${currentPath.startsWith('/program') ? 'active' : ''}`}>
+            <span>Program</span>
             <svg class="isavo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </a>
           <ul class="isavo-dropdown-menu">
-            <li><a href="/#simulasi">Simulasi Wakaf Meter Lahan</a></li>
-            <li><a href="/#simulasi">Simulasi Material Masjid</a></li>
-            <li><a href="/#simulasi">Simulasi Wakaf Uang</a></li>
+            <li><a href="/program/wakaf">Masjid Khairu Ummah Sugro</a></li>
+            <li><a href="/program/infaq">Pendidikan & Vokasi Santri</a></li>
+            <li><a href="/program/wakaf">Wakaf Produktif Abadi</a></li>
+            <li><a href="/program/sedekah">Skill Teaching Factory</a></li>
           </ul>
         </li>
+        <li><a href="/#donasi" class="isavo-nav-link">Donasi</a></li>
+        <li><a href="/program/zakat" class="isavo-nav-link">Zakat</a></li>
+        <li><a href="/program/wakaf" class="isavo-nav-link">Wakaf</a></li>
+        <li><a href="/#kemitraan" class="isavo-nav-link">Kemitraan</a></li>
+        <li><a href="/#dampak" class="isavo-nav-link">Dampak</a></li>
         <li><a href="/contact" class={`isavo-nav-link ${currentPath === '/contact' ? 'active' : ''}`}>Kontak</a></li>
       </ul>
     </nav>
@@ -62,28 +52,16 @@ const currentPath = Astro.url.pathname;
         </div>
       </a>
 
-      <!-- Pill Button CTA (Identik ISAVO: Red Pill "Simulasi Biaya ⌵") -->
-      <a href="#simulasi" class="isavo-header-pill-btn">
-        <svg class="pill-calc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="4" y="2" width="16" height="20" rx="2"></rect>
-          <line x1="8" y1="6" x2="16" y2="6"></line>
-          <line x1="16" y1="14" x2="16" y2="18"></line>
-          <path d="M16 10h.01"></path>
-          <path d="M12 10h.01"></path>
-          <path d="M8 10h.01"></path>
-          <path d="M12 14h.01"></path>
-          <path d="M8 14h.01"></path>
-          <path d="M12 18h.01"></path>
-          <path d="M8 18h.01"></path>
+      <!-- Tombol Paling Menonjol: DONASI SEKARANG ala ISAVO -->
+      <a href="#donasi" class="isavo-header-pill-btn" aria-label="Donasi Sekarang">
+        <svg class="pill-calc-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
-        <span>Simulasi Biaya</span>
-        <svg class="pill-chevron-icon" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
+        <span>DONASI SEKARANG</span>
       </a>
 
       <!-- Circle Button dengan 4 ROUND DOTS (2x2 Grid) ala ISAVO -->
-      <a href="#rekening" class="isavo-circle-dots-btn" aria-label="Menu Ekstra">
+      <a href="#rekening" class="isavo-circle-dots-btn" aria-label="Menu Ekstra Rekening">
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
@@ -110,19 +88,18 @@ const currentPath = Astro.url.pathname;
       </div>
       <nav class="isavo-drawer-nav">
         <a href="/">Home</a>
-        <a href="/program/wakaf">Wakaf Produktif & Lahan</a>
-        <a href="/program/zakat">Zakat Maal & Profesi</a>
-        <a href="/program/infaq">Infaq Pembangunan</a>
-        <a href="/program/sedekah">Sedekah Subuh & Pangan</a>
-        <a href="/portofolio">Portofolio</a>
         <a href="/#tentang-kami">Tentang Kami</a>
-        <a href="/#dokumentasi">Galeri</a>
-        <a href="/#simulasi">Simulasi Wakaf</a>
+        <a href="/#program">Program</a>
+        <a href="/#donasi">Donasi</a>
+        <a href="/program/zakat">Zakat</a>
+        <a href="/program/wakaf">Wakaf</a>
+        <a href="/#kemitraan">Kemitraan</a>
+        <a href="/#dampak">Dampak</a>
         <a href="/contact">Kontak</a>
       </nav>
       <div class="isavo-drawer-bottom">
-        <a href="#simulasi" class="isavo-header-pill-btn" style="width: 100%; justify-content: center;">
-          Simulasi Wakaf
+        <a href="#donasi" class="isavo-header-pill-btn" style="width: 100%; justify-content: center;">
+          DONASI SEKARANG
         </a>
       </div>
     </div>

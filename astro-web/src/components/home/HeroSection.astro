@@ -16,29 +16,41 @@
 
   <div class="isavo-hero-container">
     <div class="isavo-hero-content">
-      <!-- Tag Pill with Dot ala ISAVO: • #SOLUSISATUPINTU -->
+      <!-- Tag Pill with Dot ala ISAVO: • #WADAHKEBAIKANDANKOLABORASI -->
       <div class="isavo-tag-pill isavo-hero-anim isavo-anim-1">
         <span class="isavo-tag-dot"></span>
-        <span class="isavo-tag-text">#WAKAFBERKELANJUTAN</span>
+        <span class="isavo-tag-text">#WADAHKEBAIKANDANKOLABORASI</span>
       </div>
 
-      <!-- Giant Bold Title ala ISAVO (Arsitek • Kontraktor • Interior) -->
+      <!-- Giant Bold Title ala ISAVO -->
       <h1 class="isavo-hero-title isavo-hero-anim isavo-anim-2">
-        Wakaf • Pendidikan<br />
-        • Kemandirian
+        Kebaikan yang Tumbuh<br />
+        Menjadi Kebermanfaatan
       </h1>
 
       <!-- Supporting Prose ala ISAVO -->
-      <p class="isavo-hero-sub isavo-hero-anim isavo-anim-3">
-        Tidak perlu repot mencari banyak saluran amanah.<br />
-        Global Village Fund adalah satu-satunya mitra terpercaya Anda<br />
-        dari niat pertama hingga manfaat abadi sepanjang masa.
-      </p>
+      <div class="isavo-hero-sub isavo-hero-anim isavo-anim-3">
+        <p>
+          Global Village Fund adalah wadah kebaikan dan kolaborasi yang dikembangkan oleh <strong>Yayasan Permata Cendekia Indonesia (YPCI)</strong> untuk membangun ekosistem pesantren yang mandiri, berkarakter, terampil, dan memberikan dampak nyata bagi masyarakat.
+        </p>
+        <p style="margin-top: 12px; font-size: 0.98rem; opacity: 0.92;">
+          Melalui donasi, zakat, wakaf, dan kemitraan, setiap dukungan diarahkan untuk memperkuat pendidikan, pengembangan kompetensi, kemandirian, serta keberlanjutan ekosistem pesantren.
+        </p>
+      </div>
 
-      <!-- Outlined Pill Button with Circular Arrow Icon ala ISAVO -->
+      <!-- Dual Pill Buttons ala ISAVO (Donasi Sekarang + Lihat Program) -->
       <div class="isavo-hero-cta-wrap isavo-hero-anim isavo-anim-4">
-        <a href="#simulasi" class="isavo-btn-outline-pill">
-          <span class="isavo-btn-text">Salurkan Wakaf</span>
+        <!-- Primary Action: Donasi Sekarang (Red Pill) -->
+        <a href="#donasi" class="isavo-btn-primary-pill">
+          <svg class="cta-heart-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span>Donasi Sekarang</span>
+        </a>
+
+        <!-- Secondary Action: Lihat Program (Outlined Pill) -->
+        <a href="#program" class="isavo-btn-outline-pill">
+          <span class="isavo-btn-text">Lihat Program</span>
           <span class="isavo-btn-arrow-circle">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="isavo-arrow-icon">
               <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -211,6 +223,42 @@
     font-weight: 400;
     max-width: 680px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .isavo-hero-cta-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  /* Primary Pill (Red Gradient ala ISAVO) */
+  .isavo-btn-primary-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #e53935 0%, #d32f2f 100%);
+    color: #ffffff;
+    padding: 0.92rem 2.2rem;
+    border-radius: 9999px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    box-shadow: 0 8px 24px rgba(229, 57, 53, 0.45);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .isavo-btn-primary-pill:hover {
+    background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(229, 57, 53, 0.6);
+  }
+
+  .cta-heart-icon {
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
   }
 
   /* Outlined Pill Button with Circle Arrow ala ISAVO */
