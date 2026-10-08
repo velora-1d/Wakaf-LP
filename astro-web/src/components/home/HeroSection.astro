@@ -5,57 +5,60 @@
 
 const heroSlides = [
   {
-    id: 'ekosistem',
+    id: 'slide-1',
     index: '01',
-    label: 'Ekosistem & Kebermanfaatan',
-    badge: 'FOSTERING PESANTREN ECOSYSTEMS',
+    label: 'Brand Utama',
+    badge: 'FOSTERING PESANTREN ECOSYSTEMS FOR SELF-RELIANCE AND SOCIAL IMPACT',
     title: 'Membangun Ekosistem Pesantren.<br />Menghadirkan Kebermanfaatan.',
     lead: 'Global Village Fund adalah wadah kebaikan dan kolaborasi untuk memperkuat ekosistem pesantren menuju kemandirian dan dampak sosial.',
-    sub: 'Fostering Pesantren Ecosystems for Self-Reliance and Social Impact — menghubungkan pendidikan, karakter, dan pemberdayaan nyata.',
+    taglineEn: 'Fostering Pesantren Ecosystems for Self-Reliance and Social Impact',
     image: '/gambar design/interior mesjid 2.jpg',
-    primaryCta: { text: 'Jelajahi Program', href: '#program-kebaikan' },
-    secondaryCta: { text: 'Dukung Kebaikan', href: '#donasi' }
+    buttons: [
+      { text: 'Jelajahi Program', href: '#program-kebaikan', variant: 'primary' },
+      { text: 'Dukung Kebaikan', href: '#donasi', variant: 'outline' }
+    ],
+    ctaText: 'Kenali Kami | Lihat Program'
   },
   {
-    id: 'pendidikan',
+    id: 'slide-2',
     index: '02',
     label: 'Pendidikan & Kompetensi',
-    badge: 'PENDIDIKAN, KOMPETENSI & KARAKTER',
+    badge: 'PENDIDIKAN & KOMPETENSI',
     title: 'Menumbuhkan Potensi,<br />Membangun Kemandirian.',
     lead: 'Mendukung pendidikan, pengembangan kompetensi, dan pembentukan karakter santri sebagai bekal untuk menghadapi masa depan.',
-    sub: 'Mencetak generasi berakhlak mulia dengan penguasaan teknologi terapan dan kesiapan mandiri secara profesional.',
     image: '/gambar design/learning studio & workshop.jpg',
-    primaryCta: { text: 'Lihat Program', href: '/program/sedekah' },
-    secondaryCta: { text: 'Dukung Beasiswa', href: '#donasi' }
+    buttons: [
+      { text: 'Lihat Program', href: '#program-kebaikan', variant: 'primary' }
+    ]
   },
   {
-    id: 'masjid',
+    id: 'slide-3',
     index: '03',
-    label: 'Masjid Khairu Ummah',
-    badge: 'PUSAT IBADAH & PEMBELAJARAN',
+    label: 'Masjid Khairu Ummah Sugro',
+    badge: 'MASJID KHAIRU UMMAH SUGRO',
     title: 'Satu Rumah Allah,<br />Tumbuh Banyak Kebaikan.',
     lead: 'Bersama-sama menyelesaikan pembangunan Masjid Khairu Ummah Sugro sebagai bagian dari ekosistem pembelajaran dan kebermanfaatan pesantren.',
-    sub: 'Pusat ibadah, pembinaan karakter FAST, dan ruang kolaborasi keumatan yang memancarkan manfaat abadi lintas generasi.',
     image: '/gambar design/interior masjid.jpg',
-    primaryCta: { text: 'Dukung Pembangunan', href: '/program/wakaf' },
-    secondaryCta: { text: 'Detail Masjid', href: '#masjid-sugro' }
+    buttons: [
+      { text: 'Dukung Pembangunan', href: '/program/wakaf', variant: 'primary' }
+    ]
   },
   {
-    id: 'kemandirian',
+    id: 'slide-4',
     index: '04',
     label: 'Kemandirian & Lingkungan',
-    badge: 'AGRO-TECHNOPARK & KEMANDIRIAN',
+    badge: 'KEMANDIRIAN & LINGKUNGAN',
     title: 'Dari Pesantren,<br />Tumbuh Kemandirian.',
     lead: 'Mengembangkan ekosistem pendidikan, lingkungan, dan kewirausahaan yang saling terhubung untuk menciptakan manfaat yang berkelanjutan.',
-    sub: 'Kawasan terpadu ±3 hektare di Jonggol Bogor yang memadukan agriteknologi, ketahanan pangan, dan inkubasi wirausaha santri.',
     image: '/gambar design/belakang masjid.jpg',
-    primaryCta: { text: 'Jelajahi Ekosistem', href: '#pendekatan' },
-    secondaryCta: { text: 'Kolaborasi Bersama', href: '#kolaborasi' }
+    buttons: [
+      { text: 'Jelajahi Ekosistem', href: '#pendekatan', variant: 'primary' }
+    ]
   }
 ];
 ---
 
-<section class="isavo-hero" id="hero-carousel" aria-roledescription="carousel" aria-label="Program Unggulan Global Village Fund">
+<section class="isavo-hero" id="hero-carousel" aria-roledescription="carousel" aria-label="Global Village Fund Hero">
   <!-- Multi-Slide Backgrounds with Cinematic Crossfade & Ambient Zoom -->
   <div class="hero-bgs-container" aria-hidden="true">
     {heroSlides.map((slide, i) => (
@@ -81,7 +84,7 @@ const heroSlides = [
           role="tabpanel"
           aria-label={`Slide ${slide.index}: ${slide.label}`}
         >
-          <!-- Tag Pill with Blue Dot -->
+          <!-- Tag Pill -->
           <div class="isavo-tag-pill">
             <span class="isavo-tag-dot"></span>
             <span class="isavo-tag-text">{slide.badge}</span>
@@ -93,28 +96,38 @@ const heroSlides = [
           <!-- Narrative Subtext -->
           <div class="isavo-hero-sub">
             <p>{slide.lead}</p>
-            <p class="hero-sub-secondary">{slide.sub}</p>
+            {slide.taglineEn && (
+              <p class="hero-tagline-en">{slide.taglineEn}</p>
+            )}
           </div>
 
-          <!-- Matched Height Action Buttons (typeui principle: adjacent buttons match height) -->
+          <!-- Matched Height Action Buttons -->
           <div class="isavo-hero-cta-wrap">
-            <a href={slide.secondaryCta.href} class="isavo-btn-primary-pill">
-              <svg class="cta-heart-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-              <span>{slide.secondaryCta.text}</span>
-            </a>
-
-            <a href={slide.primaryCta.href} class="isavo-btn-outline-pill">
-              <span class="isavo-btn-text">{slide.primaryCta.text}</span>
-              <span class="isavo-btn-arrow-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="isavo-arrow-icon">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </span>
-            </a>
+            {slide.buttons.map((btn) => (
+              <a
+                href={btn.href}
+                class={btn.variant === 'primary' ? 'isavo-btn-primary-pill' : 'isavo-btn-outline-pill'}
+              >
+                <span>{btn.text}</span>
+                {btn.variant === 'outline' && (
+                  <span class="isavo-btn-arrow-circle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="isavo-arrow-icon">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </span>
+                )}
+              </a>
+            ))}
           </div>
+
+          {slide.ctaText && (
+            <div class="hero-cta-text-nav">
+              <a href="#tentang-kami" class="hero-text-link">Kenali Kami</a>
+              <span class="hero-text-divider">|</span>
+              <a href="#program-kebaikan" class="hero-text-link">Lihat Program</a>
+            </div>
+          )}
         </div>
       ))}
     </div>
@@ -280,11 +293,38 @@ const heroSlides = [
     margin-bottom: 10px;
   }
 
-  .hero-sub-secondary {
-    font-size: 0.9375rem !important;
-    color: #94a3b8 !important;
-    line-height: 1.6 !important;
-    margin-bottom: 0 !important;
+  .hero-tagline-en {
+    font-size: 0.95rem !important;
+    font-style: italic;
+    color: #38bdf8 !important;
+    font-weight: 500 !important;
+    margin-top: 6px;
+    letter-spacing: 0.01em;
+  }
+
+  /* Text CTA link: Kenali Kami | Lihat Program */
+  .hero-cta-text-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .hero-text-link {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .hero-text-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .hero-text-divider {
+    color: rgba(255, 255, 255, 0.3);
   }
 
   /* Buttons Row (Matching box height: 50px) */
