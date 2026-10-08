@@ -34,7 +34,11 @@ const auditPoints = [
         <div class="audit-points-list">
           {auditPoints.map((item, idx) => (
             <div class="audit-item">
-              <span class="audit-check-icon">✓</span>
+              <span class="audit-check-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="audit-check-svg">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
               <div>
                 <h4 class="audit-item-title">{item.title}</h4>
                 <p class="audit-item-desc">{item.desc}</p>
@@ -60,7 +64,11 @@ const auditPoints = [
 
       <div class="trans-visual-side">
         <div class="audit-seal-box">
-          <div class="seal-icon">🏛️</div>
+          <div class="seal-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="seal-icon-svg">
+              <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4"></path>
+            </svg>
+          </div>
           <h3 class="seal-title">Standar Tata Kelola YPCI</h3>
           <p class="seal-desc">
             Sistem tata kelola profesional menjamin pemisahan yang tegas antara dana operasional yayasan dan dana amanah wakaf abadi.
@@ -167,10 +175,13 @@ const auditPoints = [
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 900;
-    font-size: 0.85rem;
     flex-shrink: 0;
     margin-top: 2px;
+  }
+
+  .audit-check-svg {
+    width: 14px;
+    height: 14px;
   }
 
   .audit-item-title {
@@ -249,8 +260,21 @@ const auditPoints = [
   }
 
   .seal-icon {
-    font-size: 2.8rem;
-    margin-bottom: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 68px;
+    height: 68px;
+    border-radius: 20px;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #38bdf8;
+    margin: 0 auto 18px;
+  }
+
+  .seal-icon-svg {
+    width: 32px;
+    height: 32px;
   }
 
   .seal-title {

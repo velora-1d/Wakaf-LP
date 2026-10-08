@@ -6,31 +6,31 @@ const partners = [
     role: 'Perguruan Tinggi',
     badge: 'AKADEMIK & RISET',
     desc: 'Pengembangan kurikulum vokasi, transfer teknologi aplikatif, riset pertanian, dan beasiswa lanjutan.',
-    icon: '🎓'
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>`
   },
   {
     role: 'Perusahaan & Industri',
     badge: 'CSR, ESG & MAGANG',
     desc: 'Keahlian teknologi, fasilitas teaching factory, penyaluran magang santri, dan penyerapan kerja.',
-    icon: '🏢'
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg>`
   },
   {
     role: 'Funding Partner',
     badge: 'LEMBAGA FILANTROPI',
     desc: 'Pendanaan program, hibah modal usaha mandiri, dan dukungan keberlanjutan investasi wakaf produktif.',
-    icon: '💼'
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`
   },
   {
     role: 'Pemerintah',
     badge: 'REGULASI & FASILITASI',
     desc: 'Harmonisasi kebijakan pesantren vokasi bersama Kemenag, BWI, Kemendikbudristek, dan Pemda setempat.',
-    icon: '🏛️'
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4"></path></svg>`
   },
   {
     role: 'Masyarakat & Relawan',
     badge: 'KOMUNITAS & MENTOR',
     desc: 'Dukungan moril, tenaga ahli sukarela, pembinaan adab santri, dan kolaborasi ekonomi kerakyatan.',
-    icon: '🤝'
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
   }
 ];
 ---
@@ -53,7 +53,7 @@ const partners = [
       {partners.map((p, idx) => (
         <div class={`partner-card reveal-on-scroll delay-${(idx + 1) * 100}`}>
           <div class="partner-top">
-            <span class="partner-emoji">{p.icon}</span>
+            <span class="partner-icon" aria-hidden="true" set:html={p.icon} />
             <span class="partner-badge">{p.badge}</span>
           </div>
 
@@ -172,9 +172,20 @@ const partners = [
     margin-bottom: 18px;
   }
 
-  .partner-emoji {
-    font-size: 1.8rem;
-    line-height: 1;
+  .partner-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #e0f2fe;
+    color: #0284c7;
+  }
+
+  .partner-icon :global(svg) {
+    width: 22px;
+    height: 22px;
   }
 
   .partner-badge {

@@ -139,9 +139,9 @@ const currentPath = Astro.url.pathname;
 
   .isavo-header-inner {
     width: 100%;
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 24px 28px;
+    max-width: 100%;
+    margin: 0;
+    padding: 18px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -149,7 +149,9 @@ const currentPath = Astro.url.pathname;
   }
 
   .isavo-header.fixed .isavo-header-inner {
-    padding: 14px 28px;
+    max-width: 100%;
+    margin: 0;
+    padding: 12px 24px;
   }
 
   /* 1. Boxed Logo ala ISAVO [ISAVO] */
