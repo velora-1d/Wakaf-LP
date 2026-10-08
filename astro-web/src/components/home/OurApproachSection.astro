@@ -1,79 +1,55 @@
 ---
 // src/components/home/OurApproachSection.astro
-// Modul 6 Tahap Pendekatan & Kurikulum (Modular 3x2 Matrix ala Referensi Gambar)
+// Modul 6 Tahap Pendekatan & Transformasi (Modular 3x2 Matrix sesuai Desain Referensi)
 
 const approachModules = [
   {
     num: '1',
-    title: 'Dasar Logic & Karakter Tani Alami',
+    name: 'Kebaikan',
+    focus: 'Filantropi & Wakaf Umat',
+    desc: 'Menghimpun amanah infaq, sedekah, zakat, dan wakaf produktif secara transparan dari para donatur dan masyarakat luas.',
     bgClass: 'cell-white',
-    isDark: false,
-    items: [
-      'Logis & Sistematika Integrated Farming',
-      'Etika Profesional & Budaya Kerja Lapangan',
-      'Stamina Fisik & Kecakapan Teknis Lapangan',
-      'Siklus Hara & Keseimbangan Alam'
-    ]
+    isDark: false
   },
   {
     num: '2',
-    title: 'Smart Horticulture & Hidroponik',
+    name: 'Pendidikan',
+    focus: 'Karakter & Fasilitas Pembelajaran',
+    desc: 'Membangun sarana belajar representatif, masjid beradab, dan kurikulum FAST sebagai fondasi akhlak santri.',
     bgClass: 'cell-mint-light',
-    isDark: false,
-    items: [
-      'Manajemen Tanah & Kompos Terpadu',
-      'Formulasi Nutrisi & Pestisida Hayati Alami',
-      'Praktik Greenhouse & Fertigasi Otomatis',
-      'Standardisasi Kualitas Komoditas Segar'
-    ]
+    isDark: false
   },
   {
     num: '3',
-    title: 'Smart Poultry & Happy Chicken',
+    name: 'Kompetensi',
+    focus: 'Vokasi & Keterampilan Riil',
+    desc: 'Membekali santri keahlian vokasi terapan (arsitektur, agriteknologi, digital) melalui laboratorium praktik nyata.',
     bgClass: 'cell-sage',
-    isDark: false,
-    items: [
-      'Prinsip Kandang Bahagia & Ihsan Ternak',
-      'Formulasi Pakan Mandiri & Biokonversi BSF',
-      'Manajemen DOC, Grower, hingga Pullet',
-      'Pengendalian Sanitasi Ternak Alami'
-    ]
+    isDark: false
   },
   {
     num: '4',
-    title: 'Agribusiness & Supply Chain',
+    name: 'Kemandirian',
+    focus: 'Agroteknopreneur & Unit Usaha',
+    desc: 'Mengembangkan unit usaha mandiri pesantren (Greenhouse, Agro-Technopark) agar mandiri tanpa terus bergantung donasi.',
     bgClass: 'cell-emerald',
-    isDark: true,
-    items: [
-      'Business Model Canvas Agribisnis Modern',
-      'DKV & Kemasan Produk Hasil Bumi (Packaging)',
-      'E-Commerce & Live Selling Hasil Panen',
-      'Rantai Pasok B2B Skillage Mart & Ritel'
-    ]
+    isDark: true
   },
   {
     num: '5',
-    title: "Qur'anic Agripreneurship",
+    name: 'Kolaborasi',
+    focus: 'Kemitraan Industri & Komunitas',
+    desc: 'Menyambungkan santri dengan dunia industri, asosiasi profesi, akademisi, dan jaringan pasar terpercaya.',
     bgClass: 'cell-forest',
-    isDark: true,
-    items: [
-      'Fiqih Muamalah Musaqah & Zakat Pertanian',
-      'Etika Rantai Pasok Pangan Halal & Thoyyib',
-      'Tadabbur Ayat Kauniyah Bumi & Tumbuhan',
-      'Jiwa Entrepreneur Mandiri & Berkelanjutan'
-    ]
+    isDark: true
   },
   {
     num: '6',
-    title: 'Real Farm Project & TeFa',
+    name: 'Dampak Sosial',
+    focus: 'Muzakki Baru & Berdaya',
+    desc: 'Mencetak lulusan berdaya saing yang mandiri secara ekonomi dan kembali menebar manfaat luas sebagai muzakki baru.',
     bgClass: 'cell-deep-dark',
-    isDark: true,
-    items: [
-      'Eksekusi Unit Usaha Greenhouse & Ternak',
-      'Pengelolaan Rantai Usaha Skillage Mart',
-      'Pembukuan Omzet & Laporan Keuangan Riil',
-      'Sertifikasi BNSP & Portofolio Agripreneur'
-    ]
+    isDark: true
   }
 ];
 ---
@@ -84,13 +60,13 @@ const approachModules = [
     <div class="approach-header reveal-on-scroll">
       <div class="isavo-pill-tag">
         <span class="pill-dot"></span>
-        <span>OUR APPROACH • TAHAPAN KURIKULUM</span>
+        <span>OUR APPROACH • CARA KERJA</span>
       </div>
       <h2 class="approach-title">
         Dari Kebaikan Menjadi Kebermanfaatan.
       </h2>
       <p class="approach-desc">
-        Pola pembinaan komprehensif 6 tahap yang mengintegrasikan fondasi karakter, sains pertanian modern, syariat muamalah, hingga kemandirian wirausaha riil santri.
+        Kami percaya bahwa dukungan yang tepat dapat membangun kemampuan, bukan hanya memenuhi kebutuhan sesaat. Inilah yang menjadi pembeda Global Village Fund.
       </p>
     </div>
 
@@ -104,18 +80,12 @@ const approachModules = [
               <span>{item.num}</span>
             </div>
 
-            <!-- Judul Modul -->
-            <h3 class="cell-title">{item.title}</h3>
+            <!-- Judul & Subjudul / Focus -->
+            <h3 class="cell-title">{item.name}</h3>
+            <span class="cell-focus">{item.focus}</span>
 
-            <!-- List Bullet Points -->
-            <ul class="bullet-list">
-              {item.items.map((pt) => (
-                <li class="bullet-item">
-                  <span class="bullet-dot" aria-hidden="true"></span>
-                  <span class="bullet-text">{pt}</span>
-                </li>
-              ))}
-            </ul>
+            <!-- Deskripsi -->
+            <p class="cell-desc">{item.desc}</p>
           </div>
         ))}
       </div>
@@ -197,7 +167,7 @@ const approachModules = [
 
   /* Individual Cells */
   .matrix-cell {
-    padding: 36px 32px 40px;
+    padding: 38px 32px 42px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -246,12 +216,12 @@ const approachModules = [
 
   /* Titles */
   .cell-title {
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     font-weight: 800;
-    line-height: 1.3;
+    line-height: 1.25;
     letter-spacing: -0.02em;
-    margin: 0 0 24px 0;
-    min-height: 52px;
+    margin: 0 0 6px 0;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
   }
 
   .theme-light .cell-title {
@@ -262,51 +232,36 @@ const approachModules = [
     color: #ffffff;
   }
 
-  /* Bullet List */
-  .bullet-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+  /* Focus Subtitle */
+  .cell-focus {
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: inline-block;
+    letter-spacing: 0.01em;
   }
 
-  .bullet-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
+  .theme-light .cell-focus {
+    color: #047857; /* Emerald text for light bg */
   }
 
-  .bullet-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    margin-top: 7px;
-    flex-shrink: 0;
+  .theme-dark .cell-focus {
+    color: #fde047; /* Bright yellow text for dark bg */
   }
 
-  .theme-light .bullet-dot {
-    background-color: #2d7a4d;
-  }
-
-  .theme-dark .bullet-dot {
-    background-color: #fbbf24;
-  }
-
-  .bullet-text {
+  /* Description Body */
+  .cell-desc {
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.65;
+    margin: 0;
   }
 
-  .theme-light .bullet-text {
-    color: #334155;
-    font-weight: 500;
+  .theme-light .cell-desc {
+    color: #475569;
   }
 
-  .theme-dark .bullet-text {
-    color: #f1f5f9;
-    font-weight: 400;
+  .theme-dark .cell-desc {
+    color: #e2e8f0;
   }
 
   /* Responsive Breakpoints */
@@ -318,11 +273,7 @@ const approachModules = [
     .matrix-cell {
       padding: 28px 24px;
     }
-
-    .cell-title {
-      min-height: auto;
-      margin-bottom: 18px;
-    }
   }
 </style>
+
 
