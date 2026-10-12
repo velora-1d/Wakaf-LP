@@ -1,7 +1,7 @@
 ---
 // src/components/program/InfaqMaterialSection.astro
 // Gotong Royong Material Fisik Pembangunan Kampus Jonggol
-// STANDAR ISAVO EDITORIAL: SPLIT 2-KOLOM HEADER, ZERO BOX-SHADOW, ZERO GRID LINES, ZERO TOMBOL KASIR SHOPPING-CART
+// 100% Modern & Aesthetic — ISAVO Architectural Style (Zero Slop, Zero Table Lines, Zero Cashier Boxes)
 import type { ProgramData } from '../../data/programs';
 
 interface Props {
@@ -58,9 +58,12 @@ const materials = [
 <section class="infaq-material-section" id="gotong-royong-material">
   <div class="infaq-container">
     <!-- Header Section Split 2-Kolom (Gaya Baku ISAVO) -->
-    <div class="isavo-section-header">
+    <div class="isavo-section-header reveal-on-scroll">
       <div class="header-left-col">
-        <span class="isavo-subheading">GOTONG ROYONG FISIK</span>
+        <div class="isavo-tag-pill">
+          <span class="isavo-tag-dot"></span>
+          <span class="isavo-tag-text">GOTONG ROYONG FISIK</span>
+        </div>
       </div>
       <div class="header-right-col">
         <h2 class="isavo-main-title">
@@ -72,43 +75,45 @@ const materials = [
       </div>
     </div>
 
-    <!-- Main Open Layout: Dua Kolom Terbuka (Flat & Grounded) -->
-    <div class="material-open-layout">
-      <!-- Kolom Kiri: Ledger Baris Material -->
-      <div class="material-ledger-col">
-        <div class="ledger-header-row">
-          <h3 class="ledger-title">Daftar Kebutuhan Konstruksi di Lapangan</h3>
+    <!-- Main 2-Column Architectural Layout -->
+    <div class="material-architectural-layout">
+      <!-- Kolom Kiri: 4 Kartu Material Arsitektural Mewah -->
+      <div class="material-cards-col">
+        <div class="col-kicker-wrap">
+          <h3 class="col-title">Pilih Komponen Material</h3>
+          <span class="col-hint">Klik kartu untuk menentukan partisipasi Anda</span>
         </div>
 
-        <div class="material-flat-list">
-          {materials.map(mat => {
+        <div class="material-cards-grid">
+          {materials.map((mat, idx) => {
             const percent = Math.round((mat.collected / mat.target) * 100);
             return (
               <div
-                class="mat-flat-row"
+                class={`mat-card-item ${idx === 0 ? 'active' : ''}`}
                 data-mat-id={mat.id}
                 data-price={mat.price}
                 data-name={mat.name}
                 data-unit={mat.unit}
               >
-                <div class="mat-info-block">
-                  <div class="mat-name-row">
-                    <h4 class="mat-name">{mat.name}</h4>
-                    <span class="mat-price-label">Rp {mat.price.toLocaleString('id-ID')} <small>/{mat.unit}</small></span>
+                <div class="mat-card-top">
+                  <span class="mat-badge-cat">MATERIAL 0{idx + 1}</span>
+                  <div class="mat-price-pill">
+                    Rp {mat.price.toLocaleString('id-ID')}
+                    <span class="unit-sub">/{mat.unit}</span>
                   </div>
-                  <p class="mat-desc">{mat.desc}</p>
                 </div>
 
-                <!-- Flat Progress Indicator -->
-                <div class="mat-progress-rail">
-                  <div class="mat-progress-bar" style={`width: ${percent}%;`}></div>
-                </div>
+                <h4 class="mat-card-title">{mat.name}</h4>
+                <p class="mat-card-desc">{mat.desc}</p>
 
-                <div class="mat-meta-row">
-                  <span class="mat-stat">Terkumpul <strong>{mat.collected.toLocaleString('id-ID')}</strong> dari {mat.target.toLocaleString('id-ID')} {mat.unit} ({percent}%)</span>
-                  <button type="button" class="btn-select-flat" data-mat-id={mat.id}>
-                    Pilih Material
-                  </button>
+                <div class="mat-card-bottom">
+                  <div class="mat-collected-stat">
+                    <span>Terkumpul <strong>{mat.collected.toLocaleString('id-ID')}</strong> dari {mat.target.toLocaleString('id-ID')} {mat.unit}</span>
+                    <span class="stat-pct">{percent}%</span>
+                  </div>
+                  <div class="mat-select-action">
+                    <span class="select-chip-text">{idx === 0 ? 'Sedang Dipilih' : 'Pilih Material'}</span>
+                  </div>
                 </div>
               </div>
             );
@@ -116,129 +121,133 @@ const materials = [
         </div>
       </div>
 
-      <!-- Kolom Kanan: Formulir Partisipasi Vokasi (Flat, Zero Shadow, Zero Stepper Belanja) -->
-      <div class="calc-open-col">
-        <div class="calc-sticky-flat">
-          <div class="calc-flat-head">
-            <span class="calc-eyebrow-mini">KOMITMEN PARTISIPASI FISIK</span>
-            <h3 class="calc-main-title">Pilihan Paket Dukungan</h3>
+      <!-- Kolom Kanan: Panel Partisipasi Modern & Elegan -->
+      <div class="calc-panel-col">
+        <div class="calc-card-modern">
+          <div class="panel-header">
+            <span class="panel-kicker">KOMITMEN DUKUNGAN</span>
+            <h3 class="panel-title" id="displayMatName">Semen Konstruksi SNI</h3>
+            <div class="panel-price-rate" id="displayMatRate">Rp 65.000 / sak</div>
           </div>
 
-          <!-- Active Selection Summary -->
-          <div class="active-item-flat">
-            <div class="item-name-big" id="displayMatName">Semen Konstruksi SNI</div>
-            <div class="item-price-rate" id="displayMatRate">Rp 65.000 / sak</div>
-          </div>
-
-          <!-- Paket Unit Pilihan (Clean Editorial Radio Chips, Bukan Stepper Ritel) -->
-          <div class="package-selection-wrap">
-            <label class="package-label-text">Tentukan Jumlah Partisipasi:</label>
-            <div class="package-chips-grid">
-              <button type="button" class="pkg-chip-btn" data-qty="1">
-                <span class="pkg-qty">1</span>
-                <span class="pkg-unit" id="chipUnit1">sak</span>
-              </button>
-              <button type="button" class="pkg-chip-btn active" data-qty="5">
-                <span class="pkg-qty">5</span>
-                <span class="pkg-unit" id="chipUnit2">sak</span>
-              </button>
-              <button type="button" class="pkg-chip-btn" data-qty="10">
-                <span class="pkg-qty">10</span>
-                <span class="pkg-unit" id="chipUnit3">sak</span>
-              </button>
-              <button type="button" class="pkg-chip-btn" data-qty="25">
-                <span class="pkg-qty">25</span>
-                <span class="pkg-unit" id="chipUnit4">sak</span>
-              </button>
-            </div>
-
-            <!-- Manual Custom Input (Opsional Bersih Tanpa Plus Minus) -->
-            <div class="custom-input-row">
-              <span class="custom-input-label">Atau masukkan jumlah kustom:</span>
-              <div class="custom-input-field">
-                <input
-                  type="number"
-                  id="inputQty"
-                  class="input-clean"
-                  value="5"
-                  min="1"
-                  max="5000"
-                  aria-label="Jumlah kustom material"
-                />
-                <span class="custom-unit-suffix" id="displayUnitSuffix">sak</span>
+          <!-- Slider Interaktif Mulus & Presets -->
+          <div class="qty-controller-wrap">
+            <div class="qty-header-row">
+              <label for="inputSlider" class="qty-label">Tentukan Jumlah:</label>
+              <div class="qty-counter-display">
+                <span class="counter-num" id="displayCounterNum">5</span>
+                <span class="counter-unit" id="displayUnitSuffix">sak</span>
               </div>
             </div>
+
+            <!-- Modern Architectural Range Slider -->
+            <div class="range-slider-container">
+              <input
+                type="range"
+                id="inputSlider"
+                class="modern-slider"
+                min="1"
+                max="50"
+                step="1"
+                value="5"
+                aria-label="Slider jumlah partisipasi material"
+              />
+              <div class="slider-scale-points">
+                <span>1</span>
+                <span>10</span>
+                <span>25</span>
+                <span>50</span>
+              </div>
+            </div>
+
+            <!-- Pill Presets (Rounded Full, No Rigid Square Boxes) -->
+            <div class="pill-presets-row">
+              <button type="button" class="preset-pill-btn" data-qty="1">1</button>
+              <button type="button" class="preset-pill-btn active" data-qty="5">5</button>
+              <button type="button" class="preset-pill-btn" data-qty="10">10</button>
+              <button type="button" class="preset-pill-btn" data-qty="25">25</button>
+              <button type="button" class="preset-pill-btn" data-qty="50">50</button>
+            </div>
           </div>
 
-          <!-- Total Nominal: Flat Prominent Typography -->
-          <div class="total-nominal-flat">
-            <span class="nominal-caption">Total Nilai Infaq Material:</span>
-            <div class="nominal-val-huge" id="displayTotalInfaq">Rp 325.000</div>
-            <p class="nominal-impact-text" id="displayImpactDesc">
-              Setara <strong>5 sak semen</strong> untuk percepatan pengecoran pelataran ibadah.
+          <!-- Total Nilai Infaq: Prominent Typography -->
+          <div class="total-display-card">
+            <span class="total-label">Total Nilai Infaq Material:</span>
+            <div class="total-amount-huge" id="displayTotalInfaq">Rp 325.000</div>
+            <p class="impact-narrative" id="displayImpactDesc">
+              Setara <strong>5 sak semen</strong> untuk percepatan pengecoran pelataran ibadah di Sukasirna Jonggol.
             </p>
           </div>
 
-          <!-- Direct Flat Action CTA (Zero Shadow) -->
-          <div class="cta-flat-actions">
+          <!-- Direct Pill Action Button -->
+          <div class="panel-actions">
             <a
               href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20GVF%2C%20saya%20ingin%20berinfaq%205%20sak%20Semen%20sebesar%20Rp%20325.000%20untuk%20pembangunan%20Jonggol."
               target="_blank"
               rel="noopener noreferrer"
-              class="btn-submit-flat"
+              class="btn-infaq-pill"
               id="btnInfaqWA"
             >
-              <span>Salurkan Infaq Material</span>
+              <span>Salurkan Infaq Sekarang</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
 
-            <!-- Flat Rekening Info -->
-            <div class="rekening-flat-strip">
-              <div class="rek-meta-flat">
-                <span class="rek-bank-label">BSI Khusus Infaq</span>
-                <strong class="rek-digits-flat">7238890023</strong>
+            <!-- Rekening Info Bersih & Elegan -->
+            <div class="rekening-clean-card">
+              <div class="rek-top">
+                <span class="rek-bank-name">BSI KHUSUS INFAQ</span>
                 <button
                   type="button"
-                  class="btn-copy-flat"
+                  class="rek-copy-pill"
                   id="btnCopyInfaq"
                   data-clipboard="7238890023"
-                  title="Salin No Rekening Infaq"
+                  title="Salin No Rekening"
                 >
                   <span id="labelCopyInfaq">Salin</span>
                 </button>
               </div>
-              <div class="rek-holder-flat">a.n. <strong>Yayasan Global Village Fund - Infaq</strong></div>
+              <div class="rek-number">7238890023</div>
+              <div class="rek-owner">a.n. Yayasan Global Village Fund - Infaq</div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Dokumentasi Lapangan Riil (Galeri Flat Sesuai Standar ISAVO) -->
-    <div class="field-photos-flat">
-      <div class="photo-item-flat">
-        <img
-          src="/gambar-bahan/pelataran mesjid.jpeg"
-          alt="Pelataran Masjid Khairu Ummah Sugro Jonggol"
-          class="img-flat"
-          loading="lazy"
-        />
-        <div class="caption-flat">
-          <strong>Pelataran Masjid Khairu Ummah:</strong> Realisasi pengecoran lantai dan halaman terbuka yang menampung santri vokasi dan jamaah masyarakat Jonggol.
+    <!-- Dokumentasi Lapangan Riil (2 Large Architectural Cards) -->
+    <div class="field-showcase-row">
+      <div class="field-card">
+        <div class="field-img-wrap">
+          <img
+            src="/gambar-bahan/pelataran mesjid.jpeg"
+            alt="Pelataran Masjid Khairu Ummah Sugro Jonggol"
+            class="field-img"
+            loading="lazy"
+          />
+        </div>
+        <div class="field-info">
+          <span class="field-tag">REALISASI FISIK</span>
+          <h4 class="field-title">Pelataran Masjid Khairu Ummah</h4>
+          <p class="field-desc">Realisasi pengecoran lantai dan halaman terbuka yang menampung santri vokasi dan jamaah masyarakat Jonggol.</p>
         </div>
       </div>
-      <div class="photo-item-flat">
-        <img
-          src="/gambar-bahan/wc mesjid.jpeg"
-          alt="Fasilitas Sanitasi dan Wudhu Masjid Jonggol"
-          class="img-flat"
-          loading="lazy"
-        />
-        <div class="caption-flat">
-          <strong>Fasilitas Sanitasi & Wudhu Bersih:</strong> Pembangunan titik wudhu modern dengan sirkulasi udara alami dan saluran air ramah lingkungan.
+
+      <div class="field-card">
+        <div class="field-img-wrap">
+          <img
+            src="/gambar-bahan/wc mesjid.jpeg"
+            alt="Fasilitas Sanitasi dan Wudhu Masjid Jonggol"
+            class="field-img"
+            loading="lazy"
+          />
+        </div>
+        <div class="field-info">
+          <span class="field-tag">FASILITAS WUDHU</span>
+          <h4 class="field-title">Sanitasi & Eco-Drainase</h4>
+          <p class="field-desc">Pembangunan titik wudhu modern dengan sirkulasi udara alami dan saluran daur ulang air ramah lingkungan.</p>
         </div>
       </div>
     </div>
@@ -246,54 +255,69 @@ const materials = [
 </section>
 
 <style>
-  /* STANDAR ISAVO: ZERO BOX-SHADOW, ZERO GRID LINES, 100% FLAT & GROUNDED */
+  /* 100% MODERN & AESTHETIC ISAVO ARCHITECTURAL SPECIFICATION */
   .infaq-material-section {
-    padding: 80px 0 100px;
-    background-color: #ffffff;
-    color: #191919;
+    background-color: #f8fafc;
+    padding: 100px 0 120px 0;
   }
 
   .infaq-container {
-    max-width: 1240px;
+    max-width: 1320px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 2rem;
   }
 
-  /* HEADER SECTION SPLIT 2-KOLOM (POLA UTAMA ISAVO) */
+  /* HEADER SPLIT ISAVO */
   .isavo-section-header {
     display: grid;
-    grid-template-columns: 3.5fr 8.5fr;
-    gap: 40px;
-    margin-bottom: 56px;
-    align-items: start;
+    grid-template-columns: 260px 1fr;
+    gap: 3.5rem;
+    align-items: flex-start;
+    margin-bottom: 4rem;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 991px) {
     .isavo-section-header {
       grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 40px;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
     }
   }
 
-  .isavo-subheading {
-    display: inline-block;
-    font-size: 0.8125rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+  .isavo-tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
+  }
+
+  .isavo-tag-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0969da;
+    border-radius: 50%;
+  }
+
+  .isavo-tag-text {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #0f172a;
     text-transform: uppercase;
-    color: #0969da;
-    padding-top: 6px;
+    font-family: 'Golos Text', sans-serif;
   }
 
   .isavo-main-title {
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
     font-weight: 800;
     line-height: 1.15;
-    color: #191919;
-    letter-spacing: -0.02em;
-    margin: 0 0 14px 0;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+    margin: 0 0 1.25rem 0;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
   }
 
   .title-accent {
@@ -301,445 +325,542 @@ const materials = [
   }
 
   .isavo-main-desc {
-    font-size: 1.0625rem;
+    font-size: 1.05rem;
     line-height: 1.7;
-    color: #4d4d52;
+    color: #475569;
     margin: 0;
     max-width: 820px;
   }
 
-  /* LAYOUT DUA KOLOM TERBUKA */
-  .material-open-layout {
+  /* 2-COLUMN ARCHITECTURAL LAYOUT */
+  .material-architectural-layout {
     display: grid;
-    grid-template-columns: 1.25fr 0.85fr;
-    gap: 52px;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 3rem;
     align-items: start;
+    margin-bottom: 5rem;
   }
 
-  @media (max-width: 991px) {
-    .material-open-layout {
+  @media (max-width: 1024px) {
+    .material-architectural-layout {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 2.5rem;
     }
   }
 
-  /* KOLOM KIRI: LEDGER MATERIAL */
-  .ledger-header-row {
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #e3e3e8;
+  /* COLUMN KICKER */
+  .col-kicker-wrap {
+    margin-bottom: 1.75rem;
   }
 
-  .ledger-title {
-    font-size: 1.15rem;
+  .col-title {
+    font-size: 1.35rem;
     font-weight: 800;
-    color: #191919;
-    margin: 0;
-    letter-spacing: -0.01em;
+    color: #0f172a;
+    margin: 0 0 0.35rem 0;
+    letter-spacing: -0.02em;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
   }
 
-  .material-flat-list {
+  .col-hint {
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+
+  /* 4 MATERIAL CARDS (Aesthetic Cards, Zero Divider Lines) */
+  .material-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .material-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .mat-card-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 1.75rem;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
-    gap: 0;
+    justify-content: space-between;
+    min-height: 240px;
   }
 
-  /* BARIS MATERIAL FLAT */
-  .mat-flat-row {
-    padding: 22px 0;
-    border-bottom: 1px solid #e3e3e8;
-    transition: background-color 0.2s ease, padding 0.2s ease;
+  .mat-card-item:hover {
+    border-color: #0969da;
+    transform: translateY(-3px);
   }
 
-  .mat-flat-row.active {
-    background-color: #f7f7f8;
-    padding-left: 18px;
-    padding-right: 18px;
-    border-radius: 8px;
+  .mat-card-item.active {
+    background: #f0f7ff;
+    border: 2px solid #0969da;
   }
 
-  .mat-name-row {
+  .mat-card-top {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 6px;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 0.75rem;
   }
 
-  .mat-name {
-    font-size: 1.125rem;
+  .mat-badge-cat {
+    font-size: 0.72rem;
     font-weight: 800;
-    color: #191919;
-    margin: 0;
+    color: #64748b;
+    letter-spacing: 0.08em;
+    font-family: ui-monospace, monospace;
   }
 
-  .mat-price-label {
-    font-size: 1.0625rem;
+  .mat-card-item.active .mat-badge-cat {
+    color: #0969da;
+  }
+
+  .mat-price-pill {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #0969da;
+    white-space: nowrap;
+  }
+
+  .mat-card-item.active .mat-price-pill {
+    background: #ffffff;
+    border-color: #bae6fd;
+  }
+
+  .unit-sub {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+  }
+
+  .mat-card-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.35;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.01em;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .mat-card-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #475569;
+    margin: 0 0 1.25rem 0;
+    flex-grow: 1;
+  }
+
+  .mat-card-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(226, 232, 240, 0.8);
+  }
+
+  .mat-collected-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: #64748b;
+  }
+
+  .mat-collected-stat strong {
+    color: #0f172a;
+  }
+
+  .stat-pct {
     font-weight: 800;
     color: #0969da;
   }
 
-  .mat-price-label small {
-    font-size: 0.8125rem;
+  .mat-select-action {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .select-chip-text {
+    font-size: 0.78rem;
+    font-weight: 700;
     color: #64748b;
-    font-weight: 500;
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
+    background: #f1f5f9;
+    transition: all 0.2s ease;
   }
 
-  .mat-desc {
-    font-size: 0.875rem;
-    line-height: 1.55;
-    color: #4d4d52;
-    margin: 0 0 14px;
-  }
-
-  /* PROGRESS RAIL FLAT */
-  .mat-progress-rail {
-    width: 100%;
-    height: 4px;
-    background: #e3e3e8;
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-
-  .mat-progress-bar {
-    height: 100%;
+  .mat-card-item.active .select-chip-text {
     background: #0969da;
-    border-radius: 2px;
-    transition: width 0.3s ease;
+    color: #ffffff;
   }
 
-  .mat-meta-row {
+  /* KOLOM KANAN: PANEL PARTISIPASI MODERN */
+  .calc-card-modern {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 2.5rem;
+    position: sticky;
+    top: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .panel-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .panel-kicker {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #0969da;
+    text-transform: uppercase;
+    font-family: 'Golos Text', sans-serif;
+  }
+
+  .panel-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+    letter-spacing: -0.02em;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .panel-price-rate {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0969da;
+  }
+
+  /* SLIDER & PRESETS (NO RIGID SQUARES) */
+  .qty-controller-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+
+  .qty-header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  .mat-stat {
-    font-size: 0.8125rem;
-    color: #4d4d52;
-  }
-
-  .mat-stat strong {
-    color: #191919;
-  }
-
-  .btn-select-flat {
-    background: #f7f7f8;
-    border: 1px solid #e3e3e8;
-    color: #191919;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 0.8125rem;
+  .qty-label {
+    font-size: 0.88rem;
     font-weight: 700;
-    cursor: pointer;
-    transition: all 0.15s ease;
+    color: #1e293b;
+    font-family: 'Golos Text', sans-serif;
   }
 
-  .btn-select-flat:hover,
-  .mat-flat-row.active .btn-select-flat {
+  .qty-counter-display {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 0.4rem 0.95rem;
+    border-radius: 9999px;
+  }
+
+  .counter-num {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0969da;
+    font-family: 'Golos Text', sans-serif;
+    line-height: 1;
+  }
+
+  .counter-unit {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #64748b;
+  }
+
+  /* ARCHITECTURAL SLIDER */
+  .range-slider-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .modern-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 9999px;
+    background: #cbd5e1;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .modern-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #0969da;
+    border: 3px solid #ffffff;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  .modern-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+
+  .slider-scale-points {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: #94a3b8;
+    font-family: ui-monospace, monospace;
+    font-weight: 600;
+    padding: 0 4px;
+  }
+
+  /* PILL PRESETS (NOT SQUARES) */
+  .pill-presets-row {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+  }
+
+  .preset-pill-btn {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .preset-pill-btn:hover {
+    border-color: #0969da;
+    color: #0969da;
+  }
+
+  .preset-pill-btn.active {
     background: #0969da;
     border-color: #0969da;
     color: #ffffff;
   }
 
-  /* KOLOM KANAN: FORMULIR PARTISIPASI FLAT */
-  .calc-sticky-flat {
-    position: sticky;
-    top: 90px;
+  /* TOTAL DISPLAY CARD */
+  .total-display-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
   }
 
-  .calc-flat-head {
-    margin-bottom: 18px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #e3e3e8;
+  .total-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  .calc-eyebrow-mini {
+  .total-amount-huge {
+    font-size: 2.25rem;
+    font-weight: 900;
+    color: #0969da;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .impact-narrative {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: #475569;
+    margin: 0;
+  }
+
+  .impact-narrative strong {
+    color: #0f172a;
+  }
+
+  /* PANEL ACTIONS */
+  .panel-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .btn-infaq-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: #0969da;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1.05rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .btn-infaq-pill:hover {
+    background: #0756b2;
+    transform: translateY(-2px);
+    color: #ffffff;
+  }
+
+  /* REKENING CLEAN CARD */
+  .rekening-clean-card {
+    background: #f8fafc;
+    border-radius: 20px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .rek-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .rek-bank-name {
     font-size: 0.75rem;
     font-weight: 800;
     color: #0969da;
     letter-spacing: 0.08em;
-    display: block;
-    margin-bottom: 4px;
+    font-family: 'Golos Text', sans-serif;
   }
 
-  .calc-main-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #191919;
-    margin: 0;
-  }
-
-  .active-item-flat {
-    margin-bottom: 22px;
-  }
-
-  .item-name-big {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #191919;
-    margin-bottom: 4px;
-  }
-
-  .item-price-rate {
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: #0969da;
-  }
-
-  /* PAKET CHIPS SELECTION */
-  .package-selection-wrap {
-    margin-bottom: 24px;
-  }
-
-  .package-label-text {
-    display: block;
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: #191919;
-    margin-bottom: 10px;
-  }
-
-  .package-chips-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-
-  .pkg-chip-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 6px;
+  .rek-copy-pill {
     background: #ffffff;
-    border: 1px solid #e3e3e8;
-    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #1e293b;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.2s ease;
   }
 
-  .pkg-chip-btn:hover {
+  .rek-copy-pill:hover {
     border-color: #0969da;
-    background: #f7f7f8;
-  }
-
-  .pkg-chip-btn.active {
-    background: #0969da;
-    border-color: #0969da;
-    color: #ffffff;
-  }
-
-  .pkg-qty {
-    font-size: 1.25rem;
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .pkg-unit {
-    font-size: 0.75rem;
-    font-weight: 600;
-    opacity: 0.85;
-  }
-
-  /* CUSTOM INPUT ROW */
-  .custom-input-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding-top: 10px;
-  }
-
-  .custom-input-label {
-    font-size: 0.8125rem;
-    color: #64748b;
-  }
-
-  .custom-input-field {
-    display: flex;
-    align-items: center;
-    background: #ffffff;
-    border: 1px solid #e3e3e8;
-    border-radius: 6px;
-    padding: 4px 10px;
-    width: 140px;
-  }
-
-  .custom-input-field:focus-within {
-    border-color: #0969da;
-  }
-
-  .input-clean {
-    border: none;
-    outline: none;
-    width: 100%;
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: #191919;
-    font-family: inherit;
-    text-align: right;
-    padding-right: 6px;
-  }
-
-  .custom-unit-suffix {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: #64748b;
-  }
-
-  /* TOTAL NOMINAL */
-  .total-nominal-flat {
-    margin-bottom: 24px;
-    padding: 18px 0;
-    border-top: 1px solid #e3e3e8;
-    border-bottom: 1px solid #e3e3e8;
-  }
-
-  .nominal-caption {
-    display: block;
-    font-size: 0.8125rem;
-    color: #64748b;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-
-  .nominal-val-huge {
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-    font-size: 2.25rem;
-    font-weight: 800;
     color: #0969da;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
   }
 
-  .nominal-impact-text {
-    font-size: 0.875rem;
-    color: #4d4d52;
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  /* CTA ACTIONS */
-  .cta-flat-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .btn-submit-flat {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: #0969da;
-    color: #ffffff;
-    padding: 15px 24px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-  }
-
-  .btn-submit-flat:hover {
-    background: #0752a8;
-    color: #ffffff;
-  }
-
-  /* REKENING FLAT STRIP */
-  .rekening-flat-strip {
-    background: #f7f7f8;
-    border: 1px solid #e3e3e8;
-    padding: 12px 16px;
-    border-radius: 8px;
-  }
-
-  .rek-meta-flat {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 4px;
-  }
-
-  .rek-bank-label {
-    font-size: 0.75rem;
+  .rek-number {
+    font-size: 1.15rem;
     font-weight: 800;
-    color: #0969da;
-    text-transform: uppercase;
+    color: #0f172a;
+    font-family: ui-monospace, monospace;
+    letter-spacing: 0.04em;
   }
 
-  .rek-digits-flat {
-    font-size: 1rem;
-    font-weight: 800;
-    color: #191919;
-    letter-spacing: 0.02em;
-  }
-
-  .btn-copy-flat {
-    padding: 4px 10px;
-    background: #ffffff;
-    border: 1px solid #e3e3e8;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #191919;
-    cursor: pointer;
-  }
-
-  .btn-copy-flat:hover {
-    background: #e3e3e8;
-  }
-
-  .rek-holder-flat {
-    font-size: 0.75rem;
+  .rek-owner {
+    font-size: 0.78rem;
     color: #64748b;
   }
 
-  /* FIELD PHOTOS */
-  .field-photos-flat {
+  /* FIELD SHOWCASE ROW */
+  .field-showcase-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    margin-top: 60px;
-    padding-top: 48px;
-    border-top: 1px solid #e3e3e8;
+    gap: 2rem;
   }
 
   @media (max-width: 768px) {
-    .field-photos-flat {
+    .field-showcase-row {
       grid-template-columns: 1fr;
-      gap: 24px;
     }
   }
 
-  .photo-item-flat {
+  .field-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 12px;
   }
 
-  .img-flat {
+  .field-img-wrap {
     width: 100%;
     height: 280px;
+    overflow: hidden;
+  }
+
+  .field-img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid #e3e3e8;
     display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .caption-flat {
-    font-size: 0.875rem;
-    line-height: 1.55;
-    color: #4d4d52;
+  .field-card:hover .field-img {
+    transform: scale(1.05);
   }
 
-  .caption-flat strong {
-    color: #191919;
+  .field-info {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .field-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #0969da;
+    letter-spacing: 0.08em;
+    font-family: 'Golos Text', sans-serif;
+  }
+
+  .field-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .field-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #475569;
+    margin: 0;
   }
 </style>
 
@@ -750,29 +871,23 @@ const materials = [
 
     const displayMatName = document.getElementById('displayMatName');
     const displayMatRate = document.getElementById('displayMatRate');
-    const inputQty = document.getElementById('inputQty');
+    const inputSlider = document.getElementById('inputSlider');
+    const displayCounterNum = document.getElementById('displayCounterNum');
+    const displayUnitSuffix = document.getElementById('displayUnitSuffix');
     const displayTotalInfaq = document.getElementById('displayTotalInfaq');
     const displayImpactDesc = document.getElementById('displayImpactDesc');
     const btnInfaqWA = document.getElementById('btnInfaqWA');
-    const displayUnitSuffix = document.getElementById('displayUnitSuffix');
 
     function formatRupiah(num) {
       return new Intl.NumberFormat('id-ID').format(Math.max(0, Math.round(num)));
     }
 
-    function updateChipUnits(unit) {
-      for (let i = 1; i <= 4; i++) {
-        const el = document.getElementById(`chipUnit${i}`);
-        if (el) el.textContent = unit;
-      }
-      if (displayUnitSuffix) displayUnitSuffix.textContent = unit;
-    }
-
     function updateView() {
       if (displayMatName) displayMatName.textContent = activeMat.name;
       if (displayMatRate) displayMatRate.textContent = `Rp ${formatRupiah(activeMat.price)} / ${activeMat.unit}`;
-      if (inputQty) inputQty.value = qty;
-      updateChipUnits(activeMat.unit);
+      if (inputSlider) inputSlider.value = qty;
+      if (displayCounterNum) displayCounterNum.textContent = qty;
+      if (displayUnitSuffix) displayUnitSuffix.textContent = activeMat.unit;
 
       const total = activeMat.price * qty;
       if (displayTotalInfaq) displayTotalInfaq.textContent = `Rp ${formatRupiah(total)}`;
@@ -786,17 +901,22 @@ const materials = [
         btnInfaqWA.href = `https://wa.me/6281226832326?text=${msg}`;
       }
 
-      // Update active highlight on material list
-      document.querySelectorAll('.mat-flat-row').forEach(row => {
-        if (row.getAttribute('data-mat-id') === activeMat.id) {
-          row.classList.add('active');
+      // Update active highlight on material cards
+      document.querySelectorAll('.mat-card-item').forEach(card => {
+        const isCurrent = card.getAttribute('data-mat-id') === activeMat.id;
+        if (isCurrent) {
+          card.classList.add('active');
+          const chip = card.querySelector('.select-chip-text');
+          if (chip) chip.textContent = 'Sedang Dipilih';
         } else {
-          row.classList.remove('active');
+          card.classList.remove('active');
+          const chip = card.querySelector('.select-chip-text');
+          if (chip) chip.textContent = 'Pilih Material';
         }
       });
 
-      // Update active package chip
-      document.querySelectorAll('.pkg-chip-btn').forEach(btn => {
+      // Update active preset pill
+      document.querySelectorAll('.preset-pill-btn').forEach(btn => {
         if (parseInt(btn.getAttribute('data-qty'), 10) === qty) {
           btn.classList.add('active');
         } else {
@@ -805,9 +925,9 @@ const materials = [
       });
     }
 
-    // Material row selection
-    document.querySelectorAll('.mat-flat-row').forEach(row => {
-      row.addEventListener('click', function(e) {
+    // Material card click selection
+    document.querySelectorAll('.mat-card-item').forEach(card => {
+      card.addEventListener('click', function() {
         const id = this.getAttribute('data-mat-id');
         const found = materials.find(m => m.id === id);
         if (found) {
@@ -817,21 +937,18 @@ const materials = [
       });
     });
 
-    document.querySelectorAll('.btn-select-flat').forEach(btn => {
+    // Slider change
+    if (inputSlider) {
+      inputSlider.addEventListener('input', function() {
+        qty = parseInt(this.value, 10) || 1;
+        updateView();
+      });
+    }
+
+    // Preset Pill Buttons
+    document.querySelectorAll('.preset-pill-btn').forEach(btn => {
       btn.addEventListener('click', function(e) {
         e.stopPropagation();
-        const id = this.getAttribute('data-mat-id');
-        const found = materials.find(m => m.id === id);
-        if (found) {
-          activeMat = found;
-          updateView();
-        }
-      });
-    });
-
-    // Package Chip Buttons
-    document.querySelectorAll('.pkg-chip-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
         const val = parseInt(this.getAttribute('data-qty'), 10);
         if (!isNaN(val) && val > 0) {
           qty = val;
@@ -839,17 +956,6 @@ const materials = [
         }
       });
     });
-
-    // Manual Input Change
-    if (inputQty) {
-      inputQty.addEventListener('input', function() {
-        let val = parseInt(this.value, 10);
-        if (isNaN(val) || val < 1) val = 1;
-        if (val > 5000) val = 5000;
-        qty = val;
-        updateView();
-      });
-    }
 
     // Copy No Rekening
     const btnCopyInfaq = document.getElementById('btnCopyInfaq');
