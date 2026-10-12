@@ -86,64 +86,71 @@ const fastValues = [
       </p>
     </div>
 
-    <!-- 1. Open Editorial Pipeline Stepper (No Outer Card Wrapper, Clean Horizontal Flow) -->
-    <div class="editorial-pipeline reveal-on-scroll">
-      <div class="pipeline-track-header">
-        <span class="track-heading">Alur Rantai Nilai Berkelanjutan</span>
-        <span class="track-count">6 Tahap Realisasi Program</span>
+    <!-- 1. Continuous Editorial Timeline Rail (Stripe/Linear Inspired, Zero Card Boxes) -->
+    <div class="editorial-timeline reveal-on-scroll">
+      <div class="timeline-header">
+        <span class="timeline-eyebrow">Alur Rantai Nilai Berkelanjutan</span>
+        <span class="timeline-meta">6 Tahap Realisasi Terintegrasi</span>
       </div>
 
-      <div class="pipeline-flow">
-        {chainSteps.map((s) => (
-          <div class="pipeline-node">
-            <div class="node-top">
-              <span class="node-num">{s.step}</span>
-              <span class="node-tag">{s.tag}</span>
-            </div>
-            <h3 class="node-title">{s.title}</h3>
-            <p class="node-desc">{s.desc}</p>
-          </div>
-        ))}
+      <div class="timeline-rail-wrap">
+        <div class="timeline-track-line" aria-hidden="true"></div>
+        <ol class="timeline-steps" role="list">
+          {chainSteps.map((s) => (
+            <li class="timeline-step">
+              <div class="step-milestone">
+                <span class="step-node-dot" aria-hidden="true"></span>
+                <span class="step-num">{s.step}</span>
+              </div>
+              <span class="step-tag">{s.tag}</span>
+              <h3 class="step-title">{s.title}</h3>
+              <p class="step-desc">{s.desc}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </div>
 
-    <!-- 2. Beneficiaries: Editorial 4-Column Divided Layout (No Floating Cards, No Box Accent Strips) -->
-    <div class="beneficiaries-editorial reveal-on-scroll">
+    <!-- 2. Beneficiaries: Open Editorial Column Storytelling (Gates Foundation / McKinsey Style, Zero Card Boxes) -->
+    <div class="beneficiaries-section reveal-on-scroll">
       <div class="beneficiaries-header">
-        <span class="beneficiaries-label">Penerima Manfaat Ekosistem</span>
+        <span class="beneficiaries-eyebrow">Penerima Manfaat Ekosistem</span>
         <h3 class="beneficiaries-heading">Dampak Nyata yang Dirasakan Langsung di Lapangan</h3>
       </div>
 
-      <div class="beneficiaries-columns">
+      <div class="beneficiaries-grid">
         {beneficiaries.map((b) => (
-          <div class="beneficiary-col">
-            <div class="col-meta">
-              <span class="col-num">{b.num}</span>
-              <span class="col-target">{b.target}</span>
+          <article class="beneficiary-col">
+            <div class="beneficiary-top">
+              <span class="beneficiary-num" aria-hidden="true">{b.num}</span>
+              <span class="beneficiary-target">{b.target}</span>
             </div>
-            <h4 class="col-role">{b.role}</h4>
-            <p class="col-text">{b.text}</p>
-          </div>
+            <h4 class="beneficiary-role">{b.role}</h4>
+            <p class="beneficiary-story">{b.text}</p>
+          </article>
         ))}
       </div>
     </div>
 
-    <!-- 3. FAST Values: Clean Typographic Credo Strip (No Nested Cards inside Cards) -->
-    <div class="fast-credo-strip reveal-on-scroll">
-      <div class="fast-credo-intro">
-        <span class="fast-credo-tag">Standar Nilai Lulusan Santri</span>
-        <h4 class="fast-credo-title">Karakter Berbasis FAST</h4>
-      </div>
-      <div class="fast-credo-items">
-        {fastValues.map((v) => (
-          <div class="fast-item">
-            <span class="fast-badge">{v.letter}</span>
-            <div class="fast-meta">
-              <span class="fast-name">{v.name}</span>
-              <span class="fast-desc">{v.desc}</span>
+    <!-- 3. FAST Character Stand: Open Typographic Credo Bar (Zero Outer Container Boxes) -->
+    <div class="fast-credo-section reveal-on-scroll">
+      <div class="fast-credo-content">
+        <div class="fast-credo-lead">
+          <span class="fast-eyebrow">Standar Karakter Santri</span>
+          <h4 class="fast-title">Karakter Berbasis FAST</h4>
+          <p class="fast-summary">Nilai profetik yang menjadi kompas kepemimpinan dan etos kerja seluruh santri lulusan.</p>
+        </div>
+        <div class="fast-grid">
+          {fastValues.map((v) => (
+            <div class="fast-node">
+              <span class="fast-letter" aria-hidden="true">{v.letter}</span>
+              <div class="fast-detail">
+                <strong class="fast-name">{v.name}</strong>
+                <span class="fast-desc">{v.desc}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </div>
@@ -195,19 +202,19 @@ const fastValues = [
     margin: 0;
   }
 
-  /* 1. Pipeline Stepper */
-  .editorial-pipeline {
+  /* 1. Continuous Editorial Timeline Rail */
+  .editorial-timeline {
     margin-bottom: var(--space-10);
   }
 
-  .pipeline-track-header {
+  .timeline-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-6);
   }
 
-  .track-heading {
+  .timeline-eyebrow {
     font-size: var(--text-label);
     font-weight: 700;
     letter-spacing: var(--tracking-wider);
@@ -215,7 +222,7 @@ const fastValues = [
     color: var(--color-text-heading);
   }
 
-  .track-count {
+  .timeline-meta {
     font-size: var(--text-micro);
     font-weight: 700;
     color: var(--blue-600);
@@ -224,57 +231,76 @@ const fastValues = [
     border-radius: var(--radius-full);
   }
 
-  .pipeline-flow {
+  .timeline-rail-wrap {
+    position: relative;
+    padding-top: var(--space-2);
+  }
+
+  .timeline-track-line {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background-color: var(--color-border);
+    z-index: 1;
+  }
+
+  .timeline-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: var(--space-4);
+    gap: var(--space-5);
+    position: relative;
+    z-index: 2;
   }
 
-  .pipeline-node {
-    background: var(--color-surface-50);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-5) var(--space-4);
+  .timeline-step {
     display: flex;
     flex-direction: column;
-    position: relative;
-    transition:
-      border-color var(--duration-fast) var(--ease-out),
-      background-color var(--duration-fast) var(--ease-out),
-      transform var(--duration-fast) var(--ease-out);
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
   }
 
-  .pipeline-node:hover {
-    background: #ffffff;
-    border-color: var(--blue-300);
-    transform: translateY(-2px);
-  }
-
-  .node-top {
+  .step-milestone {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: var(--space-2);
     margin-bottom: var(--space-3);
   }
 
-  .node-num {
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 800;
-    color: var(--blue-600);
-    background: var(--blue-100);
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
+  .step-node-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 3px solid var(--blue-600);
+    box-shadow: 0 0 0 4px #ffffff;
+    flex-shrink: 0;
   }
 
-  .node-tag {
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--blue-700);
+    letter-spacing: 0.04em;
+  }
+
+  .step-tag {
     font-size: var(--text-micro);
     font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
     color: var(--color-text-faint);
+    margin-bottom: var(--space-2);
   }
 
-  .node-title {
+  .step-title {
     font-size: 1rem;
     font-weight: 700;
     color: var(--color-text-heading);
@@ -283,15 +309,15 @@ const fastValues = [
     font-family: var(--font-display);
   }
 
-  .node-desc {
+  .step-desc {
     font-size: 0.8125rem;
     line-height: var(--leading-relaxed);
     color: var(--color-text-muted);
     margin: 0;
   }
 
-  /* 2. Beneficiaries (4-Card Grid, No Table Borders) */
-  .beneficiaries-editorial {
+  /* 2. Open Editorial Beneficiaries Columns */
+  .beneficiaries-section {
     margin-bottom: var(--space-10);
   }
 
@@ -299,7 +325,7 @@ const fastValues = [
     margin-bottom: var(--space-6);
   }
 
-  .beneficiaries-label {
+  .beneficiaries-eyebrow {
     display: block;
     font-size: var(--text-micro);
     font-weight: 700;
@@ -318,50 +344,41 @@ const fastValues = [
     font-family: var(--font-display);
   }
 
-  .beneficiaries-columns {
+  .beneficiaries-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-5);
+    gap: var(--space-7);
+    padding-top: var(--space-7);
+    border-top: 1px solid var(--color-border);
   }
 
   .beneficiary-col {
-    background: #ffffff;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    padding: var(--space-7) var(--space-6);
     display: flex;
     flex-direction: column;
-    box-shadow: var(--shadow-xs);
-    transition:
-      border-color var(--duration-fast) var(--ease-out),
-      transform var(--duration-fast) var(--ease-out),
-      box-shadow var(--duration-fast) var(--ease-out);
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
   }
 
-  .beneficiary-col:hover {
-    border-color: var(--blue-300);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .col-meta {
+  .beneficiary-top {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    margin-bottom: var(--space-4);
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
   }
 
-  .col-num {
+  .beneficiary-num {
     font-family: var(--font-display);
-    font-size: 0.85rem;
+    font-size: 1.75rem;
     font-weight: 800;
     color: var(--blue-600);
-    background: var(--blue-50);
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
+    line-height: 1;
+    letter-spacing: -0.03em;
   }
 
-  .col-target {
+  .beneficiary-target {
     font-size: var(--text-micro);
     font-weight: 700;
     text-transform: uppercase;
@@ -369,7 +386,50 @@ const fastValues = [
     color: var(--color-text-faint);
   }
 
-  .col-role {
+  .beneficiary-role {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-text-heading);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--space-3) 0;
+    font-family: var(--font-display);
+  }
+
+  .beneficiary-story {
+    font-size: 0.875rem;
+    line-height: var(--leading-loose);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* 3. FAST Typographic Credo Section */
+  .fast-credo-section {
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .fast-credo-content {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: var(--space-8);
+    align-items: flex-start;
+  }
+
+  .fast-credo-lead {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fast-eyebrow {
+    font-size: var(--text-micro);
+    font-weight: 700;
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--blue-600);
+    margin-bottom: var(--space-2);
+  }
+
+  .fast-title {
     font-size: 1.25rem;
     font-weight: 800;
     color: var(--color-text-heading);
@@ -378,119 +438,77 @@ const fastValues = [
     font-family: var(--font-display);
   }
 
-  .col-text {
+  .fast-summary {
     font-size: 0.875rem;
     line-height: var(--leading-relaxed);
     color: var(--color-text-muted);
     margin: 0;
   }
 
-  /* 3. FAST Values */
-  .fast-credo-strip {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-8);
-    padding: var(--space-7) var(--space-8);
-    background-color: var(--color-surface-50);
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--color-border);
-  }
-
-  .fast-credo-intro {
-    flex-shrink: 0;
-    max-width: 260px;
-  }
-
-  .fast-credo-tag {
-    display: block;
-    font-size: var(--text-micro);
-    font-weight: 700;
-    letter-spacing: var(--tracking-wider);
-    text-transform: uppercase;
-    color: var(--blue-600);
-    margin-bottom: var(--space-1);
-  }
-
-  .fast-credo-title {
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--color-text-heading);
-    margin: 0;
-    letter-spacing: var(--tracking-tight);
-    font-family: var(--font-display);
-  }
-
-  .fast-credo-items {
+  .fast-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-5);
-    flex-grow: 1;
   }
 
-  .fast-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-3);
-  }
-
-  .fast-badge {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 800;
-    color: #ffffff;
-    background-color: var(--blue-600);
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-md);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .fast-meta {
+  .fast-node {
     display: flex;
     flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .fast-letter {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--blue-600);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .fast-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .fast-name {
-    font-size: 0.9rem;
+    font-size: 0.9375rem;
     font-weight: 700;
     color: var(--color-text-heading);
     line-height: var(--leading-snug);
   }
 
   .fast-desc {
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
+    font-size: 0.8125rem;
     line-height: var(--leading-normal);
-    margin-top: 2px;
+    color: var(--color-text-muted);
   }
 
-  /* Responsive */
-  @media (max-width: 1100px) {
-    .fast-credo-strip {
-      flex-direction: column;
-      align-items: flex-start;
+  /* Responsive Reflow */
+  @media (max-width: 1024px) {
+    .timeline-steps {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6) var(--space-4);
+    }
+
+    .timeline-track-line {
+      display: none;
+    }
+
+    .beneficiaries-grid {
+      grid-template-columns: repeat(2, 1fr);
       gap: var(--space-6);
     }
-    .fast-credo-intro {
-      max-width: 100%;
-    }
-  }
 
-  @media (max-width: 1024px) {
-    .pipeline-flow {
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-4);
+    .fast-credo-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
     }
-    .beneficiaries-columns {
+
+    .fast-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-5);
-    }
-    .fast-credo-items {
-      grid-template-columns: repeat(2, 1fr);
     }
   }
 
@@ -498,19 +516,47 @@ const fastValues = [
     .impact-section {
       padding: var(--section-padding-y-sm) 0;
     }
+
     .impact-container {
       padding: 0 var(--space-5);
     }
-    .pipeline-flow {
-      grid-template-columns: 1fr;
-      gap: var(--space-3);
+
+    .timeline-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
     }
-    .beneficiaries-columns {
+
+    .timeline-steps {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+      padding-left: var(--space-6);
+      border-left: 2px solid var(--color-border);
+      position: relative;
+    }
+
+    .timeline-step {
+      position: relative;
+    }
+
+    .step-milestone {
+      position: relative;
+    }
+
+    .step-node-dot {
+      position: absolute;
+      left: calc(-1 * var(--space-6) - 8px);
+      top: 2px;
+    }
+
+    .beneficiaries-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .fast-grid {
       grid-template-columns: 1fr;
       gap: var(--space-4);
-    }
-    .fast-credo-items {
-      grid-template-columns: 1fr;
     }
   }
 </style>
