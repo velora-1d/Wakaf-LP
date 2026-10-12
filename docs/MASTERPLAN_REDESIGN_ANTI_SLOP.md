@@ -2,21 +2,30 @@
 ## Transformasi Platform Filantropi & Pesantren Cendekia (YPCI / GVF)
 **Lokasi Dokumen:** `c:\Pak-Hakim\Project\Wakaf-LP\docs\MASTERPLAN_REDESIGN_ANTI_SLOP.md`  
 **Tanggal:** 12 Oktober 2026  
-**Status:** Disetujui & Diperbarui dengan Pemetaan Foto Riil per Section  
+**Status:** Disetujui & Diterapkan Prinsip Martabat Santri (Anti-Poverty Porn)  
 
 ---
 
 ## 1. Latar Belakang & Filosofi Desain
 
-### Akar Masalah: "SaaS Slop" pada Platform Ibadah
+### A. Akar Masalah: "SaaS Slop" pada Platform Ibadah
 Berdasarkan hasil audit mendalam pada folder `docs/perbaikan/`, website saat ini terjebak dalam perangkap generator AI (`v0`, `Tailwind UI boilerplate`, `generic SaaS template`). Generator AI menerapkan pola **aplikasi komersial B2B / SaaS** secara mentah-mentah ke dalam situs filantropi Islam dan pesantren:
 1. **Pola Pricing Table pada Ibadah:** Ibadah suci seperti zakat, sedekah pangan, dan wakaf disajikan persis seperti paket langganan Netflix atau cloud hosting dengan label **`WHAT DO YOU GET`**, daftar fitur teknis, dan badge **`PALING POPULER`** di atas karung semen atau zakat 250rb.
 2. **Grid Fatigue (Kelelahan Dinding Kotak):** Setiap halaman dipaksa memiliki blok berulang berisi 4 atau 6 kartu putih ber-border tipis dengan nomor dekoratif besar `01` - `04`.
 3. **Komunikasi Dingin & Birokratis:** Halaman kontak dan kemitraan meniru formulir "Book a Demo" atau "Contact Sales" lengkap dengan dropdown tiket keluhan, menghilangkan kehangatan ukhuwah dan kepercayaan personal.
 4. **Kekeringan Visual (Placeholder & Tanpa Foto Riil):** Alih-alih menampilkan wajah santri, progres tukang di Jonggol, atau arsitektur nyata, UI dipenuhi kotak abu-abu kosong dengan ikon AI generik.
 
-### Arah Baru: Human Philanthropic Editorial & Adab Pesantren
-* **Tone & Persona:** Hangat, berwibawa, transparan, menyentuh hati, dan berakar pada tanah perjuangan di **Sukasirna, Jonggol, Bogor**.
+### B. Prinsip Martabat Santri: Anti-Deficit Framing / Anti-Poverty Porn
+Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) **bukan panti sosial penampungan belas kasihan**, melainkan kawah candradimuka pencetak **kader peradaban, penghafal Al-Qur'an, dan calon teknisi vokasi mandiri**.
+* **DILARANG MENGGUNAKAN DIKSI RASA KASIHAN:** Hapus seluruh kata-kata klise eksploitatif seperti *"yatim, dhuafa, miskin, butuh belas kasihan"*.
+* **WAJIB MENGGUNAKAN ASSET-BASED FRAMING (MARTABAT & POTENSI):**
+  * Ganti *"Santri Yatim & Miskin"* menjadi **"Santri Berdaya"** atau **"Santri Penghafal Al-Qur'an & Calon Teknisi Unggul"**.
+  * Ganti *"Bantuan Kaum Dhuafa"* menjadi **"Penerima Beasiswa Kader Peradaban"**.
+  * Ganti *"Beri makan anak miskin"* menjadi **"Penyediaan Asupan Gizi & Nutrisi Santri Penghafal Kitab"**.
+  * Ganti *"Donasi belas kasihan"* menjadi **"Investasi Jariyah untuk Kemandirian Generasi Masa Depan"**.
+
+### C. Arah Visual & Tipografi
+* **Tone & Persona:** Hangat, berwibawa, terhormat, transparan, menyentuh hati, dan berakar pada tanah perjuangan di **Sukasirna, Jonggol, Bogor**.
 * **Tipografi:** Heading berwibawa (`Plus Jakarta Sans`), body text dengan keterbacaan tinggi (`Golos Text` / neutral sans, rasio kontras WCAG AAA > 9.5:1). **Dilarang menggunakan monospace** pada teks non-kode (R-06).
 * **Warna:** Biru maritim yang tenang (`--blue-600` / `#0284c7`, `#1e40af`), latar belakang putih bersih dan slate hangat (`#f8fafc`), aksen hijau tanaman untuk agribisnis (`#15803d`). **Bebas dari warna ungu dan gradien neon generic**.
 
@@ -36,14 +45,14 @@ Berdasarkan hasil audit mendalam pada folder `docs/perbaikan/`, website saat ini
 
 | Halaman | Penyakit AI Slop Saat Ini | Desain Baru (Human & Editorial) | Kebutuhan Foto Asli (Wajib) | Prioritas |
 | :--- | :--- | :--- | :--- | :---: |
-| **`/program/zakat`** | Pricing tier bulanan Rp 250rb ber-badge `PALING POPULER`, label `WHAT DO YOU GET` | **Kalkulator Zakat Riil** (Nisab otomatis, Akad Ijab Qobul, transparansi 8 Asnaf) | 📷 **Foto Santri Yatim & Penerima Asnaf** di Jonggol | **Fase 1** (Darurat) |
-| **`/program/infaq`** | Infaq Semen ber-badge `PALING POPULER`, bullet point fitur material kaku | **Gotong Royong Material Fisik** (Progres riil semen/bata di Jonggol, satuan kebaikan) | 📷 **Foto Progres Konstruksi & Tukang/Santri** di lapangan | **Fase 1** (Darurat) |
+| **`/program/zakat`** | Pricing tier bulanan Rp 250rb ber-badge `PALING POPULER`, label `WHAT DO YOU GET` | **Kalkulator Zakat Riil** (Nisab otomatis, Akad Ijab Qobul, transparansi 8 Asnaf) | 📷 **Foto Santri Berdaya & Calon Kader Umat** di Jonggol | **Fase 1** (Darurat) |
+| **`/program/infaq`** | Infaq Semen ber-badge `PALING POPULER`, bullet point fitur material kaku | **Gotong Royong Material Fisik** (Progres riil semen/bata di Jonggol, satuan kebaikan) | 📷 **Foto Progres Konstruksi & Fasilitas Belajar** di lapangan | **Fase 1** (Darurat) |
 | **`/program/wakaf`** | Petak tanah 1 m² (Rp 150rb) disajikan seperti paket software e-commerce | **Interactive Land Meter Slider** (Geser meteran tanah, peta masterplan, sertifikat digital) | 📷 **Foto Arsitektur Masjid & Masterplan Kawasan** | **Fase 2** |
-| **`/program/sedekah`** | Makanan santri dipaketkan seperti menu katering bulanan | **Quick Impact Giving** (Pilihan cepat porsi makan santri, narasi kehangatan dapur umum) | 📷 **Foto Dapur Umum & Santri Makan Bersama** | **Fase 2** |
+| **`/program/sedekah`** | Makanan santri dipaketkan seperti menu katering bulanan | **Quick Impact Giving** (Pilihan cepat nutrisi santri, narasi kehangatan dapur umum) | 📷 **Foto Dapur Santri & Kebersamaan Makan Bergizi** | **Fase 2** |
 | **`/` (Home)** | Tab mini dashboard di hero, 6 kotak ekosistem, 6 kartu cara berkontribusi | **Editorial Storytelling Flow** (Split screen narasi + foto Jonggol, tab 1-viewport kebaikan) | 📷 **Foto Kawasan Sukasirna, Green House, & Kelas Vokasi** | **Fase 3** |
 | **`/contact`** | Form tiket support "Book a Demo" dengan dropdown program kaku | **Human-Centric Direct Chat** (Foto hangat Nazhir Jonggol, direct WhatsApp, peta lokasi) | 📷 **Foto Profil Asli Nazhir & Pengawas Pesantren** | **Fase 3** |
 | **`/kemitraan`** | 5 kartu "SaaS Integrations" korporat untuk hubungan kemitraan | **Alur Sinergi Nyata** (Studi kasus teaching factory, CSR terukur, jalur silaturahmi langsung) | 📷 **Foto Fasilitas Bengkel Vokasi & Panel Surya** | **Fase 4** |
-| **`/dampak`** | 6 kotak alur bertumpuk di atas 4 kotak penerima manfaat (*Sudah Selesai*) | **Continuous Timeline Rail** & **Open 4-Column Editorial** (Stripe/Gates style) | 📷 **Foto Wisuda Santri & Hasil Panen Agro-Technopark** | **Selesai** |
+| **`/dampak`** | 6 kotak alur bertumpuk di atas 4 kotak penerima manfaat (*Sudah Selesai*) | **Continuous Timeline Rail** & **Open 4-Column Editorial** (Stripe/Gates style) | 📷 **Foto Wisuda Santri Mandiri & Hasil Agro-Technopark** | **Selesai** |
 
 ---
 
@@ -51,12 +60,12 @@ Berdasarkan hasil audit mendalam pada folder `docs/perbaikan/`, website saat ini
 
 ### 4.1. Halaman Zakat (`/program/zakat`) — *Fase 1*
 * **Kebutuhan Foto Riil:**
-  * **Section Hero / Pengantar**: Foto santri dhuafa penghafal Al-Qur'an tersenyum hangat (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg`).
-  * **Section 8 Asnaf Berdaya**: Foto santri sedang belajar dan beraktivitas di asrama Sukasirna (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg`).
+  * **Section Hero / Pengantar**: Foto santri penghafal Al-Qur'an dan calon teknisi muda dengan senyum optimis (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg`).
+  * **Section 8 Asnaf Berdaya**: Foto santri tekun belajar sains dan syariah di asrama Sukasirna (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg`).
 * **Komponen Utama: Real-Time Zakat Calculator**
   * Input: Pilihan Zakat Penghasilan (Gaji Bulanan) atau Zakat Maal (Tabungan/Emas).
   * Logika: Menghitung nisab emas terkini (85 gram x harga emas acuan). Jika mencapai nisab, otomatis menghitung kewajiban 2,5%.
-  * Output: Nominal zakat yang wajib ditunaikan, teks akad niat zakat, dan tombol salurkan (QRIS / Bank BSI / Hubungi Amil).
+  * Output: Nominal zakat yang wajib ditunaikan, teks akad niat zakat yang khusyuk, dan tombol salurkan (QRIS / Bank BSI / Hubungi Amil).
 * **Penghapusan Total:** Buang string `WHAT DO YOU GET`, badge `PALING POPULER`, dan 3 kolom harga kaku.
 
 ---
@@ -89,22 +98,22 @@ Berdasarkan hasil audit mendalam pada folder `docs/perbaikan/`, website saat ini
 
 ### 4.4. Halaman Sedekah (`/program/sedekah`) — *Fase 2*
 * **Kebutuhan Foto Riil:**
-  * **Section Dapur Umum & Logistik Pangan**: Foto stok beras dan kebersamaan santri saat makan bersama (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.05 (2).jpeg` & `/media-lp/WhatsApp Image 2026-10-05 at 09.22.06.jpeg`).
+  * **Section Dapur Santri & Logistik Pangan**: Foto stok beras berkualitas dan kebersamaan santri menikmati hidangan bergizi (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.05 (2).jpeg` & `/media-lp/WhatsApp Image 2026-10-05 at 09.22.06.jpeg`).
 * **Komponen Utama: Quick Impact Giving Chips**
   * Pilihan Cepat:
-    * `Rp 15.000` (1 Porsi makan hangat santri penghafal Quran)
-    * `Rp 45.000` (Pangan 1 hari penuh untuk 1 santri)
-    * `Rp 150.000` (1 Karung beras dapur umum pesantren)
+    * `Rp 15.000` (1 Porsi makan sehat bernutrisi untuk santri penghafal Quran)
+    * `Rp 45.000` (Paket nutrisi 1 hari penuh seorang santri)
+    * `Rp 150.000` (1 Karung beras dapur umum santri)
     * `Nominal Bebas`
-  * Aspek Visual: Menampilkan rasa syukur dan doa santri secara tulus.
+  * Aspek Visual: Menampilkan rasa syukur, doa keberkahan, dan energi thalabul ilmi.
 
 ---
 
 ### 4.5. Halaman Home (`/`) — *Fase 3*
 * **Kebutuhan Foto Riil:**
-  * **Hero Section**: Foto atmosfer asri pesantren dan santri Sukasirna Jonggol (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg`).
+  * **Hero Section**: Foto atmosfer asri pesantren dan generasi santri Sukasirna Jonggol (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg`).
   * **Section Storytelling Rantai Nilai (Split Layout)**: 
-    * Pilar Pendidikan & Adab: Foto santri menyimak pengajian (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (3).jpeg`).
+    * Pilar Pendidikan & Adab: Foto santri mengaji dengan takzim (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (3).jpeg`).
     * Pilar Vokasi Industri: Foto workshop dan teknologi (`/gambar design/learning studio & workshop.jpg` & `/gambar design/panel surya.jpg`).
     * Pilar Kemandirian: Foto Greenhouse agro-technopark (`/gambar design/gh learning area.jpg`).
 * **Restrukturisasi:** Menghilangkan tab mini dashboard `[01 Brand Utama]`, dan mengonsolidasi 6 kartu panjang menjadi tab 1-viewport.
@@ -135,11 +144,11 @@ Berdasarkan hasil audit mendalam pada folder `docs/perbaikan/`, website saat ini
 ## 5. Direktori Aset Foto yang Tersedia di Proyek
 
 ### A. Foto Kegiatan & Santri (`/media-lp/`)
-* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg` — Santri berkumpul / doa bersama (Cocok untuk: Hero / Zakat).
-* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.04.jpeg` — Aktivitas asrama santri.
-* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg` — Pembelajaran Al-Qur'an & kitab (Cocok untuk: Zakat Asnaf).
-* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.05 (2).jpeg` — Dapur umum & makan bersama (Cocok untuk: Sedekah Pangan).
-* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.06.jpeg` — Distribusi beras & logistik (Cocok untuk: Sedekah Beras).
+* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg` — Santri berkumpul / doa bersama penuh adab (Cocok untuk: Hero / Zakat).
+* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.04.jpeg` — Aktivitas kehidupan pesantren yang mandiri.
+* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg` — Pembelajaran Al-Qur'an & sains (Cocok untuk: Zakat Asnaf).
+* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.05 (2).jpeg` — Dapur santri & makan bersama (Cocok untuk: Sedekah Pangan).
+* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.06.jpeg` — Distribusi beras & logistik pesantren (Cocok untuk: Sedekah Beras).
 * `/media-lp/pengurus-1.jpg` s/d `pengurus-5.jpg` — Foto profil resmi Nazhir & Dewan Pengawas (Cocok untuk: Kontak & Tim).
 
 ### B. Foto Desain Fasilitas & Arsitektur (`/gambar design/`)
@@ -156,6 +165,7 @@ Berdasarkan hasil audit mendalam pada folder `docs/perbaikan/`, website saat ini
 ## 6. Standar Teknis & Batasan Kode (Non-Negotiable)
 
 1. **Anti-Box Rule:** Dilarang membungkus setiap item dalam kotak putih ber-border tipis secara monoton. Gunakan *open columns*, *timeline rails*, *split storytelling*, dan *generous whitespace*.
-2. **Anti-Monospace Rule (R-06):** Dilarang keras menggunakan font monospace pada angka nominal, label, atau teks salinan umum.
-3. **Contrast Standard (WCAG AAA):** Semua teks judul harus menggunakan `#0f172a` (16.1:1), body text `#334155` (9.5:1), dan teks sekunder minimal `#475569` (7.0:1) di atas latar belakang putih.
-4. **Git Push Restriction:** Hanya diperbolehkan melakukan *git commit* lokal; *git push* dilarang keras tanpa perintah eksplisit dari pengguna.
+2. **Anti-Poverty Porn Rule:** Dilarang menggunakan diksi meminta belas kasihan (*"yatim/miskin/dhuafa"*). Wajib menggunakan diksi kehormatan & pemberdayaan (*"Santri Berdaya", "Penghafal Al-Qur'an", "Kader Peradaban"*).
+3. **Anti-Monospace Rule (R-06):** Dilarang keras menggunakan font monospace pada angka nominal, label, atau teks salinan umum.
+4. **Contrast Standard (WCAG AAA):** Semua teks judul harus menggunakan `#0f172a` (16.1:1), body text `#334155` (9.5:1), dan teks sekunder minimal `#475569` (7.0:1) di atas latar belakang putih.
+5. **Git Push Restriction:** Hanya diperbolehkan melakukan *git commit* lokal; *git push* dilarang keras tanpa perintah eksplisit dari pengguna.
