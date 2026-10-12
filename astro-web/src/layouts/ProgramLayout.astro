@@ -3,6 +3,10 @@
 // Master Template 8 Section Program ZISWAF ala ISAVO (isavo.co.id/architecture)
 import BaseLayout from './BaseLayout.astro';
 import type { ProgramData } from '../data/programs';
+import ZakatCalculatorSection from '../components/program/ZakatCalculatorSection.astro';
+import InfaqMaterialSection from '../components/program/InfaqMaterialSection.astro';
+import WakafLandSliderSection from '../components/program/WakafLandSliderSection.astro';
+import SedekahChipsSection from '../components/program/SedekahChipsSection.astro';
 
 interface Props {
   program: ProgramData;
@@ -57,73 +61,12 @@ const valueBoxIcons = [
   </section>
 
   <!-- =========================================================================
-       SECTION 2: PILIHAN PAKET AKAD & DONASI (EXACT ISAVO 3-COLUMN PRICING)
+       SECTION 2: BESPOKE INTERACTIVE PARTICIPATION SECTION (ANTI-SLOP)
        ========================================================================= -->
-  <section class="isavo-pricing-section pt-100 pb-100" id="paket-donasi">
-    <div class="isavo-container">
-      <div class="isavo-section-heading text-center reveal-on-scroll">
-        <h2 class="isavo-section-title">
-          {program.pricingHeading.split(' ').slice(0, 2).join(' ')} <span class="accent-blue">{program.pricingHeading.split(' ').slice(2).join(' ')}</span>
-        </h2>
-        <p class="isavo-section-desc">{program.pricingSubheading}</p>
-      </div>
-
-      <!-- Exact 3 Columns Grid ala ISAVO -->
-      <div class="isavo-pricing-grid-3 mt-50">
-        {program.packages.map((pkg, index) => (
-          <div
-            class={`arch-pricing-card slide-anim ${pkg.isPopular ? 'popular' : ''}`}
-            data-direction="bottom"
-            data-offset="60"
-            data-delay={(index * 0.12).toFixed(2)}
-            id={`pkg-${pkg.id}`}
-          >
-            {pkg.isPopular && <span class="pricing-badge">Paling Populer</span>}
-            
-            <h3 class="plan-title">{pkg.title}</h3>
-            <p class="plan-subtitle">{pkg.subtitle}</p>
-
-            <div class="plan-price">
-              <span class="currency">{pkg.pricePrefix || 'Rp '}</span>
-              <span class="amount">{pkg.priceAmount}</span>
-              <span class="period">{pkg.priceUnit}</span>
-            </div>
-            <p class="plan-price-desc">{pkg.priceDesc}</p>
-            <p class="plan-duration">{pkg.estimation}</p>
-
-            <div class="plan-deliverables-heading">What Do You Get:</div>
-            
-            <ul class="plan-features">
-              {pkg.deliverables.map(item => (
-                <li>
-                  <span class="check-icon-circle">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </span>
-                  <span>
-                    <strong>{item.bold}</strong> — {item.text}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <div class="plan-btn-wrap">
-              <a href="#rekening" class="tl-primary-btn">
-                <span>{pkg.ctaText}</span>
-                <span class="icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-arrow-icon">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </span>
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  {program.slug === 'zakat' && <ZakatCalculatorSection program={program} />}
+  {program.slug === 'infaq' && <InfaqMaterialSection program={program} />}
+  {program.slug === 'wakaf' && <WakafLandSliderSection program={program} />}
+  {program.slug === 'sedekah' && <SedekahChipsSection program={program} />}
 
   <!-- =========================================================================
        SECTION 3: DEEP-DIVE PROGRAM (2 KOLOM STICKY SIDEBAR ALA ISAVO)

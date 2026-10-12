@@ -179,7 +179,7 @@ export const programsData: Record<string, ProgramData> = {
         isPopular: false,
         deliverables: [
           { bold: 'Inskripsi Nama Wakif', text: 'Nama wakif / atas nama orang tua tertera pada prasasti masjid' },
-          { bold: 'Beasiswa Penuh Santri', text: 'Menjamin SPP, asrama, dan makan 1 santri dhuafa berprestasi' },
+          { bold: 'Beasiswa Penuh Santri', text: 'Menjamin SPP, asrama, dan fasilitas belajar santri vokasi berprestasi' },
           { bold: 'Sertifikat Resmi & Akta BWI', text: 'Legalisasi berkekuatan hukum penuh dari Nazhir Resmi' },
           { bold: 'Akses VIP Riset Kawasan', text: 'Kunjungan berkala dan riset agro-technopark bersama keluarga' }
         ],
@@ -190,9 +190,9 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveBadge: 'URGENSI & DOKUMENTASI',
     deepDiveTitle: 'Membangun Pusat Peradaban Mandiri Berbasis Alam di Jonggol',
     deepDiveLead: 'Kawasan seluas ±3 hektare ini dirancang bukan sekadar kompleks bangunan, melainkan ekosistem terpadu yang memadukan ibadah khusyuk, pendidikan vokasi berdaya saing global, dan kelestarian alam.',
-    deepDiveStory1: 'Selama bertahun-tahun, santri-santri berprestasi dari kalangan dhuafa menghadapi keterbatasan akses sarana belajar terapan yang memadai. Global Village Fund menginisiasi pembebasan lahan wakaf abadi untuk mendirikan SMK Skill Village Islamic School dengan konsentrasi agroteknologi dan digital multimedia, serta Garden Mosque Khairu Ummah sebagai poros spiritual.',
+    deepDiveStory1: 'Generasi muda berbakat dari berbagai pelosok daerah membutuhkan ekosistem pembelajaran terapan yang memadukan adab luhur dan keahlian industri. Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) menginisiasi pembebasan lahan wakaf abadi untuk mendirikan SMK Skill Village Islamic School dengan konsentrasi agroteknologi presisi dan rekayasa digital, serta Garden Mosque Khairu Ummah sebagai poros spiritual peradaban.',
     deepDiveStory2: 'Melalui prinsip wakaf produktif, aset yang dibangun tidak akan pernah menyusut atau dijual. Setiap meter lahan yang Anda wakafkan akan terus melahirkan lulusan santri mandiri, menghidupkan majelis ilmu, dan menghasilkan manfaat sosial berkesinambungan hingga generasi mendatang.',
-    deepDiveBannerImage: '/gambar design/interior masjid.jpg',
+    deepDiveBannerImage: '/gambar-bahan/pelataran mesjid.jpeg',
     valueBoxes: [
       {
         icon: 'infinity',
@@ -218,55 +218,55 @@ export const programsData: Record<string, ProgramData> = {
     
     galleryBadge: 'DOKUMENTASI LAPANGAN & PROGRES',
     galleryTitle: 'Bukti Nyata Pembangunan & Masterplan Lapangan',
-    gallerySubtitle: 'Inspeksi langsung visualisasi desain arsitektur, masterplan 3D, dan progres riil di Sukasirna, Jonggol, Kabupaten Bogor.',
+    gallerySubtitle: 'Inspeksi langsung hamparan lahan abadi, unit greenhouse aktif, dan sarana ibadah di Sukasirna, Jonggol, Kabupaten Bogor.',
     galleryItems: [
       {
         id: 'gal-1',
-        title: 'Fasad Belakang & Kolam Lanskap Alami',
-        category: 'Masjid Khairu Ummah',
-        image: '/gambar design/belakang masjid.jpg',
-        status: 'Tahap Pondasi & Struktur',
-        caption: 'Konsep arsitektur tropis modern dengan sirkulasi silang dan ruang terbuka hijau terintegrasi.'
+        title: 'Hamparan Lahan Wakaf Abadi ±3 Hektare',
+        category: 'Pembebasan Lahan',
+        image: '/gambar-bahan/lahan donasi.jpg',
+        status: 'Aset Fisik Riil',
+        caption: 'Batas lahan pengembangan kampus terpadu SMK Skill Village dan kawasan agro-technopark di Sukasirna Jonggol.'
       },
       {
         id: 'gal-2',
-        title: 'Sanctuary Utama & Mihrab Kayu Akustik',
+        title: 'Pelataran Megah Masjid Khairu Ummah',
+        category: 'Poros Ibadah',
+        image: '/gambar-bahan/pelataran mesjid.jpeg',
+        status: 'Fasilitas Aktif',
+        caption: 'Ruang salat dan pelataran luas penampung ibadah harian santri dan masyarakat sekitar Jonggol.'
+      },
+      {
+        id: 'gal-3',
+        title: 'Unit Green House Pertanian Presisi',
+        category: 'Wakaf Produktif Agro',
+        image: '/gambar-bahan/gh greenhouse.jpeg',
+        status: 'Beroperasi Aktif',
+        caption: 'Laboratorium pertanian presisi modern penunjang kemandirian pangan dan teaching factory santri.'
+      },
+      {
+        id: 'gal-4',
+        title: 'Suasana Belajar Terapan di Kelas',
+        category: 'SMK Skill Village',
+        image: '/gambar-bahan/belajar kelas.jpeg',
+        status: 'KBM Aktif',
+        caption: 'Santri vokasi mendalami kurikulum kejuruan teknologi dan pembinaan karakter berbasis adab FAST.'
+      },
+      {
+        id: 'gal-5',
+        title: 'Sanctuary Utama & Interior Masjid',
         category: 'Interior Rumah Ibadah',
         image: '/gambar design/interior masjid.jpg',
         status: 'Finishing & Desain Rinci',
         caption: 'Ruang salat utama berkapasitas 500 jamaah dengan bukaan skylight vertikal yang sejuk.'
       },
       {
-        id: 'gal-3',
+        id: 'gal-6',
         title: 'Learning Studio & Workshop Vokasi',
         category: 'SMK Skill Village',
         image: '/gambar design/learning studio & workshop.jpg',
-        status: 'Peletakan Batu Pertama',
-        caption: 'Gedung belajar kolaboratif dilengkapi lab digital multimedia dan bengkel rekayasa.'
-      },
-      {
-        id: 'gal-4',
-        title: 'Collaborative Skywalk Learning Center',
-        category: 'SMK Skill Village',
-        image: '/gambar design/skywalk learning room.jpg',
-        status: 'Masterplan Lapangan',
-        caption: 'Jembatan penghubung asrama dan ruang studio berkonsep ramah lingkungan.'
-      },
-      {
-        id: 'gal-5',
-        title: 'Plaza Wudhu & Eco-Drainase Higienis',
-        category: 'Fasilitas Sanitasi',
-        image: '/gambar design/tempat wudu.jpg',
-        status: 'Pekerjaan Struktur',
-        caption: 'Sistem daur ulang air wudhu untuk pengairan kebun dan tanaman hortikultura pesantren.'
-      },
-      {
-        id: 'gal-6',
-        title: 'Sistem Energi Surya Hijau (Solar Technopark)',
-        category: 'Green Waqf Produktif',
-        image: '/gambar design/panel surya.jpg',
-        status: 'Instalasi Bertahap',
-        caption: 'Penyediaan energi ramah lingkungan mandiri untuk kebutuhan listrik seluruh kompleks.'
+        status: 'Tahap Struktur',
+        caption: 'Gedung workshop kolaboratif berkonsep arsitektur tropis ramah lingkungan.'
       }
     ],
     
@@ -395,46 +395,46 @@ export const programsData: Record<string, ProgramData> = {
   zakat: {
     slug: 'zakat',
     title: 'Zakat Maal & Zakat Profesi',
-    heroSubtitle: 'Bersihkan Harta, Sucikan Jiwa, dan Berdayakan 8 Asnaf Melalui Pendidikan & Kemandirian Santri Dhuafa.',
+    heroSubtitle: 'Bersihkan Harta, Sucikan Jiwa, dan Tunaikan Hak 8 Asnaf Melalui Beasiswa Vokasi & Kemandirian Santri Berdaya.',
     categoryBadge: '#ZAKAT MAAL & PROFESI 2.5%',
-    heroBgImage: '/gambar design/interior masjid.jpg',
+    heroBgImage: '/gambar-bahan/belajar kelas.jpeg',
     
-    pricingHeading: 'Pilih Paket Zakat Wajib',
+    pricingHeading: 'Kalkulator & Pilihan Zakat Sah',
     pricingSubheading: 'Tunaikan kewajiban rukun Islam ke-3 Anda dengan tepat nisab, tepat hisab, dan disalurkan secara amanah kepada mustahik yang berhak.',
     packages: [
       {
         id: 'zakat-profesi-bulanan',
         title: 'Zakat Penghasilan / Profesi',
-        subtitle: 'Paket Zakat Penghasilan Bulanan',
+        subtitle: 'Zakat Penghasilan Bulanan 2,5%',
         pricePrefix: 'Rp ',
         priceAmount: '250.000',
         priceUnit: '/ bulan',
         priceDesc: 'Estimasi nisab 2.5% penghasilan bersih',
-        estimation: 'Penyaluran bulanan untuk kebutuhan hidup mustahik',
+        estimation: 'Penyaluran bulanan untuk beasiswa santri vokasi',
         isPopular: false,
         deliverables: [
           { bold: 'Tepat Hisab 2.5%', text: 'Sesuai fatwa MUI No. 3 Tahun 2003 tentang Zakat Penghasilan' },
-          { bold: 'Beasiswa Santri Dhuafa', text: 'Menjamin SPP dan asrama santri yatim penghafal Quran' },
+          { bold: 'Beasiswa Santri Vokasi', text: 'Menjamin biaya pendidikan, lab komputer, dan asrama santri' },
           { bold: 'Kuitansi Bukti Setor', text: 'Bukti resmi yang dapat digunakan sebagai pengurang pajak (NPWP)' },
-          { bold: 'Laporan Penyaluran Rutin', text: 'Update dokumentasi mustahik dikirim setiap akhir bulan' }
+          { bold: 'Laporan Penyaluran Rutin', text: 'Pembaruan dokumentasi berkala dikirim setiap akhir bulan' }
         ],
         ctaText: 'Konsultasi Sekarang'
       },
       {
         id: 'zakat-maal-tabungan',
         title: 'Zakat Maal Tabungan',
-        subtitle: 'Paket Lengkap Zakat Emas & Simpanan',
+        subtitle: 'Zakat Emas, Deposito & Simpanan',
         pricePrefix: 'Rp ',
         priceAmount: '2.125.000',
         priceUnit: '/ tahun',
         priceDesc: 'Setara haul 1 tahun (nisab 85g emas)',
-        estimation: 'Penyaluran modal bergulir santri mandiri',
+        estimation: 'Penyaluran modal kemandirian santri vokasi',
         isPopular: true,
         deliverables: [
           { bold: 'Hisab Sesuai Nisab Emas', text: 'Simpanan mengendap 1 tahun hijriyah dibersihkan haknya' },
-          { bold: 'Pemberdayaan Ekonomi', text: 'Bantuan modal usaha mikro untuk keluarga mustahik sekitar Jonggol' },
+          { bold: 'Pemberdayaan Vokasi', text: 'Dukungan fasilitas teaching factory santri berdaya di Jonggol' },
           { bold: 'Akta Pengesahan Muzakki', text: 'Dokumen legalitas penunaian zakat berkekuatan syariah' },
-          { bold: 'Doa Khusus Santri', text: 'Didoakan dalam halaqah santri penghafal Al-Quran' },
+          { bold: 'Doa Khusus Santri', text: 'Didoakan dalam halaqah santri vokasi berkarakter FAST' },
           { bold: 'Laporan Audit Lembaga', text: 'Transparansi pemisahan rekening zakat yang ketat' }
         ],
         ctaText: 'Konsultasi Sekarang'
@@ -442,7 +442,7 @@ export const programsData: Record<string, ProgramData> = {
       {
         id: 'zakat-perniagaan',
         title: 'Zakat Bisnis & Perniagaan',
-        subtitle: 'Paket Korporasi & Usaha Berkah',
+        subtitle: 'Zakat Usaha & Korporasi Berkah',
         pricePrefix: '2.5% ',
         priceAmount: 'Laba Bersih',
         priceUnit: '/ tahun',
@@ -453,18 +453,18 @@ export const programsData: Record<string, ProgramData> = {
           { bold: 'Audit Akuntansi Syariah', text: 'Pendampingan penghitungan aset lancar usaha bersama akuntan' },
           { bold: 'Pemberdayaan Skala Luas', text: 'Penyaluran ke program vokasi teknologi tepat guna santri' },
           { bold: 'Sertifikat Muzakki Perusahaan', text: 'Bukti CSR syariah dan pengurang pajak badan resmi' },
-          { bold: 'Laporan Dampak Sosial', text: 'Metrik terukur peningkatan taraf hidup keluarga dhuafa' }
+          { bold: 'Laporan Dampak Sosial', text: 'Metrik terukur peningkatan kapasitas santri mandiri' }
         ],
         ctaText: 'Konsultasi Sekarang'
       }
     ],
     
     deepDiveBadge: 'HAK 8 ASNAF',
-    deepDiveTitle: 'Transformasi Mustahik Menjadi Muzakki Berdaya Saing',
-    deepDiveLead: 'Zakat di Global Village Fund tidak hanya dibagikan secara konsumtif, melainkan dialokasikan untuk pemutusan rantai kemiskinan antargenerasi melalui pendidikan vokasi terapan.',
-    deepDiveStory1: 'Sesuai dengan ketentuan Surah At-Taubah ayat 60, zakat Anda disalurkan kepada asnaf fakir, miskin, dan fi sabilillah. Anak-anak dari keluarga tidak mampu diberikan beasiswa penuh di SMK Skill Village Islamic School untuk menguasai keterampilan teknologi pertanian dan digital.',
-    deepDiveStory2: 'Dengan kurikulum terpadu berbasis alam, para santri dididik agar mandiri secara ekonomi saat lulus, sehingga kelak mereka mampu mengangkat martabat keluarganya dari penerima zakat (mustahik) menjadi pembayar zakat (muzakki).',
-    deepDiveBannerImage: '/gambar design/learning studio & workshop.jpg',
+    deepDiveTitle: 'Transformasi Mustahik Menjadi Generasi Vokasi Mandiri',
+    deepDiveLead: 'Zakat di Global Village Fund dialokasikan untuk pemutusan siklus kemiskinan antargenerasi melalui pendidikan vokasi terapan dan pembinaan karakter FAST.',
+    deepDiveStory1: 'Sesuai dengan ketentuan syariat Surah At-Taubah ayat 60, zakat Anda disalurkan kepada asnaf yang berhak, khususnya asnaf Fi Sabilillah dan Ibnu Sabil. Para santri berbakat diberikan beasiswa penuh di SMK Skill Village Islamic School untuk menguasai keahlian teknologi industri, pertanian presisi, dan multimedia.',
+    deepDiveStory2: 'Dengan kurikulum terpadu berbasis alam dan adab, para santri dididik agar mandiri saat lulus, siap kerja, dan mampu merintis usaha, sehingga kelak mereka mengangkat martabat keluarganya dari penerima zakat (mustahik) menjadi pembayar zakat (muzakki).',
+    deepDiveBannerImage: '/gambar-bahan/kbm kelas 1.jpeg',
     valueBoxes: [
       {
         icon: 'check-circle',
@@ -473,48 +473,56 @@ export const programsData: Record<string, ProgramData> = {
       },
       {
         icon: 'book-open',
-        title: 'Pendidikan Vokasi Santri Dhuafa',
-        description: 'Menjamin biaya SPP, asrama, makan, dan buku santri yatim dan dhuafa.'
+        title: 'Beasiswa Santri Vokasi',
+        description: 'Menjamin biaya pendidikan, sarana lab komputer, asrama, dan nutrisi sehat santri.'
       },
       {
         icon: 'file-check',
         title: 'Bukti Sah Pengurang Pajak',
-        description: 'Bukti setor zakat resmi diakui untuk pelaporan SPT tahunan.'
+        description: 'Bukti setor zakat resmi diakui untuk pelaporan SPT tahunan PPh.'
       },
       {
         icon: 'users',
         title: 'Penyaluran Produktif & Terukur',
-        description: 'Menciptakan dampak sosial jangka panjang yang terverifikasi di lapangan.'
+        description: 'Mencetak teknopreneur muda mandiri yang berdaya saing industri.'
       }
     ],
     
-    galleryBadge: 'DOKUMENTASI MUSTAHIK & BELAJAR',
+    galleryBadge: 'DOKUMENTASI KBM & PRESTASI SANTRI',
     galleryTitle: 'Aktivitas Santri Penerima Manfaat Zakat',
-    gallerySubtitle: 'Dokumentasi nyata kegiatan santri dhuafa penghafal Quran dan vokasi terapan di kampus Jonggol.',
+    gallerySubtitle: 'Dokumentasi nyata kegiatan pembelajaran vokasi terapan, kemandirian asrama, dan prestasi santri di kampus Jonggol.',
     galleryItems: [
       {
         id: 'gal-z1',
-        title: 'Praktik Laboratorium Digital Santri',
-        category: 'Pendidikan Asnaf',
-        image: '/gambar design/learning studio & workshop.jpg',
+        title: 'Praktik Pembelajaran Vokasi Santri',
+        category: 'Pendidikan Vokasi',
+        image: '/gambar-bahan/kbm kelas 1.jpeg',
         status: 'Kegiatan Belajar Aktif',
-        caption: 'Santri dhuafa belajar coding dan multimedia untuk bekal kemandirian kerja.'
+        caption: 'Santri vokasi mendalami materi teknologi dan rekayasa terapan untuk kesiapan kerja industri.'
       },
       {
         id: 'gal-z2',
-        title: 'Kajian Fiqih & Halaqah Quran',
-        category: 'Bina Spiritual',
-        image: '/gambar design/interior mesjid 2.jpg',
+        title: 'Kemandirian Belajar di Asrama',
+        category: 'Bina Karakter FAST',
+        image: '/gambar-bahan/belajar mandiri.jpeg',
         status: 'Rutinitas Harian',
-        caption: 'Membentuk karakter santri berakhlak mulia dan mutqin dalam hafalan Al-Quran.'
+        caption: 'Membentuk karakter pembelajar mandiri yang disiplin, tekun, dan berakhlak mulia.'
       },
       {
         id: 'gal-z3',
-        title: 'Praktik Agroteknologi di Lahan Hijau',
-        category: 'Vokasi Terapan',
-        image: '/gambar design/gh learning area.jpg',
-        status: 'Kemandirian Pangan',
-        caption: 'Pelatihan budidaya tanaman presisi modern di greenhouse pesantren.'
+        title: 'Penguatan Adab & Keahlian Terapan',
+        category: 'Bimbingan Guru',
+        image: '/gambar-bahan/guru ngajar.jpeg',
+        status: 'Sesi Pembelajaran',
+        caption: 'Guru dan praktisi mengajar langsung di depan kelas untuk mengasah kompetensi santri.'
+      },
+      {
+        id: 'gal-z4',
+        title: 'Prestasi Juara Tingkat Nasional',
+        category: 'Dampak Nyata',
+        image: '/gambar-bahan/juara lomba.jpeg',
+        status: 'Prestasi Santri',
+        caption: 'Santri vokasi membuktikan keunggulan kompetensi dengan meraih prestasi kejuaraan membanggakan.'
       }
     ],
     
@@ -558,7 +566,7 @@ export const programsData: Record<string, ProgramData> = {
         role: 'Pimpinan Lembaga Filantropi GVF',
         credentials: 'Praktisi Manajemen Akuntabilitas Dana Publik',
         image: '/media-lp/pengurus-1.jpg',
-        quote: 'Menjamin dana zakat terserap efisien untuk membebaskan mustahik dari jerat kemiskinan.'
+        quote: 'Menjamin dana zakat terserap efisien untuk menumbuhkan santri menjadi generasi mandiri yang berdaya.'
       }
     ],
     
@@ -598,11 +606,11 @@ export const programsData: Record<string, ProgramData> = {
     faqs: [
       {
         question: 'Bagaimana cara menghitung zakat profesi bulanan?',
-        answer: 'Zakat profesi dihitung 2.5% dari penghasilan kotor atau bersih per bulan jika akumulasi setahunnya telah mencapai nisab setara 85 gram emas (sekitar Rp 7-8 juta per bulan tergantung harga emas terkini).'
+        answer: 'Zakat profesi dihitung 2.5% dari penghasilan kotor atau bersih per bulan jika akumulasi setahunnya telah mencapai nisab setara 85 gram emas (sekitar Rp 10.270.833 per bulan sesuai harga emas terkini).'
       },
       {
         question: 'Apakah dana zakat boleh dipakai untuk membangun gedung pesantren?',
-        answer: 'Di GVF, pembangunan fisik gedung didanai oleh Wakaf dan Infaq. Dana zakat dikhususkan untuk asnaf (seperti beasiswa SPP, asrama, makan, dan buku santri miskin) serta pelatihan kemandirian santri dhuafa (asnaf Fakir, Miskin, dan Fi Sabilillah).'
+        answer: 'Di GVF, pembangunan fisik gedung didanai oleh Wakaf dan Infaq. Dana zakat dikhususkan untuk hak asnaf (seperti beasiswa penuh pendidikan vokasi, asrama, sarana lab komputer, dan konsumsi sehat santri berdaya sebagai asnaf Fi Sabilillah dan Ibnu Sabil).'
       },
       {
         question: 'Apakah bukti setor zakat di GVF dapat mengurangi pajak penghasilan?',
@@ -616,21 +624,21 @@ export const programsData: Record<string, ProgramData> = {
   infaq: {
     slug: 'infaq',
     title: 'Infaq Pembangunan & Fasilitas Dakwah',
-    heroSubtitle: 'Percepat Penyelesaian Fasilitas Ibadah, Perpustakaan, dan Studio Praktik Santri di Jonggol.',
+    heroSubtitle: 'Percepat Penyelesaian Fasilitas Ibadah, Perpustakaan, dan Studio Praktik Santri Vokasi di Jonggol.',
     categoryBadge: '#INFAQ SARANA & DAKWAH',
-    heroBgImage: '/gambar design/learning studio & workshop.jpg',
+    heroBgImage: '/gambar-bahan/pelataran mesjid.jpeg',
     
-    pricingHeading: 'Pilih Paket Infaq Sarana',
+    pricingHeading: 'Gotong Royong Material Fisik',
     pricingSubheading: 'Infaq sunnah fleksibel tanpa batas nisab untuk mempercepat tersedianya material bangunan dan fasilitas sarana belajar santri.',
     packages: [
       {
         id: 'infaq-material-semen',
-        title: 'Infaq Semen & Material',
-        subtitle: 'Paket Konstruksi Bata & Semen',
+        title: 'Infaq Semen Konstruksi',
+        subtitle: 'Pengadaan Semen Standar SNI',
         pricePrefix: 'Rp ',
-        priceAmount: '75.000',
-        priceUnit: '/ sak semen',
-        priceDesc: 'Pengadaan material semen standar SNI',
+        priceAmount: '65.000',
+        priceUnit: '/ sak',
+        priceDesc: 'Pengadaan semen cor lantai & pilar',
         estimation: 'Langsung dibelanjakan untuk pengecoran lapangan',
         isPopular: false,
         deliverables: [
@@ -644,17 +652,17 @@ export const programsData: Record<string, ProgramData> = {
       {
         id: 'infaq-perlengkapan-kelas',
         title: 'Paket Sarana Belajar',
-        subtitle: 'Paket Lengkap Meja & Kursi Santri',
+        subtitle: 'Meja & Kursi Santri Ergonomis',
         pricePrefix: 'Rp ',
         priceAmount: '350.000',
-        priceUnit: '/ set sarana',
+        priceUnit: '/ set',
         priceDesc: '1 set meja kursi belajar ergonomis SMK',
         estimation: 'Pengadaan bertahap sesuai kebutuhan kelas',
         isPopular: true,
         deliverables: [
           { bold: '1 Set Meja Kursi Belajar', text: 'Fasilitas belajar modern ramah postur tubuh santri' },
           { bold: 'Kitab & Literatur Digital', text: 'Dukungan buku perpustakaan dan software desain SMK' },
-          { bold: 'Plat Nama Donatur', text: 'Dicatat pada inventaris sarana dakwah yayasan' },
+          { bold: 'Plat Inventaris Donatur', text: 'Dicatat pada inventaris sarana dakwah yayasan' },
           { bold: 'Doa Khusus Santri', text: 'Didoakan setiap memulai sesi belajar pagi dan petang' },
           { bold: 'Laporan Foto Penyerahan', text: 'Dokumentasi santri saat menempati ruang kelas baru' }
         ],
@@ -663,17 +671,17 @@ export const programsData: Record<string, ProgramData> = {
       {
         id: 'infaq-air-bersih',
         title: 'Instalasi Sanitasi & Wudhu',
-        subtitle: 'Paket Titik Sanitasi Eco-Drainase',
+        subtitle: 'Titik Sanitasi & Eco-Drainase',
         pricePrefix: 'Rp ',
-        priceAmount: '1.000.000',
+        priceAmount: '250.000',
         priceUnit: '/ titik',
-        priceDesc: 'Sedekah air bersih mengalir untuk ratusan jamaah',
+        priceDesc: 'Kran air wudhu higienis ramah lingkungan',
         estimation: 'Instalasi pipa dan kran higienis hemat air',
         isPopular: false,
         deliverables: [
           { bold: 'Kran Wudhu & Filter Bersih', text: 'Air wudhu higienis tersaring dan bebas bau' },
           { bold: 'Sistem Daur Ulang Taman', text: 'Air bekas wudhu dialirkan untuk menyiram tanaman pesantren' },
-          { bold: 'Pahala Sedekah Air Terhebat', text: 'Sedekah air adalah sedekah paling utama dalam hadits nabi' },
+          { bold: 'Pahala Sedekah Air Berkah', text: 'Sedekah air adalah sedekah paling utama dalam hadits nabi' },
           { bold: 'Sertifikat Apresiasi Donatur', text: 'Tanda bukti sumbangsih sarana kebersihan rumah Allah' }
         ],
         ctaText: 'Konsultasi Sekarang'
@@ -685,7 +693,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Infaq Anda adalah motor penggerak percepatan pembangunan fisik di lapangan. Setiap donasi langsung dialokasikan untuk pembelian material konstruksi dan pengadaan sarana belajar.',
     deepDiveStory1: 'Pembangunan Garden Mosque Khairu Ummah dan ruang vokasi SMK Skill Village membutuhkan ribuan sak semen, bata roster penyejuk alami, instalasi kabel listrik, dan meja belajar santri. Infaq dari Anda memastikan pekerjaan para tukang dan teknisi di lapangan tidak terhenti.',
     deepDiveStory2: 'Berbeda dengan zakat yang terikat pada 8 asnaf, dana infaq dapat digunakan secara lincah untuk kebutuhan mendesak sarana dan logistik pembangunan, sehingga manfaatnya dapat segera dirasakan oleh jamaah dan masyarakat sekitar.',
-    deepDiveBannerImage: '/gambar design/tempat wudu.jpg',
+    deepDiveBannerImage: '/gambar-bahan/pelataran mesjid.jpeg',
     valueBoxes: [
       {
         icon: 'zap',
@@ -715,27 +723,35 @@ export const programsData: Record<string, ProgramData> = {
     galleryItems: [
       {
         id: 'gal-i1',
-        title: 'Area Sanitasi Wudhu Ramah Lingkungan',
-        category: 'Fasilitas Air Bersih',
-        image: '/gambar design/tempat wudu.jpg',
-        status: 'Instalasi Pipa & Kran',
-        caption: 'Penyediaan kran wudhu hemat air dengan sistem filter sirkulasi taman.'
+        title: 'Pelataran Megah Masjid Khairu Ummah',
+        category: 'Pengecoran Fisik',
+        image: '/gambar-bahan/pelataran mesjid.jpeg',
+        status: 'Realisasi Lapangan',
+        caption: 'Pengecoran lantai pelataran masjid yang menampung ratusan santri dan jamaah.'
       },
       {
         id: 'gal-i2',
-        title: 'Fasad Roster & Pencahayaan Alami',
-        category: 'Material Arsitektur',
-        image: '/gambar design/belakang masjid (2).jpg',
-        status: 'Pemasangan Dinding Roster',
-        caption: 'Roster tanah liat lokal yang menyaring angin dan sinar matahari agar sejuk alami.'
+        title: 'Fasilitas Sanitasi & Wudhu Bersih',
+        category: 'Sanitasi Higienis',
+        image: '/gambar-bahan/wc mesjid.jpeg',
+        status: 'Fasilitas Aktif',
+        caption: 'Penyediaan kran wudhu hemat air dengan sirkulasi udara alami dan drainase bersih.'
       },
       {
         id: 'gal-i3',
-        title: 'Pengadaan Meja Studio Belajar',
+        title: 'Ruang Kelas & Fasilitas Belajar Santri',
         category: 'Sarana Kelas',
-        image: '/gambar design/learning studio & workshop.jpg',
-        status: 'Pengadaan Bertahap',
-        caption: 'Ruang belajar berfasilitas lengkap untuk mencetak santri unggul.'
+        image: '/gambar-bahan/belajar kelas.jpeg',
+        status: 'KBM Aktif',
+        caption: 'Ruang belajar berfasilitas lengkap untuk mencetak santri vokasi berdaya saing tinggi.'
+      },
+      {
+        id: 'gal-i4',
+        title: 'Pembangunan Green House Agro-Technopark',
+        category: 'Sarana Praktik',
+        image: '/gambar-bahan/gh greenhouse.jpeg',
+        status: 'Operasional',
+        caption: 'Fasilitas penunjang praktik agroteknologi modern bagi santri vokasi.'
       }
     ],
     
@@ -826,126 +842,126 @@ export const programsData: Record<string, ProgramData> = {
 
   sedekah: {
     slug: 'sedekah',
-    title: 'Shodaqoh & Pangan Santri',
-    heroSubtitle: 'Alirkan Kebaikan & Keberkahan, Cukupi Nutrisi Santri Penghafal Al-Qur’an di Pondok Pesantren.',
-    categoryBadge: '#SHODAQOH & PANGAN SANTRI',
-    heroBgImage: '/gambar design/interior mesjid 2.jpg',
+    title: 'Sedekah Pangan & Konsumsi Sehat',
+    heroSubtitle: 'Alirkan Kebaikan Berkelanjutan, Cukupi Ketahanan Pangan & Konsumsi Sehat Santri Vokasi di Jonggol.',
+    categoryBadge: '#KETAHANAN PANGAN & KONSUMSI SEHAT',
+    heroBgImage: '/gambar-bahan/gh update 2.jpeg',
     
-    pricingHeading: 'Pilih Paket Shodaqoh Pangan',
-    pricingSubheading: 'Shodaqoh harian untuk menjamin makanan bergizi santri dan aksi cepat tanggap kemanusiaan bagi dhuafa sekitar Jonggol.',
+    pricingHeading: 'Dukungan Ketahanan Pangan Santri',
+    pricingSubheading: 'Amalan rutin untuk menjamin konsumsi sehat, gizi seimbang, dan logistik dapur santri vokasi yang sedang berjuang menuntut ilmu.',
     packages: [
       {
-        id: 'sedekah-rutin-harian',
-        title: 'Shodaqoh Rutin Harian',
-        subtitle: 'Paket Rutin Harian Berkah',
+        id: 'sedekah-porsi-sehat',
+        title: '1 Porsi Nutrisi Sehat',
+        subtitle: '1 Porsi Menu Sehat Santri',
         pricePrefix: 'Rp ',
-        priceAmount: '20.000',
-        priceUnit: '/ hari',
-        priceDesc: 'Konsisten bernilai besar di hadapan Allah',
-        estimation: 'Didoakan para santri penghafal Quran',
+        priceAmount: '15.000',
+        priceUnit: '/ porsi',
+        priceDesc: 'Menu higienis berprotein & sayur',
+        estimation: 'Langsung disajikan di meja makan santri',
         isPopular: true,
         deliverables: [
-          { bold: 'Didoakan Santri Quran', text: 'Disebut dalam doa bersama para santri berjamaah' },
-          { bold: 'Keberkahan Rezeki', text: 'Mendapat keutamaan sedekah pemohon ganti rezeki yang berkah' },
-          { bold: 'Pengingat Otomatis', text: 'Fitur notifikasi pengingat shodaqoh harian via WhatsApp' },
-          { bold: 'Kebaikan Konsisten', text: 'Amalan yang dicintai Allah adalah amalan yang dawam/rutin' }
+          { bold: 'Nutrisi Seimbang', text: 'Karbohidrat, protein, dan sayuran segar panen agro-technopark' },
+          { bold: 'Keberkahan Harian', text: 'Mendapat keutamaan sedekah pemohon kelapangan rezeki yang berkah' },
+          { bold: 'Energi Belajar Vokasi', text: 'Menjadi sumber tenaga santri dalam menyerap keahlian terapan' },
+          { bold: 'Kebaikan Konsisten', text: 'Amalan yang dicintai Allah adalah amalan yang rutin dijalankan' }
         ],
         ctaText: 'Konsultasi Sekarang'
       },
       {
-        id: 'sedekah-pangan-santri',
-        title: 'Paket Makan Santri',
-        subtitle: 'Paket 1 Hari Pangan Bergizi',
+        id: 'sedekah-pangan-harian',
+        title: '1 Hari Konsumsi Lengkap',
+        subtitle: '3 Kali Makan Sehat Santri',
         pricePrefix: 'Rp ',
-        priceAmount: '50.000',
-        priceUnit: '/ santri / hari',
-        priceDesc: 'Sarapan, makan siang, dan makan malam',
-        estimation: 'Langsung dibelanjakan ke dapur umum pesantren',
+        priceAmount: '45.000',
+        priceUnit: '/ hari',
+        priceDesc: 'Sarapan, makan siang, & makan malam',
+        estimation: 'Menjamin kebutuhan makan 1 santri seharian',
         isPopular: false,
         deliverables: [
-          { bold: '3 Kali Makan Sehat', text: 'Menu higienis berprotein untuk santri dhuafa dan yatim' },
-          { bold: 'Energi Menghafal Quran', text: 'Menjadi darah daging penuntut ilmu yang membaca kalam Allah' },
-          { bold: 'Pahala Berlipat Ganda', text: 'Pahala mengalir dari setiap hafalan dan tilawah santri' },
-          { bold: 'Dokumentasi Menu Harian', text: 'Laporan foto kesibukan dapur dan santap bersama santri' }
+          { bold: '3 Sesi Makan Bergizi', text: 'Asupan sarapan, makan siang, dan makan malam higienis' },
+          { bold: 'Fokus & Konsentrasi', text: 'Menjaga stamina belajar teori di kelas dan praktik di lab/kebun' },
+          { bold: 'Pahala Berlipat Ganda', text: 'Pahala mengalir dari setiap aktivitas menuntut ilmu santri' },
+          { bold: 'Laporan Dapur Asrama', text: 'Pembaruan dokumentasi kesibukan dapur dan makan bersama' }
         ],
         ctaText: 'Konsultasi Sekarang'
       },
       {
-        id: 'sedekah-beras-pesantren',
-        title: 'Paket Beras 1 Karung',
-        subtitle: 'Ketahanan Pangan 25 Kilogram',
+        id: 'sedekah-beras-logistik',
+        title: 'Beras Logistik Dapur Asrama',
+        subtitle: 'Ketahanan Pangan Beras 10 kg',
         pricePrefix: 'Rp ',
-        priceAmount: '375.000',
-        priceUnit: '/ karung 25kg',
-        priceDesc: 'Persediaan beras premium dapur asrama',
-        estimation: 'Mencukupi kebutuhan ratusan santri sepekan',
+        priceAmount: '150.000',
+        priceUnit: '/ sak 10kg',
+        priceDesc: 'Persediaan beras premium asrama',
+        estimation: 'Cadangan pokok logistik dapur santri',
         isPopular: false,
         deliverables: [
-          { bold: 'Beras Premium 25 kg', text: 'Kualitas beras pulen dan bersih bebas pemutih untuk santri' },
-          { bold: 'Ketahanan Pangan Pesantren', text: 'Menjamin tidak ada santri yang belajar dalam kondisi lapar' },
+          { bold: 'Beras Pulen Berkualitas', text: 'Beras putih bersih bebas pemutih standar konsumsi sehat' },
+          { bold: 'Ketahanan Pangan Asrama', text: 'Menjamin persediaan dapur tetap aman dan tercukupi' },
           { bold: 'Serah Terima Dapur', text: 'Berita acara penyerahan logistik langsung ke kepala asrama' },
-          { bold: 'Sertifikat Tanda Terima', text: 'Bukti tanda terima sedekah pangan resmi dari GVF' }
+          { bold: 'Sertifikat Tanda Terima', text: 'Bukti tanda terima sedekah pangan resmi dari yayasan' }
         ],
         ctaText: 'Konsultasi Sekarang'
       }
     ],
     
-    deepDiveBadge: 'BERKAH TIAP HARI',
-    deepDiveTitle: 'Memastikan Santri Penghafal Quran Tumbuh Sehat & Fokus Belajar',
+    deepDiveBadge: 'KETAHANAN PANGAN PESANTREN',
+    deepDiveTitle: 'Menjamin Santri Vokasi Tumbuh Sehat, Berenergi, & Fokus Belajar',
     deepDiveLead: 'Rasulullah SAW bersabda: "Sedekah itu memadamkan dosa sebagaimana air memadamkan api." (HR. Tirmidzi)',
-    deepDiveStory1: 'Di Pesantren Skill Village, ratusan santri memulai hari untuk tahajud, tilawah Al-Quran, dan dilanjutkan sekolah vokasi hingga sore hari. Mereka membutuhkan asupan gizi yang cukup agar tetap sehat dan fokus menyerap ilmu.',
-    deepDiveStory2: 'Shodaqoh Anda langsung disalurkan ke dapur umum pesantren untuk pengadaan beras, lauk berprotein, sayur mayur, dan buah-buahan segar. Setiap butir beras yang mereka konsumsi menjadi energi yang mengalirkan pahala kebaikan ke rekening akhirat Anda.',
-    deepDiveBannerImage: '/gambar design/interior mesjid 2.jpg',
+    deepDiveStory1: 'Di SMK Skill Village, para santri menjalani rutinitas padat: pembinaan adab FAST, pendalaman syariah, serta praktik kejuruan industri dan agroteknologi hingga sore hari. Mereka memerlukan asupan nutrisi sehat dan higienis agar stamina fisik dan fokus belajar senantiasa terjaga.',
+    deepDiveStory2: 'Sedekah pangan Anda dialokasikan langsung untuk operasional dapur asrama: pengadaan beras berkualitas, lauk berprotein seimbang, dan sayuran segar hasil panen agro-technopark. Setiap nutrisi yang mereka konsumsi menjadi energi kebaikan yang mengalirkan pahala jariyah abadi bagi Anda.',
+    deepDiveBannerImage: '/gambar-bahan/gh update 2.jpeg',
     valueBoxes: [
       {
         icon: 'sunrise',
         title: 'Keberkahan & Kelapangan Rezeki',
-        description: 'Mendapat keutamaan sedekah yang memohonkan ganti rezeki berlipat.'
+        description: 'Mendapat keutamaan sedekah yang mendatangkan kelapangan hidup.'
       },
       {
         icon: 'smile',
-        title: 'Senyum Santri Penghafal Quran',
-        description: 'Memastikan anak-anak dhuafa dan yatim makan dengan kenyang dan bergizi.'
+        title: 'Konsumsi Sehat Santri Vokasi',
+        description: 'Memastikan santri makan kenyang dengan nutrisi higienis dan bergizi.'
       },
       {
         icon: 'coffee',
         title: 'Konsisten & Ringan Dijalankan',
-        description: 'Nominal terjangkau namun memiliki dampak keberkahan yang luar biasa.'
+        description: 'Nominal terjangkau namun membawa dampak nyata setiap hari.'
       },
       {
         icon: 'shield',
         title: 'Penyaluran Amanah 100%',
-        description: 'Dikelola oleh pengasuh pesantren yang berdedikasi melayani santri.'
+        description: 'Dikelola secara transparan oleh pengasuh dapur asrama pesantren.'
       }
     ],
     
-    galleryBadge: 'DOKUMENTASI KESEHARIAN SANTRI',
-    galleryTitle: 'Keceriaan & Kemandirian Santri Pesantren',
-    gallerySubtitle: 'Potret keseharian santri dalam menuntut ilmu, beribadah, dan beraktivitas di Jonggol.',
+    galleryBadge: 'DOKUMENTASI KONSUMSI & AGRO-TECHNOPARK',
+    galleryTitle: 'Kemandirian Pangan & Keseharian Santri',
+    gallerySubtitle: 'Dokumentasi nyata hasil panen kebun presisi dan aktivitas santri vokasi di kampus Sukasirna Jonggol.',
     galleryItems: [
       {
         id: 'gal-s1',
-        title: 'Halaqah Al-Quran di Sanctuary Utama',
-        category: 'Ibadah Harian',
-        image: '/gambar design/interior mesjid 2.jpg',
-        status: 'Aktivitas Harian',
-        caption: 'Santri melantunkan ayat-ayat suci Al-Quran dengan khusyuk di masjid.'
+        title: 'Panen Sayur Segar Agro-Technopark',
+        category: 'Kemandirian Pangan',
+        image: '/gambar-bahan/gh update 2.jpeg',
+        status: 'Panen Harian',
+        caption: 'Sebagian kebutuhan konsumsi dapur santri dipasok langsung dari greenhouse pertanian presisi.'
       },
       {
         id: 'gal-s2',
-        title: 'Kemandirian Bercocok Tanam di Agro-Technopark',
-        category: 'Edukasi Karakter',
-        image: '/gambar design/gh learning area 2.jpg',
-        status: 'Praktik Pagi',
-        caption: 'Santri memanen sayuran segar dari kebun pesantren untuk konsumsi asrama.'
+        title: 'Pembinaan Karakter Santri Vokasi',
+        category: 'Bina Karakter FAST',
+        image: '/gambar-bahan/pengajian rame.jpeg',
+        status: 'Rutinitas Harian',
+        caption: 'Santri sehat dan berenergi mengikuti rangkaian pembinaan adab serta keahlian industri.'
       },
       {
         id: 'gal-s3',
-        title: 'Belajar Bersama di Ruang Terbuka',
-        category: 'Suasana Belajar',
-        image: '/gambar design/skywalk learning room 2.jpg',
-        status: 'Diskusi Siang',
-        caption: 'Suasana asri dan sejuk mendukung konsentrasi dan kesehatan mental santri.'
+        title: 'Unit Pertanian Presisi Green House',
+        category: 'Laboratorium Agro',
+        image: '/gambar-bahan/gh greenhouse.jpeg',
+        status: 'Beroperasi Aktif',
+        caption: 'Praktik budidaya melon dan tanaman hortikultura modern berstandar agribisnis terapan.'
       }
     ],
     

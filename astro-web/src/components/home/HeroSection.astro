@@ -266,7 +266,6 @@ const heroSlides = [
     height: 7px;
     background-color: var(--gvf-blue-vibrant, #0969da);
     border-radius: 50%;
-    box-shadow: 0 0 10px #0969da;
   }
 
   .isavo-tag-text {
@@ -352,7 +351,7 @@ const heroSlides = [
     justify-content: center;
     gap: 10px;
     height: 50px;
-    background: linear-gradient(135deg, #e53935 0%, #d32f2f 100%);
+    background: #0969da;
     color: #ffffff;
     padding: 0 28px;
     border-radius: 9999px;
@@ -361,13 +360,14 @@ const heroSlides = [
     text-decoration: none;
     letter-spacing: 0.01em;
     white-space: nowrap;
-    box-shadow: 0 8px 20px rgba(229, 57, 53, 0.4);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: none;
+    transition: transform 0.25s ease, background-color 0.25s ease;
   }
 
   .isavo-btn-primary-pill:hover {
+    background: #0756b2;
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(229, 57, 53, 0.55);
+    box-shadow: none;
   }
 
   .cta-heart-icon {
@@ -414,12 +414,12 @@ const heroSlides = [
     justify-content: center;
     color: #ffffff;
     transition: transform 0.3s ease, background-color 0.25s ease;
-    box-shadow: 0 4px 12px rgba(9, 105, 218, 0.35);
+    box-shadow: none;
   }
 
   .isavo-btn-outline-pill:hover .isavo-btn-arrow-circle {
     transform: rotate(45deg);
-    background-color: #0052cc;
+    background-color: #0756b2;
   }
 
   .isavo-arrow-icon {

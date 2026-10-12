@@ -134,15 +134,25 @@
         <div class="isavo-card-watermark" aria-hidden="true">04</div>
       </div>
     </div>
+
+    <!-- Bottom Action Text Link ala ISAVO -->
+    <div class="isavo-workflow-bottom-cta">
+      <p class="bottom-cta-text">
+        Mulai Kebaikan Abadi Bersama Kami di Sukasirna Jonggol. 
+        <a href="/contact" class="bottom-cta-link">Konsultasikan Program Gratis ↗</a>
+      </p>
+    </div>
   </div>
 </section>
 
 <style>
   .isavo-workflow-section {
     position: relative;
-    background-color: #f7f8fa; /* Clean off-white background matching screenshot 3 */
+    background-color: #f7f8fa;
     padding-top: 100px;
-    padding-bottom: 220px; /* Ample space for descending cards */
+    padding-bottom: 120px;
+    overflow: hidden;
+  }
     overflow: hidden;
   }
 
@@ -182,7 +192,7 @@
     padding: 0.35rem 0.95rem;
     border-radius: 9999px;
     margin-bottom: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    box-shadow: none;
   }
 
   .isavo-pill-dot {
@@ -233,14 +243,14 @@
   .isavo-step-card {
     position: relative;
     background-color: #ffffff;
-    border-radius: 28px; /* High radius matching ISAVO screenshot 3 */
+    border-radius: 24px;
     padding: 1.5rem 1.5rem 2.25rem;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(15, 23, 42, 0.05);
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.25s ease, border-color 0.25s ease;
   }
 
   /* Exact Descending Staircase Offsets on Desktop */
@@ -249,19 +259,43 @@
       margin-top: 0px;
     }
     .isavo-card-step-2 {
-      margin-top: 48px;
+      margin-top: 40px;
     }
     .isavo-card-step-3 {
-      margin-top: 96px;
+      margin-top: 80px;
     }
     .isavo-card-step-4 {
-      margin-top: 144px;
+      margin-top: 120px;
     }
   }
 
   .isavo-step-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.09);
+    transform: translateY(-6px);
+    border-color: #0969da;
+  }
+
+  /* Bottom CTA ala ISAVO */
+  .isavo-workflow-bottom-cta {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .bottom-cta-text {
+    font-size: 1.05rem;
+    color: #4d4d52;
+    margin: 0;
+  }
+
+  .bottom-cta-link {
+    color: #0969da;
+    font-weight: 700;
+    text-decoration: underline;
+    margin-left: 6px;
+    transition: color 0.15s ease;
+  }
+
+  .bottom-cta-link:hover {
+    color: #0752a8;
   }
 
   /* Top Image Thumbnail with 18px radius */

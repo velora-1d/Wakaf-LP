@@ -336,7 +336,8 @@
     border-radius: 28px; /* High radius matching screenshot 3 */
     overflow: hidden;
     height: 600px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: none;
     background-color: #02070e;
   }
 
@@ -385,7 +386,7 @@
     font-weight: 500;
   }
 
-  /* Floating Circular Badge */
+  /* Circular Badge */
   .isavo-circle-badge {
     position: absolute;
     bottom: 24px;
@@ -400,17 +401,7 @@
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    animation: isavoBadgeFloat 3.2s ease-in-out infinite;
-  }
-
-  @keyframes isavoBadgeFloat {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
+    box-shadow: none;
   }
 
   .isavo-circle-num {
