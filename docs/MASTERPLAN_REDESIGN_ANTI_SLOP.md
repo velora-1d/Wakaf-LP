@@ -15,16 +15,17 @@ Berdasarkan hasil audit mendalam pada folder `docs/perbaikan/`, website saat ini
 3. **Komunikasi Dingin & Birokratis:** Halaman kontak dan kemitraan meniru formulir "Book a Demo" atau "Contact Sales" lengkap dengan dropdown tiket keluhan, menghilangkan kehangatan ukhuwah dan kepercayaan personal.
 4. **Kekeringan Visual (Placeholder & Tanpa Foto Riil):** Alih-alih menampilkan wajah santri, progres tukang di Jonggol, atau arsitektur nyata, UI dipenuhi kotak abu-abu kosong dengan ikon AI generik.
 
-### B. Prinsip Martabat Santri: Anti-Deficit Framing / Anti-Poverty Porn
-Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) **bukan panti sosial penampungan belas kasihan**, melainkan kawah candradimuka pencetak **kader peradaban, penghafal Al-Qur'an, dan calon teknisi vokasi mandiri**.
-* **DILARANG MENGGUNAKAN DIKSI RASA KASIHAN & KLISE CHARITY:** 
-  - Hapus seluruh kata klise eksploitatif rasa iba seperti *"yatim, dhuafa, miskin, butuh belas kasihan"*.
-  - **HARAM menggunakan kata klise charity *"Santri Penghafal Al-Qur'an / Tahfidz"*** — karena mengaburkan identitas riil pesantren ini sebagai **SMK Skill Village / Pesantren Vokasi Industri & Agro-Technopark Modern**.
-* **WAJIB MENGGUNAKAN IDENTITAS RIIL (VOKASI, TEKNOLOGI & ADAB):**
-  * Gunakan: **"Santri Vokasi & Teknopreneur Muda"**, **"Santri Berdaya"**, **"Kader Vokasi Industri"**, atau **"Generasi Mandiri Berakhlak FAST"**.
-  * Ganti *"Bantuan Kaum Dhuafa"* menjadi **"Penerima Beasiswa Kader Peradaban"**.
-  * Ganti *"Beri makan anak yatim / santri penghafal Quran"* menjadi **"Penyediaan Asupan Gizi & Nutrisi Harian Santri Vokasi"**.
-  * Ganti *"Donasi belas kasihan"* menjadi **"Investasi Jariyah untuk Kemandirian Generasi Muda"**.
+### B. Prinsip Martabat Santri: Anti-Poverty Porn & Anti-Charity Cliché
+Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) **bukan panti sosial penampungan belas kasihan**, melainkan kawah candradimuka pencetak **kader peradaban, praktisi vokasi industri, dan teknopreneur muda mandiri**.
+
+* **DAFTAR KATA HARAM (MUTLAK DIBUANG DARI SELURUH TEKS):**
+  - **Kata Eksploitasi Kemiskinan:** *"yatim, dhuafa, miskin, fakir, anak miskin, beri makan anak miskin, butuh belas kasihan"*.
+  - **Klise Charity Religius Distortif:** *"Santri Penghafal Al-Qur'an", "Santri Penghafal Kitab", "Tahfidz", "Beri makan santri"*.
+* **IDENTITAS RESMI YANG DIGUNAKAN (VOKASI, TEKNOLOGI & KEMANDIRIAN):**
+  - **Profil Pelajar:** **"Santri Vokasi"**, **"Teknopreneur Muda"**, **"Santri Berdaya"**, **"Kader Vokasi Industri"**, **"Generasi Mandiri Berakhlak FAST"**.
+  - **Program Pendidikan:** **"Beasiswa Pendidikan Vokasi Terpadu"**, **"Teaching Factory 4 Pilar Industri"**.
+  - **Program Pangan/Konsumsi:** **"Ketahanan Pangan Pesantren & Logistik Dapur Santri Vokasi"**, **"Dukungan Konsumsi Sehat Pembelajaran Vokasi"**.
+  - **Akad Partisipasi:** **"Investasi Jariyah untuk Kemandirian Generasi Muda"**, **"Kemitraan Fasilitas Pendidikan Vokasi"**.
 
 ### C. Arah Visual & Tipografi
 * **Tone & Persona:** Hangat, berwibawa, terhormat, transparan, menyentuh hati, dan berakar pada tanah perjuangan di **Sukasirna, Jonggol, Bogor**.
@@ -102,12 +103,12 @@ Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) **bukan panti sosial penampung
 * **Kebutuhan Foto Riil:**
   * **Section Dapur Santri & Logistik Pangan**: Foto stok beras berkualitas dan kebersamaan santri menikmati hidangan bergizi (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.05 (2).jpeg` & `/media-lp/WhatsApp Image 2026-10-05 at 09.22.06.jpeg`).
 * **Komponen Utama: Quick Impact Giving Chips**
-  * Pilihan Cepat:
-    * `Rp 15.000` (1 Porsi makan sehat bernutrisi untuk santri vokasi)
-    * `Rp 45.000` (Paket nutrisi 1 hari penuh seorang santri vokasi)
-    * `Rp 150.000` (1 Karung beras dapur umum santri)
+  * Pilihan Dukungan Operasional:
+    * `Rp 15.000` (1 Paket Konsumsi Harian Santri Vokasi)
+    * `Rp 45.000` (Dukungan Konsumsi Sehat 1 Hari Penuh)
+    * `Rp 150.000` (1 Sak Beras Logistik Dapur Pesantren)
     * `Nominal Bebas`
-  * Aspek Visual: Menampilkan rasa syukur, doa keberkahan, dan energi thalabul ilmi.
+  * Aspek Visual: Kebersamaan santri saat jam makan dan aktivitas kemandirian dapur.
 
 ---
 
@@ -177,7 +178,7 @@ Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) **bukan panti sosial penampung
      - Dilarang kartu filler atau deretan ikon AI yang tidak menyampaikan informasi esensial.
      - Dilarang fake metric counter (angka statistik yang diada-adakan tanpa sumber data).
    - Setiap elemen di layar harus memiliki alasan fungsional yang jelas bagi donatur (*Purposive UI*).
-4. **Anti-Poverty Porn & Anti-Charity Cliché Rule:** Dilarang menggunakan diksi meminta belas kasihan (*"yatim/miskin/dhuafa"*) dan dilarang keras memakai klise charity (*"Santri Penghafal Al-Qur'an"*). Wajib menggunakan identitas riil SMK Skill Village: *"Santri Vokasi"*, *"Teknopreneur Muda"*, *"Santri Berdaya"*, *"Kader Vokasi Industri"*.
+4. **Anti-Poverty Porn & Anti-Charity Cliché Rule:** Dilarang keras menggunakan diksi meminta belas kasihan (*"yatim/miskin/dhuafa"*), narasi pangan eksploitatif (*"beri makan anak miskin"*, *"penghafal kitab"*), dan klise charity generik (*"Santri Penghafal Al-Qur'an"*). Wajib menggunakan identitas riil SMK Skill Village: *"Santri Vokasi"*, *"Teknopreneur Muda"*, *"Santri Berdaya"*, *"Kader Vokasi Industri"*, serta terminologi operasional *"Ketahanan Pangan & Konsumsi Sehat Santri Vokasi"*.
 5. **Anti-Monospace Rule (R-06):** Dilarang keras menggunakan font monospace pada angka nominal, label, atau teks salinan umum.
 6. **Contrast Standard (WCAG AAA):** Semua teks judul harus menggunakan `#0f172a` (16.1:1), body text `#334155` (9.5:1), dan teks sekunder minimal `#475569` (7.0:1) di atas latar belakang putih.
 7. **Git Push Restriction:** Hanya diperbolehkan melakukan *git commit* lokal; *git push* dilarang keras tanpa perintah eksplisit dari pengguna.
