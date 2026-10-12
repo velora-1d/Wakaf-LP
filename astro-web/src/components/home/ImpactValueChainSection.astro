@@ -1,166 +1,240 @@
 ---
 // src/components/home/ImpactValueChainSection.astro
-// Section 10: Impact Value Chain — Human-Crafted Editorial Layout (Anti-Slop, No Nested Cards)
-const chainSteps = [
-  { 
-    step: '01', 
-    title: 'Donasi & Amanah', 
-    desc: 'Penghimpunan dana halal dari donatur perorangan dan korporasi.',
-    tag: 'Input'
-  },
-  { 
-    step: '02', 
-    title: 'Fasilitas & Sarana', 
-    desc: 'Pembangunan masjid, asrama, dan sarana belajar vokasi.',
-    tag: 'Infrastruktur'
-  },
-  { 
-    step: '03', 
-    title: 'Pembelajaran Adab', 
-    desc: 'Kurikulum integratif ilmu syariah, akhlak, dan sains teknologi.',
-    tag: 'Pendidikan'
-  },
-  { 
-    step: '04', 
-    title: 'Praktik Vokasi', 
-    desc: 'Magang teaching factory pada 4 pilar kompetensi industri.',
-    tag: 'Keahlian'
-  },
-  { 
-    step: '05', 
-    title: 'Kemandirian Usaha', 
-    desc: 'Unit agro-technopark dan usaha wakaf produktif bergulir.',
-    tag: 'Kemandirian'
-  },
-  { 
-    step: '06', 
-    title: 'Dampak Peradaban', 
-    desc: 'Generasi berdaya, ekonomi lokal tumbuh, dan jariyah abadi.',
-    tag: 'Keberlanjutan'
-  }
-];
-
-const beneficiaries = [
-  {
-    num: '01',
-    role: 'Santri & Kader Umat',
-    target: 'Generasi Berkarakter',
-    text: 'Memperoleh bekal syariah mendalam, pendidikan adab, sertifikasi keahlian vokasi nasional, dan pengalaman kerja riil tanpa beban biaya.'
-  },
-  {
-    num: '02',
-    role: 'Pesantren',
-    target: 'Kemandirian Lembaga',
-    text: 'Memiliki ekosistem sarana modern dan unit usaha produktif mandiri yang menopang operasional dakwah tanpa ketergantungan donasi rutin.'
-  },
-  {
-    num: '03',
-    role: 'Masyarakat Sekitar',
-    target: 'Pemberdayaan Ekonomi',
-    text: 'Menikmati fasilitas ibadah yang asri, terbukanya lapangan kerja agribisnis, serta transfer ilmu dan teknologi pertanian modern.'
-  },
-  {
-    num: '04',
-    role: 'Mitra & Donatur',
-    target: 'Akuntabilitas Berdampak',
-    text: 'Penyaluran CSR dan dana kebajikan dengan laporan transparan, akuntabel, dan berdampak sosial-ekonomi terukur secara jangka panjang.'
-  }
-];
-
-const fastValues = [
-  { letter: 'F', name: 'Fathanah', desc: 'Cerdas, kritis, dan solutif' },
-  { letter: 'A', name: 'Amanah', desc: 'Dapat dipercaya dan bertanggung jawab' },
-  { letter: 'S', name: 'Siddiq', desc: 'Jujur, lurus, dan berintegritas' },
-  { letter: 'T', name: 'Tabligh', desc: 'Komunikatif dan aktif berdakwah' }
-];
+// Halaman Dampak & Keberlanjutan — Editorial Magazine Storytelling (Anti-Slop, Zero Generic Boxes)
+// Menampilkan 3 Bab Cerita Nyata Ekosistem Sukasirna Jonggol berbasis aset autentik /gambar-bahan/
 ---
 
 <section class="impact-section" id="dampak">
   <div class="impact-container">
-    <!-- Section Header (Clean Typographic, No Artificial Badges) -->
-    <div class="impact-header reveal-on-scroll">
-      <span class="impact-eyebrow">Rantai Transformasi Nilai YPCI</span>
-      <h2 class="impact-title">Ketika Kebaikan Bertumbuh, Dampaknya Ikut Meluas</h2>
+    <!-- Header Editorial (Dignified & Journalistic) -->
+    <header class="impact-header reveal-on-scroll">
+      <span class="impact-eyebrow">Laporan Transformasi Ekosistem • Sukasirna, Jonggol</span>
+      <h2 class="impact-title">Dari Kebaikan Menjadi Kemandirian Nyata</h2>
       <p class="impact-lead">
-        Filantropi sejati bukan hanya mencatat berapa rupiah yang dihimpun, melainkan bagaimana setiap rupiah amanah bertransformasi menjadi kemandirian bagi manusia dan peradaban.
+        Filantropi sejati tidak mengukur keberhasilan dari berapa banyak bantuan yang dibagikan, melainkan berapa banyak manusia dan sistem yang berhasil dimerdekakan untuk berdiri di atas kaki sendiri.
       </p>
-    </div>
 
-    <!-- 1. Continuous Editorial Timeline Rail (Stripe/Linear Inspired, Zero Card Boxes) -->
-    <div class="editorial-timeline reveal-on-scroll">
-      <div class="timeline-header">
-        <span class="timeline-eyebrow">Alur Rantai Nilai Berkelanjutan</span>
-        <span class="timeline-meta">6 Tahap Realisasi Terintegrasi</span>
-      </div>
-
-      <div class="timeline-rail-wrap">
-        <div class="timeline-track-line" aria-hidden="true"></div>
-        <ol class="timeline-steps" role="list">
-          {chainSteps.map((s) => (
-            <li class="timeline-step">
-              <div class="step-milestone">
-                <span class="step-node-dot" aria-hidden="true"></span>
-                <span class="step-num">{s.step}</span>
-              </div>
-              <span class="step-tag">{s.tag}</span>
-              <h3 class="step-title">{s.title}</h3>
-              <p class="step-desc">{s.desc}</p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </div>
-
-    <!-- 2. Beneficiaries: Open Editorial Column Storytelling (Gates Foundation / McKinsey Style, Zero Card Boxes) -->
-    <div class="beneficiaries-section reveal-on-scroll">
-      <div class="beneficiaries-header">
-        <span class="beneficiaries-eyebrow">Penerima Manfaat Ekosistem</span>
-        <h3 class="beneficiaries-heading">Dampak Nyata yang Dirasakan Langsung di Lapangan</h3>
-      </div>
-
-      <div class="beneficiaries-grid">
-        {beneficiaries.map((b) => (
-          <article class="beneficiary-col">
-            <div class="beneficiary-top">
-              <span class="beneficiary-num" aria-hidden="true">{b.num}</span>
-              <span class="beneficiary-target">{b.target}</span>
-            </div>
-            <h4 class="beneficiary-role">{b.role}</h4>
-            <p class="beneficiary-story">{b.text}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-
-    <!-- 3. FAST Character Stand: Open Typographic Credo Bar (Zero Outer Container Boxes) -->
-    <div class="fast-credo-section reveal-on-scroll">
-      <div class="fast-credo-content">
-        <div class="fast-credo-lead">
-          <span class="fast-eyebrow">Standar Karakter Santri</span>
-          <h4 class="fast-title">Karakter Berbasis FAST</h4>
-          <p class="fast-summary">Nilai profetik yang menjadi kompas kepemimpinan dan etos kerja seluruh santri lulusan.</p>
+      <!-- Key Dimension Strip (Bukan Kotak, Melainkan Stat Strip Editorial Terbuka) -->
+      <div class="impact-stats-strip">
+        <div class="stat-item">
+          <span class="stat-value">±3 Ha</span>
+          <span class="stat-label">Kawasan Terpadu Sukasirna Jonggol</span>
         </div>
-        <div class="fast-grid">
-          {fastValues.map((v) => (
-            <div class="fast-node">
-              <span class="fast-letter" aria-hidden="true">{v.letter}</span>
-              <div class="fast-detail">
-                <strong class="fast-name">{v.name}</strong>
-                <span class="fast-desc">{v.desc}</span>
-              </div>
-            </div>
-          ))}
+        <div class="stat-sep" aria-hidden="true">/</div>
+        <div class="stat-item">
+          <span class="stat-value">4 Pilar</span>
+          <span class="stat-label">Kompetensi Vokasi Industri</span>
+        </div>
+        <div class="stat-sep" aria-hidden="true">/</div>
+        <div class="stat-item">
+          <span class="stat-value">100%</span>
+          <span class="stat-label">Target Mandiri Pangan & Energi</span>
         </div>
       </div>
-    </div>
+    </header>
+
+    <!-- CHAPTER 1: Ruang yang Menghidupkan (Masjid & Fasilitas Dakwah) -->
+    <article class="chapter-story reveal-on-scroll">
+      <div class="chapter-content">
+        <span class="chapter-tag">BAB 01 / FASILITAS & SARANA DAKWAH</span>
+        <h3 class="chapter-heading">Masjid Sebagai Poros Peradaban dan Ruang Bersama Warga</h3>
+        <p class="chapter-lead">
+          Pembangunan fisik di Sukasirna bukan sekadar mendirikan struktur beton. Masjid Khairu Ummah Sugro berdiri sebagai episentrum pembinaan adab santri, ruang musyawarah umat, dan oase kebaikan yang selalu terbuka bagi masyarakat sekitar Jonggol.
+        </p>
+        <ul class="chapter-highlights" role="list">
+          <li class="highlight-point">
+            <span class="point-bullet" aria-hidden="true">●</span>
+            <div>
+              <strong>Pusat Pembinaan Karakter:</strong>
+              Ruang ibadah harian santri vokasi dan majelis ilmu yang mengakar pada nilai syariah.
+            </div>
+          </li>
+          <li class="highlight-point">
+            <span class="point-bullet" aria-hidden="true">●</span>
+            <div>
+              <strong>Fasilitas Terbuka untuk Umum:</strong>
+              Sarana wudhu dan sanitasi higienis yang ramah lingkungan, siap menyambut musafir dan warga desa.
+            </div>
+          </li>
+          <li class="highlight-point">
+            <span class="point-bullet" aria-hidden="true">●</span>
+            <div>
+              <strong>Lanskap Ramah Lingkungan:</strong>
+              Dikelilingi kawasan hijau alami yang menyejukkan kawasan pembelajaran santri.
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="chapter-media">
+        <div class="media-frame">
+          <img 
+            src="/gambar-bahan/pelataran mesjid.jpeg" 
+            alt="Pelataran Masjid Khairu Ummah Sugro di kawasan Sukasirna Jonggol"
+            loading="lazy"
+            decoding="async"
+            class="media-img"
+          />
+          <div class="media-caption">
+            <span class="caption-title">Masjid Khairu Ummah Sugro</span>
+            <span class="caption-sub">Pusat peradaban dan ibadah di kawasan Jonggol</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CHAPTER 2: Keahlian yang Memerdekakan (SMK Skill Village & Vokasi Industri) -->
+    <article class="chapter-story reverse reveal-on-scroll">
+      <div class="chapter-content">
+        <span class="chapter-tag">BAB 02 / PENDIDIKAN VOKASI & KARAKTER</span>
+        <h3 class="chapter-heading">Mencetak Generasi Berkeahlian Industri, Mandiri Sejak di Pesantren</h3>
+        <p class="chapter-lead">
+          Pendidikan sejati melahirkan kemandirian, bukan ketergantungan. Melalui SMK Skill Village Islamic School, santri dibina dengan 4 pilar kompetensi industri terapan (teaching factory, rekayasa teknologi, dan agribisnis) berlandaskan karakter FAST (Fathanah, Amanah, Siddiq, Tabligh).
+        </p>
+        <ul class="chapter-highlights" role="list">
+          <li class="highlight-point">
+            <span class="point-bullet" aria-hidden="true">●</span>
+            <div>
+              <strong>Teaching Factory Terapan:</strong>
+              Praktik kerja riil dengan kurikulum yang terhubung langsung dengan kebutuhan dunia industri.
+            </div>
+          </li>
+          <li class="highlight-point">
+            <span class="point-bullet" aria-hidden="true">●</span>
+            <div>
+              <strong>Karakter FAST Teruji:</strong>
+              Menempa integritas, kecerdasan solutif, kejujuran, dan komunikasi kepemimpinan.
+            </div>
+          </li>
+          <li class="highlight-point">
+            <span class="point-bullet" aria-hidden="true">●</span>
+            <div>
+              <strong>Prestasi Tingkat Nasional:</strong>
+              Santri secara konsisten membuktikan keunggulan kompetensi di ajang kejuaraan keterampilan.
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="chapter-media dual-media">
+        <div class="media-frame primary-frame">
+          <img 
+            src="/gambar-bahan/belajar kelas.jpeg" 
+            alt="Suasana pembelajaran aktif santri vokasi di ruang kelas SMK Skill Village"
+            loading="lazy"
+            decoding="async"
+            class="media-img"
+          />
+          <div class="media-caption">
+            <span class="caption-title">Ruang Belajar Vokasi</span>
+            <span class="caption-sub">Pembelajaran terintegrasi sains dan adab</span>
+          </div>
+        </div>
+        <div class="media-frame secondary-frame">
+          <img 
+            src="/gambar-bahan/juara lomba.jpeg" 
+            alt="Santri vokasi meraih prestasi kejuaraan keterampilan"
+            loading="lazy"
+            decoding="async"
+            class="media-img"
+          />
+          <div class="media-caption">
+            <span class="caption-title">Prestasi Nyata</span>
+            <span class="caption-sub">Bukti keunggulan kompetensi santri</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CHAPTER 3: Ekosistem yang Menghidupi Dirinya Sendiri (Agro-Technopark & Kemandirian) -->
+    <article class="chapter-story reveal-on-scroll">
+      <div class="chapter-content">
+        <span class="chapter-tag">BAB 03 / WAKAF PRODUKTIF & KEMANDIRIAN PANGAN</span>
+        <h3 class="chapter-heading">Dari Tanah Jonggol, Tumbuh Pangan Sehat dan Kemandirian Ekonomi</h3>
+        <p class="chapter-lead">
+          Inilah wujud wakaf produktif berkelanjutan: unit agro-technopark terpadu dengan pertanian presisi (greenhouse hidroponik) serta pemanfaatan energi surya ramah lingkungan. Hasil panennya menopang kebutuhan logistik dapur santri sekaligus mengalirkan perputaran ekonomi mandiri bagi warga sekitar.
+        </p>
+        <ul class="chapter-highlights" role="list">
+          <li class="highlight-point">
+            <span class="point-bullet" aria-hidden="true">●</span>
+            <div>
+              <strong>Ketahanan Pangan Pesantren:</strong>
+              Pasokan sayuran segar dan nutrisi berkualitas tinggi dari kebun greenhouse sendiri.
+            </div>
+          </li>
+          <li class="highlight-point">
+            <span class="point-bullet" aria-hidden="true">●</span>
+            <div>
+              <strong>Energi Terbarukan:</strong>
+              Pemanfaatan panel surya untuk menopang kebutuhan listrik dan sistem irigasi otomatis.
+            </div>
+          </li>
+          <li class="highlight-point">
+            <span class="point-bullet" aria-hidden="true">●</span>
+            <div>
+              <strong>Transfer Teknologi ke Warga:</strong>
+              Petani lokal sekitar Jonggol turut belajar metode agribisnis presisi yang bernilai ekonomi tinggi.
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="chapter-media dual-media">
+        <div class="media-frame primary-frame">
+          <img 
+            src="/gambar-bahan/gh greenhouse.jpeg" 
+            alt="Unit Greenhouse Agro-Technopark di kawasan Jonggol"
+            loading="lazy"
+            decoding="async"
+            class="media-img"
+          />
+          <div class="media-caption">
+            <span class="caption-title">Greenhouse Agro-Technopark</span>
+            <span class="caption-sub">Pertanian presisi modern pesantren</span>
+          </div>
+        </div>
+        <div class="media-frame secondary-frame">
+          <img 
+            src="/gambar-bahan/lahan donasi.jpg" 
+            alt="Hamparan lahan pengembangan kawasan wakaf produktif Sukasirna Jonggol"
+            loading="lazy"
+            decoding="async"
+            class="media-img"
+          />
+          <div class="media-caption">
+            <span class="caption-title">Kawasan 3 Hektare</span>
+            <span class="caption-sub">Lahan abadi untuk kemaslahatan umat</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Closing Commitment Statement (Dignified Non-Profit Oath) -->
+    <footer class="impact-statement-footer reveal-on-scroll">
+      <div class="statement-inner">
+        <span class="statement-kicker">KOMITMEN AMANAH & AKUNTABILITAS</span>
+        <blockquote class="statement-quote">
+          “Setiap rupiah amanah yang dititipkan adalah benih peradaban yang kami pertanggungjawabkan dunia dan akhirat melalui keterbukaan laporan dan bukti nyata yang bisa Anda saksikan langsung di Sukasirna, Jonggol.”
+        </blockquote>
+        <div class="statement-actions">
+          <a href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20GVF%2C%20saya%20ingin%20konsultasi%20program%20wakaf." target="_blank" rel="noopener noreferrer" class="btn-primary">
+            Konsultasi Wakaf via WhatsApp
+          </a>
+          <a href="/portofolio" class="btn-secondary">
+            Lihat Dokumentasi Kawasan
+          </a>
+        </div>
+      </div>
+    </footer>
   </div>
 </section>
 
 <style>
   .impact-section {
     position: relative;
-    padding: var(--section-padding-y-lg) 0;
+    padding: var(--space-12) 0 var(--space-14) 0;
     background-color: #ffffff;
+    color: var(--color-text-body);
   }
 
   .impact-container {
@@ -169,10 +243,10 @@ const fastValues = [
     padding: 0 var(--space-6);
   }
 
-  /* Header */
+  /* Header Editorial */
   .impact-header {
-    max-width: 820px;
-    margin-bottom: var(--space-9);
+    max-width: 920px;
+    margin-bottom: var(--space-12);
   }
 
   .impact-eyebrow {
@@ -186,11 +260,11 @@ const fastValues = [
   }
 
   .impact-title {
-    font-size: var(--text-heading-lg);
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
     font-weight: 800;
-    line-height: var(--leading-tight);
+    line-height: 1.1;
     color: var(--color-text-heading);
-    letter-spacing: var(--tracking-tighter);
+    letter-spacing: var(--tracking-tight);
     margin: 0 0 var(--space-4) 0;
     font-family: var(--font-display);
   }
@@ -199,364 +273,358 @@ const fastValues = [
     font-size: var(--text-body-lg);
     line-height: var(--leading-loose);
     color: var(--color-text-muted);
-    margin: 0;
+    margin: 0 0 var(--space-7) 0;
+    max-width: 820px;
   }
 
-  /* 1. Continuous Editorial Timeline Rail */
-  .editorial-timeline {
-    margin-bottom: var(--space-10);
-  }
-
-  .timeline-header {
+  /* Stats Strip */
+  .impact-stats-strip {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: var(--space-6);
-  }
-
-  .timeline-eyebrow {
-    font-size: var(--text-label);
-    font-weight: 700;
-    letter-spacing: var(--tracking-wider);
-    text-transform: uppercase;
-    color: var(--color-text-heading);
-  }
-
-  .timeline-meta {
-    font-size: var(--text-micro);
-    font-weight: 700;
-    color: var(--blue-600);
-    background-color: var(--blue-50);
-    padding: 4px 12px;
-    border-radius: var(--radius-full);
-  }
-
-  .timeline-rail-wrap {
-    position: relative;
-    padding-top: var(--space-2);
-  }
-
-  .timeline-track-line {
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    right: 20px;
-    height: 2px;
-    background-color: var(--color-border);
-    z-index: 1;
-  }
-
-  .timeline-steps {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: var(--space-5);
-    position: relative;
-    z-index: 2;
-  }
-
-  .timeline-step {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-  }
-
-  .step-milestone {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-3);
-  }
-
-  .step-node-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background-color: #ffffff;
-    border: 3px solid var(--blue-600);
-    box-shadow: 0 0 0 4px #ffffff;
-    flex-shrink: 0;
-  }
-
-  .step-num {
-    font-family: var(--font-display);
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: var(--blue-700);
-    letter-spacing: 0.04em;
-  }
-
-  .step-tag {
-    font-size: var(--text-micro);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wider);
-    color: var(--color-text-faint);
-    margin-bottom: var(--space-2);
-  }
-
-  .step-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--color-text-heading);
-    line-height: var(--leading-snug);
-    margin: 0 0 var(--space-2) 0;
-    font-family: var(--font-display);
-  }
-
-  .step-desc {
-    font-size: 0.8125rem;
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-muted);
-    margin: 0;
-  }
-
-  /* 2. Open Editorial Beneficiaries Columns */
-  .beneficiaries-section {
-    margin-bottom: var(--space-10);
-  }
-
-  .beneficiaries-header {
-    margin-bottom: var(--space-6);
-  }
-
-  .beneficiaries-eyebrow {
-    display: block;
-    font-size: var(--text-micro);
-    font-weight: 700;
-    letter-spacing: var(--tracking-wider);
-    text-transform: uppercase;
-    color: var(--blue-600);
-    margin-bottom: var(--space-2);
-  }
-
-  .beneficiaries-heading {
-    font-size: var(--text-heading-md);
-    font-weight: 800;
-    color: var(--color-text-heading);
-    letter-spacing: var(--tracking-tight);
-    margin: 0;
-    font-family: var(--font-display);
-  }
-
-  .beneficiaries-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-7);
-    padding-top: var(--space-7);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .beneficiary-col {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-  }
-
-  .beneficiary-top {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-2);
-    margin-bottom: var(--space-3);
-  }
-
-  .beneficiary-num {
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--blue-600);
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-
-  .beneficiary-target {
-    font-size: var(--text-micro);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wider);
-    color: var(--color-text-faint);
-  }
-
-  .beneficiary-role {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--color-text-heading);
-    letter-spacing: var(--tracking-tight);
-    margin: 0 0 var(--space-3) 0;
-    font-family: var(--font-display);
-  }
-
-  .beneficiary-story {
-    font-size: 0.875rem;
-    line-height: var(--leading-loose);
-    color: var(--color-text-muted);
-    margin: 0;
-  }
-
-  /* 3. FAST Typographic Credo Section */
-  .fast-credo-section {
-    padding-top: var(--space-8);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .fast-credo-content {
-    display: grid;
-    grid-template-columns: 320px 1fr;
     gap: var(--space-8);
-    align-items: flex-start;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
   }
 
-  .fast-credo-lead {
+  .stat-item {
     display: flex;
     flex-direction: column;
+    gap: var(--space-1);
   }
 
-  .fast-eyebrow {
-    font-size: var(--text-micro);
-    font-weight: 700;
-    letter-spacing: var(--tracking-wider);
-    text-transform: uppercase;
-    color: var(--blue-600);
-    margin-bottom: var(--space-2);
-  }
-
-  .fast-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--color-text-heading);
-    letter-spacing: var(--tracking-tight);
-    margin: 0 0 var(--space-2) 0;
-    font-family: var(--font-display);
-  }
-
-  .fast-summary {
-    font-size: 0.875rem;
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-muted);
-    margin: 0;
-  }
-
-  .fast-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-5);
-  }
-
-  .fast-node {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .fast-letter {
-    font-family: var(--font-display);
-    font-size: 1.75rem;
+  .stat-value {
+    font-size: 1.85rem;
     font-weight: 800;
     color: var(--blue-600);
     line-height: 1;
     letter-spacing: -0.02em;
+    font-family: var(--font-display);
   }
 
-  .fast-detail {
+  .stat-label {
+    font-size: var(--text-micro);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-faint);
+  }
+
+  .stat-sep {
+    font-size: 1.5rem;
+    color: var(--color-border);
+    font-weight: 300;
+  }
+
+  /* Chapter Stories (Asymmetric Magazine Spread) */
+  .chapter-story {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+    padding: var(--space-10) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .chapter-story.reverse {
+    grid-template-columns: 1fr 1.1fr;
+  }
+
+  .chapter-story.reverse .chapter-content {
+    order: 2;
+  }
+
+  .chapter-story.reverse .chapter-media {
+    order: 1;
+  }
+
+  .chapter-content {
     display: flex;
     flex-direction: column;
-    gap: 4px;
   }
 
-  .fast-name {
-    font-size: 0.9375rem;
+  .chapter-tag {
+    font-size: var(--text-micro);
+    font-weight: 800;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--blue-600);
+    margin-bottom: var(--space-3);
+  }
+
+  .chapter-heading {
+    font-size: clamp(1.75rem, 2.5vw, 2.35rem);
+    font-weight: 800;
+    color: var(--color-text-heading);
+    line-height: 1.2;
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--space-4) 0;
+    font-family: var(--font-display);
+  }
+
+  .chapter-lead {
+    font-size: 0.95rem;
+    line-height: var(--leading-loose);
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-6) 0;
+  }
+
+  .chapter-highlights {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .highlight-point {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: 0.875rem;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-heading);
+  }
+
+  .point-bullet {
+    color: var(--blue-600);
+    font-size: 0.65rem;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  .highlight-point strong {
     font-weight: 700;
     color: var(--color-text-heading);
-    line-height: var(--leading-snug);
+    margin-right: 4px;
   }
 
-  .fast-desc {
-    font-size: 0.8125rem;
-    line-height: var(--leading-normal);
-    color: var(--color-text-muted);
+  /* Chapter Media Frames */
+  .chapter-media {
+    position: relative;
+    width: 100%;
+  }
+
+  .media-frame {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background-color: var(--color-surface-100);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .media-frame:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+  }
+
+  .media-img {
+    width: 100%;
+    height: 100%;
+    min-height: 380px;
+    max-height: 480px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .media-frame:hover .media-img {
+    transform: scale(1.03);
+  }
+
+  .media-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-4) var(--space-5);
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0) 100%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .caption-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .caption-sub {
+    font-size: 0.75rem;
+    color: #cbd5e1;
+  }
+
+  /* Dual Media Spread */
+  .dual-media {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-4);
+    align-items: stretch;
+  }
+
+  .dual-media .primary-frame .media-img {
+    min-height: 400px;
+    max-height: 440px;
+  }
+
+  .dual-media .secondary-frame .media-img {
+    min-height: 400px;
+    max-height: 440px;
+  }
+
+  /* Closing Statement Footer */
+  .impact-statement-footer {
+    margin-top: var(--space-12);
+    padding: var(--space-10) var(--space-8);
+    background-color: var(--color-surface-50);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .statement-inner {
+    max-width: 840px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .statement-kicker {
+    font-size: var(--text-micro);
+    font-weight: 800;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--blue-600);
+    margin-bottom: var(--space-4);
+  }
+
+  .statement-quote {
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    line-height: 1.6;
+    color: var(--color-text-heading);
+    font-weight: 700;
+    font-family: var(--font-display);
+    margin: 0 0 var(--space-7) 0;
+    font-style: normal;
+  }
+
+  .statement-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 0 28px;
+    background-color: var(--blue-600);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+    transition: background-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--blue-700);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 0 26px;
+    background-color: #ffffff;
+    color: var(--color-text-heading);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    border: 1px solid var(--color-border);
+    transition: background-color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-surface-100);
+    border-color: var(--color-border-strong);
   }
 
   /* Responsive Reflow */
   @media (max-width: 1024px) {
-    .timeline-steps {
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-6) var(--space-4);
-    }
-
-    .timeline-track-line {
-      display: none;
-    }
-
-    .beneficiaries-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-6);
-    }
-
-    .fast-credo-content {
+    .chapter-story,
+    .chapter-story.reverse {
       grid-template-columns: 1fr;
       gap: var(--space-6);
     }
 
-    .fast-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-5);
+    .chapter-story.reverse .chapter-content {
+      order: 1;
+    }
+
+    .chapter-story.reverse .chapter-media {
+      order: 2;
+    }
+
+    .dual-media {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .media-img,
+    .dual-media .primary-frame .media-img,
+    .dual-media .secondary-frame .media-img {
+      min-height: 320px;
+      max-height: 380px;
     }
   }
 
   @media (max-width: 640px) {
     .impact-section {
-      padding: var(--section-padding-y-sm) 0;
+      padding: var(--space-8) 0 var(--space-10) 0;
     }
 
-    .impact-container {
-      padding: 0 var(--space-5);
-    }
-
-    .timeline-header {
+    .impact-stats-strip {
       flex-direction: column;
       align-items: flex-start;
-      gap: var(--space-2);
-    }
-
-    .timeline-steps {
-      grid-template-columns: 1fr;
-      gap: var(--space-5);
-      padding-left: var(--space-6);
-      border-left: 2px solid var(--color-border);
-      position: relative;
-    }
-
-    .timeline-step {
-      position: relative;
-    }
-
-    .step-milestone {
-      position: relative;
-    }
-
-    .step-node-dot {
-      position: absolute;
-      left: calc(-1 * var(--space-6) - 8px);
-      top: 2px;
-    }
-
-    .beneficiaries-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-6);
-    }
-
-    .fast-grid {
-      grid-template-columns: 1fr;
       gap: var(--space-4);
+    }
+
+    .stat-sep {
+      display: none;
+    }
+
+    .dual-media {
+      grid-template-columns: 1fr;
+    }
+
+    .media-img,
+    .dual-media .primary-frame .media-img,
+    .dual-media .secondary-frame .media-img {
+      min-height: 240px;
+      max-height: 300px;
+    }
+
+    .statement-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
     }
   }
 </style>
