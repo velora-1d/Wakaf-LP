@@ -162,10 +162,20 @@ Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) **bukan panti sosial penampung
 
 ---
 
-## 6. Standar Teknis & Batasan Kode (Non-Negotiable)
+## 6. Standar Teknis & Batasan Desain (Non-Negotiable)
 
 1. **Anti-Box Rule:** Dilarang membungkus setiap item dalam kotak putih ber-border tipis secara monoton. Gunakan *open columns*, *timeline rails*, *split storytelling*, dan *generous whitespace*.
-2. **Anti-Poverty Porn Rule:** Dilarang menggunakan diksi meminta belas kasihan (*"yatim/miskin/dhuafa"*). Wajib menggunakan diksi kehormatan & pemberdayaan (*"Santri Berdaya", "Penghafal Al-Qur'an", "Kader Peradaban"*).
-3. **Anti-Monospace Rule (R-06):** Dilarang keras menggunakan font monospace pada angka nominal, label, atau teks salinan umum.
-4. **Contrast Standard (WCAG AAA):** Semua teks judul harus menggunakan `#0f172a` (16.1:1), body text `#334155` (9.5:1), dan teks sekunder minimal `#475569` (7.0:1) di atas latar belakang putih.
-5. **Git Push Restriction:** Hanya diperbolehkan melakukan *git commit* lokal; *git push* dilarang keras tanpa perintah eksplisit dari pengguna.
+2. **Anti-Weird Lines Rule (Zero Garis-Garis Aneh — R-07, R-16):** 
+   - Dilarang keras menambahkan garis-garis dekoratif aneh yang tidak memiliki fungsi struktural: dilarang SVG grid/blueprint lines, crosshair (+) dekoratif, garis gradien semu, garis putus-putus acak, garis stripe warna di sisi kiri kotak, atau garis sirkuit penghubung palsu.
+   - Pemisah konten utama adalah **whitespace alami (jarak renggang yang lega)**, bukan garis border artifisial.
+3. **Anti-Unnecessary Components Rule (Zero Fluff & Bloat — C-3, R-05, R-31):**
+   - Dilarang membuat komponen tanpa fungsi nyata:
+     - Dilarang capsule badge/pill dekoratif di atas judul yang hanya mengulang teks judul.
+     - Dilarang status dot berkedip (titik hijau live/pulsing) yang tidak menandai status sistem nyata.
+     - Dilarang kartu filler atau deretan ikon AI yang tidak menyampaikan informasi esensial.
+     - Dilarang fake metric counter (angka statistik yang diada-adakan tanpa sumber data).
+   - Setiap elemen di layar harus memiliki alasan fungsional yang jelas bagi donatur (*Purposive UI*).
+4. **Anti-Poverty Porn Rule:** Dilarang menggunakan diksi meminta belas kasihan (*"yatim/miskin/dhuafa"*). Wajib menggunakan diksi kehormatan & pemberdayaan (*"Santri Berdaya", "Penghafal Al-Qur'an", "Kader Peradaban"*).
+5. **Anti-Monospace Rule (R-06):** Dilarang keras menggunakan font monospace pada angka nominal, label, atau teks salinan umum.
+6. **Contrast Standard (WCAG AAA):** Semua teks judul harus menggunakan `#0f172a` (16.1:1), body text `#334155` (9.5:1), dan teks sekunder minimal `#475569` (7.0:1) di atas latar belakang putih.
+7. **Git Push Restriction:** Hanya diperbolehkan melakukan *git commit* lokal; *git push* dilarang keras tanpa perintah eksplisit dari pengguna.
