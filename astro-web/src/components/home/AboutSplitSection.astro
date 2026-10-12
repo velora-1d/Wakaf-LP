@@ -12,26 +12,26 @@
 
   <div class="isavo-about-container">
     <!-- Left Column: Content & Checklist -->
-    <div class="isavo-about-left reveal-on-scroll">
+    <div class="isavo-about-left">
       <!-- Tagline & Giant Title with Colored Highlight Text ala ISAVO -->
-      <p class="about-english-tagline">Fostering Pesantren Ecosystems for Self-Reliance and Social Impact</p>
-      <h2 class="isavo-about-title">
+      <span class="section-kicker reveal-on-scroll">Tentang Global Village Fund</span>
+      <h2 class="isavo-about-title reveal-heading">
         Wadah Kolaborasi.<br />
         Penguatan Ekosistem<br />
         <span class="isavo-accent-blue">Menuju Kemandirian.</span>
       </h2>
 
       <!-- Description Paragraph -->
-      <p class="isavo-about-desc">
+      <p class="isavo-about-desc reveal-on-scroll" data-delay="0.1">
         Global Village Fund merupakan wadah kebaikan dan kolaborasi di bawah <strong>Yayasan Permata Cendekia Indonesia (YPCI)</strong>, yang berfokus pada penguatan ekosistem pesantren menuju kemandirian dan dampak sosial.
       </p>
 
       <!-- 6 Saling Mendukung Checklist -->
-      <div class="isavo-checklist-grid">
+      <div class="isavo-checklist-grid reveal-stagger">
         <div class="isavo-check-item">
           <span class="isavo-check-square" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none" class="isavo-square-icon">
-              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="#0284c7" stroke-width="2" />
+              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="var(--blue-500)" stroke-width="2" />
             </svg>
           </span>
           <span class="isavo-check-label">Pendidikan Formal & Diniyah</span>
@@ -40,7 +40,7 @@
         <div class="isavo-check-item">
           <span class="isavo-check-square" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none" class="isavo-square-icon">
-              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="#0284c7" stroke-width="2" />
+              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="var(--blue-500)" stroke-width="2" />
             </svg>
           </span>
           <span class="isavo-check-label">Pengembangan Kompetensi & Vokasi</span>
@@ -49,7 +49,7 @@
         <div class="isavo-check-item">
           <span class="isavo-check-square" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none" class="isavo-square-icon">
-              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="#0284c7" stroke-width="2" />
+              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="var(--blue-500)" stroke-width="2" />
             </svg>
           </span>
           <span class="isavo-check-label">Pembentukan Karakter Luhur (FAST)</span>
@@ -58,7 +58,7 @@
         <div class="isavo-check-item">
           <span class="isavo-check-square" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none" class="isavo-square-icon">
-              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="#0284c7" stroke-width="2" />
+              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="var(--blue-500)" stroke-width="2" />
             </svg>
           </span>
           <span class="isavo-check-label">Kelestarian Lingkungan Hidup</span>
@@ -67,7 +67,7 @@
         <div class="isavo-check-item">
           <span class="isavo-check-square" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none" class="isavo-square-icon">
-              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="#0284c7" stroke-width="2" />
+              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="var(--blue-500)" stroke-width="2" />
             </svg>
           </span>
           <span class="isavo-check-label">Kemandirian Agroteknologi</span>
@@ -76,7 +76,7 @@
         <div class="isavo-check-item">
           <span class="isavo-check-square" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none" class="isavo-square-icon">
-              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="#0284c7" stroke-width="2" />
+              <rect x="2.5" y="2.5" width="15" height="15" rx="3.5" stroke="var(--blue-500)" stroke-width="2" />
             </svg>
           </span>
           <span class="isavo-check-label">Kebermanfaatan Sosial Masyarakat</span>
@@ -84,7 +84,7 @@
       </div>
 
       <!-- Pill Button with Circle Arrow ala ISAVO -->
-      <div class="isavo-about-btn-wrap">
+      <div class="isavo-about-btn-wrap reveal-on-scroll" data-delay="0.2">
         <a href="#pendekatan" class="isavo-btn-outline-pill-dark">
           <span class="isavo-btn-text">Pelajari Pendekatan Ekosistem</span>
           <span class="isavo-btn-arrow-circle-blue">
@@ -98,12 +98,13 @@
     </div>
 
     <!-- Right Column: Framed Portrait Image with 28px Radius ala ISAVO -->
-    <div class="isavo-about-right reveal-on-scroll delay-200">
-      <div class="isavo-portrait-frame">
+    <div class="isavo-about-right reveal-scale" data-delay="0.15">
+      <div class="isavo-portrait-frame parallax-wrap">
         <img
           src="/gambar design/belakang masjid.jpg"
           alt="Pilot Project Pesantren Integratif Holistik Skill Village Islamic School Jonggol"
-          class="isavo-portrait-img"
+          class="isavo-portrait-img parallax-img"
+          data-speed="12"
           loading="lazy"
         />
         <!-- Location Tag Footer on Image -->

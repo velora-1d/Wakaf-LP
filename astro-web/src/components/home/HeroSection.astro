@@ -124,6 +124,24 @@ const heroSlides = [
         </div>
       ))}
     </div>
+
+    <!-- Slide Progress & Navigation Indicators -->
+    <div class="hero-indicators-bar" role="tablist" aria-label="Hero slide switcher">
+      {heroSlides.map((slide, i) => (
+        <button
+          type="button"
+          class={`hero-indicator-dot ${i === 0 ? 'is-active' : ''}`}
+          data-indicator-index={i}
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          aria-label={`Slide ${slide.index}: ${slide.label}`}
+        >
+          <span class="indicator-num">{slide.index}</span>
+          <span class="indicator-line"><span class="indicator-progress"></span></span>
+          <span class="indicator-lbl">{slide.label}</span>
+        </button>
+      ))}
+    </div>
   </div>
 </section>
 
@@ -409,6 +427,86 @@ const heroSlides = [
     height: 16px;
   }
 
+  /* Slide Indicators Bar (Interactive & Luxurious) */
+  .hero-indicators-bar {
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    max-width: 600px;
+  }
+
+  .hero-indicator-dot {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    padding: var(--space-2) 0;
+    cursor: pointer;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.45);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .hero-indicator-dot:hover {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .hero-indicator-dot.is-active {
+    color: #ffffff;
+  }
+
+  .indicator-line {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .indicator-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: var(--blue-500);
+    border-radius: var(--radius-full);
+  }
+
+  .hero-indicator-dot.is-active .indicator-progress {
+    width: 100%;
+    transition: width 4s linear;
+  }
+
+  .indicator-num {
+    font-size: var(--text-micro);
+    font-weight: 800;
+    font-family: var(--font-mono);
+  }
+
+  .indicator-lbl {
+    font-size: var(--text-micro);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media (max-width: 768px) {
+    .indicator-lbl {
+      display: none;
+    }
+    .hero-indicators-bar {
+      margin-top: 32px;
+      gap: var(--space-2);
+    }
+  }
+
   @media (max-width: 900px) {
     .isavo-hero-container {
       padding: 0 20px;
@@ -427,6 +525,7 @@ const heroSlides = [
 
     const bgItems = root.querySelectorAll<HTMLElement>('.hero-bg-item');
     const slidePanes = root.querySelectorAll<HTMLElement>('.hero-slide-pane');
+    const indicatorDots = root.querySelectorAll<HTMLElement>('.hero-indicator-dot');
 
     const totalSlides = slidePanes.length;
     let currentIndex = 0;
@@ -450,7 +549,21 @@ const heroSlides = [
       slidePanes.forEach((pane, idx) => {
         pane.classList.toggle('is-active', idx === currentIndex);
       });
+
+      // 3. Update indicator dots
+      indicatorDots.forEach((dot, idx) => {
+        dot.classList.toggle('is-active', idx === currentIndex);
+        dot.setAttribute('aria-selected', idx === currentIndex ? 'true' : 'false');
+      });
     }
+
+    // Indicator click handlers
+    indicatorDots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const targetIdx = parseInt(dot.dataset.indicatorIndex || '0', 10);
+        goToSlide(targetIdx);
+      });
+    });
 
     function nextSlide() {
       goToSlide(currentIndex + 1);

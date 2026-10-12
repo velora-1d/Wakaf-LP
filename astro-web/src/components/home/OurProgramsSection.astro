@@ -47,17 +47,20 @@ const programs = [
 
 <section class="our-programs-section" id="program-kebaikan">
   <div class="our-programs-container">
-    <div class="our-programs-header text-center reveal-on-scroll">
-      <h2 class="programs-title">Program Kebaikan</h2>
-      <p class="programs-desc">
+    <div class="our-programs-header text-center">
+      <span class="section-kicker reveal-on-scroll">Program Kebaikan</span>
+      <h2 class="programs-title reveal-heading">
+        Empat Pilar Ekosistem Kebaikan
+      </h2>
+      <p class="programs-desc reveal-on-scroll" data-delay="0.15">
         Setiap program dirancang untuk menjadi bagian dari ekosistem yang saling menguatkan—menghubungkan ibadah, pendidikan, ketahanan pangan, dan kemandirian nyata.
       </p>
     </div>
 
-    <div class="programs-grid">
+    <div class="programs-grid reveal-stagger">
       {programs.map((prog, idx) => (
-        <div class={`program-card reveal-on-scroll delay-${(idx + 1) * 100}`} id={`card-${prog.id}`}>
-          <div class="prog-img-wrap">
+        <a href={prog.link} class="program-card" id={`card-${prog.id}`}>
+          <div class="prog-img-wrap parallax-wrap">
             <img src={prog.image} alt={prog.title} class="prog-img" loading="lazy" />
             <div class="prog-img-overlay"></div>
             <span class="prog-cat-badge">{prog.category}</span>
@@ -70,15 +73,17 @@ const programs = [
             </div>
             <p class="prog-desc">{prog.desc}</p>
 
-            <a href={prog.link} class="prog-cta-btn">
-              <span>{prog.btnText}</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="cta-arrow">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
+            <div class="prog-cta-row">
+              <span class="prog-cta-text">{prog.btnText}</span>
+              <span class="prog-cta-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
@@ -87,82 +92,71 @@ const programs = [
 <style>
   .our-programs-section {
     position: relative;
-    padding: 100px 0 110px;
-    background-color: #f8fafc;
-    border: none;
+    padding: var(--section-padding-y) 0 var(--section-padding-y-lg);
+    background-color: var(--color-surface-50);
   }
 
   .our-programs-container {
     max-width: 1360px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 var(--space-6);
   }
 
   .our-programs-header {
     max-width: 780px;
-    margin: 0 auto 60px;
-  }
-
-  .programs-pill {
-    display: inline-flex;
+    margin: 0 auto var(--space-9);
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
-    background-color: rgba(2, 132, 199, 0.1);
-    border: 1px solid rgba(2, 132, 199, 0.25);
-    padding: 6px 14px;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: #0284c7;
-    margin-bottom: 20px;
-  }
-
-  .pill-dot {
-    width: 6px;
-    height: 6px;
-    background-color: #0284c7;
-    border-radius: 50%;
+    gap: var(--space-3);
   }
 
   .programs-title {
-    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-size: var(--text-heading-lg);
     font-weight: 800;
-    line-height: 1.15;
-    color: #0f172a;
-    letter-spacing: -0.025em;
-    margin-bottom: 20px;
+    line-height: var(--leading-tight);
+    color: var(--color-text-heading);
+    letter-spacing: var(--tracking-tighter);
+    font-family: var(--font-display);
   }
 
   .programs-desc {
-    font-size: 1.08rem;
-    line-height: 1.7;
-    color: #64748b;
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-loose);
+    color: var(--color-text-muted);
   }
 
   .programs-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: var(--space-6);
   }
 
+  /* ── Card ─────────────────────────────────────── */
   .program-card {
     background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition:
+      border-color  var(--duration-slow) var(--ease-out),
+      box-shadow    var(--duration-slow) var(--ease-out),
+      transform     var(--duration-slow) var(--ease-out);
+    will-change: transform;
   }
 
   .program-card:hover {
-    transform: translateY(-6px);
-    border-color: #cbd5e1;
-    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.09);
+    border-color: hsl(214 89% 52% / 0.35);
+    box-shadow: var(--shadow-xl), 0 0 0 1px hsl(214 89% 52% / 0.1);
+    transform: translateY(-5px);
   }
 
+  /* ── Image ────────────────────────────────────── */
   .prog-img-wrap {
     position: relative;
     width: 100%;
@@ -174,59 +168,68 @@ const programs = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform var(--duration-crawl) var(--ease-out);
+    transform-origin: center;
   }
 
   .program-card:hover .prog-img {
-    transform: scale(1.06);
+    transform: scale(1.05);
   }
 
   .prog-img-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.55) 100%);
+    background: linear-gradient(180deg, transparent 40%, hsl(222 47% 11% / 0.55) 100%);
   }
 
   .prog-cat-badge {
     position: absolute;
-    bottom: 16px;
-    left: 20px;
+    bottom: var(--space-4);
+    left: var(--space-5);
     z-index: 2;
     background: rgba(255, 255, 255, 0.95);
-    color: #0f172a;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    padding: 6px 14px;
-    border-radius: 9999px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: var(--color-text-heading);
+    font-size: var(--text-micro);
+    font-weight: 700;
+    letter-spacing: var(--tracking-wider);
+    padding: 5px 14px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    box-shadow: var(--shadow-md);
   }
 
+  /* ── Content ──────────────────────────────────── */
   .prog-content {
-    padding: 32px 30px;
+    padding: var(--space-7) var(--space-7);
     display: flex;
     flex-direction: column;
     flex: 1;
-    justify-content: space-between;
   }
 
   .prog-title-row {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
   }
 
   .prog-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: #f1f5f9;
-    color: #0284c7;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--blue-50);
+    color: var(--blue-500);
     flex-shrink: 0;
+    margin-top: 2px;
+    transition: background var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  }
+
+  .program-card:hover .prog-icon {
+    background: var(--blue-100);
+    color: var(--blue-700);
   }
 
   .prog-icon :global(svg) {
@@ -235,54 +238,72 @@ const programs = [
   }
 
   .prog-title {
-    font-size: 1.45rem;
-    font-weight: 800;
-    color: #0f172a;
-    letter-spacing: -0.015em;
+    font-size: var(--text-heading-sm);
+    font-weight: 700;
+    color: var(--color-text-heading);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    font-family: var(--font-display);
   }
 
   .prog-desc {
-    font-size: 0.98rem;
-    line-height: 1.65;
-    color: #64748b;
-    margin-bottom: 26px;
+    font-size: var(--text-small);
+    line-height: var(--leading-loose);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-6);
     flex: 1;
   }
 
-  .prog-cta-btn {
-    display: inline-flex;
+  /* CTA row — replaces old pill button */
+  .prog-cta-row {
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    color: #0f172a;
-    padding: 12px 22px;
-    border-radius: 9999px;
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 700;
-    transition: all 0.25s ease;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-body);
+    font-size: var(--text-small);
+    font-weight: 600;
+    transition: color var(--duration-fast) var(--ease-out);
   }
 
-  .cta-arrow {
-    width: 16px;
-    height: 16px;
-    transition: transform 0.25s ease;
+  .program-card:hover .prog-cta-row {
+    color: var(--blue-600);
   }
 
-  .program-card:hover .prog-cta-btn {
-    background: #0284c7;
-    border-color: #0284c7;
+  .prog-cta-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-surface-100);
+    transition:
+      background     var(--duration-fast) var(--ease-out),
+      transform      var(--duration-normal) var(--ease-spring);
+  }
+
+  .prog-cta-arrow svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .program-card:hover .prog-cta-arrow {
+    background: var(--blue-500);
     color: #ffffff;
-  }
-
-  .program-card:hover .cta-arrow {
     transform: translateX(4px);
   }
 
   @media (max-width: 900px) {
     .programs-grid {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .our-programs-container {
+      padding: 0 var(--space-5);
     }
   }
 </style>
