@@ -70,24 +70,22 @@ const approachModules: ApproachModule[] = [
     </div>
 
     <!-- 6-Block Modular Grid Container -->
-    <div class="matrix-card-wrapper reveal-scale" data-delay="0.15">
-      <div class="matrix-grid reveal-stagger">
-        {approachModules.map((item) => (
-          <div class:list={['matrix-cell', item.bgClass]}>
-            <!-- Badge Angka -->
-            <div class="badge-square">
-              <span>{item.num}</span>
-            </div>
-
-            <!-- Judul & Subjudul / Focus -->
-            <h3 class="cell-title">{item.name}</h3>
-            <span class="cell-focus">{item.focus}</span>
-
-            <!-- Deskripsi -->
-            <p class="cell-desc">{item.desc}</p>
+    <div class="matrix-grid reveal-stagger">
+      {approachModules.map((item) => (
+        <div class="matrix-cell">
+          <!-- Badge Angka -->
+          <div class="badge-square">
+            <span>{item.num}</span>
           </div>
-        ))}
-      </div>
+
+          <!-- Judul & Subjudul / Focus -->
+          <h3 class="cell-title">{item.name}</h3>
+          <span class="cell-focus">{item.focus}</span>
+
+          <!-- Deskripsi -->
+          <p class="cell-desc">{item.desc}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -134,41 +132,27 @@ const approachModules: ApproachModule[] = [
     margin: 0;
   }
 
-  /* Matrix Unified Container Card */
-  .matrix-card-wrapper {
-    background: #ffffff;
-    border-radius: var(--radius-2xl);
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-md);
-  }
-
   .matrix-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
   }
 
   /* Individual Cells */
   .matrix-cell {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
     padding: var(--space-7) var(--space-6) var(--space-8);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border-right: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    transition: background-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
-  }
-
-  .matrix-cell:nth-child(3n) {
-    border-right: none;
-  }
-
-  .matrix-cell:nth-last-child(-n+3) {
-    border-bottom: none;
+    transition: border-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
   }
 
   .matrix-cell:hover {
-    background-color: #ffffff;
+    border-color: var(--blue-300);
+    transform: translateY(-2px);
   }
 
   /* Subtle background shading */
@@ -228,16 +212,11 @@ const approachModules: ApproachModule[] = [
   @media (max-width: 960px) {
     .matrix-grid {
       grid-template-columns: 1fr;
+      gap: var(--space-5);
     }
 
     .matrix-cell {
       padding: var(--space-6) var(--space-5);
-      border-right: none;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .matrix-cell:last-child {
-      border-bottom: none;
     }
   }
 

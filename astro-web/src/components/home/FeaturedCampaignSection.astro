@@ -7,7 +7,7 @@ const percentage = 28;
 ---
 <section class="featured-campaign-section" id="campaign-masjid">
   <div class="featured-campaign-container">
-    <div class="campaign-card">
+    <div class="campaign-grid">
       <!-- Left Content: Campaign Info, Metrics, & CTAs -->
       <div class="campaign-content">
         <span class="section-kicker reveal-on-scroll">Campaign Prioritas</span>
@@ -98,18 +98,14 @@ const percentage = 28;
     padding: 0 var(--space-6);
   }
 
-  .campaign-card {
+  .campaign-grid {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
-    background: var(--navy-900);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-2xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-dark);
+    gap: var(--space-9);
+    align-items: center;
   }
 
   .campaign-content {
-    padding: var(--space-9) var(--space-8);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -278,6 +274,9 @@ const percentage = 28;
   .campaign-media {
     position: relative;
     overflow: hidden;
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: var(--shadow-dark);
   }
 
   .campaign-img {
@@ -322,11 +321,12 @@ const percentage = 28;
   }
 
   @media (max-width: 1024px) {
-    .campaign-card {
+    .campaign-grid {
       grid-template-columns: 1fr;
+      gap: var(--space-8);
     }
     .campaign-content {
-      padding: var(--space-7) var(--space-5);
+      padding: 0;
     }
     .campaign-media {
       max-height: 360px;

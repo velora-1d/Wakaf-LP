@@ -19,7 +19,7 @@ const auditPoints = [
 
 <section class="transparency-section" id="transparansi">
   <div class="transparency-container">
-    <div class="transparency-card">
+    <div class="transparency-grid">
       <div class="trans-content">
         <span class="section-kicker reveal-on-scroll">Tata Kelola & Transparansi</span>
         <h2 class="trans-title reveal-heading">Kepercayaan Dibangun dengan Keterbukaan.</h2>
@@ -100,16 +100,11 @@ const auditPoints = [
     padding: 0 var(--space-6);
   }
 
-  .transparency-card {
-    background: #ffffff;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-2xl);
-    padding: var(--space-9) var(--space-8);
+  .transparency-grid {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: var(--space-9);
     align-items: center;
-    box-shadow: var(--shadow-lg);
   }
 
   .trans-title {
@@ -264,10 +259,9 @@ const auditPoints = [
   }
 
   @media (max-width: 1024px) {
-    .transparency-card {
+    .transparency-grid {
       grid-template-columns: 1fr;
-      padding: var(--space-7) var(--space-5);
-      gap: var(--space-7);
+      gap: var(--space-8);
     }
   }
 
