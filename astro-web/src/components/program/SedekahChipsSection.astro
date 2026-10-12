@@ -1,0 +1,703 @@
+---
+// src/components/program/SedekahChipsSection.astro
+// Dukungan Ketahanan Pangan & Logistik Dapur Santri Vokasi (Anti-Slop, Tanpa Pricing Table)
+import type { ProgramData } from '../../data/programs';
+
+interface Props {
+  program: ProgramData;
+}
+
+const { program } = Astro.props;
+
+// Paket Partisipasi Konsumsi Sehat & Nutrisi Santri Vokasi
+const foodPackages = [
+  {
+    id: 'porsi-sehat',
+    name: '1 Porsi Nutrisi Sehat',
+    unitPrice: 15000,
+    unitLabel: 'porsi',
+    desc: 'Asupan makan bernutrisi seimbang (karbohidrat, lauk protein nabati & hewani, sayur segar) untuk 1 sesi makan santri vokasi.'
+  },
+  {
+    id: 'harian-santri',
+    name: '1 Hari Konsumsi Lengkap',
+    unitPrice: 45000,
+    unitLabel: 'hari / santri',
+    desc: 'Menjamin 3 kali makan sehat (sarapan, makan siang, makan malam) penunjang stamina belajar teori dan praktik bengkel/kebun.'
+  },
+  {
+    id: 'beras-10kg',
+    name: '1 Sak Beras Logistik (10 kg)',
+    unitPrice: 150000,
+    unitLabel: 'sak 10kg',
+    desc: 'Pengadaan beras putih pulen berkualitas untuk cadangan dapur asrama santri vokasi selama sepekan.'
+  },
+  {
+    id: 'beras-25kg',
+    name: '1 Karung Beras Premium (25 kg)',
+    unitPrice: 375000,
+    unitLabel: 'karung 25kg',
+    desc: 'Stok logistik beras utama untuk ketahanan pangan asrama puluhan santri vokasi di Sukasirna Jonggol.'
+  }
+];
+---
+
+<section class="sedekah-chips-section" id="dukungan-dapur-santri">
+  <div class="sedekah-container">
+    <!-- Header -->
+    <div class="sedekah-header text-center">
+      <span class="sedekah-eyebrow">KETAHANAN PANGAN PESANTREN • AMALAN RUTIN BERKAH</span>
+      <h2 class="sedekah-title">
+        Dukungan Konsumsi Sehat <span class="sedekah-accent">Santri Vokasi</span>
+      </h2>
+      <p class="sedekah-desc">
+        Santri di SMK Skill Village menempuh jadwal padat: pembinaan adab FAST, penguasaan syariah, hingga praktik teknologi industri dan agrobisnis. Sedekah pangan Anda memastikan asupan gizi mereka terpenuhi setiap hari.
+      </p>
+    </div>
+
+    <!-- Main Interactive Support Panel -->
+    <div class="sedekah-main-panel">
+      <!-- Left: Option Chips Grid -->
+      <div class="options-col">
+        <h3 class="col-title">Pilih Alokasi Dukungan Dapur & Logistik</h3>
+        <div class="chips-stack">
+          {foodPackages.map((pkg, idx) => (
+            <div
+              class={`food-option-card ${idx === 1 ? 'active' : ''}`}
+              data-pkg-id={pkg.id}
+              data-price={pkg.unitPrice}
+              data-name={pkg.name}
+              data-unit={pkg.unitLabel}
+            >
+              <div class="opt-header">
+                <span class="opt-name">{pkg.name}</span>
+                <span class="opt-price">Rp {pkg.unitPrice.toLocaleString('id-ID')}</span>
+              </div>
+              <p class="opt-desc">{pkg.desc}</p>
+              <div class="opt-footer">
+                <span class="opt-unit">Satuan: {pkg.unitLabel}</span>
+                <span class="opt-badge-action">Pilih Paket</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Calculator & Summary -->
+      <div class="summary-col">
+        <div class="summary-card">
+          <div class="summary-head">
+            <span class="summary-tag">SIMULASI DUKUNGAN</span>
+            <h4 class="summary-title" id="summaryPkgTitle">1 Hari Konsumsi Lengkap</h4>
+          </div>
+
+          <!-- Multiplier Stepper -->
+          <div class="multiplier-box">
+            <label class="multiplier-label">Jumlah Paket / Penerima Manfaat:</label>
+            <div class="multiplier-control">
+              <button type="button" class="btn-qty" id="btnQtyMinus" aria-label="Kurangi">-</button>
+              <input
+                type="number"
+                id="inputSedekahQty"
+                class="qty-number-input"
+                value="3"
+                min="1"
+                max="1000"
+              />
+              <button type="button" class="btn-qty" id="btnQtyPlus" aria-label="Tambah">+</button>
+            </div>
+            <div class="multiplier-presets">
+              <button type="button" class="preset-chip" data-q="1">1 Paket</button>
+              <button type="button" class="preset-chip" data-q="3">3 Paket</button>
+              <button type="button" class="preset-chip" data-q="5">5 Paket</button>
+              <button type="button" class="preset-chip" data-q="10">10 Paket</button>
+              <button type="button" class="preset-chip" data-q="20">20 Paket</button>
+            </div>
+          </div>
+
+          <!-- Total Display -->
+          <div class="total-box">
+            <span class="total-label-text">Total Donasi Konsumsi Sehat:</span>
+            <div class="total-nominal-num" id="displayTotalSedekah">Rp 135.000</div>
+            <p class="total-desc-impact" id="displayImpactText">
+              Menjamin <strong>3 hari konsumsi lengkap</strong> bagi santri vokasi yang sedang menempuh pembelajaran intensif.
+            </p>
+          </div>
+
+          <!-- Action & Bank -->
+          <div class="sedekah-actions">
+            <a
+              href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20GVF%2C%20saya%20ingin%20bersedekah%20konsumsi%20sehat%20santri%20sebesar%20Rp%20135.000."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-sedekah-wa"
+              id="btnSedekahWA"
+            >
+              <span>Salurkan Sedekah Konsumsi</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+
+            <!-- Quick Account Card -->
+            <div class="bank-sedekah-item">
+              <div class="bs-row">
+                <div class="bs-tag-wrap">
+                  <span class="bs-tag">BSI</span>
+                  <strong class="bs-acc">7238890023</strong>
+                </div>
+                <button
+                  type="button"
+                  class="btn-copy-bs"
+                  id="btnCopySedekah"
+                  data-clipboard="7238890023"
+                  title="Salin Rekening"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span id="labelCopySedekah">Salin</span>
+                </button>
+              </div>
+              <div class="bs-holder">a.n. <strong>Yayasan Global Village Fund - Sedekah</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Authentic Agro Photos Spread -->
+    <div class="agro-photos-row">
+      <div class="agro-card">
+        <img
+          src="/gambar-bahan/gh update 2.jpeg"
+          alt="Hasil Panen Segar Agro-Technopark Jonggol"
+          class="agro-img"
+          loading="lazy"
+        />
+        <div class="agro-info">
+          <strong>Kemandirian Sayur & Buah Segar:</strong> Sebagian kebutuhan konsumsi santri dipasok langsung dari unit greenhouse pertanian presisi di kampus Sukasirna.
+        </div>
+      </div>
+      <div class="agro-card">
+        <img
+          src="/gambar-bahan/pengajian rame.jpeg"
+          alt="Halaqah dan Pembinaan Karakter Santri Vokasi"
+          class="agro-img"
+          loading="lazy"
+        />
+        <div class="agro-info">
+          <strong>Pembinaan Karakter FAST:</strong> Santri sehat dan berenergi tinggi untuk mengikuti rangkaian pembinaan adab serta keahlian industri terapan.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sedekah-chips-section {
+    padding: 80px 0 100px;
+    background-color: #ffffff;
+    background-image: radial-gradient(ellipse at 50% 0%, rgba(2, 132, 199, 0.04) 0%, transparent 70%);
+  }
+
+  .sedekah-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .sedekah-header {
+    max-width: 780px;
+    margin: 0 auto 50px;
+  }
+
+  .sedekah-eyebrow {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    margin-bottom: 12px;
+  }
+
+  .sedekah-title {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #0f172a;
+    margin: 0 0 18px;
+    letter-spacing: -0.02em;
+  }
+
+  .sedekah-accent {
+    color: #0284c7;
+  }
+
+  .sedekah-desc {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: #475569;
+    margin: 0;
+  }
+
+  /* Grid */
+  .sedekah-main-panel {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 36px;
+    align-items: start;
+  }
+
+  @media (max-width: 991px) {
+    .sedekah-main-panel {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .col-title {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 20px;
+  }
+
+  .chips-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .food-option-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: none;
+  }
+
+  .food-option-card:hover,
+  .food-option-card.active {
+    border-color: #0969da;
+    background: #f0f7ff;
+    box-shadow: none;
+  }
+
+  .opt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .opt-name {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .opt-price {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: #0284c7;
+  }
+
+  .opt-desc {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0 0 12px;
+    line-height: 1.45;
+  }
+
+  .opt-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .opt-unit {
+    font-size: 0.75rem;
+    color: #475569;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .opt-badge-action {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+
+  .food-option-card.active .opt-badge-action {
+    background: #0284c7;
+    color: #ffffff;
+  }
+
+  /* Summary Card */
+  .summary-col {
+    position: sticky;
+    top: 100px;
+  }
+
+  .summary-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 32px 28px;
+    box-shadow: none;
+  }
+
+  .summary-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #0284c7;
+    letter-spacing: 0.06em;
+  }
+
+  .summary-title {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 4px 0 20px;
+  }
+
+  .multiplier-box {
+    margin-bottom: 24px;
+  }
+
+  .multiplier-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+  }
+
+  .multiplier-control {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-qty {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    border-radius: 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    cursor: pointer;
+  }
+
+  .btn-qty:hover {
+    background: #f0f9ff;
+    border-color: #0284c7;
+    color: #0284c7;
+  }
+
+  .qty-number-input {
+    flex: 1;
+    height: 44px;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    outline: none;
+    font-family: inherit;
+  }
+
+  .multiplier-presets {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .preset-chip {
+    padding: 4px 10px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+  }
+
+  .preset-chip:hover {
+    background: #f0f9ff;
+    border-color: #38bdf8;
+    color: #0284c7;
+  }
+
+  .total-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .total-label-text {
+    font-size: 0.8125rem;
+    color: #64748b;
+    font-weight: 600;
+  }
+
+  .total-nominal-num {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #0284c7;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 4px 0 8px;
+  }
+
+  .total-desc-impact {
+    font-size: 0.8125rem;
+    color: #475569;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .btn-sedekah-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #0969da;
+    color: #ffffff;
+    padding: 16px 28px;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: none;
+    transition: all 0.2s ease;
+    margin-bottom: 16px;
+  }
+
+  .btn-sedekah-wa:hover {
+    background: #0756b2;
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff;
+  }
+
+  .bank-sedekah-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .bs-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .bs-tag-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .bs-tag {
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    padding: 3px 6px;
+    border-radius: 4px;
+  }
+
+  .bs-acc {
+    font-size: 0.9375rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: 0.03em;
+  }
+
+  .btn-copy-bs {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: #334155;
+    cursor: pointer;
+  }
+
+  .bs-holder {
+    font-size: 0.6875rem;
+    color: #64748b;
+    margin-top: 4px;
+  }
+
+  /* Photos */
+  .agro-photos-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 60px;
+    padding-top: 50px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  @media (max-width: 768px) {
+    .agro-photos-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .agro-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .agro-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .agro-info {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #475569;
+  }
+
+  .agro-info strong {
+    color: #0f172a;
+  }
+</style>
+
+<script is:inline define:vars={{ foodPackages }}>
+  (function() {
+    let currentPkg = foodPackages[1]; // default 1 hari lengkap
+    let qty = 3;
+
+    const summaryPkgTitle = document.getElementById('summaryPkgTitle');
+    const inputSedekahQty = document.getElementById('inputSedekahQty');
+    const btnQtyMinus = document.getElementById('btnQtyMinus');
+    const btnQtyPlus = document.getElementById('btnQtyPlus');
+    const displayTotalSedekah = document.getElementById('displayTotalSedekah');
+    const displayImpactText = document.getElementById('displayImpactText');
+    const btnSedekahWA = document.getElementById('btnSedekahWA');
+
+    function formatRupiah(num) {
+      return new Intl.NumberFormat('id-ID').format(Math.max(0, Math.round(num)));
+    }
+
+    function updateSedekah() {
+      if (summaryPkgTitle) summaryPkgTitle.textContent = currentPkg.name;
+      if (inputSedekahQty) inputSedekahQty.value = qty;
+
+      const total = currentPkg.unitPrice * qty;
+      if (displayTotalSedekah) displayTotalSedekah.textContent = `Rp ${formatRupiah(total)}`;
+
+      if (displayImpactText) {
+        displayImpactText.innerHTML = `Menjamin <strong>${qty} ${currentPkg.unitLabel} (${currentPkg.name})</strong> bagi konsumsi sehat santri vokasi Sukasirna Jonggol.`;
+      }
+
+      if (btnSedekahWA) {
+        const msg = encodeURIComponent(`Assalamualaikum Admin GVF, saya ingin bersedekah ${qty} ${currentPkg.unitLabel} ${currentPkg.name} sebesar Rp ${formatRupiah(total)} untuk konsumsi santri vokasi Jonggol.`);
+        btnSedekahWA.href = `https://wa.me/6281226832326?text=${msg}`;
+      }
+
+      document.querySelectorAll('.food-option-card').forEach(card => {
+        if (card.getAttribute('data-pkg-id') === currentPkg.id) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    }
+
+    // Select package
+    document.querySelectorAll('.food-option-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const pkgId = this.getAttribute('data-pkg-id');
+        const found = foodPackages.find(p => p.id === pkgId);
+        if (found) {
+          currentPkg = found;
+          updateSedekah();
+        }
+      });
+    });
+
+    // Stepper
+    if (btnQtyMinus) {
+      btnQtyMinus.addEventListener('click', () => {
+        qty = Math.max(1, qty - 1);
+        updateSedekah();
+      });
+    }
+
+    if (btnQtyPlus) {
+      btnQtyPlus.addEventListener('click', () => {
+        qty = qty + 1;
+        updateSedekah();
+      });
+    }
+
+    if (inputSedekahQty) {
+      inputSedekahQty.addEventListener('input', function() {
+        const val = parseInt(this.value, 10) || 1;
+        qty = Math.max(1, val);
+        updateSedekah();
+      });
+    }
+
+    // Presets
+    document.querySelectorAll('.preset-chip').forEach(chip => {
+      chip.addEventListener('click', function() {
+        const q = parseInt(this.getAttribute('data-q'), 10) || 1;
+        qty = q;
+        updateSedekah();
+      });
+    });
+
+    // Copy Account
+    const btnCopySedekah = document.getElementById('btnCopySedekah');
+    const labelCopySedekah = document.getElementById('labelCopySedekah');
+    if (btnCopySedekah) {
+      btnCopySedekah.addEventListener('click', function() {
+        const textToCopy = this.getAttribute('data-clipboard') || '7238890023';
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          if (labelCopySedekah) labelCopySedekah.textContent = 'Tersalin!';
+          setTimeout(() => {
+            if (labelCopySedekah) labelCopySedekah.textContent = 'Salin';
+          }, 2500);
+        });
+      });
+    }
+
+    // Initial
+    updateSedekah();
+  })();
+</script>

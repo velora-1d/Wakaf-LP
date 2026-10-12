@@ -1,0 +1,1128 @@
+---
+// src/components/program/ZakatCalculatorSection.astro
+// Kalkulator Zakat Interaktif Riil (Nisab 85g Emas, Profesi & Maal, Ijab Qobul)
+// Sesuai Standar Fiqih DSN-MUI & Prinsip Anti-Slop (Tanpa Pricing Table SaaS)
+import type { ProgramData } from '../../data/programs';
+
+interface Props {
+  program: ProgramData;
+}
+
+const { program } = Astro.props;
+
+// Acuan Nisab Emas Terkini (85 gram emas)
+const GOLD_PRICE_PER_GRAM = 1450000; // Rp 1.450.000 / gram
+const NISAB_YEARLY = 85 * GOLD_PRICE_PER_GRAM; // Rp 123.250.000 / tahun
+const NISAB_MONTHLY = Math.round(NISAB_YEARLY / 12); // Rp 10.270.833 / bulan
+---
+
+<section class="zakat-calculator-section" id="kalkulator-zakat">
+  <div class="calc-container">
+    <!-- Header Section Split 2-Kolom (Gaya Baku ISAVO) -->
+    <div class="isavo-section-header">
+      <div class="header-left-col">
+        <span class="isavo-subheading">RUKUN ISLAM KETIGA</span>
+      </div>
+      <div class="header-right-col">
+        <h2 class="isavo-main-title">
+          Kalkulator Zakat <span class="title-accent">Maal & Profesi</span>
+        </h2>
+        <p class="isavo-main-desc">
+          Hitung kewajiban zakat 2,5% secara presisi berdasarkan nisab 85 gram emas, lafazkan akad Ijab Qobul, dan salurkan secara amanah untuk membiayai beasiswa santri vokasi di Sukasirna Jonggol.
+        </p>
+      </div>
+    </div>
+
+    <!-- Main Interactive Grid -->
+    <div class="calc-main-card">
+      <!-- Left Column: Form & Inputs -->
+      <div class="calc-inputs-col">
+        <!-- Segmented Tab Switcher -->
+        <div class="calc-tabs-nav" role="tablist" aria-label="Pilih Jenis Zakat">
+          <button
+            type="button"
+            class="tab-btn active"
+            id="tabBtnProfesi"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panelProfesi"
+          >
+            <span class="tab-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </span>
+            <span>Zakat Penghasilan (Bulanan)</span>
+          </button>
+          <button
+            type="button"
+            class="tab-btn"
+            id="tabBtnMaal"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panelMaal"
+          >
+            <span class="tab-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+                <path d="M12 6v12"></path>
+              </svg>
+            </span>
+            <span>Zakat Maal (Harta / Tabungan)</span>
+          </button>
+        </div>
+
+        <!-- Panel 1: Zakat Profesi / Penghasilan -->
+        <div class="calc-tab-panel active" id="panelProfesi" role="tabpanel" aria-labelledby="tabBtnProfesi">
+          <div class="input-group">
+            <label for="inputGaji" class="input-label">
+              <span>Penghasilan / Gaji Pokok Bulanan</span>
+              <span class="label-hint">Gaji kotor atau bersih per bulan</span>
+            </label>
+            <div class="input-currency-wrap">
+              <span class="currency-prefix">Rp</span>
+              <input
+                type="text"
+                id="inputGaji"
+                class="calc-input"
+                inputmode="numeric"
+                placeholder="10.000.000"
+                value="12.000.000"
+              />
+            </div>
+            <!-- Quick Chips -->
+            <div class="quick-chips">
+              <span class="chips-label">Preset:</span>
+              <button type="button" class="chip-btn" data-target="inputGaji" data-val="10000000">10 Jt</button>
+              <button type="button" class="chip-btn" data-target="inputGaji" data-val="15000000">15 Jt</button>
+              <button type="button" class="chip-btn" data-target="inputGaji" data-val="25000000">25 Jt</button>
+              <button type="button" class="chip-btn" data-target="inputGaji" data-val="50000000">50 Jt</button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="inputBonus" class="input-label">
+              <span>Pendapatan Lain / Tunjangan / Bonus (Opsional)</span>
+              <span class="label-hint">Bonus, honorarium, dividen bulanan</span>
+            </label>
+            <div class="input-currency-wrap">
+              <span class="currency-prefix">Rp</span>
+              <input
+                type="text"
+                id="inputBonus"
+                class="calc-input"
+                inputmode="numeric"
+                placeholder="0"
+                value="0"
+              />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="inputHutangBulanan" class="input-label">
+              <span>Cicilan Pokok / Hutang Kebutuhan Pokok Bulanan</span>
+              <span class="label-hint">Kebutuhan mendesak yang mengurangi harta kena zakat</span>
+            </label>
+            <div class="input-currency-wrap">
+              <span class="currency-prefix">Rp</span>
+              <input
+                type="text"
+                id="inputHutangBulanan"
+                class="calc-input"
+                inputmode="numeric"
+                placeholder="0"
+                value="0"
+              />
+            </div>
+          </div>
+
+          <!-- Nisab Info Bar -->
+          <div class="nisab-status-bar" id="nisabBarProfesi">
+            <div class="nisab-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </div>
+            <div class="nisab-text">
+              <div class="nisab-headline">
+                Nisab Zakat Profesi: <strong>Rp {NISAB_MONTHLY.toLocaleString('id-ID')} / bulan</strong>
+              </div>
+              <p class="nisab-sub">Setara 85 gram emas murni (Rp {GOLD_PRICE_PER_GRAM.toLocaleString('id-ID')}/gr) dibagi 12 bulan.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2: Zakat Maal (Tabungan / Harta Mengendap 1 Tahun) -->
+        <div class="calc-tab-panel" id="panelMaal" role="tabpanel" aria-labelledby="tabBtnMaal" hidden>
+          <div class="input-group">
+            <label for="inputTabungan" class="input-label">
+              <span>Saldo Tabungan / Deposito / Giro Mengendap (Haul 1 Tahun)</span>
+              <span class="label-hint">Total simpanan yang telah mengendap selama satu tahun</span>
+            </label>
+            <div class="input-currency-wrap">
+              <span class="currency-prefix">Rp</span>
+              <input
+                type="text"
+                id="inputTabungan"
+                class="calc-input"
+                inputmode="numeric"
+                placeholder="150.000.000"
+                value="150.000.000"
+              />
+            </div>
+            <div class="quick-chips">
+              <span class="chips-label">Preset:</span>
+              <button type="button" class="chip-btn" data-target="inputTabungan" data-val="125000000">125 Jt</button>
+              <button type="button" class="chip-btn" data-target="inputTabungan" data-val="200000000">200 Jt</button>
+              <button type="button" class="chip-btn" data-target="inputTabungan" data-val="500000000">500 Jt</button>
+              <button type="button" class="chip-btn" data-target="inputTabungan" data-val="1000000000">1 M</button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="inputEmas" class="input-label">
+              <span>Nilai Emas, Logam Mulia, atau Surat Berharga</span>
+              <span class="label-hint">Konversi nilai rupiah saat ini</span>
+            </label>
+            <div class="input-currency-wrap">
+              <span class="currency-prefix">Rp</span>
+              <input
+                type="text"
+                id="inputEmas"
+                class="calc-input"
+                inputmode="numeric"
+                placeholder="0"
+                value="0"
+              />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="inputHutangTahunan" class="input-label">
+              <span>Hutang Jatuh Tempo Tahun Berjalan</span>
+              <span class="label-hint">Hutang yang wajib dibayar dalam tahun hisab</span>
+            </label>
+            <div class="input-currency-wrap">
+              <span class="currency-prefix">Rp</span>
+              <input
+                type="text"
+                id="inputHutangTahunan"
+                class="calc-input"
+                inputmode="numeric"
+                placeholder="0"
+                value="0"
+              />
+            </div>
+          </div>
+
+          <!-- Nisab Info Bar Maal -->
+          <div class="nisab-status-bar" id="nisabBarMaal">
+            <div class="nisab-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </div>
+            <div class="nisab-text">
+              <div class="nisab-headline">
+                Nisab Zakat Maal: <strong>Rp {NISAB_YEARLY.toLocaleString('id-ID')} / tahun</strong>
+              </div>
+              <p class="nisab-sub">Setara nilai 85 gram emas murni x Rp {GOLD_PRICE_PER_GRAM.toLocaleString('id-ID')}/gram.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Results & Ijab Qobul Card -->
+      <div class="calc-results-col">
+        <div class="result-card-inner">
+          <!-- Summary Header -->
+          <div class="result-badge-row">
+            <span class="result-badge-label" id="statusNisabBadge">MEMENUHI NISAB</span>
+            <span class="result-rate-tag">Kadar 2,5%</span>
+          </div>
+
+          <!-- Calculated Number -->
+          <div class="result-amount-wrap">
+            <span class="result-label" id="resultLabelPeriod">Kewajiban Zakat Profesi Bulanan:</span>
+            <div class="result-number" id="resultNominalZakat">Rp 300.000</div>
+            <p class="result-sub-detail" id="resultBasisDetail">
+              Dihitung dari penghasilan bersih Rp 12.000.000 / bulan
+            </p>
+          </div>
+
+          <!-- Ijab Qobul Card -->
+          <div class="ijab-qobul-card">
+            <div class="ijab-header">
+              <span class="ijab-title">Lafaz Niat & Doa Ijab Qobul</span>
+              <span class="ijab-pill">Sunnah Rasulullah SAW</span>
+            </div>
+            <div class="arabic-text" id="arabicNiatText">
+              نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ مَالِي فَرْضًا لِلَّهِ تَعَالَى
+            </div>
+            <div class="latin-text" id="latinNiatText">
+              "Nawaitu an ukhrija zakaata maali fardhan lillaahi ta'aalaa"
+            </div>
+            <div class="terjemahan-text">
+              <em>"Aku berniat mengeluarkan zakat hartaku fardhu karena Allah Ta'ala."</em>
+            </div>
+
+            <!-- Doa Balasan Amil -->
+            <div class="doa-amil-box">
+              <div class="doa-amil-title">Doa Penerimaan oleh Amil (Untuk Muzakki):</div>
+              <div class="doa-amil-latin">
+                "Ajarakallahu fi ma a'thaita, wa baraka fi ma abqaita, wa ja'alahu laka thahuran."
+              </div>
+              <div class="doa-amil-arti">
+                (Semoga Allah memberikan pahala atas apa yang engkau berikan, memberkahi apa yang engkau sisakan, dan menjadikannya pembersih hartamu).
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="calc-actions-wrap">
+            <a
+              href="https://wa.me/6281226832326?text=Assalamualaikum%20Amil%20GVF%2C%20saya%20telah%20menghitung%20kewajiban%20Zakat%20sebesar%20Rp%20300.000%20dan%20ingin%20menunaikannya."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="calc-btn-primary"
+              id="btnSalurkanWA"
+            >
+              <span>Salurkan Zakat Sekarang</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+
+            <!-- Rekening Direct Quick Copy -->
+            <div class="rekening-quick-card">
+              <div class="rek-row">
+                <div class="rek-bank-info">
+                  <span class="bank-tag">BSI</span>
+                  <div class="rek-text-col">
+                    <span class="rek-name">Bank Syariah Indonesia (Khusus Zakat)</span>
+                    <strong class="rek-number" id="zakatAccNumber">7238890045</strong>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="btn-copy-calc"
+                  id="btnCopyZakat"
+                  data-clipboard="7238890045"
+                  title="Salin Nomor Rekening Zakat"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span id="copyBtnLabel">Salin Rekening</span>
+                </button>
+              </div>
+              <div class="rek-holder-info">a.n. <strong>Yayasan GVF - Zakat Maal & Profesi</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transparency Notice: 8 Asnaf & Vocational Student Beneficiaries -->
+    <div class="transparency-editorial-strip">
+      <div class="strip-item">
+        <span class="strip-num">01</span>
+        <div class="strip-content">
+          <h4>Rekening Terpisah & Diaudit Ketat</h4>
+          <p>Dana zakat dihimpun pada rekening khusus yang terpisah total dari kas infaq, wakaf, dan operasional lembaga.</p>
+        </div>
+      </div>
+      <div class="strip-item">
+        <span class="strip-num">02</span>
+        <div class="strip-content">
+          <h4>Pemberdayaan Santri Vokasi (Fi Sabilillah)</h4>
+          <p>Disalurkan untuk beasiswa penuh pendidikan vokasi, asrama, dan pelatihan keahlian industri santri mandiri di Jonggol.</p>
+        </div>
+      </div>
+      <div class="strip-item">
+        <span class="strip-num">03</span>
+        <div class="strip-content">
+          <h4>Bukti Sah Pengurang Pajak (NPWP)</h4>
+          <p>Muzakki menerima bukti setor zakat resmi bernomor registrasi yang sah untuk lampiran SPT Tahunan PPh.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .zakat-calculator-section {
+    padding: 80px 0 100px;
+    background-color: #ffffff;
+    background-image: radial-gradient(ellipse at 50% 0%, rgba(2, 132, 199, 0.05) 0%, transparent 70%);
+  }
+
+  .calc-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .calc-header {
+    max-width: 780px;
+    margin: 0 auto 50px;
+  }
+
+  .calc-eyebrow {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    margin-bottom: 12px;
+  }
+
+  .calc-title {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #0f172a;
+    margin: 0 0 18px;
+    letter-spacing: -0.02em;
+  }
+
+  .calc-accent {
+    color: #0284c7;
+  }
+
+  .calc-desc {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: #475569;
+    margin: 0;
+  }
+
+  /* Main Card with Split Columns */
+  .calc-main-card {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 32px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: none;
+  }
+
+  @media (max-width: 991px) {
+    .calc-main-card {
+      grid-template-columns: 1fr;
+      padding: 28px;
+    }
+  }
+
+  /* Tab Navigation */
+  .calc-tabs-nav {
+    display: flex;
+    background: #f1f5f9;
+    padding: 6px;
+    border-radius: 14px;
+    gap: 6px;
+    margin-bottom: 32px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tab-btn:hover {
+    color: #0f172a;
+  }
+
+  .tab-btn.active {
+    background: #ffffff;
+    color: #0969da;
+    border: 1px solid #e2e8f0;
+    box-shadow: none;
+  }
+
+  /* Form Inputs */
+  .input-group {
+    margin-bottom: 24px;
+  }
+
+  .input-label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .input-label span:first-child {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: #1e293b;
+  }
+
+  .label-hint {
+    font-size: 0.8125rem;
+    color: #64748b;
+    font-weight: 400;
+  }
+
+  .input-currency-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .currency-prefix {
+    position: absolute;
+    left: 18px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #64748b;
+    pointer-events: none;
+  }
+
+  .calc-input {
+    width: 100%;
+    padding: 14px 18px 14px 50px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0f172a;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .calc-input:focus {
+    background: #ffffff;
+    border-color: #0284c7;
+    box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.12);
+  }
+
+  .quick-chips {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .chips-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .chip-btn {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #334155;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .chip-btn:hover {
+    background: #f0f9ff;
+    border-color: #38bdf8;
+    color: #0284c7;
+  }
+
+  /* Nisab Bar */
+  .nisab-status-bar {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 14px;
+    margin-top: 24px;
+  }
+
+  .nisab-status-bar.below-nisab {
+    background: #fffbeb;
+    border-color: #fde68a;
+  }
+
+  .nisab-status-bar.below-nisab .nisab-icon {
+    color: #d97706;
+  }
+
+  .nisab-icon {
+    color: #16a34a;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .nisab-text {
+    font-size: 0.875rem;
+    color: #166534;
+  }
+
+  .nisab-status-bar.below-nisab .nisab-text {
+    color: #92400e;
+  }
+
+  .nisab-headline {
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .nisab-sub {
+    margin: 0;
+    font-size: 0.8125rem;
+    opacity: 0.9;
+  }
+
+  /* Right Column: Results & Ijab Qobul */
+  .calc-results-col {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .result-badge-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .result-badge-label {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #dcfce7;
+    color: #15803d;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+  }
+
+  .result-badge-label.below-nisab {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .result-rate-tag {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  .result-amount-wrap {
+    margin-bottom: 28px;
+  }
+
+  .result-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 6px;
+  }
+
+  .result-number {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    transition: color 0.2s ease;
+  }
+
+  .result-sub-detail {
+    margin: 8px 0 0;
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+
+  /* Ijab Qobul Card */
+  .ijab-qobul-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+
+  .ijab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .ijab-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .ijab-pill {
+    font-size: 0.75rem;
+    color: #0284c7;
+    background: #f0f9ff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  .arabic-text {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 1.375rem;
+    line-height: 1.9;
+    direction: rtl;
+    text-align: right;
+    color: #0f172a;
+    margin-bottom: 10px;
+    padding: 6px 0;
+  }
+
+  .latin-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+
+  .terjemahan-text {
+    font-size: 0.8125rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  .doa-amil-box {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed #e2e8f0;
+  }
+
+  .doa-amil-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #0284c7;
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  .doa-amil-latin {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  .doa-amil-arti {
+    font-size: 0.75rem;
+    color: #64748b;
+    line-height: 1.4;
+  }
+
+  /* CTAs */
+  .calc-actions-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .calc-btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #0969da;
+    color: #ffffff;
+    padding: 16px 28px;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: none;
+    transition: all 0.2s ease;
+  }
+
+  .calc-btn-primary:hover {
+    background: #0756b2;
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff;
+  }
+
+  .rekening-quick-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .rek-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .rek-bank-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .bank-tag {
+    display: inline-block;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .rek-text-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rek-name {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  .rek-number {
+    font-family: inherit;
+    font-size: 1.0625rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: 0.03em;
+  }
+
+  .btn-copy-calc {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-copy-calc:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+
+  .rek-holder-info {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  /* Transparency Editorial Strip */
+  .transparency-editorial-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  @media (max-width: 768px) {
+    .transparency-editorial-strip {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  .strip-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .strip-num {
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0284c7;
+    opacity: 0.4;
+    line-height: 1;
+  }
+
+  .strip-content h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 6px;
+  }
+
+  .strip-content p {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #475569;
+    margin: 0;
+  }
+</style>
+
+<script is:inline define:vars={{ GOLD_PRICE_PER_GRAM, NISAB_YEARLY, NISAB_MONTHLY }}>
+  (function() {
+    // Parser & Formatter Rupiah
+    function parseRupiah(val) {
+      if (!val) return 0;
+      const clean = String(val).replace(/[^0-9]/g, '');
+      return parseInt(clean, 10) || 0;
+    }
+
+    function formatRupiah(num) {
+      return new Intl.NumberFormat('id-ID').format(Math.max(0, Math.round(num)));
+    }
+
+    // Tab State
+    let currentMode = 'profesi'; // 'profesi' | 'maal'
+
+    const tabBtnProfesi = document.getElementById('tabBtnProfesi');
+    const tabBtnMaal = document.getElementById('tabBtnMaal');
+    const panelProfesi = document.getElementById('panelProfesi');
+    const panelMaal = document.getElementById('panelMaal');
+
+    // Inputs
+    const inputGaji = document.getElementById('inputGaji');
+    const inputBonus = document.getElementById('inputBonus');
+    const inputHutangBulanan = document.getElementById('inputHutangBulanan');
+
+    const inputTabungan = document.getElementById('inputTabungan');
+    const inputEmas = document.getElementById('inputEmas');
+    const inputHutangTahunan = document.getElementById('inputHutangTahunan');
+
+    // Output Elements
+    const statusNisabBadge = document.getElementById('statusNisabBadge');
+    const resultLabelPeriod = document.getElementById('resultLabelPeriod');
+    const resultNominalZakat = document.getElementById('resultNominalZakat');
+    const resultBasisDetail = document.getElementById('resultBasisDetail');
+    const nisabBarProfesi = document.getElementById('nisabBarProfesi');
+    const nisabBarMaal = document.getElementById('nisabBarMaal');
+    const btnSalurkanWA = document.getElementById('btnSalurkanWA');
+
+    // Auto-formatting input listener
+    const inputsToFormat = [
+      inputGaji, inputBonus, inputHutangBulanan,
+      inputTabungan, inputEmas, inputHutangTahunan
+    ];
+
+    inputsToFormat.forEach(input => {
+      if (!input) return;
+      input.addEventListener('input', function() {
+        const raw = parseRupiah(this.value);
+        this.value = raw > 0 ? formatRupiah(raw) : '';
+        calculateZakat();
+      });
+    });
+
+    // Preset chips
+    document.querySelectorAll('.chip-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const val = parseInt(this.getAttribute('data-val'), 10);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.value = formatRupiah(val);
+          calculateZakat();
+        }
+      });
+    });
+
+    // Switch Tabs
+    function switchTab(mode) {
+      currentMode = mode;
+      if (mode === 'profesi') {
+        tabBtnProfesi.classList.add('active');
+        tabBtnProfesi.setAttribute('aria-selected', 'true');
+        tabBtnMaal.classList.remove('active');
+        tabBtnMaal.setAttribute('aria-selected', 'false');
+
+        panelProfesi.hidden = false;
+        panelProfesi.classList.add('active');
+        panelMaal.hidden = true;
+        panelMaal.classList.remove('active');
+      } else {
+        tabBtnMaal.classList.add('active');
+        tabBtnMaal.setAttribute('aria-selected', 'true');
+        tabBtnProfesi.classList.remove('active');
+        tabBtnProfesi.setAttribute('aria-selected', 'false');
+
+        panelMaal.hidden = false;
+        panelMaal.classList.add('active');
+        panelProfesi.hidden = true;
+        panelProfesi.classList.remove('active');
+      }
+      calculateZakat();
+    }
+
+    if (tabBtnProfesi) tabBtnProfesi.addEventListener('click', () => switchTab('profesi'));
+    if (tabBtnMaal) tabBtnMaal.addEventListener('click', () => switchTab('maal'));
+
+    // Calculation Core
+    function calculateZakat() {
+      if (currentMode === 'profesi') {
+        const gaji = parseRupiah(inputGaji?.value);
+        const bonus = parseRupiah(inputBonus?.value);
+        const hutang = parseRupiah(inputHutangBulanan?.value);
+
+        const totalNet = Math.max(0, (gaji + bonus) - hutang);
+        const isMencapaiNisab = totalNet >= NISAB_MONTHLY;
+        const zakatWajib = isMencapaiNisab ? Math.round(totalNet * 0.025) : 0;
+
+        if (resultLabelPeriod) resultLabelPeriod.textContent = 'Kewajiban Zakat Profesi Bulanan:';
+        if (resultNominalZakat) {
+          resultNominalZakat.textContent = `Rp ${formatRupiah(isMencapaiNisab ? zakatWajib : 0)}`;
+          resultNominalZakat.style.color = isMencapaiNisab ? '#0f172a' : '#d97706';
+        }
+
+        if (statusNisabBadge) {
+          if (isMencapaiNisab) {
+            statusNisabBadge.textContent = 'MEMENUHI NISAB';
+            statusNisabBadge.className = 'result-badge-label';
+          } else {
+            statusNisabBadge.textContent = 'BELUM CAPAI NISAB';
+            statusNisabBadge.className = 'result-badge-label below-nisab';
+          }
+        }
+
+        if (resultBasisDetail) {
+          if (isMencapaiNisab) {
+            resultBasisDetail.textContent = `2,5% dari total penghasilan bersih Rp ${formatRupiah(totalNet)} / bulan (Nisab: Rp ${formatRupiah(NISAB_MONTHLY)})`;
+          } else {
+            resultBasisDetail.textContent = `Penghasilan bersih Rp ${formatRupiah(totalNet)} belum mencapai nisab bulanan (Rp ${formatRupiah(NISAB_MONTHLY)}). Disarankan Infaq/Sedekah.`;
+          }
+        }
+
+        if (nisabBarProfesi) {
+          if (isMencapaiNisab) {
+            nisabBarProfesi.classList.remove('below-nisab');
+          } else {
+            nisabBarProfesi.classList.add('below-nisab');
+          }
+        }
+
+        // WhatsApp Link
+        if (btnSalurkanWA) {
+          const nominalStr = formatRupiah(isMencapaiNisab ? zakatWajib : 0);
+          const msg = encodeURIComponent(`Assalamualaikum Amil GVF, saya telah menghitung Zakat Profesi sebesar Rp ${nominalStr}/bulan dan ingin menunaikannya.`);
+          btnSalurkanWA.href = `https://wa.me/6281226832326?text=${msg}`;
+        }
+
+      } else {
+        // Maal
+        const tabungan = parseRupiah(inputTabungan?.value);
+        const emas = parseRupiah(inputEmas?.value);
+        const hutang = parseRupiah(inputHutangTahunan?.value);
+
+        const totalNet = Math.max(0, (tabungan + emas) - hutang);
+        const isMencapaiNisab = totalNet >= NISAB_YEARLY;
+        const zakatWajib = isMencapaiNisab ? Math.round(totalNet * 0.025) : 0;
+
+        if (resultLabelPeriod) resultLabelPeriod.textContent = 'Kewajiban Zakat Maal Tahunan (Haul 1 Tahun):';
+        if (resultNominalZakat) {
+          resultNominalZakat.textContent = `Rp ${formatRupiah(isMencapaiNisab ? zakatWajib : 0)}`;
+          resultNominalZakat.style.color = isMencapaiNisab ? '#0f172a' : '#d97706';
+        }
+
+        if (statusNisabBadge) {
+          if (isMencapaiNisab) {
+            statusNisabBadge.textContent = 'MEMENUHI NISAB';
+            statusNisabBadge.className = 'result-badge-label';
+          } else {
+            statusNisabBadge.textContent = 'BELUM CAPAI NISAB';
+            statusNisabBadge.className = 'result-badge-label below-nisab';
+          }
+        }
+
+        if (resultBasisDetail) {
+          if (isMencapaiNisab) {
+            resultBasisDetail.textContent = `2,5% dari harta mengendap Rp ${formatRupiah(totalNet)} / tahun (Nisab: Rp ${formatRupiah(NISAB_YEARLY)})`;
+          } else {
+            resultBasisDetail.textContent = `Total harta bersih Rp ${formatRupiah(totalNet)} belum mencapai nisab tahunan (Rp ${formatRupiah(NISAB_YEARLY)}).`;
+          }
+        }
+
+        if (nisabBarMaal) {
+          if (isMencapaiNisab) {
+            nisabBarMaal.classList.remove('below-nisab');
+          } else {
+            nisabBarMaal.classList.add('below-nisab');
+          }
+        }
+
+        if (btnSalurkanWA) {
+          const nominalStr = formatRupiah(isMencapaiNisab ? zakatWajib : 0);
+          const msg = encodeURIComponent(`Assalamualaikum Amil GVF, saya telah menghitung Zakat Maal sebesar Rp ${nominalStr} dan ingin menunaikannya.`);
+          btnSalurkanWA.href = `https://wa.me/6281226832326?text=${msg}`;
+        }
+      }
+    }
+
+    // Copy Account Button
+    const btnCopyZakat = document.getElementById('btnCopyZakat');
+    const copyBtnLabel = document.getElementById('copyBtnLabel');
+    if (btnCopyZakat) {
+      btnCopyZakat.addEventListener('click', function() {
+        const textToCopy = this.getAttribute('data-clipboard') || '7238890045';
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          if (copyBtnLabel) copyBtnLabel.textContent = 'Tersalin!';
+          setTimeout(() => {
+            if (copyBtnLabel) copyBtnLabel.textContent = 'Salin Rekening';
+          }, 2500);
+        });
+      });
+    }
+
+    // Initial run
+    calculateZakat();
+  })();
+</script>

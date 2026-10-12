@@ -1302,12 +1302,14 @@ const valueBoxIcons = [
     font-size: 0.85rem;
     font-weight: 700;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: none;
+    transition: transform 0.2s, background-color 0.2s;
   }
 
   .isavo-btn-wa-widget:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+    background-color: #1eb954;
+    box-shadow: none;
   }
 
   .isavo-btn-wa-widget svg {
@@ -1317,10 +1319,11 @@ const valueBoxIcons = [
 
   /* Kolom Kanan Konten */
   .article-banner-wrap {
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
     margin-bottom: 36px;
-    box-shadow: 0 8px 25px rgba(10, 37, 64, 0.06);
+    border: 1px solid #e2e8f0;
+    box-shadow: none;
   }
 
   .article-banner-img {
@@ -1366,16 +1369,16 @@ const valueBoxIcons = [
   .value-box-item {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 24px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    box-shadow: none;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .value-box-item:hover {
     transform: translateY(-3px);
-    border-color: #cbd5e1;
-    box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.08);
+    border-color: #0969da;
+    box-shadow: none;
   }
 
   .value-box-icon {
@@ -1439,16 +1442,17 @@ const valueBoxIcons = [
   .gallery-card {
     background: #ffffff;
     border: 1px solid var(--isavo-border);
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 4px 18px rgba(10, 37, 64, 0.04);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+    box-shadow: none;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
   }
 
   .gallery-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 36px -8px rgba(10, 37, 64, 0.12);
+    border-color: #0969da;
+    box-shadow: none;
   }
 
   .gallery-thumb-wrap {
@@ -1507,7 +1511,8 @@ const valueBoxIcons = [
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #cbd5e1;
+    box-shadow: none;
     transform: scale(0.85);
     transition: transform 0.25s ease;
   }
@@ -1574,9 +1579,9 @@ const valueBoxIcons = [
   .process-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 18px;
+    border-radius: 20px;
     padding: 28px 22px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    box-shadow: none;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
@@ -1584,8 +1589,8 @@ const valueBoxIcons = [
 
   .process-card:hover {
     transform: translateY(-3px);
-    border-color: #cbd5e1;
-    box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
+    border-color: #0969da;
+    box-shadow: none;
   }
 
   .process-card-header {
@@ -1654,16 +1659,17 @@ const valueBoxIcons = [
   .leader-card {
     background: #ffffff;
     border: 1px solid var(--isavo-border);
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(10, 37, 64, 0.04);
+    box-shadow: none;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
   }
 
   .leader-card:hover {
     transform: translateY(-6px);
+    border-color: #0969da;
   }
 
   .leader-photo-wrap {
@@ -1748,11 +1754,11 @@ const valueBoxIcons = [
   .legal-badge-card {
     background: #ffffff;
     border: 1px solid var(--isavo-border);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 20px;
     display: flex;
     gap: 16px;
-    box-shadow: 0 4px 14px rgba(10, 37, 64, 0.03);
+    box-shadow: none;
   }
 
   .legal-icon {
@@ -1818,13 +1824,13 @@ const valueBoxIcons = [
     border: 1px solid #e2e8f0;
     border-radius: 16px;
     padding: 22px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    box-shadow: none;
     transition: all 0.25s ease;
   }
 
   .bank-card:hover {
-    border-color: #cbd5e1;
-    box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.08);
+    border-color: #0969da;
+    box-shadow: none;
   }
 
   .bank-card-top {
@@ -1907,7 +1913,7 @@ const valueBoxIcons = [
     border: 1px solid #e2e8f0;
     border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+    box-shadow: none;
   }
 
   .qris-tag {
@@ -2111,14 +2117,14 @@ const valueBoxIcons = [
     font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
-    box-shadow: 0 6px 18px rgba(0, 82, 204, 0.35);
+    box-shadow: none;
     transition: all 0.25s ease;
   }
 
   .isavo-banner-btn:hover {
     background: #0043a8;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 82, 204, 0.45);
+    box-shadow: none;
   }
 
   .isavo-banner-btn svg {
@@ -2157,12 +2163,13 @@ const valueBoxIcons = [
     position: relative;
     z-index: 2;
     background: #ffffff;
-    border-radius: 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     overflow: hidden;
     max-width: 900px;
     width: 90%;
     max-height: 90vh;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    box-shadow: none;
     display: flex;
     flex-direction: column;
   }
