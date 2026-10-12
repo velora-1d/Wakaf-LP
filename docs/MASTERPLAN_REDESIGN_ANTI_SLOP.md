@@ -17,12 +17,14 @@ Berdasarkan hasil audit mendalam pada folder `docs/perbaikan/`, website saat ini
 
 ### B. Prinsip Martabat Santri: Anti-Deficit Framing / Anti-Poverty Porn
 Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) **bukan panti sosial penampungan belas kasihan**, melainkan kawah candradimuka pencetak **kader peradaban, penghafal Al-Qur'an, dan calon teknisi vokasi mandiri**.
-* **DILARANG MENGGUNAKAN DIKSI RASA KASIHAN:** Hapus seluruh kata-kata klise eksploitatif seperti *"yatim, dhuafa, miskin, butuh belas kasihan"*.
-* **WAJIB MENGGUNAKAN ASSET-BASED FRAMING (MARTABAT & POTENSI):**
-  * Ganti *"Santri Yatim & Miskin"* menjadi **"Santri Berdaya"** atau **"Santri Penghafal Al-Qur'an & Calon Teknisi Unggul"**.
+* **DILARANG MENGGUNAKAN DIKSI RASA KASIHAN & KLISE CHARITY:** 
+  - Hapus seluruh kata klise eksploitatif rasa iba seperti *"yatim, dhuafa, miskin, butuh belas kasihan"*.
+  - **HARAM menggunakan kata klise charity *"Santri Penghafal Al-Qur'an / Tahfidz"*** — karena mengaburkan identitas riil pesantren ini sebagai **SMK Skill Village / Pesantren Vokasi Industri & Agro-Technopark Modern**.
+* **WAJIB MENGGUNAKAN IDENTITAS RIIL (VOKASI, TEKNOLOGI & ADAB):**
+  * Gunakan: **"Santri Vokasi & Teknopreneur Muda"**, **"Santri Berdaya"**, **"Kader Vokasi Industri"**, atau **"Generasi Mandiri Berakhlak FAST"**.
   * Ganti *"Bantuan Kaum Dhuafa"* menjadi **"Penerima Beasiswa Kader Peradaban"**.
-  * Ganti *"Beri makan anak miskin"* menjadi **"Penyediaan Asupan Gizi & Nutrisi Santri Penghafal Kitab"**.
-  * Ganti *"Donasi belas kasihan"* menjadi **"Investasi Jariyah untuk Kemandirian Generasi Masa Depan"**.
+  * Ganti *"Beri makan anak yatim / santri penghafal Quran"* menjadi **"Penyediaan Asupan Gizi & Nutrisi Harian Santri Vokasi"**.
+  * Ganti *"Donasi belas kasihan"* menjadi **"Investasi Jariyah untuk Kemandirian Generasi Muda"**.
 
 ### C. Arah Visual & Tipografi
 * **Tone & Persona:** Hangat, berwibawa, terhormat, transparan, menyentuh hati, dan berakar pada tanah perjuangan di **Sukasirna, Jonggol, Bogor**.
@@ -60,8 +62,8 @@ Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) **bukan panti sosial penampung
 
 ### 4.1. Halaman Zakat (`/program/zakat`) — *Fase 1*
 * **Kebutuhan Foto Riil:**
-  * **Section Hero / Pengantar**: Foto santri penghafal Al-Qur'an dan calon teknisi muda dengan senyum optimis (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg`).
-  * **Section 8 Asnaf Berdaya**: Foto santri tekun belajar sains dan syariah di asrama Sukasirna (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg`).
+  * **Section Hero / Pengantar**: Foto santri vokasi dan calon teknopreneur muda dengan senyum optimis (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg`).
+  * **Section 8 Asnaf Berdaya**: Foto santri tekun belajar sains dan adab syariah di asrama Sukasirna (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg`).
 * **Komponen Utama: Real-Time Zakat Calculator**
   * Input: Pilihan Zakat Penghasilan (Gaji Bulanan) atau Zakat Maal (Tabungan/Emas).
   * Logika: Menghitung nisab emas terkini (85 gram x harga emas acuan). Jika mencapai nisab, otomatis menghitung kewajiban 2,5%.
@@ -101,8 +103,8 @@ Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) **bukan panti sosial penampung
   * **Section Dapur Santri & Logistik Pangan**: Foto stok beras berkualitas dan kebersamaan santri menikmati hidangan bergizi (`/media-lp/WhatsApp Image 2026-10-05 at 09.22.05 (2).jpeg` & `/media-lp/WhatsApp Image 2026-10-05 at 09.22.06.jpeg`).
 * **Komponen Utama: Quick Impact Giving Chips**
   * Pilihan Cepat:
-    * `Rp 15.000` (1 Porsi makan sehat bernutrisi untuk santri penghafal Quran)
-    * `Rp 45.000` (Paket nutrisi 1 hari penuh seorang santri)
+    * `Rp 15.000` (1 Porsi makan sehat bernutrisi untuk santri vokasi)
+    * `Rp 45.000` (Paket nutrisi 1 hari penuh seorang santri vokasi)
     * `Rp 150.000` (1 Karung beras dapur umum santri)
     * `Nominal Bebas`
   * Aspek Visual: Menampilkan rasa syukur, doa keberkahan, dan energi thalabul ilmi.
@@ -146,7 +148,7 @@ Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) **bukan panti sosial penampung
 ### A. Foto Kegiatan & Santri (`/media-lp/`)
 * `/media-lp/WhatsApp Image 2026-10-05 at 09.22.03.jpeg` — Santri berkumpul / doa bersama penuh adab (Cocok untuk: Hero / Zakat).
 * `/media-lp/WhatsApp Image 2026-10-05 at 09.22.04.jpeg` — Aktivitas kehidupan pesantren yang mandiri.
-* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg` — Pembelajaran Al-Qur'an & sains (Cocok untuk: Zakat Asnaf).
+* `/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (1).jpeg` — Pembelajaran vokasi industri, sains & adab syariah (Cocok untuk: Zakat Asnaf).
 * `/media-lp/WhatsApp Image 2026-10-05 at 09.22.05 (2).jpeg` — Dapur santri & makan bersama (Cocok untuk: Sedekah Pangan).
 * `/media-lp/WhatsApp Image 2026-10-05 at 09.22.06.jpeg` — Distribusi beras & logistik pesantren (Cocok untuk: Sedekah Beras).
 * `/media-lp/pengurus-1.jpg` s/d `pengurus-5.jpg` — Foto profil resmi Nazhir & Dewan Pengawas (Cocok untuk: Kontak & Tim).
@@ -175,7 +177,7 @@ Yayasan Pesantren Cendekia Indonesia (YPCI / GVF) **bukan panti sosial penampung
      - Dilarang kartu filler atau deretan ikon AI yang tidak menyampaikan informasi esensial.
      - Dilarang fake metric counter (angka statistik yang diada-adakan tanpa sumber data).
    - Setiap elemen di layar harus memiliki alasan fungsional yang jelas bagi donatur (*Purposive UI*).
-4. **Anti-Poverty Porn Rule:** Dilarang menggunakan diksi meminta belas kasihan (*"yatim/miskin/dhuafa"*). Wajib menggunakan diksi kehormatan & pemberdayaan (*"Santri Berdaya", "Penghafal Al-Qur'an", "Kader Peradaban"*).
+4. **Anti-Poverty Porn & Anti-Charity Cliché Rule:** Dilarang menggunakan diksi meminta belas kasihan (*"yatim/miskin/dhuafa"*) dan dilarang keras memakai klise charity (*"Santri Penghafal Al-Qur'an"*). Wajib menggunakan identitas riil SMK Skill Village: *"Santri Vokasi"*, *"Teknopreneur Muda"*, *"Santri Berdaya"*, *"Kader Vokasi Industri"*.
 5. **Anti-Monospace Rule (R-06):** Dilarang keras menggunakan font monospace pada angka nominal, label, atau teks salinan umum.
 6. **Contrast Standard (WCAG AAA):** Semua teks judul harus menggunakan `#0f172a` (16.1:1), body text `#334155` (9.5:1), dan teks sekunder minimal `#475569` (7.0:1) di atas latar belakang putih.
 7. **Git Push Restriction:** Hanya diperbolehkan melakukan *git commit* lokal; *git push* dilarang keras tanpa perintah eksplisit dari pengguna.
