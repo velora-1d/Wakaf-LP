@@ -741,7 +741,7 @@ const rupiah = (n: number) => 'Rp ' + n.toLocaleString('id-ID');
     }
 
     function syncPresets(pid: string) {
-      const panel = root.querySelector(`[data-panel="${pid}"]`);
+      const panel = root?.querySelector(`[data-panel="${pid}"]`);
       const q = qtyOf(pid);
       panel?.querySelectorAll<HTMLButtonElement>('.sim-preset').forEach((b) => {
         b.classList.toggle('active', Number(b.dataset.preset) === q);
