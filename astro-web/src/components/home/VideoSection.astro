@@ -1,0 +1,322 @@
+---
+// src/components/home/VideoSection.astro
+// Exact Pen.dev "Video Dokumentasi" Section: Cinematic Background + Pulsing Green Play Button + Video Modal
+---
+
+<section class="pen-video-section reveal-on-scroll" id="video-dokumentasi">
+  <!-- Cinematic Background with Dark Overlay -->
+  <div class="video-bg-media" aria-hidden="true">
+    <img
+      src="/gambar design/interior masjid.jpg"
+      alt="Dokumentasi Kawasan Global Village Fund"
+      class="video-bg-img"
+      loading="lazy"
+    />
+    <div class="video-overlay"></div>
+  </div>
+
+  <div class="video-content-container">
+    <!-- Pulsing Green Play Button -->
+    <div class="play-btn-wrapper">
+      <button
+        type="button"
+        class="pen-play-btn"
+        id="openVideoModalBtn"
+        aria-label="Putar Video Dokumentasi Kawasan GVF"
+      >
+        <span class="play-pulse-ring"></span>
+        <svg
+          class="play-icon"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M8 5.14v13.72a1 1 0 001.52.85l11-6.86a1 1 0 000-1.7l-11-6.86A1 1 0 008 5.14z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Section Title exact Pen.dev -->
+    <h2 class="video-title">
+      Satu Kebaikan Bisa Menjadi<br />
+      Awal Banyak Kebaikan.
+    </h2>
+
+    <!-- Section Subtitle exact Pen.dev -->
+    <p class="video-subtitle">
+      Simak lebih dekat semangat, visi, dan ikhtiar Global Village Fund dalam membangun ekosistem pesantren terpadu di Sukasirna, Jonggol melalui video dokumentasi resmi.
+    </p>
+  </div>
+
+  <!-- Video Lightbox Dialog Modal -->
+  <dialog id="penVideoModal" class="pen-video-modal">
+    <div class="video-modal-inner">
+      <button type="button" class="video-modal-close" id="closeVideoModalBtn" aria-label="Tutup Video">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="video-iframe-wrap">
+        <iframe
+          id="gvfVideoFrame"
+          src=""
+          data-src="https://www.youtube.com/embed/tNLWXp0kbtg?autoplay=1&rel=0"
+          title="Video Dokumentasi Global Village Fund"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </dialog>
+</section>
+
+<script>
+  const openBtn = document.getElementById('openVideoModalBtn');
+  const closeBtn = document.getElementById('closeVideoModalBtn');
+  const modal = document.getElementById('penVideoModal') as HTMLDialogElement | null;
+  const iframe = document.getElementById('gvfVideoFrame') as HTMLIFrameElement | null;
+
+  if (openBtn && modal && iframe) {
+    openBtn.addEventListener('click', () => {
+      iframe.src = iframe.getAttribute('data-src') || '';
+      modal.showModal();
+    });
+  }
+
+  const closeModal = () => {
+    if (modal && iframe) {
+      iframe.src = '';
+      modal.close();
+    }
+  };
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+</script>
+
+<style>
+  .pen-video-section {
+    position: relative;
+    width: 100%;
+    min-height: 680px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 100px 24px;
+    box-sizing: border-box;
+  }
+
+  .video-bg-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .video-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: #061829;
+    opacity: 0.82;
+  }
+
+  .video-content-container {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  /* Play Button */
+  .play-btn-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .pen-play-btn {
+    position: relative;
+    width: 84px;
+    height: 84px;
+    border-radius: 32px;
+    background-color: #006B3E;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 10px 25px rgba(0, 107, 62, 0.4);
+  }
+
+  .pen-play-btn:hover {
+    transform: scale(1.08);
+    background-color: #005431;
+    border-color: rgba(255, 255, 255, 0.85);
+  }
+
+  .play-pulse-ring {
+    position: absolute;
+    inset: -12px;
+    border-radius: 38px;
+    border: 2px solid rgba(0, 107, 62, 0.4);
+    animation: playPulse 2.4s infinite cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+  }
+
+  @keyframes playPulse {
+    0% {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+
+  .play-icon {
+    width: 36px;
+    height: 36px;
+    margin-left: 4px;
+    fill: #ffffff;
+  }
+
+  /* Typography */
+  .video-title {
+    font-size: 48px;
+    line-height: 58px;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.02em;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .video-subtitle {
+    font-size: 16px;
+    line-height: 26px;
+    color: #cbd5e1;
+    font-weight: 400;
+    margin: 0;
+    max-width: 760px;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Video Modal Dialog */
+  .pen-video-modal {
+    border: none;
+    border-radius: 20px;
+    padding: 0;
+    max-width: 900px;
+    width: 95vw;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .pen-video-modal::backdrop {
+    background: rgba(6, 24, 41, 0.85);
+    backdrop-filter: blur(8px);
+  }
+
+  .video-modal-inner {
+    position: relative;
+    background: #000000;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .video-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s;
+  }
+
+  .video-modal-close:hover {
+    background: #006B3E;
+  }
+
+  .video-iframe-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+  }
+
+  .video-iframe-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .pen-video-section {
+      min-height: 540px;
+      padding: 70px 20px;
+    }
+
+    .pen-play-btn {
+      width: 70px;
+      height: 70px;
+      border-radius: 26px;
+    }
+
+    .play-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .video-title {
+      font-size: 32px;
+      line-height: 40px;
+    }
+
+    .video-subtitle {
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+</style>
