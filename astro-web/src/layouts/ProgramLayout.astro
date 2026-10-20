@@ -67,191 +67,202 @@ const valueBoxIcons = [
   <!-- =========================================================================
        SECTION 3: DEEP-DIVE PROGRAM (2 KOLOM STICKY SIDEBAR PERSIS PEN.DEV)
        ========================================================================= -->
-  <section class="isavo-deepdive-section py-20 md:py-28 bg-[#f8f8f8]" id="tentang-program">
-    <div class="max-w-[1425px] mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-        <!-- Kolom Kiri: Sticky Sidebar (4 Kolom) -->
-        <aside class="lg:col-span-4 sticky top-28 space-y-8">
-          <!-- Widget 1: Navigasi Program Lain -->
-          <div style="background: #ffffff; border-radius: 24px; padding: 32px; border: 1px solid #e3e3e8; box-shadow: 0 4px 16px rgba(0,0,0,0.02);">
-            <h3 style="font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #191919; margin: 0 0 20px 0; font-weight: 600;">Program Lainnya</h3>
-            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-              {programNavLinks.map(link => (
-                <li>
-                  <a
-                    href={`/program/${link.slug}`}
-                    style={`display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 12px; text-decoration: none; font-family: 'Cal Sans', sans-serif; font-size: 15px; transition: all 0.2s; ${
-                      link.slug === program.slug
-                        ? 'background-color: #006B3E; color: #ffffff !important;'
-                        : 'color: #191919; background-color: #f8fafc; border: 1px solid #e2e8f0;'
-                    }`}
-                  >
-                    <span style={`width: 7px; height: 7px; border-radius: 50%; shrink: 0; ${link.slug === program.slug ? 'background-color: #ffffff;' : 'background-color: #006B3E;'}`}></span>
-                    <span>{link.name}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+  <section class="pen-deepdive-section" id="tentang-program">
+    <div class="pen-deepdive-container">
+      <!-- Kolom Kiri: Sticky Sidebar (380px) -->
+      <aside class="pen-deepdive-sidebar">
+        <!-- Widget 1: Navigasi Program Lain -->
+        <div style="background: #ffffff; border-radius: 24px; padding: 32px; border: 1px solid #e3e3e8; box-shadow: 0 4px 16px rgba(0,0,0,0.02);">
+          <h3 style="font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #191919; margin: 0 0 20px 0; font-weight: 600;">Program Lainnya</h3>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+            {programNavLinks.map(link => (
+              <li>
+                <a
+                  href={`/program/${link.slug}`}
+                  style={`display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 12px; text-decoration: none; font-family: 'Cal Sans', sans-serif; font-size: 15px; transition: all 0.2s; ${
+                    link.slug === program.slug
+                      ? 'background-color: #006B3E; color: #ffffff !important;'
+                      : 'color: #191919; background-color: #f8fafc; border: 1px solid #e2e8f0;'
+                  }`}
+                >
+                  <span style={`width: 7px; height: 7px; border-radius: 50%; shrink: 0; ${link.slug === program.slug ? 'background-color: #ffffff;' : 'background-color: #006B3E;'}`}></span>
+                  <span>{link.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Widget 2: Bantuan / Konsultasi Cepat Widget ala Pen.dev -->
+        <div style="position: relative; border-radius: 24px; overflow: hidden; padding: 48px 24px; text-align: center; color: #ffffff; min-height: 440px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.12); background-image: url('/gambar design/belakang masjid.jpg'); background-size: cover; background-position: center;">
+          <div style="position: absolute; inset: 0; background: rgba(6, 24, 41, 0.82); z-index: 0;"></div>
+          <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; width: 100%;">
+            <img src="/logo-gwav-white.png" alt="GVF Logo" style="height: 44px; width: auto; object-fit: contain; margin-bottom: 16px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));" />
+            <span style="font-family: 'Cal Sans', sans-serif; font-size: 11px; letter-spacing: 1.5px; color: #34d399; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">
+              LAYANAN KONSULTASI
+            </span>
+            <h4 style="font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #ffffff; margin: 0 0 12px 0; font-weight: 600;">
+              Konsultasi Ikrar Wakaf
+            </h4>
+            <div style="font-family: 'Cal Sans', sans-serif; font-size: 32px; color: #ffffff; margin: 8px 0; letter-spacing: 1px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+              0878-6599-4786
+            </div>
+            <div style="font-family: 'Golos Text', sans-serif; font-size: 13px; color: rgba(255, 255, 255, 0.8); margin-bottom: 24px;">
+              www.globalvillagefund.org
+            </div>
+            <a
+              href="https://wa.me/6287865994786?text=Assalamualaikum%20Layanan%20Donatur%20GVF%2C%20saya%20ingin%20konsultasi%20program%20ZISWAF."
+              target="_blank"
+              rel="noopener noreferrer"
+              style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 32px; background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 9999px; color: #ffffff; font-family: 'Cal Sans', sans-serif; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"
+            >
+              Layanan Donatur
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Kolom Kanan: Konten Narasi Utama (Flex 1) -->
+      <div class="pen-deepdive-content">
+        <div class="pen-deepdive-card">
+          <!-- Main Hero Image -->
+          <div class="pen-deepdive-hero-img-wrap">
+            <img
+              src="/gambar design/interior masjid.jpg"
+              alt={program.deepDiveTitle}
+              class="pen-deepdive-hero-img"
+              loading="lazy"
+            />
           </div>
 
-          <!-- Widget 2: Bantuan / Konsultasi Cepat Widget ala Pen.dev -->
-          <div style="position: relative; border-radius: 24px; overflow: hidden; padding: 48px 24px; text-align: center; color: #ffffff; min-height: 440px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.12); background-image: url('/gambar design/belakang masjid.jpg'); background-size: cover; background-position: center;">
-            <div style="position: absolute; inset: 0; background: rgba(6, 24, 41, 0.82); z-index: 0;"></div>
-            <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; width: 100%;">
-              <img src="/logo-gwav-white.png" alt="GVF Logo" style="height: 44px; width: auto; object-fit: contain; margin-bottom: 16px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));" />
-              <span style="font-family: 'Cal Sans', sans-serif; font-size: 11px; letter-spacing: 1.5px; color: #34d399; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">
-                LAYANAN KONSULTASI
-              </span>
-              <h4 style="font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #ffffff; margin: 0 0 12px 0; font-weight: 600;">
-                Konsultasi Ikrar Wakaf
-              </h4>
-              <div style="font-family: 'Cal Sans', sans-serif; font-size: 32px; color: #ffffff; margin: 8px 0; letter-spacing: 1px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
-                0878-6599-4786
-              </div>
-              <div style="font-family: 'Golos Text', sans-serif; font-size: 13px; color: rgba(255, 255, 255, 0.8); margin-bottom: 24px;">
-                www.globalvillagefund.org
-              </div>
-              <a
-                href="https://wa.me/6287865994786?text=Assalamualaikum%20Layanan%20Donatur%20GVF%2C%20saya%20ingin%20konsultasi%20program%20ZISWAF."
-                target="_blank"
-                rel="noopener noreferrer"
-                style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 32px; background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 9999px; color: #ffffff; font-family: 'Cal Sans', sans-serif; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"
-              >
-                Layanan Donatur
-              </a>
-            </div>
+          <!-- Deep Dive Lead Text -->
+          <div class="pen-deepdive-lead-block">
+            <h2 class="pen-deepdive-lead-title">
+              {program.deepDiveTitle}
+            </h2>
+            <p class="pen-deepdive-para">
+              {program.deepDiveLead}
+            </p>
+            <p class="pen-deepdive-para">
+              {program.deepDiveStory1}
+            </p>
+            <p class="pen-deepdive-para">
+              {program.deepDiveStory2}
+            </p>
           </div>
-        </aside>
 
-        <!-- Kolom Kanan: Konten Narasi Utama Persis Pen.dev (8 Kolom) -->
-        <main class="lg:col-span-8 space-y-10">
-          <div class="bg-white rounded-[24px] p-6 sm:p-10 border border-[#e3e3e8] shadow-xs">
-            <!-- Main Hero Image -->
-            <div class="rounded-[24px] overflow-hidden mb-8 shadow-xs">
-              <img
-                src="/gambar design/interior masjid.jpg"
-                alt={program.deepDiveTitle}
-                class="w-full h-[380px] md:h-[480px] object-cover"
-                loading="lazy"
-              />
-            </div>
-
-            <!-- Deep Dive Lead Text -->
-            <div class="mb-10">
-              <h2 class="text-3xl md:text-4xl font-['Cal_Sans'] text-[#0f172a] mb-5 leading-tight">
-                {program.deepDiveTitle}
-              </h2>
-              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed mb-4">
-                {program.deepDiveLead}
-              </p>
-              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed mb-4">
-                {program.deepDiveStory1}
-              </p>
-              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed">
-                {program.deepDiveStory2}
-              </p>
-            </div>
-
-            <!-- 4 Value Box Icon Grid ala Pen.dev -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-10 pt-6 border-t border-[#e3e3e8]">
-              {program.valueBoxes.map((vb, idx) => (
-                <div class="flex items-start gap-4">
-                  <div class="w-16 h-16 shrink-0 rounded-full bg-[#006B3E] flex items-center justify-center text-white shadow-xs">
-                    <Fragment set:html={valueBoxIcons[idx % valueBoxIcons.length]} />
-                  </div>
-                  <div>
-                    <h4 class="text-xl font-['Cal_Sans'] text-[#191919] mb-1.5">{vb.title}</h4>
-                    <p class="text-sm text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed">{vb.description}</p>
-                  </div>
+          <!-- 4 Value Box Icon Grid ala Pen.dev -->
+          <div class="pen-value-grid">
+            {program.valueBoxes.map((vb, idx) => (
+              <div class="pen-value-item">
+                <div class="pen-value-icon">
+                  <Fragment set:html={valueBoxIcons[idx % valueBoxIcons.length]} />
                 </div>
-              ))}
-            </div>
+                <div>
+                  <h4 class="pen-value-title">{vb.title}</h4>
+                  <p class="pen-value-desc">{vb.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
 
-            <!-- 2 Side-by-side Images (Pen.dev) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 my-10">
-              <img
-                src="/gambar design/skywalk learning room.jpg"
-                alt="Skywalk Learning Room Jonggol"
-                class="w-full h-[260px] md:h-[300px] object-cover rounded-[24px] shadow-2xs"
-                loading="lazy"
-              />
-              <img
-                src="/gambar design/belakang masjid.jpg"
-                alt="Kawasan Belakang Masjid Jonggol"
-                class="w-full h-[260px] md:h-[300px] object-cover rounded-[24px] shadow-2xs"
-                loading="lazy"
-              />
-            </div>
+          <!-- 2 Side-by-side Images (Pen.dev) -->
+          <div class="pen-twins-img-grid">
+            <img
+              src="/gambar design/skywalk learning room.jpg"
+              alt="Skywalk Learning Room Jonggol"
+              class="pen-twin-img"
+              loading="lazy"
+            />
+            <img
+              src="/gambar design/belakang masjid.jpg"
+              alt="Kawasan Belakang Masjid Jonggol"
+              class="pen-twin-img"
+              loading="lazy"
+            />
+          </div>
 
-            <!-- Integrasi Pesantren & Agro-Technopark Sub-section -->
-            <div class="my-10 pt-6 border-t border-[#e3e3e8]">
-              <h3 class="text-2xl md:text-3xl font-['Cal_Sans'] text-[#191919] mb-4">
-                Integrasi Pesantren & Agro-Technopark
-              </h3>
-              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed mb-4">
-                Masjid Khairu Ummah Sugro dirancang dengan arsitektur tropis ramah lingkungan yang memanfaatkan pencahayaan alami dan ventilasi silang, mengurangi konsumsi listrik dan menghadirkan suasana khusyuk bagi para jamaah.
-              </p>
-              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed">
-                Dilengkapi area mezzanine dua lantai untuk menampung kegiatan ibadah berjamaah, halaqah Quran, serta ruang belajar santri yang terintegrasi dengan keasrian alam sekitar Sukasirna Jonggol.
-              </p>
-            </div>
+          <!-- Integrasi Pesantren & Agro-Technopark Sub-section -->
+          <div class="pen-deepdive-subblock">
+            <h3 class="pen-subblock-title">
+              Integrasi Pesantren & Agro-Technopark
+            </h3>
+            <p class="pen-deepdive-para">
+              Masjid Khairu Ummah Sugro dirancang dengan arsitektur tropis ramah lingkungan yang memanfaatkan pencahayaan alami dan ventilasi silang, mengurangi konsumsi listrik dan menghadirkan suasana khusyuk bagi para jamaah.
+            </p>
+            <p class="pen-deepdive-para">
+              Dilengkapi area mezzanine dua lantai untuk menampung kegiatan ibadah berjamaah, halaqah Quran, serta ruang belajar santri yang terintegrasi dengan keasrian alam sekitar Sukasirna Jonggol.
+            </p>
+          </div>
 
-            <!-- Dokumentasi Kawasan Wakaf Jonggol Sub-section -->
-            <div class="my-10 pt-6 border-t border-[#e3e3e8]">
-              <h3 class="text-2xl md:text-3xl font-['Cal_Sans'] text-[#191919] mb-4">
-                Dokumentasi Kawasan Wakaf Jonggol
-              </h3>
-              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed mb-6">
-                Dokumentasi progres pembangunan riil Masjid Khairu Ummah Sugro di Sukasirna Jonggol — dari pemancangan tiang, pengecoran lantai, pemasangan dinding bata ringan, hingga instalasi sanitasi.
-              </p>
+          <!-- Dokumentasi Kawasan Wakaf Jonggol Sub-section -->
+          <div class="pen-deepdive-subblock">
+            <h3 class="pen-subblock-title">
+              Dokumentasi Kawasan Wakaf Jonggol
+            </h3>
+            <p class="pen-deepdive-para">
+              Dokumentasi progres pembangunan riil Masjid Khairu Ummah Sugro di Sukasirna Jonggol — dari pemancangan tiang, pengecoran lantai, pemasangan dinding bata ringan, hingga instalasi sanitasi.
+            </p>
+            <p class="pen-deepdive-para">
+              Setiap kemajuan di lapangan adalah buah dari gotong royong dan ketulusan para muhsinin yang menyalurkan donasi dan wakaf terbaiknya.
+            </p>
 
-              <!-- Portfolio Image Card -->
-              <div class="relative rounded-[24px] overflow-hidden group shadow-sm mb-4">
+            <!-- Portfolio Image Card -->
+            <div class="pen-showcase-card">
+              <div class="pen-showcase-img-box">
                 <img
                   src="/gambar design/interior masjid.jpg"
                   alt="Masjid Khairu Ummah Sugro"
-                  class="w-full h-[320px] md:h-[400px] object-cover"
+                  class="pen-showcase-img"
                   loading="lazy"
                 />
-                <span class="absolute top-6 left-6 px-4 py-1.5 border border-white text-white rounded-full text-xs font-['Cal_Sans'] tracking-widest uppercase bg-black/40 backdrop-blur-xs">
+                <span class="pen-badge-arsitektur">
                   ARSITEKTUR
                 </span>
               </div>
-              <div class="mb-8">
-                <h4 class="text-xl font-['Cal_Sans'] text-[#191919]">Masjid Khairu Ummah Sugro</h4>
-                <p class="text-sm text-[#4d4d52] font-['Golos_Text']">Pusat Ibadah & Pembelajaran Santri</p>
+              <div class="pen-showcase-meta">
+                <h4 class="pen-showcase-name">Masjid Khairu Ummah Sugro</h4>
+                <p class="pen-showcase-category">Pusat Ibadah & Pembelajaran Santri</p>
               </div>
+            </div>
 
-              <!-- 8 Guarantees & Transparansi Badges Grid -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 p-6 bg-slate-50 border border-[#e3e3e8] rounded-[20px]">
-                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
-                  <span class="text-[#006B3E] font-bold text-base">✓</span> Material bersertifikasi standar SNI
-                </div>
-                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
-                  <span class="text-[#006B3E] font-bold text-base">✓</span> Kwitansi & tanda terima resmi GVF
-                </div>
-                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
-                  <span class="text-[#006B3E] font-bold text-base">✓</span> Laporan progres fisik berkala
-                </div>
-                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
-                  <span class="text-[#006B3E] font-bold text-base">✓</span> Dokumentasi foto penyaluran di lokasi
-                </div>
-                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
-                  <span class="text-[#006B3E] font-bold text-base">✓</span> Pengawasan kualitas & mutu bangunan
-                </div>
-                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
-                  <span class="text-[#006B3E] font-bold text-base">✓</span> RAB terperinci dan terbuka
-                </div>
-                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
-                  <span class="text-[#006B3E] font-bold text-base">✓</span> Akad ZISWAF transparan & terpercaya
-                </div>
-                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
-                  <span class="text-[#006B3E] font-bold text-base">✓</span> Kunjungan langsung ke lokasi Jonggol
-                </div>
+            <!-- 8 Guarantees & Transparansi Badges Grid (Pen.dev Style) -->
+            <div class="pen-guarantees-grid">
+              <div class="pen-guarantee-item">
+                <span class="pen-guarantee-check">✓</span>
+                <span>Material bersertifikasi standar SNI</span>
+              </div>
+              <div class="pen-guarantee-item">
+                <span class="pen-guarantee-check">✓</span>
+                <span>Kwitansi & tanda terima resmi GVF</span>
+              </div>
+              <div class="pen-guarantee-item">
+                <span class="pen-guarantee-check">✓</span>
+                <span>Laporan progres fisik berkala</span>
+              </div>
+              <div class="pen-guarantee-item">
+                <span class="pen-guarantee-check">✓</span>
+                <span>Dokumentasi foto penyaluran di lokasi</span>
+              </div>
+              <div class="pen-guarantee-item">
+                <span class="pen-guarantee-check">✓</span>
+                <span>Pengawasan kualitas & mutu bangunan</span>
+              </div>
+              <div class="pen-guarantee-item">
+                <span class="pen-guarantee-check">✓</span>
+                <span>RAB terperinci dan terbuka</span>
+              </div>
+              <div class="pen-guarantee-item">
+                <span class="pen-guarantee-check">✓</span>
+                <span>Akad ZISWAF transparan & terpercaya</span>
+              </div>
+              <div class="pen-guarantee-item">
+                <span class="pen-guarantee-check">✓</span>
+                <span>Kunjungan langsung ke lokasi Jonggol</span>
               </div>
             </div>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   </section>
@@ -2362,5 +2373,270 @@ const valueBoxIcons = [
     .isavo-bottom-banner { padding: 36px 24px; }
     .account-num-row { flex-direction: column; gap: 10px; align-items: flex-start; }
     .btn-copy-acc { width: 100%; justify-content: center; }
+  }
+
+  /* =========================================================================
+     PEN.DEV DEEPDIVE 2-KOLOM SCOPED CSS (100% RELIABLE)
+     ========================================================================= */
+  .pen-deepdive-section {
+    background-color: #f8f8f8;
+    padding: 80px 24px 110px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .pen-deepdive-container {
+    max-width: 1380px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .pen-deepdive-sidebar {
+    width: 380px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    box-sizing: border-box;
+  }
+
+  .pen-deepdive-content {
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .pen-deepdive-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 44px;
+    border: 1px solid #e3e3e8;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .pen-deepdive-hero-img-wrap {
+    width: 100%;
+    height: 440px;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 36px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+  .pen-deepdive-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pen-deepdive-lead-block {
+    margin-bottom: 36px;
+  }
+  .pen-deepdive-lead-title {
+    font-family: 'Cal Sans', sans-serif !important;
+    font-size: clamp(28px, 3.5vw, 40px);
+    color: #191919 !important;
+    line-height: 1.25;
+    margin: 0 0 20px 0;
+    font-weight: 400;
+  }
+  .pen-deepdive-para {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #4d4d52;
+    margin: 0 0 16px 0;
+  }
+
+  .pen-value-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin: 40px 0;
+    padding: 36px 0 0 0;
+    border-top: 1px solid #e3e3e8;
+  }
+  .pen-value-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .pen-value-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #006B3E;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .pen-value-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  .pen-value-title {
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 19px;
+    color: #191919;
+    margin: 0 0 6px 0;
+    font-weight: 600;
+  }
+  .pen-value-desc {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4d4d52;
+    margin: 0;
+  }
+
+  .pen-twins-img-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 40px 0;
+  }
+  .pen-twin-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  .pen-deepdive-subblock {
+    margin: 48px 0 0 0;
+    padding: 36px 0 0 0;
+    border-top: 1px solid #e3e3e8;
+  }
+  .pen-subblock-title {
+    font-family: 'Cal Sans', sans-serif !important;
+    font-size: clamp(24px, 3vw, 34px);
+    color: #191919 !important;
+    line-height: 1.3;
+    margin: 0 0 18px 0;
+    font-weight: 400;
+  }
+
+  .pen-showcase-card {
+    margin: 32px 0 24px 0;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    background: #ffffff;
+  }
+  .pen-showcase-img-box {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .pen-showcase-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .pen-badge-arsitektur {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    padding: 6px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    border-radius: 9999px;
+    color: #ffffff;
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .pen-showcase-meta {
+    padding: 18px 4px 0;
+  }
+  .pen-showcase-name {
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 22px;
+    color: #191919;
+    margin: 0 0 4px 0;
+  }
+  .pen-showcase-category {
+    font-family: 'Golos Text', sans-serif;
+    font-size: 14px;
+    color: #4d4d52;
+    margin: 0;
+  }
+
+  .pen-guarantees-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 28px;
+    margin-top: 32px;
+    padding: 28px 32px;
+    background: #fbfbfb;
+    border: 1px solid #e3e3e8;
+    border-radius: 20px;
+  }
+  .pen-guarantee-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 15px;
+    color: #191919;
+  }
+  .pen-guarantee-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #e8f5e9;
+    color: #006B3E;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .pen-deepdive-container {
+      flex-direction: column;
+      gap: 32px;
+    }
+    .pen-deepdive-sidebar {
+      width: 100%;
+      position: static;
+    }
+    .pen-deepdive-card {
+      padding: 24px;
+    }
+    .pen-value-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .pen-twins-img-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .pen-guarantees-grid {
+      grid-template-columns: 1fr;
+      padding: 20px;
+    }
+    .pen-showcase-img-box {
+      height: 260px;
+    }
   }
 </style>
