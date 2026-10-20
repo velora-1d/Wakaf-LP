@@ -36,16 +36,25 @@ const valueBoxIcons = [
   <!-- =========================================================================
        SECTION 1: PAGE HEADER & BREADCRUMB (PERSIS PEN.DEV)
        ========================================================================= -->
-  <section class="pen-prog-header relative overflow-hidden bg-cover bg-center" style={`background-image: url('${program.heroBgImage}');`}>
-    <div class="absolute inset-0 bg-[#061829] opacity-75 z-0"></div>
-    <div class="relative z-10 max-w-[1425px] mx-auto px-6 pt-[170px] pb-[100px] flex flex-col items-center justify-center text-center">
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-['Cal_Sans'] font-normal text-white text-center tracking-tight leading-[1.2] mb-6 drop-shadow-md">
+  <section
+    class="pen-prog-header relative overflow-hidden bg-cover bg-center flex flex-col justify-center items-center"
+    style={`background-image: url('${program.heroBgImage}'); min-height: 420px; padding-top: 180px; padding-bottom: 90px;`}
+  >
+    <div class="absolute inset-0 bg-[#061829] opacity-80 z-0"></div>
+    <div class="relative z-10 max-w-[1425px] mx-auto px-6 w-full flex flex-col items-center justify-center text-center">
+      <h1
+        class="pen-hero-title drop-shadow-lg"
+        style="color: #ffffff !important; font-family: 'Cal Sans', sans-serif !important; font-size: clamp(32px, 5vw, 64px) !important; font-weight: 400 !important; line-height: 1.2 !important; margin: 0 0 20px 0 !important; text-align: center !important;"
+      >
         {program.title}
       </h1>
-      <div class="flex items-center justify-center gap-2 text-xs md:text-sm font-['Cal_Sans'] font-medium text-white tracking-wider uppercase">
-        <a href="/" class="hover:text-emerald-400 transition-colors">BERANDA</a>
-        <span class="text-white/60">-</span>
-        <span class="text-[#006B3E] font-semibold">{program.categoryBadge}</span>
+      <div
+        class="pen-hero-breadcrumb"
+        style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Cal Sans', sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #ffffff; background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(8px); padding: 8px 24px; border-radius: 9999px; border: 1px solid rgba(255, 255, 255, 0.2);"
+      >
+        <a href="/" style="color: #ffffff; text-decoration: none;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='#ffffff'">BERANDA</a>
+        <span style="color: rgba(255, 255, 255, 0.5);">-</span>
+        <span style="color: #34d399; font-weight: 600;">{program.categoryBadge}</span>
       </div>
     </div>
   </section>
@@ -64,20 +73,20 @@ const valueBoxIcons = [
         <!-- Kolom Kiri: Sticky Sidebar (4 Kolom) -->
         <aside class="lg:col-span-4 sticky top-28 space-y-8">
           <!-- Widget 1: Navigasi Program Lain -->
-          <div class="bg-white rounded-[24px] p-8 border border-[#e3e3e8] shadow-xs">
-            <h3 class="text-2xl font-['Cal_Sans'] text-[#191919] mb-5">Program Lainnya</h3>
-            <ul class="flex flex-col gap-2">
+          <div style="background: #ffffff; border-radius: 24px; padding: 32px; border: 1px solid #e3e3e8; box-shadow: 0 4px 16px rgba(0,0,0,0.02);">
+            <h3 style="font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #191919; margin: 0 0 20px 0; font-weight: 600;">Program Lainnya</h3>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
               {programNavLinks.map(link => (
                 <li>
                   <a
                     href={`/program/${link.slug}`}
-                    class={`flex items-center gap-3 px-4 py-3 rounded-[9px] transition-all font-['Cal_Sans'] text-base ${
+                    style={`display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 12px; text-decoration: none; font-family: 'Cal Sans', sans-serif; font-size: 15px; transition: all 0.2s; ${
                       link.slug === program.slug
-                        ? 'bg-[#006B3E] text-white shadow-xs'
-                        : 'text-[#191919] hover:bg-slate-50 border-b border-[#e3e5e8] last:border-b-0'
+                        ? 'background-color: #006B3E; color: #ffffff !important;'
+                        : 'color: #191919; background-color: #f8fafc; border: 1px solid #e2e8f0;'
                     }`}
                   >
-                    <span class={`w-1.5 h-1.5 rounded-full shrink-0 ${link.slug === program.slug ? 'bg-white' : 'bg-[#006B3E]'}`}></span>
+                    <span style={`width: 7px; height: 7px; border-radius: 50%; shrink: 0; ${link.slug === program.slug ? 'background-color: #ffffff;' : 'background-color: #006B3E;'}`}></span>
                     <span>{link.name}</span>
                   </a>
                 </li>
@@ -86,27 +95,27 @@ const valueBoxIcons = [
           </div>
 
           <!-- Widget 2: Bantuan / Konsultasi Cepat Widget ala Pen.dev -->
-          <div class="relative rounded-[24px] overflow-hidden p-8 text-center text-white min-h-[460px] flex flex-col items-center justify-center shadow-md bg-cover bg-center" style="background-image: url('/gambar design/belakang masjid.jpg');">
-            <div class="absolute inset-0 bg-black/60 z-0"></div>
-            <div class="relative z-10 flex flex-col items-center">
-              <img src="/images/generated.webp" alt="GVF Logo" class="w-14 h-14 object-contain mb-4 filter drop-shadow" />
-              <span class="text-xs font-['Cal_Sans'] tracking-widest text-emerald-400 uppercase font-semibold mb-2">
+          <div style="position: relative; border-radius: 24px; overflow: hidden; padding: 48px 24px; text-align: center; color: #ffffff; min-height: 440px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.12); background-image: url('/gambar design/belakang masjid.jpg'); background-size: cover; background-position: center;">
+            <div style="position: absolute; inset: 0; background: rgba(6, 24, 41, 0.82); z-index: 0;"></div>
+            <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; width: 100%;">
+              <img src="/logo-gwav-white.png" alt="GVF Logo" style="height: 44px; width: auto; object-fit: contain; margin-bottom: 16px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));" />
+              <span style="font-family: 'Cal Sans', sans-serif; font-size: 11px; letter-spacing: 1.5px; color: #34d399; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">
                 LAYANAN KONSULTASI
               </span>
-              <h4 class="text-xl font-['Cal_Sans'] text-white mb-2">
+              <h4 style="font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #ffffff; margin: 0 0 12px 0; font-weight: 600;">
                 Konsultasi Ikrar Wakaf
               </h4>
-              <div class="text-3xl md:text-4xl font-['Cal_Sans'] text-white my-3 tracking-wide drop-shadow-sm">
+              <div style="font-family: 'Cal Sans', sans-serif; font-size: 32px; color: #ffffff; margin: 8px 0; letter-spacing: 1px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
                 0878-6599-4786
               </div>
-              <div class="text-sm font-['Cal_Sans'] text-white/80 mb-6">
+              <div style="font-family: 'Golos Text', sans-serif; font-size: 13px; color: rgba(255, 255, 255, 0.8); margin-bottom: 24px;">
                 www.globalvillagefund.org
               </div>
               <a
                 href="https://wa.me/6287865994786?text=Assalamualaikum%20Layanan%20Donatur%20GVF%2C%20saya%20ingin%20konsultasi%20program%20ZISWAF."
                 target="_blank"
                 rel="noopener noreferrer"
-                class="px-8 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 rounded-full text-white font-['Cal_Sans'] text-sm tracking-wider uppercase transition-all shadow-sm active:scale-95"
+                style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 32px; background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 9999px; color: #ffffff; font-family: 'Cal Sans', sans-serif; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"
               >
                 Layanan Donatur
               </a>

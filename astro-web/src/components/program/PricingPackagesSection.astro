@@ -1,6 +1,7 @@
 ---
 // src/components/program/PricingPackagesSection.astro
 // Komponen Pilihan Paket ZISWAF Presisi 100% Desain Pen.dev (global village fund.pen)
+// Menggunakan Vanilla Scoped CSS murni untuk menjamin render 100% akurat tanpa isu compiler utility
 import type { ProgramData } from '../../data/programs';
 import ZakatCalculatorSection from './ZakatCalculatorSection.astro';
 import InfaqMaterialSection from './InfaqMaterialSection.astro';
@@ -14,93 +15,79 @@ interface Props {
 const { program } = Astro.props;
 ---
 
-<section class="pen-pricing-section py-20 md:py-28 bg-[#f8f8f8]" id="paket-pilihan">
-  <div class="max-w-[1425px] mx-auto px-4 sm:px-6">
+<section class="pen-pricing-section" id="paket-pilihan">
+  <div class="pricing-container">
     <!-- Header Section -->
-    <div class="text-center max-w-[800px] mx-auto mb-16">
-      <div class="inline-flex items-center gap-2 border border-[#7272722e] rounded-full px-5 py-1.5 mb-5 bg-white shadow-2xs">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#006B3E]"></span>
-        <span class="text-xs font-['Cal_Sans'] tracking-widest text-[#191919] uppercase font-semibold">
-          PAKET PILIHAN PROGRAM
-        </span>
+    <div class="pricing-header-wrap">
+      <div class="pricing-badge-pill">
+        <span class="dot-green"></span>
+        <span class="badge-text">PAKET PILIHAN PROGRAM</span>
       </div>
-      <h2 class="text-3xl md:text-5xl font-['Cal_Sans'] text-[#0f172a] mb-4 tracking-tight leading-tight">
+      <h2 class="pricing-main-heading">
         {program.pricingHeading}
       </h2>
-      <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed max-w-[720px] mx-auto">
+      <p class="pricing-sub-heading">
         {program.pricingSubheading}
       </p>
     </div>
 
     <!-- 3 Pricing Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-20 max-w-[1380px] mx-auto">
+    <div class="pricing-cards-grid">
       {program.packages.map((pkg) => (
-        <div
-          class={`pricing-card bg-white rounded-[24px] p-8 md:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-xl relative ${
-            pkg.isPopular
-              ? 'border-2 border-[#006B3E] shadow-md z-10'
-              : 'border border-[#e3e3e8] shadow-xs'
-          }`}
-        >
+        <div class={`pkg-card ${pkg.isPopular ? 'is-popular' : ''}`}>
           {pkg.isPopular && (
-            <div class="absolute -top-[1px] left-1/2 -translate-x-1/2 bg-[#006B3E] text-white px-6 py-1.5 text-xs font-['Golos_Text'] font-bold rounded-b-[12px] tracking-wider uppercase shadow-xs">
+            <div class="rekomendasi-tag">
               REKOMENDASI PROGRAM
             </div>
           )}
 
-          <div>
+          <div class="card-content-top">
             <!-- Header Kartu -->
-            <div class={`text-center ${pkg.isPopular ? 'pt-3' : ''}`}>
-              <h3 class="text-2xl font-['Cal_Sans'] font-semibold text-[#191919] mb-1">
-                {pkg.title}
-              </h3>
-              <p class="text-sm font-['Plus_Jakarta_Sans'] text-[#4d4d52] mb-5">
-                {pkg.subtitle}
-              </p>
+            <div class="card-title-group">
+              <h3 class="card-title">{pkg.title}</h3>
+              <p class="card-subtitle">{pkg.subtitle}</p>
 
               <!-- Harga -->
-              <div class="text-3xl md:text-4xl font-['Cal_Sans'] font-bold text-[#191919] mb-1">
+              <div class="card-price-val">
                 {pkg.pricePrefix}{pkg.priceAmount}{pkg.priceUnit}
               </div>
-              <div class="text-xs font-['Golos_Text'] italic text-[#4d4d52] mb-2">
+              <div class="card-price-desc">
                 {pkg.priceDesc}
               </div>
-              <div class="text-xs md:text-sm font-['Golos_Text'] text-[#006B3E] font-medium bg-[#006B3E]/10 py-1 px-3 rounded-full inline-block mb-6">
+              <div class="card-estimation-pill">
                 {pkg.estimation}
               </div>
             </div>
 
             <!-- What Do You Get Divider -->
-            <div class="border-b-2 border-[#006B3E] pb-2 mb-4">
-              <span class="text-xs font-['Golos_Text'] font-bold tracking-wider text-[#191919] uppercase">
-                WHAT DO YOU GET:
-              </span>
+            <div class="what-do-you-get-bar">
+              <span>WHAT DO YOU GET:</span>
             </div>
 
             <!-- Deliverables List -->
-            <ul class="flex flex-col gap-0 mb-8 divide-y divide-[#e3e3e8]">
+            <ul class="card-deliverables-list">
               {pkg.deliverables.map((item) => (
-                <li class="py-3 flex items-start gap-3">
-                  <span class="text-[#006B3E] font-bold text-sm shrink-0 mt-0.5">
-                    <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                <li class="deliverable-item">
+                  <span class="check-icon-wrap">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                     </svg>
                   </span>
-                  <p class="text-xs md:text-sm font-['Golos_Text'] text-[#4d4d52] leading-relaxed">
-                    <strong class="text-[#191919] font-medium">{item.bold} — </strong>{item.text}
-                  </p>
+                  <div class="deliverable-text">
+                    <strong>{item.bold} — </strong>{item.text}
+                  </div>
                 </li>
               ))}
             </ul>
           </div>
 
           <!-- CTA Button -->
-          <div class="mt-4 pt-2">
+          <div class="card-cta-wrap">
             <a
               href={`https://wa.me/6281226832326?text=${encodeURIComponent(`Assalamualaikum Admin GVF, saya ingin menyalurkan ${program.title} untuk paket: ${pkg.title} sebesar ${pkg.pricePrefix || ''}${pkg.priceAmount}. Mohon panduan transfer dan akadnya.`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="w-full h-[52px] bg-[#006B3E] hover:bg-[#005230] text-white font-['Cal_Sans'] font-medium text-base rounded-[100px] flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"
+              class="pkg-cta-button"
             >
               {pkg.ctaText}
             </a>
@@ -111,38 +98,29 @@ const { program } = Astro.props;
 
     <!-- Add-on Services Table (From Pen.dev) -->
     {program.addonItems && program.addonItems.length > 0 && (
-      <div class="max-w-[1000px] mx-auto mb-20">
-        <h3 class="text-2xl md:text-3xl font-['Cal_Sans'] text-[#191919] text-center mb-8">
+      <div class="addon-table-section">
+        <h3 class="addon-section-title">
           {program.addonTitle || 'Pilihan Saluran Tambahan'}
         </h3>
 
-        <div class="border border-[#e3e3e8] rounded-[16px] overflow-hidden bg-white shadow-xs">
-          <!-- Desktop Table -->
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
+        <div class="addon-table-card">
+          <div class="addon-table-scroll">
+            <table class="addon-table">
               <thead>
-                <tr class="bg-[#191919] text-white text-xs md:text-sm font-['Golos_Text'] font-semibold">
-                  <th class="py-3.5 px-6 font-semibold">Kategori / Program</th>
-                  <th class="py-3.5 px-6 font-semibold">Keterangan</th>
-                  <th class="py-3.5 px-6 font-semibold text-right">Nominal</th>
-                  <th class="py-3.5 px-6 font-semibold text-right">Ketersediaan</th>
+                <tr>
+                  <th class="col-category">Kategori / Program</th>
+                  <th class="col-desc">Keterangan</th>
+                  <th class="col-price">Nominal</th>
+                  <th class="col-avail">Ketersediaan</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-[#e3e3e8]">
+              <tbody>
                 {program.addonItems.map((addon) => (
-                  <tr class="hover:bg-slate-50/70 transition-colors">
-                    <td class="py-4 px-6 text-sm font-['Golos_Text'] font-semibold text-[#191919] whitespace-nowrap">
-                      {addon.name}
-                    </td>
-                    <td class="py-4 px-6 text-xs md:text-sm font-['Golos_Text'] text-[#4d4d52]">
-                      {addon.desc}
-                    </td>
-                    <td class="py-4 px-6 text-sm font-['Golos_Text'] font-semibold text-[#006B3E] text-right whitespace-nowrap">
-                      {addon.price}
-                    </td>
-                    <td class="py-4 px-6 text-xs font-['Golos_Text'] italic text-[#4d4d52] text-right whitespace-nowrap">
-                      {addon.availability}
-                    </td>
+                  <tr>
+                    <td class="col-category font-bold">{addon.name}</td>
+                    <td class="col-desc">{addon.desc}</td>
+                    <td class="col-price font-bold text-green">{addon.price}</td>
+                    <td class="col-avail italic">{addon.availability}</td>
                   </tr>
                 ))}
               </tbody>
@@ -152,34 +130,25 @@ const { program } = Astro.props;
       </div>
     )}
 
-    <!-- Interactive Calculator Toggle Drawer -->
-    <div class="max-w-[1100px] mx-auto mt-12 bg-white border border-[#e3e3e8] rounded-[24px] p-6 md:p-8 shadow-xs">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-[#e3e3e8] pb-6 mb-6">
+    <!-- Interactive Calculator Toggle Drawer (Sleek & Clean) -->
+    <div class="custom-sim-box">
+      <div class="sim-header-row">
         <div>
-          <span class="text-xs font-['Cal_Sans'] tracking-wider text-[#006B3E] uppercase font-bold">
-            FITUR KALKULATOR KHUSUS
-          </span>
-          <h4 class="text-xl md:text-2xl font-['Cal_Sans'] text-[#191919] mt-0.5">
-            Ingin Menghitung atau Memilih Nilai Kustom?
-          </h4>
-          <p class="text-sm font-['Golos_Text'] text-[#4d4d52] mt-1">
-            Gunakan simulasi interaktif di bawah untuk memasukkan jumlah meter, porsi, atau hisab zakat Anda.
+          <span class="sim-eyebrow">FITUR KALKULATOR KHUSUS</span>
+          <h4 class="sim-title">Ingin Menghitung atau Memilih Nilai Kustom?</h4>
+          <p class="sim-subtitle">
+            Gunakan live simulator untuk memasukkan hisab zakat, jumlah meter wakaf, atau donasi kustom.
           </p>
         </div>
-        <button
-          type="button"
-          id="toggleCustomCalculatorBtn"
-          class="shrink-0 px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-[#191919] font-['Cal_Sans'] text-sm rounded-full transition-colors flex items-center gap-2"
-        >
-          <span id="toggleCustomCalculatorText">Tampilkan Simulasi</span>
-          <svg class="w-4 h-4 transition-transform duration-200" id="toggleCustomCalculatorIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button type="button" id="toggleCustomCalculatorBtn" class="sim-toggle-btn">
+          <span id="toggleCustomCalculatorText">Buka Simulasi</span>
+          <svg class="sim-arrow" id="toggleCustomCalculatorIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
       </div>
 
-      <!-- Expandable Interactive Area (Initially Collapsed for Pen.dev Clean Look) -->
-      <div id="interactiveCustomArea" class="hidden transition-all duration-300">
+      <div id="interactiveCustomArea" class="sim-body-wrap is-hidden">
         {program.slug === 'zakat' && <ZakatCalculatorSection program={program} />}
         {program.slug === 'infaq' && <InfaqMaterialSection program={program} />}
         {program.slug === 'wakaf' && <WakafLandSliderSection program={program} />}
@@ -189,8 +158,463 @@ const { program } = Astro.props;
   </div>
 </section>
 
+<style>
+  /* =========================================================================
+     VANILLA SCOPED CSS UNTUK PAKET PRICING PEN.DEV
+     ========================================================================= */
+  .pen-pricing-section {
+    background-color: #f8f8f8;
+    padding: 80px 24px 100px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .pricing-container {
+    max-width: 1380px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Header Section */
+  .pricing-header-wrap {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 56px;
+  }
+
+  .pricing-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(114, 114, 114, 0.25);
+    border-radius: 9999px;
+    padding: 6px 18px;
+    background: #ffffff;
+    margin-bottom: 16px;
+  }
+
+  .dot-green {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #006B3E;
+  }
+
+  .badge-text {
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #191919;
+  }
+
+  .pricing-main-heading {
+    font-family: 'Cal Sans', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    color: #0f172a;
+    line-height: 1.15;
+    margin: 0 0 16px;
+    font-weight: normal;
+  }
+
+  .pricing-sub-heading {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4d4d52;
+    margin: 0 auto;
+    max-width: 720px;
+  }
+
+  /* 3 Pricing Cards Grid */
+  .pricing-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    align-items: stretch;
+    margin-bottom: 70px;
+  }
+
+  @media (max-width: 1024px) {
+    .pricing-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+
+  .pkg-card {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e3e3e8;
+    padding: 44px 32px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .pkg-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .pkg-card.is-popular {
+    border: 2px solid #006B3E;
+    box-shadow: 0 10px 30px rgba(0, 107, 62, 0.12);
+    padding-top: 56px;
+  }
+
+  .rekomendasi-tag {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #006B3E;
+    color: #ffffff;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 20px;
+    border-radius: 0 0 10px 10px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(0, 107, 62, 0.25);
+    white-space: nowrap;
+  }
+
+  .card-title-group {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .card-title {
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 24px;
+    color: #191919;
+    margin: 0 0 4px;
+    font-weight: 600;
+  }
+
+  .card-subtitle {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    color: #4d4d52;
+    margin: 0 0 18px;
+  }
+
+  .card-price-val {
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #191919;
+    margin: 0 0 4px;
+    line-height: 1.1;
+  }
+
+  .card-price-desc {
+    font-family: 'Golos Text', sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    color: #4d4d52;
+    margin-bottom: 8px;
+  }
+
+  .card-estimation-pill {
+    display: inline-block;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #006B3E;
+    background-color: rgba(0, 107, 62, 0.08);
+    padding: 4px 14px;
+    border-radius: 9999px;
+    margin-top: 4px;
+  }
+
+  .what-do-you-get-bar {
+    border-bottom: 2px solid #006B3E;
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+  }
+
+  .what-do-you-get-bar span {
+    font-family: 'Golos Text', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #191919;
+    text-transform: uppercase;
+  }
+
+  .card-deliverables-list {
+    list-style: none;
+    margin: 0 0 32px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .deliverable-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e3e3e8;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 13px;
+    color: #4d4d52;
+    line-height: 1.5;
+  }
+
+  .deliverable-item:last-child {
+    border-bottom: none;
+  }
+
+  .check-icon-wrap {
+    color: #006B3E;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .check-icon-wrap svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  .deliverable-text strong {
+    color: #191919;
+    font-weight: 600;
+  }
+
+  .card-cta-wrap {
+    margin-top: auto;
+    padding-top: 10px;
+  }
+
+  .pkg-cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 52px;
+    background-color: #006B3E;
+    color: #ffffff !important;
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 15px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 107, 62, 0.2);
+    transition: background-color 0.2s, transform 0.15s;
+  }
+
+  .pkg-cta-button:hover {
+    background-color: #005230;
+    transform: scale(0.99);
+  }
+
+  /* Add-on Table Section */
+  .addon-table-section {
+    max-width: 960px;
+    margin: 0 auto 60px;
+  }
+
+  .addon-section-title {
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 26px;
+    color: #191919;
+    text-align: center;
+    margin: 0 0 24px;
+    font-weight: 600;
+  }
+
+  .addon-table-card {
+    border: 1px solid #e3e3e8;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+  }
+
+  .addon-table-scroll {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .addon-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    min-width: 680px;
+  }
+
+  .addon-table thead tr {
+    background-color: #191919;
+  }
+
+  .addon-table th {
+    padding: 14px 20px;
+    color: #ffffff;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .addon-table th.col-price,
+  .addon-table th.col-avail {
+    text-align: right;
+  }
+
+  .col-category { width: 28%; }
+  .col-desc { width: 40%; }
+  .col-price { width: 16%; }
+  .col-avail { width: 16%; }
+
+  .addon-table tbody tr {
+    border-bottom: 1px solid #e3e3e8;
+    transition: background-color 0.15s;
+  }
+
+  .addon-table tbody tr:hover {
+    background-color: #fbfbfb;
+  }
+
+  .addon-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .addon-table td {
+    padding: 16px 20px;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 13px;
+    color: #4d4d52;
+    line-height: 1.5;
+  }
+
+  .addon-table td.col-price,
+  .addon-table td.col-avail {
+    text-align: right;
+  }
+
+  .addon-table td.font-bold {
+    font-weight: 600;
+    color: #191919;
+  }
+
+  .addon-table td.text-green {
+    color: #006B3E;
+  }
+
+  .addon-table td.italic {
+    font-style: italic;
+  }
+
+  /* Custom Simulation Box */
+  .custom-sim-box {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid #e3e3e8;
+    border-radius: 20px;
+    padding: 24px 28px;
+    box-sizing: border-box;
+  }
+
+  .sim-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .sim-header-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .sim-eyebrow {
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #006B3E;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .sim-title {
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 20px;
+    color: #191919;
+    margin: 0;
+  }
+
+  .sim-subtitle {
+    font-family: 'Golos Text', sans-serif;
+    font-size: 13px;
+    color: #4d4d52;
+    margin: 4px 0 0;
+  }
+
+  .sim-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 100px;
+    padding: 10px 20px;
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 13px;
+    color: #191919;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .sim-toggle-btn:hover {
+    background-color: #006B3E;
+    color: #ffffff;
+    border-color: #006B3E;
+  }
+
+  .sim-arrow {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s;
+  }
+
+  .sim-body-wrap {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e3e3e8;
+  }
+
+  .sim-body-wrap.is-hidden {
+    display: none;
+  }
+
+  .sim-arrow.rotated {
+    transform: rotate(180deg);
+  }
+</style>
+
 <script>
-  // Toggle Interactive Calculator
   const toggleBtn = document.getElementById('toggleCustomCalculatorBtn');
   const customArea = document.getElementById('interactiveCustomArea');
   const toggleText = document.getElementById('toggleCustomCalculatorText');
@@ -198,15 +622,15 @@ const { program } = Astro.props;
 
   if (toggleBtn && customArea && toggleText && toggleIcon) {
     toggleBtn.addEventListener('click', () => {
-      const isHidden = customArea.classList.contains('hidden');
+      const isHidden = customArea.classList.contains('is-hidden');
       if (isHidden) {
-        customArea.classList.remove('hidden');
+        customArea.classList.remove('is-hidden');
         toggleText.textContent = 'Sembunyikan Simulasi';
-        toggleIcon.classList.add('rotate-180');
+        toggleIcon.classList.add('rotated');
       } else {
-        customArea.classList.add('hidden');
-        toggleText.textContent = 'Tampilkan Simulasi';
-        toggleIcon.classList.remove('rotate-180');
+        customArea.classList.add('is-hidden');
+        toggleText.textContent = 'Buka Simulasi';
+        toggleIcon.classList.remove('rotated');
       }
     });
   }
