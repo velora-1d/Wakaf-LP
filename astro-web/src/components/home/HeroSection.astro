@@ -83,18 +83,21 @@ const heroSlides = [
           role="tabpanel"
           aria-label={`Slide ${slide.index}: ${slide.label}`}
         >
-          <!-- Display Heading (typeui principle: line-height tight, crisp contrast) -->
+          <!-- Badge Pill from Pen.dev -->
+          <div class="hero-badge-pill">
+            <span class="hero-badge-dot"></span>
+            <span class="hero-badge-text">{slide.taglineEn || slide.badge || 'FOSTERING PESANTREN ECOSYSTEMS FOR SELF-RELIANCE AND SOCIAL IMPACT'}</span>
+          </div>
+
+          <!-- Display Heading (Pen.dev text-[72px] line-height tight) -->
           <h1 class="isavo-hero-title" set:html={slide.title} />
 
           <!-- Narrative Subtext -->
           <div class="isavo-hero-sub">
             <p>{slide.lead}</p>
-            {slide.taglineEn && (
-              <p class="hero-tagline-en">{slide.taglineEn}</p>
-            )}
           </div>
 
-          <!-- Matched Height Action Buttons -->
+          <!-- Matched Height Action Buttons (Pen.dev Jelajahi Program & Dukung Kebaikan) -->
           <div class="isavo-hero-cta-wrap">
             {slide.buttons.map((btn) => (
               <a
@@ -102,44 +105,10 @@ const heroSlides = [
                 class={btn.variant === 'primary' ? 'isavo-btn-primary-pill' : 'isavo-btn-outline-pill'}
               >
                 <span>{btn.text}</span>
-                {btn.variant === 'outline' && (
-                  <span class="isavo-btn-arrow-circle">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="isavo-arrow-icon">
-                      <line x1="7" y1="17" x2="17" y2="7"></line>
-                      <polyline points="7 7 17 7 17 17"></polyline>
-                    </svg>
-                  </span>
-                )}
               </a>
             ))}
           </div>
-
-          {slide.ctaText && (
-            <div class="hero-cta-text-nav">
-              <a href="#tentang-kami" class="hero-text-link">Kenali Kami</a>
-              <span class="hero-text-divider">|</span>
-              <a href="#program-kebaikan" class="hero-text-link">Lihat Program</a>
-            </div>
-          )}
         </div>
-      ))}
-    </div>
-
-    <!-- Slide Progress & Navigation Indicators -->
-    <div class="hero-indicators-bar" role="tablist" aria-label="Hero slide switcher">
-      {heroSlides.map((slide, i) => (
-        <button
-          type="button"
-          class={`hero-indicator-dot ${i === 0 ? 'is-active' : ''}`}
-          data-indicator-index={i}
-          role="tab"
-          aria-selected={i === 0 ? 'true' : 'false'}
-          aria-label={`Slide ${slide.index}: ${slide.label}`}
-        >
-          <span class="indicator-num">{slide.index}</span>
-          <span class="indicator-line"><span class="indicator-progress"></span></span>
-          <span class="indicator-lbl">{slide.label}</span>
-        </button>
       ))}
     </div>
   </div>
@@ -202,19 +171,15 @@ const heroSlides = [
     transform: scale(1.06);
   }
 
-  /* Deep cinematic dark overlay (typeui contrast safety) */
+  /* Pen.dev exact dark cinematic overlay */
   .hero-bg-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(7, 14, 23, 0.95) 0%,
-      rgba(7, 14, 23, 0.82) 48%,
-      rgba(7, 14, 23, 0.45) 100%
-    );
+    background-color: #061829;
+    opacity: 0.72;
   }
 
   /* typeui principle: 1280px standard container */
@@ -228,7 +193,7 @@ const heroSlides = [
   }
 
   .hero-slides-deck {
-    max-width: 840px;
+    max-width: 960px;
     position: relative;
     padding-top: 20px;
   }
@@ -247,46 +212,46 @@ const heroSlides = [
     transform: translateY(0);
   }
 
-  /* Tag Pill with dot ala ISAVO */
-  .isavo-tag-pill {
+  /* Badge Pill from Pen.dev */
+  .hero-badge-pill {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 6px 16px;
-    border-radius: 9999px;
+    gap: 10px;
+    padding: 8px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 32px;
     margin-bottom: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(4px);
   }
 
-  .isavo-tag-dot {
-    width: 7px;
-    height: 7px;
-    background-color: var(--gvf-blue-vibrant, #0969da);
+  .hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #10b981;
     border-radius: 50%;
+    flex-shrink: 0;
   }
 
-  .isavo-tag-text {
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
+  .hero-badge-text {
+    font-size: 12px;
+    font-weight: 700;
     color: #ffffff;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  /* Giant Display Title (typeui principle: line-height: 1.04, margin-bottom 28px) */
+  /* Pen.dev 72px Display Title */
   .isavo-hero-title {
-    font-size: clamp(2.8rem, 5.2vw, 4.8rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+    font-size: clamp(2.8rem, 5.2vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     color: #ffffff;
     margin-bottom: 24px;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    font-family: 'Inter', system-ui, sans-serif;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }
 
   .isavo-hero-sub {
@@ -350,13 +315,14 @@ const heroSlides = [
     align-items: center;
     justify-content: center;
     gap: 10px;
-    height: 50px;
-    background: #0969da;
+    height: 52px;
+    background: #006B3E;
+    border: 1px solid #006B3E;
     color: #ffffff;
     padding: 0 28px;
     border-radius: 9999px;
-    font-size: 0.9375rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
     text-decoration: none;
     letter-spacing: 0.01em;
     white-space: nowrap;
@@ -365,7 +331,7 @@ const heroSlides = [
   }
 
   .isavo-btn-primary-pill:hover {
-    background: #0756b2;
+    background: #005230;
     transform: translateY(-2px);
     box-shadow: none;
   }
@@ -379,132 +345,24 @@ const heroSlides = [
   .isavo-btn-outline-pill {
     display: inline-flex;
     align-items: center;
-    height: 50px;
-    gap: 14px;
-    background: rgba(15, 23, 42, 0.45);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    padding: 0 6px 0 24px;
+    justify-content: center;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.1);
+    outline: 1px solid rgba(255, 255, 255, 0.3);
+    outline-offset: -0.5px;
+    padding: 0 28px;
     border-radius: 9999px;
     text-decoration: none;
     white-space: nowrap;
-    transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.25s ease, transform 0.25s ease;
   }
 
   .isavo-btn-outline-pill:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
-  }
-
-  .isavo-btn-text {
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: #ffffff;
-  }
-
-  .isavo-btn-arrow-circle {
-    width: 38px;
-    height: 38px;
-    background-color: var(--gvf-blue-vibrant, #0969da);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    transition: transform 0.3s ease, background-color 0.25s ease;
-    box-shadow: none;
-  }
-
-  .isavo-btn-outline-pill:hover .isavo-btn-arrow-circle {
-    transform: rotate(45deg);
-    background-color: #0756b2;
-  }
-
-  .isavo-arrow-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  /* Slide Indicators Bar (Interactive & Luxurious) */
-  .hero-indicators-bar {
-    margin-top: 48px;
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-    max-width: 600px;
-  }
-
-  .hero-indicator-dot {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    background: none;
-    border: none;
-    padding: var(--space-2) 0;
-    cursor: pointer;
-    text-align: left;
-    color: rgba(255, 255, 255, 0.45);
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .hero-indicator-dot:hover {
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  .hero-indicator-dot.is-active {
-    color: #ffffff;
-  }
-
-  .indicator-line {
-    width: 100%;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .indicator-progress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0%;
-    background: var(--blue-500);
-    border-radius: var(--radius-full);
-  }
-
-  .hero-indicator-dot.is-active .indicator-progress {
-    width: 100%;
-    transition: width 4s linear;
-  }
-
-  .indicator-num {
-    font-size: var(--text-micro);
-    font-weight: 800;
-    font-family: var(--font-mono);
-  }
-
-  .indicator-lbl {
-    font-size: var(--text-micro);
-    font-weight: 600;
-    letter-spacing: var(--tracking-wide);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  @media (max-width: 768px) {
-    .indicator-lbl {
-      display: none;
-    }
-    .hero-indicators-bar {
-      margin-top: 32px;
-      gap: var(--space-2);
-    }
   }
 
   @media (max-width: 900px) {
@@ -525,7 +383,6 @@ const heroSlides = [
 
     const bgItems = root.querySelectorAll<HTMLElement>('.hero-bg-item');
     const slidePanes = root.querySelectorAll<HTMLElement>('.hero-slide-pane');
-    const indicatorDots = root.querySelectorAll<HTMLElement>('.hero-indicator-dot');
 
     const totalSlides = slidePanes.length;
     let currentIndex = 0;
@@ -549,21 +406,7 @@ const heroSlides = [
       slidePanes.forEach((pane, idx) => {
         pane.classList.toggle('is-active', idx === currentIndex);
       });
-
-      // 3. Update indicator dots
-      indicatorDots.forEach((dot, idx) => {
-        dot.classList.toggle('is-active', idx === currentIndex);
-        dot.setAttribute('aria-selected', idx === currentIndex ? 'true' : 'false');
-      });
     }
-
-    // Indicator click handlers
-    indicatorDots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        const targetIdx = parseInt(dot.dataset.indicatorIndex || '0', 10);
-        goToSlide(targetIdx);
-      });
-    });
 
     function nextSlide() {
       goToSlide(currentIndex + 1);
