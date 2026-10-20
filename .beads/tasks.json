@@ -1,0 +1,17 @@
+{
+  "project": "Wakaf-LP",
+  "tasks": [
+    { "id": "SEC-01", "name": "Section 1: Header / Navbar", "status": "closed" },
+    { "id": "SEC-02", "name": "Section 2: Hero Section with Active Carousel", "status": "closed" },
+    { "id": "SEC-03", "name": "Section 3: Empat Pilar Kebaikan", "status": "closed" },
+    { "id": "SEC-04", "name": "Section 4: Tentang Kami Wadah Kolaborasi", "status": "closed" },
+    { "id": "SEC-05", "name": "Section 5: Jelajahi Ekosistem Terpadu Interactive", "status": "closed" },
+    { "id": "SEC-06", "name": "Section 6: Empat Pilar Filantropi", "status": "closed" },
+    { "id": "SEC-07", "name": "Section 7: Dokumentasi Riil & Masterplan", "status": "closed" },
+    { "id": "SEC-08", "name": "Section 8: Temui Dewan & Pengurus GVF Interactive", "status": "closed" },
+    { "id": "SEC-09", "name": "Section 9: Video Dokumentasi Satu Kebaikan", "status": "closed" },
+    { "id": "SEC-10", "name": "Section 10: Kabar GVF & Catatan Edukasi Kebermanfaatan", "status": "closed" },
+    { "id": "SEC-11", "name": "Section 11: Final CTA Konsultasi", "status": "closed" },
+    { "id": "SEC-12", "name": "Section 12: Footer Global", "status": "closed" }
+  ]
+}

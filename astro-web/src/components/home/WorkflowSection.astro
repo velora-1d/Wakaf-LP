@@ -1,314 +1,269 @@
 ---
 // src/components/home/WorkflowSection.astro
-// Exact ISAVO "Cara Kami Bekerja" Descending 4-Card Waterfall Process (Screenshot 3)
+// Exact Pen.dev "Empat Pilar Filantropi" Descending 4-Card Staggered Waterfall
 ---
 
-<section class="isavo-workflow-section" id="alur-proses">
-  <!-- Subtle Blueprint Wireframe Architectural Watermark Background ala ISAVO -->
-  <div class="isavo-blueprint-bg" aria-hidden="true">
-    <svg viewBox="0 0 1200 600" fill="none" stroke="rgba(15, 23, 42, 0.035)" stroke-width="1.2">
-      <path d="M50 550 L350 150 L550 250 L850 50 L1150 450" />
-      <path d="M100 550 L400 150 L600 250 L900 50" />
-      <line x1="50" y1="550" x2="1150" y2="550" />
-      <line x1="350" y1="150" x2="350" y2="550" />
-      <line x1="550" y1="250" x2="550" y2="550" />
-      <line x1="850" y1="50" x2="850" y2="550" />
-      <rect x="380" y="200" width="80" height="120" />
-      <rect x="480" y="200" width="50" height="80" />
-      <rect x="680" y="160" width="120" height="180" />
-    </svg>
-  </div>
-
-  <div class="isavo-workflow-container">
-    <!-- Top Header -->
-    <div class="isavo-workflow-header reveal-on-scroll">
-      <div class="isavo-pill-tag">
-        <span class="isavo-pill-dot"></span>
-        <span class="isavo-pill-text">CARA KAMI BEKERJA</span>
+<section class="pen-philanthropy-section reveal-on-scroll" id="empat-pilar-filantropi">
+  <div class="pen-philanthropy-container">
+    <!-- Header: Split Row (Left: Badge Pill + 48px Title | Right: Description) -->
+    <div class="pen-philanthropy-header">
+      <div class="pen-header-left">
+        <div class="pen-badge-pill">
+          <div class="dot-halo">
+            <div class="halo-ring"></div>
+            <div class="core-dot"></div>
+          </div>
+          <span class="badge-text">Empat Pilar Filantropi</span>
+        </div>
+        <h2 class="pen-section-title">
+          Infaq, Sedekah, Zakat &amp; Wakaf:<br />
+          Satu Pintu Kebaikan Berkelanjutan
+        </h2>
       </div>
 
-      <h2 class="isavo-workflow-title">
-        Proses <span class="isavo-accent-blue">4 Langkah</span> Realisasi<br />
-        Amanah Wakaf Anda
-      </h2>
-
-      <p class="isavo-workflow-sub">
-        Setiap tahapan dirancang terstruktur, transparan, dan dapat dipantau langsung — dari konsultasi awal hingga terbitnya sertifikat wakaf resmi dan kemanfaatan abadi.
-      </p>
+      <div class="pen-header-right">
+        <p class="pen-section-desc">
+          Setiap pilar filantropi dikelola secara amanah, akuntabel, dan transparan — mewujudkan sarana ibadah, nutrisi, beasiswa santri vokasi, hingga kemanfaatan abadi.
+        </p>
+      </div>
     </div>
 
-    <!-- 4 Descending Waterfall Cards Grid ala ISAVO Screenshot 3 -->
-    <div class="isavo-waterfall-grid">
-      <!-- Card 01 (Step 1: Top aligned, offset 0) -->
-      <div class="isavo-step-card isavo-card-step-1 reveal-on-scroll delay-100">
-        <!-- Top Image with 18px radius -->
-        <div class="isavo-step-thumb">
+    <!-- 4 Descending Waterfall Cards Grid ala Pen.dev -->
+    <div class="pen-waterfall-grid">
+      <!-- Card 01: Infaq (Offset 0px) -->
+      <div class="pen-pillar-card card-step-1">
+        <div class="pen-pillar-thumb">
           <img
             src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (3).jpeg"
-            alt="Survey & Konsultasi Niat"
-            class="isavo-thumb-img"
+            alt="Infaq - Pengadaan Material Konstruksi Riil"
+            class="pen-thumb-img"
             loading="lazy"
           />
         </div>
-
-        <!-- Card Content -->
-        <div class="isavo-step-content">
-          <h3 class="isavo-step-title">
-            <span class="isavo-num-highlight">01.</span> Survey &amp; Konsultasi
-          </h3>
-          <p class="isavo-step-desc">
-            Kami memetakan kebutuhan, preferensi akad wakaf, dan target porsi Anda, dilanjutkan dengan pengukuran presisi di lokasi tapak Jonggol. Data eksisting ini menjadi fondasi awal agar perencanaan sangat akurat dan terarah.
+        <div class="pen-pillar-content">
+          <h3 class="pen-pillar-title">Infaq</h3>
+          <p class="pen-pillar-desc">
+            Partisipasi pengadaan material konstruksi riil Masjid Khairu Ummah Sugro dan sarana workshop santri di Jonggol secara amanah dan terbuka.
           </p>
         </div>
-
-        <!-- Giant Faint Watermark Number at Bottom Right ala ISAVO -->
-        <div class="isavo-card-watermark" aria-hidden="true">01</div>
+        <div class="pen-card-watermark" aria-hidden="true">01</div>
       </div>
 
-      <!-- Card 02 (Step 2: Offset down 48px) -->
-      <div class="isavo-step-card isavo-card-step-2 reveal-on-scroll delay-200">
-        <div class="isavo-step-thumb">
+      <!-- Card 02: Sedekah (Offset Down 40px) -->
+      <div class="pen-pillar-card card-step-2">
+        <div class="pen-pillar-thumb">
           <img
             src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (2).jpeg"
-            alt="Desain & Rencana Anggaran"
-            class="isavo-thumb-img"
+            alt="Sedekah - Penyediaan Nutrisi Santri"
+            class="pen-thumb-img"
             loading="lazy"
           />
         </div>
-
-        <div class="isavo-step-content">
-          <h3 class="isavo-step-title">
-            <span class="isavo-num-highlight">02.</span> Desain &amp; Anggaran
-          </h3>
-          <p class="isavo-step-desc">
-            Kami menyajikan visualisasi 3D arsitektur, gambar DED (Detail Engineering Design) lengkap, timeline pembangunan fisik, dan estimasi anggaran transparan — tanpa biaya tersembunyi.
+        <div class="pen-pillar-content">
+          <h3 class="pen-pillar-title">Sedekah</h3>
+          <p class="pen-pillar-desc">
+            Penyediaan nutrisi sehat, konsumsi harian, dan gizi bagi santri vokasi serta para penghafal Al-Quran selama menempuh pendidikan.
           </p>
         </div>
-
-        <div class="isavo-card-watermark" aria-hidden="true">02</div>
+        <div class="pen-card-watermark" aria-hidden="true">02</div>
       </div>
 
-      <!-- Card 03 (Step 3: Offset down 96px) -->
-      <div class="isavo-step-card isavo-card-step-3 reveal-on-scroll delay-300">
-        <div class="isavo-step-thumb">
+      <!-- Card 03: Zakat (Offset Down 80px) -->
+      <div class="pen-pillar-card card-step-3">
+        <div class="pen-pillar-thumb">
           <img
             src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.05 (1).jpeg"
-            alt="Eksekusi & Pelaporan Progres"
-            class="isavo-thumb-img"
+            alt="Zakat - Penyaluran Hak Mustahik & Asnaf"
+            class="pen-thumb-img"
             loading="lazy"
           />
         </div>
-
-        <div class="isavo-step-content">
-          <h3 class="isavo-step-title">
-            <span class="isavo-num-highlight">03.</span> Eksekusi &amp; Pelaporan
-          </h3>
-          <p class="isavo-step-desc">
-            Konstruksi dimulai setelah Anda menyetujui akad. Tim kami mengelola seluruh pekerjaan di lapangan dengan pengawasan kualitas ketat dan laporan progres visual berkala untuk para muhsinin.
+        <div class="pen-pillar-content">
+          <h3 class="pen-pillar-title">Zakat</h3>
+          <p class="pen-pillar-desc">
+            Penyaluran kewajiban zakat 2,5% secara tepat sasaran kepada asnaf fi sabilillah dan beasiswa pendidikan vokasi santri dhuafa.
           </p>
         </div>
-
-        <div class="isavo-card-watermark" aria-hidden="true">03</div>
+        <div class="pen-card-watermark" aria-hidden="true">03</div>
       </div>
 
-      <!-- Card 04 (Step 4: Offset down 144px) -->
-      <div class="isavo-step-card isavo-card-step-4 reveal-on-scroll delay-400">
-        <div class="isavo-step-thumb">
+      <!-- Card 04: Wakaf (Offset Down 120px) -->
+      <div class="pen-pillar-card card-step-4">
+        <div class="pen-pillar-thumb">
           <img
             src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.06.jpeg"
-            alt="Serah Terima & Manfaat Abadi"
-            class="isavo-thumb-img"
+            alt="Wakaf - Pengelolaan Aset Abadi 3 Ha"
+            class="pen-thumb-img"
             loading="lazy"
           />
         </div>
-
-        <div class="isavo-step-content">
-          <h3 class="isavo-step-title">
-            <span class="isavo-num-highlight">04.</span> Serah Terima &amp; Garansi
-          </h3>
-          <p class="isavo-step-desc">
-            Setelah inspeksi akhir dan persetujuan pengawas syariah, fasilitas diserahterimakan untuk operasional ibadah dan santri, disertai Sertifikat Ikrar Wakaf resmi untuk ketenangan jangka panjang.
+        <div class="pen-pillar-content">
+          <h3 class="pen-pillar-title">Wakaf</h3>
+          <p class="pen-pillar-desc">
+            Pengelolaan aset abadi seluas ±3 Ha di Jonggol untuk kawasan masjid, SMK Skill Village, dan agro-technopark berkelanjutan.
           </p>
         </div>
-
-        <div class="isavo-card-watermark" aria-hidden="true">04</div>
+        <div class="pen-card-watermark" aria-hidden="true">04</div>
       </div>
     </div>
 
-    <!-- Bottom Action Text Link ala ISAVO -->
-    <div class="isavo-workflow-bottom-cta">
-      <p class="bottom-cta-text">
-        Mulai Kebaikan Abadi Bersama Kami di Sukasirna Jonggol. 
-        <a href="/contact" class="bottom-cta-link">Konsultasikan Program Gratis ↗</a>
-      </p>
+    <!-- Bottom Action Text Link ala Pen.dev -->
+    <div class="pen-bottom-cta">
+      <a href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Admin%20GVF,%20saya%20ingin%20konsultasi%20program%20filantropi" target="_blank" rel="noopener noreferrer" class="pen-bottom-cta-link">
+        Mulai Kebaikan Abadi Bersama Kami di Sukasirna Jonggol. Konsultasikan Program Gratis ↗
+      </a>
     </div>
   </div>
 </section>
 
 <style>
-  .isavo-workflow-section {
+  .pen-philanthropy-section {
     position: relative;
-    background-color: #f7f8fa;
-    padding-top: 100px;
-    padding-bottom: 120px;
-    overflow: hidden;
-  }
+    background-color: #ffffff;
+    padding: 100px 0 120px 0;
     overflow: hidden;
   }
 
-  /* Architectural Blueprint Line Watermark */
-  .isavo-blueprint-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.8;
-  }
-
-  .isavo-workflow-container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1440px;
+  .pen-philanthropy-container {
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 3rem;
+    padding: 0 2.5rem;
   }
 
-  /* Header */
-  .isavo-workflow-header {
-    text-align: center;
+  /* Header Split Row */
+  .pen-philanthropy-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 70px;
+  }
+
+  .pen-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     max-width: 720px;
-    margin: 0 auto 5rem;
   }
 
-  .isavo-pill-tag {
+  .pen-badge-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background-color: #ffffff;
-    border: 1px solid rgba(15, 23, 42, 0.1);
-    padding: 0.35rem 0.95rem;
-    border-radius: 9999px;
-    margin-bottom: 1.5rem;
-    box-shadow: none;
+    gap: 8px;
+    padding: 5px 14px 5px 10px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.04);
+    border-radius: 32px;
+    width: fit-content;
   }
 
-  .isavo-pill-dot {
+  .dot-halo {
+    width: 14px;
+    height: 14px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .halo-ring {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(0, 107, 62, 0.12);
+  }
+
+  .core-dot {
+    position: relative;
     width: 6px;
     height: 6px;
-    background-color: #0969da;
     border-radius: 50%;
+    background: #006B3E;
   }
 
-  .isavo-pill-text {
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    color: #0f172a;
-    text-transform: uppercase;
-    font-family: 'Golos Text', sans-serif;
+  .badge-text {
+    font-size: 12px;
+    line-height: normal;
+    color: #000000;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  .isavo-workflow-title {
-    font-size: clamp(2.3rem, 4.2vw, 3.75rem);
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
-    color: #0f172a;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-    margin-bottom: 1rem;
-  }
-
-  .isavo-accent-blue {
-    color: #0969da;
-  }
-
-  .isavo-workflow-sub {
-    font-size: 1.05rem;
-    color: #64748b;
-    line-height: 1.7;
+  .pen-section-title {
+    font-size: 42px;
+    line-height: 50px;
+    font-weight: 400;
+    color: #000000;
     margin: 0;
+    letter-spacing: -0.02em;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  /* 4 Descending Waterfall Cards Grid ala ISAVO Screenshot 3 */
-  .isavo-waterfall-grid {
+  .pen-header-right {
+    max-width: 420px;
+    padding-top: 50px;
+  }
+
+  .pen-section-desc {
+    font-size: 15px;
+    line-height: 25px;
+    color: #62625b;
+    font-weight: 400;
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* 4-Card Waterfall Staggered Grid */
+  .pen-waterfall-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.75rem;
+    gap: 30px;
     align-items: flex-start;
   }
 
-  .isavo-step-card {
+  .pen-pillar-card {
     position: relative;
-    background-color: #ffffff;
-    border-radius: 24px;
-    padding: 1.5rem 1.5rem 2.25rem;
-    box-shadow: none;
-    border: 1px solid #e5e7eb;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    transition: transform 0.25s ease, border-color 0.25s ease;
+    padding: 0;
+    background: transparent;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  /* Exact Descending Staircase Offsets on Desktop */
+  .pen-pillar-card:hover {
+    transform: translateY(-6px);
+  }
+
+  /* Staggered Vertical Offsets exact Pen.dev */
   @media (min-width: 1025px) {
-    .isavo-card-step-1 {
+    .card-step-1 {
       margin-top: 0px;
     }
-    .isavo-card-step-2 {
-      margin-top: 40px;
+    .card-step-2 {
+      margin-top: 45px;
     }
-    .isavo-card-step-3 {
-      margin-top: 80px;
+    .card-step-3 {
+      margin-top: 90px;
     }
-    .isavo-card-step-4 {
-      margin-top: 120px;
+    .card-step-4 {
+      margin-top: 135px;
     }
   }
 
-  .isavo-step-card:hover {
-    transform: translateY(-6px);
-    border-color: #0969da;
-  }
-
-  /* Bottom CTA ala ISAVO */
-  .isavo-workflow-bottom-cta {
-    text-align: center;
-    margin-top: 60px;
-  }
-
-  .bottom-cta-text {
-    font-size: 1.05rem;
-    color: #4d4d52;
-    margin: 0;
-  }
-
-  .bottom-cta-link {
-    color: #0969da;
-    font-weight: 700;
-    text-decoration: underline;
-    margin-left: 6px;
-    transition: color 0.15s ease;
-  }
-
-  .bottom-cta-link:hover {
-    color: #0752a8;
-  }
-
-  /* Top Image Thumbnail with 18px radius */
-  .isavo-step-thumb {
+  /* Image Thumbnail */
+  .pen-pillar-thumb {
     width: 100%;
-    height: 220px;
-    border-radius: 18px;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
-    margin-bottom: 1.75rem;
-    background-color: #0f172a;
+    margin-bottom: 24px;
+    background-color: #f1f5f9;
   }
 
-  .isavo-thumb-img {
+  .pen-thumb-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -316,75 +271,104 @@
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  .isavo-step-card:hover .isavo-thumb-img {
-    transform: scale(1.08);
+  .pen-pillar-card:hover .pen-thumb-img {
+    transform: scale(1.05);
   }
 
-  /* Card Content */
-  .isavo-step-content {
+  /* Content */
+  .pen-pillar-content {
     position: relative;
     z-index: 2;
     display: flex;
     flex-direction: column;
+    gap: 12px;
   }
 
-  .isavo-step-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #0f172a;
-    letter-spacing: -0.01em;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-    margin-bottom: 0.85rem;
-    line-height: 1.3;
-  }
-
-  .isavo-num-highlight {
-    color: #0969da;
-    font-weight: 800;
-  }
-
-  .isavo-step-desc {
-    font-size: 0.9rem;
-    line-height: 1.65;
-    color: #64748b;
+  .pen-pillar-title {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 500;
+    color: #000000;
     margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  /* Giant Faint Watermark Number at Bottom Right ala ISAVO Screenshot 3 */
-  .isavo-card-watermark {
-    position: absolute;
-    bottom: -15px;
-    right: 12px;
-    font-size: 5rem;
-    font-weight: 900;
-    color: rgba(15, 23, 42, 0.05);
-    font-family: 'Golos Text', monospace;
+  .pen-pillar-desc {
+    font-size: 14px;
+    line-height: 22px;
+    color: #62625b;
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Big Faint Watermark Number at Bottom */
+  .pen-card-watermark {
+    font-size: 72px;
     line-height: 1;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.08);
+    font-family: 'Inter', system-ui, sans-serif;
+    margin-top: 24px;
+    text-align: right;
     pointer-events: none;
     user-select: none;
-    z-index: 1;
+  }
+
+  /* Bottom Kicker CTA */
+  .pen-bottom-cta {
+    text-align: center;
+    margin-top: 90px;
+  }
+
+  .pen-bottom-cta-link {
+    display: inline-block;
+    color: #006B3E;
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .pen-bottom-cta-link:hover {
+    color: #005431;
+    transform: translateX(4px);
   }
 
   @media (max-width: 1024px) {
-    .isavo-waterfall-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
+    .pen-philanthropy-header {
+      flex-direction: column;
+      gap: 20px;
     }
-    .isavo-step-card {
+
+    .pen-header-right {
+      padding-top: 0;
+      max-width: 100%;
+    }
+
+    .pen-waterfall-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .card-step-1, .card-step-2, .card-step-3, .card-step-4 {
       margin-top: 0 !important;
     }
-    .isavo-workflow-container {
-      padding: 0 1.5rem;
-    }
-    .isavo-workflow-section {
-      padding-top: 70px;
-      padding-bottom: 100px;
+
+    .pen-section-title {
+      font-size: 32px;
+      line-height: 40px;
     }
   }
 
   @media (max-width: 640px) {
-    .isavo-waterfall-grid {
+    .pen-waterfall-grid {
       grid-template-columns: 1fr;
+    }
+
+    .pen-bottom-cta {
+      margin-top: 60px;
     }
   }
 </style>
