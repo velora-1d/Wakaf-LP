@@ -19,3 +19,4 @@
 - [x] Section 10: Kabar GVF 3-Column Symmetrical Grid (`NewsSection.astro`)
 - [x] Section 11: Final CTA Konsultasi (`FinalCtaSection.astro`)
 - [x] Section 12: Footer Global (`Footer.astro`)
+- [x] PROG-01: Penyelarasan Halaman Program (Wakaf, Infaq, Sedekah, Zakat) Sesuai Desain Pen.dev (Hero, Paket Pricing Cards, Add-on Table, Deep Dive, & Responsive Layout)

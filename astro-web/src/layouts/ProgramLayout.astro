@@ -1,12 +1,9 @@
 ---
 // src/layouts/ProgramLayout.astro
-// Master Template 8 Section Program ZISWAF ala ISAVO (isavo.co.id/architecture)
+// Master Template Program ZISWAF Presisi 100% Desain Pen.dev (global village fund.pen)
 import BaseLayout from './BaseLayout.astro';
 import type { ProgramData } from '../data/programs';
-import ZakatCalculatorSection from '../components/program/ZakatCalculatorSection.astro';
-import InfaqMaterialSection from '../components/program/InfaqMaterialSection.astro';
-import WakafLandSliderSection from '../components/program/WakafLandSliderSection.astro';
-import SedekahChipsSection from '../components/program/SedekahChipsSection.astro';
+import PricingPackagesSection from '../components/program/PricingPackagesSection.astro';
 
 interface Props {
   program: ProgramData;
@@ -16,18 +13,18 @@ const { program } = Astro.props;
 
 // Daftar link program untuk sticky sidebar
 const programNavLinks = [
-  { slug: 'wakaf', name: 'Wakaf', badge: 'Abadi' },
-  { slug: 'infaq', name: 'Infaq', badge: 'Fleksibel' },
-  { slug: 'zakat', name: 'Zakat', badge: 'Wajib' },
-  { slug: 'sedekah', name: 'Sedekah', badge: 'Harian' },
+  { slug: 'infaq', name: 'Infaq Fisik' },
+  { slug: 'sedekah', name: 'Sedekah Nutrisi' },
+  { slug: 'wakaf', name: 'Wakaf Produktif' },
+  { slug: 'zakat', name: 'Zakat Maal & Fitrah' },
 ];
 
 // Value box vector SVG icons (Pahala Abadi, BWI, Akta AIW, Laporan Transparan)
 const valueBoxIcons = [
-  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
-  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>`,
-  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
-  `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`
+  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>`,
+  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
+  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`
 ];
 ---
 
@@ -37,123 +34,212 @@ const valueBoxIcons = [
   ogImage={program.heroBgImage}
 >
   <!-- =========================================================================
-       SECTION 1: PAGE HEADER & BREADCRUMB ALA ISAVO
+       SECTION 1: PAGE HEADER & BREADCRUMB (PERSIS PEN.DEV)
        ========================================================================= -->
-  <section class="isavo-prog-header" style={`background-image: url('${program.heroBgImage}');`}>
-    <div class="isavo-header-overlay"></div>
-    <div class="isavo-header-container">
-      <div class="isavo-header-content reveal-on-scroll">
-        <div class="isavo-header-badge">
-          <span class="badge-dot"></span>
-          <span>{program.categoryBadge}</span>
-        </div>
-        <h1 class="isavo-header-title">{program.title}</h1>
-        <p class="isavo-header-subtitle">{program.heroSubtitle}</p>
-        <div class="isavo-header-breadcrumb">
-          <a href="/">Home</a>
-          <span class="sep">/</span>
-          <a href="/program">Program</a>
-          <span class="sep">/</span>
-          <span class="current">{program.title}</span>
-        </div>
+  <section class="pen-prog-header relative overflow-hidden bg-cover bg-center" style={`background-image: url('${program.heroBgImage}');`}>
+    <div class="absolute inset-0 bg-[#061829] opacity-75 z-0"></div>
+    <div class="relative z-10 max-w-[1425px] mx-auto px-6 pt-[170px] pb-[100px] flex flex-col items-center justify-center text-center">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-['Cal_Sans'] font-normal text-white text-center tracking-tight leading-[1.2] mb-6 drop-shadow-md">
+        {program.title}
+      </h1>
+      <div class="flex items-center justify-center gap-2 text-xs md:text-sm font-['Cal_Sans'] font-medium text-white tracking-wider uppercase">
+        <a href="/" class="hover:text-emerald-400 transition-colors">BERANDA</a>
+        <span class="text-white/60">-</span>
+        <span class="text-[#006B3E] font-semibold">{program.categoryBadge}</span>
       </div>
     </div>
   </section>
 
   <!-- =========================================================================
-       SECTION 2: BESPOKE INTERACTIVE PARTICIPATION SECTION (ANTI-SLOP)
+       SECTION 2: PILIHAN PAKET PROGRAM & ADD-ON TABLE (PERSIS PEN.DEV)
        ========================================================================= -->
-  {program.slug === 'zakat' && <ZakatCalculatorSection program={program} />}
-  {program.slug === 'infaq' && <InfaqMaterialSection program={program} />}
-  {program.slug === 'wakaf' && <WakafLandSliderSection program={program} />}
-  {program.slug === 'sedekah' && <SedekahChipsSection program={program} />}
+  <PricingPackagesSection program={program} />
 
   <!-- =========================================================================
-       SECTION 3: DEEP-DIVE PROGRAM (2 KOLOM STICKY SIDEBAR ALA ISAVO)
+       SECTION 3: DEEP-DIVE PROGRAM (2 KOLOM STICKY SIDEBAR PERSIS PEN.DEV)
        ========================================================================= -->
-  <section class="isavo-deepdive-section pt-100 pb-100 bg-light" id="tentang-program">
-    <div class="isavo-container">
-      <div class="isavo-split-layout">
-        <!-- Kolom Kiri: Sticky Sidebar -->
-        <aside class="isavo-sidebar-col">
-          <div class="isavo-sticky-card">
-            <!-- Navigasi Program Lain -->
-            <div class="sidebar-widget nav-widget reveal-on-scroll">
-              <h3 class="widget-title">Pilar Program ZISWAF</h3>
-              <ul class="program-nav-list">
-                {programNavLinks.map(link => (
-                  <li>
-                    <a
-                      href={`/program/${link.slug}`}
-                      class={`prog-nav-item ${link.slug === program.slug ? 'active' : ''}`}
-                    >
-                      <span class="prog-nav-name">{link.name}</span>
-                      <span class="prog-nav-badge">{link.badge}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+  <section class="isavo-deepdive-section py-20 md:py-28 bg-[#f8f8f8]" id="tentang-program">
+    <div class="max-w-[1425px] mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <!-- Kolom Kiri: Sticky Sidebar (4 Kolom) -->
+        <aside class="lg:col-span-4 sticky top-28 space-y-8">
+          <!-- Widget 1: Navigasi Program Lain -->
+          <div class="bg-white rounded-[24px] p-8 border border-[#e3e3e8] shadow-xs">
+            <h3 class="text-2xl font-['Cal_Sans'] text-[#191919] mb-5">Program Lainnya</h3>
+            <ul class="flex flex-col gap-2">
+              {programNavLinks.map(link => (
+                <li>
+                  <a
+                    href={`/program/${link.slug}`}
+                    class={`flex items-center gap-3 px-4 py-3 rounded-[9px] transition-all font-['Cal_Sans'] text-base ${
+                      link.slug === program.slug
+                        ? 'bg-[#006B3E] text-white shadow-xs'
+                        : 'text-[#191919] hover:bg-slate-50 border-b border-[#e3e5e8] last:border-b-0'
+                    }`}
+                  >
+                    <span class={`w-1.5 h-1.5 rounded-full shrink-0 ${link.slug === program.slug ? 'bg-white' : 'bg-[#006B3E]'}`}></span>
+                    <span>{link.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <!-- Bantuan / Konsultasi Cepat Widget ala ISAVO -->
-            <div class="sidebar-widget cta-widget reveal-on-scroll delay-100">
-              <div class="cta-widget-bg"></div>
-              <div class="cta-widget-content">
-                <span class="cta-tag">KONSULTASI AKAD</span>
-                <h4 class="cta-title">Butuh Panduan Fiqih atau Hitung ZISWAF?</h4>
-                <p class="cta-desc">Tim sekretariat dewan syariah GVF siap melayani konsultasi akad, simulasi luas tanah, atau wakaf keluarga.</p>
-                <div class="cta-phone">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                  </svg>
-                  <span>0812-2683-2326</span>
-                </div>
-                <a
-                  href="https://wa.me/6281226832326?text=Assalamualaikum%20Dewan%20Syariah%20GVF%2C%20saya%20ingin%20konsultasi%20program%20wakaf."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="isavo-btn-wa-widget"
-                >
-                  <span>Chat WhatsApp Sekarang</span>
-                  <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                  </svg>
-                </a>
+          <!-- Widget 2: Bantuan / Konsultasi Cepat Widget ala Pen.dev -->
+          <div class="relative rounded-[24px] overflow-hidden p-8 text-center text-white min-h-[460px] flex flex-col items-center justify-center shadow-md bg-cover bg-center" style="background-image: url('/gambar design/belakang masjid.jpg');">
+            <div class="absolute inset-0 bg-black/60 z-0"></div>
+            <div class="relative z-10 flex flex-col items-center">
+              <img src="/images/generated.webp" alt="GVF Logo" class="w-14 h-14 object-contain mb-4 filter drop-shadow" />
+              <span class="text-xs font-['Cal_Sans'] tracking-widest text-emerald-400 uppercase font-semibold mb-2">
+                LAYANAN KONSULTASI
+              </span>
+              <h4 class="text-xl font-['Cal_Sans'] text-white mb-2">
+                Konsultasi Ikrar Wakaf
+              </h4>
+              <div class="text-3xl md:text-4xl font-['Cal_Sans'] text-white my-3 tracking-wide drop-shadow-sm">
+                0878-6599-4786
               </div>
+              <div class="text-sm font-['Cal_Sans'] text-white/80 mb-6">
+                www.globalvillagefund.org
+              </div>
+              <a
+                href="https://wa.me/6287865994786?text=Assalamualaikum%20Layanan%20Donatur%20GVF%2C%20saya%20ingin%20konsultasi%20program%20ZISWAF."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-8 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 rounded-full text-white font-['Cal_Sans'] text-sm tracking-wider uppercase transition-all shadow-sm active:scale-95"
+              >
+                Layanan Donatur
+              </a>
             </div>
           </div>
         </aside>
 
-        <!-- Kolom Kanan: Konten Narasi Utama -->
-        <main class="isavo-main-col">
-          <div class="isavo-article-wrap">
-            <div class="article-banner-wrap reveal-on-scroll">
+        <!-- Kolom Kanan: Konten Narasi Utama Persis Pen.dev (8 Kolom) -->
+        <main class="lg:col-span-8 space-y-10">
+          <div class="bg-white rounded-[24px] p-6 sm:p-10 border border-[#e3e3e8] shadow-xs">
+            <!-- Main Hero Image -->
+            <div class="rounded-[24px] overflow-hidden mb-8 shadow-xs">
               <img
-                src={program.deepDiveBannerImage}
+                src="/gambar design/interior masjid.jpg"
                 alt={program.deepDiveTitle}
-                class="article-banner-img"
+                class="w-full h-[380px] md:h-[480px] object-cover"
                 loading="lazy"
               />
             </div>
 
-            <div class="article-body reveal-on-scroll">
-              <h2 class="article-title">{program.deepDiveTitle}</h2>
-              <p class="article-lead">{program.deepDiveLead}</p>
-              <p class="article-p">{program.deepDiveStory1}</p>
-              <p class="article-p">{program.deepDiveStory2}</p>
+            <!-- Deep Dive Lead Text -->
+            <div class="mb-10">
+              <h2 class="text-3xl md:text-4xl font-['Cal_Sans'] text-[#0f172a] mb-5 leading-tight">
+                {program.deepDiveTitle}
+              </h2>
+              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed mb-4">
+                {program.deepDiveLead}
+              </p>
+              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed mb-4">
+                {program.deepDiveStory1}
+              </p>
+              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed">
+                {program.deepDiveStory2}
+              </p>
             </div>
 
-            <!-- 4 Value Box Icon Grid ala ISAVO -->
-            <div class="value-boxes-grid mt-40">
+            <!-- 4 Value Box Icon Grid ala Pen.dev -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-10 pt-6 border-t border-[#e3e3e8]">
               {program.valueBoxes.map((vb, idx) => (
-                <div class={`value-box-item reveal-on-scroll delay-${(idx + 1) * 100}`}>
-                  <div class="value-box-icon">
+                <div class="flex items-start gap-4">
+                  <div class="w-16 h-16 shrink-0 rounded-full bg-[#006B3E] flex items-center justify-center text-white shadow-xs">
                     <Fragment set:html={valueBoxIcons[idx % valueBoxIcons.length]} />
                   </div>
-                  <h4 class="value-box-title">{vb.title}</h4>
-                  <p class="value-box-desc">{vb.description}</p>
+                  <div>
+                    <h4 class="text-xl font-['Cal_Sans'] text-[#191919] mb-1.5">{vb.title}</h4>
+                    <p class="text-sm text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed">{vb.description}</p>
+                  </div>
                 </div>
               ))}
+            </div>
+
+            <!-- 2 Side-by-side Images (Pen.dev) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 my-10">
+              <img
+                src="/gambar design/skywalk learning room.jpg"
+                alt="Skywalk Learning Room Jonggol"
+                class="w-full h-[260px] md:h-[300px] object-cover rounded-[24px] shadow-2xs"
+                loading="lazy"
+              />
+              <img
+                src="/gambar design/belakang masjid.jpg"
+                alt="Kawasan Belakang Masjid Jonggol"
+                class="w-full h-[260px] md:h-[300px] object-cover rounded-[24px] shadow-2xs"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- Integrasi Pesantren & Agro-Technopark Sub-section -->
+            <div class="my-10 pt-6 border-t border-[#e3e3e8]">
+              <h3 class="text-2xl md:text-3xl font-['Cal_Sans'] text-[#191919] mb-4">
+                Integrasi Pesantren & Agro-Technopark
+              </h3>
+              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed mb-4">
+                Masjid Khairu Ummah Sugro dirancang dengan arsitektur tropis ramah lingkungan yang memanfaatkan pencahayaan alami dan ventilasi silang, mengurangi konsumsi listrik dan menghadirkan suasana khusyuk bagi para jamaah.
+              </p>
+              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed">
+                Dilengkapi area mezzanine dua lantai untuk menampung kegiatan ibadah berjamaah, halaqah Quran, serta ruang belajar santri yang terintegrasi dengan keasrian alam sekitar Sukasirna Jonggol.
+              </p>
+            </div>
+
+            <!-- Dokumentasi Kawasan Wakaf Jonggol Sub-section -->
+            <div class="my-10 pt-6 border-t border-[#e3e3e8]">
+              <h3 class="text-2xl md:text-3xl font-['Cal_Sans'] text-[#191919] mb-4">
+                Dokumentasi Kawasan Wakaf Jonggol
+              </h3>
+              <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed mb-6">
+                Dokumentasi progres pembangunan riil Masjid Khairu Ummah Sugro di Sukasirna Jonggol — dari pemancangan tiang, pengecoran lantai, pemasangan dinding bata ringan, hingga instalasi sanitasi.
+              </p>
+
+              <!-- Portfolio Image Card -->
+              <div class="relative rounded-[24px] overflow-hidden group shadow-sm mb-4">
+                <img
+                  src="/gambar design/interior masjid.jpg"
+                  alt="Masjid Khairu Ummah Sugro"
+                  class="w-full h-[320px] md:h-[400px] object-cover"
+                  loading="lazy"
+                />
+                <span class="absolute top-6 left-6 px-4 py-1.5 border border-white text-white rounded-full text-xs font-['Cal_Sans'] tracking-widest uppercase bg-black/40 backdrop-blur-xs">
+                  ARSITEKTUR
+                </span>
+              </div>
+              <div class="mb-8">
+                <h4 class="text-xl font-['Cal_Sans'] text-[#191919]">Masjid Khairu Ummah Sugro</h4>
+                <p class="text-sm text-[#4d4d52] font-['Golos_Text']">Pusat Ibadah & Pembelajaran Santri</p>
+              </div>
+
+              <!-- 8 Guarantees & Transparansi Badges Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 p-6 bg-slate-50 border border-[#e3e3e8] rounded-[20px]">
+                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
+                  <span class="text-[#006B3E] font-bold text-base">✓</span> Material bersertifikasi standar SNI
+                </div>
+                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
+                  <span class="text-[#006B3E] font-bold text-base">✓</span> Kwitansi & tanda terima resmi GVF
+                </div>
+                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
+                  <span class="text-[#006B3E] font-bold text-base">✓</span> Laporan progres fisik berkala
+                </div>
+                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
+                  <span class="text-[#006B3E] font-bold text-base">✓</span> Dokumentasi foto penyaluran di lokasi
+                </div>
+                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
+                  <span class="text-[#006B3E] font-bold text-base">✓</span> Pengawasan kualitas & mutu bangunan
+                </div>
+                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
+                  <span class="text-[#006B3E] font-bold text-base">✓</span> RAB terperinci dan terbuka
+                </div>
+                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
+                  <span class="text-[#006B3E] font-bold text-base">✓</span> Akad ZISWAF transparan & terpercaya
+                </div>
+                <div class="flex items-center gap-3 text-sm text-[#191919] font-['Golos_Text'] font-medium">
+                  <span class="text-[#006B3E] font-bold text-base">✓</span> Kunjungan langsung ke lokasi Jonggol
+                </div>
+              </div>
             </div>
           </div>
         </main>

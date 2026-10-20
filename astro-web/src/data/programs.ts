@@ -68,6 +68,13 @@ export interface FaqItem {
   answer: string;
 }
 
+export interface AddonItem {
+  name: string;
+  desc: string;
+  price: string;
+  availability: string;
+}
+
 export interface ProgramData {
   slug: 'wakaf' | 'zakat' | 'infaq' | 'sedekah';
   title: string;
@@ -75,10 +82,12 @@ export interface ProgramData {
   categoryBadge: string;
   heroBgImage: string;
   
-  // Section 2: Pricing Packages (Exact 3 Columns ala ISAVO)
+  // Section 2: Pricing Packages (Exact 3 Columns ala Pen.dev)
   pricingHeading: string;
   pricingSubheading: string;
   packages: PricingPackage[];
+  addonTitle?: string;
+  addonItems?: AddonItem[];
   
   // Section 3: Deep Dive (2 Kolom Sticky Sidebar)
   deepDiveBadge: string;
@@ -122,68 +131,101 @@ export interface ProgramData {
 export const programsData: Record<string, ProgramData> = {
   wakaf: {
     slug: 'wakaf',
-    title: 'Wakaf Produktif & Pendidikan Terpadu',
-    heroSubtitle: 'Investasi Abadi Membangun Masjid Khairu Ummah & SMK Skill Village Islamic School di Kawasan Terpadu Jonggol Bogor.',
-    categoryBadge: '#WAKAF PRODUKTIF & PENDIDIKAN',
+    title: 'Wakaf Produktif & Lahan',
+    heroSubtitle: 'Investasi Abadi Membangun Masjid Khairu Ummah & SMK Skill Village di Kawasan Terpadu Jonggol Bogor.',
+    categoryBadge: 'WAKAF PRODUKTIF',
     heroBgImage: '/gambar design/belakang masjid.jpg',
     
-    pricingHeading: 'Pilih Paket Wakaf Terukur',
-    pricingSubheading: 'Kami menyediakan pilihan paket wakaf terukur yang dapat disesuaikan dengan niat dan kemampuan Anda. Semua akad sah, transparan, dan terdaftar di Badan Wakaf Indonesia.',
+    pricingHeading: 'Pilihan Paket Wakaf Produktif',
+    pricingSubheading: 'Salurkan infaq material riil untuk percepatan penyelesaian Masjid Khairu Ummah Sugro & sarana santri di Jonggol. Semua laporan belanja terbuka dan dapat diakses publik.',
     packages: [
       {
-        id: 'wakaf-lahan-1m',
-        title: 'Wakaf Lahan 1 m²',
-        subtitle: 'Paket Pembebasan Lahan Abadi',
+        id: 'wakaf-pembebasan-lahan',
+        title: 'Wakaf Pembebasan Lahan',
+        subtitle: 'Kawasan Terpadu Jonggol',
         pricePrefix: 'Rp ',
         priceAmount: '150.000',
-        priceUnit: '/ m²',
-        priceDesc: 'Harga per meter persegi lahan abadi',
-        estimation: 'Estimasi 1-3 hari kerja terbit AIW Digital',
+        priceUnit: '',
+        priceDesc: 'Per meter persegi (m²)',
+        estimation: 'Alokasi: Pembebasan tanah 3 hektare',
         isPopular: false,
         deliverables: [
-          { bold: 'Survey & Lokasi Riil', text: 'Kunjungan langsung ke kawasan ±3 hektare Sukasirna Jonggol Bogor' },
-          { bold: 'Akta Ikrar Wakaf (AIW)', text: 'Dokumen AIW digital resmi berkode verifikasi QR BWI' },
-          { bold: 'Pahala Abadi Berkelanjutan', text: 'Mengalir tanpa putus dari setiap ibadah jamaah & belajar santri' },
-          { bold: 'Laporan Progres Fisik', text: 'Pembaruan visual berkala kondisi pembebasan tanah via WhatsApp' }
+          { bold: 'Pembebasan Lahan ±3 Ha', text: 'Tanah kawasan terpadu di Desa Sukasirna Jonggol' },
+          { bold: 'Sertifikat Resmi KUA & BWI', text: 'Disertifikatkan secara resmi sebagai Tanah Wakaf di KUA & BWI' },
+          { bold: 'Tapak Bangunan Kawasan', text: 'Menjadi tapak bangunan masjid, sekolah vokasi, dan greenhouse santri' },
+          { bold: 'Pahala Abadi Mengalir', text: 'Pahala jariyah abadi yang terus mengalir melintasi generasi' }
         ],
-        ctaText: 'Konsultasi Sekarang'
+        ctaText: 'Tunaikan Wakaf Lahan'
       },
       {
-        id: 'wakaf-ruang-belajar',
-        title: 'Paket Ruang Belajar',
-        subtitle: 'Paket Lengkap Sarana & 5 m² Lahan',
+        id: 'wakaf-masjid-khairu-ummah',
+        title: 'Wakaf Masjid Khairu Ummah',
+        subtitle: 'Pusat Ibadah & Pembelajaran',
         pricePrefix: 'Rp ',
-        priceAmount: '750.000',
-        priceUnit: '/ paket',
-        priceDesc: 'Paket sarana terpadu pendidikan santri',
-        estimation: 'Penyaluran langsung ke pembangunan fisik aktif',
+        priceAmount: '300.000',
+        priceUnit: '',
+        priceDesc: 'Per paket pembangunan masjid',
+        estimation: 'Alokasi: Konstruksi green building masjid',
         isPopular: true,
         deliverables: [
-          { bold: 'Pembebasan 5 m² Lahan', text: 'Termasuk sertifikasi wakaf kawasan terpadu BWI' },
-          { bold: 'Fasilitas Studio & Lab', text: 'Dukungan meja, kursi ergonomis, dan lab komputer SMK santri' },
-          { bold: 'Sertifikat Wakaf Fisik', text: 'Sertifikat berbingkai eksklusif bertanda tangan Nazhir Utama' },
-          { bold: 'Undangan Khusus Wakif', text: 'Akses silaturahim akbar & peletakan batu pertama proyek' },
-          { bold: 'Laporan Finansial Bulanan', text: 'Audit progres pembangunan dan penyerapan dana publik' }
+          { bold: 'Pembangunan Dua Lantai', text: 'Pembangunan masjid green building ramah lingkungan dua lantai' },
+          { bold: 'Kapasitas 500+ Jamaah', text: 'Menampung shalat berjamaah 500+ santri dan jamaah sekitar asrama' },
+          { bold: 'Mezanin Halaqah Quran', text: 'Mezanin lantai dua untuk halaqah tahfidz Quran santri intensif' },
+          { bold: 'Ventilasi Tropis Alami', text: 'Pencahayaan alami & sirkulasi udara sejuk ramah lingkungan' },
+          { bold: 'Laporan Progres Mingguan', text: 'Laporan foto & video perkembangan fisik mingguan transparan' },
+          { bold: 'Akta Ikrar Wakaf Resmi', text: 'Sertifikat Ikrar Wakaf resmi dan pencatatan nama pewakif' }
         ],
-        ctaText: 'Konsultasi Sekarang'
+        ctaText: 'Tunaikan Wakaf Masjid'
       },
       {
-        id: 'wakaf-fasilitas-lengkap',
-        title: 'Paket Korporat / Keluarga',
-        subtitle: 'Paket Terpadu & Inskripsi Nama',
+        id: 'wakaf-agro-technopark',
+        title: 'Wakaf Agro-Technopark',
+        subtitle: 'Kemandirian Ekonomi Pesantren',
         pricePrefix: 'Rp ',
-        priceAmount: '2.500.000',
-        priceUnit: '/ paket',
-        priceDesc: 'Wakaf kolektif keluarga atau korporasi',
-        estimation: 'Dukungan penuh sarana jangka panjang',
+        priceAmount: '500.000',
+        priceUnit: '',
+        priceDesc: 'Per unit sarana kemandirian',
+        estimation: 'Alokasi: Greenhouse & panel surya mandiri',
         isPopular: false,
         deliverables: [
-          { bold: 'Inskripsi Nama Wakif', text: 'Nama wakif / atas nama orang tua tertera pada prasasti masjid' },
-          { bold: 'Beasiswa Penuh Santri', text: 'Menjamin SPP, asrama, dan fasilitas belajar santri vokasi berprestasi' },
-          { bold: 'Sertifikat Resmi & Akta BWI', text: 'Legalisasi berkekuatan hukum penuh dari Nazhir Resmi' },
-          { bold: 'Akses VIP Riset Kawasan', text: 'Kunjungan berkala dan riset agro-technopark bersama keluarga' }
+          { bold: 'Greenhouse Hortikultura', text: 'Fasilitas greenhouse hortikultura dan pertanian presisi santri' },
+          { bold: 'Pembangkit Panel Surya', text: 'Instalasi solar cell panel surya pembangkit listrik kawasan' },
+          { bold: 'Kemandirian Pangan Asrama', text: 'Hasil panen menopang pangan harian asrama dan kemandirian santri' }
         ],
-        ctaText: 'Konsultasi Sekarang'
+        ctaText: 'Tunaikan Wakaf Produktif'
+      }
+    ],
+    addonTitle: 'Pilihan Saluran Wakaf Tambahan',
+    addonItems: [
+      {
+        name: 'Wakaf Uang Bebas',
+        desc: 'Wakaf uang tunai sukarela dialokasikan ke kebutuhan mendesak kawasan',
+        price: 'Bebas',
+        availability: 'Tersedia via Transfer / QRIS'
+      },
+      {
+        name: 'Wakaf Pohon Produktif',
+        desc: 'Bibit buah & tanaman pelindung kawasan agroteknopark (per pohon)',
+        price: 'Rp 100.000',
+        availability: 'Tersedia untuk semua paket'
+      },
+      {
+        name: 'Wakaf Sumur Bor & Filtrasi',
+        desc: 'Penyediaan instalasi air bersih mandiri asrama dan masjid',
+        price: 'Rp 750.000',
+        availability: 'Tersedia untuk semua paket'
+      },
+      {
+        name: 'Wakaf Panel Surya Modul',
+        desc: '1 unit modul panel surya energi bersih kawasan pesantren',
+        price: 'Rp 1.500.000',
+        availability: 'Tersedia untuk semua paket'
+      },
+      {
+        name: 'Infaq Unit Sanitasi',
+        desc: 'Kran wudhu kuningan & penampung air bersih higienis',
+        price: 'Rp 500.000',
+        availability: 'Tersedia untuk program sanitasi'
       }
     ],
     
@@ -394,68 +436,100 @@ export const programsData: Record<string, ProgramData> = {
 
   zakat: {
     slug: 'zakat',
-    title: 'Zakat Maal & Zakat Profesi',
-    heroSubtitle: 'Bersihkan Harta, Sucikan Jiwa, dan Tunaikan Hak 8 Asnaf Melalui Beasiswa Vokasi & Kemandirian Santri Berdaya.',
-    categoryBadge: '#ZAKAT MAAL & PROFESI 2.5%',
-    heroBgImage: '/gambar-bahan/belajar kelas.jpeg',
+    title: 'Penyaluran Zakat Maal & Fitrah',
+    heroSubtitle: 'Tunaikan Kewajiban Rukun Islam ke-3, Bersihkan Harta dan Muliakan 8 Asnaf di Jonggol.',
+    categoryBadge: 'ZAKAT',
+    heroBgImage: '/gambar design/belakang masjid.jpg',
     
-    pricingHeading: 'Kalkulator & Pilihan Zakat Sah',
-    pricingSubheading: 'Tunaikan kewajiban rukun Islam ke-3 Anda dengan tepat nisab, tepat hisab, dan disalurkan secara amanah kepada mustahik yang berhak.',
+    pricingHeading: 'Pilihan Saluran Zakat Maal & Profesi',
+    pricingSubheading: 'Tunaikan kewajiban zakat 2,5% secara amanah, tepat hisab, dan tepat sasaran. Disalurkan langsung untuk 8 asnaf, terutama beasiswa fi sabilillah dan kemandirian santri dhuafa di Sukasirna Jonggol.',
     packages: [
       {
-        id: 'zakat-profesi-bulanan',
-        title: 'Zakat Penghasilan / Profesi',
-        subtitle: 'Zakat Penghasilan Bulanan 2,5%',
-        pricePrefix: 'Rp ',
-        priceAmount: '250.000',
+        id: 'zakat-penghasilan',
+        title: 'Zakat Penghasilan',
+        subtitle: 'Zakat Profesi Karyawan & Profesional',
+        pricePrefix: '',
+        priceAmount: '2,5%',
         priceUnit: '/ bulan',
-        priceDesc: 'Estimasi nisab 2.5% penghasilan bersih',
-        estimation: 'Penyaluran bulanan untuk beasiswa santri vokasi',
+        priceDesc: 'Kadar 2,5% dari penghasilan bersih bulanan',
+        estimation: 'Nisab: Setara 524 kg beras (~Rp 7.500.000/bln)',
         isPopular: false,
         deliverables: [
-          { bold: 'Tepat Hisab 2.5%', text: 'Sesuai fatwa MUI No. 3 Tahun 2003 tentang Zakat Penghasilan' },
-          { bold: 'Beasiswa Santri Vokasi', text: 'Menjamin biaya pendidikan, lab komputer, dan asrama santri' },
-          { bold: 'Kuitansi Bukti Setor', text: 'Bukti resmi yang dapat digunakan sebagai pengurang pajak (NPWP)' },
-          { bold: 'Laporan Penyaluran Rutin', text: 'Pembaruan dokumentasi berkala dikirim setiap akhir bulan' }
+          { bold: 'Kadar Zakat 2,5%', text: 'Dipotong dari gaji bersih atau penghasilan bulanan' },
+          { bold: 'Nisab 524 kg Beras', text: 'Wajib ditunaikan jika penghasilan telah mencapai batas nisab' },
+          { bold: 'Penyaluran Beasiswa Vokasi', text: 'Langsung disalurkan untuk biaya belajar & hidup santri dhuafa' },
+          { bold: 'Bukti Setor Resmi', text: 'Dilengkapi bukti setor resmi yang sah dan legal' }
         ],
-        ctaText: 'Konsultasi Sekarang'
+        ctaText: 'Tunaikan Zakat Profesi'
       },
       {
-        id: 'zakat-maal-tabungan',
-        title: 'Zakat Maal Tabungan',
-        subtitle: 'Zakat Emas, Deposito & Simpanan',
-        pricePrefix: 'Rp ',
-        priceAmount: '2.125.000',
+        id: 'zakat-tabungan-emas',
+        title: 'Zakat Tabungan & Emas',
+        subtitle: 'Zakat Simpanan & Harta Mengendap',
+        pricePrefix: '',
+        priceAmount: '2,5%',
         priceUnit: '/ tahun',
-        priceDesc: 'Setara haul 1 tahun (nisab 85g emas)',
-        estimation: 'Penyaluran modal kemandirian santri vokasi',
+        priceDesc: 'Kadar 2,5% dari simpanan mengendap 1 tahun',
+        estimation: 'Nisab: Setara 85 gram emas murni (haul 1 thn)',
         isPopular: true,
         deliverables: [
-          { bold: 'Hisab Sesuai Nisab Emas', text: 'Simpanan mengendap 1 tahun hijriyah dibersihkan haknya' },
-          { bold: 'Pemberdayaan Vokasi', text: 'Dukungan fasilitas teaching factory santri berdaya di Jonggol' },
-          { bold: 'Akta Pengesahan Muzakki', text: 'Dokumen legalitas penunaian zakat berkekuatan syariah' },
-          { bold: 'Doa Khusus Santri', text: 'Didoakan dalam halaqah santri vokasi berkarakter FAST' },
-          { bold: 'Laporan Audit Lembaga', text: 'Transparansi pemisahan rekening zakat yang ketat' }
+          { bold: 'Nisab 85 Gram Emas Murni', text: 'Dihitung dari total tabungan, emas, dan deposito mengendap' },
+          { bold: 'Telah Mencapai Haul 1 Tahun', text: 'Telah genap kepemilikan selama 1 tahun hijriyah/masehi' },
+          { bold: 'Penyaluran 8 Asnaf Terverifikasi', text: 'Prioritas fakir miskin, gharimin, dan fi sabilillah di Jonggol' },
+          { bold: 'Pembersih Harta & Penolak Bala', text: 'Menyucikan harta simpanan dan mengundang keberkahan rezeki' }
         ],
-        ctaText: 'Konsultasi Sekarang'
+        ctaText: 'Tunaikan Zakat Tabungan'
       },
       {
-        id: 'zakat-perniagaan',
-        title: 'Zakat Bisnis & Perniagaan',
-        subtitle: 'Zakat Usaha & Korporasi Berkah',
-        pricePrefix: '2.5% ',
-        priceAmount: 'Laba Bersih',
+        id: 'zakat-perniagaan-bisnis',
+        title: 'Zakat Perniagaan',
+        subtitle: 'Zakat Usaha & Perusahaan Berkah',
+        pricePrefix: '',
+        priceAmount: '2,5%',
         priceUnit: '/ tahun',
-        priceDesc: 'Dihitung dari aktiva lancar dikurangi hutang',
-        estimation: 'Konsultasi hisab akuntansi syariah gratis',
+        priceDesc: 'Kadar 2,5% dari aset lancar dikurangi hutang lancar',
+        estimation: 'Nisab: Setara 85 gram emas pada tutup buku',
         isPopular: false,
         deliverables: [
-          { bold: 'Audit Akuntansi Syariah', text: 'Pendampingan penghitungan aset lancar usaha bersama akuntan' },
-          { bold: 'Pemberdayaan Skala Luas', text: 'Penyaluran ke program vokasi teknologi tepat guna santri' },
-          { bold: 'Sertifikat Muzakki Perusahaan', text: 'Bukti CSR syariah dan pengurang pajak badan resmi' },
-          { bold: 'Laporan Dampak Sosial', text: 'Metrik terukur peningkatan kapasitas santri mandiri' }
+          { bold: 'Rumus Hisab Zakat Bisnis', text: '[Aset Lancar + Kas + Piutang Lancar] - Hutang Jatuh Tempo' },
+          { bold: 'Konsultasi Akuntansi Syariah', text: 'Pendampingan gratis perhitungan hisab neraca bisnis Anda' },
+          { bold: 'Program Berdaya Santri Vokasi', text: 'Menumbuhkan wirausaha muda santri melalui teaching factory' },
+          { bold: 'Sertifikat Muzakki Perusahaan', text: 'Diterbitkan sertifikat resmi penunaian zakat korporasi' }
         ],
-        ctaText: 'Konsultasi Sekarang'
+        ctaText: 'Tunaikan Zakat Bisnis'
+      }
+    ],
+    addonTitle: 'Pilihan Saluran Zakat Khusus 8 Asnaf',
+    addonItems: [
+      {
+        name: 'Beasiswa Santri Fi Sabilillah',
+        desc: 'Bantuan biaya asrama, kitab, dan sertifikasi vokasi santri dhuafa',
+        price: 'Rp 500.000',
+        availability: 'Asnaf Fi Sabilillah'
+      },
+      {
+        name: 'Bantuan Fakir Miskin Sekitar',
+        desc: 'Santunan bahan pangan pokok bagi warga pra-sejahtera Sukasirna',
+        price: 'Rp 250.000',
+        availability: 'Asnaf Fakir & Miskin'
+      },
+      {
+        name: 'Kemandirian Usaha Mustahik',
+        desc: 'Modal bibit dan peralatan tani presisi untuk keluarga santri',
+        price: 'Rp 1.000.000',
+        availability: 'Asnaf Pemberdayaan Ekonomi'
+      },
+      {
+        name: 'Zakat Fitrah Beras 2,5 kg',
+        desc: 'Beras pulen berkualitas disalurkan tepat waktu sebelum shalat Id',
+        price: 'Rp 45.000',
+        availability: 'Musim Ramadhan'
+      },
+      {
+        name: 'Kafalah Guru & Dai Pedalaman',
+        desc: 'Honorarium dan sarana dakwah ustadz pembina santri di pelosok',
+        price: 'Rp 750.000',
+        availability: 'Asnaf Fi Sabilillah'
       }
     ],
     
@@ -623,68 +697,100 @@ export const programsData: Record<string, ProgramData> = {
 
   infaq: {
     slug: 'infaq',
-    title: 'Infaq Pembangunan & Fasilitas Dakwah',
-    heroSubtitle: 'Percepat Penyelesaian Fasilitas Ibadah, Perpustakaan, dan Studio Praktik Santri Vokasi di Jonggol.',
-    categoryBadge: '#INFAQ SARANA & DAKWAH',
-    heroBgImage: '/gambar-bahan/pelataran mesjid.jpeg',
+    title: 'Infaq Fisik & Pembangunan',
+    heroSubtitle: 'Percepat Penyelesaian Fasilitas Ibadah, Perpustakaan, dan Sarana Santri Vokasi di Jonggol.',
+    categoryBadge: 'INFAQ FISIK',
+    heroBgImage: '/gambar design/skywalk learning room.jpg',
     
-    pricingHeading: 'Gotong Royong Material Fisik',
-    pricingSubheading: 'Infaq sunnah fleksibel tanpa batas nisab untuk mempercepat tersedianya material bangunan dan fasilitas sarana belajar santri.',
+    pricingHeading: 'Pilih Paket Infaq Pembangunan',
+    pricingSubheading: 'Salurkan infaq material riil untuk percepatan penyelesaian Masjid Khairu Ummah Sugro & sarana santri di Jonggol. Semua laporan belanja terbuka dan dapat diakses publik.',
     packages: [
       {
-        id: 'infaq-material-semen',
-        title: 'Infaq Semen Konstruksi',
-        subtitle: 'Pengadaan Semen Standar SNI',
+        id: 'infaq-semen-pasir',
+        title: 'Infaq Semen & Pasir',
+        subtitle: 'Paket Material Dasar',
         pricePrefix: 'Rp ',
-        priceAmount: '65.000',
-        priceUnit: '/ sak',
-        priceDesc: 'Pengadaan semen cor lantai & pilar',
-        estimation: 'Langsung dibelanjakan untuk pengecoran lapangan',
+        priceAmount: '75.000',
+        priceUnit: '',
+        priceDesc: 'Per sak semen + agregat pasir',
+        estimation: 'Alokasi: Plester dinding & cor lantai',
         isPopular: false,
         deliverables: [
-          { bold: '1 Sak Semen SNI', text: 'Digunakan untuk pengecoran struktur lantai dan pilar masjid' },
-          { bold: 'Pencatatan Buku Donasi', text: 'Tercatat rapi dalam buku donatur pembangunan fisik' },
-          { bold: 'Pahala Berkelanjutan', text: 'Mengalir dari setiap sujud jamaah di atas lantai masjid' },
-          { bold: 'Foto Laporan Material', text: 'Dokumentasi kedatangan material di gudang Jonggol' }
+          { bold: '1 Sak Semen SNI', text: 'Pengadaan 1 sak semen standar SNI langsung ke lokasi proyek' },
+          { bold: 'Agregat Pasir Plester', text: 'Pasir plester dan campuran cor beton kualitas nomor satu' },
+          { bold: 'Laporan Belanja Terbuka', text: 'Nota pembelian toko bahan terverifikasi dan dapat diakses publik' },
+          { bold: 'Pahala Tiap Dinding', text: 'Mengalir pahala dari setiap sujud jamaah di dalam masjid' }
         ],
-        ctaText: 'Konsultasi Sekarang'
+        ctaText: 'Infaq Semen Sekarang'
       },
       {
-        id: 'infaq-perlengkapan-kelas',
-        title: 'Paket Sarana Belajar',
-        subtitle: 'Meja & Kursi Santri Ergonomis',
-        pricePrefix: 'Rp ',
-        priceAmount: '350.000',
-        priceUnit: '/ set',
-        priceDesc: '1 set meja kursi belajar ergonomis SMK',
-        estimation: 'Pengadaan bertahap sesuai kebutuhan kelas',
-        isPopular: true,
-        deliverables: [
-          { bold: '1 Set Meja Kursi Belajar', text: 'Fasilitas belajar modern ramah postur tubuh santri' },
-          { bold: 'Kitab & Literatur Digital', text: 'Dukungan buku perpustakaan dan software desain SMK' },
-          { bold: 'Plat Inventaris Donatur', text: 'Dicatat pada inventaris sarana dakwah yayasan' },
-          { bold: 'Doa Khusus Santri', text: 'Didoakan setiap memulai sesi belajar pagi dan petang' },
-          { bold: 'Laporan Foto Penyerahan', text: 'Dokumentasi santri saat menempati ruang kelas baru' }
-        ],
-        ctaText: 'Konsultasi Sekarang'
-      },
-      {
-        id: 'infaq-air-bersih',
-        title: 'Instalasi Sanitasi & Wudhu',
-        subtitle: 'Titik Sanitasi & Eco-Drainase',
+        id: 'infaq-besi-beton',
+        title: 'Infaq Besi & Beton Cor',
+        subtitle: 'Paket Struktur Bangunan',
         pricePrefix: 'Rp ',
         priceAmount: '250.000',
-        priceUnit: '/ titik',
-        priceDesc: 'Kran air wudhu higienis ramah lingkungan',
-        estimation: 'Instalasi pipa dan kran higienis hemat air',
+        priceUnit: '',
+        priceDesc: 'Per batang besi ulir + cor beton',
+        estimation: 'Alokasi: Kolom struktur & sloof masjid',
+        isPopular: true,
+        deliverables: [
+          { bold: 'Besi Beton Ulir SNI', text: 'Diameter 10mm & 12mm bersertifikasi industri resmi' },
+          { bold: 'Cor Balok Lantai 2', text: 'Campuran cor bertulang kokoh untuk lantai dua dan dak kubah' },
+          { bold: 'Ketahanan Abadi', text: 'Menjamin ketahanan dan keamanan struktur puluhan tahun' },
+          { bold: 'Dokumentasi Fisik WA', text: 'Update foto dan video proses pengecoran langsung via WhatsApp' }
+        ],
+        ctaText: 'Infaq Besi Beton Sekarang'
+      },
+      {
+        id: 'infaq-keramik-finishing',
+        title: 'Infaq Keramik & Finishing',
+        subtitle: 'Paket Lantai & Interior',
+        pricePrefix: 'Rp ',
+        priceAmount: '500.000',
+        priceUnit: '',
+        priceDesc: 'Per meter keramik + finishing halus',
+        estimation: 'Alokasi: Lantai ruang salat & wudhu',
         isPopular: false,
         deliverables: [
-          { bold: 'Kran Wudhu & Filter Bersih', text: 'Air wudhu higienis tersaring dan bebas bau' },
-          { bold: 'Sistem Daur Ulang Taman', text: 'Air bekas wudhu dialirkan untuk menyiram tanaman pesantren' },
-          { bold: 'Pahala Sedekah Air Berkah', text: 'Sedekah air adalah sedekah paling utama dalam hadits nabi' },
-          { bold: 'Sertifikat Apresiasi Donatur', text: 'Tanda bukti sumbangsih sarana kebersihan rumah Allah' }
+          { bold: 'Granit Ruang Salat', text: 'Granit elegan anti-gores menghadirkan kenyamanan dan kebersihan' },
+          { bold: 'Keramik Anti-Slip Wudhu', text: 'Menjamin keamanan santri dan jamaah saat berwudhu' },
+          { bold: 'Cat Ramah Lingkungan', text: 'Warna menyejukkan mata dan tahan terhadap kelembaban tropis' },
+          { bold: 'Kekhusyukan Ibadah', text: 'Menghadirkan kenyamanan maksimal bagi para penghafal Al-Quran' }
         ],
-        ctaText: 'Konsultasi Sekarang'
+        ctaText: 'Infaq Keramik Sekarang'
+      }
+    ],
+    addonTitle: 'Pilihan Donasi Material Tambahan',
+    addonItems: [
+      {
+        name: 'Infaq Bata Ringan (Hebel)',
+        desc: 'Pengadaan bata ringan presisi dinding kelas & masjid (per kubik)',
+        price: 'Rp 650.000',
+        availability: 'Tersedia untuk semua paket'
+      },
+      {
+        name: 'Infaq Instalasi Listrik & LED',
+        desc: 'Kabel standar SNI, stopkontak, dan lampu LED hemat energi',
+        price: 'Rp 350.000',
+        availability: 'Tersedia untuk semua paket'
+      },
+      {
+        name: 'Infaq Plafon Gypsum Rangka',
+        desc: 'Rangka hollow galvanis dan papan gypsum anti-lembab',
+        price: 'Rp 450.000',
+        availability: 'Tersedia untuk semua paket'
+      },
+      {
+        name: 'Infaq Kusen & Kaca Aluminium',
+        desc: 'Kusen aluminium kedap air dan kaca ventilasi silang',
+        price: 'Rp 850.000',
+        availability: 'Tersedia untuk semua paket'
+      },
+      {
+        name: 'Infaq Cat Eksterior Ramah Lingkungan',
+        desc: 'Pewarnaan dinding interior dan fasad luar masjid tahan cuaca',
+        price: 'Rp 200.000',
+        availability: 'Tersedia untuk semua paket'
       }
     ],
     
@@ -842,67 +948,100 @@ export const programsData: Record<string, ProgramData> = {
 
   sedekah: {
     slug: 'sedekah',
-    title: 'Sedekah Pangan & Konsumsi Sehat',
-    heroSubtitle: 'Alirkan Kebaikan Berkelanjutan, Cukupi Ketahanan Pangan & Konsumsi Sehat Santri Vokasi di Jonggol.',
-    categoryBadge: '#KETAHANAN PANGAN & KONSUMSI SEHAT',
-    heroBgImage: '/gambar-bahan/gh update 2.jpeg',
+    title: 'Sedekah Nutrisi & Pangan Santri',
+    heroSubtitle: 'Dukung Kebutuhan Nutrisi, Vitamin & Makan Bergizi Santri Penghafal Al-Quran di Jonggol.',
+    categoryBadge: 'SEDEKAH NUTRISI',
+    heroBgImage: '/gambar design/interior masjid.jpg',
     
-    pricingHeading: 'Dukungan Ketahanan Pangan Santri',
-    pricingSubheading: 'Amalan rutin untuk menjamin konsumsi sehat, gizi seimbang, dan logistik dapur santri vokasi yang sedang berjuang menuntut ilmu.',
+    pricingHeading: 'Pilih Paket Sedekah Pangan Santri',
+    pricingSubheading: 'Dukung kebutuhan nutrisi harian santri vokasi dan penghafal Quran di Pesantren Jonggol. Makanan bergizi menopang stamina mereka menuntut ilmu dan menghafal kalamullah.',
     packages: [
       {
-        id: 'sedekah-porsi-sehat',
-        title: '1 Porsi Nutrisi Sehat',
-        subtitle: '1 Porsi Menu Sehat Santri',
+        id: 'sedekah-pangan-pokok',
+        title: 'Sedekah Pangan Pokok',
+        subtitle: 'Paket Beras & Kebutuhan Dapur',
         pricePrefix: 'Rp ',
-        priceAmount: '15.000',
-        priceUnit: '/ porsi',
-        priceDesc: 'Menu higienis berprotein & sayur',
-        estimation: 'Langsung disajikan di meja makan santri',
-        isPopular: true,
-        deliverables: [
-          { bold: 'Nutrisi Seimbang', text: 'Karbohidrat, protein, dan sayuran segar panen agro-technopark' },
-          { bold: 'Keberkahan Harian', text: 'Mendapat keutamaan sedekah pemohon kelapangan rezeki yang berkah' },
-          { bold: 'Energi Belajar Vokasi', text: 'Menjadi sumber tenaga santri dalam menyerap keahlian terapan' },
-          { bold: 'Kebaikan Konsisten', text: 'Amalan yang dicintai Allah adalah amalan yang rutin dijalankan' }
-        ],
-        ctaText: 'Konsultasi Sekarang'
-      },
-      {
-        id: 'sedekah-pangan-harian',
-        title: '1 Hari Konsumsi Lengkap',
-        subtitle: '3 Kali Makan Sehat Santri',
-        pricePrefix: 'Rp ',
-        priceAmount: '45.000',
-        priceUnit: '/ hari',
-        priceDesc: 'Sarapan, makan siang, & makan malam',
-        estimation: 'Menjamin kebutuhan makan 1 santri seharian',
+        priceAmount: '50.000',
+        priceUnit: '',
+        priceDesc: 'Per paket sedekah pangan',
+        estimation: 'Alokasi: Penyaluran rutin setiap pekan',
         isPopular: false,
         deliverables: [
-          { bold: '3 Sesi Makan Bergizi', text: 'Asupan sarapan, makan siang, dan makan malam higienis' },
-          { bold: 'Fokus & Konsentrasi', text: 'Menjaga stamina belajar teori di kelas dan praktik di lab/kebun' },
-          { bold: 'Pahala Berlipat Ganda', text: 'Pahala mengalir dari setiap aktivitas menuntut ilmu santri' },
-          { bold: 'Laporan Dapur Asrama', text: 'Pembaruan dokumentasi kesibukan dapur dan makan bersama' }
+          { bold: '5 kg Beras Pulen Berkualitas', text: 'Beras higienis untuk konsumsi makan santri asrama' },
+          { bold: 'Minyak Goreng & Telur Segar', text: 'Bahan pokok kaya protein bagi santri penghafal Quran' },
+          { bold: 'Konsumsi Harian Terjamin', text: 'Menopang makan siang dan malam santri di asrama Jonggol' },
+          { bold: 'Dimasak Higienis Dapur Santri', text: 'Dikelola mandiri dan dinikmati bersama seluruh santri' }
         ],
-        ctaText: 'Konsultasi Sekarang'
+        ctaText: 'Sedekah Pangan Sekarang'
       },
       {
-        id: 'sedekah-beras-logistik',
-        title: 'Beras Logistik Dapur Asrama',
-        subtitle: 'Ketahanan Pangan Beras 10 kg',
+        id: 'sedekah-nutrisi-tahfidz',
+        title: 'Sedekah Nutrisi Tahfidz',
+        subtitle: 'Paket Madu, Susu & Buah Segar',
         pricePrefix: 'Rp ',
         priceAmount: '150.000',
-        priceUnit: '/ sak 10kg',
-        priceDesc: 'Persediaan beras premium asrama',
-        estimation: 'Cadangan pokok logistik dapur santri',
+        priceUnit: '',
+        priceDesc: 'Per paket nutrisi pekanan',
+        estimation: 'Alokasi: Asupan daya ingat santri',
+        isPopular: true,
+        deliverables: [
+          { bold: 'Susu Murni & Madu Asli', text: 'Menjaga stamina dan konsentrasi hafalan Al-Quran 30 juz' },
+          { bold: 'Buah Segar Petani Lokal', text: 'Mendukung vitamin harian sekaligus memberdayakan warga Jonggol' },
+          { bold: 'Multivitamin Daya Tahan', text: 'Menjaga daya tahan tubuh santri dari kelelahan belajar' },
+          { bold: 'Doa Khusus Penghafal Quran', text: 'Nama muhsinin didoakan khusus dalam halaqah subuh dan maghrib' }
+        ],
+        ctaText: 'Sedekah Nutrisi Sekarang'
+      },
+      {
+        id: 'sedekah-dapur-umum',
+        title: 'Sedekah Dapur Umum & Beras 25kg',
+        subtitle: 'Paket Lumbung Pangan Pesantren',
+        pricePrefix: 'Rp ',
+        priceAmount: '350.000',
+        priceUnit: '',
+        priceDesc: 'Per karung 25kg beras + lauk pauk',
+        estimation: 'Alokasi: Ketahanan pangan sebulan santri',
         isPopular: false,
         deliverables: [
-          { bold: 'Beras Pulen Berkualitas', text: 'Beras putih bersih bebas pemutih standar konsumsi sehat' },
-          { bold: 'Ketahanan Pangan Asrama', text: 'Menjamin persediaan dapur tetap aman dan tercukupi' },
-          { bold: 'Serah Terima Dapur', text: 'Berita acara penyerahan logistik langsung ke kepala asrama' },
-          { bold: 'Sertifikat Tanda Terima', text: 'Bukti tanda terima sedekah pangan resmi dari yayasan' }
+          { bold: '1 Karung Beras 25 Kilogram', text: 'Menjamin ketersediaan beras di lumbung dapur asrama' },
+          { bold: 'Lauk Pauk & Sayuran Segar', text: 'Paket komplit untuk puluhan porsi makan bergizi santri' },
+          { bold: 'Gas Memasak & Bumbu Dapur', text: 'Menopang operasional dapur umum pesantren selama 1 bulan' },
+          { bold: 'Pahala Tiap Butir Beras', text: 'Setiap butir beras menjadi energi santri mengaji dan beribadah' }
         ],
-        ctaText: 'Konsultasi Sekarang'
+        ctaText: 'Sedekah Lumbung Pangan'
+      }
+    ],
+    addonTitle: 'Pilihan Donasi Sedekah Tambahan',
+    addonItems: [
+      {
+        name: 'Sedekah Sarapan Santri',
+        desc: 'Paket sarapan sehat bubur/nasi uduk sebelum halaqah subuh santri',
+        price: 'Rp 15.000',
+        availability: 'Tersedia harian'
+      },
+      {
+        name: 'Sedekah Buah & Sayur Segar',
+        desc: 'Asupan serat dan vitamin dari panen petani binaan Jonggol',
+        price: 'Rp 50.000',
+        availability: 'Tersedia mingguan'
+      },
+      {
+        name: 'Sedekah Daging & Protein',
+        desc: 'Ayam kampung, telur, dan ikan lele kolam santri mandiri',
+        price: 'Rp 100.000',
+        availability: 'Tersedia untuk santri tahfidz'
+      },
+      {
+        name: 'Sedekah Tabung Gas & Dapur',
+        desc: 'Bahan bakar memasak makanan harian santri asrama',
+        price: 'Rp 175.000',
+        availability: 'Tersedia bulanan'
+      },
+      {
+        name: 'Sedekah Paket Buka Puasa Sunnah',
+        desc: 'Kurma, takjil, dan makan malam puasa Senin-Kamis 50+ santri',
+        price: 'Rp 750.000',
+        availability: 'Tersedia setiap Senin & Kamis'
       }
     ],
     

@@ -1,0 +1,213 @@
+---
+// src/components/program/PricingPackagesSection.astro
+// Komponen Pilihan Paket ZISWAF Presisi 100% Desain Pen.dev (global village fund.pen)
+import type { ProgramData } from '../../data/programs';
+import ZakatCalculatorSection from './ZakatCalculatorSection.astro';
+import InfaqMaterialSection from './InfaqMaterialSection.astro';
+import WakafLandSliderSection from './WakafLandSliderSection.astro';
+import SedekahChipsSection from './SedekahChipsSection.astro';
+
+interface Props {
+  program: ProgramData;
+}
+
+const { program } = Astro.props;
+---
+
+<section class="pen-pricing-section py-20 md:py-28 bg-[#f8f8f8]" id="paket-pilihan">
+  <div class="max-w-[1425px] mx-auto px-4 sm:px-6">
+    <!-- Header Section -->
+    <div class="text-center max-w-[800px] mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 border border-[#7272722e] rounded-full px-5 py-1.5 mb-5 bg-white shadow-2xs">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#006B3E]"></span>
+        <span class="text-xs font-['Cal_Sans'] tracking-widest text-[#191919] uppercase font-semibold">
+          PAKET PILIHAN PROGRAM
+        </span>
+      </div>
+      <h2 class="text-3xl md:text-5xl font-['Cal_Sans'] text-[#0f172a] mb-4 tracking-tight leading-tight">
+        {program.pricingHeading}
+      </h2>
+      <p class="text-base text-[#4d4d52] font-['Plus_Jakarta_Sans'] leading-relaxed max-w-[720px] mx-auto">
+        {program.pricingSubheading}
+      </p>
+    </div>
+
+    <!-- 3 Pricing Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-20 max-w-[1380px] mx-auto">
+      {program.packages.map((pkg) => (
+        <div
+          class={`pricing-card bg-white rounded-[24px] p-8 md:p-10 flex flex-col justify-between transition-all duration-300 hover:shadow-xl relative ${
+            pkg.isPopular
+              ? 'border-2 border-[#006B3E] shadow-md z-10'
+              : 'border border-[#e3e3e8] shadow-xs'
+          }`}
+        >
+          {pkg.isPopular && (
+            <div class="absolute -top-[1px] left-1/2 -translate-x-1/2 bg-[#006B3E] text-white px-6 py-1.5 text-xs font-['Golos_Text'] font-bold rounded-b-[12px] tracking-wider uppercase shadow-xs">
+              REKOMENDASI PROGRAM
+            </div>
+          )}
+
+          <div>
+            <!-- Header Kartu -->
+            <div class={`text-center ${pkg.isPopular ? 'pt-3' : ''}`}>
+              <h3 class="text-2xl font-['Cal_Sans'] font-semibold text-[#191919] mb-1">
+                {pkg.title}
+              </h3>
+              <p class="text-sm font-['Plus_Jakarta_Sans'] text-[#4d4d52] mb-5">
+                {pkg.subtitle}
+              </p>
+
+              <!-- Harga -->
+              <div class="text-3xl md:text-4xl font-['Cal_Sans'] font-bold text-[#191919] mb-1">
+                {pkg.pricePrefix}{pkg.priceAmount}{pkg.priceUnit}
+              </div>
+              <div class="text-xs font-['Golos_Text'] italic text-[#4d4d52] mb-2">
+                {pkg.priceDesc}
+              </div>
+              <div class="text-xs md:text-sm font-['Golos_Text'] text-[#006B3E] font-medium bg-[#006B3E]/10 py-1 px-3 rounded-full inline-block mb-6">
+                {pkg.estimation}
+              </div>
+            </div>
+
+            <!-- What Do You Get Divider -->
+            <div class="border-b-2 border-[#006B3E] pb-2 mb-4">
+              <span class="text-xs font-['Golos_Text'] font-bold tracking-wider text-[#191919] uppercase">
+                WHAT DO YOU GET:
+              </span>
+            </div>
+
+            <!-- Deliverables List -->
+            <ul class="flex flex-col gap-0 mb-8 divide-y divide-[#e3e3e8]">
+              {pkg.deliverables.map((item) => (
+                <li class="py-3 flex items-start gap-3">
+                  <span class="text-[#006B3E] font-bold text-sm shrink-0 mt-0.5">
+                    <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="text-xs md:text-sm font-['Golos_Text'] text-[#4d4d52] leading-relaxed">
+                    <strong class="text-[#191919] font-medium">{item.bold} — </strong>{item.text}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="mt-4 pt-2">
+            <a
+              href={`https://wa.me/6281226832326?text=${encodeURIComponent(`Assalamualaikum Admin GVF, saya ingin menyalurkan ${program.title} untuk paket: ${pkg.title} sebesar ${pkg.pricePrefix || ''}${pkg.priceAmount}. Mohon panduan transfer dan akadnya.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full h-[52px] bg-[#006B3E] hover:bg-[#005230] text-white font-['Cal_Sans'] font-medium text-base rounded-[100px] flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98]"
+            >
+              {pkg.ctaText}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Add-on Services Table (From Pen.dev) -->
+    {program.addonItems && program.addonItems.length > 0 && (
+      <div class="max-w-[1000px] mx-auto mb-20">
+        <h3 class="text-2xl md:text-3xl font-['Cal_Sans'] text-[#191919] text-center mb-8">
+          {program.addonTitle || 'Pilihan Saluran Tambahan'}
+        </h3>
+
+        <div class="border border-[#e3e3e8] rounded-[16px] overflow-hidden bg-white shadow-xs">
+          <!-- Desktop Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-[#191919] text-white text-xs md:text-sm font-['Golos_Text'] font-semibold">
+                  <th class="py-3.5 px-6 font-semibold">Kategori / Program</th>
+                  <th class="py-3.5 px-6 font-semibold">Keterangan</th>
+                  <th class="py-3.5 px-6 font-semibold text-right">Nominal</th>
+                  <th class="py-3.5 px-6 font-semibold text-right">Ketersediaan</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#e3e3e8]">
+                {program.addonItems.map((addon) => (
+                  <tr class="hover:bg-slate-50/70 transition-colors">
+                    <td class="py-4 px-6 text-sm font-['Golos_Text'] font-semibold text-[#191919] whitespace-nowrap">
+                      {addon.name}
+                    </td>
+                    <td class="py-4 px-6 text-xs md:text-sm font-['Golos_Text'] text-[#4d4d52]">
+                      {addon.desc}
+                    </td>
+                    <td class="py-4 px-6 text-sm font-['Golos_Text'] font-semibold text-[#006B3E] text-right whitespace-nowrap">
+                      {addon.price}
+                    </td>
+                    <td class="py-4 px-6 text-xs font-['Golos_Text'] italic text-[#4d4d52] text-right whitespace-nowrap">
+                      {addon.availability}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    )}
+
+    <!-- Interactive Calculator Toggle Drawer -->
+    <div class="max-w-[1100px] mx-auto mt-12 bg-white border border-[#e3e3e8] rounded-[24px] p-6 md:p-8 shadow-xs">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-[#e3e3e8] pb-6 mb-6">
+        <div>
+          <span class="text-xs font-['Cal_Sans'] tracking-wider text-[#006B3E] uppercase font-bold">
+            FITUR KALKULATOR KHUSUS
+          </span>
+          <h4 class="text-xl md:text-2xl font-['Cal_Sans'] text-[#191919] mt-0.5">
+            Ingin Menghitung atau Memilih Nilai Kustom?
+          </h4>
+          <p class="text-sm font-['Golos_Text'] text-[#4d4d52] mt-1">
+            Gunakan simulasi interaktif di bawah untuk memasukkan jumlah meter, porsi, atau hisab zakat Anda.
+          </p>
+        </div>
+        <button
+          type="button"
+          id="toggleCustomCalculatorBtn"
+          class="shrink-0 px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-[#191919] font-['Cal_Sans'] text-sm rounded-full transition-colors flex items-center gap-2"
+        >
+          <span id="toggleCustomCalculatorText">Tampilkan Simulasi</span>
+          <svg class="w-4 h-4 transition-transform duration-200" id="toggleCustomCalculatorIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Expandable Interactive Area (Initially Collapsed for Pen.dev Clean Look) -->
+      <div id="interactiveCustomArea" class="hidden transition-all duration-300">
+        {program.slug === 'zakat' && <ZakatCalculatorSection program={program} />}
+        {program.slug === 'infaq' && <InfaqMaterialSection program={program} />}
+        {program.slug === 'wakaf' && <WakafLandSliderSection program={program} />}
+        {program.slug === 'sedekah' && <SedekahChipsSection program={program} />}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Toggle Interactive Calculator
+  const toggleBtn = document.getElementById('toggleCustomCalculatorBtn');
+  const customArea = document.getElementById('interactiveCustomArea');
+  const toggleText = document.getElementById('toggleCustomCalculatorText');
+  const toggleIcon = document.getElementById('toggleCustomCalculatorIcon');
+
+  if (toggleBtn && customArea && toggleText && toggleIcon) {
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = customArea.classList.contains('hidden');
+      if (isHidden) {
+        customArea.classList.remove('hidden');
+        toggleText.textContent = 'Sembunyikan Simulasi';
+        toggleIcon.classList.add('rotate-180');
+      } else {
+        customArea.classList.add('hidden');
+        toggleText.textContent = 'Tampilkan Simulasi';
+        toggleIcon.classList.remove('rotate-180');
+      }
+    });
+  }
+</script>

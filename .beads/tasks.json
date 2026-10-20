@@ -12,6 +12,7 @@
     { "id": "SEC-09", "name": "Section 9: Video Dokumentasi Satu Kebaikan", "status": "closed" },
     { "id": "SEC-10", "name": "Section 10: Kabar GVF 3-Column Symmetrical Grid", "status": "closed" },
     { "id": "SEC-11", "name": "Section 11: Final CTA Konsultasi", "status": "closed" },
-    { "id": "SEC-12", "name": "Section 12: Footer Global", "status": "closed" }
+    { "id": "SEC-12", "name": "Section 12: Footer Global", "status": "closed" },
+    { "id": "PROG-01", "name": "Halaman Program ZISWAF Alignment Pen.dev", "status": "closed" }
   ]
 }
