@@ -1,144 +1,152 @@
 ---
 // src/components/home/LeadershipSection.astro
-// Exact ISAVO "Temui Anggota Tim" Interactive Master-Detail Hover/Click Switcher
+// Exact Pen.dev "Temui Dewan & Pengurus GVF" Interactive Master-Detail Showcase
 ---
 
-<section class="isavo-leadership-section reveal-on-scroll" id="pengurus">
-  <div class="isavo-leadership-container">
-    <!-- Top Header -->
-    <div class="isavo-leadership-header">
-      <span class="section-kicker reveal-on-scroll">Struktur Lembaga</span>
-      <h2 class="isavo-leadership-title reveal-heading">
-        Temui Dewan &amp; <span class="isavo-accent-blue">Pengurus GVF</span>
+<section class="pen-leadership-section reveal-on-scroll" id="pengurus">
+  <div class="pen-leadership-container">
+    <!-- Header: Badge Pill + Section Title ala Pen.dev -->
+    <div class="pen-leadership-header">
+      <div class="pen-team-badge">
+        <div class="pen-badge-dot"></div>
+        <span class="pen-badge-text">TIM GVF</span>
+      </div>
+      <h2 class="pen-leadership-title">
+        Temui Dewan &amp; Pengurus GVF
       </h2>
     </div>
 
-    <!-- 2-Column Master-Detail Layout ala ISAVO -->
-    <div class="isavo-team-grid">
-      <!-- Left Column: Active Member Portrait Showcase Card -->
-      <div class="isavo-card-col reveal-scale" data-delay="0.15">
-        <div class="isavo-team-card" id="teamActiveCard">
-          <!-- Top Card Brand Logo ala ISAVO [ISAVO] -->
-          <div class="isavo-card-brand">
-            <span class="isavo-brand-mini">GVF</span>
-            <span class="isavo-brand-sub">GLOBAL VILLAGE FUND</span>
-          </div>
-
-          <!-- Portrait Image Frame with Smooth Crossfade -->
-          <div class="isavo-card-photo-wrap">
-            <img
-              id="teamActiveImg"
-              src="/media-lp/pengurus-1.jpg"
-              alt="Ir. H. M. Hakim, M.M."
-              class="isavo-card-photo"
-              loading="lazy"
-            />
-          </div>
-
-          <!-- Bottom Card Floating Label ala ISAVO -->
-          <div class="isavo-card-caption">
-            <div id="teamActiveName" class="isavo-caption-name">Ir. H. M. Hakim, M.M.</div>
-            <div id="teamActiveRole" class="isavo-caption-role">Ketua Dewan Pembina &amp; Nazhir</div>
-          </div>
+    <!-- 2-Column Master-Detail Layout: 416x416 Foto Kiri + 5 Row Kanan -->
+    <div class="pen-team-grid">
+      <!-- Left Column: Portrait Image Showcase (Rounded 16px) -->
+      <div class="pen-photo-col">
+        <div class="pen-photo-wrapper">
+          <img
+            id="teamActiveImg"
+            src="/media-lp/pengurus-1.jpg"
+            alt="Ir. H. M. Hakim, M.M."
+            class="pen-team-photo"
+            loading="lazy"
+          />
         </div>
       </div>
 
-      <!-- Right Column: Interactive 5-Row Member List ala ISAVO -->
-      <div class="isavo-list-col">
-        <div class="isavo-member-list reveal-stagger" id="memberList">
+      <!-- Right Column: Interactive 5-Row Member List ala Pen.dev -->
+      <div class="pen-list-col">
+        <div class="pen-member-list" id="memberList">
           <!-- Member 01 (Active Default) -->
           <div
-            class="isavo-member-row active"
+            class="pen-member-row active"
             data-index="0"
             data-name="Ir. H. M. Hakim, M.M."
-            data-role="Ketua Dewan Pembina & Nazhir"
+            data-role="DEWAN PEMBINA / FOUNDER"
             data-photo="/media-lp/pengurus-1.jpg"
           >
-            <span class="isavo-member-num">01</span>
-            <h3 class="isavo-member-name">Ir. H. M. Hakim, M.M.</h3>
-            <span class="isavo-member-role">KETUA NAZHIR &amp; PEMBINA</span>
-            <span class="isavo-arrow-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
+            <div class="pen-row-left">
+              <span class="pen-member-num">01</span>
+              <h3 class="pen-member-name">Ir. H. M. Hakim, M.M.</h3>
+            </div>
+            <div class="pen-row-role">
+              DEWAN PEMBINA / FOUNDER
+            </div>
+            <div class="pen-row-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
-            </span>
+            </div>
           </div>
 
           <!-- Member 02 -->
           <div
-            class="isavo-member-row"
+            class="pen-member-row"
             data-index="1"
             data-name="Ust. Ahmad Fauzi, Lc., M.A."
-            data-role="Dewan Pengawas Syariah (DPS)"
+            data-role="PENGAWAS SYARIAH"
             data-photo="/media-lp/pengurus-2.jpg"
           >
-            <span class="isavo-member-num">02</span>
-            <h3 class="isavo-member-name">Ust. Ahmad Fauzi, Lc., M.A.</h3>
-            <span class="isavo-member-role">PENGAWAS SYARIAH</span>
-            <span class="isavo-arrow-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <div class="pen-row-left">
+              <span class="pen-member-num">02</span>
+              <h3 class="pen-member-name">Ust. Ahmad Fauzi, Lc., M.A.</h3>
+            </div>
+            <div class="pen-row-role">
+              PENGAWAS SYARIAH
+            </div>
+            <div class="pen-row-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
               </svg>
-            </span>
+            </div>
           </div>
 
           <!-- Member 03 -->
           <div
-            class="isavo-member-row"
+            class="pen-member-row"
             data-index="2"
             data-name="Dr. Hendra Gunawan, S.T., M.T."
-            data-role="Lead Arsitek & Perencana Tapak"
+            data-role="KETUA YAYASAN / DIREKTUR"
             data-photo="/media-lp/pengurus-3.jpg"
           >
-            <span class="isavo-member-num">03</span>
-            <h3 class="isavo-member-name">Dr. Hendra Gunawan, S.T., M.T.</h3>
-            <span class="isavo-member-role">LEAD ARSITEK</span>
-            <span class="isavo-arrow-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <div class="pen-row-left">
+              <span class="pen-member-num">03</span>
+              <h3 class="pen-member-name">Dr. Hendra Gunawan, S.T., M.T.</h3>
+            </div>
+            <div class="pen-row-role">
+              KETUA YAYASAN / DIREKTUR
+            </div>
+            <div class="pen-row-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
               </svg>
-            </span>
+            </div>
           </div>
 
           <!-- Member 04 -->
           <div
-            class="isavo-member-row"
+            class="pen-member-row"
             data-index="3"
             data-name="Siti Rahmah, S.E., Ak."
-            data-role="Manajer Keuangan & Akuntabilitas"
+            data-role="BENDAHARA & AKUNTABILITAS"
             data-photo="/media-lp/pengurus-4.jpg"
           >
-            <span class="isavo-member-num">04</span>
-            <h3 class="isavo-member-name">Siti Rahmah, S.E., Ak.</h3>
-            <span class="isavo-member-role">KEUANGAN &amp; AUDIT</span>
-            <span class="isavo-arrow-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <div class="pen-row-left">
+              <span class="pen-member-num">04</span>
+              <h3 class="pen-member-name">Siti Rahmah, S.E., Ak.</h3>
+            </div>
+            <div class="pen-row-role">
+              BENDAHARA &amp; AKUNTABILITAS
+            </div>
+            <div class="pen-row-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
               </svg>
-            </span>
+            </div>
           </div>
 
           <!-- Member 05 -->
           <div
-            class="isavo-member-row"
+            class="pen-member-row"
             data-index="4"
             data-name="Ir. Bambang Trihatmojo"
-            data-role="Kepala Pelaksana Konstruksi Lapangan"
+            data-role="PERENCANAAN FISIK & KAWASAN"
             data-photo="/media-lp/pengurus-5.jpg"
           >
-            <span class="isavo-member-num">05</span>
-            <h3 class="isavo-member-name">Ir. Bambang Trihatmojo</h3>
-            <span class="isavo-member-role">MANAJER LAPANGAN</span>
-            <span class="isavo-arrow-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <div class="pen-row-left">
+              <span class="pen-member-num">05</span>
+              <h3 class="pen-member-name">Ir. Bambang Trihatmojo</h3>
+            </div>
+            <div class="pen-row-role">
+              PERENCANAAN FISIK &amp; KAWASAN
+            </div>
+            <div class="pen-row-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
               </svg>
-            </span>
+            </div>
           </div>
         </div>
       </div>
@@ -147,12 +155,9 @@
 </section>
 
 <script>
-  // Exact ISAVO Interactive Team Member Hover/Click Switcher with Auto-Cycle
-  const rows = document.querySelectorAll('.isavo-member-row');
+  // Interactive Team Member Hover/Click Switcher
+  const rows = document.querySelectorAll('.pen-member-row');
   const activeImg = document.getElementById('teamActiveImg') as HTMLImageElement | null;
-  const activeName = document.getElementById('teamActiveName');
-  const activeRole = document.getElementById('teamActiveRole');
-  const card = document.getElementById('teamActiveCard');
 
   let currentIndex = 0;
   let autoCycleTimer: any = null;
@@ -162,7 +167,6 @@
     if (index < 0 || index >= rows.length) return;
     currentIndex = index;
 
-    // Update Row Classes
     rows.forEach((row, i) => {
       if (i === index) {
         row.classList.add('active');
@@ -174,9 +178,7 @@
     const activeRow = rows[index] as HTMLElement;
     const photo = activeRow.getAttribute('data-photo') || '';
     const name = activeRow.getAttribute('data-name') || '';
-    const role = activeRow.getAttribute('data-role') || '';
 
-    // Smooth Micro-Transition on Image & Text (Cross-Fade)
     if (activeImg) {
       activeImg.style.opacity = '0';
       activeImg.style.transform = 'scale(0.96)';
@@ -186,14 +188,10 @@
         activeImg.alt = name;
         activeImg.style.opacity = '1';
         activeImg.style.transform = 'scale(1)';
-      }, 150);
+      }, 140);
     }
-
-    if (activeName) activeName.textContent = name;
-    if (activeRole) activeRole.textContent = role;
   };
 
-  // Event Listeners on Each Member Row (Hover & Click)
   rows.forEach((row, i) => {
     row.addEventListener('mouseenter', () => {
       isHovered = true;
@@ -205,7 +203,6 @@
     });
   });
 
-  // Pause Auto-Cycle on Hover
   const teamSection = document.getElementById('pengurus');
   if (teamSection) {
     teamSection.addEventListener('mouseenter', () => {
@@ -217,7 +214,6 @@
     });
   }
 
-  // Smooth Auto-Cycle Timer (Every 4.5s)
   autoCycleTimer = setInterval(() => {
     if (!isHovered) {
       const nextIndex = (currentIndex + 1) % rows.length;
@@ -227,270 +223,220 @@
 </script>
 
 <style>
-  .isavo-leadership-section {
+  .pen-leadership-section {
     position: relative;
-    padding: 90px 0 110px 0;
-    background-color: #fbfcfd;
+    padding: 120px 0 140px 0;
+    background-color: #f6f6f3;
     overflow: hidden;
   }
 
-  .isavo-leadership-container {
-    position: relative;
-    z-index: 1;
-    max-width: 1320px;
+  .pen-leadership-container {
+    max-width: 1380px;
     margin: 0 auto;
     padding: 0 2rem;
   }
 
-  /* Header Centered */
-  .isavo-leadership-header {
-    text-align: center;
-    margin-bottom: 4.5rem;
-  }
-
-  .isavo-pill-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background-color: #ffffff;
-    border: 1px solid rgba(15, 23, 42, 0.1);
-    padding: 0.35rem 0.95rem;
-    border-radius: 9999px;
-    margin-bottom: 1.25rem;
-    box-shadow: none;
-  }
-
-  .isavo-pill-dot {
-    width: 6px;
-    height: 6px;
-    background-color: #0969da;
-    border-radius: 50%;
-  }
-
-  .isavo-pill-text {
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    color: #0f172a;
-    text-transform: uppercase;
-    font-family: 'Golos Text', sans-serif;
-  }
-
-  .isavo-leadership-title {
-    font-size: clamp(2.3rem, 4vw, 3.5rem);
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
-    color: #0f172a;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-    margin: 0;
-  }
-
-  .isavo-accent-blue {
-    color: #0969da;
-  }
-
-  /* 2-Column Grid */
-  .isavo-team-grid {
-    display: grid;
-    grid-template-columns: 430px 1fr;
-    gap: 4.5rem;
-    align-items: center;
-  }
-
-  /* Left Column: Portrait Card ala ISAVO */
-  .isavo-team-card {
-    position: relative;
-    background: none;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  .isavo-card-brand {
+  /* Header Pen.dev */
+  .pen-leadership-header {
     display: flex;
     align-items: center;
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+
+  .pen-team-badge {
+    display: inline-flex;
+    align-items: center;
     gap: 8px;
-    padding: 0;
-    margin-bottom: 0.75rem;
+    padding: 6px 18px 6px 14px;
+    border: 1px solid rgba(114, 114, 114, 0.2);
+    border-radius: 32px;
+    background: transparent;
   }
 
-  .isavo-brand-mini {
-    font-size: 0.95rem;
-    font-weight: 900;
-    color: #0969da;
-    letter-spacing: 0.05em;
-    font-family: 'Golos Text', sans-serif;
-    padding: 3px 8px;
-    background-color: rgba(9, 105, 218, 0.08);
-    border-radius: 6px;
+  .pen-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #006B3E;
   }
 
-  .isavo-brand-sub {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: #64748b;
+  .pen-badge-text {
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 1px;
+    color: #000000;
+    font-weight: 500;
   }
 
-  .isavo-card-photo-wrap {
-    width: 100%;
-    height: 420px;
-    border-radius: 12px;
+  .pen-leadership-title {
+    font-size: 48px;
+    line-height: 55px;
+    font-weight: 400;
+    color: #000000;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  /* Grid Layout: Kiri Foto 416x416, Kanan List 5 Baris */
+  .pen-team-grid {
+    display: grid;
+    grid-template-columns: 416px 1fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .pen-photo-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  .pen-photo-wrapper {
+    width: 416px;
+    height: 416px;
+    border-radius: 16px;
     overflow: hidden;
-    background-color: #f1f5f9;
-    margin-bottom: 1rem;
+    background-color: #e2e8f0;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.06);
   }
 
-  .isavo-card-photo {
+  .pen-team-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center top;
     display: block;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
 
-  /* Caption Info */
-  .isavo-card-caption {
-    text-align: center;
-    padding: 0 0.5rem;
-  }
-
-  .isavo-caption-name {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #0f172a;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
-    letter-spacing: -0.01em;
-    margin-bottom: 0.25rem;
-  }
-
-  .isavo-caption-role {
-    font-size: 0.88rem;
-    color: #64748b;
-    font-weight: 500;
-  }
-
-  /* Right Column: Member List */
-  .isavo-member-list {
+  /* Member List */
+  .pen-member-list {
     display: flex;
     flex-direction: column;
   }
 
-  .isavo-member-row {
+  .pen-member-row {
     display: flex;
     align-items: center;
-    padding: 1.85rem 1rem;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.09);
+    justify-content: space-between;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(159, 159, 164, 0.24);
     cursor: pointer;
-    transition: background-color 0.25s ease, padding-left 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.25s ease;
     user-select: none;
-    position: relative;
   }
 
-  .isavo-member-row:first-child {
-    border-top: 1px solid rgba(15, 23, 42, 0.09);
+  .pen-member-row:first-child {
+    border-top: 1px solid rgba(159, 159, 164, 0.24);
   }
 
-  .isavo-member-row:hover,
-  .isavo-member-row.active {
-    padding-left: 1.6rem;
+  .pen-row-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 380px;
+    flex-shrink: 0;
   }
 
-  .isavo-member-num {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #94a3b8;
-    margin-right: 1.75rem;
-    font-family: 'Golos Text', monospace;
+  .pen-member-num {
+    font-size: 16px;
+    line-height: 26px;
+    color: #62625b;
+    font-weight: 400;
     transition: color 0.25s ease;
   }
 
-  .isavo-member-row.active .isavo-member-num,
-  .isavo-member-row:hover .isavo-member-num {
-    color: #0969da;
+  .pen-member-row.active .pen-member-num,
+  .pen-member-row:hover .pen-member-num {
+    color: #000000;
   }
 
-  .isavo-member-name {
-    font-size: clamp(1.2rem, 1.8vw, 1.65rem);
-    font-weight: 800;
-    color: #0f172a;
+  .pen-member-name {
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #000000;
     margin: 0;
-    letter-spacing: -0.02em;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
     transition: color 0.25s ease;
-    flex: 1;
   }
 
-  .isavo-member-row.active .isavo-member-name,
-  .isavo-member-row:hover .isavo-member-name {
-    color: #0969da;
+  .pen-member-row.active .pen-member-name,
+  .pen-member-row:hover .pen-member-name {
+    color: #006B3E;
   }
 
-  .isavo-member-role {
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    color: #64748b;
+  .pen-row-role {
+    font-size: 13px;
+    line-height: 21px;
+    letter-spacing: 1px;
+    color: #006B3E;
+    font-weight: 400;
     text-transform: uppercase;
-    font-family: 'Golos Text', sans-serif;
-    margin-left: auto;
-    margin-right: 2rem;
-    transition: color 0.25s ease;
   }
 
-  .isavo-member-row.active .isavo-member-role {
-    color: #0f172a;
-  }
-
-  /* Diagonal to Right Arrow Animation */
-  .isavo-arrow-icon {
+  .pen-row-arrow {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #94a3b8;
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+    color: #000000;
+    transition: transform 0.25s ease, color 0.25s ease;
   }
 
-  .isavo-member-row.active .isavo-arrow-icon,
-  .isavo-member-row:hover .isavo-arrow-icon {
-    transform: rotate(45deg);
-    color: #0969da;
+  .pen-member-row.active .pen-row-arrow {
+    color: #006B3E;
+  }
+
+  .pen-member-row:hover .pen-row-arrow {
+    color: #006B3E;
+    transform: translate(3px, -3px);
   }
 
   @media (max-width: 1024px) {
-    .isavo-team-grid {
+    .pen-team-grid {
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: 40px;
     }
 
-    .isavo-team-card {
-      max-width: 440px;
-      margin: 0 auto;
+    .pen-photo-wrapper {
+      width: 100%;
+      max-width: 416px;
+      height: 380px;
     }
 
-    .isavo-member-row {
-      padding: 1.4rem 0.5rem;
+    .pen-row-left {
+      width: auto;
     }
 
-    .isavo-member-role {
-      display: none;
+    .pen-leadership-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .pen-leadership-title {
+      font-size: 36px;
+      line-height: 42px;
     }
   }
 
   @media (max-width: 640px) {
-    .isavo-leadership-section {
-      padding: 60px 0 80px 0;
+    .pen-leadership-section {
+      padding: 80px 0 100px 0;
     }
 
-    .isavo-member-name {
-      font-size: 1.15rem;
+    .pen-member-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 20px 0;
     }
 
-    .isavo-card-photo-wrap {
-      height: 320px;
+    .pen-row-role {
+      font-size: 12px;
+    }
+
+    .pen-member-name {
+      font-size: 18px;
     }
   }
 </style>
