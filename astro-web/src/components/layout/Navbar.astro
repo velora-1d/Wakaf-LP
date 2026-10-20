@@ -49,12 +49,12 @@ const currentPath = Astro.url.pathname;
         </div>
       </a>
 
-      <!-- Tombol Paling Menonjol: DONASI SEKARANG ala ISAVO -->
-      <a href="#donasi" class="isavo-header-pill-btn" aria-label="Donasi Sekarang">
+      <!-- Tombol Paling Menonjol: Salurkan Donasi ala Pen.dev GVF -->
+      <a href="#donasi" class="isavo-header-pill-btn" aria-label="Salurkan Donasi">
         <svg class="pill-calc-icon" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
-        <span>DONASI SEKARANG</span>
+        <span>Salurkan Donasi</span>
       </a>
 
       <!-- Circle Button dengan 4 ROUND DOTS (2x2 Grid) ala ISAVO -->
@@ -95,7 +95,7 @@ const currentPath = Astro.url.pathname;
       </nav>
       <div class="isavo-drawer-bottom">
         <a href="#donasi" class="isavo-header-pill-btn" style="width: 100%; justify-content: center;">
-          DONASI SEKARANG
+          Salurkan Donasi
         </a>
       </div>
     </div>
@@ -204,7 +204,7 @@ const currentPath = Astro.url.pathname;
 
   .isavo-nav-link:hover,
   .isavo-nav-link.active {
-    color: #e53935; /* Aksen merah signature ISAVO */
+    color: #10b981; /* Aksen hijau emerald signature Pen.dev GVF */
   }
 
   .isavo-chevron {
@@ -313,12 +313,12 @@ const currentPath = Astro.url.pathname;
     letter-spacing: -0.01em;
   }
 
-  /* 4. Pill Button CTA ("Simulasi Biaya ⌵" Merah Signature ISAVO) */
+  /* 4. Pill Button CTA ("Salurkan Donasi" Hijau Signature Pen.dev GVF) */
   .isavo-header-pill-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: linear-gradient(135deg, #e53935 0%, #d32f2f 100%);
+    background: #006B3E;
     color: #ffffff;
     text-decoration: none;
     border-radius: 9999px;
@@ -328,13 +328,13 @@ const currentPath = Astro.url.pathname;
     font-weight: 700;
     letter-spacing: -0.01em;
     transition: all 0.25s ease;
-    box-shadow: 0 4px 16px rgba(229, 57, 53, 0.4);
+    box-shadow: 0 4px 16px rgba(0, 107, 62, 0.4);
   }
 
   .isavo-header-pill-btn:hover {
-    background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+    background: #005431;
     transform: translateY(-2px);
-    box-shadow: 0 6px 22px rgba(229, 57, 53, 0.55);
+    box-shadow: 0 6px 22px rgba(0, 107, 62, 0.55);
   }
 
   .pill-calc-icon {
@@ -471,7 +471,7 @@ const currentPath = Astro.url.pathname;
   }
 
   .isavo-drawer-nav a:hover {
-    color: #0284c7;
+    color: #10b981;
   }
 
   .isavo-drawer-bottom {
