@@ -16,6 +16,6 @@
 - [x] Section 7: Dokumentasi Riil & Masterplan Kawasan (`ShowcaseSection.astro`)
 - [x] Section 8: Temui Dewan & Pengurus GVF Interactive (`LeadershipSection.astro`)
 - [x] Section 9: Video Dokumentasi YouTube Resmi & UI Refresh (`VideoSection.astro`)
-- [x] Section 10: Kabar GVF Editorial Featured + List Layout (`NewsSection.astro`)
+- [x] Section 10: Kabar GVF 3-Column Symmetrical Grid (`NewsSection.astro`)
 - [x] Section 11: Final CTA Konsultasi (`FinalCtaSection.astro`)
 - [x] Section 12: Footer Global (`Footer.astro`)

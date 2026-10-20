@@ -1,11 +1,11 @@
 ---
 // src/components/home/NewsSection.astro
-// Editorial News & Literacy Section — Modern 2-Column Featured + Editorial List Layout
+// Symmetrical 3-Column Responsive Grid Layout (6 Balanced Editorial Cards)
 ---
 
 <section class="pen-news-section reveal-on-scroll" id="kabar-gvf">
   <div class="pen-news-container">
-    <!-- Header: Badge Pill + Title + Subtitle -->
+    <!-- Header: Centered Pill Badge + Title + Subtitle -->
     <div class="pen-news-header">
       <div class="pen-badge-pill">
         <div class="dot-halo">
@@ -19,40 +19,40 @@
         Catatan Edukasi Kebermanfaatan
       </h2>
       <p class="pen-news-subtitle">
-        Informasi terkini progres pembangunan fisik, aktivitas santri vokasi, dan catatan fiqih wakaf produktif di Jonggol.
+        Informasi terkini progres pembangunan kawasan, aktivitas santri vokasi, dan catatan fiqih wakaf produktif di Jonggol.
       </p>
     </div>
 
-    <!-- Editorial Top Showcase (Featured Left + Compact List Right) -->
-    <div class="editorial-showcase-grid">
-      <!-- Left: Featured Hero Article -->
-      <article class="featured-hero-card">
-        <div class="featured-thumb-wrap">
+    <!-- Symmetrical 3-Column Grid (2 Rows x 3 Cards = 6 Cards) -->
+    <div class="news-symmetrical-grid">
+      <!-- Card 01: Literasi Wakaf -->
+      <article class="news-card">
+        <div class="news-thumb-wrap">
           <img
             src="/gambar design/interior masjid.jpg"
-            alt="Fiqih Wakaf Produktif: Menghidupkan Aset Umat"
-            class="featured-thumb-img"
+            alt="Fiqih Wakaf Produktif"
+            class="news-thumb-img"
             loading="lazy"
           />
           <span class="news-category-badge">LITERASI WAKAF</span>
         </div>
-        <div class="featured-content">
+        <div class="news-card-body">
           <div class="news-meta-row">
             <span class="news-meta-date">18 Juli 2026</span>
             <span class="news-meta-dot">•</span>
-            <span class="news-meta-author">Oleh <strong class="author-highlight">Tim Edukasi GVF</strong></span>
+            <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
           </div>
-          <h3 class="featured-title">
-            <a href="/program/wakaf" class="featured-title-link">
+          <h3 class="news-card-title">
+            <a href="/program/wakaf" class="news-title-link">
               Fiqih Wakaf Produktif: Menghidupkan Aset Umat Menjadi Sumber Pahala Abadi
             </a>
           </h3>
-          <p class="featured-excerpt">
-            Pelajari bagaimana wakaf produktif mentransformasi aset abadi menjadi sarana pendidikan vokasi, kemandirian pangan pesantren, dan aliran pahala jariyah yang berkesinambungan.
+          <p class="news-card-desc">
+            Transformasi aset abadi menjadi sarana pendidikan berkelanjutan dan kemandirian pangan santri secara amanah.
           </p>
-          <a href="/program/wakaf" class="news-read-more-btn">
+          <a href="/program/wakaf" class="news-card-action">
             <span>Baca Selengkapnya</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
@@ -60,131 +60,178 @@
         </div>
       </article>
 
-      <!-- Right: 3 Compact Editorial Items -->
-      <div class="editorial-side-list">
-        <!-- Side Item 1 -->
-        <article class="side-news-item">
-          <a href="/program/wakaf" class="side-thumb-link">
-            <img
-              src="/gambar design/belakang masjid.jpg"
-              alt="Perkembangan Fisik Masjid Khairu Ummah"
-              class="side-thumb-img"
-              loading="lazy"
-            />
-          </a>
-          <div class="side-content">
-            <div class="news-meta-row">
-              <span class="side-badge">PROGRESS MASJID</span>
-              <span class="news-meta-dot">•</span>
-              <span class="news-meta-date">12 Juli 2026</span>
-            </div>
-            <h4 class="side-title">
-              <a href="/program/wakaf" class="side-title-link">
-                Perkembangan Fisik Masjid Khairu Ummah: Mezanin Dua Lantai Siap Digunakan
-              </a>
-            </h4>
+      <!-- Card 02: Progress Masjid -->
+      <article class="news-card">
+        <div class="news-thumb-wrap">
+          <img
+            src="/gambar design/belakang masjid.jpg"
+            alt="Perkembangan Fisik Masjid Khairu Ummah"
+            class="news-thumb-img"
+            loading="lazy"
+          />
+          <span class="news-category-badge">PROGRESS MASJID</span>
+        </div>
+        <div class="news-card-body">
+          <div class="news-meta-row">
+            <span class="news-meta-date">12 Juli 2026</span>
+            <span class="news-meta-dot">•</span>
+            <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
           </div>
-        </article>
-
-        <!-- Side Item 2 -->
-        <article class="side-news-item">
-          <a href="/program/wakaf" class="side-thumb-link">
-            <img
-              src="/gambar design/learning studio & workshop.jpg"
-              alt="Santri Vokasi Agroteknologi"
-              class="side-thumb-img"
-              loading="lazy"
-            />
+          <h3 class="news-card-title">
+            <a href="/program/wakaf" class="news-title-link">
+              Perkembangan Fisik Masjid Khairu Ummah: Mezanin Dua Lantai Siap Digunakan
+            </a>
+          </h3>
+          <p class="news-card-desc">
+            Penyelesaian struktur utama dan mezanin shalat santri guna menampung jamaah ibadah dan tahfidz harian.
+          </p>
+          <a href="/program/wakaf" class="news-card-action">
+            <span>Baca Selengkapnya</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
           </a>
-          <div class="side-content">
-            <div class="news-meta-row">
-              <span class="side-badge">TECHNOPARK</span>
-              <span class="news-meta-dot">•</span>
-              <span class="news-meta-date">5 Juli 2026</span>
-            </div>
-            <h4 class="side-title">
-              <a href="/program/wakaf" class="side-title-link">
-                Santri Vokasi Agroteknologi: Dari Pembibitan Menuju Kemandirian Pangan
-              </a>
-            </h4>
-          </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- Side Item 3 -->
-        <article class="side-news-item">
-          <a href="/program/infaq" class="side-thumb-link">
-            <img
-              src="/gambar design/interior mesjid 2.jpg"
-              alt="Sinergi Wakaf Tunai"
-              class="side-thumb-img"
-              loading="lazy"
-            />
+      <!-- Card 03: Technopark -->
+      <article class="news-card">
+        <div class="news-thumb-wrap">
+          <img
+            src="/gambar design/learning studio & workshop.jpg"
+            alt="Santri Vokasi Agroteknologi"
+            class="news-thumb-img"
+            loading="lazy"
+          />
+          <span class="news-category-badge">TECHNOPARK</span>
+        </div>
+        <div class="news-card-body">
+          <div class="news-meta-row">
+            <span class="news-meta-date">5 Juli 2026</span>
+            <span class="news-meta-dot">•</span>
+            <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
+          </div>
+          <h3 class="news-card-title">
+            <a href="/program/wakaf" class="news-title-link">
+              Santri Vokasi Agroteknologi: Dari Pembibitan Menuju Kemandirian Pangan
+            </a>
+          </h3>
+          <p class="news-card-desc">
+            Keterampilan riil pembibitan hortikultura dan green house modern yang diajarkan langsung pada santri SMK Skill Village.
+          </p>
+          <a href="/program/wakaf" class="news-card-action">
+            <span>Baca Selengkapnya</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
           </a>
-          <div class="side-content">
-            <div class="news-meta-row">
-              <span class="side-badge">KOLABORASI</span>
-              <span class="news-meta-dot">•</span>
-              <span class="news-meta-date">28 Juni 2026</span>
-            </div>
-            <h4 class="side-title">
-              <a href="/program/infaq" class="side-title-link">
-                Sinergi Wakaf Tunai: Membuka Akses Sarana Digital Santri Vokasi
-              </a>
-            </h4>
-          </div>
-        </article>
-      </div>
-    </div>
+        </div>
+      </article>
 
-    <!-- Bottom Secondary 2-Card Row -->
-    <div class="editorial-bottom-grid">
-      <!-- Bottom Card 1 -->
-      <article class="bottom-news-card">
-        <div class="bottom-thumb-wrap">
+      <!-- Card 04: Wakaf Digital -->
+      <article class="news-card">
+        <div class="news-thumb-wrap">
+          <img
+            src="/gambar design/interior mesjid 2.jpg"
+            alt="Sinergi Wakaf Tunai"
+            class="news-thumb-img"
+            loading="lazy"
+          />
+          <span class="news-category-badge">WAKAF DIGITAL</span>
+        </div>
+        <div class="news-card-body">
+          <div class="news-meta-row">
+            <span class="news-meta-date">28 Juni 2026</span>
+            <span class="news-meta-dot">•</span>
+            <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
+          </div>
+          <h3 class="news-card-title">
+            <a href="/program/infaq" class="news-title-link">
+              Sinergi Wakaf Tunai: Membuka Akses Sarana Digital Santri Vokasi
+            </a>
+          </h3>
+          <p class="news-card-desc">
+            Pemanfaatan instrumen wakaf uang untuk penyediaan sarana komputasi dan studio multimedia vokasi pesantren.
+          </p>
+          <a href="/program/infaq" class="news-card-action">
+            <span>Baca Selengkapnya</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 05: Kemitraan -->
+      <article class="news-card">
+        <div class="news-thumb-wrap">
           <img
             src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (3).jpeg"
             alt="Kemitraan Multipihak"
-            class="bottom-thumb-img"
+            class="news-thumb-img"
             loading="lazy"
           />
           <span class="news-category-badge">KEMITRAAN</span>
         </div>
-        <div class="bottom-card-body">
+        <div class="news-card-body">
           <div class="news-meta-row">
             <span class="news-meta-date">20 Juni 2026</span>
             <span class="news-meta-dot">•</span>
             <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
           </div>
-          <h4 class="bottom-card-title">
-            <a href="/kemitraan" class="bottom-title-link">
+          <h3 class="news-card-title">
+            <a href="/kemitraan" class="news-title-link">
               Kemitraan Multipihak: Sinergi CSR Korporasi Memperkuat Pesantren Jonggol
             </a>
-          </h4>
+          </h3>
+          <p class="news-card-desc">
+            Kolaborasi strategis dengan berbagai lembaga dan perusahaan demi memperluas manfaat beasiswa santri dhuafa.
+          </p>
+          <a href="/kemitraan" class="news-card-action">
+            <span>Baca Selengkapnya</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
         </div>
       </article>
 
-      <!-- Bottom Card 2 -->
-      <article class="bottom-news-card">
-        <div class="bottom-thumb-wrap">
+      <!-- Card 06: Pendidikan -->
+      <article class="news-card">
+        <div class="news-thumb-wrap">
           <img
             src="/gambar design/panel surya.jpg"
             alt="Mencetak Santri Berkarakter FAST"
-            class="bottom-thumb-img"
+            class="news-thumb-img"
             loading="lazy"
           />
           <span class="news-category-badge">PENDIDIKAN</span>
         </div>
-        <div class="bottom-card-body">
+        <div class="news-card-body">
           <div class="news-meta-row">
             <span class="news-meta-date">14 Juni 2026</span>
             <span class="news-meta-dot">•</span>
             <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
           </div>
-          <h4 class="bottom-card-title">
-            <a href="/program/infaq" class="bottom-title-link">
+          <h3 class="news-card-title">
+            <a href="/program/infaq" class="news-title-link">
               Mencetak Santri Berkarakter FAST: Fathonah, Amanah, Shiddiq, dan Tabligh
             </a>
-          </h4>
+          </h3>
+          <p class="news-card-desc">
+            Pondasi karakter unggul islami dan kesiapan kemandirian vokasi yang terintegrasi dalam keseharian santri.
+          </p>
+          <a href="/program/infaq" class="news-card-action">
+            <span>Baca Selengkapnya</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
         </div>
       </article>
     </div>
@@ -194,7 +241,7 @@
 <style>
   .pen-news-section {
     position: relative;
-    padding: 110px 0 120px 0;
+    padding: 120px 0 130px 0;
     background-color: #fbfbf9;
     overflow: hidden;
   }
@@ -208,7 +255,7 @@
   /* Header */
   .pen-news-header {
     text-align: center;
-    margin-bottom: 56px;
+    margin-bottom: 64px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -279,80 +326,82 @@
     font-family: 'Inter', system-ui, sans-serif;
   }
 
-  /* Editorial Grid (Left: 1.2fr | Right: 1fr) */
-  .editorial-showcase-grid {
+  /* Symmetrical 3-Column Grid */
+  .news-symmetrical-grid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 36px;
-    align-items: stretch;
-    margin-bottom: 36px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+    width: 100%;
   }
 
-  /* Featured Left Card */
-  .featured-hero-card {
+  /* Card Item */
+  .news-card {
     background: #ffffff;
-    border-radius: 20px;
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
   }
 
-  .featured-hero-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  .news-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
   }
 
-  .featured-thumb-wrap {
+  /* Thumbnail Wrap */
+  .news-thumb-wrap {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
     background-color: #e2e8f0;
   }
 
-  .featured-thumb-img {
+  .news-thumb-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  .featured-hero-card:hover .featured-thumb-img {
-    transform: scale(1.04);
+  .news-card:hover .news-thumb-img {
+    transform: scale(1.06);
   }
 
   .news-category-badge {
     position: absolute;
-    top: 18px;
-    left: 18px;
+    top: 14px;
+    left: 14px;
     background-color: #006B3E;
     color: #ffffff;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.6px;
-    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
     border-radius: 32px;
     text-transform: uppercase;
     font-family: 'Inter', system-ui, sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 107, 62, 0.3);
   }
 
-  .featured-content {
-    padding: 30px;
+  /* Body Content */
+  .news-card-body {
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
     flex: 1;
   }
 
   .news-meta-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 13px;
+    gap: 8px;
+    font-size: 12px;
     color: #8a8a82;
     font-family: 'Inter', system-ui, sans-serif;
   }
@@ -366,37 +415,42 @@
     font-weight: 600;
   }
 
-  .featured-title {
+  .news-card-title {
     margin: 0;
-    font-size: clamp(20px, 1.8vw, 24px);
-    line-height: 1.35;
+    font-size: 18px;
+    line-height: 26px;
     font-weight: 600;
     font-family: 'Inter', system-ui, sans-serif;
+    min-height: 52px;
   }
 
-  .featured-title-link {
-    color: #000000;
+  .news-title-link {
+    color: #111827;
     text-decoration: none;
     transition: color 0.2s ease;
-  }
-
-  .featured-title-link:hover {
-    color: #006B3E;
-  }
-
-  .featured-excerpt {
-    font-size: 15px;
-    line-height: 24px;
-    color: #62625b;
-    margin: 0;
-    font-family: 'Inter', system-ui, sans-serif;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  .news-read-more-btn {
+  .news-title-link:hover {
+    color: #006B3E;
+  }
+
+  .news-card-desc {
+    font-size: 14px;
+    line-height: 22px;
+    color: #62625b;
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .news-card-action {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -410,205 +464,31 @@
     transition: gap 0.2s ease, color 0.2s ease;
   }
 
-  .news-read-more-btn:hover {
+  .news-card-action:hover {
     gap: 12px;
     color: #00522f;
   }
 
-  /* Right Side Editorial List */
-  .editorial-side-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .side-news-item {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 16px;
-    border: 1px solid #f1f5f9;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    display: flex;
-    gap: 18px;
-    align-items: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .side-news-item:hover {
-    transform: translateX(4px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  }
-
-  .side-thumb-link {
-    width: 125px;
-    height: 95px;
-    border-radius: 12px;
-    overflow: hidden;
-    flex-shrink: 0;
-    display: block;
-    background: #e2e8f0;
-  }
-
-  .side-thumb-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-
-  .side-news-item:hover .side-thumb-img {
-    transform: scale(1.08);
-  }
-
-  .side-content {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-  }
-
-  .side-badge {
-    font-size: 11px;
-    font-weight: 700;
-    color: #006B3E;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-family: 'Inter', system-ui, sans-serif;
-  }
-
-  .side-title {
-    margin: 0;
-    font-size: 16px;
-    line-height: 23px;
-    font-weight: 600;
-    font-family: 'Inter', system-ui, sans-serif;
-  }
-
-  .side-title-link {
-    color: #111827;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .side-title-link:hover {
-    color: #006B3E;
-  }
-
-  /* Bottom 2-Card Row */
-  .editorial-bottom-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-  }
-
-  .bottom-news-card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 18px;
-    border: 1px solid #f1f5f9;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .bottom-news-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  }
-
-  .bottom-thumb-wrap {
-    position: relative;
-    width: 140px;
-    height: 105px;
-    border-radius: 12px;
-    overflow: hidden;
-    flex-shrink: 0;
-    background: #e2e8f0;
-  }
-
-  .bottom-thumb-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-
-  .bottom-news-card:hover .bottom-thumb-img {
-    transform: scale(1.08);
-  }
-
-  .bottom-thumb-wrap .news-category-badge {
-    top: 8px;
-    left: 8px;
-    font-size: 10px;
-    padding: 2px 10px;
-  }
-
-  .bottom-card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-  }
-
-  .bottom-card-title {
-    margin: 0;
-    font-size: 16px;
-    line-height: 23px;
-    font-weight: 600;
-    font-family: 'Inter', system-ui, sans-serif;
-  }
-
-  .bottom-title-link {
-    color: #111827;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .bottom-title-link:hover {
-    color: #006B3E;
-  }
-
   /* Responsive Breakpoints */
-  @media (max-width: 1024px) {
-    .editorial-showcase-grid {
-      grid-template-columns: 1fr;
+  @media (max-width: 1080px) {
+    .news-symmetrical-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px;
-    }
-
-    .editorial-bottom-grid {
-      grid-template-columns: 1fr;
-      gap: 20px;
     }
   }
 
   @media (max-width: 640px) {
     .pen-news-section {
-      padding: 70px 0 80px 0;
+      padding: 80px 0;
     }
 
-    .side-news-item,
-    .bottom-news-card {
-      flex-direction: column;
-      align-items: flex-start;
+    .news-symmetrical-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
 
-    .side-thumb-link,
-    .bottom-thumb-wrap {
-      width: 100%;
-      height: 180px;
+    .news-card-title {
+      min-height: auto;
     }
   }
 </style>
