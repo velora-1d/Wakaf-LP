@@ -168,21 +168,25 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.2s ease, border-color 0.2s ease;
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
     box-shadow: 0 10px 25px rgba(9, 105, 218, 0.4);
   }
 
   .pen-play-btn:hover {
     transform: scale(1.08);
-    background-color: #005431;
+    background-color: #0752a8;
     border-color: rgba(255, 255, 255, 0.85);
+  }
+
+  .pen-play-btn:active {
+    transform: scale(0.96);
   }
 
   .play-pulse-ring {
     position: absolute;
     inset: -12px;
     border-radius: 38px;
-    border: 2px solid rgba(0, 107, 62, 0.4);
+    border: 2px solid rgba(9, 105, 218, 0.4);
     animation: playPulse 2.4s infinite cubic-bezier(0.25, 1, 0.5, 1);
     pointer-events: none;
   }

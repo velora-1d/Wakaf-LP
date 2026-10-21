@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "TASTE-ALIGN-01", "name": "Penyelarasan Taste-Skill Frontend Art Direction & Micro-Interactions (Per Halaman & Section)", "status": "closed" },
     { "id": "ANTISLOP-CODE-01", "name": "Pembersihan Komentar Slop (Decorative Separators, Workflow Narration, Card Numbering & Empty Labels) di Template Astro, Style & Data", "status": "closed" },
     { "id": "CMS-FASE-01", "name": "Setup Astro Adapter SSR (@astrojs/node) & Database Client (Drizzle ORM / postgres)", "status": "closed" },
     { "id": "CMS-FASE-02", "name": "Skema PostgreSQL & Seeding Awal Seluruh Halaman & Section", "status": "closed" },

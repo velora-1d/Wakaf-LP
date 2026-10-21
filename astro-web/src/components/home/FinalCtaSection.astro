@@ -92,7 +92,7 @@
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: rgba(0, 107, 62, 0.12);
+    background: rgba(9, 105, 218, 0.12);
   }
 
   .core-dot {
@@ -154,7 +154,7 @@
     font-weight: 600;
     text-decoration: none;
     font-family: 'Golos Text', system-ui, sans-serif;
-    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
     box-shadow: 0 4px 14px rgba(9, 105, 218, 0.25);
   }
 
@@ -162,6 +162,10 @@
     background-color: #0752a8;
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(9, 105, 218, 0.35);
+  }
+
+  .pen-cta-btn:active {
+    transform: scale(0.97);
   }
 
   @media (max-width: 768px) {

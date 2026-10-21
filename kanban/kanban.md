@@ -7,6 +7,7 @@
 ## In Review / Test
 
 ## Done
+- [x] TASTE-ALIGN-01: Penyelarasan Taste-Skill Frontend Art Direction & Micro-Interactions (Per Halaman & Section - Easing cubic-bezier(.2, .8, .2, 1), Taktil Motion, Visual Hierarchy)
 - [x] ANTISLOP-CODE-01: Pembersihan Komentar Slop (Decorative Separators, Workflow Narration, Card Numbering & Empty Labels) di Template Astro, Style & Data
 - [x] CMS-FASE-06: Uji Coba End-to-End Realtime Section Management
 - [x] CMS-FASE-05: Integrasi SSR Dynamic Sections & Toggle Visibility di Frontend Publik

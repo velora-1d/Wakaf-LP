@@ -238,9 +238,9 @@ const isEnabled = (key: string) => {
   }
   .pen-banner-title {
     font-size: clamp(2.4rem, 5vw, 4rem);
-    font-weight: 800;
+    font-weight: 700;
     color: #ffffff;
-    font-family: 'Cal Sans', 'Golos Text', sans-serif;
+    font-family: 'Golos Text', system-ui, sans-serif;
     letter-spacing: -0.02em;
     margin: 0 0 1.25rem 0;
   }
@@ -308,9 +308,9 @@ const isEnabled = (key: string) => {
   }
   .pen-contact-title {
     font-size: clamp(2rem, 3.5vw, 2.75rem);
-    font-weight: 800;
+    font-weight: 700;
     color: #0f172a;
-    font-family: 'Cal Sans', sans-serif;
+    font-family: 'Golos Text', system-ui, sans-serif;
     line-height: 1.25;
     margin: 0 0 1.25rem 0;
   }
@@ -363,31 +363,35 @@ const isEnabled = (key: string) => {
   }
   .pen-link-phone {
     font-size: 1.25rem;
-    font-weight: 800;
+    font-weight: 700;
     color: #0f172a;
     text-decoration: none;
-    font-family: 'Cal Sans', sans-serif;
+    font-family: 'Golos Text', system-ui, sans-serif;
   }
   .pen-link-wa {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    background: #ecfdf5;
-    border: 1px solid #a7f3d0;
-    color: #065f46;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1e40af;
     font-size: 0.95rem;
     font-weight: 700;
     padding: 10px 18px;
     border-radius: 12px;
     text-decoration: none;
     width: fit-content;
-    transition: background 0.2s;
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .pen-link-wa:hover {
-    background: #d1fae5;
+    background: #dbeafe;
+    transform: translateY(-1px);
+  }
+  .pen-link-wa:active {
+    transform: scale(0.98);
   }
   .pen-wa-badge {
-    background: #10b981;
+    background: #0969da;
     color: #ffffff;
     font-size: 0.7rem;
     padding: 2px 8px;
@@ -473,12 +477,15 @@ const isEnabled = (key: string) => {
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 4px 14px rgba(9, 105, 218, 0.25);
-    transition: background-color 0.2s, transform 0.15s;
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
     margin-top: 0.5rem;
   }
   .pen-btn-submit:hover {
-    background-color: #0349b4;
-    transform: translateY(-1px);
+    background-color: #0752a8;
+    transform: translateY(-2px);
+  }
+  .pen-btn-submit:active {
+    transform: scale(0.98);
   }
 
   /* 3. Map Section */

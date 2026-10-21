@@ -166,7 +166,7 @@
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: rgba(0, 107, 62, 0.12);
+    background: rgba(9, 105, 218, 0.12);
   }
 
   .core-dot {
@@ -224,11 +224,11 @@
     flex-direction: column;
     padding: 0;
     background: transparent;
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .pen-pillar-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
   }
 
   /* Staggered Vertical Offsets exact Pen.dev */
@@ -261,7 +261,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .pen-pillar-card:hover .pen-thumb-img {
@@ -321,12 +321,16 @@
     font-weight: 600;
     text-decoration: none;
     font-family: 'Golos Text', system-ui, sans-serif;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .pen-bottom-cta-link:hover {
     color: #0752a8;
     transform: translateX(4px);
+  }
+
+  .pen-bottom-cta-link:active {
+    transform: scale(0.98);
   }
 
   @media (max-width: 1024px) {

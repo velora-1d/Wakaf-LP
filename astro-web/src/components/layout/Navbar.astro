@@ -256,13 +256,12 @@ const currentPath = Astro.url.pathname;
     font-weight: 500;
     display: block;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .isavo-dropdown-menu li a:hover {
-    color: #e53935;
-    background: #fff5f5;
-    padding-left: 26px;
+    color: #0969da;
+    background: #eff6ff;
   }
 
   /* 3. Right Header Actions */
@@ -327,7 +326,7 @@ const currentPath = Astro.url.pathname;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: -0.01em;
-    transition: all 0.25s ease;
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
     box-shadow: 0 4px 16px rgba(9, 105, 218, 0.35);
   }
 
@@ -335,6 +334,10 @@ const currentPath = Astro.url.pathname;
     background: #0752a8;
     transform: translateY(-2px);
     box-shadow: 0 6px 22px rgba(9, 105, 218, 0.5);
+  }
+
+  .isavo-header-pill-btn:active {
+    transform: scale(0.97);
   }
 
   .pill-calc-icon {
@@ -360,7 +363,7 @@ const currentPath = Astro.url.pathname;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
     cursor: pointer;
     flex-shrink: 0;
   }
@@ -371,13 +374,17 @@ const currentPath = Astro.url.pathname;
     border-radius: 50%;
     background-color: #ffffff;
     display: block;
-    transition: transform 0.25s ease;
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .isavo-circle-dots-btn:hover {
-    background-color: #e53935;
-    border-color: #e53935;
+    background-color: #0969da;
+    border-color: #0969da;
     transform: rotate(90deg);
+  }
+
+  .isavo-circle-dots-btn:active {
+    transform: rotate(90deg) scale(0.94);
   }
 
   /* Mobile Hamburger Toggle */

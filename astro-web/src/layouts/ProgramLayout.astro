@@ -51,13 +51,13 @@ const valueBoxIcons = [
     <div class="relative z-10 max-w-[1795px] mx-auto px-4 w-full flex flex-col items-center justify-center text-center">
       <h1
         class="pen-hero-title"
-        style="color: #ffffff !important; font-family: 'Cal Sans', system-ui, sans-serif !important; font-size: clamp(32px, 4.5vw, 64px) !important; font-weight: 400 !important; line-height: 1.2 !important; margin: 0 0 16px 0 !important; text-align: center !important;"
+        style="color: #ffffff !important; font-family: 'Golos Text', system-ui, sans-serif !important; font-size: clamp(32px, 4.5vw, 64px) !important; font-weight: 500 !important; line-height: 1.2 !important; margin: 0 0 16px 0 !important; text-align: center !important;"
       >
         {program.title}
       </h1>
       <div
         class="pen-hero-breadcrumb flex items-center justify-center"
-        style="font-family: 'Cal Sans', system-ui, sans-serif; font-size: 13px; line-height: 16px; font-weight: 500; text-transform: uppercase;"
+        style="font-family: 'Golos Text', system-ui, sans-serif; font-size: 13px; line-height: 16px; font-weight: 500; text-transform: uppercase;"
       >
         <a href="/" style="color: #ffffff; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#38bdf8'" onmouseout="this.style.color='#ffffff'">BERANDA</a>
         <span style="color: #ffffff; padding: 0 8px;">-</span>
@@ -74,13 +74,13 @@ const valueBoxIcons = [
     <div class="pen-deepdive-container">
       <aside class="pen-deepdive-sidebar">
         <div style="background: #ffffff; border-radius: 24px; padding: 32px; border: 1px solid #e3e3e8; box-shadow: 0 4px 16px rgba(0,0,0,0.02);">
-          <h3 style="font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #191919; margin: 0 0 20px 0; font-weight: 600;">Program Lainnya</h3>
+          <h3 style="font-family: 'Golos Text', system-ui, sans-serif; font-size: 22px; color: #191919; margin: 0 0 20px 0; font-weight: 600;">Program Lainnya</h3>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
             {programNavLinks.map(link => (
               <li>
                 <a
                   href={`/program/${link.slug}`}
-                  style={`display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 12px; text-decoration: none; font-family: 'Cal Sans', sans-serif; font-size: 15px; transition: all 0.2s; ${
+                  style={`display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 12px; text-decoration: none; font-family: 'Golos Text', system-ui, sans-serif; font-size: 15px; transition: all 0.2s; ${
                     link.slug === program.slug
                       ? 'background-color: #0969da; color: #ffffff !important;'
                       : 'color: #191919; background-color: #f8fafc; border: 1px solid #e2e8f0;'
@@ -98,13 +98,13 @@ const valueBoxIcons = [
           <div style="position: absolute; inset: 0; background: rgba(6, 24, 41, 0.82); z-index: 0;"></div>
           <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; width: 100%;">
             <img src="/logo-gwav-white.png" alt="GVF Logo" style="height: 44px; width: auto; object-fit: contain; margin-bottom: 16px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));" />
-            <span style="font-family: 'Cal Sans', sans-serif; font-size: 11px; letter-spacing: 1.5px; color: #34d399; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">
+            <span style="font-family: 'Golos Text', system-ui, sans-serif; font-size: 11px; letter-spacing: 1.5px; color: #38bdf8; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">
               LAYANAN KONSULTASI
             </span>
-            <h4 style="font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #ffffff; margin: 0 0 12px 0; font-weight: 600;">
+            <h4 style="font-family: 'Golos Text', system-ui, sans-serif; font-size: 22px; color: #ffffff; margin: 0 0 12px 0; font-weight: 600;">
               Konsultasi Ikrar Wakaf
             </h4>
-            <div style="font-family: 'Cal Sans', sans-serif; font-size: 32px; color: #ffffff; margin: 8px 0; letter-spacing: 1px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+            <div style="font-family: 'Golos Text', system-ui, sans-serif; font-size: 32px; color: #ffffff; margin: 8px 0; letter-spacing: 1px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
               0878-6599-4786
             </div>
             <div style="font-family: 'Golos Text', sans-serif; font-size: 13px; color: rgba(255, 255, 255, 0.8); margin-bottom: 24px;">
@@ -114,7 +114,7 @@ const valueBoxIcons = [
               href="https://wa.me/6287865994786?text=Assalamualaikum%20Layanan%20Donatur%20GVF%2C%20saya%20ingin%20konsultasi%20program%20ZISWAF."
               target="_blank"
               rel="noopener noreferrer"
-              style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 32px; background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 9999px; color: #ffffff; font-family: 'Cal Sans', sans-serif; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"
+              style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 32px; background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 9999px; color: #ffffff; font-family: 'Golos Text', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"
             >
               Layanan Donatur
             </a>
@@ -232,9 +232,9 @@ const valueBoxIcons = [
             <div style="display: flex; justify-content: center; margin: 30px 0 50px 0;">
               <a
                 href="/portofolio"
-                style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background-color: #0969da; color: #ffffff; border-radius: 9999px; text-decoration: none; font-family: 'Cal Sans', sans-serif; font-size: 15px; font-weight: 500; transition: background-color 0.2s;"
-                onmouseover="this.style.backgroundColor='#0752a8'"
-                onmouseout="this.style.backgroundColor='#0969da'"
+                style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background-color: #0969da; color: #ffffff; border-radius: 9999px; text-decoration: none; font-family: 'Golos Text', system-ui, sans-serif; font-size: 15px; font-weight: 600; transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);"
+                onmouseover="this.style.backgroundColor='#0752a8'; this.style.transform='translateY(-2px)'"
+                onmouseout="this.style.backgroundColor='#0969da'; this.style.transform='translateY(0)'"
               >
                 <span>Lihat Lebih Banyak</span>
                 <span>&rarr;</span>
@@ -272,9 +272,9 @@ const valueBoxIcons = [
       <div style="text-align: center; margin-bottom: 50px;">
         <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid #72727240; border-radius: 9999px; padding: 6px 18px; background: #ffffff; margin-bottom: 16px;">
           <span style="width: 6px; height: 6px; border-radius: 50%; background-color: #0969da;"></span>
-          <span style="font-family: 'Cal Sans', sans-serif; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; color: #191919;">FAQ</span>
+          <span style="font-family: 'Golos Text', system-ui, sans-serif; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; color: #191919;">FAQ</span>
         </div>
-        <h2 style="font-family: 'Cal Sans', sans-serif; font-size: clamp(28px, 4vw, 48px); color: #0f172a; margin: 0; font-weight: normal; line-height: 1.2;">
+        <h2 style="font-family: 'Golos Text', system-ui, sans-serif; font-size: clamp(28px, 4vw, 48px); color: #0f172a; margin: 0; font-weight: 500; line-height: 1.2;">
           {program.faqTitle}
         </h2>
       </div>
@@ -282,11 +282,11 @@ const valueBoxIcons = [
       <div style="max-width: 100%; margin: 0 auto; display: flex; flex-direction: column;">
         {program.faqs.map((faq, idx) => (
           <details style="border-top: 1px solid rgba(159, 159, 164, 0.24); padding: 0;" open={idx === 0}>
-            <summary style="list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 22px 0; cursor: pointer; font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #191919; transition: color 0.2s;" onmouseover="this.style.color='#0969da'" onmouseout="this.style.color='#191919'">
+            <summary style="list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 22px 0; cursor: pointer; font-family: 'Golos Text', system-ui, sans-serif; font-size: 22px; color: #191919; transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);" onmouseover="this.style.color='#0969da'" onmouseout="this.style.color='#191919'">
               <span style="padding-right: 20px;">{faq.question}</span>
               <span style="font-size: 20px; font-weight: bold; color: #0969da; flex-shrink: 0; width: 24px; text-align: center;">+</span>
             </summary>
-            <div style="padding: 0 0 32px 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; line-height: 27px; color: #4d4d52; max-width: 1100px;">
+            <div style="padding: 0 0 32px 0; font-family: 'Golos Text', system-ui, sans-serif; font-size: 16px; line-height: 27px; color: #4d4d52; max-width: 1100px;">
               <p style="margin: 0;">{faq.answer}</p>
             </div>
           </details>
@@ -479,20 +479,20 @@ const valueBoxIcons = [
 <style>
   /* =========================================================================
      DESIGN TOKENS — HARD COPY DARI ISAVO (isavo.co.id) + ADAPTASI GVF
-     Font: Cal Sans (heading) + Golos Text (body) — SAMA PERSIS ISAVO
+     Font: Golos Text — SAMA PERSIS ISAVO
      ========================================================================= */
-  @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Golos+Text:wght@400..900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap');
 
   :root {
     /* Font System — ISAVO asli */
-    --tl-ff-heading: 'Cal Sans', serif;
-    --tl-ff-body: 'Golos Text', sans-serif;
+    --tl-ff-heading: 'Golos Text', system-ui, sans-serif;
+    --tl-ff-body: 'Golos Text', system-ui, sans-serif;
 
     /* Color System — adaptasi GVF (merah ISAVO → biru/emerald GVF) */
     --tl-color-heading-primary: #191919;   /* ISAVO: #191919 */
     --tl-color-text-body: #4d4d52;         /* ISAVO: #4d4d52 */
-    --tl-color-theme-primary: #059669;     /* ISAVO: #ed3237 → GVF: emerald */
-    --tl-color-theme-secondary: #0369a1;   /* Biru GVF */
+    --tl-color-theme-primary: #0969da;     /* Royal Blue GVF */
+    --tl-color-theme-secondary: #0752a8;   /* Biru GVF Dark */
     --tl-color-bg-1: #1c1c1d;             /* ISAVO: #1c1c1d */
     --tl-color-border-1: #e3e3e8;         /* ISAVO: #e3e3e8 */
     --tl-color-grey-1: #59585d;           /* ISAVO: #59585d */
@@ -2210,15 +2210,15 @@ const valueBoxIcons = [
     margin-bottom: 36px;
   }
   .pen-deepdive-lead-title {
-    font-family: 'Cal Sans', sans-serif !important;
+    font-family: 'Golos Text', system-ui, sans-serif !important;
     font-size: clamp(28px, 3.5vw, 40px);
     color: #191919 !important;
     line-height: 1.25;
     margin: 0 0 20px 0;
-    font-weight: 400;
+    font-weight: 500;
   }
   .pen-deepdive-para {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Golos Text', system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.75;
     color: #4d4d52;
@@ -2254,14 +2254,14 @@ const valueBoxIcons = [
     height: 28px;
   }
   .pen-value-title {
-    font-family: 'Cal Sans', sans-serif;
+    font-family: 'Golos Text', system-ui, sans-serif;
     font-size: 19px;
     color: #191919;
     margin: 0 0 6px 0;
     font-weight: 600;
   }
   .pen-value-desc {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Golos Text', system-ui, sans-serif;
     font-size: 14px;
     line-height: 1.6;
     color: #4d4d52;
@@ -2289,12 +2289,12 @@ const valueBoxIcons = [
     border-top: 1px solid #e3e3e8;
   }
   .pen-subblock-title {
-    font-family: 'Cal Sans', sans-serif !important;
+    font-family: 'Golos Text', system-ui, sans-serif !important;
     font-size: clamp(24px, 3vw, 34px);
     color: #191919 !important;
     line-height: 1.3;
     margin: 0 0 18px 0;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   .pen-showcase-card {
@@ -2327,7 +2327,7 @@ const valueBoxIcons = [
     backdrop-filter: blur(8px);
     border-radius: 9999px;
     color: #ffffff;
-    font-family: 'Cal Sans', sans-serif;
+    font-family: 'Golos Text', system-ui, sans-serif;
     font-size: 12px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -2336,7 +2336,7 @@ const valueBoxIcons = [
     padding: 18px 4px 0;
   }
   .pen-showcase-name {
-    font-family: 'Cal Sans', sans-serif;
+    font-family: 'Golos Text', system-ui, sans-serif;
     font-size: 22px;
     color: #191919;
     margin: 0 0 4px 0;
@@ -2362,7 +2362,7 @@ const valueBoxIcons = [
     display: flex;
     align-items: center;
     gap: 12px;
-    font-family: 'Cal Sans', sans-serif;
+    font-family: 'Golos Text', system-ui, sans-serif;
     font-size: 15px;
     color: #191919;
   }

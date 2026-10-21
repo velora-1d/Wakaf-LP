@@ -166,7 +166,7 @@ const programs = [
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: rgba(0, 107, 62, 0.12);
+    background: rgba(9, 105, 218, 0.12);
   }
 
   .pilar-core-dot {
@@ -240,12 +240,18 @@ const programs = [
     text-decoration: none;
     color: inherit;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid transparent;
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .isavo-service-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 12px 32px rgba(9, 105, 218, 0.08);
+    border-color: rgba(9, 105, 218, 0.15);
+  }
+
+  .isavo-service-card:active {
+    transform: translateY(0) scale(0.99);
   }
 
   .card-top-row {
