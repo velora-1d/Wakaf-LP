@@ -8,57 +8,57 @@ const dbArticles = await getActiveNewsArticles(6);
 const fallbackArticles = [
   {
     title: 'Fiqih Wakaf Produktif: Menghidupkan Aset Umat Menjadi Sumber Pahala Abadi',
-    slug: 'fiqih-wakaf-produktif-pahala-abadi',
+    slug: 'fiqih-wakaf-produktif-menghidupkan-aset-umat',
     category: 'LITERASI WAKAF',
     summary: 'Transformasi aset abadi menjadi sarana pendidikan berkelanjutan dan kemandirian pangan santri secara amanah.',
     author: 'Tim GVF',
-    imageUrl: '/gambar design/interior masjid.jpg',
-    publishedAt: new Date('2026-07-18')
+    coverImage: '/gambar design/interior masjid.jpg',
+    publishedAt: '18 Juli 2026'
   },
   {
     title: 'Perkembangan Fisik Masjid Khairu Ummah: Mezanin Dua Lantai Siap Digunakan',
-    slug: 'perkembangan-fisik-masjid-khairu-ummah',
+    slug: 'perkembangan-fisik-masjid-khairu-ummah-mezanin-siap-digunakan',
     category: 'PROGRESS MASJID',
     summary: 'Penyelesaian struktur utama dan mezanin shalat santri guna menampung jamaah ibadah dan tahfidz harian.',
     author: 'Tim GVF',
-    imageUrl: '/gambar design/belakang masjid.jpg',
-    publishedAt: new Date('2026-07-12')
+    coverImage: '/gambar design/belakang masjid.jpg',
+    publishedAt: '12 Juli 2026'
   },
   {
     title: 'Santri Vokasi Agroteknologi: Dari Pembibitan Menuju Kemandirian Pangan',
-    slug: 'santri-vokasi-agroteknologi-kemandirian-pangan',
+    slug: 'santri-vokasi-agroteknologi-pembibitan-kemandirian-pangan',
     category: 'TECHNOPARK',
     summary: 'Keterampilan riil pembibitan hortikultura dan green house modern yang diajarkan langsung pada santri SMK Skill Village.',
     author: 'Tim GVF',
-    imageUrl: '/gambar design/learning studio & workshop.jpg',
-    publishedAt: new Date('2026-07-05')
+    coverImage: '/gambar design/learning studio & workshop.jpg',
+    publishedAt: '5 Juli 2026'
   },
   {
     title: 'Sinergi Wakaf Tunai: Membuka Akses Sarana Digital Santri Vokasi',
-    slug: 'sinergi-wakaf-tunai-sarana-digital',
+    slug: 'sinergi-wakaf-tunai-membuka-akses-sarana-digital-santri-vokasi',
     category: 'WAKAF DIGITAL',
     summary: 'Pemanfaatan instrumen wakaf uang untuk penyediaan sarana komputasi dan studio multimedia vokasi pesantren.',
     author: 'Tim GVF',
-    imageUrl: '/gambar design/interior mesjid 2.jpg',
-    publishedAt: new Date('2026-06-28')
+    coverImage: '/gambar design/interior mesjid 2.jpg',
+    publishedAt: '28 Juni 2026'
   },
   {
     title: 'Kemitraan Multipihak: Sinergi CSR Korporasi Memperkuat Pesantren Jonggol',
-    slug: 'kemitraan-multipihak-csr-pesantren-jonggol',
+    slug: 'kemitraan-multipihak-sinergi-csr-korporasi-memperkuat-pesantren-jonggol',
     category: 'KEMITRAAN',
     summary: 'Kolaborasi strategis dengan berbagai lembaga dan perusahaan demi memperluas manfaat beasiswa santri dhuafa.',
     author: 'Tim GVF',
-    imageUrl: '/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (3).jpeg',
-    publishedAt: new Date('2026-06-20')
+    coverImage: '/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (3).jpeg',
+    publishedAt: '20 Juni 2026'
   },
   {
     title: 'Mencetak Santri Berkarakter FAST: Fathonah, Amanah, Shiddiq, dan Tabligh',
-    slug: 'mencetak-santri-berkarakter-fast',
+    slug: 'mencetak-santri-berkarakter-fast-kurikulum-vokasi-adab-sains',
     category: 'PENDIDIKAN',
     summary: 'Pondasi karakter unggul islami dan kesiapan kemandirian vokasi yang terintegrasi dalam keseharian santri.',
     author: 'Tim GVF',
-    imageUrl: '/gambar design/panel surya.jpg',
-    publishedAt: new Date('2026-06-14')
+    coverImage: '/gambar design/panel surya.jpg',
+    publishedAt: '14 Juni 2026'
   }
 ];
 
@@ -66,12 +66,12 @@ const articles = dbArticles && dbArticles.length > 0 ? dbArticles : fallbackArti
 
 const formatDate = (dateInput: Date | string | null) => {
   if (!dateInput) return 'Terkini';
-  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  if (typeof dateInput === 'string') return dateInput;
   return new Intl.DateTimeFormat('id-ID', {
     day: 'numeric',
     month: 'long',
     year: 'numeric'
-  }).format(date);
+  }).format(dateInput);
 };
 ---
 
@@ -99,7 +99,7 @@ const formatDate = (dateInput: Date | string | null) => {
         <article class="news-card">
           <div class="news-thumb-wrap">
             <img
-              src={article.imageUrl || '/gambar design/interior masjid.jpg'}
+              src={article.coverImage || '/gambar design/interior masjid.jpg'}
               alt={article.title}
               class="news-thumb-img"
               loading="lazy"

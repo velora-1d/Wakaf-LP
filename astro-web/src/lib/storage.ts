@@ -1,5 +1,7 @@
 // src/lib/storage.ts
 import * as Minio from 'minio';
+import { Buffer } from 'node:buffer';
+import process from 'node:process';
 
 const rawEndpoint = process.env.MINIO_ENDPOINT || 'https://s3.skillage-mart.com';
 const endPoint = rawEndpoint

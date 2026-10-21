@@ -2,6 +2,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
+import { Buffer } from 'node:buffer';
 import { verifySessionToken } from '../../../../lib/auth';
 import { uploadFileToMinio } from '../../../../lib/storage';
 

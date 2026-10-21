@@ -53,7 +53,7 @@ const paragraphs = article?.content ? article.content.split(/\n\s*\n/).filter(p 
 <BaseLayout
   title={article ? `${article.title} • Kabar Global Village Fund` : 'Artikel Tidak Ditemukan • Global Village Fund'}
   description={article ? (article.summary || article.title) : 'Kabar dan warta terkini program filantropi Global Village Fund.'}
-  ogImage={article?.imageUrl || '/logo-gvf.png'}
+  ogImage={article?.coverImage || '/logo-gvf.png'}
 >
   {!canView ? (
     <div class="kabar-not-found">
@@ -153,7 +153,7 @@ const paragraphs = article?.content ? article.content.split(/\n\s*\n/).filter(p 
         <div class="kabar-container">
           <div class="featured-media-card">
             <img
-              src={article.imageUrl || '/gambar design/interior masjid.jpg'}
+              src={article.coverImage || '/gambar design/interior masjid.jpg'}
               alt={article.title}
               class="featured-img"
               loading="eager"
@@ -256,7 +256,7 @@ const paragraphs = article?.content ? article.content.split(/\n\s*\n/).filter(p 
                 <article class="related-card">
                   <a href={`/kabar/${rel.slug}`} class="related-thumb-wrap">
                     <img
-                      src={rel.imageUrl || '/gambar design/belakang masjid.jpg'}
+                      src={rel.coverImage || '/gambar design/belakang masjid.jpg'}
                       alt={rel.title}
                       class="related-thumb-img"
                       loading="lazy"
