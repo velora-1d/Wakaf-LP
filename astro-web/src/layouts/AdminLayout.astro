@@ -152,6 +152,38 @@ const navPages = [
             )}
           </a>
 
+          <!-- Menu Donatur & Saluran Leads -->
+          <a
+            href="/admin/donatur"
+            class={`flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs font-semibold transition-all ${
+              activeSlug === 'donatur'
+                ? 'bg-[#0969da] text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class={`shrink-0 ${activeSlug === 'donatur' ? 'text-white' : 'text-slate-400'}`}
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span class="truncate flex-1">Donatur &amp; Leads</span>
+            {activeSlug === 'donatur' && (
+              <span class="w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
+            )}
+          </a>
+
           <!-- Separator Menu Halaman -->
           <div class="pt-3 pb-1 px-3">
             <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">MENU HALAMAN</span>

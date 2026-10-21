@@ -1,0 +1,1612 @@
+---
+// src/pages/admin/donatur/index.astro
+export const prerender = false;
+
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { getAllDonationsWithDonors, getDonationDashboardMetrics } from '../../../lib/db';
+
+const donations = await getAllDonationsWithDonors();
+const metrics = await getDonationDashboardMetrics();
+
+// Formatter Rupiah
+const formatRupiah = (val: number) => {
+  return new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    maximumFractionDigits: 0,
+  }).format(val);
+};
+
+// Formatter Tanggal
+const formatDate = (date: Date | string | null) => {
+  if (!date) return '-';
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(new Date(date));
+};
+
+const leadsMap: Record<string, { label: string; bg: string; text: string; border: string }> = {
+  meta_ads: { label: 'Meta Ads', bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
+  tiktok_ads: { label: 'TikTok Ads', bg: 'bg-slate-900', text: 'text-white', border: 'border-slate-800' },
+  google_seo: { label: 'Google SEO', bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200' },
+  safari_dakwah: { label: 'Safari Dakwah', bg: 'bg-amber-50', text: 'text-amber-800', border: 'border-amber-200' },
+  brosur_event: { label: 'Brosur & Event', bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200' },
+  relasi_langsung: { label: 'Relasi Langsung', bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
+  walk_in: { label: 'Walk-in', bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-200' },
+};
+
+const programMap: Record<string, string> = {
+  'wakaf-produktif': 'Wakaf Produktif',
+  'masjid-khairu-ummah': 'Masjid Khairu Ummah',
+  'vokasi-agroteknologi': 'Vokasi Agroteknologi',
+  'beasiswa-santri': 'Beasiswa Santri',
+  'infaq-operasional': 'Infaq Operasional',
+  'zakat': 'Zakat Maal / Fitrah',
+};
+---
+
+<AdminLayout title="Kelola Donatur & Leads" activeSlug="donatur">
+  <div class="w-full space-y-5">
+    <!-- Top Header (Shadcn Style) -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-slate-200">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-[#0969da] border border-blue-200">
+            Pusat Filantropi &amp; Leads
+          </span>
+          <span class="text-slate-300 text-xs">&bull;</span>
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            MinIO S3 Terkoneksi
+          </span>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 m-0">Data Donatur &amp; Saluran Leads GVF</h1>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1 mb-0">
+          Kelola riwayat donasi, verifikasi pembayaran amil, serta analisis akurat perolehan saluran digital yayasan.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-2.5 shrink-0">
+        <button
+          type="button"
+          id="btnOpenCreateDonation"
+          class="inline-flex items-center justify-center gap-2 h-9 px-4 rounded-md text-xs font-semibold bg-[#0969da] text-white hover:bg-[#0752a8] shadow-xs transition-colors cursor-pointer"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Catat Donasi Baru</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Metrik Statistik Dashboard (Shadcn Card Style) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+      <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
+        <div class="flex items-center justify-between pb-2">
+          <span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Total Penghimpunan</span>
+          <div class="w-7 h-7 rounded-md bg-blue-50 text-[#0969da] flex items-center justify-center">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="text-xl font-bold tracking-tight text-slate-900 font-mono">{formatRupiah(metrics.totalPenghimpunan)}</div>
+        <p class="text-[11px] text-slate-400 mt-1 mb-0">Dana terverifikasi lunas di bank</p>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
+        <div class="flex items-center justify-between pb-2">
+          <span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Donasi Lunas (Verified)</span>
+          <div class="w-7 h-7 rounded-md bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+        </div>
+        <div class="text-xl font-bold tracking-tight text-slate-900">{metrics.lunasCount} <span class="text-xs font-medium text-slate-500">Transaksi</span></div>
+        <p class="text-[11px] text-emerald-600 font-medium mt-1 mb-0">Telah diverifikasi oleh tim amil GVF</p>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
+        <div class="flex items-center justify-between pb-2">
+          <span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Menunggu Verifikasi</span>
+          <div class="w-7 h-7 rounded-md bg-amber-50 text-amber-600 flex items-center justify-center">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+        </div>
+        <div class="text-xl font-bold tracking-tight text-amber-600">{metrics.pendingCount} <span class="text-xs font-medium text-slate-500">Transaksi</span></div>
+        <p class="text-[11px] text-slate-400 mt-1 mb-0">Perlu cek mutasi / bukti transfer</p>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
+        <div class="flex items-center justify-between pb-2">
+          <span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Total Donatur Unik</span>
+          <div class="w-7 h-7 rounded-md bg-slate-100 text-slate-700 flex items-center justify-center">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="text-xl font-bold tracking-tight text-slate-900">{metrics.totalDonors} <span class="text-xs font-medium text-slate-500">Muhsinin</span></div>
+        <p class="text-[11px] text-slate-400 mt-1 mb-0">Tercatat dalam basis data kontak</p>
+      </div>
+    </div>
+
+    <!-- Toolbar: Search & Filters (Shadcn Style) -->
+    <div class="rounded-lg border border-slate-200 bg-white p-3 shadow-2xs space-y-3">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <!-- Search -->
+        <div class="relative flex-1 max-w-md">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            type="text"
+            id="tableSearchInput"
+            placeholder="Cari nama, nomor WA, kota, atau kode transaksi..."
+            class="h-9 w-full rounded-md border border-slate-200 bg-slate-50/50 pl-9 pr-3 text-xs text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-1 focus:ring-slate-950 focus:border-slate-400 transition-colors"
+          />
+        </div>
+
+        <!-- Filters -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <!-- Status Filter -->
+          <select id="filterStatus" class="h-9 rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-2xs focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+            <option value="all">Semua Status</option>
+            <option value="lunas">Lunas (Verified)</option>
+            <option value="menunggu_verifikasi">Menunggu Verifikasi</option>
+            <option value="dibatalkan">Dibatalkan</option>
+          </select>
+
+          <!-- Leads Filter -->
+          <select id="filterLeads" class="h-9 rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-2xs focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+            <option value="all">Semua Saluran Leads</option>
+            <option value="meta_ads">Meta Ads (FB/IG)</option>
+            <option value="tiktok_ads">TikTok Ads</option>
+            <option value="google_seo">Google SEO</option>
+            <option value="safari_dakwah">Safari Dakwah</option>
+            <option value="brosur_event">Brosur &amp; Event</option>
+            <option value="relasi_langsung">Relasi Langsung</option>
+            <option value="walk_in">Walk-in</option>
+          </select>
+
+          <!-- Program Filter -->
+          <select id="filterProgram" class="h-9 rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-2xs focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+            <option value="all">Semua Program</option>
+            <option value="wakaf-produktif">Wakaf Produktif</option>
+            <option value="masjid-khairu-ummah">Masjid Khairu Ummah</option>
+            <option value="vokasi-agroteknologi">Vokasi Agroteknologi</option>
+            <option value="beasiswa-santri">Beasiswa Santri</option>
+            <option value="infaq-operasional">Infaq Operasional</option>
+            <option value="zakat">Zakat Maal</option>
+          </select>
+
+          <button
+            type="button"
+            id="btnResetFilters"
+            class="h-9 px-3 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors cursor-pointer"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Bulk Action Bar (Hidden by default, shown when items checked) -->
+      <div id="bulkActionBar" class="hidden items-center justify-between p-2 rounded-md bg-blue-50/70 border border-blue-200 text-xs">
+        <div class="flex items-center gap-2 text-slate-800 font-medium">
+          <span id="selectedCountText" class="font-bold text-[#0969da]">0</span>
+          <span>transaksi dipilih</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="btnBulkVerifyLunas"
+            class="h-7 px-2.5 rounded bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition-colors shadow-2xs cursor-pointer flex items-center gap-1.5"
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Verifikasi Lunas</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Container (Shadcn Data Table Style) -->
+    <div class="rounded-lg border border-slate-200 bg-white overflow-hidden shadow-2xs">
+      <div class="overflow-x-auto w-full">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-slate-200 bg-slate-50/75 text-slate-500 font-medium tracking-wide">
+              <!-- Checkbox Kolom -->
+              <th class="w-10 px-3 py-3 text-center">
+                <input
+                  type="checkbox"
+                  id="selectAllCheckbox"
+                  class="h-3.5 w-3.5 rounded border-slate-300 text-[#0969da] focus:ring-1 focus:ring-[#0969da] cursor-pointer"
+                  title="Pilih Semua"
+                />
+              </th>
+              <!-- No Kolom -->
+              <th class="w-12 px-2 py-3 text-center font-semibold text-slate-600">NO</th>
+              <th class="px-3 py-3 font-semibold text-slate-600 whitespace-nowrap">KODE &amp; TANGGAL</th>
+              <th class="px-3 py-3 font-semibold text-slate-600">PROFIL DONATUR</th>
+              <th class="px-3 py-3 font-semibold text-slate-600">PROGRAM &amp; NIAT</th>
+              <th class="px-3 py-3 font-semibold text-slate-600 whitespace-nowrap">NOMINAL (RP)</th>
+              <th class="px-3 py-3 font-semibold text-slate-600 whitespace-nowrap">SUMBER LEADS</th>
+              <th class="px-3 py-3 font-semibold text-slate-600 whitespace-nowrap">METODE &amp; BUKTI</th>
+              <th class="px-3 py-3 font-semibold text-slate-600 whitespace-nowrap">STATUS</th>
+              <th class="px-3 py-3 font-semibold text-slate-600 text-right whitespace-nowrap">AKSI</th>
+            </tr>
+          </thead>
+          <tbody id="donationsTableBody" class="divide-y divide-slate-100">
+            {donations.length === 0 ? (
+              <tr>
+                <td colspan="10" class="py-12 text-center text-slate-400">
+                  <div class="flex flex-col items-center justify-center gap-1.5">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-300">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <span class="font-semibold text-slate-700 text-sm">Belum ada catatan transaksi donasi</span>
+                    <span class="text-xs text-slate-400">Klik "Catat Donasi Baru" untuk menambahkan data donatur.</span>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              donations.map((d, index) => {
+                const leadInfo = leadsMap[d.sumberLeads] || { label: d.sumberLeads, bg: 'bg-slate-100', text: 'text-slate-700', border: 'border-slate-200' };
+                const programName = programMap[d.programTujuan] || d.programTujuan;
+
+                const waText = encodeURIComponent(
+                  `Assalamu'alaikum Warahmatullahi Wabarakatuh, Bpk/Ibu ${d.donor.namaLengkap}.\n\n` +
+                  `Terima kasih atas amanah donasi dan wakaf yang telah Anda salurkan melalui Global Village Fund (GVF).\n\n` +
+                  `*Rincian Transaksi Donasi:*\n` +
+                  `- No. Transaksi: *${d.kodeTransaksi}*\n` +
+                  `- Program: *${programName}*\n` +
+                  `- Atas Nama / Niat: *${d.atasNamaNiat || d.donor.namaLengkap}*\n` +
+                  `- Nominal: *${formatRupiah(d.nominalTotal)}*\n` +
+                  `- Status: *${d.statusPembayaran.toUpperCase()}*\n\n` +
+                  `Semoga Allah SWT melipatgandakan pahala kebaikan, menjadikannya amal jariyah yang mengalir abadi, serta memberkahi keluarga Bpk/Ibu sekalian. Aamiin ya Rabbal 'Alamin.\n\n` +
+                  `_Pusat Layanan Donatur Global Village Fund (GVF)_`
+                );
+                const waLink = `https://wa.me/${d.donor.noWhatsapp.replace(/^0/, '62').replace(/[^0-9]/g, '')}?text=${waText}`;
+
+                return (
+                  <tr
+                    class="donation-row hover:bg-slate-50/70 transition-colors"
+                    data-search={`${d.kodeTransaksi} ${d.donor.namaLengkap} ${d.donor.noWhatsapp} ${d.donor.kotaDomisili || ''}`.toLowerCase()}
+                    data-status={d.statusPembayaran}
+                    data-lead={d.sumberLeads}
+                    data-program={d.programTujuan}
+                    data-id={d.id}
+                  >
+                    <!-- Checkbox -->
+                    <td class="w-10 px-3 py-3 text-center">
+                      <input
+                        type="checkbox"
+                        class="row-checkbox h-3.5 w-3.5 rounded border-slate-300 text-[#0969da] focus:ring-1 focus:ring-[#0969da] cursor-pointer"
+                        data-id={d.id}
+                      />
+                    </td>
+
+                    <!-- No -->
+                    <td class="w-12 px-2 py-3 text-center font-mono font-medium text-slate-400">
+                      {index + 1}
+                    </td>
+
+                    <!-- Kode & Tanggal -->
+                    <td class="px-3 py-3 whitespace-nowrap">
+                      <span class="font-mono font-semibold text-slate-900 block">{d.kodeTransaksi}</span>
+                      <span class="text-[11px] text-slate-400 block">{formatDate(d.createdAt)}</span>
+                    </td>
+
+                    <!-- Profil Donatur -->
+                    <td class="px-3 py-3">
+                      <div class="flex items-center gap-1.5">
+                        <span class="font-semibold text-slate-900">{d.donor.namaLengkap}</span>
+                        <span class={`inline-flex px-1.5 py-0.5 rounded text-[10px] font-semibold border ${
+                          d.donor.tipeDonatur === 'korporasi'
+                            ? 'bg-blue-50 text-[#0969da] border-blue-200'
+                            : 'bg-slate-100 text-slate-600 border-slate-200'
+                        }`}>
+                          {d.donor.tipeDonatur}
+                        </span>
+                      </div>
+                      <div class="text-[11px] text-slate-500 mt-0.5">
+                        <span>{d.donor.noWhatsapp}</span>
+                        {d.donor.kotaDomisili && <span> &bull; {d.donor.kotaDomisili}</span>}
+                      </div>
+                    </td>
+
+                    <!-- Program & Niat -->
+                    <td class="px-3 py-3">
+                      <span class="font-medium text-slate-900 block">{programName}</span>
+                      {d.atasNamaNiat && (
+                        <span class="text-[11px] text-[#0969da] block">Niat: {d.atasNamaNiat}</span>
+                      )}
+                      {d.doaDonatur && (
+                        <span class="text-[11px] text-slate-500 italic block truncate max-w-[200px]" title={d.doaDonatur}>
+                          "{d.doaDonatur}"
+                        </span>
+                      )}
+                    </td>
+
+                    <!-- Nominal -->
+                    <td class="px-3 py-3 whitespace-nowrap">
+                      <span class="font-mono font-bold text-slate-900 text-xs block">{formatRupiah(d.nominalTotal)}</span>
+                      {d.kodeUnik > 0 && (
+                        <span class="font-mono text-[10px] text-slate-400 block">Kode: +{d.kodeUnik}</span>
+                      )}
+                    </td>
+
+                    <!-- Sumber Leads -->
+                    <td class="px-3 py-3 whitespace-nowrap">
+                      <span class={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium border ${leadInfo.bg} ${leadInfo.text} ${leadInfo.border}`}>
+                        {leadInfo.label}
+                      </span>
+                      {d.campaignUtm && (
+                        <span class="font-mono text-[10px] text-slate-400 block mt-0.5">{d.campaignUtm}</span>
+                      )}
+                    </td>
+
+                    <!-- Metode & Bukti S3 -->
+                    <td class="px-3 py-3 whitespace-nowrap">
+                      <span class="inline-flex px-1.5 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                        {d.metodePembayaran}
+                      </span>
+                      {d.buktiTransferUrl ? (
+                        <button
+                          type="button"
+                          class="btn-view-proof flex items-center gap-1 text-[11px] font-semibold text-[#0969da] hover:underline mt-1 cursor-pointer"
+                          data-proof-url={d.buktiTransferUrl}
+                          data-kode={d.kodeTransaksi}
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                            <circle cx="9" cy="9" r="2"></circle>
+                            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                          </svg>
+                          <span>Lihat Bukti S3</span>
+                        </button>
+                      ) : (
+                        <span class="text-[10px] text-slate-300 block mt-0.5">Tanpa bukti</span>
+                      )}
+                    </td>
+
+                    <!-- Status -->
+                    <td class="px-3 py-3 whitespace-nowrap">
+                      {d.statusPembayaran === 'lunas' && (
+                        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                          Lunas
+                        </span>
+                      )}
+                      {d.statusPembayaran === 'menunggu_verifikasi' && (
+                        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                          <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                          Pending
+                        </span>
+                      )}
+                      {d.statusPembayaran === 'dibatalkan' && (
+                        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+                          <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                          Batal
+                        </span>
+                      )}
+                    </td>
+
+                    <!-- Aksi -->
+                    <td class="px-3 py-3 text-right whitespace-nowrap">
+                      <div class="inline-flex items-center gap-1.5">
+                        <!-- Kirim WhatsApp -->
+                        <a
+                          href={waLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="btn-action-wa h-7 px-2 rounded bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors inline-flex items-center gap-1 font-semibold text-[11px] shadow-2xs cursor-pointer select-none"
+                          data-action="wa"
+                          data-wa-url={waLink}
+                          title="Kirim Kwitansi via WhatsApp"
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                          </svg>
+                          <span class="pointer-events-none">WA</span>
+                        </a>
+
+                        <!-- Verifikasi Toggle -->
+                        {d.statusPembayaran === 'menunggu_verifikasi' ? (
+                          <button
+                            type="button"
+                            class="h-7 w-7 rounded bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors inline-flex items-center justify-center cursor-pointer shadow-2xs"
+                            data-action="verify-lunas"
+                            data-id={d.id}
+                            title="Klik untuk Verifikasi LUNAS"
+                          >
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none">
+                              <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            class="h-7 w-7 rounded bg-amber-50 border border-amber-200 text-amber-700 hover:bg-amber-600 hover:text-white transition-colors inline-flex items-center justify-center cursor-pointer shadow-2xs"
+                            data-action="verify-pending"
+                            data-id={d.id}
+                            title="Klik untuk Ubah ke Status PENDING"
+                          >
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none">
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <line x1="12" y1="8" x2="12" y2="12"></line>
+                            </svg>
+                          </button>
+                        )}
+
+                        <!-- Edit Transaksi & Profil Donatur -->
+                        <button
+                          type="button"
+                          class="h-7 w-7 rounded bg-blue-50 border border-blue-200 text-[#0969da] hover:bg-[#0969da] hover:text-white transition-colors inline-flex items-center justify-center cursor-pointer shadow-2xs"
+                          data-action="edit"
+                          data-id={d.id}
+                          data-json={JSON.stringify({
+                            id: d.id,
+                            namaLengkap: d.donor.namaLengkap,
+                            namaTampilan: d.donor.namaTampilan || '',
+                            tipeDonatur: d.donor.tipeDonatur,
+                            noWhatsapp: d.donor.noWhatsapp,
+                            email: d.donor.email || '',
+                            kotaDomisili: d.donor.kotaDomisili || '',
+                            programTujuan: d.programTujuan,
+                            akadPeruntukan: d.akadPeruntukan,
+                            nominal: d.nominal,
+                            kodeUnik: d.kodeUnik,
+                            atasNamaNiat: d.atasNamaNiat || '',
+                            doaDonatur: d.doaDonatur || '',
+                            sumberLeads: d.sumberLeads,
+                            campaignUtm: d.campaignUtm || '',
+                            metodePembayaran: d.metodePembayaran,
+                            statusPembayaran: d.statusPembayaran,
+                            buktiTransferUrl: d.buktiTransferUrl || '',
+                            catatanTransaksi: d.catatanTransaksi || '',
+                          })}
+                          title="Edit Transaksi & Donatur"
+                        >
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none">
+                            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                            <path d="m15 5 4 4"/>
+                          </svg>
+                        </button>
+
+                        <!-- Hapus -->
+                        <button
+                          type="button"
+                          class="h-7 w-7 rounded bg-red-50 border border-red-200 text-red-600 hover:bg-red-600 hover:text-white transition-colors inline-flex items-center justify-center cursor-pointer shadow-2xs"
+                          data-action="delete"
+                          data-id={d.id}
+                          data-kode={d.kodeTransaksi}
+                          title="Hapus Transaksi"
+                        >
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })
+            )}
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 py-2.5 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between text-xs text-slate-500">
+        <span>Menampilkan <strong id="displayedRowsCount" class="font-semibold text-slate-700">{donations.length}</strong> data donasi</span>
+        <span class="font-mono text-[11px] text-slate-400">PostgreSQL Live Sync</span>
+      </div>
+    </div>
+
+    <!-- Modal Pratinjau Bukti Transfer S3 -->
+    <div id="proofModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs hidden items-center justify-center p-4">
+      <div class="bg-white rounded-lg border border-slate-200 max-w-lg w-full overflow-hidden shadow-xl flex flex-col">
+        <div class="h-12 px-4 border-b border-slate-200 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold text-slate-800">Bukti Transfer:</span>
+            <span id="proofCodeBadge" class="font-mono text-xs font-bold text-[#0969da] bg-blue-50 px-2 py-0.5 rounded border border-blue-200"></span>
+          </div>
+          <button type="button" id="btnCloseProof" class="text-slate-400 hover:text-slate-700 p-1 rounded hover:bg-slate-100 cursor-pointer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="p-3 bg-slate-900 flex items-center justify-center min-h-[300px] max-h-[60vh] overflow-y-auto">
+          <img id="proofImageElement" src="" alt="Bukti Transfer" class="max-h-[55vh] max-w-full object-contain rounded" />
+        </div>
+        <div class="h-12 px-4 border-t border-slate-200 flex items-center justify-end bg-slate-50">
+          <a id="proofExternalLink" href="" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-[#0969da] hover:underline flex items-center gap-1.5">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>Buka di Tab Baru</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Konfirmasi Hapus Transaksi (Shadcn Style) -->
+    <div id="deleteConfirmModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs hidden items-center justify-center p-4">
+      <div class="bg-white rounded-lg border border-slate-200 max-w-sm w-full p-5 shadow-xl flex flex-col space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 6h18"></path>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              <line x1="10" y1="11" x2="10" y2="17"></line>
+              <line x1="14" y1="11" x2="14" y2="17"></line>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900 m-0">Hapus Catatan Donasi?</h3>
+            <p class="text-xs text-slate-500 mt-0.5 mb-0">Tindakan ini tidak dapat dibatalkan.</p>
+          </div>
+        </div>
+        <p class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-200 m-0 leading-relaxed">
+          Transaksi dengan kode <strong id="deleteTargetKodeDisplay" class="font-mono text-slate-900"></strong> akan dihapus permanen dari basis data.
+        </p>
+        <div class="flex items-center justify-end gap-2 pt-1">
+          <button
+            type="button"
+            id="btnCancelDeleteModal"
+            class="h-8 px-3 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
+          >
+            Batal
+          </button>
+          <button
+            type="button"
+            id="btnExecuteDeleteModal"
+            class="h-8 px-3 rounded-md bg-red-600 text-white text-xs font-semibold hover:bg-red-700 transition-colors cursor-pointer shadow-2xs"
+          >
+            Ya, Hapus Transaksi
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Konfirmasi Ubah Status Verifikasi (Shadcn Style) -->
+    <div id="verifyConfirmModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs hidden items-center justify-center p-4">
+      <div class="bg-white rounded-lg border border-slate-200 max-w-sm w-full p-5 shadow-xl flex flex-col space-y-4">
+        <div class="flex items-center gap-3">
+          <div id="verifyModalIconContainer" class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h3 id="verifyModalTitle" class="text-sm font-bold text-slate-900 m-0">Ubah Status Pembayaran?</h3>
+            <p id="verifyModalSubtitle" class="text-xs text-slate-500 mt-0.5 mb-0">Sinkronisasi status verifikasi amil.</p>
+          </div>
+        </div>
+        <p id="verifyModalDesc" class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-200 m-0 leading-relaxed">
+          Apakah Anda yakin ingin memverifikasi transaksi donasi ini?
+        </p>
+        <div class="flex items-center justify-end gap-2 pt-1">
+          <button
+            type="button"
+            id="btnCancelVerifyModal"
+            class="h-8 px-3 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
+          >
+            Batal
+          </button>
+          <button
+            type="button"
+            id="btnExecuteVerifyModal"
+            class="h-8 px-3 rounded-md bg-[#0969da] text-white text-xs font-semibold hover:bg-[#0752a8] transition-colors cursor-pointer shadow-2xs"
+          >
+            Ya, Konfirmasi
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE-OVER DRAWER KANAN (70% VIEWPORT WIDTH) -->
+    <div id="drawerBackdrop" class="fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-xs flex justify-end opacity-0 pointer-events-none transition-opacity duration-300">
+      <div id="drawerBox" class="w-full sm:w-[70vw] sm:max-w-[70vw] h-full bg-white flex flex-col shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 ease-out overflow-hidden">
+        <!-- Drawer Header -->
+        <div class="h-16 px-6 border-b border-slate-200 flex items-center justify-between bg-white shrink-0">
+          <div>
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="inline-flex px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-[#0969da] border border-blue-200 uppercase">
+                Formulir Amil
+              </span>
+              <span class="text-xs text-slate-400 font-mono">Slide-Over 70%</span>
+            </div>
+            <h2 id="drawerTitleText" class="text-base font-bold text-slate-900 m-0">Catat Donasi &amp; Profil Donatur Baru</h2>
+          </div>
+          <button type="button" id="btnCloseDrawer" class="w-8 h-8 rounded-md flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer" aria-label="Tutup Drawer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Drawer Body (Scrollable) -->
+        <div class="flex-1 overflow-y-auto p-6 bg-slate-50/50 space-y-5">
+          <form id="donationEntryForm" class="space-y-5">
+            <input type="hidden" id="inputDonationId" value="" />
+            <!-- Section 1: Profil Donatur -->
+            <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-2xs space-y-4">
+              <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100">
+                <span class="w-6 h-6 rounded-full bg-[#0969da] text-white text-xs font-bold flex items-center justify-center">1</span>
+                <div>
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Profil Donatur (Wakif / Muhsinin)</h3>
+                  <p class="text-[11px] text-slate-400 m-0">Tersinkronisasi otomatis dengan nomor WhatsApp donatur.</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputNamaLengkap">
+                    Nama Lengkap <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="inputNamaLengkap"
+                    required
+                    placeholder="Contoh: H. Bambang Sulistyo"
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputNamaTampilan">
+                    Nama Tampilan / Publikasi
+                  </label>
+                  <input
+                    type="text"
+                    id="inputNamaTampilan"
+                    placeholder="Contoh: Hamba Allah / Keluarga H. Bambang"
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputNoWhatsapp">
+                    Nomor WhatsApp <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="inputNoWhatsapp"
+                    required
+                    placeholder="Contoh: 081234567890"
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  />
+                  <span class="text-[10px] text-slate-400 mt-1 block">Untuk kwitansi otomatis via WhatsApp</span>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputTipeDonatur">
+                    Tipe Donatur
+                  </label>
+                  <select id="inputTipeDonatur" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                    <option value="individu">Individu / Perorangan</option>
+                    <option value="korporasi">Perusahaan / CSR</option>
+                    <option value="komunitas">Komunitas / Majelis</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputEmail">
+                    Email (Opsional)
+                  </label>
+                  <input
+                    type="email"
+                    id="inputEmail"
+                    placeholder="donatur@email.com"
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputKotaDomisili">
+                    Kota Domisili (Opsional)
+                  </label>
+                  <input
+                    type="text"
+                    id="inputKotaDomisili"
+                    placeholder="Contoh: Jakarta Selatan"
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Program & Akad Syariah -->
+            <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-2xs space-y-4">
+              <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100">
+                <span class="w-6 h-6 rounded-full bg-[#0969da] text-white text-xs font-bold flex items-center justify-center">2</span>
+                <div>
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Program Donasi &amp; Akad Syariah</h3>
+                  <p class="text-[11px] text-slate-400 m-0">Alokasi program dan kejelasan niat wakaf.</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputProgramTujuan">
+                    Program Pilihan <span class="text-red-500">*</span>
+                  </label>
+                  <select id="inputProgramTujuan" required class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                    <option value="wakaf-produktif">Program Wakaf Produktif</option>
+                    <option value="masjid-khairu-ummah">Masjid Khairu Ummah</option>
+                    <option value="vokasi-agroteknologi">Vokasi Agroteknologi Santri</option>
+                    <option value="beasiswa-santri">Beasiswa Santri Dhuafa</option>
+                    <option value="infaq-operasional">Infaq Operasional Dakwah</option>
+                    <option value="zakat">Zakat Maal &amp; Fitrah</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputAkadPeruntukan">
+                    Akad Peruntukan
+                  </label>
+                  <select id="inputAkadPeruntukan" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                    <option value="Wakaf Muabbad (Abadi)">Wakaf Muabbad (Abadi Pokok Utuh)</option>
+                    <option value="Wakaf Muaqqat (Berjangka)">Wakaf Muaqqat (Berjangka Tertentu)</option>
+                    <option value="Infaq Terikat Program">Infaq Terikat Program</option>
+                    <option value="Zakat Maal 8 Asnaf">Zakat Maal (8 Golongan Asnaf)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputNominal">
+                    Nominal Pokok Donasi (Rp) <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    id="inputNominal"
+                    required
+                    min="1000"
+                    step="1000"
+                    placeholder="Contoh: 1000000"
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs font-mono font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputKodeUnik">
+                    Kode Unik (Rp)
+                  </label>
+                  <input
+                    type="number"
+                    id="inputKodeUnik"
+                    min="0"
+                    max="999"
+                    value="0"
+                    placeholder="0"
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs font-mono text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  />
+                  <span class="text-[10px] text-slate-400 mt-1 block">3 digit acak untuk verifikasi bank</span>
+                </div>
+
+                <div class="md:col-span-2">
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputAtasNamaNiat">
+                    Atas Nama Niat (Khusus Hadiah Pahala / Alm.)
+                  </label>
+                  <input
+                    type="text"
+                    id="inputAtasNamaNiat"
+                    placeholder="Contoh: Alm. H. Abdullah bin Hasan"
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  />
+                </div>
+
+                <div class="md:col-span-2">
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputDoaDonatur">
+                    Doa &amp; Harapan Donatur
+                  </label>
+                  <textarea
+                    id="inputDoaDonatur"
+                    rows="2"
+                    placeholder="Tuliskan permohonan doa atau niat donatur..."
+                    class="w-full rounded-md border border-slate-200 bg-white p-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Saluran Perolehan (Leads) -->
+            <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-2xs space-y-4">
+              <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100">
+                <span class="w-6 h-6 rounded-full bg-[#0969da] text-white text-xs font-bold flex items-center justify-center">3</span>
+                <div>
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Saluran Perolehan (Leads Tracking)</h3>
+                  <p class="text-[11px] text-slate-400 m-0">Lacak saluran marketing &amp; sumber akuisisi donatur.</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputSumberLeads">
+                    Sumber Kanal Leads <span class="text-red-500">*</span>
+                  </label>
+                  <select id="inputSumberLeads" required class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                    <option value="meta_ads">Meta Ads (Facebook / Instagram Ads)</option>
+                    <option value="tiktok_ads">TikTok Ads &amp; Video</option>
+                    <option value="google_seo">Google Search / Organik</option>
+                    <option value="safari_dakwah">Safari Dakwah &amp; Majelis</option>
+                    <option value="brosur_event">Brosur Cetak / Event Pameran</option>
+                    <option value="relasi_langsung">Relasi Langsung Pengurus / Founder</option>
+                    <option value="walk_in">Walk-in / Kunjungan Kawasan</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputCampaignUtm">
+                    Kode Kampanye / UTM Tag (Opsional)
+                  </label>
+                  <input
+                    type="text"
+                    id="inputCampaignUtm"
+                    placeholder="Contoh: fb-wakaf-alpukat-okt26"
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: Pembayaran & Bukti MinIO S3 -->
+            <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-2xs space-y-4">
+              <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100">
+                <span class="w-6 h-6 rounded-full bg-[#0969da] text-white text-xs font-bold flex items-center justify-center">4</span>
+                <div>
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Pembayaran &amp; Bukti Transfer (MinIO S3)</h3>
+                  <p class="text-[11px] text-slate-400 m-0">Unggah bukti mutasi bank terintegrasi ke cloud storage yayasan.</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputMetodePembayaran">
+                    Metode Pembayaran
+                  </label>
+                  <select id="inputMetodePembayaran" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                    <option value="BSI Transfer">Bank Syariah Indonesia (BSI)</option>
+                    <option value="Muamalat">Bank Muamalat</option>
+                    <option value="BCA">Bank BCA</option>
+                    <option value="Bank Mandiri">Bank Mandiri</option>
+                    <option value="QRIS Skillage">QRIS Skillage Mart / GVF</option>
+                    <option value="Tunai Amil">Tunai Langsung ke Amil</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputStatusPembayaran">
+                    Status Pembayaran Awal
+                  </label>
+                  <select id="inputStatusPembayaran" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                    <option value="lunas">Lunas (Langsung Diverifikasi)</option>
+                    <option value="menunggu_verifikasi">Menunggu Verifikasi Mutasi</option>
+                    <option value="dibatalkan">Dibatalkan</option>
+                  </select>
+                </div>
+
+                <!-- Dropzone Bukti S3 -->
+                <div class="md:col-span-2">
+                  <label class="block text-xs font-medium text-slate-700 mb-1">Unggah Bukti Transfer / Slip Mutasi (MinIO S3)</label>
+                  <div id="dropzoneContainer" class="border-2 border-dashed border-slate-200 hover:border-[#0969da] rounded-lg p-5 text-center bg-slate-50/50 hover:bg-blue-50/20 transition-colors cursor-pointer">
+                    <input type="file" id="proofFileInput" accept="image/jpeg,image/png,image/webp,application/pdf" class="hidden" />
+                    
+                    <div id="dropzoneEmptyView" class="flex flex-col items-center justify-center gap-1.5 py-2">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                      <p class="text-xs text-slate-600 m-0">
+                        <span class="font-semibold text-[#0969da]">Klik untuk memilih</span> atau tarik berkas ke sini
+                      </p>
+                      <p class="text-[10px] text-slate-400 m-0">JPG, PNG, WEBP, atau PDF (Maksimal 15 MB)</p>
+                    </div>
+
+                    <div id="dropzoneUploadingView" class="hidden flex-col items-center justify-center gap-2 py-3">
+                      <div class="w-6 h-6 border-2 border-blue-200 border-t-[#0969da] rounded-full animate-spin"></div>
+                      <span class="text-xs font-medium text-slate-700">Mengunggah berkas ke MinIO S3...</span>
+                    </div>
+
+                    <div id="dropzonePreviewView" class="hidden items-center gap-3 bg-white border border-slate-200 rounded-md p-2.5 text-left">
+                      <img id="uploadedProofPreview" src="" alt="Pratinjau" class="w-14 h-14 object-cover rounded border border-slate-100" />
+                      <div class="flex-1 min-w-0">
+                        <span id="uploadedFileName" class="text-xs font-semibold text-slate-900 block truncate">slip.jpg</span>
+                        <span class="text-[10px] font-medium text-emerald-600 flex items-center gap-1 mt-0.5">
+                          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                          Tersimpan di S3 bucket skillage-website
+                        </span>
+                        <button type="button" id="btnRemoveProof" class="text-[11px] text-red-600 hover:underline mt-1 font-medium cursor-pointer">
+                          Hapus Berkas
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" id="inputBuktiTransferUrl" value="" />
+                </div>
+
+                <div class="md:col-span-2">
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputCatatanTransaksi">
+                    Catatan Internal Amil (Opsional)
+                  </label>
+                  <input
+                    type="text"
+                    id="inputCatatanTransaksi"
+                    placeholder="Contoh: Pengecekan via mutasi rekening koran BSI"
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="h-16 px-6 border-t border-slate-200 flex items-center justify-end gap-2.5 bg-white shrink-0">
+          <button
+            type="button"
+            id="btnCancelDrawer"
+            class="h-9 px-4 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
+          >
+            Batal
+          </button>
+          <button
+            type="button"
+            id="btnSubmitDonation"
+            class="h-9 px-4 rounded-md bg-[#0969da] text-white text-xs font-semibold hover:bg-[#0752a8] shadow-xs flex items-center gap-2 transition-colors cursor-pointer"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span id="btnSubmitText">Simpan Data Donasi</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</AdminLayout>
+
+<script>
+  // DOM Elements
+  const btnOpenCreate = document.getElementById('btnOpenCreateDonation');
+  const drawerBackdrop = document.getElementById('drawerBackdrop');
+  const drawerBox = document.getElementById('drawerBox');
+  const btnCloseDrawer = document.getElementById('btnCloseDrawer');
+  const btnCancelDrawer = document.getElementById('btnCancelDrawer');
+  const btnSubmitDonation = document.getElementById('btnSubmitDonation');
+
+  // Search & Filter Elements
+  const searchInput = document.getElementById('tableSearchInput') as HTMLInputElement | null;
+  const filterStatus = document.getElementById('filterStatus') as HTMLSelectElement | null;
+  const filterLeads = document.getElementById('filterLeads') as HTMLSelectElement | null;
+  const filterProgram = document.getElementById('filterProgram') as HTMLSelectElement | null;
+  const btnResetFilters = document.getElementById('btnResetFilters');
+  const tableRows = document.querySelectorAll('.donation-row') as NodeListOf<HTMLTableRowElement>;
+  const displayedRowsCount = document.getElementById('displayedRowsCount');
+
+  // Checkbox & Bulk Actions
+  const selectAllCheckbox = document.getElementById('selectAllCheckbox') as HTMLInputElement | null;
+  const rowCheckboxes = document.querySelectorAll('.row-checkbox') as NodeListOf<HTMLInputElement>;
+  const bulkActionBar = document.getElementById('bulkActionBar');
+  const selectedCountText = document.getElementById('selectedCountText');
+  const btnBulkVerifyLunas = document.getElementById('btnBulkVerifyLunas');
+
+  // Dropzone Elements
+  const dropzoneContainer = document.getElementById('dropzoneContainer');
+  const proofFileInput = document.getElementById('proofFileInput') as HTMLInputElement | null;
+  const dropzoneEmptyView = document.getElementById('dropzoneEmptyView');
+  const dropzoneUploadingView = document.getElementById('dropzoneUploadingView');
+  const dropzonePreviewView = document.getElementById('dropzonePreviewView');
+  const uploadedProofPreview = document.getElementById('uploadedProofPreview') as HTMLImageElement | null;
+  const uploadedFileName = document.getElementById('uploadedFileName');
+  const btnRemoveProof = document.getElementById('btnRemoveProof');
+  const inputBuktiUrl = document.getElementById('inputBuktiTransferUrl') as HTMLInputElement | null;
+
+  // Proof Modal Elements
+  const proofModal = document.getElementById('proofModal');
+  const btnCloseProof = document.getElementById('btnCloseProof');
+  const proofImageElement = document.getElementById('proofImageElement') as HTMLImageElement | null;
+  const proofCodeBadge = document.getElementById('proofCodeBadge');
+  const proofExternalLink = document.getElementById('proofExternalLink') as HTMLAnchorElement | null;
+
+  // 1. OPEN / CLOSE DRAWER KANAN (70% LAYAR)
+  function openDrawer() {
+    if (!drawerBackdrop || !drawerBox) return;
+    drawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+    drawerBox.classList.remove('translate-x-full');
+    drawerBox.classList.add('translate-x-0');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    if (!drawerBackdrop || !drawerBox) return;
+    drawerBackdrop.classList.add('opacity-0', 'pointer-events-none');
+    drawerBox.classList.remove('translate-x-0');
+    drawerBox.classList.add('translate-x-full');
+    document.body.style.overflow = '';
+  }
+
+  btnOpenCreate?.addEventListener('click', () => {
+    resetDonationForm();
+    openDrawer();
+  });
+  btnCloseDrawer?.addEventListener('click', closeDrawer);
+  btnCancelDrawer?.addEventListener('click', closeDrawer);
+
+  drawerBackdrop?.addEventListener('click', (e) => {
+    if (e.target === drawerBackdrop) closeDrawer();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeDrawer();
+      closeProofModal();
+    }
+  });
+
+  // 2. CHECKBOX SELECT ALL & ROW SELECTION
+  function updateBulkActionBar() {
+    const checked = Array.from(rowCheckboxes).filter(cb => cb.checked && cb.closest('tr')?.style.display !== 'none');
+    if (selectedCountText) selectedCountText.textContent = String(checked.length);
+
+    if (checked.length > 0) {
+      bulkActionBar?.classList.remove('hidden');
+      bulkActionBar?.classList.add('flex');
+    } else {
+      bulkActionBar?.classList.add('hidden');
+      bulkActionBar?.classList.remove('flex');
+    }
+  }
+
+  selectAllCheckbox?.addEventListener('change', () => {
+    const isChecked = selectAllCheckbox.checked;
+    rowCheckboxes.forEach((cb) => {
+      if (cb.closest('tr')?.style.display !== 'none') {
+        cb.checked = isChecked;
+      }
+    });
+    updateBulkActionBar();
+  });
+
+  rowCheckboxes.forEach((cb) => {
+    cb.addEventListener('change', () => {
+      const visible = Array.from(rowCheckboxes).filter(c => c.closest('tr')?.style.display !== 'none');
+      const allChecked = visible.length > 0 && visible.every(c => c.checked);
+      if (selectAllCheckbox) selectAllCheckbox.checked = allChecked;
+      updateBulkActionBar();
+    });
+  });
+
+  // Bulk Verify Action
+  btnBulkVerifyLunas?.addEventListener('click', async () => {
+    const checkedIds = Array.from(rowCheckboxes)
+      .filter(cb => cb.checked && cb.closest('tr')?.style.display !== 'none')
+      .map(cb => cb.getAttribute('data-id'))
+      .filter(Boolean);
+
+    if (checkedIds.length === 0) return;
+    if (!confirm(`Verifikasi ${checkedIds.length} transaksi yang dipilih menjadi LUNAS?`)) return;
+
+    btnBulkVerifyLunas.setAttribute('disabled', 'true');
+    btnBulkVerifyLunas.textContent = 'Memproses...';
+
+    try {
+      for (const id of checkedIds) {
+        await fetch('/api/admin/donatur/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ donationId: Number(id), status: 'lunas' }),
+        });
+      }
+      window.location.reload();
+    } catch (err: any) {
+      alert(`Gagal verifikasi masal: ${err.message}`);
+      btnBulkVerifyLunas.removeAttribute('disabled');
+      btnBulkVerifyLunas.textContent = 'Verifikasi Lunas';
+    }
+  });
+
+  // 3. SEARCH & FILTER TABLE REALTIME
+  function applyFilters() {
+    const q = (searchInput?.value || '').toLowerCase().trim();
+    const st = filterStatus?.value || 'all';
+    const ld = filterLeads?.value || 'all';
+    const pg = filterProgram?.value || 'all';
+
+    let visibleCount = 0;
+
+    tableRows.forEach((row) => {
+      const searchMatch = !q || (row.getAttribute('data-search') || '').includes(q);
+      const statusMatch = st === 'all' || row.getAttribute('data-status') === st;
+      const leadMatch = ld === 'all' || row.getAttribute('data-lead') === ld;
+      const progMatch = pg === 'all' || row.getAttribute('data-program') === pg;
+
+      if (searchMatch && statusMatch && leadMatch && progMatch) {
+        row.style.display = '';
+        visibleCount++;
+      } else {
+        row.style.display = 'none';
+        const cb = row.querySelector('.row-checkbox') as HTMLInputElement | null;
+        if (cb) cb.checked = false;
+      }
+    });
+
+    if (displayedRowsCount) displayedRowsCount.textContent = String(visibleCount);
+    updateBulkActionBar();
+  }
+
+  searchInput?.addEventListener('input', applyFilters);
+  filterStatus?.addEventListener('change', applyFilters);
+  filterLeads?.addEventListener('change', applyFilters);
+  filterProgram?.addEventListener('change', applyFilters);
+
+  btnResetFilters?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    if (filterStatus) filterStatus.value = 'all';
+    if (filterLeads) filterLeads.value = 'all';
+    if (filterProgram) filterProgram.value = 'all';
+    applyFilters();
+  });
+
+  // 4. DROPZONE UPLOAD MINIO S3
+  dropzoneContainer?.addEventListener('click', (e) => {
+    if (e.target === btnRemoveProof) return;
+    proofFileInput?.click();
+  });
+
+  dropzoneContainer?.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropzoneContainer.classList.add('border-[#0969da]', 'bg-blue-50/30');
+  });
+  dropzoneContainer?.addEventListener('dragleave', () => {
+    dropzoneContainer.classList.remove('border-[#0969da]', 'bg-blue-50/30');
+  });
+  dropzoneContainer?.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzoneContainer.classList.remove('border-[#0969da]', 'bg-blue-50/30');
+    if (e.dataTransfer?.files && e.dataTransfer.files[0]) {
+      handleProofUpload(e.dataTransfer.files[0]);
+    }
+  });
+
+  proofFileInput?.addEventListener('change', () => {
+    if (proofFileInput.files && proofFileInput.files[0]) {
+      handleProofUpload(proofFileInput.files[0]);
+    }
+  });
+
+  btnRemoveProof?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (inputBuktiUrl) inputBuktiUrl.value = '';
+    if (proofFileInput) proofFileInput.value = '';
+    dropzonePreviewView?.classList.add('hidden');
+    dropzonePreviewView?.classList.remove('flex');
+    dropzoneEmptyView?.classList.remove('hidden');
+    dropzoneEmptyView?.classList.add('flex');
+  });
+
+  async function handleProofUpload(file: File) {
+    dropzoneEmptyView?.classList.add('hidden');
+    dropzoneEmptyView?.classList.remove('flex');
+    dropzonePreviewView?.classList.add('hidden');
+    dropzonePreviewView?.classList.remove('flex');
+    dropzoneUploadingView?.classList.remove('hidden');
+    dropzoneUploadingView?.classList.add('flex');
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const res = await fetch('/api/admin/donatur/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) {
+        throw new Error(result.message || 'Gagal mengunggah bukti ke S3');
+      }
+
+      if (inputBuktiUrl) inputBuktiUrl.value = result.url;
+      if (uploadedProofPreview) uploadedProofPreview.src = result.url;
+      if (uploadedFileName) uploadedFileName.textContent = file.name;
+
+      dropzoneUploadingView?.classList.add('hidden');
+      dropzoneUploadingView?.classList.remove('flex');
+      dropzonePreviewView?.classList.remove('hidden');
+      dropzonePreviewView?.classList.add('flex');
+    } catch (err: any) {
+      alert(`Gagal upload: ${err.message}`);
+      dropzoneUploadingView?.classList.add('hidden');
+      dropzoneUploadingView?.classList.remove('flex');
+      dropzoneEmptyView?.classList.remove('hidden');
+      dropzoneEmptyView?.classList.add('flex');
+    }
+  }
+
+  // 5. SUBMIT FORM CATAT DONASI
+  btnSubmitDonation?.addEventListener('click', async () => {
+    const namaLengkap = (document.getElementById('inputNamaLengkap') as HTMLInputElement)?.value.trim();
+    const namaTampilan = (document.getElementById('inputNamaTampilan') as HTMLInputElement)?.value.trim();
+    const tipeDonatur = (document.getElementById('inputTipeDonatur') as HTMLSelectElement)?.value;
+    const noWhatsapp = (document.getElementById('inputNoWhatsapp') as HTMLInputElement)?.value.trim();
+    const email = (document.getElementById('inputEmail') as HTMLInputElement)?.value.trim();
+    const kotaDomisili = (document.getElementById('inputKotaDomisili') as HTMLInputElement)?.value.trim();
+
+    const programTujuan = (document.getElementById('inputProgramTujuan') as HTMLSelectElement)?.value;
+    const akadPeruntukan = (document.getElementById('inputAkadPeruntukan') as HTMLSelectElement)?.value;
+    const nominal = Number((document.getElementById('inputNominal') as HTMLInputElement)?.value);
+    const kodeUnik = Number((document.getElementById('inputKodeUnik') as HTMLInputElement)?.value || 0);
+    const atasNamaNiat = (document.getElementById('inputAtasNamaNiat') as HTMLInputElement)?.value.trim();
+    const doaDonatur = (document.getElementById('inputDoaDonatur') as HTMLTextAreaElement)?.value.trim();
+
+    const sumberLeads = (document.getElementById('inputSumberLeads') as HTMLSelectElement)?.value;
+    const campaignUtm = (document.getElementById('inputCampaignUtm') as HTMLInputElement)?.value.trim();
+
+    const metodePembayaran = (document.getElementById('inputMetodePembayaran') as HTMLSelectElement)?.value;
+    const statusPembayaran = (document.getElementById('inputStatusPembayaran') as HTMLSelectElement)?.value;
+    const buktiTransferUrl = inputBuktiUrl?.value || undefined;
+    const catatanTransaksi = (document.getElementById('inputCatatanTransaksi') as HTMLInputElement)?.value.trim();
+
+    if (!namaLengkap || !noWhatsapp || !programTujuan || !nominal) {
+      alert('Mohon lengkapi bidang wajib: Nama Lengkap, Nomor WhatsApp, Program, dan Nominal.');
+      return;
+    }
+
+    const donationId = (document.getElementById('inputDonationId') as HTMLInputElement)?.value;
+    const isEditMode = Boolean(donationId);
+
+    btnSubmitDonation.setAttribute('disabled', 'true');
+    btnSubmitDonation.textContent = isEditMode ? 'Memperbarui...' : 'Menyimpan...';
+
+    try {
+      const endpoint = isEditMode ? '/api/admin/donatur/update' : '/api/admin/donatur/create';
+      const payload: any = {
+        namaLengkap,
+        namaTampilan,
+        tipeDonatur,
+        noWhatsapp,
+        email,
+        kotaDomisili,
+        programTujuan,
+        akadPeruntukan,
+        nominal,
+        kodeUnik,
+        atasNamaNiat,
+        doaDonatur,
+        sumberLeads,
+        campaignUtm,
+        metodePembayaran,
+        statusPembayaran,
+        buktiTransferUrl,
+        catatanTransaksi,
+      };
+
+      if (isEditMode) {
+        payload.donationId = Number(donationId);
+      }
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) {
+        throw new Error(result.error || 'Gagal menyimpan transaksi');
+      }
+
+      alert(isEditMode ? 'Alhamdulillah! Data transaksi & donatur berhasil diperbarui.' : 'Alhamdulillah! Donasi dan profil donatur berhasil dicatat.');
+      window.location.reload();
+    } catch (err: any) {
+      alert(`Terjadi kesalahan: ${err.message}`);
+      btnSubmitDonation.removeAttribute('disabled');
+      btnSubmitDonation.innerHTML = `
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span id="btnSubmitText">${isEditMode ? 'Perbarui Data Donasi' : 'Simpan Data Donasi'}</span>
+      `;
+    }
+  });
+
+  // Custom Modal References
+  const deleteConfirmModal = document.getElementById('deleteConfirmModal');
+  const deleteTargetKodeDisplay = document.getElementById('deleteTargetKodeDisplay');
+  const btnCancelDeleteModal = document.getElementById('btnCancelDeleteModal');
+  const btnExecuteDeleteModal = document.getElementById('btnExecuteDeleteModal');
+
+  const verifyConfirmModal = document.getElementById('verifyConfirmModal');
+  const verifyModalTitle = document.getElementById('verifyModalTitle');
+  const verifyModalDesc = document.getElementById('verifyModalDesc');
+  const btnCancelVerifyModal = document.getElementById('btnCancelVerifyModal');
+  const btnExecuteVerifyModal = document.getElementById('btnExecuteVerifyModal');
+
+  let pendingDeleteId: number | null = null;
+  let pendingDeleteActionEl: HTMLElement | null = null;
+
+  let pendingVerifyId: number | null = null;
+  let pendingVerifyStatus: string = '';
+  let pendingVerifyActionEl: HTMLElement | null = null;
+
+  // 6. ACTIONS: WA, EDIT, VERIFIKASI STATUS & HAPUS
+  document.addEventListener('click', async (e) => {
+    const target = e.target as HTMLElement;
+    const actionEl = target.closest('[data-action]') as HTMLElement | null;
+    if (!actionEl) return;
+
+    const action = actionEl.getAttribute('data-action');
+    const donationId = actionEl.getAttribute('data-id');
+
+    if (action === 'wa') {
+      const waUrl = actionEl.getAttribute('data-wa-url');
+      if (waUrl) {
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      }
+    } else if (action === 'edit') {
+      const rawJson = actionEl.getAttribute('data-json');
+      if (!rawJson) return;
+      try {
+        const data = JSON.parse(rawJson);
+        populateDrawerForEdit(data);
+        openDrawer();
+      } catch (err: any) {
+        alert('Gagal memuat data donasi: ' + err.message);
+      }
+    } else if (action === 'verify-lunas' || action === 'verify-pending') {
+      const isLunas = action === 'verify-lunas';
+      pendingVerifyId = Number(donationId);
+      pendingVerifyStatus = isLunas ? 'lunas' : 'menunggu_verifikasi';
+      pendingVerifyActionEl = actionEl;
+
+      if (verifyModalTitle) {
+        verifyModalTitle.textContent = isLunas ? 'Verifikasi Donasi Lunas?' : 'Kembalikan ke Status Pending?';
+      }
+      if (verifyModalDesc) {
+        verifyModalDesc.textContent = isLunas
+          ? 'Tandai transaksi ini sebagai LUNAS dan akumulasikan total dana pada data donatur.'
+          : 'Kembalikan status transaksi donasi ini menjadi MENUNGGU VERIFIKASI.';
+      }
+      verifyConfirmModal?.classList.remove('hidden');
+      verifyConfirmModal?.classList.add('flex');
+    } else if (action === 'delete') {
+      const kode = actionEl.getAttribute('data-kode') || '';
+      pendingDeleteId = Number(donationId);
+      pendingDeleteActionEl = actionEl;
+
+      if (deleteTargetKodeDisplay) {
+        deleteTargetKodeDisplay.textContent = kode;
+      }
+      deleteConfirmModal?.classList.remove('hidden');
+      deleteConfirmModal?.classList.add('flex');
+    }
+  });
+
+  // Modal Delete Controls
+  btnCancelDeleteModal?.addEventListener('click', () => {
+    deleteConfirmModal?.classList.add('hidden');
+    deleteConfirmModal?.classList.remove('flex');
+    pendingDeleteId = null;
+    pendingDeleteActionEl = null;
+  });
+
+  btnExecuteDeleteModal?.addEventListener('click', async () => {
+    if (!pendingDeleteId) return;
+    const targetId = pendingDeleteId;
+    const targetEl = pendingDeleteActionEl;
+
+    btnExecuteDeleteModal.setAttribute('disabled', 'true');
+    btnExecuteDeleteModal.textContent = 'Menghapus...';
+
+    deleteConfirmModal?.classList.add('hidden');
+    deleteConfirmModal?.classList.remove('flex');
+
+    if (targetEl) {
+      targetEl.setAttribute('disabled', 'true');
+      targetEl.classList.add('opacity-50', 'pointer-events-none');
+    }
+
+    await deleteDonation(targetId, targetEl);
+    btnExecuteDeleteModal.removeAttribute('disabled');
+    btnExecuteDeleteModal.textContent = 'Ya, Hapus Transaksi';
+  });
+
+  // Modal Verify Controls
+  btnCancelVerifyModal?.addEventListener('click', () => {
+    verifyConfirmModal?.classList.add('hidden');
+    verifyConfirmModal?.classList.remove('flex');
+    pendingVerifyId = null;
+    pendingVerifyActionEl = null;
+  });
+
+  btnExecuteVerifyModal?.addEventListener('click', async () => {
+    if (!pendingVerifyId || !pendingVerifyStatus) return;
+    const targetId = pendingVerifyId;
+    const targetStatus = pendingVerifyStatus;
+    const targetEl = pendingVerifyActionEl;
+
+    btnExecuteVerifyModal.setAttribute('disabled', 'true');
+    btnExecuteVerifyModal.textContent = 'Memproses...';
+
+    verifyConfirmModal?.classList.add('hidden');
+    verifyConfirmModal?.classList.remove('flex');
+
+    if (targetEl) {
+      targetEl.setAttribute('disabled', 'true');
+      targetEl.classList.add('opacity-50', 'pointer-events-none');
+    }
+
+    await updateVerificationStatus(targetId, targetStatus, targetEl);
+    btnExecuteVerifyModal.removeAttribute('disabled');
+    btnExecuteVerifyModal.textContent = 'Ya, Konfirmasi';
+  });
+
+  function resetDonationForm() {
+    (document.getElementById('inputDonationId') as HTMLInputElement).value = '';
+    (document.getElementById('inputNamaLengkap') as HTMLInputElement).value = '';
+    (document.getElementById('inputNamaTampilan') as HTMLInputElement).value = '';
+    (document.getElementById('inputTipeDonatur') as HTMLSelectElement).value = 'individu';
+    (document.getElementById('inputNoWhatsapp') as HTMLInputElement).value = '';
+    (document.getElementById('inputEmail') as HTMLInputElement).value = '';
+    (document.getElementById('inputKotaDomisili') as HTMLInputElement).value = '';
+    (document.getElementById('inputProgramTujuan') as HTMLSelectElement).value = 'wakaf-produktif';
+    (document.getElementById('inputAkadPeruntukan') as HTMLSelectElement).value = 'Wakaf Muabbad (Abadi)';
+    (document.getElementById('inputNominal') as HTMLInputElement).value = '';
+    (document.getElementById('inputKodeUnik') as HTMLInputElement).value = '0';
+    (document.getElementById('inputAtasNamaNiat') as HTMLInputElement).value = '';
+    (document.getElementById('inputDoaDonatur') as HTMLTextAreaElement).value = '';
+    (document.getElementById('inputSumberLeads') as HTMLSelectElement).value = 'meta_ads';
+    (document.getElementById('inputCampaignUtm') as HTMLInputElement).value = '';
+    (document.getElementById('inputMetodePembayaran') as HTMLSelectElement).value = 'BSI Transfer';
+    (document.getElementById('inputStatusPembayaran') as HTMLSelectElement).value = 'lunas';
+    (document.getElementById('inputCatatanTransaksi') as HTMLInputElement).value = '';
+
+    if (inputBuktiUrl) inputBuktiUrl.value = '';
+    dropzonePreviewView?.classList.add('hidden');
+    dropzonePreviewView?.classList.remove('flex');
+    dropzoneEmptyView?.classList.remove('hidden');
+    dropzoneEmptyView?.classList.add('flex');
+
+    const drawerTitleText = document.getElementById('drawerTitleText');
+    if (drawerTitleText) drawerTitleText.textContent = 'Catat Donasi & Profil Donatur Baru';
+    const btnSubmitText = document.getElementById('btnSubmitText');
+    if (btnSubmitText) btnSubmitText.textContent = 'Simpan Data Donasi';
+  }
+
+  function populateDrawerForEdit(data: any) {
+    (document.getElementById('inputDonationId') as HTMLInputElement).value = String(data.id || '');
+    (document.getElementById('inputNamaLengkap') as HTMLInputElement).value = data.namaLengkap || '';
+    (document.getElementById('inputNamaTampilan') as HTMLInputElement).value = data.namaTampilan || '';
+    (document.getElementById('inputTipeDonatur') as HTMLSelectElement).value = data.tipeDonatur || 'individu';
+    (document.getElementById('inputNoWhatsapp') as HTMLInputElement).value = data.noWhatsapp || '';
+    (document.getElementById('inputEmail') as HTMLInputElement).value = data.email || '';
+    (document.getElementById('inputKotaDomisili') as HTMLInputElement).value = data.kotaDomisili || '';
+    (document.getElementById('inputProgramTujuan') as HTMLSelectElement).value = data.programTujuan || 'wakaf-produktif';
+    (document.getElementById('inputAkadPeruntukan') as HTMLSelectElement).value = data.akadPeruntukan || 'Wakaf Muabbad (Abadi)';
+    (document.getElementById('inputNominal') as HTMLInputElement).value = String(data.nominal || '');
+    (document.getElementById('inputKodeUnik') as HTMLInputElement).value = String(data.kodeUnik || 0);
+    (document.getElementById('inputAtasNamaNiat') as HTMLInputElement).value = data.atasNamaNiat || '';
+    (document.getElementById('inputDoaDonatur') as HTMLTextAreaElement).value = data.doaDonatur || '';
+    (document.getElementById('inputSumberLeads') as HTMLSelectElement).value = data.sumberLeads || 'relasi_langsung';
+    (document.getElementById('inputCampaignUtm') as HTMLInputElement).value = data.campaignUtm || '';
+    (document.getElementById('inputMetodePembayaran') as HTMLSelectElement).value = data.metodePembayaran || 'BSI Transfer';
+    (document.getElementById('inputStatusPembayaran') as HTMLSelectElement).value = data.statusPembayaran || 'menunggu_verifikasi';
+    (document.getElementById('inputCatatanTransaksi') as HTMLInputElement).value = data.catatanTransaksi || '';
+
+    if (data.buktiTransferUrl) {
+      if (inputBuktiUrl) inputBuktiUrl.value = data.buktiTransferUrl;
+      if (uploadedProofPreview) uploadedProofPreview.src = data.buktiTransferUrl;
+      if (uploadedFileName) uploadedFileName.textContent = 'Bukti Tersimpan di S3';
+      dropzoneEmptyView?.classList.add('hidden');
+      dropzoneEmptyView?.classList.remove('flex');
+      dropzonePreviewView?.classList.remove('hidden');
+      dropzonePreviewView?.classList.add('flex');
+    } else {
+      if (inputBuktiUrl) inputBuktiUrl.value = '';
+      dropzonePreviewView?.classList.add('hidden');
+      dropzonePreviewView?.classList.remove('flex');
+      dropzoneEmptyView?.classList.remove('hidden');
+      dropzoneEmptyView?.classList.add('flex');
+    }
+
+    const drawerTitleText = document.getElementById('drawerTitleText');
+    if (drawerTitleText) drawerTitleText.textContent = `Edit Data Donasi #${data.id} (${data.namaLengkap})`;
+    const btnSubmitText = document.getElementById('btnSubmitText');
+    if (btnSubmitText) btnSubmitText.textContent = 'Perbarui Data Donasi';
+  }
+
+  async function updateVerificationStatus(donationId: number, status: string, actionEl?: HTMLElement | null) {
+    try {
+      const res = await fetch('/api/admin/donatur/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ donationId, status }),
+      });
+      const data = await res.json().catch(() => ({ success: false, error: 'Respon server tidak valid' }));
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Gagal mengubah status di database');
+      }
+      window.location.reload();
+    } catch (err: any) {
+      alert(`Gagal verifikasi: ${err.message}`);
+      if (actionEl) {
+        actionEl.removeAttribute('disabled');
+        actionEl.classList.remove('opacity-50', 'pointer-events-none');
+      }
+    }
+  }
+
+  async function deleteDonation(donationId: number, actionEl?: HTMLElement | null) {
+    try {
+      const res = await fetch('/api/admin/donatur/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ donationId }),
+      });
+      const data = await res.json().catch(() => ({ success: false, error: 'Respon server tidak valid' }));
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Gagal menghapus transaksi dari database');
+      }
+      window.location.reload();
+    } catch (err: any) {
+      alert(`Gagal menghapus: ${err.message}`);
+      if (actionEl) {
+        actionEl.removeAttribute('disabled');
+        actionEl.classList.remove('opacity-50', 'pointer-events-none');
+      }
+    }
+  }
+
+  // 7. PROOF PREVIEW MODAL
+  document.querySelectorAll('.btn-view-proof').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const url = btn.getAttribute('data-proof-url');
+      const kode = btn.getAttribute('data-kode');
+      if (!url) return;
+
+      if (proofImageElement) proofImageElement.src = url;
+      if (proofCodeBadge) proofCodeBadge.textContent = kode || '';
+      if (proofExternalLink) proofExternalLink.href = url;
+
+      proofModal?.classList.remove('hidden');
+      proofModal?.classList.add('flex');
+    });
+  });
+
+  function closeProofModal() {
+    proofModal?.classList.add('hidden');
+    proofModal?.classList.remove('flex');
+  }
+  btnCloseProof?.addEventListener('click', closeProofModal);
+  proofModal?.addEventListener('click', (e) => {
+    if (e.target === proofModal) closeProofModal();
+  });
+</script>
