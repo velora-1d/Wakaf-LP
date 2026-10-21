@@ -1,14 +1,48 @@
 ---
 // src/components/program/PricingPackagesSection.astro
-// Komponen Pilihan Paket ZISWAF Presisi 100% Desain Pen.dev (global village fund.pen)
-// Menggunakan Vanilla Scoped CSS murni untuk menjamin render 100% akurat tanpa isu compiler utility
+// Komponen Pilihan Paket ZISWAF & Live Donatur Feed Terintegrasi DB PostgreSQL
+// Menggunakan Vanilla Scoped CSS murni untuk menjamin render 100% akurat dan responsif
 import type { ProgramData } from '../../data/programs';
+import { getVerifiedDonationsByProgram, getProgramPackages } from '../../lib/db';
 
 interface Props {
   program: ProgramData;
 }
 
 const { program } = Astro.props;
+
+// Ambil paket dinamis dari DB jika telah diatur di CMS, fallback ke data static programs.ts
+const dbPackageData = await getProgramPackages(program.slug);
+const pricingHeading = dbPackageData?.heading || program.pricingHeading;
+const pricingSubheading = dbPackageData?.subheading || program.pricingSubheading;
+const packages = (dbPackageData?.packages && dbPackageData.packages.length > 0) ? dbPackageData.packages : program.packages;
+
+// Ambil riwayat donatur terverifikasi (lunas) real-time untuk program ini
+const verifiedDonations = await getVerifiedDonationsByProgram(program.slug, 8);
+const totalTerhimpun = verifiedDonations.reduce((acc, cur) => acc + (cur.nominalTotal || 0), 0);
+
+function formatRupiah(amount: number): string {
+  return new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(amount).replace(/\s/g, ' ');
+}
+
+function formatRelativeDate(date: Date | string): string {
+  const d = new Date(date);
+  const now = new Date();
+  const diffMs = now.getTime() - d.getTime();
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+  if (diffHours < 1) return 'Baru saja';
+  if (diffHours < 24) return `${diffHours} jam lalu`;
+  if (diffDays === 1) return 'Kemarin';
+  if (diffDays < 7) return `${diffDays} hari lalu`;
+  return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+}
 ---
 
 <section class="pen-pricing-section" id="paket-pilihan">
@@ -19,15 +53,15 @@ const { program } = Astro.props;
         <span class="badge-text">{program.slug === 'infaq' ? 'PILIHAN PAKET INFAQ' : 'PAKET PILIHAN PROGRAM'}</span>
       </div>
       <h2 class="pricing-main-heading">
-        {program.pricingHeading}
+        {pricingHeading}
       </h2>
       <p class="pricing-sub-heading">
-        {program.pricingSubheading}
+        {pricingSubheading}
       </p>
     </div>
 
     <div class="pricing-cards-grid">
-      {program.packages.map((pkg) => (
+      {packages.map((pkg) => (
         <div class={`pkg-card ${pkg.isPopular ? 'is-popular' : ''}`}>
           {pkg.isPopular && (
             <div class="rekomendasi-tag">
@@ -85,38 +119,157 @@ const { program } = Astro.props;
       ))}
     </div>
 
-    {program.addonItems && program.addonItems.length > 0 && (
-      <div class="addon-table-section">
-        <h3 class="addon-section-title">
-          {program.addonTitle || 'Pilihan Saluran Infaq Tambahan'}
+    <!-- DAFTAR DONATUR & MUHSININ TERKINI (LIVE VERIFIED FEED) -->
+    <div class="donatur-feed-section" id="daftar-donatur">
+      <div class="donatur-section-header">
+        <div class="live-status-pill">
+          <span class="pulse-dot-wrap">
+            <span class="pulse-dot-ping"></span>
+            <span class="pulse-dot-core"></span>
+          </span>
+          <span class="live-pill-text">TRANSAKSI TERVERIFIKASI REAL-TIME</span>
+        </div>
+        <h3 class="donatur-section-title">
+          Daftar Muhsinin &amp; Donatur Terkini
         </h3>
+        <p class="donatur-section-subtitle">
+          Transparansi amanah filantropi Islam pada program <strong>{program.title}</strong> yang telah terverifikasi lunas oleh tim amil Global Village Fund.
+        </p>
+      </div>
 
-        <div class="addon-table-card">
-          <div class="addon-table-scroll">
-            <table class="addon-table">
-              <thead>
-                <tr>
-                  <th class="col-category">Infaq</th>
-                  <th class="col-desc">Keterangan</th>
-                  <th class="col-price">Harga</th>
-                  <th class="col-avail">Ketersediaan</th>
-                </tr>
-              </thead>
-              <tbody>
-                {program.addonItems.map((addon) => (
-                  <tr>
-                    <td class="col-category font-bold">{addon.name}</td>
-                    <td class="col-desc">{addon.desc}</td>
-                    <td class="col-price font-bold text-green">{addon.price}</td>
-                    <td class="col-avail italic">{addon.availability}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      <!-- Mini Metrics Bar -->
+      <div class="donatur-metrics-bar">
+        <div class="metric-chip">
+          <div class="metric-chip-icon text-blue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <div class="metric-chip-content">
+            <span class="chip-label">Total Terhimpun</span>
+            <span class="chip-val font-mono">{formatRupiah(totalTerhimpun)}</span>
+          </div>
+        </div>
+
+        <div class="metric-chip">
+          <div class="metric-chip-icon text-blue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="metric-chip-content">
+            <span class="chip-label">Muhsinin Terdaftar</span>
+            <span class="chip-val">{verifiedDonations.length} Transaksi Lunas</span>
+          </div>
+        </div>
+
+        <div class="metric-chip">
+          <div class="metric-chip-icon text-green">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+          </div>
+          <div class="metric-chip-content">
+            <span class="chip-label">Tata Kelola Syariah</span>
+            <span class="chip-val">Akuntabel &amp; Sah Peruntukan</span>
           </div>
         </div>
       </div>
-    )}
+
+      <!-- Donors Table / Card -->
+      <div class="donatur-table-card">
+        {verifiedDonations.length > 0 ? (
+          <div class="donatur-table-scroll">
+            <table class="donatur-table">
+              <thead>
+                <tr>
+                  <th class="col-donor">Muhsinin / Donatur</th>
+                  <th class="col-intent">Niat &amp; Doa Kebaikan</th>
+                  <th class="col-amount">Nominal Donasi</th>
+                  <th class="col-status">Status Amil</th>
+                </tr>
+              </thead>
+              <tbody>
+                {verifiedDonations.map((item) => {
+                  const initial = (item.namaDonatur || 'HA').charAt(0).toUpperCase();
+                  return (
+                    <tr>
+                      <td class="col-donor">
+                        <div class="donor-profile-group">
+                          <div class="donor-avatar">
+                            {initial}
+                          </div>
+                          <div class="donor-info">
+                            <span class="donor-name">{item.namaDonatur}</span>
+                            <span class="donor-date">{formatRelativeDate(item.createdAt)}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="col-intent">
+                        <div class="intent-wrapper">
+                          {item.atasNamaNiat && (
+                            <span class="atas-nama-tag">
+                              Atas Nama: <strong>{item.atasNamaNiat}</strong>
+                            </span>
+                          )}
+                          {item.doaDonatur ? (
+                            <p class="donor-prayer">&ldquo;{item.doaDonatur}&rdquo;</p>
+                          ) : (
+                            <p class="donor-prayer-empty">Semoga menjadi amal jariyah yang berlipat ganda bagi keluarga.</p>
+                          )}
+                        </div>
+                      </td>
+                      <td class="col-amount">
+                        <span class="amount-val font-mono">{formatRupiah(item.nominalTotal)}</span>
+                        {item.metodePembayaran && (
+                          <span class="payment-method-badge">{item.metodePembayaran}</span>
+                        )}
+                      </td>
+                      <td class="col-status">
+                        <span class="status-verified-badge">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                          <span>Lunas Terverifikasi</span>
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div class="donatur-empty-state">
+            <div class="empty-icon-wrap">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0969da" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+              </svg>
+            </div>
+            <h4 class="empty-title">Belum Ada Riwayat Transaksi Publik untuk Program Ini</h4>
+            <p class="empty-desc">
+              Jadilah muhsinin pertama yang mengalirkan jariyah kebaikan untuk kemaslahatan santri dan umat melalui program <strong>{program.title}</strong>.
+            </p>
+            <a
+              href={`https://wa.me/6281226832326?text=${encodeURIComponent(`Assalamualaikum Admin GVF, saya ingin menyalurkan donasi pertama untuk program ${program.title}. Mohon panduan nomor rekening resmi yayasan dan akadnya.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="empty-cta-btn"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+              <span>Salurkan Donasi Pertama Sekarang</span>
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
   </div>
 </section>
 
@@ -393,101 +546,384 @@ const { program } = Astro.props;
     outline-offset: 2px;
   }
 
-  /* Add-on Table Section */
-  .addon-table-section {
-    max-width: 960px;
-    margin: 0 auto 60px;
+  /* =========================================================================
+     LIVE DONATUR FEED SECTION (MODERN SOCIAL PROOF & TRANSPARANSI SYARIAH)
+     ========================================================================= */
+  .donatur-feed-section {
+    max-width: 1120px;
+    margin: 40px auto 60px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  .addon-section-title {
-    font-family: 'Golos Text', system-ui, sans-serif;
-    font-size: 26px;
-    color: #191919;
+  .donatur-section-header {
     text-align: center;
-    margin: 0 0 24px;
-    font-weight: 600;
+    margin-bottom: 28px;
   }
 
-  .addon-table-card {
-    border: 1px solid #e3e3e8;
+  .live-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #bae6fd;
+    background: #f0f9ff;
+    border-radius: 9999px;
+    padding: 5px 14px;
+    margin-bottom: 12px;
+  }
+
+  .pulse-dot-wrap {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    display: inline-flex;
+  }
+
+  .pulse-dot-ping {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #0969da;
+    animation: livePing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+    opacity: 0.75;
+  }
+
+  .pulse-dot-core {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0969da;
+  }
+
+  @keyframes livePing {
+    75%, 100% {
+      transform: scale(2.2);
+      opacity: 0;
+    }
+  }
+
+  .live-pill-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0369a1;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .donatur-section-title {
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px;
+  }
+
+  .donatur-section-subtitle {
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: 14px;
+    color: #64748b;
+    margin: 0 auto;
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  .donatur-section-subtitle strong {
+    color: #0f172a;
+  }
+
+  /* Metrics Bar */
+  .donatur-metrics-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .metric-chip {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  }
+
+  .metric-chip-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #eff6ff;
+    color: #0969da;
+  }
+
+  .metric-chip-icon.text-green {
+    background: #ecfdf5;
+    color: #059669;
+  }
+
+  .metric-chip-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chip-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #64748b;
+    letter-spacing: 0.03em;
+  }
+
+  .chip-val {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 2px;
+  }
+
+  /* Table Card */
+  .donatur-table-card {
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
     overflow: hidden;
     background: #ffffff;
     box-shadow: 0 4px 16px rgba(0,0,0,0.02);
   }
 
-  .addon-table-scroll {
+  .donatur-table-scroll {
     overflow-x: auto;
     width: 100%;
   }
 
-  .addon-table {
+  .donatur-table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed;
-    min-width: 680px;
-  }
-
-  .addon-table thead tr {
-    background-color: #191919;
-  }
-
-  .addon-table th {
-    padding: 14px 20px;
-    color: #ffffff;
-    font-family: 'Golos Text', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
+    min-width: 700px;
     text-align: left;
   }
 
-  .addon-table th.col-price,
-  .addon-table th.col-avail {
+  .donatur-table thead tr {
+    background-color: #0f172a;
+  }
+
+  .donatur-table th {
+    padding: 14px 20px;
+    color: #f8fafc;
+    font-family: 'Golos Text', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .donatur-table th.col-amount {
     text-align: right;
   }
 
-  .col-category { width: 28%; }
-  .col-desc { width: 40%; }
-  .col-price { width: 16%; }
-  .col-avail { width: 16%; }
+  .donatur-table th.col-status {
+    text-align: center;
+  }
 
-  .addon-table tbody tr {
-    border-bottom: 1px solid #e3e3e8;
+  .col-donor { width: 28%; }
+  .col-intent { width: 38%; }
+  .col-amount { width: 18%; text-align: right; }
+  .col-status { width: 16%; text-align: center; }
+
+  .donatur-table tbody tr {
+    border-bottom: 1px solid #f1f5f9;
     transition: background-color 0.15s;
   }
 
-  .addon-table tbody tr:hover {
-    background-color: #fbfbfb;
+  .donatur-table tbody tr:hover {
+    background-color: #f8fafc;
   }
 
-  .addon-table tbody tr:last-child {
+  .donatur-table tbody tr:last-child {
     border-bottom: none;
   }
 
-  .addon-table td {
+  .donatur-table td {
     padding: 16px 20px;
     font-family: 'Golos Text', sans-serif;
     font-size: 13px;
-    color: #4d4d52;
-    line-height: 1.5;
+    color: #334155;
+    vertical-align: middle;
   }
 
-  .addon-table td.col-price,
-  .addon-table td.col-avail {
+  .donatur-table td.col-amount {
     text-align: right;
   }
 
-  .addon-table td.font-bold {
+  .donatur-table td.col-status {
+    text-align: center;
+  }
+
+  .donor-profile-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .donor-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #bae6fd;
+  }
+
+  .donor-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .donor-name {
     font-weight: 600;
-    color: #191919;
+    color: #0f172a;
+    font-size: 14px;
   }
 
-  .addon-table td.text-green {
-    color: #0969da;
+  .donor-date {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 1px;
   }
 
-  .addon-table td.italic {
+  .intent-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .atas-nama-tag {
+    font-size: 11px;
+    color: #64748b;
+  }
+
+  .atas-nama-tag strong {
+    color: #0f172a;
+    font-weight: 600;
+  }
+
+  .donor-prayer {
+    margin: 0;
     font-style: italic;
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.45;
+  }
+
+  .donor-prayer-empty {
+    margin: 0;
+    font-style: italic;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  .amount-val {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #0969da;
+    text-align: right;
+  }
+
+  .payment-method-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  .status-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+    border-radius: 9999px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  /* Empty State */
+  .donatur-empty-state {
+    padding: 48px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .empty-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: #eff6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    border: 1px solid #dbeafe;
+  }
+
+  .empty-title {
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 6px;
+  }
+
+  .empty-desc {
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: 13px;
+    color: #64748b;
+    max-width: 480px;
+    margin: 0 0 20px;
+    line-height: 1.5;
+  }
+
+  .empty-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0969da;
+    color: #ffffff !important;
+    padding: 10px 22px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(9, 105, 218, 0.2);
+    transition: all 0.2s;
+  }
+
+  .empty-cta-btn:hover {
+    background: #0752a8;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(9, 105, 218, 0.3);
   }
 
 </style>

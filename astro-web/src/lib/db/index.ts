@@ -289,6 +289,90 @@ export async function getAllDonationsWithDonors(): Promise<DonationWithDonor[]> 
   }
 }
 
+export interface VerifiedPublicDonation {
+  id: number;
+  kodeTransaksi: string;
+  nominalTotal: number;
+  namaDonatur: string;
+  atasNamaNiat: string | null;
+  doaDonatur: string | null;
+  metodePembayaran: string | null;
+  createdAt: Date;
+  programTujuan: string;
+}
+
+/**
+ * Mengambil donasi terverifikasi (lunas) sesuai kategori program untuk Live Donatur Feed
+ */
+export async function getVerifiedDonationsByProgram(
+  programSlug: string,
+  limitCount = 10
+): Promise<VerifiedPublicDonation[]> {
+  try {
+    const all = await getAllDonationsWithDonors();
+    const lunasList = all.filter((d) => d.statusPembayaran === 'lunas');
+
+    const filtered = lunasList.filter((d) => {
+      const prog = (d.programTujuan || '').toLowerCase();
+      const slug = (programSlug || '').toLowerCase();
+
+      if (slug === 'wakaf') {
+        return prog.includes('wakaf') || prog.includes('masjid');
+      } else if (slug === 'infaq') {
+        return prog.includes('infaq') || prog.includes('fisik') || prog.includes('operasional') || prog.includes('masjid');
+      } else if (slug === 'sedekah') {
+        return prog.includes('sedekah') || prog.includes('vokasi') || prog.includes('beasiswa') || prog.includes('santri');
+      } else if (slug === 'zakat') {
+        return prog.includes('zakat');
+      }
+      return prog.includes(slug);
+    });
+
+    return filtered.slice(0, limitCount).map((d) => ({
+      id: d.id,
+      kodeTransaksi: d.kodeTransaksi,
+      nominalTotal: d.nominalTotal,
+      namaDonatur: d.donor?.namaTampilan || d.donor?.namaLengkap || 'Hamba Allah',
+      atasNamaNiat: d.atasNamaNiat,
+      doaDonatur: d.doaDonatur,
+      metodePembayaran: d.metodePembayaran,
+      createdAt: d.createdAt,
+      programTujuan: d.programTujuan,
+    }));
+  } catch (error) {
+    console.error(`[DB] Error fetching verified donations for program ${programSlug}:`, error);
+    return [];
+  }
+}
+
+/**
+ * Mengambil konfigurasi paket dinamis dari tabel page_sections jika diatur di CMS admin
+ */
+export async function getProgramPackages(pageSlug: string) {
+  try {
+    const section = await db
+      .select()
+      .from(schema.pageSections)
+      .where(and(eq(schema.pageSections.pageSlug, pageSlug), eq(schema.pageSections.sectionKey, 'prog_pricing')))
+      .limit(1);
+
+    if (section.length > 0 && section[0].content) {
+      const content = section[0].content as any;
+      if (Array.isArray(content.packages) && content.packages.length > 0) {
+        return {
+          heading: content.heading || null,
+          subheading: content.subheading || null,
+          packages: content.packages,
+        };
+      }
+    }
+    return null;
+  } catch (error) {
+    console.error(`[DB] Error fetching program packages for ${pageSlug}:`, error);
+    return null;
+  }
+}
+
 export async function getAllDonors(): Promise<schema.Donor[]> {
   try {
     return await db
