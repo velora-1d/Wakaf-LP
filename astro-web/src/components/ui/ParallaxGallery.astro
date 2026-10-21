@@ -1,0 +1,13 @@
+---
+// src/components/ui/ParallaxGallery.astro
+// Wrapper Astro untuk 3D Parallax Unfurling Gallery dengan hydrasi client:visible
+import Parallax3DGallery from './3d-parallax-unfurling-gallery';
+
+export interface Props {
+  items?: any[];
+}
+
+const { items } = Astro.props;
+---
+
+<Parallax3DGallery client:visible items={items} />

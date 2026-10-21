@@ -1,0 +1,20 @@
+---
+// src/components/ui/ElasticGallery.astro
+// Wrapper Astro untuk komponen ElasticGallery dengan hydrasi client:visible
+import { ElasticGallery as ReactElasticGallery, type ElasticItemProps } from './elastic-gallery';
+
+export interface Props {
+  items?: ElasticItemProps[];
+  defaultActiveId?: string;
+  className?: string;
+}
+
+const { items, defaultActiveId, className } = Astro.props;
+---
+
+<ReactElasticGallery
+  client:visible
+  items={items}
+  defaultActiveId={defaultActiveId}
+  className={className}
+/>
