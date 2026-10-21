@@ -29,6 +29,11 @@
     { "id": "ZAKAT-SEC-01", "name": "Zakat Section 1: Page Header & Breadcrumb Banner", "status": "closed" },
     { "id": "ZAKAT-SEC-02", "name": "Zakat Section 2: Pilihan Paket Zakat & Eliminasi Add-on Non-Pendev", "status": "closed" },
     { "id": "ZAKAT-SEC-03", "name": "Zakat Section 3: Deep-Dive Program 2-Kolom", "status": "closed" },
-    { "id": "ZAKAT-SEC-04", "name": "Zakat Section 4: FAQ Accordion Pen.dev", "status": "closed" }
+    { "id": "ZAKAT-SEC-04", "name": "Zakat Section 4: FAQ Accordion Pen.dev", "status": "closed" },
+    { "id": "ABOUT-SEC-01", "name": "Halaman Tentang Kami sesuai Pen.dev BtC15", "status": "closed" },
+    { "id": "PARTNER-SEC-01", "name": "Halaman Kemitraan sesuai Pen.dev EHsHA", "status": "closed" },
+    { "id": "CONTACT-SEC-01", "name": "Halaman Kontak sesuai Pen.dev AlCVn", "status": "closed" },
+    { "id": "3D-GALLERY-01", "name": "Optimasi 3D Parallax Gallery: Light Mode, Full Viewport, Ringan 60fps & Eliminasi Teks Berulang", "status": "closed" },
+    { "id": "ABOUT-GALLERY-ELASTIC", "name": "Ganti Galeri Tentang Kami ke Elastic Gallery (Horizontal Accordion)", "status": "closed" }
   ]
 }

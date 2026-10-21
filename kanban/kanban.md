@@ -7,6 +7,11 @@
 ## In Review / Test
 
 ## Done
+- [x] ABOUT-GALLERY-ELASTIC: Ganti Galeri Tentang Kami ke Elastic Gallery (Horizontal Accordion)
+- [x] 3D-GALLERY-01: Optimasi 3D Parallax Gallery (Light Mode, Full Viewport, Ringan 60fps & Eliminasi Teks Berulang)
+- [x] CONTACT-SEC-01: Halaman Kontak Sesuai Pen.dev `AlCVn` (`contact.astro` & eliminasi halaman non-pendev)
+- [x] PARTNER-SEC-01: Halaman Kemitraan Sesuai Pen.dev `EHsHA` (`kemitraan.astro` & eliminasi halaman non-pendev)
+- [x] ABOUT-SEC-01: Halaman Tentang Kami Sesuai Pen.dev `BtC15` (`tentang-kami.astro` & eliminasi halaman non-pendev)
 - [x] ZAKAT-SEC-04: FAQ Accordion Zakat Sesuai Pen.dev (`programs.ts`)
 - [x] ZAKAT-SEC-03: Deep-Dive Program Zakat 2 Kolom (`programs.ts` / `ProgramLayout.astro`)
 - [x] ZAKAT-SEC-02: Pilihan Paket Zakat & Eliminasi Add-on Non-Pendev (`programs.ts`)
