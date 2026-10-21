@@ -381,17 +381,63 @@ const publicPageUrl = getPublicUrl(slug);
             </div>
           </div>
 
-          <!-- Section 4: Media & Image Link -->
-          <div>
-            <label for="vfImageUrl" class="block text-xs font-semibold text-slate-700 mb-1">
-              URL Gambar / Media Banner <span class="text-slate-400 font-normal">(Opsional)</span>
-            </label>
-            <input
-              type="text"
-              id="vfImageUrl"
-              placeholder="/images/... atau https://..."
-              class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none font-mono transition-all"
-            />
+          <!-- Section 4: Media & Image Link + MinIO S3 Upload -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <label for="vfImageUrl" class="block text-xs font-semibold text-slate-700">
+                URL Gambar / Media Banner <span class="text-slate-400 font-normal">(Opsional)</span>
+              </label>
+              <div class="flex items-center gap-2">
+                <input type="file" id="vfFileInput" accept="image/jpeg,image/png,image/webp,image/svg+xml,video/mp4" class="hidden" />
+                <button
+                  type="button"
+                  id="vfUploadBtn"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0969da] bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-xl transition-colors cursor-pointer"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/>
+                    <path d="M12 12v9"/>
+                    <path d="m16 16-4-4-4 4"/>
+                  </svg>
+                  <span id="vfUploadBtnText">Unggah ke MinIO S3</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input
+                type="text"
+                id="vfImageUrl"
+                placeholder="/images/... atau https://..."
+                class="flex-1 bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none font-mono transition-all"
+              />
+              <button
+                type="button"
+                id="vfClearImageBtn"
+                class="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 border border-transparent hover:border-rose-200 rounded-xl transition-colors cursor-pointer hidden"
+                title="Hapus media"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18"/>
+                  <path d="m6 6 12 12"/>
+                </svg>
+              </button>
+            </div>
+
+            <div id="vfUploadStatus" class="text-[11px] text-slate-500 hidden"></div>
+
+            <!-- Pratinjau Gambar / Media Live -->
+            <div id="vfImagePreviewWrapper" class="mt-2 p-2.5 border border-slate-200 rounded-xl bg-slate-50 flex items-center gap-3 hidden">
+              <div class="w-16 h-16 rounded-lg bg-slate-200 overflow-hidden shrink-0 border border-slate-300 flex items-center justify-center">
+                <img id="vfImagePreview" src="" alt="Pratinjau media section" class="w-full h-full object-cover hidden" />
+                <video id="vfVideoPreview" src="" class="w-full h-full object-cover hidden" muted playsinline></video>
+                <div id="vfPreviewFallback" class="text-slate-400 text-[10px] text-center px-1 hidden">Gagal memuat</div>
+              </div>
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-semibold text-slate-800 truncate" id="vfPreviewName">Media Terpilih</p>
+                <p class="text-[10px] text-slate-500 font-mono truncate" id="vfPreviewUrl">-</p>
+              </div>
+            </div>
           </div>
 
           <!-- Section 5: Meta Info (Internal Title & Order) -->
@@ -537,6 +583,133 @@ const publicPageUrl = getPublicUrl(slug);
       const vfSecondaryCtaUrl = document.getElementById('vfSecondaryCtaUrl') as HTMLInputElement;
       const vfImageUrl = document.getElementById('vfImageUrl') as HTMLInputElement;
 
+      // MinIO S3 Upload & Preview Controls
+      const vfFileInput = document.getElementById('vfFileInput') as HTMLInputElement;
+      const vfUploadBtn = document.getElementById('vfUploadBtn') as HTMLButtonElement;
+      const vfUploadBtnText = document.getElementById('vfUploadBtnText');
+      const vfUploadStatus = document.getElementById('vfUploadStatus');
+      const vfClearImageBtn = document.getElementById('vfClearImageBtn') as HTMLButtonElement;
+      const vfImagePreviewWrapper = document.getElementById('vfImagePreviewWrapper');
+      const vfImagePreview = document.getElementById('vfImagePreview') as HTMLImageElement;
+      const vfVideoPreview = document.getElementById('vfVideoPreview') as HTMLVideoElement;
+      const vfPreviewFallback = document.getElementById('vfPreviewFallback');
+      const vfPreviewName = document.getElementById('vfPreviewName');
+      const vfPreviewUrl = document.getElementById('vfPreviewUrl');
+
+      function updateMediaPreview(url: string) {
+        if (!url || !url.trim()) {
+          vfImagePreviewWrapper?.classList.add('hidden');
+          vfClearImageBtn?.classList.add('hidden');
+          if (vfImagePreview) vfImagePreview.src = '';
+          if (vfVideoPreview) vfVideoPreview.src = '';
+          return;
+        }
+
+        const cleanUrl = url.trim();
+        vfImagePreviewWrapper?.classList.remove('hidden');
+        vfClearImageBtn?.classList.remove('hidden');
+        if (vfPreviewUrl) vfPreviewUrl.textContent = cleanUrl;
+
+        const isVideo = cleanUrl.match(/\.(mp4|webm|ogg)($|\?)/i);
+        if (isVideo) {
+          if (vfImagePreview) vfImagePreview.classList.add('hidden');
+          if (vfVideoPreview) {
+            vfVideoPreview.src = cleanUrl;
+            vfVideoPreview.classList.remove('hidden');
+          }
+          if (vfPreviewFallback) vfPreviewFallback.classList.add('hidden');
+          if (vfPreviewName) vfPreviewName.textContent = 'Berkas Video';
+        } else {
+          if (vfVideoPreview) vfVideoPreview.classList.add('hidden');
+          if (vfImagePreview) {
+            vfImagePreview.src = cleanUrl;
+            vfImagePreview.classList.remove('hidden');
+          }
+          if (vfPreviewFallback) vfPreviewFallback.classList.add('hidden');
+          if (vfPreviewName) vfPreviewName.textContent = 'Berkas Gambar';
+        }
+      }
+
+      vfImagePreview?.addEventListener('error', () => {
+        vfImagePreview.classList.add('hidden');
+        vfPreviewFallback?.classList.remove('hidden');
+      });
+
+      vfVideoPreview?.addEventListener('error', () => {
+        vfVideoPreview.classList.add('hidden');
+        vfPreviewFallback?.classList.remove('hidden');
+      });
+
+      vfImageUrl?.addEventListener('input', () => {
+        updateMediaPreview(vfImageUrl.value);
+      });
+
+      vfClearImageBtn?.addEventListener('click', () => {
+        if (vfImageUrl) vfImageUrl.value = '';
+        syncVisualToJson();
+        updateMediaPreview('');
+      });
+
+      vfUploadBtn?.addEventListener('click', () => {
+        vfFileInput?.click();
+      });
+
+      vfFileInput?.addEventListener('change', async (e) => {
+        const target = e.target as HTMLInputElement;
+        const file = target.files?.[0];
+        if (!file) return;
+
+        // Validasi ukuran client-side (25MB)
+        const MAX_SIZE = 25 * 1024 * 1024;
+        if (file.size > MAX_SIZE) {
+          (window as any).showToast('Ukuran berkas melebihi batas 25 MB.', true);
+          target.value = '';
+          return;
+        }
+
+        // Validasi tipe format
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'video/mp4'];
+        if (!allowedTypes.includes(file.type)) {
+          (window as any).showToast('Format berkas tidak didukung. Harap pilih gambar JPG, PNG, WEBP, SVG, atau video MP4.', true);
+          target.value = '';
+          return;
+        }
+
+        if (vfUploadBtnText) vfUploadBtnText.textContent = 'Mengunggah ke S3...';
+        if (vfUploadBtn) vfUploadBtn.disabled = true;
+        if (vfUploadStatus) {
+          vfUploadStatus.textContent = `Mengunggah ${file.name} (${(file.size / (1024 * 1024)).toFixed(2)} MB)...`;
+          vfUploadStatus.classList.remove('hidden');
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+          const res = await fetch('/api/admin/sections/upload', {
+            method: 'POST',
+            body: formData,
+          });
+
+          const data = await res.json();
+          if (data.success && data.url) {
+            if (vfImageUrl) vfImageUrl.value = data.url;
+            syncVisualToJson();
+            updateMediaPreview(data.url);
+            (window as any).showToast('Berkas berhasil diunggah ke MinIO S3.');
+          } else {
+            (window as any).showToast(data.error || 'Gagal mengunggah berkas ke MinIO.', true);
+          }
+        } catch (err: any) {
+          (window as any).showToast('Terjadi kesalahan jaringan saat mengunggah.', true);
+        } finally {
+          if (vfUploadBtnText) vfUploadBtnText.textContent = 'Unggah ke MinIO S3';
+          if (vfUploadBtn) vfUploadBtn.disabled = false;
+          if (vfUploadStatus) vfUploadStatus.classList.add('hidden');
+          target.value = '';
+        }
+      });
+
       // Tabs
       const tabVisualBtn = document.getElementById('tabVisualBtn');
       const tabJsonBtn = document.getElementById('tabJsonBtn');
@@ -625,7 +798,10 @@ const publicPageUrl = getPublicUrl(slug);
           if (vfPrimaryCtaUrl) vfPrimaryCtaUrl.value = currentContentObj.primaryCtaUrl || currentContentObj.ctaUrl || '';
           if (vfSecondaryCtaText) vfSecondaryCtaText.value = currentContentObj.secondaryCtaText || '';
           if (vfSecondaryCtaUrl) vfSecondaryCtaUrl.value = currentContentObj.secondaryCtaUrl || '';
-          if (vfImageUrl) vfImageUrl.value = currentContentObj.imageUrl || currentContentObj.mediaUrl || currentContentObj.videoUrl || '';
+          if (vfImageUrl) {
+            vfImageUrl.value = currentContentObj.imageUrl || currentContentObj.mediaUrl || currentContentObj.videoUrl || '';
+            updateMediaPreview(vfImageUrl.value);
+          }
           if (jsonError) {
             jsonError.textContent = '';
             jsonError.classList.add('hidden');
@@ -701,7 +877,10 @@ const publicPageUrl = getPublicUrl(slug);
           if (vfPrimaryCtaUrl) vfPrimaryCtaUrl.value = currentContentObj.primaryCtaUrl || currentContentObj.ctaUrl || '';
           if (vfSecondaryCtaText) vfSecondaryCtaText.value = currentContentObj.secondaryCtaText || '';
           if (vfSecondaryCtaUrl) vfSecondaryCtaUrl.value = currentContentObj.secondaryCtaUrl || '';
-          if (vfImageUrl) vfImageUrl.value = currentContentObj.imageUrl || currentContentObj.mediaUrl || currentContentObj.videoUrl || '';
+          if (vfImageUrl) {
+            vfImageUrl.value = currentContentObj.imageUrl || currentContentObj.mediaUrl || currentContentObj.videoUrl || '';
+            updateMediaPreview(vfImageUrl.value);
+          }
 
           // Populate JSON textarea
           if (editJsonContent) editJsonContent.value = JSON.stringify(currentContentObj, null, 2);

@@ -14,7 +14,7 @@ const secretKey = process.env.MINIO_SECRET_KEY || 'kTePwW5Xm5AVNyOgxkPcC5eo7WGaN
 const bucketName = process.env.MINIO_BUCKET || 'skillage-website';
 const useSSL = process.env.MINIO_USE_SSL !== 'false';
 const publicBaseUrl = process.env.MINIO_PUBLIC_URL || `https://${endPoint}/${bucketName}`;
-const pathStyle = process.env.MINIO_USE_PATH_STYLE_ENDPOINT === 'true';
+const pathStyle = process.env.MINIO_USE_PATH_STYLE_ENDPOINT !== 'false';
 
 export const minioClient = new Minio.Client({
   endPoint,

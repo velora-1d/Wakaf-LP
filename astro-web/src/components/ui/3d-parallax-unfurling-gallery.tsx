@@ -11,42 +11,42 @@ interface FacilityItem {
 
 const GVF_FACILITIES: FacilityItem[] = [
   {
-    src: "https://wakaf-lp.vercel.app/gambar%20design/interior%20masjid.jpg",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20masjid.jpg",
     title: "Interior Masjid Utama",
     category: "Fasilitas Ibadah",
   },
   {
-    src: "https://wakaf-lp.vercel.app/gambar%20design/belakang%20masjid.jpg",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/belakang%20masjid.jpg",
     title: "Lanskap Belakang Masjid",
     category: "Kawasan Hijau",
   },
   {
-    src: "https://wakaf-lp.vercel.app/gambar%20design/learning%20studio%20&%20workshop.jpg",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/learning%20studio%20%26%20workshop.jpg",
     title: "Studio Vokasi & Workshop",
     category: "Pendidikan & Skill",
   },
   {
-    src: "https://wakaf-lp.vercel.app/gambar%20design/gh%20learning%20area.jpg",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/gh%20learning%20area.jpg",
     title: "Greenhouse Agro-Technopark",
     category: "Agrikultur Mandiri",
   },
   {
-    src: "https://wakaf-lp.vercel.app/gambar%20design/skywalk%20learning%20room.jpg",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/skywalk%20learning%20room.jpg",
     title: "Skywalk Ruang Belajar Santri",
     category: "Sarana Pembelajaran",
   },
   {
-    src: "https://wakaf-lp.vercel.app/gambar%20design/panel%20surya.jpg",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/panel%20surya.jpg",
     title: "Instalasi Panel Surya Terpadu",
     category: "Energi Mandiri",
   },
   {
-    src: "https://wakaf-lp.vercel.app/gambar%20design/tempat%20wudu.jpg",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/tempat%20wudu.jpg",
     title: "Tempat Wudhu Sirkulasi Alami",
     category: "Fasilitas Penunjang",
   },
   {
-    src: "https://wakaf-lp.vercel.app/gambar%20design/interior%20mesjid%202.jpg",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20mesjid%202.jpg",
     title: "Mihrab & Ruang Sholat Utama",
     category: "Pusat Spiritualitas",
   },
