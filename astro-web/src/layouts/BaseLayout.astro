@@ -51,12 +51,10 @@ const {
   </main>
   <Footer />
 
-  <!-- Floating Scroll Percentage Badge ala ISAVO (Bottom Right) -->
   <div class="isavo-scroll-badge" id="scroll-percentage" aria-hidden="true">
     <span id="scroll-pct-text">0%</span>
   </div>
 
-  <!-- Floating WhatsApp Action Badge ala ISAVO (Bottom Right with Pulse Ring) -->
   <a
     href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20Global%20Village%20Fund%2C%20saya%20ingin%20konsultasi%20program%20wakaf."
     target="_blank"
@@ -70,7 +68,6 @@ const {
     </svg>
   </a>
 
-  <!-- Lenis + GSAP ScrollTrigger Professional Animation Engine -->
   <script>
     import Lenis from 'lenis';
     import { gsap } from 'gsap';
@@ -79,7 +76,7 @@ const {
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
 
-      // ── 1. Lenis Smooth Scroll Engine ──────────────────────────────────
+      // Lenis smooth scroll
       const lenis = new Lenis({
         smoothWheel: true,
         wheelMultiplier: 1.6,
@@ -96,7 +93,7 @@ const {
 
       window.dispatchEvent(new CustomEvent('lenis:ready', { detail: lenis }));
 
-      // ── 2. Scroll Percentage Indicator ────────────────────────────────
+      // Scroll percentage indicator
       const pctBadge = document.getElementById('scroll-pct-text');
       lenis.on('scroll', (e: any) => {
         if (pctBadge) {
@@ -105,7 +102,7 @@ const {
         }
       });
 
-      // ── 3. Smooth hash scroll ─────────────────────────────────────────
+      // Smooth hash anchor scroll
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener('click', (e) => {
           const href = anchor.getAttribute('href');
@@ -119,8 +116,7 @@ const {
         });
       });
 
-      // ── 4. GSAP ScrollTrigger Reveal System ───────────────────────────
-      // A. Simple reveal-up: paragraphs, leads, descriptions
+      // GSAP ScrollTrigger reveals
       gsap.utils.toArray<HTMLElement>('.reveal-on-scroll').forEach((el) => {
         const delay = parseFloat(el.dataset.delay || '0');
         gsap.fromTo(el,
@@ -139,7 +135,6 @@ const {
         );
       });
 
-      // B. Scale reveal: badges, images, cards with reveal-scale class
       gsap.utils.toArray<HTMLElement>('.reveal-scale').forEach((el) => {
         const delay = parseFloat(el.dataset.delay || '0');
         gsap.fromTo(el,
@@ -158,7 +153,6 @@ const {
         );
       });
 
-      // C. Stagger grid: children of .reveal-stagger get cascading reveal
       gsap.utils.toArray<HTMLElement>('.reveal-stagger').forEach((parent) => {
         const children = parent.children;
         gsap.fromTo(children,
@@ -177,13 +171,10 @@ const {
         );
       });
 
-      // D. Line reveal: headings with .reveal-heading get word-by-word stagger
       gsap.utils.toArray<HTMLElement>('.reveal-heading').forEach((el) => {
-        // Split text by words (no SplitText plugin — vanilla approach)
         const original = el.innerHTML;
         const words = el.textContent?.split(' ') || [];
         if (words.length < 2) {
-          // Single word: just reveal up
           gsap.fromTo(el,
             { opacity: 0, y: 30 },
             {

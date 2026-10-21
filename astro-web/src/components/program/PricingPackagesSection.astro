@@ -13,7 +13,6 @@ const { program } = Astro.props;
 
 <section class="pen-pricing-section" id="paket-pilihan">
   <div class="pricing-container">
-    <!-- Header Section -->
     <div class="pricing-header-wrap">
       <div class="pricing-badge-pill">
         <span class="dot-green"></span>
@@ -27,7 +26,6 @@ const { program } = Astro.props;
       </p>
     </div>
 
-    <!-- 3 Pricing Cards Grid -->
     <div class="pricing-cards-grid">
       {program.packages.map((pkg) => (
         <div class={`pkg-card ${pkg.isPopular ? 'is-popular' : ''}`}>
@@ -38,12 +36,10 @@ const { program } = Astro.props;
           )}
 
           <div class="card-content-top">
-            <!-- Header Kartu -->
             <div class="card-title-group">
               <h3 class="card-title">{pkg.title}</h3>
               <p class="card-subtitle">{pkg.subtitle}</p>
 
-              <!-- Harga -->
               <div class="card-price-val">
                 {pkg.pricePrefix}{pkg.priceAmount}{pkg.priceUnit}
               </div>
@@ -55,12 +51,10 @@ const { program } = Astro.props;
               </div>
             </div>
 
-            <!-- What Do You Get Divider -->
             <div class="what-do-you-get-bar">
               <span>WHAT DO YOU GET:</span>
             </div>
 
-            <!-- Deliverables List -->
             <ul class="card-deliverables-list">
               {pkg.deliverables.map((item) => (
                 <li class="deliverable-item">
@@ -77,7 +71,6 @@ const { program } = Astro.props;
             </ul>
           </div>
 
-          <!-- CTA Button -->
           <div class="card-cta-wrap">
             <a
               href={`https://wa.me/6281226832326?text=${encodeURIComponent(`Assalamualaikum Admin GVF, saya ingin menyalurkan ${program.title} untuk paket: ${pkg.title} sebesar ${pkg.pricePrefix || ''}${pkg.priceAmount}. Mohon panduan transfer dan akadnya.`)}`}
@@ -92,7 +85,6 @@ const { program } = Astro.props;
       ))}
     </div>
 
-    <!-- Add-on Services Table (From Pen.dev) -->
     {program.addonItems && program.addonItems.length > 0 && (
       <div class="addon-table-section">
         <h3 class="addon-section-title">

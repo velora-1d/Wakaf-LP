@@ -70,9 +70,7 @@
   --color-warning:         hsl(38, 92%, 50%);
   --color-error:           hsl(0, 72%, 51%);
 
-  /* ──────────────────────────────────────────────
-     3. TYPOGRAPHY SCALE (Named, not free-form)
-  ────────────────────────────────────────────── */
+  /* Typography scale */
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
@@ -105,9 +103,7 @@
   --tracking-wider:     0.08em;
   --tracking-widest:    0.12em;
 
-  /* ──────────────────────────────────────────────
-     4. SPACING — 8pt GRID SYSTEM
-  ────────────────────────────────────────────── */
+  /* Spacing scale */
   --space-1:   4px;
   --space-2:   8px;
   --space-3:   12px;
@@ -127,9 +123,7 @@
   --section-padding-y-lg:  var(--space-12);   /* 120px */
   --section-padding-y-sm:  var(--space-9);    /* 64px */
 
-  /* ──────────────────────────────────────────────
-     5. BORDER RADIUS
-  ────────────────────────────────────────────── */
+  /* Border radius */
   --radius-xs:   4px;
   --radius-sm:   8px;
   --radius-md:   12px;
@@ -139,9 +133,7 @@
   --radius-3xl:  40px;
   --radius-full: 9999px;
 
-  /* ──────────────────────────────────────────────
-     6. ELEVATION / SHADOW
-  ────────────────────────────────────────────── */
+  /* Elevation shadows */
   --shadow-xs:  0 1px 2px 0 hsl(222 47% 11% / 0.04);
   --shadow-sm:  0 1px 3px 0 hsl(222 47% 11% / 0.06), 0 1px 2px -1px hsl(222 47% 11% / 0.06);
   --shadow-md:  0 4px 6px -1px hsl(222 47% 11% / 0.07), 0 2px 4px -2px hsl(222 47% 11% / 0.05);
@@ -154,9 +146,7 @@
   --shadow-blue-lg: 0 16px 40px -6px hsl(214 89% 52% / 0.40);
   --shadow-dark:    0 25px 60px hsl(222 47% 11% / 0.50);
 
-  /* ──────────────────────────────────────────────
-     7. MOTION / ANIMATION TOKENS
-  ────────────────────────────────────────────── */
+  /* Motion and animation tokens */
   /* Duration */
   --duration-instant:  50ms;
   --duration-fast:     150ms;
@@ -165,22 +155,19 @@
   --duration-slower:   600ms;
   --duration-crawl:    900ms;
 
-  /* Easing — industrial-grade curves */
+  /* Easing */
   --ease-linear:    linear;
   --ease-in:        cubic-bezier(0.55, 0, 1, 0.45);
-  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);     /* expo out — snappy deceleration */
-  --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);    /* sine in-out */
-  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1); /* spring overshoot */
-  --ease-reveal:    cubic-bezier(0.22, 1, 0.36, 1);    /* GSAP power3.out feel */
+  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-reveal:    cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* Legacy aliases — backward compat */
+  /* Legacy aliases */
   --gvf-transition-fast:   var(--duration-fast) var(--ease-out);
   --gvf-transition-smooth: var(--duration-normal) var(--ease-out);
   --gvf-transition-spring: var(--duration-slow) var(--ease-spring);
 
-  /* ──────────────────────────────────────────────
-     8. LEGACY ALIASES (backward compat)
-  ────────────────────────────────────────────── */
   --gvf-navy-dark:       var(--navy-950);
   --gvf-navy-primary:    var(--navy-900);
   --gvf-navy-surface:    var(--navy-800);
@@ -218,9 +205,7 @@
   --gvf-font-serif:      'Playfair Display', Georgia, serif;
 }
 
-/* ──────────────────────────────────────────────
-   RESET & BASE
-────────────────────────────────────────────── */
+/* Reset and base */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -256,9 +241,7 @@ body {
   background-color: #ffffff;
 }
 
-/* ──────────────────────────────────────────────
-   CONTAINER SYSTEM
-────────────────────────────────────────────── */
+/* Container system */
 .gvf-container {
   width: 100%;
   max-width: 1280px;
@@ -291,9 +274,7 @@ body {
   padding-right: var(--space-6);
 }
 
-/* ──────────────────────────────────────────────
-   SECTION SPACING
-────────────────────────────────────────────── */
+/* Section spacing */
 .gvf-section {
   padding-top: var(--section-padding-y);
   padding-bottom: var(--section-padding-y);
@@ -304,9 +285,7 @@ body {
   padding-bottom: var(--section-padding-y-lg);
 }
 
-/* ──────────────────────────────────────────────
-   TYPOGRAPHY SYSTEM — Named Scale
-────────────────────────────────────────────── */
+/* Typography system */
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-heading);
   line-height: var(--leading-snug);
@@ -325,9 +304,7 @@ p {
   line-height: var(--leading-relaxed);
 }
 
-/* ──────────────────────────────────────────────
-   BADGE / KICKER SYSTEM
-────────────────────────────────────────────── */
+/* Badge and kicker system */
 .gvf-badge {
   display: inline-flex;
   align-items: center;
@@ -359,9 +336,7 @@ p {
   backdrop-filter: blur(8px);
 }
 
-/* ──────────────────────────────────────────────
-   BUTTON SYSTEM — Professional
-────────────────────────────────────────────── */
+/* Button system */
 .gvf-btn {
   display: inline-flex;
   align-items: center;
@@ -425,9 +400,7 @@ p {
   box-shadow: none;
 }
 
-/* ──────────────────────────────────────────────
-   SECTION HEADER HELPERS
-────────────────────────────────────────────── */
+/* Section header helpers */
 .section-kicker {
   display: inline-block;
   font-size: var(--text-micro);

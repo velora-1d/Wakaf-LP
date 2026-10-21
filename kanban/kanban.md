@@ -3,11 +3,11 @@
 ## To Do
 
 ## In Progress
-- [/] ANTISLOP-CODE-01: Pembersihan Komentar Slop (Decorative Separators, Workflow Narration, Card Numbering & Empty Labels) di Template Astro, Style & Data
 
 ## In Review / Test
 
 ## Done
+- [x] ANTISLOP-CODE-01: Pembersihan Komentar Slop (Decorative Separators, Workflow Narration, Card Numbering & Empty Labels) di Template Astro, Style & Data
 - [x] CMS-FASE-06: Uji Coba End-to-End Realtime Section Management
 - [x] CMS-FASE-05: Integrasi SSR Dynamic Sections & Toggle Visibility di Frontend Publik
 - [x] CMS-FASE-04: Dashboard Admin UI & Section Manager Editor (/admin, /admin/pages/[slug])
