@@ -3,6 +3,7 @@
 ## To Do
 
 ## In Progress
+- [ ] DONATUR-ACTION-DEBUG-01: Investigasi dan Perbaikan Tombol Aksi di Menu Donatur (/admin/donatur: Tombol Catat Donasi Baru, Aksi Edit, Verifikasi Lunas/Pending, Hapus, WA, dan Bukti S3)
 
 ## In Review / Test
 
