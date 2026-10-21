@@ -426,6 +426,105 @@ export async function createDonationWithDonor(params: {
   }
 }
 
+export async function updateDonationWithDonor(params: {
+  donationId: number;
+  namaLengkap: string;
+  namaTampilan?: string;
+  tipeDonatur?: string;
+  noWhatsapp: string;
+  email?: string;
+  kotaDomisili?: string;
+  programTujuan: string;
+  nominal: number;
+  kodeUnik?: number;
+  akadPeruntukan?: string;
+  atasNamaNiat?: string;
+  doaDonatur?: string;
+  metodePembayaran?: string;
+  buktiTransferUrl?: string;
+  statusPembayaran?: string;
+  sumberLeads?: string;
+  campaignUtm?: string;
+  catatanTransaksi?: string;
+  verifiedBy?: string;
+}): Promise<boolean> {
+  try {
+    const existing = await db
+      .select()
+      .from(schema.donations)
+      .where(eq(schema.donations.id, params.donationId))
+      .limit(1);
+
+    if (existing.length === 0) return false;
+    const oldDonation = existing[0];
+
+    // 1. Update profil donatur
+    await db
+      .update(schema.donors)
+      .set({
+        namaLengkap: params.namaLengkap,
+        namaTampilan: params.namaTampilan || 'Hamba Allah',
+        tipeDonatur: params.tipeDonatur || 'individu',
+        noWhatsapp: params.noWhatsapp,
+        email: params.email || null,
+        kotaDomisili: params.kotaDomisili || null,
+        updatedAt: new Date(),
+      })
+      .where(eq(schema.donors.id, oldDonation.donorId));
+
+    // 2. Hitung nominal total baru
+    const kodeUnik = params.kodeUnik || 0;
+    const nominalTotal = params.nominal + kodeUnik;
+    const newStatus = params.statusPembayaran || oldDonation.statusPembayaran;
+    const isLunas = newStatus === 'lunas';
+
+    // 3. Update data transaksi
+    await db
+      .update(schema.donations)
+      .set({
+        programTujuan: params.programTujuan,
+        nominal: params.nominal,
+        kodeUnik,
+        nominalTotal,
+        akadPeruntukan: params.akadPeruntukan || 'Wakaf Muabbad (Abadi)',
+        atasNamaNiat: params.atasNamaNiat || null,
+        doaDonatur: params.doaDonatur || null,
+        metodePembayaran: params.metodePembayaran || 'BSI Transfer',
+        buktiTransferUrl: params.buktiTransferUrl !== undefined ? params.buktiTransferUrl : oldDonation.buktiTransferUrl,
+        statusPembayaran: newStatus,
+        verifiedBy: isLunas ? (oldDonation.verifiedBy || params.verifiedBy || 'Admin GVF') : null,
+        verifiedAt: isLunas ? (oldDonation.verifiedAt || new Date()) : null,
+        sumberLeads: params.sumberLeads || 'relasi_langsung',
+        campaignUtm: params.campaignUtm || null,
+        catatanTransaksi: params.catatanTransaksi || null,
+      })
+      .where(eq(schema.donations.id, params.donationId));
+
+    // 4. Hitung ulang akumulasi donasi donatur jika nominal atau status berubah
+    const allUserDonations = await db
+      .select()
+      .from(schema.donations)
+      .where(and(eq(schema.donations.donorId, oldDonation.donorId), eq(schema.donations.statusPembayaran, 'lunas')));
+
+    const totalAkumulasi = allUserDonations.reduce((sum, d) => sum + d.nominalTotal, 0);
+    const frekuensi = allUserDonations.length;
+
+    await db
+      .update(schema.donors)
+      .set({
+        totalDonasiAkumulasi: totalAkumulasi,
+        frekuensiDonasi: frekuensi,
+        updatedAt: new Date(),
+      })
+      .where(eq(schema.donors.id, oldDonation.donorId));
+
+    return true;
+  } catch (error) {
+    console.error(`[DB] Error updating donation #${params.donationId}:`, error);
+    return false;
+  }
+}
+
 export async function verifyDonationStatus(
   donationId: number,
   status: 'lunas' | 'menunggu_verifikasi' | 'dibatalkan',
