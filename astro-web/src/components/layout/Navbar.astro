@@ -66,7 +66,14 @@ const currentPath = Astro.url.pathname;
       </a>
 
       <!-- Mobile Hamburger Toggle -->
-      <button type="button" class="isavo-mobile-toggle" id="isavo-toggle" aria-label="Buka Menu">
+      <button
+        type="button"
+        class="isavo-mobile-toggle"
+        id="isavo-toggle"
+        aria-label="Buka Menu Navigasi"
+        aria-expanded="false"
+        aria-controls="isavo-drawer"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -75,13 +82,13 @@ const currentPath = Astro.url.pathname;
   </div>
 
   <!-- Mobile Drawer -->
-  <div class="isavo-drawer" id="isavo-drawer">
+  <div class="isavo-drawer" id="isavo-drawer" role="dialog" aria-modal="true" aria-label="Menu Navigasi Mobile">
     <div class="isavo-drawer-panel">
       <div class="isavo-drawer-top">
         <div class="isavo-boxed-logo">
           <span>GVF</span>
         </div>
-        <button type="button" class="isavo-drawer-close" id="isavo-close">&times;</button>
+        <button type="button" class="isavo-drawer-close" id="isavo-close" aria-label="Tutup Menu Navigasi">&times;</button>
       </div>
       <nav class="isavo-drawer-nav">
         <a href="/">Home</a>
@@ -120,7 +127,7 @@ const currentPath = Astro.url.pathname;
     width: 100%;
     z-index: 999;
     background-color: transparent;
-    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   .isavo-header.fixed {
@@ -137,17 +144,16 @@ const currentPath = Astro.url.pathname;
     width: 100%;
     max-width: 100%;
     margin: 0;
-    padding: 18px 24px;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: padding 0.3s ease;
   }
 
   .isavo-header.fixed .isavo-header-inner {
     max-width: 100%;
     margin: 0;
-    padding: 12px 24px;
+    padding: 14px 24px;
   }
 
   /* 1. Boxed Logo ala ISAVO [ISAVO] */
@@ -313,12 +319,12 @@ const currentPath = Astro.url.pathname;
     letter-spacing: -0.01em;
   }
 
-  /* 4. Pill Button CTA ("Salurkan Donasi" Hijau Signature Pen.dev GVF) */
+  /* 4. Pill Button CTA ("Salurkan Donasi" Royal Blue Signature Pen.dev GVF) */
   .isavo-header-pill-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #006B3E;
+    background: #0969da;
     color: #ffffff;
     text-decoration: none;
     border-radius: 9999px;
@@ -328,13 +334,13 @@ const currentPath = Astro.url.pathname;
     font-weight: 700;
     letter-spacing: -0.01em;
     transition: all 0.25s ease;
-    box-shadow: 0 4px 16px rgba(0, 107, 62, 0.4);
+    box-shadow: 0 4px 16px rgba(9, 105, 218, 0.35);
   }
 
   .isavo-header-pill-btn:hover {
-    background: #005431;
+    background: #0752a8;
     transform: translateY(-2px);
-    box-shadow: 0 6px 22px rgba(0, 107, 62, 0.55);
+    box-shadow: 0 6px 22px rgba(9, 105, 218, 0.5);
   }
 
   .pill-calc-icon {
@@ -386,8 +392,8 @@ const currentPath = Astro.url.pathname;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background: rgba(255, 255, 255, 0.1);
     border: none;
     border-radius: 8px;
@@ -454,12 +460,17 @@ const currentPath = Astro.url.pathname;
     font-size: 2rem;
     cursor: pointer;
     line-height: 1;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .isavo-drawer-nav {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 0.5rem;
     flex: 1;
   }
 
@@ -468,10 +479,14 @@ const currentPath = Astro.url.pathname;
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 600;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
   }
 
   .isavo-drawer-nav a:hover {
-    color: #10b981;
+    color: #38bdf8;
   }
 
   .isavo-drawer-bottom {
@@ -514,14 +529,31 @@ const currentPath = Astro.url.pathname;
   const close = document.getElementById('isavo-close');
   const drawer = document.getElementById('isavo-drawer');
 
+  function openDrawer() {
+    drawer?.classList.add('open');
+    toggle?.setAttribute('aria-expanded', 'true');
+    close?.focus();
+  }
+
+  function closeDrawer() {
+    drawer?.classList.remove('open');
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.focus();
+  }
+
   if (toggle && close && drawer) {
-    toggle.addEventListener('click', () => drawer.classList.add('open'));
-    close.addEventListener('click', () => drawer.classList.remove('open'));
+    toggle.addEventListener('click', openDrawer);
+    close.addEventListener('click', closeDrawer);
     drawer.addEventListener('click', (e) => {
-      if (e.target === drawer) drawer.classList.remove('open');
+      if (e.target === drawer) closeDrawer();
     });
     drawer.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => drawer.classList.remove('open'));
+      a.addEventListener('click', closeDrawer);
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) {
+        closeDrawer();
+      }
     });
   }
 </script>

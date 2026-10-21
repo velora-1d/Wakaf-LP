@@ -476,10 +476,10 @@ export const programsData: Record<string, ProgramData> = {
 
   zakat: {
     slug: 'zakat',
-    title: 'Penyaluran Zakat Maal & Fitrah',
-    heroSubtitle: 'Tunaikan Kewajiban Rukun Islam ke-3, Bersihkan Harta dan Muliakan 8 Asnaf di Jonggol.',
-    categoryBadge: 'ZAKAT',
-    heroBgImage: '/gambar design/belakang masjid.jpg',
+    title: 'Zakat Maal & Profesi',
+    heroSubtitle: 'Tunaikan Kewajiban Zakat 2,5% untuk Beasiswa Fi Sabilillah & Kemandirian Santri Dhuafa di Jonggol.',
+    categoryBadge: 'ZAKAT MAAL',
+    heroBgImage: '/gambar design/interior masjid.jpg',
     
     pricingHeading: 'Pilihan Saluran Zakat Maal & Profesi',
     pricingSubheading: 'Tunaikan kewajiban zakat 2,5% secara amanah, tepat hisab, dan tepat sasaran. Disalurkan langsung untuk 8 asnaf, terutama beasiswa fi sabilillah dan kemandirian santri dhuafa di Sukasirna Jonggol.',
@@ -490,249 +490,244 @@ export const programsData: Record<string, ProgramData> = {
         subtitle: 'Zakat Profesi Karyawan & Profesional',
         pricePrefix: '',
         priceAmount: '2,5%',
-        priceUnit: '/ bulan',
-        priceDesc: 'Kadar 2,5% dari penghasilan bersih bulanan',
-        estimation: 'Nisab: Setara 524 kg beras (~Rp 7.500.000/bln)',
+        priceUnit: '',
+        priceDesc: 'Dari penghasilan bersih bulanan',
+        estimation: 'Kadar Zakat: 2,5% bulanan',
         isPopular: false,
         deliverables: [
-          { bold: 'Kadar Zakat 2,5%', text: 'Dipotong dari gaji bersih atau penghasilan bulanan' },
-          { bold: 'Nisab 524 kg Beras', text: 'Wajib ditunaikan jika penghasilan telah mencapai batas nisab' },
-          { bold: 'Penyaluran Beasiswa Vokasi', text: 'Langsung disalurkan untuk biaya belajar & hidup santri dhuafa' },
-          { bold: 'Bukti Setor Resmi', text: 'Dilengkapi bukti setor resmi yang sah dan legal' }
+          { bold: 'Kadar Zakat 2,5%', text: 'Dihitung dari penghasilan bersih bulanan' },
+          { bold: 'Nisab Setara 524 kg Beras', text: 'Standar nisab bulanan setara ~Rp 7.500.000/bln' },
+          { bold: 'Waktu Penunaian Fleksibel', text: 'Setiap menerima gaji atau akumulasi tahunan' },
+          { bold: 'Penyaluran Tepat Sasaran', text: 'Beasiswa biaya belajar & hidup santri dhuafa' },
+          { bold: 'Kwitansi BSZ Resmi', text: 'Mendapatkan Bukti Setor Zakat resmi pengurang pajak' },
+          { bold: 'Pengawasan Syariah', text: 'Dikelola di bawah panduan Dewan Pengawas Syariah' }
         ],
         ctaText: 'Tunaikan Zakat Profesi'
       },
       {
-        id: 'zakat-tabungan-emas',
-        title: 'Zakat Tabungan & Emas',
-        subtitle: 'Zakat Simpanan & Harta Mengendap',
+        id: 'zakat-maal-harta',
+        title: 'Zakat Maal (Harta)',
+        subtitle: 'Simpanan Kas, Tabungan & Emas',
         pricePrefix: '',
         priceAmount: '2,5%',
-        priceUnit: '/ tahun',
-        priceDesc: 'Kadar 2,5% dari simpanan mengendap 1 tahun',
-        estimation: 'Nisab: Setara 85 gram emas murni (haul 1 thn)',
+        priceUnit: '',
+        priceDesc: 'Dari total saldo akhir haul',
+        estimation: 'Nisab: 85 Gram Emas Murni',
         isPopular: true,
         deliverables: [
-          { bold: 'Nisab 85 Gram Emas Murni', text: 'Dihitung dari total tabungan, emas, dan deposito mengendap' },
-          { bold: 'Telah Mencapai Haul 1 Tahun', text: 'Telah genap kepemilikan selama 1 tahun hijriyah/masehi' },
-          { bold: 'Penyaluran 8 Asnaf Terverifikasi', text: 'Prioritas fakir miskin, gharimin, dan fi sabilillah di Jonggol' },
-          { bold: 'Pembersih Harta & Penolak Bala', text: 'Menyucikan harta simpanan dan mengundang keberkahan rezeki' }
+          { bold: 'Kadar Zakat 2,5%', text: 'Dari total saldo akhir setelah mencapai haul 1 tahun' },
+          { bold: 'Nisab 85 Gram Emas', text: 'Setara nilai simpanan emas murni (~Rp 115–125 Juta)' },
+          { bold: 'Syarat Haul 1 Tahun', text: 'Harta tersimpan mengendap selama 1 tahun penuh' },
+          { bold: 'Penyaluran Fi Sabilillah', text: 'Fasilitas santri fi sabilillah & pemberdayaan asnaf' },
+          { bold: 'Akad Zakat Syar\'i', text: 'Ijab qobul dan doa pensucian harta dari ustadz pembina' },
+          { bold: 'Laporan Audit Transparan', text: 'Rekapitulasi penyaluran dana zakat terverifikasi' }
         ],
-        ctaText: 'Tunaikan Zakat Tabungan'
+        ctaText: 'Tunaikan Zakat Maal'
       },
       {
-        id: 'zakat-perniagaan-bisnis',
+        id: 'zakat-perniagaan',
         title: 'Zakat Perniagaan',
-        subtitle: 'Zakat Usaha & Perusahaan Berkah',
+        subtitle: 'Usaha Dagang & Perusahaan',
         pricePrefix: '',
         priceAmount: '2,5%',
-        priceUnit: '/ tahun',
-        priceDesc: 'Kadar 2,5% dari aset lancar dikurangi hutang lancar',
-        estimation: 'Nisab: Setara 85 gram emas pada tutup buku',
+        priceUnit: '',
+        priceDesc: 'Dari nilai aset lancar bersih usaha',
+        estimation: 'Formula: Aset Lancar - Hutang Jangka Pendek',
         isPopular: false,
         deliverables: [
-          { bold: 'Rumus Hisab Zakat Bisnis', text: '[Aset Lancar + Kas + Piutang Lancar] - Hutang Jatuh Tempo' },
-          { bold: 'Konsultasi Akuntansi Syariah', text: 'Pendampingan gratis perhitungan hisab neraca bisnis Anda' },
-          { bold: 'Program Berdaya Santri Vokasi', text: 'Menumbuhkan wirausaha muda santri melalui teaching factory' },
-          { bold: 'Sertifikat Muzakki Perusahaan', text: 'Diterbitkan sertifikat resmi penunaian zakat korporasi' }
+          { bold: 'Kadar Zakat 2,5%', text: 'Dari nilai aset lancar bersih setelah tutup buku' },
+          { bold: 'Formula Hisab Bisnis', text: '(Aset Lancar + Piutang) - Hutang Jangka Pendek' },
+          { bold: 'Nisab & Haul Tahunan', text: 'Setara 85 gram emas setelah tutup buku tahunan' },
+          { bold: 'Penyaluran Produktif', text: 'Pembinaan santri wirausaha & agroteknopreneur' },
+          { bold: 'Kemitraan Korporat', text: 'Kerjasama CSR dan pemberdayaan ekonomi pesantren' },
+          { bold: 'Legalitas Lembaga Resmi', text: 'Tanda terima resmi lembaga amil berizin sah' }
         ],
         ctaText: 'Tunaikan Zakat Bisnis'
       }
     ],
-    addonTitle: 'Pilihan Saluran Zakat Khusus 8 Asnaf',
-    addonItems: [
-      {
-        name: 'Beasiswa Santri Fi Sabilillah',
-        desc: 'Bantuan biaya asrama, kitab, dan sertifikasi vokasi santri dhuafa',
-        price: 'Rp 500.000',
-        availability: 'Asnaf Fi Sabilillah'
-      },
-      {
-        name: 'Bantuan Fakir Miskin Sekitar',
-        desc: 'Santunan bahan pangan pokok bagi warga pra-sejahtera Sukasirna',
-        price: 'Rp 250.000',
-        availability: 'Asnaf Fakir & Miskin'
-      },
-      {
-        name: 'Kemandirian Usaha Mustahik',
-        desc: 'Modal bibit dan peralatan tani presisi untuk keluarga santri',
-        price: 'Rp 1.000.000',
-        availability: 'Asnaf Pemberdayaan Ekonomi'
-      },
-      {
-        name: 'Zakat Fitrah Beras 2,5 kg',
-        desc: 'Beras pulen berkualitas disalurkan tepat waktu sebelum shalat Id',
-        price: 'Rp 45.000',
-        availability: 'Musim Ramadhan'
-      },
-      {
-        name: 'Kafalah Guru & Dai Pedalaman',
-        desc: 'Honorarium dan sarana dakwah ustadz pembina santri di pelosok',
-        price: 'Rp 750.000',
-        availability: 'Asnaf Fi Sabilillah'
-      }
-    ],
+    // Addon table sengaja ditiadakan sesuai acuan Pen.dev (program-zakat.html)
+    addonItems: undefined,
     
-    deepDiveBadge: 'HAK 8 ASNAF',
-    deepDiveTitle: 'Transformasi Mustahik Menjadi Generasi Vokasi Mandiri',
-    deepDiveLead: 'Zakat di Global Village Fund dialokasikan untuk pemutusan siklus kemiskinan antargenerasi melalui pendidikan vokasi terapan dan pembinaan karakter FAST.',
-    deepDiveStory1: 'Sesuai dengan ketentuan syariat Surah At-Taubah ayat 60, zakat Anda disalurkan kepada asnaf yang berhak, khususnya asnaf Fi Sabilillah dan Ibnu Sabil. Para santri berbakat diberikan beasiswa penuh di SMK Skill Village Islamic School untuk menguasai keahlian teknologi industri, pertanian presisi, dan multimedia.',
-    deepDiveStory2: 'Dengan kurikulum terpadu berbasis alam dan adab, para santri dididik agar mandiri saat lulus, siap kerja, dan mampu merintis usaha, sehingga kelak mereka mengangkat martabat keluarganya dari penerima zakat (mustahik) menjadi pembayar zakat (muzakki).',
-    deepDiveBannerImage: '/gambar-bahan/kbm kelas 1.jpeg',
+    deepDiveBadge: 'URGENSI & DOKUMENTASI',
+    deepDiveTitle: 'Zakat Maal & Beasiswa Fi Sabilillah',
+    deepDiveLead: 'Program Zakat Global Village Fund difokuskan untuk memenuhi hak 8 golongan asnaf sesuai syariat Islam, dengan prioritas utama beasiswa pendidikan vokasi penuh bagi santri yatim, dhuafa, dan fi sabilillah di Pesantren Jonggol. Zakat yang Anda tunaikan menjadi jembatan kemandirian generasi muda.',
+    deepDiveStory1: 'Dari pemilihan kurikulum kejuruan agrotek hingga sarana asrama, setiap dana zakat disalurkan untuk menciptakan dampak berkelanjutan, bukan sekadar santunan konsumtif.',
+    deepDiveStory2: '',
+    deepDiveBannerImage: '/gambar design/learning studio & workshop.jpg',
     valueBoxes: [
       {
-        icon: 'check-circle',
-        title: '100% Hak Asnaf Terlindungi',
-        description: 'Dana zakat dipisahkan ketat dari dana infaq dan wakaf sesuai syariat.'
+        icon: 'shield-check',
+        title: 'Tepat Sasaran 8 Asnaf',
+        description: 'Disalurkan khusus bagi asnaf syariah yang berhak dengan prioritas fakir, miskin, dan fi sabilillah.'
       },
       {
-        icon: 'book-open',
-        title: 'Beasiswa Santri Vokasi',
-        description: 'Menjamin biaya pendidikan, sarana lab komputer, asrama, dan nutrisi sehat santri.'
+        icon: 'infinity',
+        title: 'Pengawasan Syariah',
+        description: 'Tata kelola hisab dan penyaluran disupervisi langsung oleh Dewan Pengawas Syariah bersertifikasi.'
       },
       {
-        icon: 'file-check',
-        title: 'Bukti Sah Pengurang Pajak',
-        description: 'Bukti setor zakat resmi diakui untuk pelaporan SPT tahunan PPh.'
+        icon: 'file-text',
+        title: 'Kemandirian Produktif',
+        description: 'Beasiswa vokasi yang membekali mustahiq keahlian industri sehingga bertransformasi menjadi muzakki.'
       },
       {
-        icon: 'users',
-        title: 'Penyaluran Produktif & Terukur',
-        description: 'Mencetak teknopreneur muda mandiri yang berdaya saing industri.'
+        icon: 'eye',
+        title: 'Laporan Terverifikasi',
+        description: 'Laporan keuangan dan bukti serah terima disajikan transparan, akuntabel, dan diaudit berkala.'
       }
     ],
+    deepDiveTwinImages: [
+      '/gambar design/skywalk learning room.jpg',
+      '/gambar design/gh learning area.jpg'
+    ],
+    deepDiveSubblock1Title: 'Prinsip Akuntabilitas Penyaluran Zakat',
+    deepDiveSubblock1Desc1: 'Setiap rupiah zakat dihisab secara presisi, diawasi oleh Dewan Pengawas Syariah, dan disalurkan secara produktif agar mustahiq bertransformasi menjadi muzakki baru yang berdaya.',
+    deepDiveSubblock1Desc2: 'Kami memastikan dana zakat tidak terbuang sia-sia pada hal konsumtif semata, melainkan menjadi modal masa depan santri penghafal Quran dan vokasi terapan.',
+    deepDiveSubblock2Title: 'Kisah Transformasi Santri Penerima Zakat',
+    deepDiveSubblock2Desc1: 'Diprioritaskan untuk santri dhuafa, anak yatim, fisabilillah, dan keluarga prasejahtera sekitar pesantren di Desa Sukasirna Jonggol.',
+    deepDiveSubblock2Desc2: 'Dengan beasiswa zakat penuh, santri dapat mengenyam pendidikan teknologi agribisnis dan menghafal 30 juz Al-Quran tanpa terkendala beban finansial.',
+    portfolioShowcaseItems: [
+      { tag: 'BEASISWA ZAKAT', name: 'Santri Beasiswa Vokasi', category: 'Taman Rafflesia', image: '/gambar design/learning studio & workshop.jpg' },
+      { tag: 'PEMBERDAYAAN', name: 'Keluarga Binaan Dhuafa', category: 'Rawalumbu', image: '/gambar design/gh learning area.jpg' },
+      { tag: 'FI SABILILLAH', name: 'Santri Tahfidz Fi Sabilillah', category: 'Pekayon', image: '/gambar design/interior masjid.jpg' },
+      { tag: 'KEMANDIRIAN', name: 'Unit Agropreneur Santri', category: 'Sukasirna Jonggol', image: '/gambar design/belakang masjid.jpg' }
+    ],
+    guarantees: [
+      'Tata kelola syariah diawasi Dewan Pengawas',
+      'Penyaluran tepat 8 asnaf prioritas',
+      'Bukti Setor Zakat (BSZ) resmi',
+      'Konsultasi hisab nisab & haul gratis',
+      'Laporan penyaluran transparan berkala',
+      'Pemberdayaan mustahiq menjadi muzakki',
+      'Akad ijab qobul syar\'i dan doa zakat',
+      'Kunjungan langsung ke pesantren Jonggol'
+    ],
     
-    galleryBadge: 'DOKUMENTASI KBM & PRESTASI SANTRI',
-    galleryTitle: 'Aktivitas Santri Penerima Manfaat Zakat',
-    gallerySubtitle: 'Dokumentasi nyata kegiatan pembelajaran vokasi terapan, kemandirian asrama, dan prestasi santri di kampus Jonggol.',
+    galleryBadge: 'DOKUMENTASI MUSTAHIQ & PENYALURAN',
+    galleryTitle: 'Pemberdayaan Asnaf & Transformasi Santri',
+    gallerySubtitle: 'Dokumentasi penyerahan beasiswa zakat dan pembinaan generasi muda mandiri di Jonggol.',
     galleryItems: [
       {
         id: 'gal-z1',
-        title: 'Praktik Pembelajaran Vokasi Santri',
-        category: 'Pendidikan Vokasi',
-        image: '/gambar-bahan/kbm kelas 1.jpeg',
-        status: 'Kegiatan Belajar Aktif',
-        caption: 'Santri vokasi mendalami materi teknologi dan rekayasa terapan untuk kesiapan kerja industri.'
+        title: 'Penyerahan Beasiswa Penuh Santri',
+        category: 'Beasiswa Fi Sabilillah',
+        image: '/gambar-bahan/pengajian rame.jpeg',
+        status: 'Penyaluran Rutin',
+        caption: 'Penerima manfaat zakat mendapatkan dukungan penuh biaya asrama dan perlengkapan studi vokasi.'
       },
       {
         id: 'gal-z2',
-        title: 'Kemandirian Belajar di Asrama',
-        category: 'Bina Karakter FAST',
-        image: '/gambar-bahan/belajar mandiri.jpeg',
-        status: 'Rutinitas Harian',
-        caption: 'Membentuk karakter pembelajar mandiri yang disiplin, tekun, dan berakhlak mulia.'
+        title: 'Praktik Agroteknologi Modern',
+        category: 'Kemandirian Mustahiq',
+        image: '/gambar-bahan/gh greenhouse.jpeg',
+        status: 'Pelatihan Kejuruan',
+        caption: 'Santri mustahiq dilatih keterampilan bertani presisi agar mandiri finansial di masa depan.'
       },
       {
         id: 'gal-z3',
-        title: 'Penguatan Adab & Keahlian Terapan',
-        category: 'Bimbingan Guru',
-        image: '/gambar-bahan/guru ngajar.jpeg',
-        status: 'Sesi Pembelajaran',
-        caption: 'Guru dan praktisi mengajar langsung di depan kelas untuk mengasah kompetensi santri.'
-      },
-      {
-        id: 'gal-z4',
-        title: 'Prestasi Juara Tingkat Nasional',
-        category: 'Dampak Nyata',
-        image: '/gambar-bahan/juara lomba.jpeg',
-        status: 'Prestasi Santri',
-        caption: 'Santri vokasi membuktikan keunggulan kompetensi dengan meraih prestasi kejuaraan membanggakan.'
+        title: 'Halaqah Tahfidz Quran Santri Zakat',
+        category: 'Pendidikan Al-Quran',
+        image: '/gambar-bahan/masjid 1.jpeg',
+        status: 'Halaqah Harian',
+        caption: 'Santri binaan zakat aktif menghafal Al-Quran dan mendalami ilmu syariah di masjid asrama.'
       }
     ],
     
-    workflowHeading: 'Alur 4 Langkah Pembayaran & Akad Zakat Sah',
+    workflowHeading: 'Tahapan Menunaikan Zakat Maal & Profesi',
     workflowSteps: [
       {
         number: '01',
-        title: 'Hitung Nisab & Harta',
-        description: 'Pastikan harta Anda telah mencapai batas nisab (setara 85 gram emas) dan haul (1 tahun) atau hitung zakat profesi bulanan.'
+        title: 'Hisab Harta & Nisab',
+        description: 'Hitung total saldo tabungan, emas, atau penghasilan bulanan Anda apakah sudah mencapai nisab syar\'i.'
       },
       {
         number: '02',
-        title: 'Lafazkan Ijab Qobul Zakat',
-        description: 'Berniat zakat karena Allah SWT untuk membersihkan harta dan memberikan hak fakir miskin.'
+        title: 'Kalkulasi 2,5%',
+        description: 'Keluarkan 2,5% dari total harta atau penghasilan bersih yang wajib dizakati.'
       },
       {
         number: '03',
-        title: 'Tunaikan Melalui Rekening Zakat Khusus',
-        description: 'Transfer ke rekening bank khusus zakat yang terpisah dari rekening operasional dan wakaf.'
+        title: 'Transfer Rekening Khusus Zakat',
+        description: 'Salurkan ke rekening resmi amil zakat GVF dengan akad ijab qobul yang sah.'
       },
       {
         number: '04',
-        title: 'Terima Bukti Setor & Doa Mustahik',
-        description: 'Dapatkan bukti kuitansi zakat elektronik resmi beserta doa keberkahan dari santri dan amil.'
+        title: 'Terima Bukti Setor Zakat (BSZ)',
+        description: 'Dapatkan BSZ resmi, doa keberkahan pensucian harta, dan laporan penyaluran ke mustahiq.'
       }
     ],
     
-    leadershipBadge: 'DEWAN SYARIAH & PENGELOLA ZAKAT',
-    leadershipTitle: 'Pengawasan Syariah Ketat Sesuai Fiqih 8 Asnaf',
-    leadershipQuote: '"Zakat adalah kewajiban yang ketentuannya telah ditetapkan Allah SWT secara rinci. Kami memastikan tidak ada satu rupiah pun dana zakat yang dialihkan di luar asnaf yang berhak."',
+    leadershipBadge: 'DEWAN PENGAWAS SYARIAH',
+    leadershipTitle: 'Diawasi Dewan Pengawas Syariah Berpengalaman',
+    leadershipQuote: '"Zakat adalah hak mustahiq yang Allah titipkan pada harta kita. Menyalurkannya secara tepat adalah kewajiban yang mendatangkan keberkahan abadi."',
     leaders: [
       {
-        name: 'Dr. H. Ahmad Fauzi, Lc., M.A.',
-        role: 'Ketua Dewan Pengawas Syariah',
-        credentials: 'Dewan Pakar Fiqih Muamalah DSN-MUI • Alumni Al-Azhar Kairo',
-        image: '/media-lp/pengurus-2.jpg',
-        quote: 'Memastikan hisab, akad, dan alokasi penerima manfaat zakat 100% patuh syariat.'
+        name: 'Ust. H. Rahmat Hidayat, S.Pd.I.',
+        role: 'Dewan Pengawas Syariah & Asnaf Validator',
+        credentials: 'Ahli Fiqih Zakat & Muamalah',
+        image: '/media-lp/pengurus-4.jpg',
+        quote: 'Memastikan hisab dan distribusi zakat 100% tepat sasaran sesuai kaidah 8 asnaf.'
       },
       {
         name: 'Ir. H. M. Hakim, M.M.',
-        role: 'Pimpinan Lembaga Filantropi GVF',
-        credentials: 'Praktisi Manajemen Akuntabilitas Dana Publik',
+        role: 'Ketua Yayasan Global Village Fund',
+        credentials: 'Penanggung Jawab Program Mustahiq Produktif',
         image: '/media-lp/pengurus-1.jpg',
-        quote: 'Menjamin dana zakat terserap efisien untuk menumbuhkan santri menjadi generasi mandiri yang berdaya.'
+        quote: 'Mengarahkan zakat untuk beasiswa vokasi berkelanjutan agar mustahiq mandiri.'
       }
     ],
     
-    legalitasBadge: 'IZIN AMIL & REKENING ZAKAT',
-    legalitasTitle: 'Legalitas Pengelolaan Zakat & Nomor Rekening Khusus',
+    legalitasBadge: 'LEGALITAS AMIL & REKENING ZAKAT',
+    legalitasTitle: 'Rekening Resmi Penampungan Dana Zakat',
     legalities: [
       {
-        institution: 'Kementerian Agama RI',
-        regNumber: 'Izin Operasional Pengelola ZISWAF No. 412/2026',
-        authority: 'Izin Penghimpunan dan Pendistribusian Dana Zakat',
-        description: 'Lembaga terakreditasi dalam tata kelola amil zakat terpercaya.'
-      },
-      {
-        institution: 'Dewan Syariah Nasional (DSN-MUI)',
-        regNumber: 'Fatwa Kepatuhan Syariah No. U-118/DSN-MUI/2026',
-        authority: 'Kepatuhan Alokasi 8 Asnaf',
-        description: 'Telah diaudit dan dinyatakan patuh terhadap kaidah fiqih zakat.'
+        institution: 'Kemenkumham RI',
+        regNumber: 'AHU-0014285.AH.01.04.Tahun 2026',
+        authority: 'Izin Lembaga Filantropi & Pengelola ZISWAF',
+        description: 'Pengelolaan dana zakat amanah, transparan, dan terdaftar resmi.'
       }
     ],
     bankAccounts: [
       {
-        bankName: 'Bank Syariah Indonesia (BSI) - Khusus Zakat',
-        accountNumber: '7238890045',
-        accountHolder: 'Yayasan GVF - Zakat Maal & Profesi',
+        bankName: 'Bank Syariah Indonesia (BSI) - Rekening Khusus Zakat',
+        accountNumber: '7238890042',
+        accountHolder: 'Yayasan GVF - Zakat Mustahiq',
         code: '451'
       },
       {
-        bankName: 'Bank Mandiri - Khusus Zakat',
+        bankName: 'Bank Mandiri - Zakat Umat',
         accountNumber: '1330024589928',
-        accountHolder: 'Yayasan Global Village Fund Zakat',
+        accountHolder: 'Yayasan Global Village Fund',
         code: '008'
       }
     ],
     
     faqBadge: 'FAQ ZAKAT',
-    faqTitle: 'Pertanyaan Fiqih Seputar Penunaian Zakat',
+    faqTitle: 'Pertanyaan Seputar Zakat Maal & Profesi',
     faqs: [
       {
-        question: 'Bagaimana cara menghitung zakat profesi bulanan?',
-        answer: 'Zakat profesi dihitung 2.5% dari penghasilan kotor atau bersih per bulan jika akumulasi setahunnya telah mencapai nisab setara 85 gram emas (sekitar Rp 10.270.833 per bulan sesuai harga emas terkini).'
+        question: 'Siapa saja yang berhak menerima zakat (asnaf) di Global Village Fund?',
+        answer: 'Zakat diprioritaskan bagi santri yatim, dhuafa, dan fi sabilillah di Pesantren Jonggol dalam bentuk beasiswa pendidikan penuh dan kebutuhan asrama, bukan sekadar bantuan konsumtif, tetapi beasiswa vokasi kejuruan yang mencetak keahlian masa depan.'
       },
       {
-        question: 'Apakah dana zakat boleh dipakai untuk membangun gedung pesantren?',
-        answer: 'Di GVF, pembangunan fisik gedung didanai oleh Wakaf dan Infaq. Dana zakat dikhususkan untuk hak asnaf (seperti beasiswa penuh pendidikan vokasi, asrama, sarana lab komputer, dan konsumsi sehat santri berdaya sebagai asnaf Fi Sabilillah dan Ibnu Sabil).'
+        question: 'Bagaimana cara menghitung nisab zakat penghasilan dan zakat maal?',
+        answer: 'Nisab zakat profesi setara 524 kg beras (~Rp 7,5 juta/bulan) dengan kadar 2,5%. Sedangkan nisab zakat maal setara 85 gram emas murni yang telah mengendap selama 1 tahun (haul).'
       },
       {
-        question: 'Apakah bukti setor zakat di GVF dapat mengurangi pajak penghasilan?',
-        answer: 'Ya, kuitansi resmi zakat yang diterbitkan lembaga berizin dapat dilampirkan sebagai bukti pengurang penghasilan bruto dalam pelaporan SPT Tahunan PPh Orang Pribadi maupun Badan.'
+        question: 'Apakah saya mendapatkan Bukti Setor Zakat (BSZ) resmi untuk pengurang pajak?',
+        answer: 'Ya, muzakki yang menunaikan zakat melalui Yayasan Global Village Fund akan mendapatkan Bukti Setor Zakat (BSZ) resmi yang diakui sebagai pengurang penghasilan kena pajak.'
+      },
+      {
+        question: 'Kapan waktu terbaik menunaikan zakat maal dan zakat profesi?',
+        answer: 'Zakat profesi paling utama ditunaikan setiap kali menerima penghasilan atau gaji bulanan. Zakat maal ditunaikan ketika harta simpanan telah genap mencapai haul 1 tahun hijriyah atau masehi.'
+      },
+      {
+        question: 'Kwitansi bukti setor zakat resmi (BSZ) dan laporan penyaluran berkala yang transparan.',
+        answer: 'Setiap pembayaran zakat langsung diterbitkan kwitansi resmi digital dan dialokasikan ke rekening khusus mustahiq dengan laporan foto berkala.'
       }
     ],
-    ctaBannerHeading: 'Konsultasi Perhitungan Zakat Bersama Amil Ahli',
-    ctaBannerText: 'Bingung menghitung zakat saham, tabungan, atau aset perdagangan Anda? Konsultasikan gratis bersama konsultan fiqih kami.'
+    ctaBannerHeading: 'Bersihkan Harta & Berdayakan Mustahiq',
+    ctaBannerText: 'Tunaikan zakat maal dan profesi Anda hari ini untuk mencetak generasi santri dhuafa yang mandiri dan berakhlak mulia.'
   },
 
   infaq: {
@@ -1261,261 +1256,6 @@ export const programsData: Record<string, ProgramData> = {
     ],
     ctaBannerHeading: 'Jadikan Sedekah Nutrisi Sebagai Amalan Rutin',
     ctaBannerText: 'Simpan nomor rekening atau QRIS resmi GVF untuk memudahkan Anda berbagi nutrisi bagi para penuntut ilmu setiap hari.'
-  },
-
-  zakat: {
-    slug: 'zakat',
-    title: 'Zakat Maal & Profesi',
-    heroSubtitle: 'Tunaikan Kewajiban Zakat 2,5% untuk Beasiswa Fi Sabilillah & Kemandirian Santri Dhuafa di Jonggol.',
-    categoryBadge: 'ZAKAT MAAL',
-    heroBgImage: '/gambar design/interior masjid.jpg',
-    
-    pricingHeading: 'Pilihan Saluran Zakat Maal & Profesi',
-    pricingSubheading: 'Tunaikan kewajiban zakat 2,5% secara amanah, tepat hisab, dan tepat sasaran. Disalurkan langsung untuk 8 asnaf, terutama beasiswa fi sabilillah dan kemandirian santri dhuafa di Sukasirna Jonggol.',
-    packages: [
-      {
-        id: 'zakat-penghasilan',
-        title: 'Zakat Penghasilan',
-        subtitle: 'Zakat Profesi Karyawan & Profesional',
-        pricePrefix: '',
-        priceAmount: '2,5%',
-        priceUnit: '',
-        priceDesc: 'Dari penghasilan bersih bulanan',
-        estimation: 'Kadar Zakat: 2,5% bulanan',
-        isPopular: false,
-        deliverables: [
-          { bold: 'Kadar Zakat 2,5%', text: 'Dihitung dari penghasilan bersih bulanan' },
-          { bold: 'Nisab Setara 524 kg Beras', text: 'Standar nisab bulanan setara ~Rp 7.500.000/bln' },
-          { bold: 'Waktu Penunaian Fleksibel', text: 'Setiap menerima gaji atau akumulasi tahunan' },
-          { bold: 'Penyaluran Tepat Sasaran', text: 'Beasiswa biaya belajar & hidup santri dhuafa' },
-          { bold: 'Kwitansi BSZ Resmi', text: 'Mendapatkan Bukti Setor Zakat resmi pengurang pajak' },
-          { bold: 'Pengawasan Syariah', text: 'Dikelola di bawah panduan Dewan Pengawas Syariah' }
-        ],
-        ctaText: 'Tunaikan Zakat Profesi'
-      },
-      {
-        id: 'zakat-maal-harta',
-        title: 'Zakat Maal (Harta)',
-        subtitle: 'Simpanan Kas, Tabungan & Emas',
-        pricePrefix: '',
-        priceAmount: '2,5%',
-        priceUnit: '',
-        priceDesc: 'Dari total saldo akhir haul',
-        estimation: 'Nisab: 85 Gram Emas Murni',
-        isPopular: true,
-        deliverables: [
-          { bold: 'Kadar Zakat 2,5%', text: 'Dari total saldo akhir setelah mencapai haul 1 tahun' },
-          { bold: 'Nisab 85 Gram Emas', text: 'Setara nilai simpanan emas murni (~Rp 115–125 Juta)' },
-          { bold: 'Syarat Haul 1 Tahun', text: 'Harta tersimpan mengendap selama 1 tahun penuh' },
-          { bold: 'Penyaluran Fi Sabilillah', text: 'Fasilitas santri fi sabilillah & pemberdayaan asnaf' },
-          { bold: 'Akad Zakat Syar\'i', text: 'Ijab qobul dan doa pensucian harta dari ustadz pembina' },
-          { bold: 'Laporan Audit Transparan', text: 'Rekapitulasi penyaluran dana zakat terverifikasi' }
-        ],
-        ctaText: 'Tunaikan Zakat Maal'
-      },
-      {
-        id: 'zakat-perniagaan',
-        title: 'Zakat Perniagaan',
-        subtitle: 'Usaha Dagang & Perusahaan',
-        pricePrefix: '',
-        priceAmount: '2,5%',
-        priceUnit: '',
-        priceDesc: 'Dari nilai aset lancar bersih usaha',
-        estimation: 'Formula: Aset Lancar - Hutang Jangka Pendek',
-        isPopular: false,
-        deliverables: [
-          { bold: 'Kadar Zakat 2,5%', text: 'Dari nilai aset lancar bersih setelah tutup buku' },
-          { bold: 'Formula Hisab Bisnis', text: '(Aset Lancar + Piutang) - Hutang Jangka Pendek' },
-          { bold: 'Nisab & Haul Tahunan', text: 'Setara 85 gram emas setelah tutup buku tahunan' },
-          { bold: 'Penyaluran Produktif', text: 'Pembinaan santri wirausaha & agroteknopreneur' },
-          { bold: 'Kemitraan Korporat', text: 'Kerjasama CSR dan pemberdayaan ekonomi pesantren' },
-          { bold: 'Legalitas Lembaga Resmi', text: 'Tanda terima resmi lembaga amil berizin sah' }
-        ],
-        ctaText: 'Tunaikan Zakat Bisnis'
-      }
-    ],
-    // Addon table sengaja ditiadakan sesuai acuan Pen.dev (program-zakat.html)
-    addonItems: undefined,
-    
-    deepDiveBadge: 'URGENSI & DOKUMENTASI',
-    deepDiveTitle: 'Zakat Maal & Beasiswa Fi Sabilillah',
-    deepDiveLead: 'Program Zakat Global Village Fund difokuskan untuk memenuhi hak 8 golongan asnaf sesuai syariat Islam, dengan prioritas utama beasiswa pendidikan vokasi penuh bagi santri yatim, dhuafa, dan fi sabilillah di Pesantren Jonggol. Zakat yang Anda tunaikan menjadi jembatan kemandirian generasi muda.',
-    deepDiveStory1: 'Dari pemilihan kurikulum kejuruan agrotek hingga sarana asrama, setiap dana zakat disalurkan untuk menciptakan dampak berkelanjutan, bukan sekadar santunan konsumtif.',
-    deepDiveStory2: '',
-    deepDiveBannerImage: '/gambar design/learning studio & workshop.jpg',
-    valueBoxes: [
-      {
-        icon: 'shield-check',
-        title: 'Tepat Sasaran 8 Asnaf',
-        description: 'Disalurkan khusus bagi asnaf syariah yang berhak dengan prioritas fakir, miskin, dan fi sabilillah.'
-      },
-      {
-        icon: 'infinity',
-        title: 'Pengawasan Syariah',
-        description: 'Tata kelola hisab dan penyaluran disupervisi langsung oleh Dewan Pengawas Syariah bersertifikasi.'
-      },
-      {
-        icon: 'file-text',
-        title: 'Kemandirian Produktif',
-        description: 'Beasiswa vokasi yang membekali mustahiq keahlian industri sehingga bertransformasi menjadi muzakki.'
-      },
-      {
-        icon: 'eye',
-        title: 'Laporan Terverifikasi',
-        description: 'Laporan keuangan dan bukti serah terima disajikan transparan, akuntabel, dan diaudit berkala.'
-      }
-    ],
-    deepDiveTwinImages: [
-      '/gambar design/skywalk learning room.jpg',
-      '/gambar design/gh learning area.jpg'
-    ],
-    deepDiveSubblock1Title: 'Prinsip Akuntabilitas Penyaluran Zakat',
-    deepDiveSubblock1Desc1: 'Setiap rupiah zakat dihisab secara presisi, diawasi oleh Dewan Pengawas Syariah, dan disalurkan secara produktif agar mustahiq bertransformasi menjadi muzakki baru yang berdaya.',
-    deepDiveSubblock1Desc2: 'Kami memastikan dana zakat tidak terbuang sia-sia pada hal konsumtif semata, melainkan menjadi modal masa depan santri penghafal Quran dan vokasi terapan.',
-    deepDiveSubblock2Title: 'Kisah Transformasi Santri Penerima Zakat',
-    deepDiveSubblock2Desc1: 'Diprioritaskan untuk santri dhuafa, anak yatim, fisabilillah, dan keluarga prasejahtera sekitar pesantren di Desa Sukasirna Jonggol.',
-    deepDiveSubblock2Desc2: 'Dengan beasiswa zakat penuh, santri dapat mengenyam pendidikan teknologi agribisnis dan menghafal 30 juz Al-Quran tanpa terkendala beban finansial.',
-    portfolioShowcaseItems: [
-      { tag: 'BEASISWA ZAKAT', name: 'Santri Beasiswa Vokasi', category: 'Taman Rafflesia', image: '/gambar design/learning studio & workshop.jpg' },
-      { tag: 'PEMBERDAYAAN', name: 'Keluarga Binaan Dhuafa', category: 'Rawalumbu', image: '/gambar design/gh learning area.jpg' },
-      { tag: 'FI SABILILLAH', name: 'Santri Tahfidz Fi Sabilillah', category: 'Pekayon', image: '/gambar design/interior masjid.jpg' },
-      { tag: 'KEMANDIRIAN', name: 'Unit Agropreneur Santri', category: 'Sukasirna Jonggol', image: '/gambar design/belakang masjid.jpg' }
-    ],
-    guarantees: [
-      'Tata kelola syariah diawasi Dewan Pengawas',
-      'Penyaluran tepat 8 asnaf prioritas',
-      'Bukti Setor Zakat (BSZ) resmi',
-      'Konsultasi hisab nisab & haul gratis',
-      'Laporan penyaluran transparan berkala',
-      'Pemberdayaan mustahiq menjadi muzakki',
-      'Akad ijab qobul syar\'i dan doa zakat',
-      'Kunjungan langsung ke pesantren Jonggol'
-    ],
-    
-    galleryBadge: 'DOKUMENTASI MUSTAHIQ & PENYALURAN',
-    galleryTitle: 'Pemberdayaan Asnaf & Transformasi Santri',
-    gallerySubtitle: 'Dokumentasi penyerahan beasiswa zakat dan pembinaan generasi muda mandiri di Jonggol.',
-    galleryItems: [
-      {
-        id: 'gal-z1',
-        title: 'Penyerahan Beasiswa Penuh Santri',
-        category: 'Beasiswa Fi Sabilillah',
-        image: '/gambar-bahan/pengajian rame.jpeg',
-        status: 'Penyaluran Rutin',
-        caption: 'Penerima manfaat zakat mendapatkan dukungan penuh biaya asrama dan perlengkapan studi vokasi.'
-      },
-      {
-        id: 'gal-z2',
-        title: 'Praktik Agroteknologi Modern',
-        category: 'Kemandirian Mustahiq',
-        image: '/gambar-bahan/gh greenhouse.jpeg',
-        status: 'Pelatihan Kejuruan',
-        caption: 'Santri mustahiq dilatih keterampilan bertani presisi agar mandiri finansial di masa depan.'
-      },
-      {
-        id: 'gal-z3',
-        title: 'Halaqah Tahfidz Quran Santri Zakat',
-        category: 'Pendidikan Al-Quran',
-        image: '/gambar-bahan/masjid 1.jpeg',
-        status: 'Halaqah Harian',
-        caption: 'Santri binaan zakat aktif menghafal Al-Quran dan mendalami ilmu syariah di masjid asrama.'
-      }
-    ],
-    
-    workflowHeading: 'Tahapan Menunaikan Zakat Maal & Profesi',
-    workflowSteps: [
-      {
-        number: '01',
-        title: 'Hisab Harta & Nisab',
-        description: 'Hitung total saldo tabungan, emas, atau penghasilan bulanan Anda apakah sudah mencapai nisab syar\'i.'
-      },
-      {
-        number: '02',
-        title: 'Kalkulasi 2,5%',
-        description: 'Keluarkan 2,5% dari total harta atau penghasilan bersih yang wajib dizakati.'
-      },
-      {
-        number: '03',
-        title: 'Transfer Rekening Khusus Zakat',
-        description: 'Salurkan ke rekening resmi amil zakat GVF dengan akad ijab qobul yang sah.'
-      },
-      {
-        number: '04',
-        title: 'Terima Bukti Setor Zakat (BSZ)',
-        description: 'Dapatkan BSZ resmi, doa keberkahan pensucian harta, dan laporan penyaluran ke mustahiq.'
-      }
-    ],
-    
-    leadershipBadge: 'DEWAN PENGAWAS SYARIAH',
-    leadershipTitle: 'Diawasi Dewan Pengawas Syariah Berpengalaman',
-    leadershipQuote: '"Zakat adalah hak mustahiq yang Allah titipkan pada harta kita. Menyalurkannya secara tepat adalah kewajiban yang mendatangkan keberkahan abadi."',
-    leaders: [
-      {
-        name: 'Ust. H. Rahmat Hidayat, S.Pd.I.',
-        role: 'Dewan Pengawas Syariah & Asnaf Validator',
-        credentials: 'Ahli Fiqih Zakat & Muamalah',
-        image: '/media-lp/pengurus-4.jpg',
-        quote: 'Memastikan hisab dan distribusi zakat 100% tepat sasaran sesuai kaidah 8 asnaf.'
-      },
-      {
-        name: 'Ir. H. M. Hakim, M.M.',
-        role: 'Ketua Yayasan Global Village Fund',
-        credentials: 'Penanggung Jawab Program Mustahiq Produktif',
-        image: '/media-lp/pengurus-1.jpg',
-        quote: 'Mengarahkan zakat untuk beasiswa vokasi berkelanjutan agar mustahiq mandiri.'
-      }
-    ],
-    
-    legalitasBadge: 'LEGALITAS AMIL & REKENING ZAKAT',
-    legalitasTitle: 'Rekening Resmi Penampungan Dana Zakat',
-    legalities: [
-      {
-        institution: 'Kemenkumham RI',
-        regNumber: 'AHU-0014285.AH.01.04.Tahun 2026',
-        authority: 'Izin Lembaga Filantropi & Pengelola ZISWAF',
-        description: 'Pengelolaan dana zakat amanah, transparan, dan terdaftar resmi.'
-      }
-    ],
-    bankAccounts: [
-      {
-        bankName: 'Bank Syariah Indonesia (BSI) - Rekening Khusus Zakat',
-        accountNumber: '7238890042',
-        accountHolder: 'Yayasan GVF - Zakat Mustahiq',
-        code: '451'
-      },
-      {
-        bankName: 'Bank Mandiri - Zakat Umat',
-        accountNumber: '1330024589928',
-        accountHolder: 'Yayasan Global Village Fund',
-        code: '008'
-      }
-    ],
-    
-    faqBadge: 'FAQ ZAKAT',
-    faqTitle: 'Pertanyaan Seputar Zakat Maal & Profesi',
-    faqs: [
-      {
-        question: 'Siapa saja yang berhak menerima zakat (asnaf) di Global Village Fund?',
-        answer: 'Zakat diprioritaskan bagi santri yatim, dhuafa, dan fi sabilillah di Pesantren Jonggol dalam bentuk beasiswa pendidikan penuh dan kebutuhan asrama, bukan sekadar bantuan konsumtif, tetapi beasiswa vokasi kejuruan yang mencetak keahlian masa depan.'
-      },
-      {
-        question: 'Bagaimana cara menghitung nisab zakat penghasilan dan zakat maal?',
-        answer: 'Nisab zakat profesi setara 524 kg beras (~Rp 7,5 juta/bulan) dengan kadar 2,5%. Sedangkan nisab zakat maal setara 85 gram emas murni yang telah mengendap selama 1 tahun (haul).'
-      },
-      {
-        question: 'Apakah saya mendapatkan Bukti Setor Zakat (BSZ) resmi untuk pengurang pajak?',
-        answer: 'Ya, muzakki yang menunaikan zakat melalui Yayasan Global Village Fund akan mendapatkan Bukti Setor Zakat (BSZ) resmi yang diakui sebagai pengurang penghasilan kena pajak.'
-      },
-      {
-        question: 'Kapan waktu terbaik menunaikan zakat maal dan zakat profesi?',
-        answer: 'Zakat profesi paling utama ditunaikan setiap kali menerima penghasilan atau gaji bulanan. Zakat maal ditunaikan ketika harta simpanan telah genap mencapai haul 1 tahun hijriyah atau masehi.'
-      },
-      {
-        question: 'Kwitansi bukti setor zakat resmi (BSZ) dan laporan penyaluran berkala yang transparan.',
-        answer: 'Setiap pembayaran zakat langsung diterbitkan kwitansi resmi digital dan dialokasikan ke rekening khusus mustahiq dengan laporan foto berkala.'
-      }
-    ],
-    ctaBannerHeading: 'Bersihkan Harta & Berdayakan Mustahiq',
-    ctaBannerText: 'Tunaikan zakat maal dan profesi Anda hari ini untuk mencetak generasi santri dhuafa yang mandiri dan berakhlak mulia.'
   }
 };
+

@@ -1,15 +1,21 @@
 # Kanban Board: Pen.dev Alignment (Per Section)
 
 ## To Do
-- [ ] IMPECCABLE-02: Penguatan Aksesibilitas Kritis (Pause Carousel Hero, ARIA Tab Layanan, Focus Trap Modal & Label Form)
-- [ ] IMPECCABLE-03: Optimasi Performa & Anti-Slop Layout (Eliminasi Layout Thrashing Width/Padding, Touch Target 44px, Eliminasi Gradien AI)
+- [ ] CMS-FASE-04: Dashboard Admin UI & Section Manager Editor (/admin, /admin/pages/[slug])
+- [ ] CMS-FASE-05: Integrasi SSR Dynamic Sections & Toggle Visibility di Frontend Publik
+- [ ] CMS-FASE-06: Uji Coba End-to-End Realtime Section Management
 
 ## In Progress
-- [/] IMPECCABLE-01: Standardisasi Tipografi & Palet Warna Royal Blue (Golos Text & Royal Blue #0969da/#0752a8, eliminasi Inter & #006B3E)
+- [/] CMS-FASE-03: Sistem Autentikasi Admin, Session Cookie & Halaman Login (/admin/login)
 
 ## In Review / Test
 
 ## Done
+- [x] IMPECCABLE-03: Optimasi Performa & Anti-Slop Layout (Eliminasi Layout Thrashing Width/Padding, Touch Target 44px, Eliminasi Gradien AI)
+- [x] CMS-FASE-02: Skema PostgreSQL & Seeding Awal Seluruh Halaman & Section
+- [x] CMS-FASE-01: Setup Astro Adapter SSR (@astrojs/node) & Database Client (Drizzle ORM / postgres)
+- [x] IMPECCABLE-02: Penguatan Aksesibilitas Kritis (Pause Carousel Hero, ARIA Tab Layanan, Focus Trap Modal & Label Form)
+- [x] IMPECCABLE-01: Standardisasi Tipografi & Palet Warna Royal Blue (Golos Text & Royal Blue #0969da/#0752a8, eliminasi Inter & #006B3E)
 - [x] ELASTIC-GALLERY-CENTER: Presisikan Elastic Gallery Accordion agar mengisi penuh 100% kontainer dan terpusat simetris
 - [x] ABOUT-GALLERY-ELASTIC: Ganti Galeri Tentang Kami ke Elastic Gallery (Horizontal Accordion)
 - [x] 3D-GALLERY-01: Optimasi 3D Parallax Gallery (Light Mode, Full Viewport, Ringan 60fps & Eliminasi Teks Berulang)

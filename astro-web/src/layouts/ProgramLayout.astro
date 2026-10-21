@@ -52,9 +52,9 @@ const valueBoxIcons = [
         class="pen-hero-breadcrumb flex items-center justify-center"
         style="font-family: 'Cal Sans', system-ui, sans-serif; font-size: 13px; line-height: 16px; font-weight: 500; text-transform: uppercase;"
       >
-        <a href="/" style="color: #ffffff; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color='#ffffff'">BERANDA</a>
+        <a href="/" style="color: #ffffff; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#38bdf8'" onmouseout="this.style.color='#ffffff'">BERANDA</a>
         <span style="color: #ffffff; padding: 0 8px;">-</span>
-        <span style="color: #006B3E; font-weight: 600; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));">{program.categoryBadge}</span>
+        <span style="color: #0969da; font-weight: 600; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));">{program.categoryBadge}</span>
       </div>
     </div>
   </section>
@@ -81,11 +81,11 @@ const valueBoxIcons = [
                   href={`/program/${link.slug}`}
                   style={`display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 12px; text-decoration: none; font-family: 'Cal Sans', sans-serif; font-size: 15px; transition: all 0.2s; ${
                     link.slug === program.slug
-                      ? 'background-color: #006B3E; color: #ffffff !important;'
+                      ? 'background-color: #0969da; color: #ffffff !important;'
                       : 'color: #191919; background-color: #f8fafc; border: 1px solid #e2e8f0;'
                   }`}
                 >
-                  <span style={`width: 7px; height: 7px; border-radius: 50%; shrink: 0; ${link.slug === program.slug ? 'background-color: #ffffff;' : 'background-color: #006B3E;'}`}></span>
+                  <span style={`width: 7px; height: 7px; border-radius: 50%; shrink: 0; ${link.slug === program.slug ? 'background-color: #ffffff;' : 'background-color: #0969da;'}`}></span>
                   <span>{link.name}</span>
                 </a>
               </li>
@@ -232,9 +232,9 @@ const valueBoxIcons = [
             <div style="display: flex; justify-content: center; margin: 30px 0 50px 0;">
               <a
                 href="/portofolio"
-                style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background-color: #006B3E; color: #ffffff; border-radius: 9999px; text-decoration: none; font-family: 'Cal Sans', sans-serif; font-size: 15px; font-weight: 500; transition: background-color 0.2s;"
-                onmouseover="this.style.backgroundColor='#005230'"
-                onmouseout="this.style.backgroundColor='#006B3E'"
+                style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background-color: #0969da; color: #ffffff; border-radius: 9999px; text-decoration: none; font-family: 'Cal Sans', sans-serif; font-size: 15px; font-weight: 500; transition: background-color 0.2s;"
+                onmouseover="this.style.backgroundColor='#0752a8'"
+                onmouseout="this.style.backgroundColor='#0969da'"
               >
                 <span>Lihat Lebih Banyak</span>
                 <span>&rarr;</span>
@@ -273,7 +273,7 @@ const valueBoxIcons = [
       <!-- Header FAQ Pen.dev -->
       <div style="text-align: center; margin-bottom: 50px;">
         <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid #72727240; border-radius: 9999px; padding: 6px 18px; background: #ffffff; margin-bottom: 16px;">
-          <span style="width: 6px; height: 6px; border-radius: 50%; background-color: #006B3E;"></span>
+          <span style="width: 6px; height: 6px; border-radius: 50%; background-color: #0969da;"></span>
           <span style="font-family: 'Cal Sans', sans-serif; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; color: #191919;">FAQ</span>
         </div>
         <h2 style="font-family: 'Cal Sans', sans-serif; font-size: clamp(28px, 4vw, 48px); color: #0f172a; margin: 0; font-weight: normal; line-height: 1.2;">
@@ -285,9 +285,9 @@ const valueBoxIcons = [
       <div style="max-width: 100%; margin: 0 auto; display: flex; flex-direction: column;">
         {program.faqs.map((faq, idx) => (
           <details style="border-top: 1px solid rgba(159, 159, 164, 0.24); padding: 0;" open={idx === 0}>
-            <summary style="list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 22px 0; cursor: pointer; font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #191919; transition: color 0.2s;" onmouseover="this.style.color='#006B3E'" onmouseout="this.style.color='#191919'">
+            <summary style="list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 22px 0; cursor: pointer; font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #191919; transition: color 0.2s;" onmouseover="this.style.color='#0969da'" onmouseout="this.style.color='#191919'">
               <span style="padding-right: 20px;">{faq.question}</span>
-              <span style="font-size: 20px; font-weight: bold; color: #006B3E; flex-shrink: 0; width: 24px; text-align: center;">+</span>
+              <span style="font-size: 20px; font-weight: bold; color: #0969da; flex-shrink: 0; width: 24px; text-align: center;">+</span>
             </summary>
             <div style="padding: 0 0 32px 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; line-height: 27px; color: #4d4d52; max-width: 1100px;">
               <p style="margin: 0;">{faq.answer}</p>
@@ -2244,7 +2244,7 @@ const valueBoxIcons = [
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: #006B3E;
+    background: #0969da;
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -2375,8 +2375,8 @@ const valueBoxIcons = [
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #e8f5e9;
-    color: #006B3E;
+    background: rgba(9, 105, 218, 0.1);
+    color: #0969da;
     font-weight: 700;
     font-size: 13px;
     flex-shrink: 0;
