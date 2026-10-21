@@ -1,0 +1,836 @@
+---
+// src/pages/tentang-kami.astro
+// Halaman Profil & Tentang Kami Sesuai Desain Pen.dev (Node BtC15)
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ElasticGallery from '../components/ui/ElasticGallery.astro';
+---
+
+<BaseLayout
+  title="Tentang Global Village Fund • Yayasan Permata Cendekia Indonesia"
+  description="Membangun ekosistem pesantren integratif holistik di Sukasirna, Jonggol, Kabupaten Bogor menuju kemandirian dan kebermanfaatan abadi."
+>
+  <!-- 1. Header Banner & Breadcrumb ala Pen.dev -->
+  <section class="pen-about-banner">
+    <div class="pen-banner-bg"></div>
+    <div class="pen-banner-overlay"></div>
+    <div class="pen-banner-container">
+      <h1 class="pen-banner-title">Tentang Global Village Fund</h1>
+      <div class="pen-breadcrumb-wrap">
+        <a href="/" class="pen-breadcrumb-link">BERANDA</a>
+        <span class="pen-breadcrumb-sep">-</span>
+        <span class="pen-breadcrumb-current">TENTANG KAMI</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Section Tentang Kami (Stat & Narrative Split) -->
+  <section class="pen-about-intro">
+    <div class="pen-container">
+      <div class="pen-intro-grid">
+        <!-- Kolom Kiri -->
+        <div class="pen-intro-left">
+          <div class="pen-badge-pill">
+            <span class="pen-badge-dot"></span>
+            <span class="pen-badge-text">TENTANG KAMI</span>
+          </div>
+
+          <h2 class="pen-intro-title">
+            Membangun Ekosistem Pesantren,<br />
+            Menghadirkan Kebermanfaatan Abadi
+          </h2>
+
+          <div class="pen-intro-stat-row">
+            <div class="pen-stat-card">
+              <span class="pen-stat-num">3</span>
+              <div class="pen-stat-label">
+                Hektare<br />
+                Kawasan Terpadu
+              </div>
+            </div>
+            <div class="pen-intro-sub-img">
+              <img
+                src="https://wakaf-lp.vercel.app/gambar%20design/learning%20studio%20&%20workshop.jpg"
+                alt="Learning Studio & Workshop GVF"
+                class="pen-img-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan -->
+        <div class="pen-intro-right">
+          <div class="pen-intro-main-img">
+            <img
+              src="https://wakaf-lp.vercel.app/gambar%20design/interior%20masjid.jpg"
+              alt="Masjid Khairu Ummah Sugro"
+              class="pen-img-cover"
+              loading="lazy"
+            />
+          </div>
+          <p class="pen-intro-lead">
+            Global Village Fund (GVF) adalah inisiatif filantropi dan wakaf produktif di bawah 
+            <strong>Yayasan Permata Cendekia Indonesia (YPCI)</strong> yang berfokus pada penguatan ekosistem 
+            pendidikan pesantren vokasi menuju kemandirian ekonomi umat dan dampak sosial berkelanjutan di 
+            Desa Sukasirna, Jonggol, Kabupaten Bogor.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Section Jejak Langkah (Timeline Sejarah) -->
+  <section class="pen-timeline-section">
+    <div class="pen-container">
+      <div class="pen-section-header-center">
+        <div class="pen-badge-pill pen-badge-center">
+          <span class="pen-badge-dot"></span>
+          <span class="pen-badge-text">JEJAK LANGKAH & PERJALANAN</span>
+        </div>
+        <h2 class="pen-section-title-center">
+          Inilah Gagasan Besar & Perjalanan<br />
+          Global Village Fund
+        </h2>
+      </div>
+
+      <div class="pen-timeline-wrap">
+        <div class="pen-timeline-line"></div>
+        <div class="pen-timeline-grid">
+          <!-- Item 1: 2021 -->
+          <div class="pen-timeline-item">
+            <div class="pen-timeline-img-box">
+              <img
+                src="https://wakaf-lp.vercel.app/gambar%20design/belakang%20masjid.jpg"
+                alt="Inisiasi Gagasan 2021"
+                class="pen-img-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="pen-timeline-dot"></div>
+            <h3 class="pen-timeline-year">2021</h3>
+            <p class="pen-timeline-desc">
+              Inisiasi gagasan ekosistem pesantren integratif holistik di bawah Yayasan Permata Cendekia Indonesia (YPCI) untuk menjawab tantangan kemandirian umat.
+            </p>
+          </div>
+
+          <!-- Item 2: 2023 -->
+          <div class="pen-timeline-item">
+            <div class="pen-timeline-img-box">
+              <img
+                src="https://wakaf-lp.vercel.app/gambar%20design/learning%20studio%20&%20workshop.jpg"
+                alt="Pembebasan Lahan 2023"
+                class="pen-img-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="pen-timeline-dot"></div>
+            <h3 class="pen-timeline-year">2023</h3>
+            <p class="pen-timeline-desc">
+              Pembebasan lahan abadi 3 hektare di Desa Sukasirna, Jonggol dan peresmian SMK Skill Village Islamic School berbasis kurikulum karakter FAST.
+            </p>
+          </div>
+
+          <!-- Item 3: 2025 -->
+          <div class="pen-timeline-item">
+            <div class="pen-timeline-img-box">
+              <img
+                src="https://wakaf-lp.vercel.app/gambar%20design/interior%20masjid.jpg"
+                alt="Pembangunan Masjid 2025"
+                class="pen-img-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="pen-timeline-dot"></div>
+            <h3 class="pen-timeline-year">2025</h3>
+            <p class="pen-timeline-desc">
+              Groundbreaking pembangunan Masjid Khairu Ummah Sugro dua lantai ramah lingkungan dan workshop praktikum kejuruan teknologi santri.
+            </p>
+          </div>
+
+          <!-- Item 4: 2026 - Sekarang -->
+          <div class="pen-timeline-item">
+            <div class="pen-timeline-img-box">
+              <img
+                src="https://wakaf-lp.vercel.app/gambar%20design/gh%20learning%20area.jpg"
+                alt="Ekspansi Technopark 2026"
+                class="pen-img-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="pen-timeline-dot"></div>
+            <h3 class="pen-timeline-year">2026 – Sekarang</h3>
+            <p class="pen-timeline-desc">
+              Pengembangan Agro-Technopark, greenhouse hortikultura, serta instalasi energi mandiri panel surya untuk menopang ketahanan pangan asrama.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Section Alur Kerja (4 Langkah) -->
+  <section class="pen-workflow-section">
+    <div class="pen-container">
+      <div class="pen-workflow-header">
+        <div class="pen-workflow-header-left">
+          <div class="pen-badge-pill">
+            <span class="pen-badge-dot"></span>
+            <span class="pen-badge-text">CARA KAMI BEKERJA</span>
+          </div>
+          <h2 class="pen-section-title">
+            Proses 4 Langkah Realisasi<br />
+            Amanah Kebaikan Anda
+          </h2>
+        </div>
+        <div class="pen-workflow-header-right">
+          <p class="pen-workflow-lead">
+            Setiap tahapan dirancang terstruktur, transparan, dan dapat dipantau langsung — dari konsultasi awal hingga kemanfaatan abadi santri.
+          </p>
+        </div>
+      </div>
+
+      <div class="pen-workflow-grid">
+        <!-- Card 1 -->
+        <div class="pen-workflow-card">
+          <div class="pen-wf-img-box">
+            <img
+              src="https://wakaf-lp.vercel.app/gambar%20design/belakang%20masjid.jpg"
+              alt="Survey & Konsultasi Niat"
+              class="pen-img-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="pen-wf-body">
+            <h3 class="pen-wf-title">01. Survey & Konsultasi Niat</h3>
+            <p class="pen-wf-desc">
+              Kami memetakan niat donasi, preferensi program (pendidikan, masjid, atau kemandirian pangan), dan alokasi dana secara terarah.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="pen-workflow-card">
+          <div class="pen-wf-img-box">
+            <img
+              src="https://wakaf-lp.vercel.app/gambar%20design/learning%20studio%20&%20workshop.jpg"
+              alt="Akad & Visualisasi Program"
+              class="pen-img-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="pen-wf-body">
+            <h3 class="pen-wf-title">02. Akad & Visualisasi Program</h3>
+            <p class="pen-wf-desc">
+              Penerbitan akta ikrar wakaf / bukti donasi resmi disertai blueprint peruntukan dana dan timeline pembangunan kawasan yang transparan.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="pen-workflow-card">
+          <div class="pen-wf-img-box">
+            <img
+              src="https://wakaf-lp.vercel.app/gambar%20design/interior%20masjid.jpg"
+              alt="Eksekusi & Laporan Berkala"
+              class="pen-img-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="pen-wf-body">
+            <h3 class="pen-wf-title">03. Eksekusi & Laporan Berkala</h3>
+            <p class="pen-wf-desc">
+              Pembangunan sarana dan penyaluran beasiswa santri dilaksanakan dengan audit berkala serta update dokumentasi riil kepada para muwakif.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="pen-workflow-card">
+          <div class="pen-wf-img-box">
+            <img
+              src="https://wakaf-lp.vercel.app/gambar%20design/gh%20learning%20area.jpg"
+              alt="Serah Terima & Keberkahan Abadi"
+              class="pen-img-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="pen-wf-body">
+            <h3 class="pen-wf-title">04. Serah Terima & Keberkahan</h3>
+            <p class="pen-wf-desc">
+              Fasilitas beroperasi penuh mencetak generasi santri vokasi mandiri. Pahala jariyah terus mengalir tanpa terputus bagi donatur.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Section Dokumentasi & Fasilitas Kawasan (Elastic Horizontal Accordion Gallery) -->
+  <section class="pen-facility-section">
+    <div class="pen-container">
+      <div class="pen-facility-header">
+        <div>
+          <div class="pen-badge-pill">
+            <span class="pen-badge-dot"></span>
+            <span class="pen-badge-text">DOKUMENTASI & FASILITAS KAWASAN</span>
+          </div>
+          <h2 class="pen-section-title">
+            Dokumentasi Kawasan &<br />
+            Fasilitas Pesantren Jonggol
+          </h2>
+          <p class="pen-facility-sub">
+            Jelajahi perkembangan fasilitas fisik dan kawasan terpadu Pesantren Jonggol seluas ±3 hektare — dari masjid, studio vokasi kejuruan, sarana santri, hingga agro-technopark berkelanjutan.
+          </p>
+        </div>
+        <div class="pen-facility-tag">
+          📍 Sukasirna, Jonggol, Bogor
+        </div>
+      </div>
+
+      <!-- Elastic Accordion Gallery Interaktif (Buka ke Samping) -->
+      <div class="w-full">
+        <ElasticGallery defaultActiveId="01" />
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 7. Section Final CTA Kemitraan Pen.dev -->
+  <section class="pen-final-cta-section">
+    <div class="pen-container">
+      <div class="pen-cta-box">
+        <h2 class="pen-cta-title">
+          Mari Berkolaborasi Bersama Kami<br />
+          Membangun Kemandirian Umat
+        </h2>
+        <p class="pen-cta-desc">
+          Buka ruang kemitraan filantropi, zakat, infaq, dan wakaf produktif bersama Global Village Fund. Bersama-sama kita hadirkan dampak nyata dan abadi.
+        </p>
+        <div class="pen-cta-btn-wrap">
+          <a href="/contact" class="pen-btn-primary">
+            Konsultasi Program Kemitraan
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* 1. Header Banner */
+  .pen-about-banner {
+    position: relative;
+    background-color: #061829;
+    padding: 140px 0 90px 0;
+    overflow: hidden;
+    text-align: center;
+  }
+  .pen-banner-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://wakaf-lp.vercel.app/gambar%20design/belakang%20masjid.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35;
+    z-index: 0;
+  }
+  .pen-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6, 24, 41, 0.85) 0%, rgba(6, 24, 41, 0.95) 100%);
+    z-index: 1;
+  }
+  .pen-banner-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .pen-banner-title {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800;
+    color: #ffffff;
+    font-family: 'Cal Sans', 'Golos Text', sans-serif;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem 0;
+  }
+  .pen-breadcrumb-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .pen-breadcrumb-link {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .pen-breadcrumb-link:hover {
+    color: #ffffff;
+  }
+  .pen-breadcrumb-sep {
+    color: #64748b;
+  }
+  .pen-breadcrumb-current {
+    color: #0969da;
+  }
+
+  /* Universal Container & Elements */
+  .pen-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .pen-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background: rgba(9, 105, 218, 0.08);
+    border: 1px solid rgba(9, 105, 218, 0.2);
+    margin-bottom: 1.25rem;
+  }
+  .pen-badge-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pen-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #0969da;
+  }
+  .pen-badge-text {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #0969da;
+    letter-spacing: 0.1em;
+  }
+  .pen-img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* 2. Section Intro */
+  .pen-about-intro {
+    background-color: #f8fafc;
+    padding: 100px 0;
+  }
+  .pen-intro-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+  .pen-intro-title {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    color: #0f172a;
+    font-family: 'Cal Sans', sans-serif;
+    line-height: 1.2;
+    margin: 0 0 2rem 0;
+  }
+  .pen-intro-stat-row {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  .pen-stat-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 160px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+  }
+  .pen-stat-num {
+    font-size: 3.8rem;
+    font-weight: 900;
+    color: #0969da;
+    line-height: 1;
+    font-family: 'Cal Sans', sans-serif;
+  }
+  .pen-stat-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-top: 0.5rem;
+    line-height: 1.3;
+  }
+  .pen-intro-sub-img {
+    flex: 1;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+  .pen-intro-main-img {
+    height: 380px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    margin-bottom: 1.75rem;
+  }
+  .pen-intro-lead {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: #475569;
+    margin: 0;
+  }
+
+  /* 3. Video Banner */
+  .pen-video-banner {
+    position: relative;
+    height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .pen-video-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://wakaf-lp.vercel.app/gambar%20design/interior%20masjid.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .pen-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    z-index: 1;
+  }
+  .pen-video-btn-wrap {
+    position: relative;
+    z-index: 2;
+  }
+  .pen-play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    color: #0f172a;
+    padding: 16px 32px;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background 0.2s;
+  }
+  .pen-play-btn:hover {
+    transform: scale(1.05);
+    background: #ffffff;
+    color: #0969da;
+  }
+  .pen-play-icon {
+    font-size: 1.2rem;
+    color: #0969da;
+  }
+
+  /* 4. Timeline Section */
+  .pen-timeline-section {
+    background-color: #ffffff;
+    padding: 110px 0;
+  }
+  .pen-section-header-center {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4.5rem auto;
+  }
+  .pen-section-title-center {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    color: #0f172a;
+    font-family: 'Cal Sans', sans-serif;
+    line-height: 1.25;
+    margin: 0;
+  }
+  .pen-timeline-wrap {
+    position: relative;
+  }
+  .pen-timeline-line {
+    position: absolute;
+    top: 228px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: rgba(9, 105, 218, 0.2);
+    z-index: 0;
+  }
+  .pen-timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .pen-timeline-item {
+    text-align: center;
+  }
+  .pen-timeline-img-box {
+    width: 170px;
+    height: 170px;
+    border-radius: 24px;
+    overflow: hidden;
+    margin: 0 auto 1.5rem auto;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    border: 3px solid #ffffff;
+  }
+  .pen-timeline-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #0969da;
+    border: 4px solid #ffffff;
+    box-shadow: 0 0 0 2px #0969da;
+    margin: 0 auto 1.5rem auto;
+  }
+  .pen-timeline-year {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #0f172a;
+    font-family: 'Cal Sans', sans-serif;
+    margin: 0 0 0.75rem 0;
+  }
+  .pen-timeline-desc {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #475569;
+    margin: 0;
+  }
+
+  /* 5. Workflow Section */
+  .pen-workflow-section {
+    background-color: #f8fafc;
+    padding: 110px 0;
+    border-top: 1px solid #f1f5f9;
+  }
+  .pen-workflow-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+    gap: 3rem;
+  }
+  .pen-section-title {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    color: #0f172a;
+    font-family: 'Cal Sans', sans-serif;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .pen-workflow-lead {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #475569;
+    max-width: 480px;
+    margin: 0;
+  }
+  .pen-workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .pen-workflow-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .pen-workflow-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+  }
+  .pen-wf-img-box {
+    height: 180px;
+    overflow: hidden;
+  }
+  .pen-wf-body {
+    padding: 1.5rem;
+  }
+  .pen-wf-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 0.75rem 0;
+    font-family: 'Cal Sans', sans-serif;
+  }
+  .pen-wf-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #64748b;
+    margin: 0;
+  }
+
+  /* 6. Facility Section */
+  .pen-facility-section {
+    background-color: #ffffff;
+    padding: 110px 0;
+  }
+  .pen-facility-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+    gap: 2rem;
+  }
+  .pen-facility-sub {
+    font-size: 1.05rem;
+    color: #64748b;
+    max-width: 720px;
+    margin-top: 0.75rem;
+    line-height: 1.65;
+  }
+  .pen-facility-tag {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .pen-facility-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .pen-fac-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+  }
+  .pen-fac-img-wrap {
+    height: 240px;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+  .pen-fac-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    color: #0969da;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 5px 12px;
+    border-radius: 9999px;
+  }
+  .pen-fac-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    font-family: 'Cal Sans', sans-serif;
+    margin: 0 0 0.35rem 0;
+  }
+  .pen-fac-cat {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin: 0;
+  }
+
+  /* 7. Final CTA */
+  .pen-final-cta-section {
+    background-color: #f8fafc;
+    padding: 100px 0;
+    border-top: 1px solid #e2e8f0;
+  }
+  .pen-cta-box {
+    background: linear-gradient(135deg, #0969da 0%, #0349b4 100%);
+    border-radius: 28px;
+    padding: 4.5rem 2rem;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 16px 40px rgba(9, 105, 218, 0.2);
+  }
+  .pen-cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    font-family: 'Cal Sans', sans-serif;
+    line-height: 1.25;
+    margin: 0 0 1.25rem 0;
+  }
+  .pen-cta-desc {
+    font-size: 1.12rem;
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto 2.5rem auto;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .pen-btn-primary {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #0969da;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 16px 36px;
+    border-radius: 9999px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .pen-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  }
+
+  /* Responsive Mobile */
+  @media (max-width: 1024px) {
+    .pen-intro-grid {
+      grid-template-columns: 1fr;
+    }
+    .pen-timeline-grid,
+    .pen-workflow-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .pen-timeline-line {
+      display: none;
+    }
+    .pen-facility-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .pen-about-banner {
+      padding: 110px 0 60px 0;
+    }
+    .pen-timeline-grid,
+    .pen-workflow-grid,
+    .pen-facility-grid {
+      grid-template-columns: 1fr;
+    }
+    .pen-workflow-header,
+    .pen-facility-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .pen-intro-stat-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>

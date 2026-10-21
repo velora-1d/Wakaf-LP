@@ -1,99 +1,298 @@
 ---
 // src/pages/kemitraan.astro
-// Halaman Khusus Kemitraan & Kolaborasi Multipihak Global Village Fund
+// Halaman Khusus Kemitraan & Kolaborasi Multipihak Sesuai Pen.dev (Node EHsHA)
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CollaborateSection from '../components/home/CollaborateSection.astro';
-import ContactSection from '../components/home/ContactSection.astro';
+import ElasticGallery from '../components/ui/ElasticGallery.astro';
 ---
 
 <BaseLayout
-  title="Kemitraan & Kolaborasi Multipihak • Global Village Fund"
-  description="Ruang sinergi bagi korporasi (CSR), perguruan tinggi, dunia industri, dan lembaga zakat untuk mengembangkan model pesantren mandiri dan berkelanjutan."
+  title="Kemitraan Multipihak & Kolaborasi Strategis • Global Village Fund"
+  description="Ruang sinergi korporasi (CSR), perguruan tinggi, dunia industri, dan lembaga filantropi untuk mengembangkan ekosistem pesantren mandiri berkelanjutan."
 >
-  <!-- Hero Inner Page Title -->
-  <section class="isavo-inner-hero">
-    <div class="isavo-inner-container">
-      <div class="isavo-inner-breadcrumb">
-        <a href="/">Home</a>
-        <span class="isavo-sep">/</span>
-        <span class="isavo-current">Kemitraan</span>
+  <!-- 1. Header Banner & Breadcrumb ala Pen.dev -->
+  <section class="pen-partner-banner">
+    <div class="pen-banner-bg"></div>
+    <div class="pen-banner-overlay"></div>
+    <div class="pen-banner-container">
+      <h1 class="pen-banner-title">Kemitraan Multipihak</h1>
+      <div class="pen-breadcrumb-wrap">
+        <a href="/" class="pen-breadcrumb-link">BERANDA</a>
+        <span class="pen-breadcrumb-sep">-</span>
+        <span class="pen-breadcrumb-current">KEMITRAAN STRATEGIS</span>
       </div>
-      <h1 class="isavo-inner-title">Kemitraan & Kolaborasi</h1>
-      <p class="isavo-inner-subtitle">
-        Menghubungkan potensi dunia usaha, akademisi, lembaga filantropi, dan komunitas untuk bersama mencetak ekosistem santri berdaya saing.
-      </p>
     </div>
   </section>
 
-  <!-- Konten Utama Kemitraan Multipihak -->
+  <!-- 2. Galeri Dokumentasi Sinergi Kemitraan ala Pen.dev -->
+  <section class="pen-gallery-section">
+    <div class="pen-container">
+      <div class="pen-gallery-header">
+        <div class="pen-badge-pill">
+          <span class="pen-badge-dot"></span>
+          <span class="pen-badge-text">GALERI KAMI</span>
+        </div>
+        <h2 class="pen-gallery-title">
+          Sinergi Lembaga, Dunia Usaha & Komunitas
+        </h2>
+        <p class="pen-gallery-sub">
+          Dokumentasi riil pembangunan infrastruktur, fasilitas belajar vokasi, dan sarana ibadah santri yang terwujud berkat gotong royong multipihak.
+        </p>
+      </div>
+
+      <!-- Elastic Accordion Gallery Interaktif (Komponen Utama) -->
+      <div class="w-full">
+        <ElasticGallery defaultActiveId="01" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Pilar Model Kemitraan Multipihak -->
   <CollaborateSection />
 
-  <!-- Form & Kontak Konsultasi Kemitraan -->
-  <ContactSection />
+  <!-- 4. Section Final CTA Kemitraan Pen.dev -->
+  <section class="pen-final-cta-section">
+    <div class="pen-container">
+      <div class="pen-cta-box">
+        <h2 class="pen-cta-title">
+          Mulai Perjalanan Kolaborasi Anda Bersama Kami
+        </h2>
+        <p class="pen-cta-desc">
+          Bicaralah dengan tim kemitraan kami — tanpa kewajiban dan tanpa tekanan. Kami siap menyusun skema kemitraan strategis CSR, program link & match vokasi, serta wakaf produktif yang berdampak terukur.
+        </p>
+        <div class="pen-cta-btn-wrap">
+          <a href="/contact" class="pen-btn-primary">
+            Hubungi Tim Kemitraan
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-  .isavo-inner-hero {
-    background-color: #0f172a;
-    padding: 140px 0 60px 0;
-    color: #ffffff;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  /* 1. Header Banner */
+  .pen-partner-banner {
+    position: relative;
+    background-color: #061829;
+    padding: 140px 0 90px 0;
+    overflow: hidden;
+    text-align: center;
   }
-
-  .isavo-inner-container {
-    max-width: 1320px;
+  .pen-banner-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://wakaf-lp.vercel.app/gambar%20design/learning%20studio%20&%20workshop.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: 0;
+  }
+  .pen-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6, 24, 41, 0.88) 0%, rgba(6, 24, 41, 0.96) 100%);
+    z-index: 1;
+  }
+  .pen-banner-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
-
-  .isavo-inner-breadcrumb {
-    display: flex;
+  .pen-banner-title {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800;
+    color: #ffffff;
+    font-family: 'Cal Sans', 'Golos Text', sans-serif;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem 0;
+  }
+  .pen-breadcrumb-wrap {
+    display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    font-size: 0.88rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
   }
-
-  .isavo-inner-breadcrumb a {
+  .pen-breadcrumb-link {
     color: #94a3b8;
     text-decoration: none;
     transition: color 0.2s;
   }
-
-  .isavo-inner-breadcrumb a:hover {
+  .pen-breadcrumb-link:hover {
     color: #ffffff;
   }
-
-  .isavo-sep {
+  .pen-breadcrumb-sep {
     color: #64748b;
   }
-
-  .isavo-current {
+  .pen-breadcrumb-current {
     color: #0969da;
   }
 
-  .isavo-inner-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+  /* Universal Container */
+  .pen-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .pen-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background: rgba(9, 105, 218, 0.08);
+    border: 1px solid rgba(9, 105, 218, 0.2);
+    margin-bottom: 1.25rem;
+  }
+  .pen-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #0969da;
+  }
+  .pen-badge-text {
+    font-size: 0.75rem;
     font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin: 0 0 1rem 0;
-    font-family: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+    color: #0969da;
+    letter-spacing: 0.1em;
+  }
+  .pen-img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
   }
 
-  .isavo-inner-subtitle {
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: #94a3b8;
+  /* 2. Gallery Section */
+  .pen-gallery-section {
+    background-color: #ffffff;
+    padding: 100px 0 110px 0;
+  }
+  .pen-gallery-header {
+    text-align: center;
     max-width: 780px;
+    margin: 0 auto 4rem auto;
+  }
+  .pen-gallery-title {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    color: #0f172a;
+    font-family: 'Cal Sans', sans-serif;
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+  }
+  .pen-gallery-sub {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #64748b;
     margin: 0;
   }
+  .pen-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  .pen-gallery-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+  .pen-gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    background-color: #f1f5f9;
+  }
+  .pen-gallery-item:hover .pen-img-cover {
+    transform: scale(1.04);
+  }
+  .pen-gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(15, 23, 42, 0.85) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    color: #ffffff;
+  }
+  .pen-gallery-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #38bdf8;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+  .pen-gallery-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+    font-family: 'Cal Sans', sans-serif;
+  }
 
-  @media (max-width: 768px) {
-    .isavo-inner-hero {
-      padding: 110px 0 40px 0;
+  /* 4. Final CTA */
+  .pen-final-cta-section {
+    background-color: #f8fafc;
+    padding: 100px 0;
+    border-top: 1px solid #e2e8f0;
+  }
+  .pen-cta-box {
+    background: linear-gradient(135deg, #0969da 0%, #0349b4 100%);
+    border-radius: 28px;
+    padding: 4.5rem 2rem;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 16px 40px rgba(9, 105, 218, 0.2);
+  }
+  .pen-cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    font-family: 'Cal Sans', sans-serif;
+    line-height: 1.25;
+    margin: 0 0 1.25rem 0;
+  }
+  .pen-cta-desc {
+    font-size: 1.12rem;
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto 2.5rem auto;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .pen-btn-primary {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #0969da;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 16px 36px;
+    border-radius: 9999px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .pen-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  }
+
+  @media (max-width: 1024px) {
+    .pen-gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .pen-partner-banner {
+      padding: 110px 0 60px 0;
+    }
+    .pen-gallery-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
-
