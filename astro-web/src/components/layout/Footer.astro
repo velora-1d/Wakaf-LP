@@ -20,8 +20,7 @@
           <div class="widget-header">
             <div class="footer-logo">
               <a href="/" class="pen-boxed-logo" aria-label="Global Village Fund Beranda">
-                <img src="/images/logo.png" alt="Global Village Fund" class="pen-footer-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-                <span class="pen-boxed-text" style="display:none;">GVF</span>
+                <img src="/logo-gvf-3d.png" alt="Global Village Fund" class="pen-footer-logo-img" />
               </a>
             </div>
           </div>
@@ -227,19 +226,25 @@
   .pen-boxed-logo {
     display: inline-flex !important;
     align-items: center !important;
-    justify-content: center !important;
-    background-color: #ffffff !important;
+    justify-content: flex-start !important;
+    background-color: transparent !important;
     border-radius: 8px !important;
-    padding: 6px 14px !important;
+    padding: 0 !important;
     text-decoration: none !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: none !important;
     transition: all 0.25s ease !important;
   }
 
+  .pen-boxed-logo:hover {
+    opacity: 0.9 !important;
+    transform: translateY(-2px) !important;
+  }
+
   .pen-footer-logo-img {
-    height: 38px !important;
+    height: 52px !important;
     width: auto !important;
     object-fit: contain !important;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5)) !important;
   }
 
   .pen-boxed-text {

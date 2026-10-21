@@ -7,6 +7,7 @@
 ## In Review / Test
 
 ## Done
+- [x] BRAND-LOGO-GVF-01: Penerapan Logo Baru Global Village Fund (3D Silver-Gold) di Komponen Publik (Program Consultation Box, Footer, dan Navbar - Integrasi Aset Bersih & Terverifikasi Browser Empiris)
 - [x] PROGRAM-PACKAGES-CMS-01: Sinkronisasi Skema DB PostgreSQL & Visual Package Editor di Admin CMS untuk Seluruh Halaman Program (Wakaf, Infaq, Sedekah, Zakat) Secara Paralel
 - [x] PROGRAM-DONORS-FEED-01: Transformasi Tabel Add-on Tambahan menjadi Live Donatur Feed per Kategori Program di Halaman Publik (Wakaf, Infaq, Sedekah, Zakat) Terintegrasi DB PostgreSQL
 - [x] DONATUR-ACTION-DEBUG-01: Investigasi dan Perbaikan Tombol Aksi di Menu Donatur (/admin/donatur: Tombol Catat Donasi Baru, Aksi Edit, Verifikasi Lunas/Pending, Hapus, WA, dan Bukti S3)
