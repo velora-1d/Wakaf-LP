@@ -65,8 +65,12 @@
       </p>
 
       <div class="isavo-about-btn-wrap">
-        <a href="#layanan" class="isavo-about-pill-btn">
-          Pelajari Ekosistem GVF
+        <a href="#layanan" class="isavo-about-pill-btn uiverse-ripple-btn uiverse-ripple-btn-dark">
+          <span>Pelajari Ekosistem GVF</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
         </a>
       </div>
     </div>
@@ -251,24 +255,66 @@
 
   /* Pill Button Pen.dev */
   .isavo-about-pill-btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #0969da;
-    border: 1px solid #0969da;
+    gap: 10px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
     color: #ffffff;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     font-family: 'Golos Text', system-ui, sans-serif;
     padding: 14px 32px;
     border-radius: 32px;
     text-decoration: none;
-    transition: background 0.25s ease, transform 0.25s ease;
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, color 0.4s ease;
+  }
+
+  .isavo-about-pill-btn::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: #0969da;
+    height: 220px;
+    width: 260px;
+    border-radius: 50%;
+    top: 100%;
+    left: 100%;
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .isavo-about-pill-btn:hover {
-    background: #0752a8;
+    color: #ffffff;
+    border-color: #0969da;
     transform: translateY(-2px);
+  }
+
+  .isavo-about-pill-btn:hover::before {
+    top: -40px;
+    left: -40px;
+  }
+
+  .isavo-about-pill-btn:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .isavo-about-pill-btn:active::before {
+    background: #0752a8;
+  }
+
+  .isavo-about-pill-btn > span,
+  .isavo-about-pill-btn > svg {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .isavo-about-pill-btn:hover > svg {
+    transform: translateX(3px);
   }
 
   /* Right Column: Framed Portrait Image */

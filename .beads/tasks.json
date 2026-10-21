@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "UIVERSE-BTN-01", "name": "Penerapan Efek Animasi Tombol Uiverse (Circle Ripple Expansion Biru ISAVO) pada Hero, Program Portofolio, About & Kontak WA secara Paralel", "status": "closed" },
     { "id": "HUMANIZE-FIX-01", "name": "Perbaikan Humanize-UI Home & Navigasi Global (Ghost links, Kontak WA, Kontras News, A11y Leadership, Bersihkan Kode Mati)", "status": "closed" },
     { "id": "HUMANIZE-FIX-02", "name": "Perbaikan Humanize-UI Program ZISWAF & Data Filantropi (Copywriting Filantropi, Rincian Alokasi, Data Jonggol, SVG Icons)", "status": "closed" },
     { "id": "HUMANIZE-FIX-03", "name": "Perbaikan Humanize-UI Halaman Pendukung, Admin CMS & ElasticGallery (Mobile Drawer Admin, WA Redirect, Font & Asset Lokal)", "status": "closed" },

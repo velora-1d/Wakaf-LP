@@ -114,9 +114,9 @@ const valueBoxIcons = [
               href="https://wa.me/6287865994786?text=Assalamualaikum%20Layanan%20Donatur%20GVF%2C%20saya%20ingin%20konsultasi%20program%20ZISWAF."
               target="_blank"
               rel="noopener noreferrer"
-              style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 32px; background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 9999px; color: #ffffff; font-family: 'Golos Text', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"
+              class="uiverse-ripple-btn uiverse-ripple-btn-dark pen-sidebar-cta"
             >
-              Layanan Donatur
+              <span>Layanan Donatur</span>
             </a>
           </div>
         </div>
@@ -230,7 +230,7 @@ const valueBoxIcons = [
 
             <!-- Button: Lihat Lebih Banyak (Pen.dev Exact) -->
             <div style="display: flex; justify-content: center; margin: 30px 0 50px 0;">
-              <a href="/portofolio" class="pen-btn-portfolio-more">
+              <a href="/portofolio" class="pen-btn-portfolio-more uiverse-ripple-btn">
                 <span>Lihat Lebih Banyak</span>
                 <span>&rarr;</span>
               </a>
@@ -2377,25 +2377,82 @@ const valueBoxIcons = [
     flex-shrink: 0;
   }
 
+  /* Sidebar CTA Button */
+  .pen-sidebar-cta {
+    padding: 12px 32px;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 9999px;
+    color: #ffffff !important;
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .pen-sidebar-cta:hover {
+    background: transparent;
+    border-color: #0969da;
+    color: #ffffff !important;
+  }
+
   /* Button Lihat Lebih Banyak */
   .pen-btn-portfolio-more {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     padding: 14px 32px;
-    background-color: #0969da;
-    color: #ffffff !important;
+    background: transparent;
+    border: 1.5px solid #0969da;
+    color: #0969da !important;
     border-radius: 9999px;
     text-decoration: none;
     font-family: 'Golos Text', system-ui, sans-serif;
     font-size: 15px;
     font-weight: 600;
-    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: hidden;
+    isolation: isolate;
+    cursor: pointer;
+    transition: color 0.4s ease, border-color 0.4s ease, transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .pen-btn-portfolio-more::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: #0969da;
+    height: 220px;
+    width: 260px;
+    border-radius: 50%;
+    top: 100%;
+    left: 100%;
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .pen-btn-portfolio-more:hover {
-    background-color: #0752a8;
+    color: #ffffff !important;
+    border-color: #0969da;
     transform: translateY(-2px);
+  }
+
+  .pen-btn-portfolio-more:hover::before {
+    top: -40px;
+    left: -40px;
+  }
+
+  .pen-btn-portfolio-more:active::before {
+    background: #0752a8;
+  }
+
+  .pen-btn-portfolio-more > span {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
   }
 
   /* FAQ Accordion Rotation */

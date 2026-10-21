@@ -7,6 +7,7 @@
 ## In Review / Test
 
 ## Done
+- [x] UIVERSE-BTN-01: Penerapan Efek Animasi Tombol Uiverse (Circle Ripple Expansion Biru ISAVO) pada Hero, Program Portofolio, About & Kontak WA secara Paralel
 - [x] HUMANIZE-FIX-01: Perbaikan Humanize-UI Home & Navigasi Global (Ghost links, Kontak WA, Kontras News, A11y Leadership, Bersihkan Kode Mati)
 - [x] HUMANIZE-FIX-02: Perbaikan Humanize-UI Program ZISWAF & Data Filantropi (Copywriting Filantropi, Rincian Alokasi, Data Jonggol, SVG Icons)
 - [x] HUMANIZE-FIX-03: Perbaikan Humanize-UI Halaman Pendukung, Admin CMS & ElasticGallery (Mobile Drawer Admin, WA Redirect, Font & Asset Lokal)

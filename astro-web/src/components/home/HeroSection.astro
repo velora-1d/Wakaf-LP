@@ -100,7 +100,7 @@ const heroSlides = [
             {slide.buttons.map((btn) => (
               <a
                 href={btn.href}
-                class={btn.variant === 'primary' ? 'isavo-btn-primary-pill' : 'isavo-btn-outline-pill'}
+                class={btn.variant === 'primary' ? 'isavo-btn-primary-pill' : 'isavo-btn-outline-pill uiverse-ripple-btn uiverse-ripple-btn-dark'}
               >
                 <span>{btn.text}</span>
               </a>
@@ -399,13 +399,16 @@ const heroSlides = [
   }
 
   .isavo-btn-outline-pill {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     height: 52px;
-    background: rgba(255, 255, 255, 0.1);
-    outline: 1px solid rgba(255, 255, 255, 0.3);
-    outline-offset: -0.5px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
     padding: 0 28px;
     border-radius: 9999px;
     text-decoration: none;
@@ -414,16 +417,45 @@ const heroSlides = [
     font-size: 1rem;
     font-weight: 600;
     backdrop-filter: blur(8px);
-    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, color 0.4s ease;
+  }
+
+  .isavo-btn-outline-pill::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: #0969da;
+    height: 220px;
+    width: 260px;
+    border-radius: 50%;
+    top: 100%;
+    left: 100%;
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .isavo-btn-outline-pill:hover {
-    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-color: #0969da;
     transform: translateY(-2px);
+  }
+
+  .isavo-btn-outline-pill:hover::before {
+    top: -40px;
+    left: -40px;
   }
 
   .isavo-btn-outline-pill:active {
     transform: translateY(0) scale(0.98);
+  }
+
+  .isavo-btn-outline-pill:active::before {
+    background: #0752a8;
+  }
+
+  .isavo-btn-outline-pill > span,
+  .isavo-btn-outline-pill > svg {
+    position: relative;
+    z-index: 1;
   }
 
   /* Accessible Carousel Controls */

@@ -429,3 +429,75 @@ p {
   color: var(--color-text-muted);
   max-width: 720px;
 }
+
+/* ==========================================================================
+   Uiverse Ripple Expansion Button (Clean Architectural Royal Blue)
+   Circle expands from bottom-right on hover. No purple.
+   ========================================================================== */
+.uiverse-ripple-btn {
+  --btn-ripple-color: #0969da;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1.5px solid var(--btn-ripple-color);
+  background: transparent;
+  color: var(--btn-ripple-color);
+  transition: color 0.4s ease, border-color 0.4s ease;
+  text-decoration: none;
+}
+
+.uiverse-ripple-btn::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--btn-ripple-color);
+  height: 220px;
+  width: 260px;
+  border-radius: 50%;
+  top: 100%;
+  left: 100%;
+  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.uiverse-ripple-btn:hover {
+  color: #ffffff !important;
+  border-color: var(--btn-ripple-color);
+}
+
+.uiverse-ripple-btn:hover::before {
+  top: -40px;
+  left: -40px;
+}
+
+.uiverse-ripple-btn:active::before {
+  background: #0752a8;
+  transition: background 0s;
+}
+
+.uiverse-ripple-btn-dark {
+  --btn-ripple-color: #0969da;
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+
+.uiverse-ripple-btn-dark:hover {
+  border-color: #0969da;
+}
+
+.uiverse-ripple-btn > * {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease, stroke 0.3s ease;
+}
+
+.uiverse-ripple-btn:hover > svg,
+.uiverse-ripple-btn:hover svg {
+  stroke: #ffffff;
+  color: #ffffff;
+}
+
