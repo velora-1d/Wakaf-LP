@@ -1,17 +1,407 @@
 {
   "version": 1,
   "skills": {
+    "agent-browser": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/agent-browser/SKILL.md",
+      "computedHash": "81171f7cb0b1a0e0fa80d2f5be82fc8074277e72c8ca2998606a4c1238e8edf7"
+    },
+    "cavecrew": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/cavecrew/SKILL.md",
+      "computedHash": "2e122d819a812bef0e4958706f306e4346e78ecb5a4893997b99cbc19866f514"
+    },
+    "caveman": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman/SKILL.md",
+      "computedHash": "71b600c88c8d1d36f18c4875db23b53c5d6cb9ba3195e19451d6b1bb67db07c4"
+    },
+    "caveman-commit": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-commit/SKILL.md",
+      "computedHash": "b416cf134b0f33ddadeca7977aebdbb2d3db79a166d0fce2e1aabeec98132766"
+    },
+    "caveman-compress": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-compress/SKILL.md",
+      "computedHash": "d820dbf2fa00a84f4a8e4c508444d88958f2140585d9c212828675e4e59d3ace"
+    },
+    "caveman-discover": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-discover/SKILL.md",
+      "computedHash": "6850e0ca7bd7a35a1f447cbd342f91b76ece1fb2e3473ad894e51e69746df8a2"
+    },
+    "caveman-evidence-review": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-evidence-review/SKILL.md",
+      "computedHash": "6a2db0191082500739416c87ff896a7894f98aa867f15c70fe932e4d72edd327"
+    },
+    "caveman-explore": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-explore/SKILL.md",
+      "computedHash": "6e89d5fef24957b921cf021d5bb392c47185ed65233db783acef64a9228dbb1b"
+    },
+    "caveman-help": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-help/SKILL.md",
+      "computedHash": "c7a73a8c6afb6f871690666449209106aba847b4a9b0698686648960ece80012"
+    },
+    "caveman-learn": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-learn/SKILL.md",
+      "computedHash": "df046a04f93e61061082652f0e1b44a3dd81709b35f384b0e243a4fb630a03fb"
+    },
+    "caveman-manage": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-manage/SKILL.md",
+      "computedHash": "fdd3834941a8a576cae0ac96a38dfec6ac4bd26ef209ba9997468ca11aaf19f4"
+    },
+    "caveman-optimize": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-optimize/SKILL.md",
+      "computedHash": "5e859a3a8305b5559b2f528616f634324449a426054704d43ef0b6ec8c1d9807"
+    },
+    "caveman-review": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-review/SKILL.md",
+      "computedHash": "36a4007c5c0c6b90b5accfee1cd769a86e4963b651dece2ce5f17a223a0abb4b"
+    },
+    "caveman-setup": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-setup/SKILL.md",
+      "computedHash": "b12b9f8f3fe6b499334a4b319ae1a16aa2da5c2d11e5bc85efd3236eac5213aa"
+    },
+    "caveman-stats": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-stats/SKILL.md",
+      "computedHash": "cc9fcd21f2a30cff5596b3cbb197fe0f4b1b30b58084a864350853c217ad301a"
+    },
+    "ci-triage": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ci-triage/SKILL.md",
+      "computedHash": "f9090158ac54822994d9424f9bd4063f5e44443560810ae4bbd25b74089deaa8"
+    },
+    "code-simplifier": {
+      "source": "rtk-ai/rtk",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/code-simplifier/SKILL.md",
+      "computedHash": "9427f527ef1d2f2fdced33e127f89e603ced8998224e7d370d95df9908066109"
+    },
+    "codegraph": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/codegraph/SKILL.md",
+      "computedHash": "6e5784eb8cc55317e9f4b6459a674e378487c55ba7960f1a646bb4a1d9728927"
+    },
+    "context-mode": {
+      "source": "mksglu/context-mode",
+      "sourceType": "github",
+      "skillPath": "skills/context-mode/SKILL.md",
+      "computedHash": "1962755c8f5995762dff3e14b1d2703ae15c37e83fb10d5077ce2ddc595538e7"
+    },
+    "context-mode-ops": {
+      "source": "mksglu/context-mode",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/context-mode-ops/SKILL.md",
+      "computedHash": "f8dadffd7296e0e01de5b7b8d467ee96b92bc14c1f9249980ddeac67612e2544"
+    },
+    "ctx-doctor": {
+      "source": "mksglu/context-mode",
+      "sourceType": "github",
+      "skillPath": "skills/ctx-doctor/SKILL.md",
+      "computedHash": "0a3a57087267cb07f85bdf102f6b0778e1464a2e0a3f6383730f4aa2748c8cae"
+    },
+    "ctx-index": {
+      "source": "mksglu/context-mode",
+      "sourceType": "github",
+      "skillPath": "skills/ctx-index/SKILL.md",
+      "computedHash": "dba5f2756b7d23408f140f919bfc468c4af82d05763bd2f7a9c35f8e7b370577"
+    },
+    "ctx-insight": {
+      "source": "mksglu/context-mode",
+      "sourceType": "github",
+      "skillPath": "skills/ctx-insight/SKILL.md",
+      "computedHash": "b0e1ea8adc8cbf74bb72d82703d506be70675fdd3c557c47e6d873d23a7fece6"
+    },
+    "ctx-purge": {
+      "source": "mksglu/context-mode",
+      "sourceType": "github",
+      "skillPath": "skills/ctx-purge/SKILL.md",
+      "computedHash": "885b7538bfb20d315cd200ddd74ae6c621885d5d022dae964391837437b498d3"
+    },
+    "ctx-search": {
+      "source": "mksglu/context-mode",
+      "sourceType": "github",
+      "skillPath": "skills/ctx-search/SKILL.md",
+      "computedHash": "c5f9ef3719d2e0f5d6eb9c972f7bc464b5305b5c8e8e4017e51458a6eecc60c8"
+    },
+    "ctx-stats": {
+      "source": "mksglu/context-mode",
+      "sourceType": "github",
+      "skillPath": "skills/ctx-stats/SKILL.md",
+      "computedHash": "688761c1b6590738855da468c51acd855f19dd686fcd9f14c0e83cc89aaf6008"
+    },
+    "ctx-upgrade": {
+      "source": "mksglu/context-mode",
+      "sourceType": "github",
+      "skillPath": "skills/ctx-upgrade/SKILL.md",
+      "computedHash": "2113c6b0d6dbf0efbac1a611a4bd142be7ca9b3f1431bd5d065806525bd9bcce"
+    },
+    "design-patterns": {
+      "source": "rtk-ai/rtk",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/design-patterns/SKILL.md",
+      "computedHash": "29c9bc54519dbb750c48df9472b9d17917327a5d8d74769e4c4fcd01575717b4"
+    },
     "design-taste-frontend": {
       "source": "Leonxlnx/taste-skill",
       "sourceType": "github",
       "skillPath": "skills/taste-skill/SKILL.md",
       "computedHash": "65049e1890f5fedf8f8e1144848f07bcda788e51c22bac78afbd073aeb486725"
     },
+    "docs-drift-guard": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/docs-drift-guard/SKILL.md",
+      "computedHash": "fff3338ae990f432f83f7e36fa8ce1ddb61b9d156937c29e1a2458a44e7034b8"
+    },
+    "git-commit": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/git-commit/SKILL.md",
+      "computedHash": "6650c26f9c655fb4eccde29e32bb15131731b35ef8815b96424b01b9a4f82a79"
+    },
+    "github-integration": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/github-integration/SKILL.md",
+      "computedHash": "481418eeb0d5a71b1c43fec549a72ffb6be09a198fb197d1f963c3dae9a7a0a8"
+    },
+    "harness-operations": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/harness-operations/SKILL.md",
+      "computedHash": "1bfb76a5971dd446758dfee17168ce702f88fa8cbde1b3c6f1389773e9a98efa"
+    },
     "humanize-ui": {
       "source": "umitkaanusta/humanize-ui",
       "sourceType": "github",
       "skillPath": "skills/humanize-ui/SKILL.md",
       "computedHash": "ec9e7143060ed7562ce16c3b317f8868aab37f6badcacae26f03605090208bde"
+    },
+    "investigate-first": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/investigate-first/SKILL.md",
+      "computedHash": "59b581b5abfc0e19b7dd5a7c3bb2b16621ab5e94e085065c7b724a9c86cc3d4d"
+    },
+    "issue-spec": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/issue-spec/SKILL.md",
+      "computedHash": "0d1ac60df0bb207361ac3bc44433a9ee0cbada5308d488a402b82d8958f7d17d"
+    },
+    "issue-triage": {
+      "source": "rtk-ai/rtk",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/issue-triage/SKILL.md",
+      "computedHash": "7aa2d75f6ee1cf219cf31f9835a9eb01bd7a36826333dc69da75421d8a6132eb"
+    },
+    "lean-build": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/lean-build/SKILL.md",
+      "computedHash": "6074721f1653e6e9d6381595b094284807b8d5d001d7d3977ec534679b16a63c"
+    },
+    "megacave": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/megacave/SKILL.md",
+      "computedHash": "60da384ce09cedf553e2b6dfe4669ffb4e53f34c3df8ce2c8012a32e06f8e187"
+    },
+    "migration": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/migration/SKILL.md",
+      "computedHash": "7348b2d21ca05bdecc1e4ec2c8b63515ccb1700c8a261fdbd458b04b7383945b"
+    },
+    "parallel-worktrees": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/parallel-worktrees/SKILL.md",
+      "computedHash": "f13596587af2b3058f22bb49d6ebe3662a012113b94a2648a76accef128ff08d"
+    },
+    "plan-dag": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/plan-dag/SKILL.md",
+      "computedHash": "76aac346c35dcbf40f5f97778e142510256af0717ed8d8c26c7e8e773e32f306"
+    },
+    "ponytail": {
+      "source": "dietrichgebert/ponytail",
+      "sourceType": "github",
+      "skillPath": "skills/ponytail/SKILL.md",
+      "computedHash": "9feedbe220d039ba30720217b3fce16214817063fb54a48843d89368c86554e9"
+    },
+    "ponytail-audit": {
+      "source": "dietrichgebert/ponytail",
+      "sourceType": "github",
+      "skillPath": "skills/ponytail-audit/SKILL.md",
+      "computedHash": "9375d07b902acf9072a6716d81ab129d274f3a3eab1c47b8a42c38a7a9bb84e7"
+    },
+    "ponytail-debt": {
+      "source": "dietrichgebert/ponytail",
+      "sourceType": "github",
+      "skillPath": "skills/ponytail-debt/SKILL.md",
+      "computedHash": "049731dcd887d8784c829b75fed0a0a5d10ac8974ceb6e51ab2578473d57524a"
+    },
+    "ponytail-gain": {
+      "source": "dietrichgebert/ponytail",
+      "sourceType": "github",
+      "skillPath": "skills/ponytail-gain/SKILL.md",
+      "computedHash": "e551bd30f9b52b155d726f98e57c68fa4aad1ce93003e57a88ba85c5e84dcb7b"
+    },
+    "ponytail-help": {
+      "source": "dietrichgebert/ponytail",
+      "sourceType": "github",
+      "skillPath": "skills/ponytail-help/SKILL.md",
+      "computedHash": "6aa9cc8011b88aa011ba3dc306b249d776c8e920c7c388ac64c4c7dd9a9bdf76"
+    },
+    "ponytail-review": {
+      "source": "dietrichgebert/ponytail",
+      "sourceType": "github",
+      "skillPath": "skills/ponytail-review/SKILL.md",
+      "computedHash": "e090103216f0452e05672991a81078e27316a6b8d468b19e7107934606cfc122"
+    },
+    "pr-lifecycle": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/pr-lifecycle/SKILL.md",
+      "computedHash": "95a3bebc5e1bfd001013c4b72e4ead2beeb0b16ad8b7aeb10eb7aac4cf3c3799"
+    },
+    "pr-triage": {
+      "source": "rtk-ai/rtk",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/pr-triage/SKILL.md",
+      "computedHash": "beb1ba81963fb83be543e51c6167527b6a50f1102bd31fbeef4e663fa5489cbd"
+    },
+    "pre-push": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/pre-push/SKILL.md",
+      "computedHash": "a6b7240f5af70bcf15a2b6ef54ea7a927dc4f5c5d784287e9e14869be495ba9e"
+    },
+    "railway": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/railway/SKILL.md",
+      "computedHash": "2f1bd0a020784142a61dbbafbf7c0c609220784859c35e0dc2ea4fa83dbd2a53"
+    },
+    "rtk": {
+      "source": "akillness/jeo-skills",
+      "sourceType": "github",
+      "skillPath": ".agent-skills/rtk/SKILL.md",
+      "computedHash": "ffd980505698661d2cb8cf779d1bc081b9ed82c4e46e6e70df603a00a6f8ba30"
+    },
+    "rtk-tdd": {
+      "source": "rtk-ai/rtk",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/rtk-tdd/SKILL.md",
+      "computedHash": "d55537791fef554491664483fda95ddec015c9bf30ecf4c9f97bbe981f55f0df"
+    },
+    "rtk-triage": {
+      "source": "rtk-ai/rtk",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/rtk-triage/SKILL.md",
+      "computedHash": "344655403297eaf5cfc00bab10c536de6d81590ff19b8a5879cd0dbebd2b40b2"
+    },
+    "rust-node-bootstrap": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/rust-node-bootstrap/SKILL.md",
+      "computedHash": "247ccba25e79b7b7245d6a19d47654834cbfddff14f1f0845a82891ec3cfa1c9"
+    },
+    "rust-node-ci": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/rust-node-ci/SKILL.md",
+      "computedHash": "2597822c7fe86ea8b0f9483fa15cbad2e5556ea98c8d91937d5a429e8316bd1b"
+    },
+    "rust-npm-publish": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/rust-npm-publish/SKILL.md",
+      "computedHash": "eae8d11357f45191534ee54029600507fcafde2e6ccae4908cdcb45007576fba"
+    },
+    "safe-refactor": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/safe-refactor/SKILL.md",
+      "computedHash": "9df34a21a7a2c18ce13dbbe4a3f66b4e91df9e4bc33c1c9da8a80261583367ec"
+    },
+    "surgical-patch": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/surgical-patch/SKILL.md",
+      "computedHash": "028b9c3574142d19639d9f8eb11fbb01c58479f8f441e957d598a7215e79f95d"
+    },
+    "tdd-rust": {
+      "source": "rtk-ai/rtk",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/tdd-rust/SKILL.md",
+      "computedHash": "96c7d954715cfa3770e377eb3c23ec3b222ad16b53c155515c04052f81eb427c"
+    },
+    "ui-design": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ui-design/SKILL.md",
+      "computedHash": "846ae5bf2e37e881982f239e50a44ac09ea93001a100859b9c3ca7cdc762244d"
+    },
+    "ultracave": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/ultracave/SKILL.md",
+      "computedHash": "d2e5de7e5e664e95c0c93ea0fb84c6b78a4bb2351c71964c453a8a35c63869eb"
+    },
+    "verify-and-stop": {
+      "source": "juliusbrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/verify-and-stop/SKILL.md",
+      "computedHash": "3d67de16a2b3c48b643bc511ebc4cb86e6c7105215d8428b6140cbcb73aba4e6"
+    },
+    "web-testing": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-testing/SKILL.md",
+      "computedHash": "8a04ab87e80cd61188afdedf6f38b496d3c5d37320c0672b921535432bacf778"
+    },
+    "worktree-devproxy": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/worktree-devproxy/SKILL.md",
+      "computedHash": "c4a09a68cc00696e8877988f02c0b88bb6fd2db7ebe8352c90eea1ec6d16924a"
+    },
+    "worktree-discipline": {
+      "source": "onsager-ai/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/worktree-discipline/SKILL.md",
+      "computedHash": "52e84f473aec9a556db7cd9f9d1f1fb9f0490648bdc3e4a9db8d8a8b838ef4a9"
     }
   }
 }
