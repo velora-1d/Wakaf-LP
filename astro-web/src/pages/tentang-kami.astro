@@ -1,15 +1,25 @@
 ---
 // src/pages/tentang-kami.astro
 // Halaman Profil & Tentang Kami Sesuai Desain Pen.dev (Node BtC15)
+export const prerender = false;
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ElasticGallery from '../components/ui/ElasticGallery.astro';
+import { getActivePageSections } from '../lib/db';
+
+const activeSections = await getActivePageSections('tentang-kami');
+const sectionMap = new Map(activeSections.map((s) => [s.sectionKey, s]));
+const isEnabled = (key: string) => {
+  if (activeSections.length === 0) return true;
+  return sectionMap.has(key);
+};
 ---
 
 <BaseLayout
   title="Tentang Global Village Fund • Yayasan Permata Cendekia Indonesia"
   description="Membangun ekosistem pesantren integratif holistik di Sukasirna, Jonggol, Kabupaten Bogor menuju kemandirian dan kebermanfaatan abadi."
 >
-  <!-- 1. Header Banner & Breadcrumb ala Pen.dev -->
+  {isEnabled('about_hero') && (
   <section class="pen-about-banner">
     <div class="pen-banner-bg"></div>
     <div class="pen-banner-overlay"></div>
@@ -22,12 +32,12 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
       </div>
     </div>
   </section>
+  )}
 
-  <!-- 2. Section Tentang Kami (Stat & Narrative Split) -->
+  {isEnabled('about_stats') && (
   <section class="pen-about-intro">
     <div class="pen-container">
       <div class="pen-intro-grid">
-        <!-- Kolom Kiri -->
         <div class="pen-intro-left">
           <div class="pen-badge-pill">
             <span class="pen-badge-dot"></span>
@@ -58,7 +68,6 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
           </div>
         </div>
 
-        <!-- Kolom Kanan -->
         <div class="pen-intro-right">
           <div class="pen-intro-main-img">
             <img
@@ -79,7 +88,6 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
     </div>
   </section>
 
-  <!-- 4. Section Jejak Langkah (Timeline Sejarah) -->
   <section class="pen-timeline-section">
     <div class="pen-container">
       <div class="pen-section-header-center">
@@ -96,7 +104,6 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
       <div class="pen-timeline-wrap">
         <div class="pen-timeline-line"></div>
         <div class="pen-timeline-grid">
-          <!-- Item 1: 2021 -->
           <div class="pen-timeline-item">
             <div class="pen-timeline-img-box">
               <img
@@ -113,7 +120,6 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
             </p>
           </div>
 
-          <!-- Item 2: 2023 -->
           <div class="pen-timeline-item">
             <div class="pen-timeline-img-box">
               <img
@@ -130,7 +136,6 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
             </p>
           </div>
 
-          <!-- Item 3: 2025 -->
           <div class="pen-timeline-item">
             <div class="pen-timeline-img-box">
               <img
@@ -147,7 +152,6 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
             </p>
           </div>
 
-          <!-- Item 4: 2026 - Sekarang -->
           <div class="pen-timeline-item">
             <div class="pen-timeline-img-box">
               <img
@@ -168,7 +172,6 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
     </div>
   </section>
 
-  <!-- 5. Section Alur Kerja (4 Langkah) -->
   <section class="pen-workflow-section">
     <div class="pen-container">
       <div class="pen-workflow-header">
@@ -190,7 +193,6 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
       </div>
 
       <div class="pen-workflow-grid">
-        <!-- Card 1 -->
         <div class="pen-workflow-card">
           <div class="pen-wf-img-box">
             <img
@@ -208,7 +210,6 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
           </div>
         </div>
 
-        <!-- Card 2 -->
         <div class="pen-workflow-card">
           <div class="pen-wf-img-box">
             <img
@@ -226,7 +227,6 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
           </div>
         </div>
 
-        <!-- Card 3 -->
         <div class="pen-workflow-card">
           <div class="pen-wf-img-box">
             <img
@@ -244,7 +244,6 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
           </div>
         </div>
 
-        <!-- Card 4 -->
         <div class="pen-workflow-card">
           <div class="pen-wf-img-box">
             <img
@@ -264,8 +263,9 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
       </div>
     </div>
   </section>
+  )}
 
-  <!-- 6. Section Dokumentasi & Fasilitas Kawasan (Elastic Horizontal Accordion Gallery) -->
+  {isEnabled('about_gallery') && (
   <section class="pen-facility-section">
     <div class="pen-container">
       <div class="pen-facility-header">
@@ -283,19 +283,22 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
           </p>
         </div>
         <div class="pen-facility-tag">
-          📍 Sukasirna, Jonggol, Bogor
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: -2px; margin-right: 4px;">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Sukasirna, Jonggol, Bogor</span>
         </div>
       </div>
 
-      <!-- Elastic Accordion Gallery Interaktif (Buka ke Samping) -->
       <div class="w-full">
         <ElasticGallery defaultActiveId="01" />
       </div>
     </div>
   </section>
+  )}
 
-
-  <!-- 7. Section Final CTA Kemitraan Pen.dev -->
+  {isEnabled('about_team') && (
   <section class="pen-final-cta-section">
     <div class="pen-container">
       <div class="pen-cta-box">
@@ -314,6 +317,7 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
       </div>
     </div>
   </section>
+  )}
 </BaseLayout>
 
 <style>

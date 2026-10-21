@@ -1,6 +1,8 @@
 ---
 // src/pages/index.astro
 // Halaman Utama Global Village Fund — 100% Selaras Standar Desain ISAVO (isavo.co.id)
+export const prerender = false;
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/home/HeroSection.astro';
 import OurProgramsSection from '../components/home/OurProgramsSection.astro';
@@ -11,42 +13,33 @@ import ShowcaseSection from '../components/home/ShowcaseSection.astro';
 import LeadershipSection from '../components/home/LeadershipSection.astro';
 import VideoSection from '../components/home/VideoSection.astro';
 import NewsSection from '../components/home/NewsSection.astro';
-import SimulasiSection from '../components/home/SimulasiSection.astro';
-import ContactSection from '../components/home/ContactSection.astro';
 import FinalCtaSection from '../components/home/FinalCtaSection.astro';
+import { getActivePageSections } from '../lib/db';
+
+// Fetch active sections from PostgreSQL with safe fallback
+const activeSections = await getActivePageSections('home');
+const sectionMap = new Map(activeSections.map((s) => [s.sectionKey, s]));
+
+// Safe helper: If DB returns records, check if sectionKey is in active sections.
+// If DB is offline / empty, default to true so public site never breaks!
+const isEnabled = (key: string) => {
+  if (activeSections.length === 0) return true;
+  return sectionMap.has(key);
+};
 ---
 
 <BaseLayout
   title="Global Village Fund • Wakaf Produktif & Pendidikan Berkelanjutan"
   description="Kawasan Wakaf Terpadu seluas ±3 hektare di Jonggol Bogor. Memadukan Garden Mosque Khairu Ummah, SMK Skill Village Islamic School, dan Agro-Technopark."
 >
-  <!-- 01. Hero Slider Cinematic (First Screen 4 Slide) -->
-  <HeroSection />
-
-  <!-- 02. Layanan / Program Utama: 4 Kartu Putih Radius 24px ala ISAVO Screenshot 2 -->
-  <OurProgramsSection />
-
-  <!-- 03. Tentang Kami: Split Dark Section, Checklist, Foto & GVF Watermark ala ISAVO Screenshot 1 -->
-  <AboutSplitSection />
-
-  <!-- 04. Jelajahi Ekosistem Terpadu: Foto Preview + Accordion List 01-04 -->
-  <InteractiveServicesSection />
-
-  <!-- 05. Empat Pilar Filantropi: Exact Pen.dev 4-Card Waterfall (Infaq, Sedekah, Zakat, Wakaf) -->
-  <WorkflowSection />
-
-  <!-- 06. Dokumentasi Riil & Masterplan Kawasan: Header Pen.dev + Dual-Row Scroll Parallax Gallery -->
-  <ShowcaseSection />
-
-  <!-- 06. Temui Dewan & Pengurus GVF: Exact Pen.dev Team Switcher -->
-  <LeadershipSection />
-
-  <!-- 07. Video Dokumentasi: Satu Kebaikan Bisa Menjadi Awal Banyak Kebaikan -->
-  <VideoSection />
-
-  <!-- 08. Kabar GVF & Catatan Edukasi Kebermanfaatan: Exact Pen.dev 6-Card News Track -->
-  <NewsSection />
-
-  <!-- 09. Final CTA: Punya Niat Amal Jariyah & Pertanyaan? -->
-  <FinalCtaSection />
+  {isEnabled('hero') && <HeroSection />}
+  {isEnabled('programs_preview') && <OurProgramsSection />}
+  {isEnabled('about_split') && <AboutSplitSection />}
+  {isEnabled('interactive_services') && <InteractiveServicesSection />}
+  {isEnabled('workflow') && <WorkflowSection />}
+  {isEnabled('showcase_gallery') && <ShowcaseSection />}
+  {isEnabled('leadership') && <LeadershipSection />}
+  {isEnabled('video_documentary') && <VideoSection />}
+  {isEnabled('news_section') && <NewsSection />}
+  {isEnabled('final_cta') && <FinalCtaSection />}
 </BaseLayout>

@@ -58,7 +58,6 @@ const heroSlides = [
 ---
 
 <section class="isavo-hero" id="hero-carousel" aria-roledescription="carousel" aria-label="Global Village Fund Hero">
-  <!-- Multi-Slide Backgrounds with Cinematic Crossfade & Ambient Zoom -->
   <div class="hero-bgs-container" aria-hidden="true">
     {heroSlides.map((slide, i) => (
       <div class={`hero-bg-item ${i === 0 ? 'is-active' : ''}`} data-bg-index={i}>
@@ -74,7 +73,6 @@ const heroSlides = [
   </div>
 
   <div class="isavo-hero-container">
-    <!-- Slides Content Deck -->
     <div class="hero-slides-deck">
       {heroSlides.map((slide, i) => (
         <div
@@ -83,25 +81,21 @@ const heroSlides = [
           role="tabpanel"
           aria-label={`Slide ${slide.index}: ${slide.label}`}
         >
-          <!-- Badge Pill from Pen.dev -->
           <div class="hero-badge-pill">
             <span class="hero-badge-dot"></span>
             <span class="hero-badge-text">{slide.taglineEn || slide.badge || 'FOSTERING PESANTREN ECOSYSTEMS FOR SELF-RELIANCE AND SOCIAL IMPACT'}</span>
           </div>
 
-          <!-- Display Heading (Pen.dev text-[72px] line-height tight - WCAG single h1 per page) -->
           {i === 0 ? (
             <h1 class="isavo-hero-title" set:html={slide.title} />
           ) : (
             <h2 class="isavo-hero-title" set:html={slide.title} />
           )}
 
-          <!-- Narrative Subtext -->
           <div class="isavo-hero-sub">
             <p>{slide.lead}</p>
           </div>
 
-          <!-- Matched Height Action Buttons (Pen.dev Jelajahi Program & Dukung Kebaikan) -->
           <div class="isavo-hero-cta-wrap">
             {slide.buttons.map((btn) => (
               <a
@@ -116,7 +110,6 @@ const heroSlides = [
       ))}
     </div>
 
-    <!-- Accessible Carousel Controls (WCAG 2.2.2 Compliant) -->
     <div class="hero-carousel-controls" aria-label="Kontrol Slider">
       <div class="hero-dots-row">
         {heroSlides.map((slide, i) => (
@@ -149,12 +142,10 @@ const heroSlides = [
           aria-label="Jeda rotasi otomatis slide"
           aria-pressed="false"
         >
-          <!-- Pause Icon (Default) -->
           <svg id="hero-pause-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="6" y="4" width="4" height="16"></rect>
             <rect x="14" y="4" width="4" height="16"></rect>
           </svg>
-          <!-- Play Icon (Hidden when playing) -->
           <svg id="hero-play-icon" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
@@ -539,17 +530,14 @@ const heroSlides = [
     }
 
     function updateUI() {
-      // 1. Update background images
       bgItems.forEach((bg, idx) => {
         bg.classList.toggle('is-active', idx === currentIndex);
       });
 
-      // 2. Update slide content panes
       slidePanes.forEach((pane, idx) => {
         pane.classList.toggle('is-active', idx === currentIndex);
       });
 
-      // 3. Update dots
       dotBtns.forEach((dot, idx) => {
         const active = idx === currentIndex;
         dot.classList.toggle('is-active', active);
@@ -572,7 +560,6 @@ const heroSlides = [
       }
     }
 
-    // Toggle Pause/Play
     function togglePause() {
       isPaused = !isPaused;
       if (isPaused) {
@@ -591,7 +578,6 @@ const heroSlides = [
       }
     }
 
-    // Event listeners
     prevBtn?.addEventListener('click', prevSlide);
     nextBtn?.addEventListener('click', nextSlide);
     pauseBtn?.addEventListener('click', togglePause);
@@ -600,13 +586,11 @@ const heroSlides = [
       dot.addEventListener('click', () => goToSlide(idx));
     });
 
-    // Keyboard navigation (Left / Right arrow keys)
     root.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight') nextSlide();
       if (e.key === 'ArrowLeft') prevSlide();
     });
 
-    // Pause on hover
     root.addEventListener('mouseenter', () => {
       if (!isPaused && slideTimer) clearInterval(slideTimer);
     });
@@ -614,11 +598,9 @@ const heroSlides = [
       if (!isPaused) resetTimer();
     });
 
-    // Start initial timer
     resetTimer();
   }
 
-  // Run on initial load and Astro page transitions
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initHeroCarousel);
   } else {

@@ -82,14 +82,12 @@ export interface ProgramData {
   categoryBadge: string;
   heroBgImage: string;
   
-  // Section 2: Pricing Packages (Exact 3 Columns ala Pen.dev)
   pricingHeading: string;
   pricingSubheading: string;
   packages: PricingPackage[];
   addonTitle?: string;
   addonItems?: AddonItem[];
   
-  // Section 3: Deep Dive (2 Kolom Sticky Sidebar)
   deepDiveBadge: string;
   deepDiveTitle: string;
   deepDiveLead: string;
@@ -112,29 +110,24 @@ export interface ProgramData {
   }[];
   guarantees?: string[];
   
-  // Section 4: Gallery Showcase (Full-Width + Lightbox)
   galleryBadge: string;
   galleryTitle: string;
   gallerySubtitle: string;
   galleryItems: GalleryItem[];
   
-  // Section 5: Workflow (4 Langkah Transparan)
   workflowHeading: string;
   workflowSteps: WorkflowStep[];
   
-  // Section 6: Leadership & Syariah Board
   leadershipBadge: string;
   leadershipTitle: string;
   leadershipQuote: string;
   leaders: LeaderPerson[];
   
-  // Section 7: Legalitas & Rekening
   legalitasBadge: string;
   legalitasTitle: string;
   legalities: LegalItem[];
   bankAccounts: BankAccount[];
   
-  // Section 8: FAQ & CTA
   faqBadge: string;
   faqTitle: string;
   faqs: FaqItem[];

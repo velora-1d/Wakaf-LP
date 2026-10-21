@@ -1,0 +1,451 @@
+---
+export const prerender = false;
+
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { db, getAllPageSections } from '../../../lib/db';
+import { pages } from '../../../lib/db/schema';
+import { eq } from 'drizzle-orm';
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect('/admin');
+}
+
+// Find page
+const pageRecords = await db.select().from(pages).where(eq(pages.slug, slug)).limit(1);
+if (pageRecords.length === 0) {
+  return Astro.redirect('/admin');
+}
+const currentPage = pageRecords[0];
+
+// Find all sections for this page
+const sections = await getAllPageSections(slug);
+
+function getPublicUrl(slugStr: string) {
+  if (slugStr === 'home') return '/';
+  if (['wakaf', 'infaq', 'sedekah', 'zakat'].includes(slugStr)) return `/program/${slugStr}`;
+  return `/${slugStr}`;
+}
+
+const publicPageUrl = getPublicUrl(slug);
+---
+
+<AdminLayout title={`Kelola Section: ${currentPage.title}`} activeSlug={slug}>
+  <div class="space-y-6">
+    <!-- Top Action & Navigation Bar -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <a
+            href="/admin"
+            class="text-xs font-semibold text-slate-500 hover:text-[#0969da] flex items-center gap-1 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+            <span>Semua Halaman</span>
+          </a>
+          <span class="text-slate-300">/</span>
+          <span class="text-xs font-mono text-[#0969da] bg-blue-50 px-2 py-0.5 rounded font-medium">/{slug === 'home' ? '' : slug}</span>
+        </div>
+        <h2 class="text-xl font-bold text-slate-900 tracking-tight">{currentPage.title}</h2>
+        <p class="text-xs text-slate-500 mt-0.5">
+          {sections.length} Section terdaftar &bull; {sections.filter((s) => s.isEnabled).length} Sedang aktif ditampilkan
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a
+          href={publicPageUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-white bg-[#0969da] hover:bg-[#0752a8] rounded-xl transition-all shadow-xs"
+        >
+          <span>Preview Halaman Live</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" x2="21" y1="14" y2="3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Instructions Banner -->
+    <div class="bg-blue-50/60 border border-blue-200/80 rounded-2xl p-4 text-xs text-blue-900 flex items-start gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 shrink-0 mt-0.5">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 16v-4"/>
+        <path d="M12 8h.01"/>
+      </svg>
+      <div>
+        <p class="font-semibold text-blue-950">Cara Kerja Section Dinamis:</p>
+        <p class="mt-0.5 text-blue-800">
+          Gunakan toggle switch di kanan kartu untuk <strong>menampilkan atau menyembunyikan (on/off)</strong> section secara instan.
+          Klik tombol <strong>"Edit Teks & Konten"</strong> untuk memperbarui judul, narasi, link, atau data JSON section tersebut.
+        </p>
+      </div>
+    </div>
+
+    <!-- Section Cards List -->
+    <div class="space-y-4" id="sectionsListContainer">
+      {sections.map((section, idx) => {
+        const contentJson = JSON.stringify(section.content, null, 2);
+        const headingPreview = (section.content as any)?.heading || (section.content as any)?.title || '';
+        const badgePreview = (section.content as any)?.badge || '';
+        const subheadingPreview = (section.content as any)?.subheading || (section.content as any)?.desc || (section.content as any)?.paragraph1 || '';
+
+        return (
+          <div
+            class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs transition-all hover:border-slate-300 relative"
+            id={`section-card-${section.id}`}
+            data-section-id={section.id}
+          >
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <!-- Left: Section Identifiers & Copy Preview -->
+              <div class="space-y-2 min-w-0 flex-1">
+                <div class="flex items-center gap-2.5 flex-wrap">
+                  <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 font-mono font-bold text-xs flex items-center justify-center">
+                    {section.sortOrder || idx + 1}
+                  </span>
+                  <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200/60">
+                    {section.sectionKey}
+                  </span>
+                  <span
+                    id={`status-badge-${section.id}`}
+                    class={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${
+                      section.isEnabled
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                        : 'bg-slate-100 text-slate-500 border border-slate-200'
+                    }`}
+                  >
+                    <span class={`w-1.5 h-1.5 rounded-full ${section.isEnabled ? 'bg-emerald-500' : 'bg-slate-400'}`}></span>
+                    <span id={`status-text-${section.id}`}>{section.isEnabled ? 'Aktif (Tampil)' : 'Nonaktif (Sembunyi)'}</span>
+                  </span>
+                </div>
+
+                <div>
+                  <h3 class="font-bold text-slate-900 text-sm md:text-base flex items-center gap-2">
+                    <span id={`title-display-${section.id}`}>{section.title}</span>
+                  </h3>
+                  {badgePreview && (
+                    <span class="inline-block text-[10px] font-bold text-blue-600 uppercase tracking-wider mt-1">
+                      Badge: {badgePreview}
+                    </span>
+                  )}
+                  {headingPreview && (
+                    <p class="text-xs font-semibold text-slate-700 mt-0.5">
+                      Heading: &ldquo;{headingPreview}&rdquo;
+                    </p>
+                  )}
+                  {subheadingPreview && (
+                    <p class="text-xs text-slate-500 mt-0.5 line-clamp-1">
+                      Deskripsi: {subheadingPreview}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <!-- Right: Checkbox Switch Toggle & Edit Modal Trigger -->
+              <div class="flex items-center gap-4 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-slate-100">
+                <!-- Toggle Switch -->
+                <div class="flex items-center gap-3 bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200/80">
+                  <label for={`toggle-${section.id}`} class="text-xs font-semibold text-slate-700 cursor-pointer select-none">
+                    Tampilkan
+                  </label>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      id={`toggle-${section.id}`}
+                      class="sr-only peer section-toggle-checkbox"
+                      data-section-id={section.id}
+                      checked={section.isEnabled}
+                    />
+                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0969da]"></div>
+                  </label>
+                </div>
+
+                <!-- Edit Button -->
+                <button
+                  type="button"
+                  class="edit-section-btn inline-flex items-center gap-1.5 px-3.5 py-2 bg-white hover:bg-slate-50 text-slate-700 hover:text-[#0969da] border border-slate-300 hover:border-[#0969da]/60 rounded-xl text-xs font-semibold transition-all shadow-2xs cursor-pointer"
+                  data-section-id={section.id}
+                  data-section-title={section.title}
+                  data-section-key={section.sectionKey}
+                  data-section-order={section.sortOrder}
+                  data-section-content={contentJson}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/>
+                    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+                  </svg>
+                  <span>Edit Teks & Konten</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <!-- Edit Section Slide-Over Drawer / Modal -->
+  <div
+    id="editModal"
+    class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+    <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-200" id="modalBox">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+        <div>
+          <h3 id="modalTitle" class="text-base font-bold text-slate-900">Edit Section</h3>
+          <p id="modalSubtitle" class="text-xs text-slate-500 font-mono mt-0.5"></p>
+        </div>
+        <button
+          type="button"
+          id="closeModalBtn"
+          class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+          aria-label="Tutup modal"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body (Form Fields) -->
+      <div class="px-6 py-5 overflow-y-auto space-y-4 flex-1">
+        <input type="hidden" id="editSectionId" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="sm:col-span-2">
+            <label for="editTitle" class="block text-xs font-semibold text-slate-700 mb-1">
+              Nama / Judul Section (Internal CMS)
+            </label>
+            <input
+              type="text"
+              id="editTitle"
+              class="w-full bg-slate-50 border border-slate-300 focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none"
+            />
+          </div>
+          <div>
+            <label for="editSortOrder" class="block text-xs font-semibold text-slate-700 mb-1">
+              Urutan (Sort Order)
+            </label>
+            <input
+              type="number"
+              id="editSortOrder"
+              class="w-full bg-slate-50 border border-slate-300 focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label for="editJsonContent" class="block text-xs font-semibold text-slate-700">
+              Isi Konten Section (JSON)
+            </label>
+            <span class="text-[11px] text-slate-500 font-normal">Teks, Heading, Deskripsi, Metrik, Link & Media</span>
+          </div>
+          <div class="relative">
+            <textarea
+              id="editJsonContent"
+              rows="12"
+              class="w-full font-mono text-xs bg-slate-900 text-slate-100 border border-slate-800 rounded-xl p-3.5 focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/30 outline-none leading-relaxed"
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <p id="jsonError" class="text-xs text-red-600 mt-1 hidden"></p>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-4 border-t border-slate-200 bg-slate-50 rounded-b-2xl flex items-center justify-end gap-3">
+        <button
+          type="button"
+          id="cancelModalBtn"
+          class="px-4 py-2 rounded-xl border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+        >
+          Batal
+        </button>
+        <button
+          type="button"
+          id="saveSectionBtn"
+          class="px-4 py-2 rounded-xl bg-[#0969da] hover:bg-[#0752a8] text-white text-xs font-semibold flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+        >
+          <span id="saveBtnText">Simpan Perubahan</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Checkbox Toggle Visibility Logic
+    const toggleCheckboxes = document.querySelectorAll('.section-toggle-checkbox');
+    toggleCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', async (e) => {
+        const target = e.target as HTMLInputElement;
+        const sectionId = target.dataset.sectionId;
+        const isEnabled = target.checked;
+
+        // UI Optimistic Feedback
+        const statusBadge = document.getElementById(`status-badge-${sectionId}`);
+        const statusText = document.getElementById(`status-text-${sectionId}`);
+        if (statusBadge && statusText) {
+          if (isEnabled) {
+            statusBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200';
+            statusText.textContent = 'Aktif (Tampil)';
+          } else {
+            statusBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-500 border border-slate-200';
+            statusText.textContent = 'Nonaktif (Sembunyi)';
+          }
+        }
+
+        try {
+          const res = await fetch('/api/admin/sections/toggle', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ sectionId, isEnabled }),
+          });
+          const data = await res.json();
+          if (data.success) {
+            (window as any).showToast(isEnabled ? 'Section diaktifkan di web publik.' : 'Section disembunyikan dari web publik.');
+          } else {
+            target.checked = !isEnabled; // Revert
+            (window as any).showToast(data.error || 'Gagal mengubah visibilitas section.', true);
+          }
+        } catch (err) {
+          target.checked = !isEnabled; // Revert
+          (window as any).showToast('Gagal menghubungi server.', true);
+        }
+      });
+    });
+
+    // 2. Edit Modal Logic
+    const editModal = document.getElementById('editModal');
+    const modalBox = document.getElementById('modalBox');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const cancelModalBtn = document.getElementById('cancelModalBtn');
+    const saveSectionBtn = document.getElementById('saveSectionBtn');
+    const saveBtnText = document.getElementById('saveBtnText');
+    const jsonError = document.getElementById('jsonError');
+
+    const editSectionId = document.getElementById('editSectionId') as HTMLInputElement;
+    const editTitle = document.getElementById('editTitle') as HTMLInputElement;
+    const editSortOrder = document.getElementById('editSortOrder') as HTMLInputElement;
+    const editJsonContent = document.getElementById('editJsonContent') as HTMLTextAreaElement;
+    const modalSubtitle = document.getElementById('modalSubtitle');
+
+    function openModal() {
+      if (editModal && modalBox) {
+        editModal.classList.remove('opacity-0', 'pointer-events-none');
+        modalBox.classList.remove('scale-95');
+        modalBox.classList.add('scale-100');
+      }
+    }
+
+    function closeModal() {
+      if (editModal && modalBox) {
+        editModal.classList.add('opacity-0', 'pointer-events-none');
+        modalBox.classList.remove('scale-100');
+        modalBox.classList.add('scale-95');
+      }
+    }
+
+    closeModalBtn?.addEventListener('click', closeModal);
+    cancelModalBtn?.addEventListener('click', closeModal);
+    editModal?.addEventListener('click', (e) => {
+      if (e.target === editModal) closeModal();
+    });
+
+    // Open Edit Modal on Button Click
+    const editBtns = document.querySelectorAll('.edit-section-btn');
+    editBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-section-id') || '';
+        const title = btn.getAttribute('data-section-title') || '';
+        const key = btn.getAttribute('data-section-key') || '';
+        const order = btn.getAttribute('data-section-order') || '1';
+        const contentStr = btn.getAttribute('data-section-content') || '{}';
+
+        if (editSectionId) editSectionId.value = id;
+        if (editTitle) editTitle.value = title;
+        if (editSortOrder) editSortOrder.value = order;
+        if (editJsonContent) editJsonContent.value = contentStr;
+        if (modalSubtitle) modalSubtitle.textContent = `Section Key: ${key} (ID #${id})`;
+        if (jsonError) {
+          jsonError.textContent = '';
+          jsonError.classList.add('hidden');
+        }
+
+        openModal();
+      });
+    });
+
+    // Save Section Content
+    saveSectionBtn?.addEventListener('click', async () => {
+      if (jsonError) {
+        jsonError.textContent = '';
+        jsonError.classList.add('hidden');
+      }
+
+      let parsedContent: any = {};
+      try {
+        parsedContent = JSON.parse(editJsonContent.value);
+      } catch (e: any) {
+        if (jsonError) {
+          jsonError.textContent = `Format JSON tidak valid: ${e.message}`;
+          jsonError.classList.remove('hidden');
+        }
+        return;
+      }
+
+      if (saveBtnText) saveBtnText.textContent = 'Menyimpan...';
+      if (saveSectionBtn) (saveSectionBtn as HTMLButtonElement).disabled = true;
+
+      const payload = {
+        sectionId: Number(editSectionId.value),
+        title: editTitle.value,
+        sortOrder: Number(editSortOrder.value),
+        content: parsedContent,
+      };
+
+      try {
+        const res = await fetch('/api/admin/sections/update', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (data.success) {
+          (window as any).showToast('Perubahan konten berhasil disimpan ke PostgreSQL.');
+          // Update display title on card
+          const titleDisplay = document.getElementById(`title-display-${payload.sectionId}`);
+          if (titleDisplay) titleDisplay.textContent = payload.title;
+
+          // Update trigger data attributes
+          const activeBtn = document.querySelector(`.edit-section-btn[data-section-id="${payload.sectionId}"]`);
+          if (activeBtn) {
+            activeBtn.setAttribute('data-section-title', payload.title);
+            activeBtn.setAttribute('data-section-order', String(payload.sortOrder));
+            activeBtn.setAttribute('data-section-content', JSON.stringify(payload.content, null, 2));
+          }
+
+          closeModal();
+        } else {
+          (window as any).showToast(data.error || 'Gagal menyimpan ke database.', true);
+        }
+      } catch (err) {
+        (window as any).showToast('Terjadi kesalahan jaringan.', true);
+      } finally {
+        if (saveBtnText) saveBtnText.textContent = 'Simpan Perubahan';
+        if (saveSectionBtn) (saveSectionBtn as HTMLButtonElement).disabled = false;
+      }
+    });
+  </script>
+</AdminLayout>

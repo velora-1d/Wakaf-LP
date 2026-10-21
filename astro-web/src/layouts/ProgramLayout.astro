@@ -4,12 +4,21 @@
 import BaseLayout from './BaseLayout.astro';
 import type { ProgramData } from '../data/programs';
 import PricingPackagesSection from '../components/program/PricingPackagesSection.astro';
+import { getActivePageSections } from '../lib/db';
 
 interface Props {
   program: ProgramData;
 }
 
 const { program } = Astro.props;
+
+// Fetch active sections from PostgreSQL with safe fallback
+const activeSections = await getActivePageSections(program.slug);
+const sectionMap = new Map(activeSections.map((s) => [s.sectionKey, s]));
+const isEnabled = (key: string) => {
+  if (activeSections.length === 0) return true;
+  return sectionMap.has(key);
+};
 
 // Daftar link program untuk sticky sidebar
 const programNavLinks = [
@@ -33,9 +42,7 @@ const valueBoxIcons = [
   description={program.heroSubtitle}
   ogImage={program.heroBgImage}
 >
-  <!-- =========================================================================
-       SECTION 1: PAGE HEADER & BREADCRUMB (PERSIS PEN.DEV)
-       ========================================================================= -->
+  {isEnabled('prog_hero') && (
   <section
     class="pen-prog-header relative overflow-hidden bg-cover bg-center flex flex-col justify-center items-center"
     style={`background-image: url('${program.heroBgImage}'); background-color: #191919; min-height: 385px; padding-top: 140px; padding-bottom: 100px;`}
@@ -58,20 +65,14 @@ const valueBoxIcons = [
       </div>
     </div>
   </section>
+  )}
 
-  <!-- =========================================================================
-       SECTION 2: PILIHAN PAKET PROGRAM & ADD-ON TABLE (PERSIS PEN.DEV)
-       ========================================================================= -->
-  <PricingPackagesSection program={program} />
+  {isEnabled('prog_pricing') && <PricingPackagesSection program={program} />}
 
-  <!-- =========================================================================
-       SECTION 3: DEEP-DIVE PROGRAM (2 KOLOM STICKY SIDEBAR PERSIS PEN.DEV)
-       ========================================================================= -->
+  {isEnabled('prog_details') && (
   <section class="pen-deepdive-section" id="tentang-program">
     <div class="pen-deepdive-container">
-      <!-- Kolom Kiri: Sticky Sidebar (380px) -->
       <aside class="pen-deepdive-sidebar">
-        <!-- Widget 1: Navigasi Program Lain -->
         <div style="background: #ffffff; border-radius: 24px; padding: 32px; border: 1px solid #e3e3e8; box-shadow: 0 4px 16px rgba(0,0,0,0.02);">
           <h3 style="font-family: 'Cal Sans', sans-serif; font-size: 22px; color: #191919; margin: 0 0 20px 0; font-weight: 600;">Program Lainnya</h3>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
@@ -93,7 +94,6 @@ const valueBoxIcons = [
           </ul>
         </div>
 
-        <!-- Widget 2: Bantuan / Konsultasi Cepat Widget ala Pen.dev -->
         <div style="position: relative; border-radius: 24px; overflow: hidden; padding: 48px 24px; text-align: center; color: #ffffff; min-height: 440px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.12); background-image: url('/gambar design/belakang masjid.jpg'); background-size: cover; background-position: center;">
           <div style="position: absolute; inset: 0; background: rgba(6, 24, 41, 0.82); z-index: 0;"></div>
           <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; width: 100%;">
@@ -264,13 +264,11 @@ const valueBoxIcons = [
         </div>
       </div>
   </section>
+  )}
 
-  <!-- =========================================================================
-       SECTION 4: FAQ (PERTANYAAN SEPUTAR INFAQ PEMBANGUNAN - PERSIS PEN.DEV)
-       ========================================================================= -->
+  {isEnabled('prog_faq') && (
   <section class="pen-faq-section" id="faq" style="background-color: #f8f8f8; padding: 100px 24px 130px; width: 100%; box-sizing: border-box;">
     <div style="max-width: 1425px; margin: 0 auto; width: 100%;">
-      <!-- Header FAQ Pen.dev -->
       <div style="text-align: center; margin-bottom: 50px;">
         <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid #72727240; border-radius: 9999px; padding: 6px 18px; background: #ffffff; margin-bottom: 16px;">
           <span style="width: 6px; height: 6px; border-radius: 50%; background-color: #0969da;"></span>
@@ -281,7 +279,6 @@ const valueBoxIcons = [
         </h2>
       </div>
 
-      <!-- Accordion List Pen.dev Style -->
       <div style="max-width: 100%; margin: 0 auto; display: flex; flex-direction: column;">
         {program.faqs.map((faq, idx) => (
           <details style="border-top: 1px solid rgba(159, 159, 164, 0.24); padding: 0;" open={idx === 0}>
@@ -297,6 +294,7 @@ const valueBoxIcons = [
       </div>
     </div>
   </section>
+  )}
 
   <!-- SCRIPT INTERAKTIF: GSAP SCROLLTRIGGER ENGINE ALA ISAVO, SALIN REKENING & LIGHTBOX -->
   <script>

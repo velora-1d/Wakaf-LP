@@ -7,9 +7,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-/* ──────────────────────────────────────────────
-   1. BRAND COLOR SCALES (HSL-based)
-────────────────────────────────────────────── */
+/* Brand color scales */
 :root {
   /* Blue brand — utama GVF */
   --blue-50:  hsl(214, 100%, 97%);
@@ -36,10 +34,7 @@
   /* Amber — highlight / warm */
   --amber-400: hsl(38, 92%, 50%);
 
-  /* ──────────────────────────────────────────────
-     2. SEMANTIC COLOR ROLES
-  ────────────────────────────────────────────── */
-  /* Brand */
+  /* Semantic color roles */
   --color-brand:           var(--blue-500);
   --color-brand-hover:     var(--blue-600);
   --color-brand-active:    var(--blue-700);

@@ -1,14 +1,24 @@
 ---
 // src/pages/contact.astro
 // Halaman Kontak & Layanan Donatur Sesuai Desain Pen.dev (Node AlCVn)
+export const prerender = false;
+
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getActivePageSections } from '../lib/db';
+
+const activeSections = await getActivePageSections('contact');
+const sectionMap = new Map(activeSections.map((s) => [s.sectionKey, s]));
+const isEnabled = (key: string) => {
+  if (activeSections.length === 0) return true;
+  return sectionMap.has(key);
+};
 ---
 
 <BaseLayout
   title="Layanan Donatur & Kontak Kami • Global Village Fund"
   description="Konsultasi program wakaf produktif, zakat, infaq, sedekah, dan kemitraan kolaborasi bersama tim pengurus resmi Global Village Fund."
 >
-  <!-- 1. Header Banner & Breadcrumb ala Pen.dev -->
+  {isEnabled('contact_hero') && (
   <section class="pen-contact-banner">
     <div class="pen-banner-bg"></div>
     <div class="pen-banner-overlay"></div>
@@ -21,8 +31,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
   </section>
+  )}
 
-  <!-- 2. Form & Info Kontak 2-Kolom Sesuai Pen.dev -->
   <section class="pen-contact-main-section">
     <div class="pen-container">
       <div class="pen-contact-header">
@@ -40,10 +50,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
 
       <div class="pen-contact-grid">
-        <!-- Kolom Kiri: Informasi Kantor & Saluran Kontak -->
         <div class="pen-contact-info-col">
           <div class="pen-info-card">
-            <!-- Item 1: Alamat -->
             <div class="pen-info-item">
               <span class="pen-info-label">Alamat Kantor & Lokasi Kawasan</span>
               <p class="pen-info-text">
@@ -52,7 +60,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </p>
             </div>
 
-            <!-- Item 2: Saluran Kontak -->
             <div class="pen-info-item">
               <span class="pen-info-label">Kontak Resmi & Fast Response</span>
               <div class="pen-contact-links">
@@ -84,7 +91,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
             </div>
 
-            <!-- Item 3: Media Sosial & Website -->
             <div class="pen-info-item">
               <span class="pen-info-label">Media Sosial & Situs Resmi</span>
               <div class="pen-social-stack">
@@ -109,7 +115,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
         </div>
 
-        <!-- Kolom Kanan: Form Konsultasi Interaktif Pen.dev -->
         <div class="pen-contact-form-col">
           <form id="gvfContactForm" class="pen-contact-form">
             <div class="pen-form-row">
@@ -183,7 +188,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- 3. Peta Lokasi Kawasan Pesantren Sukasirna Jonggol -->
   <section class="pen-map-section">
     <div class="pen-container">
       <div class="pen-map-wrapper">
@@ -203,7 +207,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  /* 1. Header Banner */
   .pen-contact-banner {
     position: relative;
     background-color: #061829;

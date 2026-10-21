@@ -1,16 +1,26 @@
 ---
 // src/pages/kemitraan.astro
 // Halaman Khusus Kemitraan & Kolaborasi Multipihak Sesuai Pen.dev (Node EHsHA)
+export const prerender = false;
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CollaborateSection from '../components/home/CollaborateSection.astro';
 import ElasticGallery from '../components/ui/ElasticGallery.astro';
+import { getActivePageSections } from '../lib/db';
+
+const activeSections = await getActivePageSections('kemitraan');
+const sectionMap = new Map(activeSections.map((s) => [s.sectionKey, s]));
+const isEnabled = (key: string) => {
+  if (activeSections.length === 0) return true;
+  return sectionMap.has(key);
+};
 ---
 
 <BaseLayout
   title="Kemitraan Multipihak & Kolaborasi Strategis • Global Village Fund"
   description="Ruang sinergi korporasi (CSR), perguruan tinggi, dunia industri, dan lembaga filantropi untuk mengembangkan ekosistem pesantren mandiri berkelanjutan."
 >
-  <!-- 1. Header Banner & Breadcrumb ala Pen.dev -->
+  {isEnabled('partner_hero') && (
   <section class="pen-partner-banner">
     <div class="pen-banner-bg"></div>
     <div class="pen-banner-overlay"></div>
@@ -23,8 +33,9 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
       </div>
     </div>
   </section>
+  )}
 
-  <!-- 2. Galeri Dokumentasi Sinergi Kemitraan ala Pen.dev -->
+  {isEnabled('partner_benefits') && (
   <section class="pen-gallery-section">
     <div class="pen-container">
       <div class="pen-gallery-header">
@@ -40,38 +51,39 @@ import ElasticGallery from '../components/ui/ElasticGallery.astro';
         </p>
       </div>
 
-      <!-- Elastic Accordion Gallery Interaktif (Komponen Utama) -->
       <div class="w-full">
         <ElasticGallery defaultActiveId="01" />
       </div>
     </div>
   </section>
+  )}
 
-  <!-- 3. Pilar Model Kemitraan Multipihak -->
-  <CollaborateSection />
+  {isEnabled('partner_form') && (
+    <>
+      <CollaborateSection />
 
-  <!-- 4. Section Final CTA Kemitraan Pen.dev -->
-  <section class="pen-final-cta-section">
-    <div class="pen-container">
-      <div class="pen-cta-box">
-        <h2 class="pen-cta-title">
-          Mulai Perjalanan Kolaborasi Anda Bersama Kami
-        </h2>
-        <p class="pen-cta-desc">
-          Bicaralah dengan tim kemitraan kami — tanpa kewajiban dan tanpa tekanan. Kami siap menyusun skema kemitraan strategis CSR, program link & match vokasi, serta wakaf produktif yang berdampak terukur.
-        </p>
-        <div class="pen-cta-btn-wrap">
-          <a href="/contact" class="pen-btn-primary">
-            Hubungi Tim Kemitraan
-          </a>
+      <section class="pen-final-cta-section">
+        <div class="pen-container">
+          <div class="pen-cta-box">
+            <h2 class="pen-cta-title">
+              Mulai Perjalanan Kolaborasi Anda Bersama Kami
+            </h2>
+            <p class="pen-cta-desc">
+              Bicaralah dengan tim kemitraan kami — tanpa kewajiban dan tanpa tekanan. Kami siap menyusun skema kemitraan strategis CSR, program link & match vokasi, serta wakaf produktif yang berdampak terukur.
+            </p>
+            <div class="pen-cta-btn-wrap">
+              <a href="/contact" class="pen-btn-primary">
+                Hubungi Tim Kemitraan
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    </>
+  )}
 </BaseLayout>
 
 <style>
-  /* 1. Header Banner */
   .pen-partner-banner {
     position: relative;
     background-color: #061829;
