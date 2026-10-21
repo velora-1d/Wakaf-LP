@@ -2,13 +2,11 @@
 export const prerender = false;
 
 import AdminLayout from '../../layouts/AdminLayout.astro';
-import { db } from '../../lib/db';
-import { pages, pageSections } from '../../lib/db/schema';
-import { eq, sql } from 'drizzle-orm';
+import { getAllPages, getAllSections } from '../../lib/db';
 
-// Fetch all pages and section stats
-const allPages = await db.select().from(pages).orderBy(pages.id);
-const allSections = await db.select().from(pageSections).orderBy(pageSections.sortOrder);
+// Fetch all pages and section stats safely with fallback
+const allPages = await getAllPages();
+const allSections = await getAllSections();
 
 const totalPagesCount = allPages.length;
 const totalSectionsCount = allSections.length;

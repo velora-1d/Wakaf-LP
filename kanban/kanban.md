@@ -1,12 +1,19 @@
 # Kanban Board: Pen.dev Alignment (Per Section)
 
 ## To Do
+- [ ] DONATUR-UI-01: Pembuatan halaman dashboard `/admin/donatur` dengan kartu ringkasan, tabel data, dan filter
+- [ ] DONATUR-DRAWER-01: Implementasi Slide-Over Drawer samping kanan 70% untuk form tambah/edit donatur & transaksi
+- [ ] DONATUR-WA-01: Integrasi generator link WhatsApp konfirmasi/kwitansi dan navigasi sidebar AdminLayout
+- [ ] DONATUR-TEST-01: Pengujian end-to-end, validasi TypeScript (`tsc --noEmit`), dan build verifikasi
 
 ## In Progress
+- [ ] DONATUR-API-01: Pembuatan API endpoint CRUD donatur, upload bukti MinIO S3, dan verifikasi pembayaran
 
 ## In Review / Test
 
 ## Done
+- [x] SIDEBAR-ROBUST-01: Perbaikan Log & Ketahanan Menu Sidebar Admin CMS (Pencegahan CONNECT_TIMEOUT Tailscale, Fallback DB Safe-Mode & Penghapusan Konflik ClientRouter)
+- [x] DONATUR-DB-01: Penambahan skema `donors` & `donations` di Drizzle ORM serta eksekusi DDL migrasi PostgreSQL (Tabel, Relasi, Indeks & Seeding Berhasil)
 - [x] UIVERSE-BTN-01: Penerapan Efek Animasi Tombol Uiverse (Circle Ripple Expansion Biru ISAVO) pada Hero, Program Portofolio, About & Kontak WA secara Paralel
 - [x] HUMANIZE-FIX-01: Perbaikan Humanize-UI Home & Navigasi Global (Ghost links, Kontak WA, Kontras News, A11y Leadership, Bersihkan Kode Mati)
 - [x] HUMANIZE-FIX-02: Perbaikan Humanize-UI Program ZISWAF & Data Filantropi (Copywriting Filantropi, Rincian Alokasi, Data Jonggol, SVG Icons)
