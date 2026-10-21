@@ -440,6 +440,33 @@ const publicPageUrl = getPublicUrl(slug);
             </div>
           </div>
 
+          <!-- Section 4B: Visual Package & Deliverables Editor (khusus prog_pricing) -->
+          <div id="vfPackagesSection" class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-3 hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-blue-200/60">
+              <div>
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da] uppercase tracking-wider">
+                  Pengaturan Paket &amp; Deliverables
+                </span>
+                <p class="text-xs text-slate-600 mt-1 mb-0">
+                  Kelola nama paket, harga, estimasi, dan daftar poin checklist material (1 Sak Semen, Granit, Besi, dll).
+                </p>
+              </div>
+              <button
+                type="button"
+                id="btnAddPackage"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#0969da] text-white hover:bg-[#0752a8] transition-colors cursor-pointer self-start sm:self-auto shrink-0"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Tambah Paket</span>
+              </button>
+            </div>
+
+            <!-- List Paket Container -->
+            <div id="packagesListContainer" class="space-y-4">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
           <!-- Section 5: Meta Info (Internal Title & Order) -->
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-200">
             <div class="sm:col-span-2">
@@ -775,10 +802,240 @@ const publicPageUrl = getPublicUrl(slug);
           else currentContentObj.imageUrl = vfImageUrl.value;
         }
 
+        if (currentSectionKey === 'prog_pricing' && Array.isArray(currentPackages) && currentPackages.length > 0) {
+          currentContentObj.packages = currentPackages;
+        }
+
         if (editJsonContent) {
           editJsonContent.value = JSON.stringify(currentContentObj, null, 2);
         }
       }
+
+      // Visual Packages & Deliverables Management (prog_pricing)
+      const vfPackagesSection = document.getElementById('vfPackagesSection');
+      const packagesListContainer = document.getElementById('packagesListContainer');
+      const btnAddPackage = document.getElementById('btnAddPackage');
+      let currentSectionKey = '';
+      let currentPackages: any[] = [];
+
+      function renderPackagesEditor(packages: any[]) {
+        currentPackages = Array.isArray(packages) ? JSON.parse(JSON.stringify(packages)) : [];
+        if (!packagesListContainer) return;
+
+        if (currentPackages.length === 0) {
+          packagesListContainer.innerHTML = `
+            <div class="text-center py-6 text-slate-400 text-xs bg-white rounded-xl border border-dashed border-slate-300">
+              Belum ada paket kustom. Klik tombol "+ Tambah Paket" di atas untuk menambahkan.
+            </div>
+          `;
+          return;
+        }
+
+        packagesListContainer.innerHTML = currentPackages.map((pkg: any, pIdx: number) => {
+          const deliverables = Array.isArray(pkg.deliverables) ? pkg.deliverables : [];
+          return `
+            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs space-y-3 relative" data-pkg-idx="${pIdx}">
+              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-full bg-blue-50 text-[#0969da] font-bold text-xs flex items-center justify-center border border-blue-200">${pIdx + 1}</span>
+                  <span class="text-xs font-bold text-slate-900">${pkg.title || 'Paket ' + (pIdx + 1)}</span>
+                  ${pkg.isPopular ? '<span class="text-[10px] font-semibold bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded border border-emerald-200">Rekomendasi</span>' : ''}
+                </div>
+                <button type="button" class="btn-delete-pkg text-slate-400 hover:text-rose-600 p-1 rounded transition-colors cursor-pointer" data-pkg-idx="${pIdx}" title="Hapus Paket">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                </button>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                <div class="sm:col-span-2">
+                  <label class="block text-[11px] font-medium text-slate-600 mb-1">Nama Paket</label>
+                  <input type="text" class="pkg-field-title w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 focus:bg-white focus:border-[#0969da] outline-none" value="${pkg.title || ''}" data-pkg-idx="${pIdx}" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-medium text-slate-600 mb-1">Sub-judul / Peruntukan</label>
+                  <input type="text" class="pkg-field-subtitle w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 focus:bg-white focus:border-[#0969da] outline-none" value="${pkg.subtitle || ''}" data-pkg-idx="${pIdx}" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-medium text-slate-600 mb-1">Nominal / Harga</label>
+                  <input type="text" class="pkg-field-price w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 font-mono focus:bg-white focus:border-[#0969da] outline-none" value="${pkg.priceAmount || ''}" data-pkg-idx="${pIdx}" placeholder="Contoh: 150.000" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-medium text-slate-600 mb-1">Satuan Harga</label>
+                  <input type="text" class="pkg-field-unit w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 focus:bg-white focus:border-[#0969da] outline-none" value="${pkg.priceUnit || ''}" data-pkg-idx="${pIdx}" placeholder="Contoh: /paket atau /m²" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-medium text-slate-600 mb-1">Estimasi Pengerjaan</label>
+                  <input type="text" class="pkg-field-est w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 focus:bg-white focus:border-[#0969da] outline-none" value="${pkg.estimation || ''}" data-pkg-idx="${pIdx}" placeholder="Contoh: Estimasi: 30 Hari Kerja" />
+                </div>
+              </div>
+
+              <!-- Deliverables Checklist Items -->
+              <div class="pt-2 border-t border-slate-100">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Poin Checklist Material (Rincian Alokasi):</span>
+                  <button type="button" class="btn-add-deliv text-[11px] font-semibold text-[#0969da] hover:underline cursor-pointer flex items-center gap-1" data-pkg-idx="${pIdx}">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    <span>Tambah Poin Material</span>
+                  </button>
+                </div>
+
+                <div class="space-y-2">
+                  ${deliverables.map((item: any, dIdx: number) => `
+                    <div class="flex items-start gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200/80">
+                      <div class="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <div>
+                          <input type="text" class="deliv-field-bold w-full bg-white border border-slate-200 rounded px-2 py-1 text-xs text-slate-900 font-semibold focus:border-[#0969da] outline-none" value="${item.bold || ''}" data-pkg-idx="${pIdx}" data-deliv-idx="${dIdx}" placeholder="Teks Tebal (cth: 1 Sak Semen SNI)" />
+                        </div>
+                        <div class="sm:col-span-2">
+                          <input type="text" class="deliv-field-text w-full bg-white border border-slate-200 rounded px-2 py-1 text-xs text-slate-700 focus:border-[#0969da] outline-none" value="${item.text || ''}" data-pkg-idx="${pIdx}" data-deliv-idx="${dIdx}" placeholder="Keterangan alokasi material..." />
+                        </div>
+                      </div>
+                      <button type="button" class="btn-delete-deliv text-slate-400 hover:text-rose-600 p-1 rounded transition-colors shrink-0 cursor-pointer" data-pkg-idx="${pIdx}" data-deliv-idx="${dIdx}" title="Hapus Poin">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                      </button>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        bindPackagesEvents();
+      }
+
+      function bindPackagesEvents() {
+        if (!packagesListContainer) return;
+
+        packagesListContainer.querySelectorAll('.pkg-field-title').forEach((inp) => {
+          inp.addEventListener('input', (e: any) => {
+            const pIdx = parseInt(e.target.getAttribute('data-pkg-idx') || '0', 10);
+            if (currentPackages[pIdx]) currentPackages[pIdx].title = e.target.value;
+            syncVisualToJson();
+          });
+        });
+
+        packagesListContainer.querySelectorAll('.pkg-field-subtitle').forEach((inp) => {
+          inp.addEventListener('input', (e: any) => {
+            const pIdx = parseInt(e.target.getAttribute('data-pkg-idx') || '0', 10);
+            if (currentPackages[pIdx]) currentPackages[pIdx].subtitle = e.target.value;
+            syncVisualToJson();
+          });
+        });
+
+        packagesListContainer.querySelectorAll('.pkg-field-price').forEach((inp) => {
+          inp.addEventListener('input', (e: any) => {
+            const pIdx = parseInt(e.target.getAttribute('data-pkg-idx') || '0', 10);
+            if (currentPackages[pIdx]) currentPackages[pIdx].priceAmount = e.target.value;
+            syncVisualToJson();
+          });
+        });
+
+        packagesListContainer.querySelectorAll('.pkg-field-unit').forEach((inp) => {
+          inp.addEventListener('input', (e: any) => {
+            const pIdx = parseInt(e.target.getAttribute('data-pkg-idx') || '0', 10);
+            if (currentPackages[pIdx]) currentPackages[pIdx].priceUnit = e.target.value;
+            syncVisualToJson();
+          });
+        });
+
+        packagesListContainer.querySelectorAll('.pkg-field-est').forEach((inp) => {
+          inp.addEventListener('input', (e: any) => {
+            const pIdx = parseInt(e.target.getAttribute('data-pkg-idx') || '0', 10);
+            if (currentPackages[pIdx]) currentPackages[pIdx].estimation = e.target.value;
+            syncVisualToJson();
+          });
+        });
+
+        packagesListContainer.querySelectorAll('.deliv-field-bold').forEach((inp) => {
+          inp.addEventListener('input', (e: any) => {
+            const pIdx = parseInt(e.target.getAttribute('data-pkg-idx') || '0', 10);
+            const dIdx = parseInt(e.target.getAttribute('data-deliv-idx') || '0', 10);
+            if (currentPackages[pIdx]?.deliverables?.[dIdx]) {
+              currentPackages[pIdx].deliverables[dIdx].bold = e.target.value;
+            }
+            syncVisualToJson();
+          });
+        });
+
+        packagesListContainer.querySelectorAll('.deliv-field-text').forEach((inp) => {
+          inp.addEventListener('input', (e: any) => {
+            const pIdx = parseInt(e.target.getAttribute('data-pkg-idx') || '0', 10);
+            const dIdx = parseInt(e.target.getAttribute('data-deliv-idx') || '0', 10);
+            if (currentPackages[pIdx]?.deliverables?.[dIdx]) {
+              currentPackages[pIdx].deliverables[dIdx].text = e.target.value;
+            }
+            syncVisualToJson();
+          });
+        });
+
+        packagesListContainer.querySelectorAll('.btn-delete-deliv').forEach((btn) => {
+          btn.addEventListener('click', (e: any) => {
+            const targetBtn = (e.target as HTMLElement).closest('.btn-delete-deliv');
+            if (!targetBtn) return;
+            const pIdx = parseInt(targetBtn.getAttribute('data-pkg-idx') || '0', 10);
+            const dIdx = parseInt(targetBtn.getAttribute('data-deliv-idx') || '0', 10);
+            if (currentPackages[pIdx]?.deliverables) {
+              currentPackages[pIdx].deliverables.splice(dIdx, 1);
+              renderPackagesEditor(currentPackages);
+              syncVisualToJson();
+            }
+          });
+        });
+
+        packagesListContainer.querySelectorAll('.btn-add-deliv').forEach((btn) => {
+          btn.addEventListener('click', (e: any) => {
+            const targetBtn = (e.target as HTMLElement).closest('.btn-add-deliv');
+            if (!targetBtn) return;
+            const pIdx = parseInt(targetBtn.getAttribute('data-pkg-idx') || '0', 10);
+            if (currentPackages[pIdx]) {
+              if (!Array.isArray(currentPackages[pIdx].deliverables)) {
+                currentPackages[pIdx].deliverables = [];
+              }
+              currentPackages[pIdx].deliverables.push({
+                bold: 'Item Material Baru',
+                text: 'Keterangan spesifikasi dan alokasi material lapangan.'
+              });
+              renderPackagesEditor(currentPackages);
+              syncVisualToJson();
+            }
+          });
+        });
+
+        packagesListContainer.querySelectorAll('.btn-delete-pkg').forEach((btn) => {
+          btn.addEventListener('click', (e: any) => {
+            const targetBtn = (e.target as HTMLElement).closest('.btn-delete-pkg');
+            if (!targetBtn) return;
+            const pIdx = parseInt(targetBtn.getAttribute('data-pkg-idx') || '0', 10);
+            if (confirm(`Yakin ingin menghapus Paket ${pIdx + 1}?`)) {
+              currentPackages.splice(pIdx, 1);
+              renderPackagesEditor(currentPackages);
+              syncVisualToJson();
+            }
+          });
+        });
+      }
+
+      btnAddPackage?.addEventListener('click', () => {
+        const newPkg = {
+          id: 'pkg-' + Date.now(),
+          title: 'Paket Kontribusi Baru',
+          subtitle: 'Alokasi Pembangunan Fasilitas',
+          priceAmount: '100.000',
+          pricePrefix: 'Rp ',
+          priceUnit: '/paket',
+          priceDesc: 'Donasi material langsung ke lapangan',
+          estimation: 'Estimasi: 30 Hari Kerja',
+          isPopular: false,
+          deliverables: [
+            { bold: 'Material SNI', text: 'Pengadaan material berkualitas standar industri' }
+          ],
+          ctaText: 'Pilih Paket Ini'
+        };
+        currentPackages.push(newPkg);
+        renderPackagesEditor(currentPackages);
+        syncVisualToJson();
+      });
 
       // Attach sync listener to all visual inputs
       [vfHeading, vfBadge, vfSubheading, vfDesc, vfParagraph2, vfPrimaryCtaText, vfPrimaryCtaUrl, vfSecondaryCtaText, vfSecondaryCtaUrl, vfImageUrl].forEach((input) => {
@@ -801,6 +1058,9 @@ const publicPageUrl = getPublicUrl(slug);
           if (vfImageUrl) {
             vfImageUrl.value = currentContentObj.imageUrl || currentContentObj.mediaUrl || currentContentObj.videoUrl || '';
             updateMediaPreview(vfImageUrl.value);
+          }
+          if (currentSectionKey === 'prog_pricing' && Array.isArray(currentContentObj.packages)) {
+            renderPackagesEditor(currentContentObj.packages);
           }
           if (jsonError) {
             jsonError.textContent = '';
@@ -855,6 +1115,7 @@ const publicPageUrl = getPublicUrl(slug);
           const key = btn.getAttribute('data-section-key') || '';
           const order = btn.getAttribute('data-section-order') || '1';
           const contentStr = btn.getAttribute('data-section-content') || '{}';
+          currentSectionKey = key;
 
           try {
             currentContentObj = JSON.parse(contentStr);
@@ -880,6 +1141,14 @@ const publicPageUrl = getPublicUrl(slug);
           if (vfImageUrl) {
             vfImageUrl.value = currentContentObj.imageUrl || currentContentObj.mediaUrl || currentContentObj.videoUrl || '';
             updateMediaPreview(vfImageUrl.value);
+          }
+
+          // Show/Hide Packages Editor based on sectionKey
+          if (key === 'prog_pricing') {
+            vfPackagesSection?.classList.remove('hidden');
+            renderPackagesEditor(currentContentObj.packages || []);
+          } else {
+            vfPackagesSection?.classList.add('hidden');
           }
 
           // Populate JSON textarea

@@ -3,11 +3,12 @@
 ## To Do
 
 ## In Progress
-- [ ] PROGRAM-DONORS-FEED-01: Transformasi Tabel Add-on Tambahan menjadi Live Donatur Feed per Kategori Program di Halaman Publik (Wakaf, Infaq, Sedekah, Zakat) Terintegrasi DB PostgreSQL
 
 ## In Review / Test
 
 ## Done
+- [x] PROGRAM-PACKAGES-CMS-01: Sinkronisasi Skema DB PostgreSQL & Visual Package Editor di Admin CMS untuk Seluruh Halaman Program (Wakaf, Infaq, Sedekah, Zakat) Secara Paralel
+- [x] PROGRAM-DONORS-FEED-01: Transformasi Tabel Add-on Tambahan menjadi Live Donatur Feed per Kategori Program di Halaman Publik (Wakaf, Infaq, Sedekah, Zakat) Terintegrasi DB PostgreSQL
 - [x] DONATUR-ACTION-DEBUG-01: Investigasi dan Perbaikan Tombol Aksi di Menu Donatur (/admin/donatur: Tombol Catat Donasi Baru, Aksi Edit, Verifikasi Lunas/Pending, Hapus, WA, dan Bukti S3)
 - [x] MINIO-S3-INTEG-01: Integrasi Penuh MinIO S3 (Upload di Section Editor Admin, Perbaikan PathStyle Client & Migrasi Batch Gambar ke S3) secara Paralel
 - [x] DONATUR-TEST-01: Pengujian end-to-end, validasi TypeScript (`tsc --noEmit`), build verifikasi Astro SSR, dan uji browser interaktif

@@ -1,7 +1,8 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
-    { "id": "PROGRAM-DONORS-FEED-01", "name": "Transformasi Tabel Add-on Tambahan menjadi Live Donatur Feed per Kategori Program di Halaman Publik (Wakaf, Infaq, Sedekah, Zakat) Terintegrasi DB PostgreSQL", "status": "in_progress" },
+    { "id": "PROGRAM-PACKAGES-CMS-01", "name": "Sinkronisasi Skema DB PostgreSQL & Visual Package Editor di Admin CMS untuk Seluruh Halaman Program (Wakaf, Infaq, Sedekah, Zakat) Secara Paralel", "status": "closed" },
+    { "id": "PROGRAM-DONORS-FEED-01", "name": "Transformasi Tabel Add-on Tambahan menjadi Live Donatur Feed per Kategori Program di Halaman Publik (Wakaf, Infaq, Sedekah, Zakat) Terintegrasi DB PostgreSQL", "status": "closed" },
     { "id": "DONATUR-ACTION-DEBUG-01", "name": "Investigasi dan Perbaikan Tombol Aksi di Menu Donatur (/admin/donatur)", "status": "closed" },
     { "id": "MINIO-S3-INTEG-01", "name": "Integrasi Penuh MinIO S3 (Upload di Section Editor Admin, Perbaikan PathStyle Client & Migrasi Batch Gambar ke S3) secara Paralel", "status": "closed" },
     { "id": "SIDEBAR-ROBUST-01", "name": "Perbaikan Log & Ketahanan Menu Sidebar Admin CMS (Pencegahan CONNECT_TIMEOUT Tailscale, Fallback DB Safe-Mode & Penghapusan Konflik ClientRouter)", "status": "closed" },
