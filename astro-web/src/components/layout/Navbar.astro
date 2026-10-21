@@ -27,7 +27,8 @@ const currentPath = Astro.url.pathname;
           <a
             href="/"
             class={`isavo-nav-link ${currentPath === "/" ? "active" : ""}`}
-            >Home</a>
+            >Home</a
+          >
         </li>
         <li class="isavo-has-dropdown">
           <a
@@ -56,25 +57,29 @@ const currentPath = Astro.url.pathname;
           <a
             href="/kemitraan"
             class={`isavo-nav-link ${currentPath === "/kemitraan" ? "active" : ""}`}
-            >Kemitraan</a>
+            >Kemitraan</a
+          >
         </li>
         <li>
           <a
             href="/kabar"
             class={`isavo-nav-link ${currentPath.startsWith("/kabar") ? "active" : ""}`}
-            >Kabar</a>
+            >Kabar</a
+          >
         </li>
         <li>
           <a
             href="/tentang-kami"
             class={`isavo-nav-link ${currentPath === "/tentang-kami" ? "active" : ""}`}
-            >Tentang Kami</a>
+            >Tentang Kami</a
+          >
         </li>
         <li>
           <a
             href="/contact"
             class={`isavo-nav-link ${currentPath === "/contact" ? "active" : ""}`}
-            >Kontak</a>
+            >Kontak</a
+          >
         </li>
       </ul>
     </nav>
@@ -246,7 +251,7 @@ const currentPath = Astro.url.pathname;
   }
 
   .isavo-header-inner .isavo-boxed-logo {
-    margin-left: 60px;
+    margin-left: 160px;
   }
 
   .isavo-logo-img {
@@ -365,7 +370,7 @@ const currentPath = Astro.url.pathname;
     display: flex;
     align-items: center;
     gap: 22px;
-    margin-right: 25px;
+    margin-right: 120px;
   }
 
   /* Call Us Phone Widget (Icon Handset Polos + Teks 2 Baris) */

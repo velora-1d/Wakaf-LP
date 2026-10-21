@@ -110,59 +110,6 @@ const heroSlides = [
       ))}
     </div>
 
-    <div class="hero-carousel-controls" aria-label="Kontrol Slider">
-      <div class="hero-dots-row">
-        {heroSlides.map((slide, i) => (
-          <button
-            type="button"
-            class={`hero-dot-btn ${i === 0 ? 'is-active' : ''}`}
-            data-dot-index={i}
-            aria-label={`Lihat Slide ${i + 1}: ${slide.label}`}
-            aria-pressed={i === 0 ? 'true' : 'false'}
-          ></button>
-        ))}
-      </div>
-
-      <div class="hero-control-actions">
-        <button
-          type="button"
-          class="hero-ctrl-btn"
-          id="hero-prev-btn"
-          aria-label="Slide sebelumnya"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
-
-        <button
-          type="button"
-          class="hero-ctrl-btn"
-          id="hero-pause-btn"
-          aria-label="Jeda rotasi otomatis slide"
-          aria-pressed="false"
-        >
-          <svg id="hero-pause-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="6" y="4" width="4" height="16"></rect>
-            <rect x="14" y="4" width="4" height="16"></rect>
-          </svg>
-          <svg id="hero-play-icon" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-        </button>
-
-        <button
-          type="button"
-          class="hero-ctrl-btn"
-          id="hero-next-btn"
-          aria-label="Slide berikutnya"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-      </div>
-    </div>
   </div>
 </section>
 
