@@ -3,11 +3,12 @@
 ## To Do
 
 ## In Progress
-- [ ] DONATUR-ACTION-DEBUG-01: Investigasi dan Perbaikan Tombol Aksi di Menu Donatur (/admin/donatur: Tombol Catat Donasi Baru, Aksi Edit, Verifikasi Lunas/Pending, Hapus, WA, dan Bukti S3)
+- [ ] PROGRAM-DONORS-FEED-01: Transformasi Tabel Add-on Tambahan menjadi Live Donatur Feed per Kategori Program di Halaman Publik (Wakaf, Infaq, Sedekah, Zakat) Terintegrasi DB PostgreSQL
 
 ## In Review / Test
 
 ## Done
+- [x] DONATUR-ACTION-DEBUG-01: Investigasi dan Perbaikan Tombol Aksi di Menu Donatur (/admin/donatur: Tombol Catat Donasi Baru, Aksi Edit, Verifikasi Lunas/Pending, Hapus, WA, dan Bukti S3)
 - [x] MINIO-S3-INTEG-01: Integrasi Penuh MinIO S3 (Upload di Section Editor Admin, Perbaikan PathStyle Client & Migrasi Batch Gambar ke S3) secara Paralel
 - [x] DONATUR-TEST-01: Pengujian end-to-end, validasi TypeScript (`tsc --noEmit`), build verifikasi Astro SSR, dan uji browser interaktif
 - [x] DONATUR-WA-01: Integrasi generator link WhatsApp konfirmasi/kwitansi dan navigasi sidebar AdminLayout
