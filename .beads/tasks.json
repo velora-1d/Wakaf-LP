@@ -17,6 +17,18 @@
     { "id": "INFAQ-SEC-01", "name": "Infaq Section 1: Page Header & Breadcrumb Banner", "status": "closed" },
     { "id": "INFAQ-SEC-02", "name": "Infaq Section 2: Pilihan Paket & Add-on Table", "status": "closed" },
     { "id": "INFAQ-SEC-03", "name": "Infaq Section 3: Deep-Dive Program 2-Kolom", "status": "closed" },
-    { "id": "INFAQ-SEC-04", "name": "Infaq Section 4: FAQ Accordion & Eliminasi Non-Pendev", "status": "closed" }
+    { "id": "INFAQ-SEC-04", "name": "Infaq Section 4: FAQ Accordion & Eliminasi Non-Pendev", "status": "closed" },
+    { "id": "WAKAF-SEC-01", "name": "Wakaf Section 1: Page Header & Breadcrumb Banner", "status": "closed" },
+    { "id": "WAKAF-SEC-02", "name": "Wakaf Section 2: Pilihan Paket & Add-on Table", "status": "closed" },
+    { "id": "WAKAF-SEC-03", "name": "Wakaf Section 3: Deep-Dive Program 2-Kolom", "status": "closed" },
+    { "id": "WAKAF-SEC-04", "name": "Wakaf Section 4: FAQ Accordion Pen.dev", "status": "closed" },
+    { "id": "SEDEKAH-SEC-01", "name": "Sedekah Section 1: Page Header & Breadcrumb Banner", "status": "closed" },
+    { "id": "SEDEKAH-SEC-02", "name": "Sedekah Section 2: Pilihan Paket Nutrisi & Eliminasi Add-on Non-Pendev", "status": "closed" },
+    { "id": "SEDEKAH-SEC-03", "name": "Sedekah Section 3: Deep-Dive Program 2-Kolom", "status": "closed" },
+    { "id": "SEDEKAH-SEC-04", "name": "Sedekah Section 4: FAQ Accordion Pen.dev", "status": "closed" },
+    { "id": "ZAKAT-SEC-01", "name": "Zakat Section 1: Page Header & Breadcrumb Banner", "status": "closed" },
+    { "id": "ZAKAT-SEC-02", "name": "Zakat Section 2: Pilihan Paket Zakat & Eliminasi Add-on Non-Pendev", "status": "closed" },
+    { "id": "ZAKAT-SEC-03", "name": "Zakat Section 3: Deep-Dive Program 2-Kolom", "status": "closed" },
+    { "id": "ZAKAT-SEC-04", "name": "Zakat Section 4: FAQ Accordion Pen.dev", "status": "closed" }
   ]
 }

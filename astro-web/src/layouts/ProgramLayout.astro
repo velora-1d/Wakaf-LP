@@ -169,86 +169,63 @@ const valueBoxIcons = [
           <!-- 2 Side-by-side Images (Pen.dev) -->
           <div class="pen-twins-img-grid">
             <img
-              src="/gambar design/skywalk learning room.jpg"
-              alt="Skywalk Learning Room Jonggol"
+              src={program.deepDiveTwinImages ? program.deepDiveTwinImages[0] : "/gambar design/skywalk learning room.jpg"}
+              alt="Dokumentasi Fasilitas Jonggol 1"
               class="pen-twin-img"
               loading="lazy"
             />
             <img
-              src="/gambar design/belakang masjid.jpg"
-              alt="Kawasan Belakang Masjid Jonggol"
+              src={program.deepDiveTwinImages ? program.deepDiveTwinImages[1] : "/gambar design/belakang masjid.jpg"}
+              alt="Dokumentasi Fasilitas Jonggol 2"
               class="pen-twin-img"
               loading="lazy"
             />
           </div>
 
-          <!-- Integrasi Pesantren & Agro-Technopark Sub-section -->
+          <!-- Deep-dive Sub-block 1 (Pen.dev Exact) -->
           <div class="pen-deepdive-subblock">
             <h3 class="pen-subblock-title">
-              {program.slug === 'infaq' ? 'Konsep Green Building Ramah Lingkungan' : 'Integrasi Pesantren & Agro-Technopark'}
+              {program.deepDiveSubblock1Title || (program.slug === 'infaq' ? 'Konsep Green Building Ramah Lingkungan' : 'Integrasi Pesantren & Agro-Technopark')}
             </h3>
             <p class="pen-deepdive-para">
-              Masjid Khairu Ummah Sugro dirancang dengan arsitektur tropis ramah lingkungan yang memanfaatkan pencahayaan alami dan ventilasi silang, mengurangi konsumsi listrik dan menghadirkan suasana khusyuk bagi para jamaah.
+              {program.deepDiveSubblock1Desc1 || 'Masjid Khairu Ummah Sugro dirancang dengan arsitektur tropis ramah lingkungan yang memanfaatkan pencahayaan alami dan ventilasi silang, mengurangi konsumsi listrik dan menghadirkan suasana khusyuk bagi para jamaah.'}
             </p>
             <p class="pen-deepdive-para">
-              Dilengkapi area mezzanine dua lantai untuk menampung kegiatan ibadah berjamaah, halaqah Quran, serta ruang belajar santri yang terintegrasi dengan keasrian alam sekitar Sukasirna Jonggol.
+              {program.deepDiveSubblock1Desc2 || 'Dilengkapi area mezzanine dua lantai untuk menampung kegiatan ibadah berjamaah, halaqah Quran, serta ruang belajar santri yang terintegrasi dengan keasrian alam sekitar Sukasirna Jonggol.'}
             </p>
           </div>
 
-          <!-- Dokumentasi Kawasan Fisik Sub-section -->
+          <!-- Deep-dive Sub-block 2 (Pen.dev Exact) -->
           <div class="pen-deepdive-subblock">
             <h3 class="pen-subblock-title">
-              {program.slug === 'infaq' ? 'Dokumentasi Fisik Lapangan' : 'Dokumentasi Kawasan Wakaf Jonggol'}
+              {program.deepDiveSubblock2Title || (program.slug === 'infaq' ? 'Dokumentasi Fisik Lapangan' : 'Dokumentasi Kawasan Wakaf Jonggol')}
             </h3>
             <p class="pen-deepdive-para">
-              Dokumentasi progres pembangunan riil Masjid Khairu Ummah Sugro di Sukasirna Jonggol — dari pemancangan tiang, pengecoran lantai, pemasangan dinding bata ringan, hingga instalasi sanitasi.
+              {program.deepDiveSubblock2Desc1 || 'Dokumentasi progres pembangunan riil Masjid Khairu Ummah Sugro di Sukasirna Jonggol — dari pemancangan tiang, pengecoran lantai, pemasangan dinding bata ringan, hingga instalasi sanitasi.'}
             </p>
             <p class="pen-deepdive-para">
-              Setiap kemajuan di lapangan adalah buah dari gotong royong dan ketulusan para muhsinin yang menyalurkan donasi dan infaq terbaiknya.
+              {program.deepDiveSubblock2Desc2 || 'Setiap kemajuan di lapangan adalah buah dari gotong royong dan ketulusan para muhsinin yang menyalurkan donasi dan infaq terbaiknya.'}
             </p>
 
             <!-- 4 Portfolio Showcase Cards Grid (Pen.dev Exact) -->
             <div class="pen-portfolio-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 30px 0;">
-              <div class="pen-showcase-card">
-                <div class="pen-showcase-img-box">
-                  <img src="/gambar design/interior masjid.jpg" alt="Ruang Utama Shalat" class="pen-showcase-img" loading="lazy" />
-                  <span class="pen-badge-arsitektur">ARSITEKTUR</span>
+              {(program.portfolioShowcaseItems || [
+                { tag: 'ARSITEKTUR', name: 'Ruang Utama Shalat', category: 'Arsitektur', image: '/gambar design/interior masjid.jpg' },
+                { tag: 'ARSITEKTUR', name: 'Mezanin Lantai 2', category: 'Arsitektur', image: '/gambar design/skywalk learning room.jpg' },
+                { tag: 'ARSITEKTUR', name: 'Area Tempat Wudhu', category: 'Arsitektur', image: '/gambar design/tempat wudu.jpg' },
+                { tag: 'ARSITEKTUR', name: 'Pembangkit Listrik Surya', category: 'Arsitektur', image: '/gambar design/panel surya.jpg' },
+              ]).map((item) => (
+                <div class="pen-showcase-card">
+                  <div class="pen-showcase-img-box">
+                    <img src={item.image} alt={item.name} class="pen-showcase-img" loading="lazy" />
+                    <span class="pen-badge-arsitektur">{item.tag}</span>
+                  </div>
+                  <div class="pen-showcase-meta">
+                    <h4 class="pen-showcase-name">{item.name}</h4>
+                    <p class="pen-showcase-category">{item.category}</p>
+                  </div>
                 </div>
-                <div class="pen-showcase-meta">
-                  <h4 class="pen-showcase-name">Ruang Utama Shalat</h4>
-                  <p class="pen-showcase-category">Arsitektur</p>
-                </div>
-              </div>
-              <div class="pen-showcase-card">
-                <div class="pen-showcase-img-box">
-                  <img src="/gambar design/skywalk learning room.jpg" alt="Mezanin Lantai 2" class="pen-showcase-img" loading="lazy" />
-                  <span class="pen-badge-arsitektur">ARSITEKTUR</span>
-                </div>
-                <div class="pen-showcase-meta">
-                  <h4 class="pen-showcase-name">Mezanin Lantai 2</h4>
-                  <p class="pen-showcase-category">Arsitektur</p>
-                </div>
-              </div>
-              <div class="pen-showcase-card">
-                <div class="pen-showcase-img-box">
-                  <img src="/gambar design/tempat wudu.jpg" alt="Area Tempat Wudhu" class="pen-showcase-img" loading="lazy" />
-                  <span class="pen-badge-arsitektur">ARSITEKTUR</span>
-                </div>
-                <div class="pen-showcase-meta">
-                  <h4 class="pen-showcase-name">Area Tempat Wudhu</h4>
-                  <p class="pen-showcase-category">Arsitektur</p>
-                </div>
-              </div>
-              <div class="pen-showcase-card">
-                <div class="pen-showcase-img-box">
-                  <img src="/gambar design/panel surya.jpg" alt="Pembangkit Listrik Surya" class="pen-showcase-img" loading="lazy" />
-                  <span class="pen-badge-arsitektur">ARSITEKTUR</span>
-                </div>
-                <div class="pen-showcase-meta">
-                  <h4 class="pen-showcase-name">Pembangkit Listrik Surya</h4>
-                  <p class="pen-showcase-category">Arsitektur</p>
-                </div>
-              </div>
+              ))}
             </div>
 
             <!-- Button: Lihat Lebih Banyak (Pen.dev Exact) -->
@@ -267,38 +244,21 @@ const valueBoxIcons = [
 
             <!-- 8 Guarantees & Transparansi Badges Grid (Pen.dev Style) -->
             <div class="pen-guarantees-grid">
-              <div class="pen-guarantee-item">
-                <span class="pen-guarantee-check">✓</span>
-                <span>Material bersertifikasi standar SNI</span>
-              </div>
-              <div class="pen-guarantee-item">
-                <span class="pen-guarantee-check">✓</span>
-                <span>Kwitansi & tanda terima resmi GVF</span>
-              </div>
-              <div class="pen-guarantee-item">
-                <span class="pen-guarantee-check">✓</span>
-                <span>Laporan progres fisik berkala</span>
-              </div>
-              <div class="pen-guarantee-item">
-                <span class="pen-guarantee-check">✓</span>
-                <span>Dokumentasi foto penyaluran di lokasi</span>
-              </div>
-              <div class="pen-guarantee-item">
-                <span class="pen-guarantee-check">✓</span>
-                <span>Pengawasan kualitas & mutu bangunan</span>
-              </div>
-              <div class="pen-guarantee-item">
-                <span class="pen-guarantee-check">✓</span>
-                <span>RAB terperinci dan terbuka</span>
-              </div>
-              <div class="pen-guarantee-item">
-                <span class="pen-guarantee-check">✓</span>
-                <span>Akad ZISWAF transparan & terpercaya</span>
-              </div>
-              <div class="pen-guarantee-item">
-                <span class="pen-guarantee-check">✓</span>
-                <span>Kunjungan langsung ke lokasi Jonggol</span>
-              </div>
+              {(program.guarantees || [
+                'Material bersertifikasi standar SNI',
+                'Kwitansi & tanda terima resmi GVF',
+                'Laporan progres fisik berkala',
+                'Dokumentasi foto penyaluran di lokasi',
+                'Pengawasan kualitas & mutu bangunan',
+                'RAB terperinci dan terbuka',
+                'Akad ZISWAF transparan & terpercaya',
+                'Kunjungan langsung ke lokasi Jonggol'
+              ]).map((g) => (
+                <div class="pen-guarantee-item">
+                  <span class="pen-guarantee-check">✓</span>
+                  <span>{g}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -7,6 +7,18 @@
 ## In Review / Test
 
 ## Done
+- [x] ZAKAT-SEC-04: FAQ Accordion Zakat Sesuai Pen.dev (`programs.ts`)
+- [x] ZAKAT-SEC-03: Deep-Dive Program Zakat 2 Kolom (`programs.ts` / `ProgramLayout.astro`)
+- [x] ZAKAT-SEC-02: Pilihan Paket Zakat & Eliminasi Add-on Non-Pendev (`programs.ts`)
+- [x] ZAKAT-SEC-01: Page Header & Breadcrumb Banner Sesuai Pen.dev (`programs.ts`)
+- [x] SEDEKAH-SEC-04: FAQ Accordion Sedekah Sesuai Pen.dev (`programs.ts`)
+- [x] SEDEKAH-SEC-03: Deep-Dive Program Sedekah 2 Kolom (`programs.ts` / `ProgramLayout.astro`)
+- [x] SEDEKAH-SEC-02: Pilihan Paket Sedekah Nutrisi & Eliminasi Add-on Non-Pendev (`programs.ts`)
+- [x] SEDEKAH-SEC-01: Page Header & Breadcrumb Banner Sesuai Pen.dev (`programs.ts`)
+- [x] WAKAF-SEC-04: FAQ Accordion Wakaf Sesuai Pen.dev (`programs.ts`)
+- [x] WAKAF-SEC-03: Deep-Dive Program Wakaf 2 Kolom (`ProgramLayout.astro` / `programs.ts`)
+- [x] WAKAF-SEC-02: Pilihan Paket Wakaf & Add-on Services Table (`PricingPackagesSection.astro` / `programs.ts`)
+- [x] WAKAF-SEC-01: Page Header & Breadcrumb Banner Sesuai Pen.dev (`programs.ts`)
 - [x] INFAQ-SEC-04: Eliminasi Section Non-Pen.dev & Sinkronisasi FAQ Accordion (`ProgramLayout.astro`)
 - [x] INFAQ-SEC-03: Deep-Dive Program 2 Kolom (`ProgramLayout.astro`)
 - [x] INFAQ-SEC-02: Pilihan Paket Infaq & Add-on Services Table (`PricingPackagesSection.astro`)
