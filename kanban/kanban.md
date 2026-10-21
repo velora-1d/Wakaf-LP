@@ -7,6 +7,10 @@
 ## In Review / Test
 
 ## Done
+- [x] INFAQ-SEC-04: Eliminasi Section Non-Pen.dev & Sinkronisasi FAQ Accordion (`ProgramLayout.astro`)
+- [x] INFAQ-SEC-03: Deep-Dive Program 2 Kolom (`ProgramLayout.astro`)
+- [x] INFAQ-SEC-02: Pilihan Paket Infaq & Add-on Services Table (`PricingPackagesSection.astro`)
+- [x] INFAQ-SEC-01: Page Header & Breadcrumb Banner Sesuai Pen.dev (`ProgramLayout.astro`)
 - [x] Section 1: Header / Navbar (`Navbar.astro`)
 - [x] Section 2: Hero Section with Active Carousel (`HeroSection.astro`)
 - [x] Section 3: Empat Pilar Kebaikan (`OurProgramsSection.astro`)

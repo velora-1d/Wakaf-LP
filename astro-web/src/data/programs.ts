@@ -697,10 +697,10 @@ export const programsData: Record<string, ProgramData> = {
 
   infaq: {
     slug: 'infaq',
-    title: 'Infaq Fisik & Pembangunan',
+    title: 'Infaq Pembangunan Fisik',
     heroSubtitle: 'Percepat Penyelesaian Fasilitas Ibadah, Perpustakaan, dan Sarana Santri Vokasi di Jonggol.',
     categoryBadge: 'INFAQ FISIK',
-    heroBgImage: '/gambar design/skywalk learning room.jpg',
+    heroBgImage: '/gambar design/interior masjid.jpg',
     
     pricingHeading: 'Pilih Paket Infaq Pembangunan',
     pricingSubheading: 'Salurkan infaq material riil untuk percepatan penyelesaian Masjid Khairu Ummah Sugro & sarana santri di Jonggol. Semua laporan belanja terbuka dan dapat diakses publik.',
@@ -760,66 +760,66 @@ export const programsData: Record<string, ProgramData> = {
         ctaText: 'Infaq Keramik Sekarang'
       }
     ],
-    addonTitle: 'Pilihan Donasi Material Tambahan',
+    addonTitle: 'Pilihan Saluran Infaq Tambahan',
     addonItems: [
       {
-        name: 'Infaq Bata Ringan (Hebel)',
-        desc: 'Pengadaan bata ringan presisi dinding kelas & masjid (per kubik)',
-        price: 'Rp 650.000',
+        name: 'Infaq Bebas Nominal',
+        desc: 'Donasi sukarela untuk kebutuhan mendesak material lapangan',
+        price: 'Bebas',
+        availability: 'Tersedia via Transfer / QRIS'
+      },
+      {
+        name: 'Infaq Bata Roster',
+        desc: 'Pengadaan bata roster ventilasi udara alami (per 10 pcs)',
+        price: 'Rp 150.000',
         availability: 'Tersedia untuk semua paket'
       },
       {
-        name: 'Infaq Instalasi Listrik & LED',
-        desc: 'Kabel standar SNI, stopkontak, dan lampu LED hemat energi',
+        name: 'Infaq Keramik Saf',
+        desc: 'Keramik saf shalat ruang ibadah utama masjid (per dus)',
+        price: 'Rp 200.000',
+        availability: 'Tersedia untuk semua paket'
+      },
+      {
+        name: 'Infaq Penerangan',
+        desc: 'Titik lampu LED & instalasi kabel ruang belajar santri',
         price: 'Rp 350.000',
         availability: 'Tersedia untuk semua paket'
       },
       {
-        name: 'Infaq Plafon Gypsum Rangka',
-        desc: 'Rangka hollow galvanis dan papan gypsum anti-lembab',
-        price: 'Rp 450.000',
-        availability: 'Tersedia untuk semua paket'
-      },
-      {
-        name: 'Infaq Kusen & Kaca Aluminium',
-        desc: 'Kusen aluminium kedap air dan kaca ventilasi silang',
-        price: 'Rp 850.000',
-        availability: 'Tersedia untuk semua paket'
-      },
-      {
-        name: 'Infaq Cat Eksterior Ramah Lingkungan',
-        desc: 'Pewarnaan dinding interior dan fasad luar masjid tahan cuaca',
-        price: 'Rp 200.000',
-        availability: 'Tersedia untuk semua paket'
+        name: 'Infaq Unit Sanitasi',
+        desc: 'Kran wudhu kuningan & penampung air bersih higienis',
+        price: 'Rp 500.000',
+        availability: 'Tersedia untuk program sanitasi'
       }
     ],
     
     deepDiveBadge: 'AKSELERASI DAKWAH',
-    deepDiveTitle: 'Menyempurnakan Sarana Ibadah & Pendidikan yang Nyaman',
-    deepDiveLead: 'Infaq Anda adalah motor penggerak percepatan pembangunan fisik di lapangan. Setiap donasi langsung dialokasikan untuk pembelian material konstruksi dan pengadaan sarana belajar.',
-    deepDiveStory1: 'Pembangunan Garden Mosque Khairu Ummah dan ruang vokasi SMK Skill Village membutuhkan ribuan sak semen, bata roster penyejuk alami, instalasi kabel listrik, dan meja belajar santri. Infaq dari Anda memastikan pekerjaan para tukang dan teknisi di lapangan tidak terhenti.',
-    deepDiveStory2: 'Berbeda dengan zakat yang terikat pada 8 asnaf, dana infaq dapat digunakan secara lincah untuk kebutuhan mendesak sarana dan logistik pembangunan, sehingga manfaatnya dapat segera dirasakan oleh jamaah dan masyarakat sekitar.',
-    deepDiveBannerImage: '/gambar-bahan/pelataran mesjid.jpeg',
+    deepDiveTitle: 'Infaq Pembangunan Fisik Masjid',
+    deepDiveLead: 'Program Infaq Pembangunan Fisik Global Village Fund menghadirkan sarana nyata bagi kaum muslimin untuk berpartisipasi langsung dalam penyediaan material konstruksi Masjid Khairu Ummah Sugro di Jonggol. Dari semen, bata ringan, hingga sanitasi wudhu, setiap rupiah dialokasikan secara amanah dan terhisab akurat.',
+    deepDiveStory1: 'Pembangunan fisik masjid ini menjadi jantung ekosistem pesantren yang menaungi ratusan santri vokasi. Setiap material yang Anda infaqkan menjadi saksi amal jariyah yang pahalanya terus mengalir abadi.',
+    deepDiveStory2: '',
+    deepDiveBannerImage: '/gambar design/interior masjid.jpg',
     valueBoxes: [
       {
-        icon: 'zap',
-        title: 'Realisasi Cepat di Lapangan',
-        description: 'Langsung dibelanjakan untuk material bangunan dan fasilitas kelas.'
+        icon: 'package',
+        title: 'Material Nyata (Riil)',
+        description: 'Infaq dibelanjakan langsung untuk material fisik terukur seperti semen, pasir, bata ringan, dan rangka baja.'
       },
       {
-        icon: 'heart',
-        title: 'Amalan Fleksibel Kapan Saja',
-        description: 'Tidak terikat waktu haul maupun batasan nominal nisab.'
-      },
-      {
-        icon: 'tool',
-        title: 'Material Berkualitas SNI',
-        description: 'Spesifikasi material dipilih yang kokoh, ramah lingkungan, dan tahan lama.'
+        icon: 'file-text',
+        title: 'Transparansi RAB',
+        description: 'Rencana Anggaran Biaya (RAB) dan rincian kebutuhan material disajikan secara terbuka tanpa ada biaya tersembunyi.'
       },
       {
         icon: 'camera',
-        title: 'Laporan Foto Belanja Material',
-        description: 'Kwitansi dan bukti fisik material difoto dan dilaporkan terbuka.'
+        title: 'Dokumentasi Progres',
+        description: 'Laporan visual berkala foto dan video perkembangan fisik langsung dari lokasi Jonggol untuk para muhsinin.'
+      },
+      {
+        icon: 'heart',
+        title: 'Pahala Jariyah Abadi',
+        description: 'Sarana ibadah dan wudhu dimanfaatkan setiap hari oleh santri penghafal Quran dan warga sekitar asrama.'
       }
     ],
     
@@ -930,16 +930,24 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     
-    faqBadge: 'FAQ INFAQ',
+    faqBadge: 'FAQ',
     faqTitle: 'Pertanyaan Seputar Infaq Pembangunan',
     faqs: [
       {
-        question: 'Apa perbedaan mendasar antara Wakaf dan Infaq?',
-        answer: 'Wakaf berfokus pada aset abadi yang pokoknya tidak boleh berkurang atau musnah (seperti tanah, gedung permanen). Sedangkan Infaq dapat langsung dibelanjakan dan habis dipakai untuk pembelian material (semen, pasir, cat), operasional listrik, maupun konsumsi para pekerja di lapangan.'
+        question: 'Bagaimana dana infaq pembangunan dibelanjakan?',
+        answer: 'Seluruh dana infaq yang terhimpun dibelanjakan 100% untuk pengadaan material fisik riil (semen, pasir, bata ringan, rangka baja, atap, dan sanitasi wudhu) sesuai Rencana Anggaran Biaya (RAB) resmi Masjid Khairu Ummah Sugro di Jonggol. Laporan belanja disajikan terbuka dan transparan.'
       },
       {
-        question: 'Apakah boleh berinfaq atas nama keluarga atau almarhum?',
-        answer: 'Sangat boleh. Niatkan pahala infaq pembangunan rumah Allah ini mengalir untuk kedua orang tua atau keluarga tercinta.'
+        question: 'Apakah saya mendapatkan bukti dan tanda terima resmi infaq?',
+        answer: 'Ya, setiap donatur yang menyalurkan infaq akan menerima kwitansi digital resmi, tanda terima syar\'i, serta notifikasi rekapitulasi penyaluran langsung via WhatsApp atau email.'
+      },
+      {
+        question: 'Apakah donatur bisa mengunjungi langsung lokasi pembangunan di Jonggol?',
+        answer: 'Tentu saja. Kawasan Wakaf Terpadu Jonggol di Sukasirna terbuka bagi para donatur dan masyarakat umum yang ingin melihat langsung realisasi fisik pembangunan Masjid dan asrama santri.'
+      },
+      {
+        question: 'Bagaimana cara konfirmasi setelah melakukan transfer infaq?',
+        answer: 'Setelah transfer ke rekening resmi Yayasan Global Village Fund atau scan QRIS, Anda cukup mengunggah bukti transfer melalui tombol konfirmasi WhatsApp yang tertera di website ini.'
       }
     ],
     ctaBannerHeading: 'Punya Material / Bantuan Fisik Langsung?',

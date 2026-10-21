@@ -3,10 +3,6 @@
 // Komponen Pilihan Paket ZISWAF Presisi 100% Desain Pen.dev (global village fund.pen)
 // Menggunakan Vanilla Scoped CSS murni untuk menjamin render 100% akurat tanpa isu compiler utility
 import type { ProgramData } from '../../data/programs';
-import ZakatCalculatorSection from './ZakatCalculatorSection.astro';
-import InfaqMaterialSection from './InfaqMaterialSection.astro';
-import WakafLandSliderSection from './WakafLandSliderSection.astro';
-import SedekahChipsSection from './SedekahChipsSection.astro';
 
 interface Props {
   program: ProgramData;
@@ -21,7 +17,7 @@ const { program } = Astro.props;
     <div class="pricing-header-wrap">
       <div class="pricing-badge-pill">
         <span class="dot-green"></span>
-        <span class="badge-text">PAKET PILIHAN PROGRAM</span>
+        <span class="badge-text">{program.slug === 'infaq' ? 'PILIHAN PAKET INFAQ' : 'PAKET PILIHAN PROGRAM'}</span>
       </div>
       <h2 class="pricing-main-heading">
         {program.pricingHeading}
@@ -100,7 +96,7 @@ const { program } = Astro.props;
     {program.addonItems && program.addonItems.length > 0 && (
       <div class="addon-table-section">
         <h3 class="addon-section-title">
-          {program.addonTitle || 'Pilihan Saluran Tambahan'}
+          {program.addonTitle || 'Pilihan Saluran Infaq Tambahan'}
         </h3>
 
         <div class="addon-table-card">
@@ -108,9 +104,9 @@ const { program } = Astro.props;
             <table class="addon-table">
               <thead>
                 <tr>
-                  <th class="col-category">Kategori / Program</th>
+                  <th class="col-category">Infaq</th>
                   <th class="col-desc">Keterangan</th>
-                  <th class="col-price">Nominal</th>
+                  <th class="col-price">Harga</th>
                   <th class="col-avail">Ketersediaan</th>
                 </tr>
               </thead>
@@ -129,32 +125,6 @@ const { program } = Astro.props;
         </div>
       </div>
     )}
-
-    <!-- Interactive Calculator Toggle Drawer (Sleek & Clean) -->
-    <div class="custom-sim-box">
-      <div class="sim-header-row">
-        <div>
-          <span class="sim-eyebrow">FITUR KALKULATOR KHUSUS</span>
-          <h4 class="sim-title">Ingin Menghitung atau Memilih Nilai Kustom?</h4>
-          <p class="sim-subtitle">
-            Gunakan live simulator untuk memasukkan hisab zakat, jumlah meter wakaf, atau donasi kustom.
-          </p>
-        </div>
-        <button type="button" id="toggleCustomCalculatorBtn" class="sim-toggle-btn">
-          <span id="toggleCustomCalculatorText">Buka Simulasi</span>
-          <svg class="sim-arrow" id="toggleCustomCalculatorIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-      </div>
-
-      <div id="interactiveCustomArea" class="sim-body-wrap is-hidden">
-        {program.slug === 'zakat' && <ZakatCalculatorSection program={program} />}
-        {program.slug === 'infaq' && <InfaqMaterialSection program={program} />}
-        {program.slug === 'wakaf' && <WakafLandSliderSection program={program} />}
-        {program.slug === 'sedekah' && <SedekahChipsSection program={program} />}
-      </div>
-    </div>
   </div>
 </section>
 
@@ -518,120 +488,4 @@ const { program } = Astro.props;
     font-style: italic;
   }
 
-  /* Custom Simulation Box */
-  .custom-sim-box {
-    max-width: 960px;
-    margin: 0 auto;
-    background: #ffffff;
-    border: 1px solid #e3e3e8;
-    border-radius: 20px;
-    padding: 24px 28px;
-    box-sizing: border-box;
-  }
-
-  .sim-header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  @media (max-width: 640px) {
-    .sim-header-row {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-
-  .sim-eyebrow {
-    font-family: 'Cal Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    color: #006B3E;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 2px;
-  }
-
-  .sim-title {
-    font-family: 'Cal Sans', sans-serif;
-    font-size: 20px;
-    color: #191919;
-    margin: 0;
-  }
-
-  .sim-subtitle {
-    font-family: 'Golos Text', sans-serif;
-    font-size: 13px;
-    color: #4d4d52;
-    margin: 4px 0 0;
-  }
-
-  .sim-toggle-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    border-radius: 100px;
-    padding: 10px 20px;
-    font-family: 'Cal Sans', sans-serif;
-    font-size: 13px;
-    color: #191919;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.2s;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .sim-toggle-btn:hover {
-    background-color: #006B3E;
-    color: #ffffff;
-    border-color: #006B3E;
-  }
-
-  .sim-arrow {
-    width: 14px;
-    height: 14px;
-    transition: transform 0.2s;
-  }
-
-  .sim-body-wrap {
-    margin-top: 24px;
-    padding-top: 24px;
-    border-top: 1px solid #e3e3e8;
-  }
-
-  .sim-body-wrap.is-hidden {
-    display: none;
-  }
-
-  .sim-arrow.rotated {
-    transform: rotate(180deg);
-  }
 </style>
-
-<script>
-  const toggleBtn = document.getElementById('toggleCustomCalculatorBtn');
-  const customArea = document.getElementById('interactiveCustomArea');
-  const toggleText = document.getElementById('toggleCustomCalculatorText');
-  const toggleIcon = document.getElementById('toggleCustomCalculatorIcon');
-
-  if (toggleBtn && customArea && toggleText && toggleIcon) {
-    toggleBtn.addEventListener('click', () => {
-      const isHidden = customArea.classList.contains('is-hidden');
-      if (isHidden) {
-        customArea.classList.remove('is-hidden');
-        toggleText.textContent = 'Sembunyikan Simulasi';
-        toggleIcon.classList.add('rotated');
-      } else {
-        customArea.classList.add('is-hidden');
-        toggleText.textContent = 'Buka Simulasi';
-        toggleIcon.classList.remove('rotated');
-      }
-    });
-  }
-</script>
