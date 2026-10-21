@@ -1,6 +1,10 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "ELASTIC-GALLERY-CENTER", "name": "Presisikan Elastic Gallery Accordion agar mengisi penuh 100% kontainer dan terpusat simetris", "status": "closed" },
+    { "id": "IMPECCABLE-01", "name": "Standardisasi Tipografi & Palet Warna Royal Blue (Golos Text & Royal Blue, eliminasi Inter & #006B3E)", "status": "in_progress" },
+    { "id": "IMPECCABLE-02", "name": "Penguatan Aksesibilitas Kritis (Pause Carousel Hero, ARIA Tab Layanan, Focus Trap Modal & Label Form)", "status": "open" },
+    { "id": "IMPECCABLE-03", "name": "Optimasi Performa & Anti-Slop Layout (Eliminasi Layout Thrashing Width/Padding, Touch Target 44px, Eliminasi Gradien AI)", "status": "open" },
     { "id": "SEC-01", "name": "Section 1: Header / Navbar", "status": "closed" },
     { "id": "SEC-02", "name": "Section 2: Hero Section with Active Carousel", "status": "closed" },
     { "id": "SEC-03", "name": "Section 3: Empat Pilar Kebaikan", "status": "closed" },

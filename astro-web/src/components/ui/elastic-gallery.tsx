@@ -74,8 +74,11 @@ export function ElasticGallery({
   const [activeId, setActiveId] = useState<string>(defaultActiveId || items[0]?.id || "01");
 
   return (
-    <div className={cn("w-full py-6 md:py-8", className)}>
-      <div className="mx-auto flex h-[480px] md:h-[560px] w-full max-w-6xl flex-col gap-3 px-3 md:flex-row md:gap-4">
+    <div className={cn("w-full py-6 md:py-8 flex justify-center", className)} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <div 
+        className="mx-auto flex h-[480px] md:h-[560px] w-full max-w-6xl flex-col gap-3 px-3 md:flex-row md:gap-4"
+        style={{ width: '100%', maxWidth: '1152px', margin: '0 auto', display: 'flex' }}
+      >
         {items.map((item) => {
           const isActive = activeId === item.id;
           return (
@@ -83,11 +86,16 @@ export function ElasticGallery({
               key={item.id}
               onClick={() => setActiveId(item.id)}
               onMouseEnter={() => setActiveId(item.id)}
+              style={{
+                flex: isActive ? '3.5 1 0%' : '1 1 0%',
+                minWidth: 0,
+                transition: 'flex 0.7s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, box-shadow 0.3s ease',
+              }}
               className={cn(
                 "group relative cursor-pointer overflow-hidden rounded-2xl md:rounded-3xl border transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] min-w-0 select-none",
                 isActive
-                  ? "flex-[4] border-blue-500/80 shadow-2xl ring-1 ring-blue-400/40"
-                  : "flex-[1] border-slate-200/80 bg-slate-950 hover:flex-[1.2] hover:border-slate-300"
+                  ? "border-blue-500/80 shadow-2xl ring-1 ring-blue-400/40"
+                  : "border-slate-200/80 bg-slate-950 hover:border-slate-300"
               )}
             >
               {/* Gambar Latar */}
