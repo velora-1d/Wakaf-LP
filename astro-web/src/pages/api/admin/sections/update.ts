@@ -1,3 +1,5 @@
+export const prerender = false;
+
 import type { APIRoute } from 'astro';
 import { updateSectionData } from '../../../../lib/db';
 import { verifySessionToken } from '../../../../lib/auth';

@@ -1,3 +1,5 @@
+export const prerender = false;
+
 import type { APIRoute } from 'astro';
 import { authenticateAdmin, createSessionToken } from '../../../lib/auth';
 
@@ -10,13 +12,31 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
 
     if (contentType.includes('application/json')) {
       isJson = true;
-      const body = await request.json();
-      username = body.username || '';
-      password = body.password || '';
+      try {
+        const body = await request.json();
+        username = body.username || '';
+        password = body.password || '';
+      } catch (e) {
+        // fallback json error
+      }
+    } else if (contentType.includes('multipart/form-data') || contentType.includes('application/x-www-form-urlencoded')) {
+      try {
+        const formData = await request.formData();
+        username = (formData.get('username') as string) || '';
+        password = (formData.get('password') as string) || '';
+      } catch (e) {
+        // fallback
+      }
     } else {
-      const formData = await request.formData();
-      username = (formData.get('username') as string) || '';
-      password = (formData.get('password') as string) || '';
+      try {
+        const text = await request.text();
+        const body = JSON.parse(text);
+        username = body.username || '';
+        password = body.password || '';
+        isJson = true;
+      } catch (e) {
+        // fallback
+      }
     }
 
     if (!username || !password) {
