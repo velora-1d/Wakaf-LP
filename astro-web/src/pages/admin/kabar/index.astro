@@ -1,0 +1,1976 @@
+---
+// src/pages/admin/kabar/index.astro
+export const prerender = false;
+
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { getAllNewsArticles } from '../../../lib/db';
+
+const rawArticles = await getAllNewsArticles();
+
+// Normalisasi data untuk tampilan
+const allArticles = rawArticles.map(a => ({
+  id: a.id,
+  title: a.title,
+  slug: a.slug,
+  category: a.category,
+  summary: a.summary,
+  content: a.content,
+  author: a.author,
+  coverImage: a.imageUrl,
+  publishedAt: a.publishedAt ? new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(new Date(a.publishedAt)) : 'Belum Ditentukan',
+  isPublished: a.isPublished,
+  createdAt: a.createdAt,
+}));
+
+const totalCount = allArticles.length;
+const publishedCount = allArticles.filter(a => a.isPublished).length;
+const draftCount = allArticles.filter(a => !a.isPublished).length;
+---
+
+<AdminLayout title="Kelola Kabar & Warta" activeSlug="kabar">
+  <div class="kabar-admin-page">
+    <!-- Header Section -->
+    <div class="kabar-top-header">
+      <div class="header-titles">
+        <div class="header-badge-row">
+          <span class="badge-blue-pill">Pusat Redaksi &amp; Warta</span>
+          <span class="badge-dot-sep">&bull;</span>
+          <span class="badge-green-pill">MinIO S3 Terintegrasi</span>
+        </div>
+        <h1 class="header-main-title">Kabar &amp; Literasi Terkini GVF</h1>
+        <p class="header-desc">
+          Kelola publikasi artikel, warta progres kawasan, dan literasi syariah dengan integrasi penyimpanan berkas MinIO S3.
+        </p>
+      </div>
+
+      <div class="header-actions">
+        <button
+          type="button"
+          id="btnOpenCreateArticle"
+          class="btn-create-article"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Tulis Artikel Baru</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Metrik Statistik -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-card-top">
+          <span class="metric-label">TOTAL ARTIKEL</span>
+          <div class="metric-icon-wrap text-blue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="metric-value">{totalCount}</div>
+        <p class="metric-hint">Koleksi berita &amp; literasi di database</p>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-card-top">
+          <span class="metric-label">ARTIKEL TERBIT</span>
+          <div class="metric-icon-wrap text-emerald">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+        </div>
+        <div class="metric-value text-emerald">{publishedCount}</div>
+        <p class="metric-hint">Tampil aktif di web publik</p>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-card-top">
+          <span class="metric-label">ARTIKEL DRAF</span>
+          <div class="metric-icon-wrap text-amber">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="metric-value text-amber">{draftCount}</div>
+        <p class="metric-hint">Disimpan aman belum terbit</p>
+      </div>
+    </div>
+
+    <!-- Daftar Artikel -->
+    <div class="articles-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">Daftar Publikasi Artikel</h2>
+          <p class="section-subtitle">
+            Klik tombol Edit untuk mengubah narasi, atau klik ikon Kamera untuk mengganti gambar via MinIO S3 secara instan.
+          </p>
+        </div>
+        <a href="/kabar" target="_blank" class="link-preview-public">
+          <span>Lihat Tampilan Publik</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+
+      {allArticles.length === 0 ? (
+        <div class="empty-state-box">
+          <p>Belum ada artikel warta yang tersimpan.</p>
+        </div>
+      ) : (
+        <div class="articles-grid" id="articlesListContainer">
+          {allArticles.map((article) => {
+            const articleJson = JSON.stringify(article);
+            return (
+              <div
+                class="admin-article-card"
+                id={`article-card-${article.id}`}
+                data-article-id={article.id}
+              >
+                <!-- Header Kartu -->
+                <div class="card-top-bar">
+                  <div class="card-category-date">
+                    <span class="cat-pill">{article.category}</span>
+                    <span class="date-text">{article.publishedAt}</span>
+                  </div>
+
+                  <span
+                    id={`status-badge-${article.id}`}
+                    class={`status-pill ${article.isPublished ? 'published' : 'draft'}`}
+                  >
+                    <span class="status-dot"></span>
+                    <span id={`status-text-${article.id}`}>
+                      {article.isPublished ? 'Terbit' : 'Draf'}
+                    </span>
+                  </span>
+                </div>
+
+                <!-- Konten Kartu: Gambar & Teks Seimbang -->
+                <div class="card-main-content">
+                  <!-- Thumbnail Gambar dengan Tombol Cepat Ubah Gambar -->
+                  <div class="thumb-container">
+                    <img
+                      src={article.coverImage}
+                      alt={article.title}
+                      id={`card-img-${article.id}`}
+                      class="thumb-image"
+                      loading="lazy"
+                    />
+                    <button
+                      type="button"
+                      class="btn-quick-change-img"
+                      title="Ganti Gambar via MinIO S3"
+                      data-article-id={article.id}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                      </svg>
+                      <span>Ubah Gambar</span>
+                    </button>
+                  </div>
+
+                  <!-- Teks Artikel -->
+                  <div class="card-text-col">
+                    <h3 class="card-article-title" id={`title-display-${article.id}`}>
+                      {article.title}
+                    </h3>
+                    <p class="card-article-summary">
+                      {article.summary}
+                    </p>
+                    <div class="card-meta-bottom">
+                      <span class="meta-author">Penulis: <strong>{article.author || 'Tim GVF'}</strong></span>
+                      <a href={`/kabar/${article.slug}`} target="_blank" class="meta-slug-link" title="Buka Pratinjau Halaman">
+                        <span>/kabar/{article.slug}</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Footer Aksi -->
+                <div class="card-footer-actions">
+                  <!-- Toggle Tayang -->
+                  <div class="toggle-group">
+                    <label for={`toggle-news-${article.id}`} class="toggle-label">
+                      Tayang
+                    </label>
+                    <label class="switch-container">
+                      <input
+                        type="checkbox"
+                        id={`toggle-news-${article.id}`}
+                        class="news-toggle-checkbox"
+                        data-article-id={article.id}
+                        checked={article.isPublished}
+                      />
+                      <span class="switch-slider"></span>
+                    </label>
+                  </div>
+
+                  <!-- Tombol Aksi Kanan -->
+                  <div class="action-btn-group">
+                    <button
+                      type="button"
+                      class="btn-action btn-edit edit-article-btn"
+                      data-article-json={articleJson}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 20h9"></path>
+                        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+                      </svg>
+                      <span>Edit</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      class="btn-action btn-delete delete-article-btn"
+                      data-article-id={article.id}
+                      data-article-title={article.title}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 6h18"></path>
+                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                      </svg>
+                      <span>Hapus</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Hidden File Input untuk Quick Change Image pada Kartu -->
+  <input
+    type="file"
+    id="cardQuickFileInput"
+    accept="image/jpeg,image/png,image/webp,image/gif"
+    style="display: none;"
+  />
+
+  <!-- Modal Formulir Tambah / Edit Artikel -->
+  <div
+    id="articleFormModal"
+    class="modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="formModalTitle"
+  >
+    <div class="modal-card" id="formModalBox">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <div class="modal-icon-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
+              <path d="M18 14h-8"></path>
+              <path d="M15 18h-5"></path>
+              <path d="M10 6h8v4h-8V6Z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 id="formModalTitle" class="modal-title">Tulis Artikel Baru</h3>
+            <p id="formModalSubtitle" class="modal-subtitle">Lengkapi formulir di bawah ini untuk menerbitkan warta baru</p>
+          </div>
+        </div>
+
+        <button type="button" id="closeFormModalBtn" class="modal-close-btn" aria-label="Tutup modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <input type="hidden" id="inputArticleId" value="" />
+
+        <!-- Judul -->
+        <div class="form-group">
+          <label for="inputTitle" class="form-label">
+            Judul Artikel <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="inputTitle"
+            placeholder="Contoh: Peresmian Gedung Vokasi Santri Jonggol"
+            class="form-input"
+            required
+          />
+        </div>
+
+        <!-- Kategori & Slug -->
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="inputCategory" class="form-label">
+              Kategori Artikel <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="inputCategory"
+              list="categoryOptions"
+              placeholder="Pilih atau ketik kategori"
+              class="form-input"
+              required
+            />
+            <datalist id="categoryOptions">
+              <option value="LITERASI WAKAF"></option>
+              <option value="PROGRESS MASJID"></option>
+              <option value="TECHNOPARK"></option>
+              <option value="WAKAF DIGITAL"></option>
+              <option value="KEMITRAAN"></option>
+              <option value="PENDIDIKAN"></option>
+              <option value="KEMANUSIAAN"></option>
+            </datalist>
+          </div>
+
+          <div class="form-group">
+            <label for="inputSlug" class="form-label">
+              Slug URL <span class="optional">(Otomatis dibuat dari judul)</span>
+            </label>
+            <input
+              type="text"
+              id="inputSlug"
+              placeholder="peresmian-gedung-vokasi"
+              class="form-input font-mono"
+            />
+          </div>
+        </div>
+
+        <!-- Penulis & Tanggal -->
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="inputAuthor" class="form-label">
+              Nama Penulis / Amil
+            </label>
+            <input
+              type="text"
+              id="inputAuthor"
+              placeholder="Contoh: Tim GVF"
+              value="Tim GVF"
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="inputPublishedAt" class="form-label">
+              Tanggal Terbit Teks
+            </label>
+            <input
+              type="text"
+              id="inputPublishedAt"
+              placeholder="Contoh: 18 Juli 2026"
+              class="form-input"
+            />
+          </div>
+        </div>
+
+        <!-- Integrasi Unggah Gambar MinIO S3 -->
+        <div class="form-group">
+          <label class="form-label">
+            Gambar Sampul Artikel <span class="required">*</span>
+          </label>
+
+          <div class="upload-dropzone" id="modalUploadDropzone">
+            <!-- Preview Box jika ada gambar -->
+            <div class="upload-preview-wrap" id="uploadPreviewWrap">
+              <img
+                src="/gambar design/interior masjid.jpg"
+                alt="Pratinjau Gambar"
+                id="modalImagePreview"
+                class="modal-preview-img"
+              />
+              <div class="preview-overlay">
+                <button type="button" id="btnTriggerModalFile" class="btn-change-image-preview">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  <span>Unggah Gambar Baru (MinIO)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Upload Progress Status -->
+            <div id="modalUploadProgress" class="upload-progress-box" style="display: none;">
+              <div class="spinner-icon"></div>
+              <span>Sedang mengunggah berkas ke MinIO S3...</span>
+            </div>
+
+            <!-- Upload Info Tag -->
+            <div class="upload-minio-badge" id="uploadMinioBadge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>MinIO S3 Storage (skillage-website) Aktif</span>
+            </div>
+
+            <!-- Hidden File Input for Modal -->
+            <input
+              type="file"
+              id="modalFileInput"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              style="display: none;"
+            />
+
+            <!-- Hidden input URL yang menyimpan hasil URL MinIO -->
+            <input
+              type="text"
+              id="inputCoverImage"
+              value="/gambar design/interior masjid.jpg"
+              class="form-input font-mono input-url-subtle"
+              placeholder="URL Gambar MinIO S3"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Ringkasan -->
+        <div class="form-group">
+          <label for="inputSummary" class="form-label">
+            Ringkasan Berita (Cuplikan Kartu) <span class="required">*</span>
+          </label>
+          <textarea
+            id="inputSummary"
+            rows="2"
+            placeholder="Tulis ringkasan padat 1-2 kalimat untuk ditampilkan di kartu beranda..."
+            class="form-textarea"
+            required
+          ></textarea>
+        </div>
+
+        <!-- Isi Narasi -->
+        <div class="form-group">
+          <label for="inputContent" class="form-label">
+            Isi Narasi Artikel Lengkap <span class="required">*</span>
+          </label>
+          <textarea
+            id="inputContent"
+            rows="6"
+            placeholder="Tuliskan isi berita lengkap di sini. Gunakan baris baru antar paragraf..."
+            class="form-textarea leading-relaxed"
+            required
+          ></textarea>
+        </div>
+
+        <!-- Checkbox Publikasi -->
+        <div class="publish-checkbox-row">
+          <label class="checkbox-container">
+            <input type="checkbox" id="inputIsPublished" checked />
+            <span class="checkbox-custom"></span>
+            <span class="checkbox-label-text">Langsung publikasikan artikel ini ke web publik</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" id="cancelFormModalBtn" class="btn-cancel">
+          Batal
+        </button>
+        <button type="button" id="submitArticleFormBtn" class="btn-save-primary">
+          <span id="submitBtnText">Simpan Artikel</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Konfirmasi Hapus -->
+  <div
+    id="deleteConfirmModal"
+    class="modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="modal-card modal-delete-card">
+      <div class="delete-icon-wrap">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 6h18"></path>
+          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+        </svg>
+      </div>
+      <h3 class="delete-title">Hapus Artikel Ini?</h3>
+      <p class="delete-desc">
+        Artikel <strong id="deleteArticleTitleDisplay" class="text-slate-900"></strong> akan dihapus permanen dari sistem.
+      </p>
+      <div class="delete-actions">
+        <button type="button" id="cancelDeleteBtn" class="btn-cancel">
+          Batal
+        </button>
+        <button type="button" id="confirmDeleteBtn" class="btn-danger-confirm">
+          Ya, Hapus Permanen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifikasi Global -->
+  <div id="kabarToast" class="admin-toast">
+    <div class="toast-dot"></div>
+    <span id="kabarToastMessage">Pesan sistem</span>
+  </div>
+</AdminLayout>
+
+<script>
+  function setupKabarManager() {
+    // Referensi Elemen Form Modal
+    const formModal = document.getElementById('articleFormModal');
+    const formModalBox = document.getElementById('formModalBox');
+    const formModalTitle = document.getElementById('formModalTitle');
+    const formModalSubtitle = document.getElementById('formModalSubtitle');
+    const submitBtnText = document.getElementById('submitBtnText');
+    const submitBtn = document.getElementById('submitArticleFormBtn') as HTMLButtonElement | null;
+    const btnOpenCreate = document.getElementById('btnOpenCreateArticle');
+    const closeFormModalBtn = document.getElementById('closeFormModalBtn');
+    const cancelFormModalBtn = document.getElementById('cancelFormModalBtn');
+
+    // Input fields
+    const inputId = document.getElementById('inputArticleId') as HTMLInputElement | null;
+    const inputTitle = document.getElementById('inputTitle') as HTMLInputElement | null;
+    const inputCategory = document.getElementById('inputCategory') as HTMLInputElement | null;
+    const inputSlug = document.getElementById('inputSlug') as HTMLInputElement | null;
+    const inputAuthor = document.getElementById('inputAuthor') as HTMLInputElement | null;
+    const inputPublishedAt = document.getElementById('inputPublishedAt') as HTMLInputElement | null;
+    const inputCoverImage = document.getElementById('inputCoverImage') as HTMLInputElement | null;
+    const inputSummary = document.getElementById('inputSummary') as HTMLTextAreaElement | null;
+    const inputContent = document.getElementById('inputContent') as HTMLTextAreaElement | null;
+    const inputIsPublished = document.getElementById('inputIsPublished') as HTMLInputElement | null;
+
+    // Upload & MinIO Elements
+    const modalImagePreview = document.getElementById('modalImagePreview') as HTMLImageElement | null;
+    const btnTriggerModalFile = document.getElementById('btnTriggerModalFile');
+    const modalFileInput = document.getElementById('modalFileInput') as HTMLInputElement | null;
+    const modalUploadProgress = document.getElementById('modalUploadProgress');
+
+    // Quick Change Card Image
+    const cardQuickFileInput = document.getElementById('cardQuickFileInput') as HTMLInputElement | null;
+    let quickUploadTargetArticleId: number | null = null;
+
+    // Delete Modal
+    const deleteModal = document.getElementById('deleteConfirmModal');
+    const deleteTitleDisplay = document.getElementById('deleteArticleTitleDisplay');
+    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn') as HTMLButtonElement | null;
+    let targetDeleteArticleId: number | null = null;
+
+    // Toast
+    const toast = document.getElementById('kabarToast');
+    const toastMessage = document.getElementById('kabarToastMessage');
+
+    function showToast(msg: string, isError = false) {
+      if (!toast || !toastMessage) return;
+      toastMessage.textContent = msg;
+      toast.classList.remove('error');
+      if (isError) toast.classList.add('error');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // Modal Visibility Helpers
+    function openModal() {
+      if (!formModal || !formModalBox) return;
+      formModal.classList.add('active');
+    }
+
+    function closeModal() {
+      if (!formModal || !formModalBox) return;
+      formModal.classList.remove('active');
+    }
+
+    // Reset Form for Create
+    function resetFormToCreate() {
+      if (formModalTitle) formModalTitle.textContent = 'Tulis Artikel Baru';
+      if (formModalSubtitle) formModalSubtitle.textContent = 'Lengkapi formulir di bawah ini untuk menerbitkan warta baru';
+      if (submitBtnText) submitBtnText.textContent = 'Terbitkan Artikel';
+
+      if (inputId) inputId.value = '';
+      if (inputTitle) inputTitle.value = '';
+      if (inputCategory) inputCategory.value = 'LITERASI WAKAF';
+      if (inputSlug) inputSlug.value = '';
+      if (inputAuthor) inputAuthor.value = 'Tim GVF';
+      if (inputPublishedAt) inputPublishedAt.value = new Intl.DateTimeFormat('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }).format(new Date());
+      if (inputCoverImage) inputCoverImage.value = '/gambar design/interior masjid.jpg';
+      if (modalImagePreview) modalImagePreview.src = '/gambar design/interior masjid.jpg';
+      if (inputSummary) inputSummary.value = '';
+      if (inputContent) inputContent.value = '';
+      if (inputIsPublished) inputIsPublished.checked = true;
+    }
+
+    // Open Create Modal
+    if (btnOpenCreate) {
+      btnOpenCreate.addEventListener('click', () => {
+        resetFormToCreate();
+        openModal();
+      });
+    }
+
+    if (closeFormModalBtn) closeFormModalBtn.addEventListener('click', closeModal);
+    if (cancelFormModalBtn) cancelFormModalBtn.addEventListener('click', closeModal);
+
+    // Edit Article Button Clicks
+    const editBtns = document.querySelectorAll('.edit-article-btn');
+    editBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const jsonStr = target.getAttribute('data-article-json');
+        if (!jsonStr) return;
+
+        try {
+          const article = JSON.parse(jsonStr);
+          if (formModalTitle) formModalTitle.textContent = `Edit Artikel #${article.id}`;
+          if (formModalSubtitle) formModalSubtitle.textContent = 'Perbarui narasi, kategori, atau sampul artikel';
+          if (submitBtnText) submitBtnText.textContent = 'Simpan Perubahan';
+
+          if (inputId) inputId.value = String(article.id);
+          if (inputTitle) inputTitle.value = article.title || '';
+          if (inputCategory) inputCategory.value = article.category || '';
+          if (inputSlug) inputSlug.value = article.slug || '';
+          if (inputAuthor) inputAuthor.value = article.author || 'Tim GVF';
+          if (inputPublishedAt) inputPublishedAt.value = article.publishedAt || '';
+          if (inputCoverImage) inputCoverImage.value = article.coverImage || '';
+          if (modalImagePreview) modalImagePreview.src = article.coverImage || '/gambar design/interior masjid.jpg';
+          if (inputSummary) inputSummary.value = article.summary || '';
+          if (inputContent) inputContent.value = article.content || '';
+          if (inputIsPublished) inputIsPublished.checked = Boolean(article.isPublished);
+
+          openModal();
+        } catch (err) {
+          console.error('Error parsing article JSON:', err);
+        }
+      });
+    });
+
+    // MinIO File Upload Handler (Modal)
+    if (btnTriggerModalFile && modalFileInput) {
+      btnTriggerModalFile.addEventListener('click', () => {
+        modalFileInput.click();
+      });
+
+      modalFileInput.addEventListener('change', async () => {
+        if (!modalFileInput.files || modalFileInput.files.length === 0) return;
+        const file = modalFileInput.files[0];
+
+        const formData = new FormData();
+        formData.append('image', file);
+
+        if (modalUploadProgress) modalUploadProgress.style.display = 'flex';
+        showToast('Sedang mengunggah gambar ke MinIO S3...');
+
+        try {
+          const res = await fetch('/api/admin/news/upload', {
+            method: 'POST',
+            body: formData,
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success && data.url) {
+            if (inputCoverImage) inputCoverImage.value = data.url;
+            if (modalImagePreview) modalImagePreview.src = data.url;
+            showToast('Gambar berhasil diunggah ke MinIO S3!');
+          } else {
+            showToast(data.message || 'Gagal mengunggah gambar.', true);
+          }
+        } catch (err) {
+          console.error('Error uploading to MinIO:', err);
+          showToast('Koneksi terputus saat mengunggah gambar.', true);
+        } finally {
+          if (modalUploadProgress) modalUploadProgress.style.display = 'none';
+          modalFileInput.value = '';
+        }
+      });
+    }
+
+    // Quick Change Card Image Handler
+    const quickChangeBtns = document.querySelectorAll('.btn-quick-change-img');
+    quickChangeBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const artId = target.getAttribute('data-article-id');
+        if (!artId || !cardQuickFileInput) return;
+
+        quickUploadTargetArticleId = parseInt(artId, 10);
+        cardQuickFileInput.click();
+      });
+    });
+
+    if (cardQuickFileInput) {
+      cardQuickFileInput.addEventListener('change', async () => {
+        if (!cardQuickFileInput.files || cardQuickFileInput.files.length === 0 || !quickUploadTargetArticleId) return;
+        const file = cardQuickFileInput.files[0];
+        const articleId = quickUploadTargetArticleId;
+
+        const formData = new FormData();
+        formData.append('image', file);
+
+        showToast(`Mengunggah gambar artikel #${articleId} ke MinIO S3...`);
+
+        try {
+          // 1. Upload ke MinIO
+          const uploadRes = await fetch('/api/admin/news/upload', {
+            method: 'POST',
+            body: formData,
+          });
+          const uploadData = await uploadRes.json();
+
+          if (!uploadRes.ok || !uploadData.success || !uploadData.url) {
+            showToast(uploadData.message || 'Gagal mengunggah gambar ke MinIO.', true);
+            return;
+          }
+
+          const newImageUrl = uploadData.url;
+
+          // 2. Simpan URL baru ke Database
+          const updateRes = await fetch('/api/admin/news/update', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: articleId,
+              imageUrl: newImageUrl,
+            }),
+          });
+          const updateData = await updateRes.json();
+
+          if (updateRes.ok && updateData.success) {
+            // Update visual thumbnail kartu secara langsung
+            const cardImg = document.getElementById(`card-img-${articleId}`) as HTMLImageElement | null;
+            if (cardImg) cardImg.src = newImageUrl;
+            showToast('Gambar artikel berhasil diperbarui di MinIO S3!');
+          } else {
+            showToast(updateData.message || 'Gagal memperbarui URL gambar di database.', true);
+          }
+        } catch (err) {
+          console.error('Quick image change error:', err);
+          showToast('Terjadi kesalahan saat memproses gambar.', true);
+        } finally {
+          cardQuickFileInput.value = '';
+          quickUploadTargetArticleId = null;
+        }
+      });
+    }
+
+    // Submit Article Form (Create or Update)
+    if (submitBtn) {
+      submitBtn.addEventListener('click', async () => {
+        const idVal = inputId?.value ? parseInt(inputId.value, 10) : null;
+        const title = inputTitle?.value?.trim();
+        const category = inputCategory?.value?.trim();
+        const slug = inputSlug?.value?.trim();
+        const author = inputAuthor?.value?.trim() || 'Tim GVF';
+        const publishedAt = inputPublishedAt?.value?.trim();
+        const coverImage = inputCoverImage?.value?.trim() || '/gambar design/interior masjid.jpg';
+        const summary = inputSummary?.value?.trim();
+        const content = inputContent?.value?.trim();
+        const isPublished = inputIsPublished?.checked ?? true;
+
+        if (!title) {
+          showToast('Judul artikel wajib diisi.', true);
+          inputTitle?.focus();
+          return;
+        }
+        if (!category) {
+          showToast('Kategori artikel wajib dipilih/diisi.', true);
+          inputCategory?.focus();
+          return;
+        }
+        if (!summary) {
+          showToast('Ringkasan cuplikan berita wajib diisi.', true);
+          inputSummary?.focus();
+          return;
+        }
+        if (!content) {
+          showToast('Isi narasi artikel lengkap wajib diisi.', true);
+          inputContent?.focus();
+          return;
+        }
+
+        submitBtn.disabled = true;
+        if (submitBtnText) submitBtnText.textContent = 'Menyimpan...';
+
+        const endpoint = idVal ? '/api/admin/news/update' : '/api/admin/news/create';
+        const payload: any = {
+          title,
+          category,
+          slug,
+          author,
+          publishedAt,
+          coverImage,
+          summary,
+          content,
+          isPublished,
+        };
+        if (idVal) payload.id = idVal;
+
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success) {
+            showToast(data.message || 'Artikel berhasil disimpan!');
+            closeModal();
+            setTimeout(() => window.location.reload(), 600);
+          } else {
+            showToast(data.message || 'Gagal menyimpan artikel.', true);
+          }
+        } catch (err) {
+          console.error('Error submitting article:', err);
+          showToast('Koneksi terputus ke server.', true);
+        } finally {
+          submitBtn.disabled = false;
+          if (submitBtnText) submitBtnText.textContent = idVal ? 'Simpan Perubahan' : 'Terbitkan Artikel';
+        }
+      });
+    }
+
+    // Toggle Tayang / Draf Switch
+    const toggleCheckboxes = document.querySelectorAll<HTMLInputElement>('.news-toggle-checkbox');
+    toggleCheckboxes.forEach(chk => {
+      chk.addEventListener('change', async (e) => {
+        const target = e.currentTarget as HTMLInputElement;
+        const articleId = parseInt(target.getAttribute('data-article-id') || '0', 10);
+        const newState = target.checked;
+
+        const badge = document.getElementById(`status-badge-${articleId}`);
+        const statusText = document.getElementById(`status-text-${articleId}`);
+
+        try {
+          const res = await fetch('/api/admin/news/toggle', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: articleId, isPublished: newState }),
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success) {
+            if (badge && statusText) {
+              if (newState) {
+                badge.className = 'status-pill published';
+                statusText.textContent = 'Terbit';
+              } else {
+                badge.className = 'status-pill draft';
+                statusText.textContent = 'Draf';
+              }
+            }
+            showToast(`Artikel #${articleId} kini ${newState ? 'Terbit' : 'Draf'}.`);
+          } else {
+            target.checked = !newState;
+            showToast(data.message || 'Gagal mengubah status publikasi.', true);
+          }
+        } catch (err) {
+          target.checked = !newState;
+          showToast('Koneksi terputus saat mengubah status publikasi.', true);
+        }
+      });
+    });
+
+    // Delete Article Confirmation
+    const deleteBtns = document.querySelectorAll('.delete-article-btn');
+    deleteBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const id = parseInt(target.getAttribute('data-article-id') || '0', 10);
+        const title = target.getAttribute('data-article-title') || '';
+
+        targetDeleteArticleId = id;
+        if (deleteTitleDisplay) deleteTitleDisplay.textContent = `"${title}"`;
+        if (deleteModal) deleteModal.classList.add('active');
+      });
+    });
+
+    if (cancelDeleteBtn && deleteModal) {
+      cancelDeleteBtn.addEventListener('click', () => {
+        deleteModal.classList.remove('active');
+        targetDeleteArticleId = null;
+      });
+    }
+
+    if (confirmDeleteBtn && deleteModal) {
+      confirmDeleteBtn.addEventListener('click', async () => {
+        if (!targetDeleteArticleId) return;
+
+        confirmDeleteBtn.disabled = true;
+        confirmDeleteBtn.textContent = 'Menghapus...';
+
+        try {
+          const res = await fetch('/api/admin/news/delete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: targetDeleteArticleId }),
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success) {
+            const cardEl = document.getElementById(`article-card-${targetDeleteArticleId}`);
+            if (cardEl) cardEl.remove();
+            showToast('Artikel berhasil dihapus dari sistem.');
+            deleteModal.classList.remove('active');
+          } else {
+            showToast(data.message || 'Gagal menghapus artikel.', true);
+          }
+        } catch (err) {
+          showToast('Terjadi kesalahan saat menghapus artikel.', true);
+        } finally {
+          confirmDeleteBtn.disabled = false;
+          confirmDeleteBtn.textContent = 'Ya, Hapus Permanen';
+          targetDeleteArticleId = null;
+        }
+      });
+    }
+  }
+
+  document.addEventListener('astro:page-load', setupKabarManager);
+  if (document.readyState !== 'loading') {
+    setupKabarManager();
+  }
+</script>
+
+<style>
+  .kabar-admin-page {
+    font-family: 'Golos Text', system-ui, -apple-system, sans-serif;
+    color: #0f172a;
+    padding-bottom: 80px;
+  }
+
+  /* Header */
+  .kabar-top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .header-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .badge-blue-pill {
+    background: #eff6ff;
+    color: #0969da;
+    border: 1px solid #bfdbfe;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-green-pill {
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-dot-sep {
+    color: #cbd5e1;
+  }
+
+  .header-main-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.02em;
+  }
+
+  .header-desc {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+    max-width: 680px;
+    line-height: 1.5;
+  }
+
+  .btn-create-article {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #0969da;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(9, 105, 218, 0.25);
+    transition: all 150ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .btn-create-article:hover {
+    background: #0752a8;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(9, 105, 218, 0.35);
+  }
+
+  /* Metrics Grid */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .metric-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  }
+
+  .metric-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.5px;
+  }
+
+  .metric-icon-wrap {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .metric-icon-wrap.text-blue {
+    background: #eff6ff;
+    color: #0969da;
+  }
+
+  .metric-icon-wrap.text-emerald {
+    background: #ecfdf5;
+    color: #059669;
+  }
+
+  .metric-icon-wrap.text-amber {
+    background: #fffbeb;
+    color: #d97706;
+  }
+
+  .metric-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .metric-value.text-emerald {
+    color: #059669;
+  }
+
+  .metric-value.text-amber {
+    color: #d97706;
+  }
+
+  .metric-hint {
+    font-size: 11px;
+    color: #94a3b8;
+    margin: 0;
+  }
+
+  /* Articles Section */
+  .articles-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .section-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: #64748b;
+    margin: 0;
+  }
+
+  .link-preview-public {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0969da;
+    text-decoration: none;
+    padding: 6px 12px;
+    background: #eff6ff;
+    border-radius: 8px;
+    transition: all 150ms ease;
+  }
+
+  .link-preview-public:hover {
+    background: #dbeafe;
+  }
+
+  /* Grid Kartu Artikel (2 Kolom Kokoh) */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .admin-article-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  .admin-article-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .card-top-bar {
+    padding: 14px 18px;
+    background: #f8fafc;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .card-category-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .cat-pill {
+    background: #eff6ff;
+    color: #0969da;
+    border: 1px solid #bfdbfe;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+
+  .date-text {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .status-pill.published {
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+  }
+
+  .status-pill.published .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+  }
+
+  .status-pill.draft {
+    background: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+  }
+
+  .status-pill.draft .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #94a3b8;
+  }
+
+  /* Body Kartu dengan Thumbnail Tetap */
+  .card-main-content {
+    padding: 18px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  .thumb-container {
+    position: relative;
+    width: 140px;
+    height: 105px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
+    flex-shrink: 0;
+  }
+
+  .thumb-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 200ms ease;
+  }
+
+  .admin-article-card:hover .thumb-image {
+    transform: scale(1.04);
+  }
+
+  .btn-quick-change-img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    border: none;
+    padding: 5px 0;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: background 150ms ease;
+  }
+
+  .btn-quick-change-img:hover {
+    background: #0969da;
+  }
+
+  .card-text-col {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .card-article-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #0f172a;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-article-summary {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #64748b;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-meta-bottom {
+    margin-top: auto;
+    padding-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+
+  .meta-author {
+    color: #64748b;
+  }
+
+  .meta-slug-link {
+    color: #0969da;
+    text-decoration: none;
+    font-family: monospace;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .meta-slug-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Card Footer Actions */
+  .card-footer-actions {
+    padding: 12px 18px;
+    background: #fbfbf9;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Toggle Switch */
+  .toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .toggle-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .switch-container {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 22px;
+  }
+
+  .switch-container input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1;
+    transition: 0.2s;
+    border-radius: 34px;
+  }
+
+  .switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.2s;
+    border-radius: 50%;
+  }
+
+  input:checked + .switch-slider {
+    background-color: #0969da;
+  }
+
+  input:checked + .switch-slider:before {
+    transform: translateX(16px);
+  }
+
+  /* Action Buttons */
+  .action-btn-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 150ms ease;
+    border: 1px solid transparent;
+  }
+
+  .btn-edit {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #334155;
+  }
+
+  .btn-edit:hover {
+    background: #eff6ff;
+    border-color: #0969da;
+    color: #0969da;
+  }
+
+  .btn-delete {
+    background: #ffffff;
+    border-color: #f1f5f9;
+    color: #94a3b8;
+  }
+
+  .btn-delete:hover {
+    background: #fef2f2;
+    border-color: #fca5a5;
+    color: #dc2626;
+  }
+
+  /* Modals */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+  }
+
+  .modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-card {
+    background: #ffffff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 680px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e2e8f0;
+    transform: translateY(12px) scale(0.98);
+    transition: transform 180ms ease;
+    overflow: hidden;
+  }
+
+  .modal-backdrop.active .modal-card {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .modal-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .modal-icon-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .modal-subtitle {
+    margin: 2px 0 0 0;
+    font-size: 11px;
+    color: #64748b;
+  }
+
+  .modal-close-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 150ms ease;
+  }
+
+  .modal-close-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+
+  .modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .form-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+  }
+
+  .required {
+    color: #ef4444;
+  }
+
+  .optional {
+    color: #94a3b8;
+    font-weight: 400;
+  }
+
+  .form-input, .form-textarea {
+    width: 100%;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-size: 13px;
+    color: #0f172a;
+    font-family: inherit;
+    outline: none;
+    transition: all 150ms ease;
+    box-sizing: border-box;
+  }
+
+  .form-input:focus, .form-textarea:focus {
+    background: #ffffff;
+    border-color: #0969da;
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
+  }
+
+  /* MinIO Upload Dropzone */
+  .upload-dropzone {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .upload-preview-wrap {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
+  }
+
+  .modal-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .preview-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
+
+  .upload-preview-wrap:hover .preview-overlay {
+    opacity: 1;
+  }
+
+  .btn-change-image-preview {
+    background: #0969da;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 150ms ease;
+  }
+
+  .btn-change-image-preview:hover {
+    transform: scale(1.04);
+  }
+
+  .upload-progress-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0969da;
+  }
+
+  .spinner-icon {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #93c5fd;
+    border-top-color: #0969da;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .upload-minio-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #059669;
+    background: #ecfdf5;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #a7f3d0;
+    width: fit-content;
+  }
+
+  .input-url-subtle {
+    font-size: 11px;
+    color: #64748b;
+    background: #ffffff;
+  }
+
+  .publish-checkbox-row {
+    padding-top: 6px;
+  }
+
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .checkbox-container input {
+    display: none;
+  }
+
+  .checkbox-custom {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #cbd5e1;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 150ms ease;
+  }
+
+  .checkbox-container input:checked + .checkbox-custom {
+    background: #0969da;
+    border-color: #0969da;
+  }
+
+  .checkbox-container input:checked + .checkbox-custom:after {
+    content: "";
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+  }
+
+  .checkbox-label-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .modal-footer {
+    padding: 16px 24px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .btn-cancel {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 150ms ease;
+  }
+
+  .btn-cancel:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+  }
+
+  .btn-save-primary {
+    background: #0969da;
+    border: none;
+    color: #ffffff;
+    padding: 8px 22px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(9, 105, 218, 0.25);
+    transition: all 150ms ease;
+  }
+
+  .btn-save-primary:hover {
+    background: #0752a8;
+  }
+
+  /* Delete Confirmation Modal */
+  .modal-delete-card {
+    max-width: 440px;
+    padding: 28px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .delete-icon-wrap {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #fef2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .delete-title {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .delete-desc {
+    margin: 0 0 24px 0;
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  .delete-actions {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-danger-confirm {
+    background: #dc2626;
+    border: none;
+    color: #ffffff;
+    padding: 9px 20px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 150ms ease;
+  }
+
+  .btn-danger-confirm:hover {
+    background: #b91c1c;
+  }
+
+  /* Toast */
+  .admin-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition: all 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 200;
+  }
+
+  .admin-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .admin-toast.error .toast-dot {
+    background: #ef4444;
+  }
+
+  .toast-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .metrics-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .card-main-content {
+      flex-direction: column;
+    }
+
+    .thumb-container {
+      width: 100%;
+      height: 160px;
+    }
+
+    .form-row-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

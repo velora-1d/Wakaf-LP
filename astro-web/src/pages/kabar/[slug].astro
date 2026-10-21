@@ -1,0 +1,1047 @@
+---
+// src/pages/kabar/[slug].astro
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getNewsArticleBySlug, getActiveNewsArticles } from '../../lib/db';
+import { verifySessionToken } from '../../lib/auth';
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect('/kabar');
+}
+
+const article = await getNewsArticleBySlug(slug);
+
+// Cek apakah pengunjung adalah admin (untuk pratinjau draf)
+const sessionCookie = Astro.cookies.get('gvf_admin_session')?.value;
+const isAdmin = sessionCookie ? Boolean(verifySessionToken(sessionCookie)) : false;
+
+const canView = article && (article.isPublished || isAdmin);
+
+if (!canView) {
+  Astro.response.status = 404;
+}
+
+// Ambil artikel rekomendasi terkini (kecuali artikel aktif ini)
+const allActive = await getActiveNewsArticles(4);
+const relatedArticles = allActive.filter(a => a.id !== article?.id).slice(0, 3);
+
+// Format tanggal Bahasa Indonesia
+const formatDate = (dateInput: Date | string | null) => {
+  if (!dateInput) return 'Terkini';
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(date);
+};
+
+// Estimasi waktu baca
+const getReadTime = (content: string) => {
+  const words = content.trim().split(/\s+/).length;
+  const minutes = Math.max(1, Math.ceil(words / 180));
+  return `${minutes} menit baca`;
+};
+
+// Pemisahan paragraf isi berita
+const paragraphs = article?.content ? article.content.split(/\n\s*\n/).filter(p => p.trim().length > 0) : [];
+---
+
+<BaseLayout
+  title={article ? `${article.title} • Kabar Global Village Fund` : 'Artikel Tidak Ditemukan • Global Village Fund'}
+  description={article ? (article.summary || article.title) : 'Kabar dan warta terkini program filantropi Global Village Fund.'}
+  ogImage={article?.imageUrl || '/logo-gvf.png'}
+>
+  {!canView ? (
+    <div class="kabar-not-found">
+      <div class="not-found-card">
+        <div class="not-found-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <h1 class="not-found-title">Warta Tidak Ditemukan</h1>
+        <p class="not-found-desc">Artikel yang Anda tuju mungkin sedang disunting, telah diarsipkan, atau tautan tidak valid.</p>
+        <div class="not-found-actions">
+          <a href="/kabar" class="btn-royal-primary">Lihat Warta Terkini</a>
+          <a href="/" class="btn-royal-secondary">Kembali ke Beranda</a>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <article class="kabar-detail-page">
+      {!article!.isPublished && (
+        <div class="admin-draft-banner">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span><strong>Mode Pratinjau Admin:</strong> Artikel ini berstatus Draf dan belum dipublikasikan untuk publik.</span>
+          <a href="/admin/kabar" class="btn-banner-admin">Ke Panel Admin</a>
+        </div>
+      )}
+
+      <!-- Breadcrumb Bar -->
+      <nav class="kabar-breadcrumb-nav" aria-label="Breadcrumb">
+        <div class="kabar-container">
+          <ol class="breadcrumb-list">
+            <li class="breadcrumb-item">
+              <a href="/" class="breadcrumb-link">Beranda</a>
+            </li>
+            <li class="breadcrumb-separator">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="/kabar" class="breadcrumb-link">Kabar &amp; Warta</a>
+            </li>
+            <li class="breadcrumb-separator">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <span class="breadcrumb-current">{article.category}</span>
+            </li>
+          </ol>
+        </div>
+      </nav>
+
+      <!-- Article Header & Hero -->
+      <header class="kabar-hero-header">
+        <div class="kabar-container header-inner">
+          <div class="header-meta-pill">
+            <span class="category-badge">{article.category}</span>
+            <span class="meta-dot">&bull;</span>
+            <time class="meta-date" datetime={article.publishedAt ? new Date(article.publishedAt).toISOString() : ''}>
+              {formatDate(article.publishedAt)}
+            </time>
+            <span class="meta-dot">&bull;</span>
+            <span class="meta-read-time">{getReadTime(article.content)}</span>
+          </div>
+
+          <h1 class="article-main-title">{article.title}</h1>
+
+          {article.summary && (
+            <p class="article-lead-summary">{article.summary}</p>
+          )}
+
+          <div class="author-attribution-bar">
+            <div class="author-avatar-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="author-info">
+              <span class="author-label">Penulis</span>
+              <span class="author-name">{article.author || 'Tim Redaksi GVF'}</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image Banner -->
+      <section class="kabar-featured-image-section">
+        <div class="kabar-container">
+          <div class="featured-media-card">
+            <img
+              src={article.imageUrl || '/gambar design/interior masjid.jpg'}
+              alt={article.title}
+              class="featured-img"
+              loading="eager"
+            />
+            <div class="featured-media-caption">
+              <span>Dokumentasi Program • Global Village Fund Sukamakmur Jonggol</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Article Main Content Area -->
+      <section class="kabar-content-section">
+        <div class="kabar-container content-inner">
+          <!-- Sidebar / Social Sharing Sticky -->
+          <aside class="kabar-share-aside">
+            <div class="share-sticky-box">
+              <span class="share-title">Bagikan</span>
+              <div class="share-buttons">
+                <a
+                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' - ' + Astro.url.href)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="share-btn share-wa"
+                  title="Bagikan ke WhatsApp"
+                  aria-label="Bagikan ke WhatsApp"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                  </svg>
+                </a>
+                <button
+                  type="button"
+                  id="btn-copy-kabar-link"
+                  class="share-btn share-copy"
+                  title="Salin Tautan Artikel"
+                  aria-label="Salin Tautan Artikel"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+              </div>
+              <div id="copy-toast" class="copy-toast" aria-hidden="true">Tautan tersalin</div>
+            </div>
+          </aside>
+
+          <!-- Main Article Prose -->
+          <div class="article-prose">
+            {paragraphs.map((para) => (
+              <p class="prose-paragraph">{para}</p>
+            ))}
+
+            <!-- Info Box Filantropi -->
+            <div class="prose-callout-box">
+              <div class="callout-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <div class="callout-text">
+                <h4 class="callout-title">Amanah Wakaf &amp; Akuntabilitas</h4>
+                <p class="callout-desc">
+                  Setiap dana wakaf dan infaq yang disalurkan melalui Global Village Fund dikelola secara transparan, akuntabel, dan berfokus pada kemandirian santri serta fasilitas ibadah yang berkelanjutan.
+                </p>
+              </div>
+            </div>
+
+            <!-- Footer Meta & Tags -->
+            <div class="article-footer-tags">
+              <span class="tags-label">Kategori Berita:</span>
+              <a href={`/kabar?kategori=${encodeURIComponent(article.category)}`} class="tag-badge">
+                #{article.category}
+              </a>
+              <a href="/kabar" class="tag-badge">#GlobalVillageFund</a>
+              <a href="/program/wakaf" class="tag-badge">#WakafProduktif</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Related News Section -->
+      {relatedArticles.length > 0 && (
+        <section class="kabar-related-section">
+          <div class="kabar-container">
+            <div class="related-header">
+              <h3 class="related-title">Warta &amp; Catatan Terkait Lainnya</h3>
+              <a href="/kabar" class="related-all-link">
+                <span>Lihat Seluruh Arsip</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+
+            <div class="related-grid">
+              {relatedArticles.map((rel) => (
+                <article class="related-card">
+                  <a href={`/kabar/${rel.slug}`} class="related-thumb-wrap">
+                    <img
+                      src={rel.imageUrl || '/gambar design/belakang masjid.jpg'}
+                      alt={rel.title}
+                      class="related-thumb-img"
+                      loading="lazy"
+                    />
+                    <span class="related-cat-badge">{rel.category}</span>
+                  </a>
+                  <div class="related-card-body">
+                    <span class="related-date">{formatDate(rel.publishedAt)}</span>
+                    <h4 class="related-card-title">
+                      <a href={`/kabar/${rel.slug}`} class="related-title-link">
+                        {rel.title}
+                      </a>
+                    </h4>
+                    <p class="related-card-desc">{rel.summary}</p>
+                    <a href={`/kabar/${rel.slug}`} class="related-action-link">
+                      <span>Baca Selengkapnya</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- Bottom Consultation Call To Action -->
+      <section class="kabar-cta-section">
+        <div class="kabar-container">
+          <div class="cta-banner-card">
+            <div class="cta-content">
+              <h3 class="cta-banner-title">Ikut Serta Berkontribusi Nyata Bagi Umat</h3>
+              <p class="cta-banner-desc">
+                Konsultasikan partisipasi Anda dalam program wakaf produktif, wakaf pembangunan sarana masjid, dan beasiswa vokasi santri.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <a
+                href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20Global%20Village%20Fund%2C%20saya%20ingin%20konsultasi%20program%20wakaf."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-cta-white"
+              >
+                <span>Konsultasi via WhatsApp</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <a href="/program/wakaf" class="btn-cta-ghost">
+                Pelajari Program Wakaf
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  )}
+</BaseLayout>
+
+<script>
+  function setupKabarDetail() {
+    const copyBtn = document.getElementById('btn-copy-kabar-link');
+    const toast = document.getElementById('copy-toast');
+
+    if (copyBtn && toast) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          toast.classList.add('visible');
+          setTimeout(() => {
+            toast.classList.remove('visible');
+          }, 2500);
+        } catch (e) {
+          console.error('Gagal menyalin tautan:', e);
+        }
+      });
+    }
+  }
+
+  document.addEventListener('astro:page-load', setupKabarDetail);
+  if (document.readyState !== 'loading') {
+    setupKabarDetail();
+  }
+</script>
+
+<style>
+  .kabar-detail-page {
+    background-color: #fbfbf9;
+    min-height: 100vh;
+    padding-bottom: 96px;
+    font-family: 'Golos Text', system-ui, sans-serif;
+  }
+
+  .kabar-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* 404 View */
+  .kabar-not-found {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 1.5rem;
+    background-color: #fbfbf9;
+    font-family: 'Golos Text', system-ui, sans-serif;
+  }
+
+  .not-found-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 48px 32px;
+    text-align: center;
+    max-width: 520px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  }
+
+  .not-found-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(9, 105, 218, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+  }
+
+  .not-found-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 12px 0;
+  }
+
+  .not-found-desc {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0 0 28px 0;
+  }
+
+  .not-found-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Admin Draft Preview Banner */
+  .admin-draft-banner {
+    background: #fffbeb;
+    border-bottom: 1px solid #fde68a;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #92400e;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+
+  .btn-banner-admin {
+    background: #f59e0b;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 150ms ease;
+  }
+
+  .btn-banner-admin:hover {
+    background: #d97706;
+  }
+
+  /* Breadcrumb */
+  .kabar-breadcrumb-nav {
+    padding: 24px 0 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  .breadcrumb-link {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .breadcrumb-link:hover {
+    color: #0969da;
+  }
+
+  .breadcrumb-separator {
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumb-current {
+    color: #0969da;
+    font-weight: 600;
+  }
+
+  /* Header Hero */
+  .kabar-hero-header {
+    padding: 40px 0 28px 0;
+  }
+
+  .header-inner {
+    max-width: 860px;
+  }
+
+  .header-meta-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: #64748b;
+    flex-wrap: wrap;
+  }
+
+  .category-badge {
+    background-color: #0969da;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+  }
+
+  .meta-dot {
+    color: #cbd5e1;
+  }
+
+  .meta-date, .meta-read-time {
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .article-main-title {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.25;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.02em;
+  }
+
+  .article-lead-summary {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #475569;
+    margin: 0 0 28px 0;
+    border-left: 3px solid #0969da;
+    padding-left: 18px;
+    font-style: italic;
+  }
+
+  .author-attribution-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    width: fit-content;
+  }
+
+  .author-avatar-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(9, 105, 218, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .author-label {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .author-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  /* Featured Image Section */
+  .kabar-featured-image-section {
+    padding: 0 0 40px 0;
+  }
+
+  .featured-media-card {
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .featured-img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .featured-media-caption {
+    padding: 12px 20px;
+    font-size: 12px;
+    color: #64748b;
+    background: #ffffff;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  /* Content Section */
+  .kabar-content-section {
+    padding-bottom: 60px;
+  }
+
+  .content-inner {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 48px;
+    max-width: 860px;
+  }
+
+  .kabar-share-aside {
+    position: relative;
+  }
+
+  .share-sticky-box {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .share-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .share-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .share-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475569;
+    cursor: pointer;
+    transition: all 150ms ease;
+    text-decoration: none;
+  }
+
+  .share-btn:hover {
+    border-color: #0969da;
+    color: #0969da;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(9, 105, 218, 0.12);
+  }
+
+  .share-wa:hover {
+    color: #10b981;
+    border-color: #10b981;
+  }
+
+  .copy-toast {
+    position: absolute;
+    bottom: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 150ms ease;
+  }
+
+  .copy-toast.visible {
+    opacity: 1;
+  }
+
+  /* Article Prose */
+  .article-prose {
+    font-size: 17px;
+    line-height: 1.85;
+    color: #1e293b;
+  }
+
+  .prose-paragraph {
+    margin: 0 0 24px 0;
+    text-align: justify;
+  }
+
+  .prose-callout-box {
+    margin: 36px 0;
+    padding: 24px;
+    background: #f0f7ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 16px;
+    display: flex;
+    gap: 16px;
+  }
+
+  .callout-icon {
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .callout-title {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0752a8;
+  }
+
+  .callout-desc {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1e3a8a;
+  }
+
+  .article-footer-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .tags-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+  }
+
+  .tag-badge {
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 150ms ease;
+  }
+
+  .tag-badge:hover {
+    background: #0969da;
+    color: #ffffff;
+  }
+
+  /* Related Section */
+  .kabar-related-section {
+    padding: 48px 0;
+    background: #ffffff;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .related-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .related-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  .related-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0969da;
+    text-decoration: none;
+    transition: gap 150ms ease;
+  }
+
+  .related-all-link:hover {
+    gap: 10px;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .related-card {
+    background: #fbfbf9;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+  }
+
+  .related-thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    display: block;
+  }
+
+  .related-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 300ms ease;
+  }
+
+  .related-card:hover .related-thumb-img {
+    transform: scale(1.05);
+  }
+
+  .related-cat-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #0969da;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+  }
+
+  .related-card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .related-date {
+    font-size: 11px;
+    color: #94a3b8;
+  }
+
+  .related-card-title {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+
+  .related-title-link {
+    color: #0f172a;
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .related-title-link:hover {
+    color: #0969da;
+  }
+
+  .related-card-desc {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
+  }
+
+  .related-action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0969da;
+    text-decoration: none;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+
+  /* CTA Banner */
+  .kabar-cta-section {
+    padding-top: 48px;
+  }
+
+  .cta-banner-card {
+    background: linear-gradient(135deg, #0969da 0%, #0752a8 100%);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    color: #ffffff;
+    box-shadow: 0 16px 36px rgba(9, 105, 218, 0.2);
+  }
+
+  .cta-banner-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+  }
+
+  .cta-banner-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+    color: #e0f2fe;
+    max-width: 580px;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .btn-cta-white {
+    background: #ffffff;
+    color: #0969da;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 150ms ease;
+  }
+
+  .btn-cta-white:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+  }
+
+  .btn-cta-ghost {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 150ms ease;
+  }
+
+  .btn-cta-ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+  }
+
+  .btn-royal-primary {
+    background: #0969da;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+  .btn-royal-secondary {
+    background: #f1f5f9;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+  @media (max-width: 840px) {
+    .content-inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .kabar-share-aside {
+      order: 2;
+    }
+
+    .share-sticky-box {
+      position: static;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+
+    .share-buttons {
+      flex-direction: row;
+    }
+
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-banner-card {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 28px 24px;
+    }
+
+    .cta-actions {
+      width: 100%;
+    }
+
+    .btn-cta-white, .btn-cta-ghost {
+      justify-content: center;
+    }
+  }
+</style>

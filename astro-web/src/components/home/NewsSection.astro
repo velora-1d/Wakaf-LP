@@ -1,6 +1,78 @@
 ---
 // src/components/home/NewsSection.astro
-// Symmetrical 3-Column Responsive Grid Layout (6 Balanced Editorial Cards)
+import { getActiveNewsArticles } from '../../lib/db';
+
+const dbArticles = await getActiveNewsArticles(6);
+
+// Fallback data jika database belum memiliki artikel aktif
+const fallbackArticles = [
+  {
+    title: 'Fiqih Wakaf Produktif: Menghidupkan Aset Umat Menjadi Sumber Pahala Abadi',
+    slug: 'fiqih-wakaf-produktif-pahala-abadi',
+    category: 'LITERASI WAKAF',
+    summary: 'Transformasi aset abadi menjadi sarana pendidikan berkelanjutan dan kemandirian pangan santri secara amanah.',
+    author: 'Tim GVF',
+    imageUrl: '/gambar design/interior masjid.jpg',
+    publishedAt: new Date('2026-07-18')
+  },
+  {
+    title: 'Perkembangan Fisik Masjid Khairu Ummah: Mezanin Dua Lantai Siap Digunakan',
+    slug: 'perkembangan-fisik-masjid-khairu-ummah',
+    category: 'PROGRESS MASJID',
+    summary: 'Penyelesaian struktur utama dan mezanin shalat santri guna menampung jamaah ibadah dan tahfidz harian.',
+    author: 'Tim GVF',
+    imageUrl: '/gambar design/belakang masjid.jpg',
+    publishedAt: new Date('2026-07-12')
+  },
+  {
+    title: 'Santri Vokasi Agroteknologi: Dari Pembibitan Menuju Kemandirian Pangan',
+    slug: 'santri-vokasi-agroteknologi-kemandirian-pangan',
+    category: 'TECHNOPARK',
+    summary: 'Keterampilan riil pembibitan hortikultura dan green house modern yang diajarkan langsung pada santri SMK Skill Village.',
+    author: 'Tim GVF',
+    imageUrl: '/gambar design/learning studio & workshop.jpg',
+    publishedAt: new Date('2026-07-05')
+  },
+  {
+    title: 'Sinergi Wakaf Tunai: Membuka Akses Sarana Digital Santri Vokasi',
+    slug: 'sinergi-wakaf-tunai-sarana-digital',
+    category: 'WAKAF DIGITAL',
+    summary: 'Pemanfaatan instrumen wakaf uang untuk penyediaan sarana komputasi dan studio multimedia vokasi pesantren.',
+    author: 'Tim GVF',
+    imageUrl: '/gambar design/interior mesjid 2.jpg',
+    publishedAt: new Date('2026-06-28')
+  },
+  {
+    title: 'Kemitraan Multipihak: Sinergi CSR Korporasi Memperkuat Pesantren Jonggol',
+    slug: 'kemitraan-multipihak-csr-pesantren-jonggol',
+    category: 'KEMITRAAN',
+    summary: 'Kolaborasi strategis dengan berbagai lembaga dan perusahaan demi memperluas manfaat beasiswa santri dhuafa.',
+    author: 'Tim GVF',
+    imageUrl: '/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (3).jpeg',
+    publishedAt: new Date('2026-06-20')
+  },
+  {
+    title: 'Mencetak Santri Berkarakter FAST: Fathonah, Amanah, Shiddiq, dan Tabligh',
+    slug: 'mencetak-santri-berkarakter-fast',
+    category: 'PENDIDIKAN',
+    summary: 'Pondasi karakter unggul islami dan kesiapan kemandirian vokasi yang terintegrasi dalam keseharian santri.',
+    author: 'Tim GVF',
+    imageUrl: '/gambar design/panel surya.jpg',
+    publishedAt: new Date('2026-06-14')
+  }
+];
+
+const articles = dbArticles && dbArticles.length > 0 ? dbArticles : fallbackArticles;
+
+const formatDate = (dateInput: Date | string | null) => {
+  if (!dateInput) return 'Terkini';
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(date);
+};
 ---
 
 <section class="pen-news-section reveal-on-scroll" id="kabar-gvf">
@@ -23,209 +95,51 @@
     </div>
 
     <div class="news-symmetrical-grid">
-      <article class="news-card">
-        <div class="news-thumb-wrap">
-          <img
-            src="/gambar design/interior masjid.jpg"
-            alt="Fiqih Wakaf Produktif"
-            class="news-thumb-img"
-            loading="lazy"
-          />
-          <span class="news-category-badge">LITERASI WAKAF</span>
-        </div>
-        <div class="news-card-body">
-          <div class="news-meta-row">
-            <span class="news-meta-date">18 Juli 2026</span>
-            <span class="news-meta-dot">•</span>
-            <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
+      {articles.map((article) => (
+        <article class="news-card">
+          <div class="news-thumb-wrap">
+            <img
+              src={article.imageUrl || '/gambar design/interior masjid.jpg'}
+              alt={article.title}
+              class="news-thumb-img"
+              loading="lazy"
+            />
+            <span class="news-category-badge">{article.category}</span>
           </div>
-          <h3 class="news-card-title">
-            <a href="/program/wakaf" class="news-title-link">
-              Fiqih Wakaf Produktif: Menghidupkan Aset Umat Menjadi Sumber Pahala Abadi
+          <div class="news-card-body">
+            <div class="news-meta-row">
+              <span class="news-meta-date">{formatDate(article.publishedAt)}</span>
+              <span class="news-meta-dot">&bull;</span>
+              <span class="news-meta-author">Oleh <strong class="author-highlight">{article.author || 'Tim GVF'}</strong></span>
+            </div>
+            <h3 class="news-card-title">
+              <a href={`/kabar/${article.slug}`} class="news-title-link">
+                {article.title}
+              </a>
+            </h3>
+            <p class="news-card-desc">
+              {article.summary}
+            </p>
+            <a href={`/kabar/${article.slug}`} class="news-card-action">
+              <span>Baca Selengkapnya</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
             </a>
-          </h3>
-          <p class="news-card-desc">
-            Transformasi aset abadi menjadi sarana pendidikan berkelanjutan dan kemandirian pangan santri secara amanah.
-          </p>
-          <a href="/program/wakaf" class="news-card-action">
-            <span>Baca Selengkapnya</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-        </div>
-      </article>
+          </div>
+        </article>
+      ))}
+    </div>
 
-      <article class="news-card">
-        <div class="news-thumb-wrap">
-          <img
-            src="/gambar design/belakang masjid.jpg"
-            alt="Perkembangan Fisik Masjid Khairu Ummah"
-            class="news-thumb-img"
-            loading="lazy"
-          />
-          <span class="news-category-badge">PROGRESS MASJID</span>
-        </div>
-        <div class="news-card-body">
-          <div class="news-meta-row">
-            <span class="news-meta-date">12 Juli 2026</span>
-            <span class="news-meta-dot">•</span>
-            <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
-          </div>
-          <h3 class="news-card-title">
-            <a href="/program/wakaf" class="news-title-link">
-              Perkembangan Fisik Masjid Khairu Ummah: Mezanin Dua Lantai Siap Digunakan
-            </a>
-          </h3>
-          <p class="news-card-desc">
-            Penyelesaian struktur utama dan mezanin shalat santri guna menampung jamaah ibadah dan tahfidz harian.
-          </p>
-          <a href="/program/wakaf" class="news-card-action">
-            <span>Baca Selengkapnya</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <div class="news-thumb-wrap">
-          <img
-            src="/gambar design/learning studio & workshop.jpg"
-            alt="Santri Vokasi Agroteknologi"
-            class="news-thumb-img"
-            loading="lazy"
-          />
-          <span class="news-category-badge">TECHNOPARK</span>
-        </div>
-        <div class="news-card-body">
-          <div class="news-meta-row">
-            <span class="news-meta-date">5 Juli 2026</span>
-            <span class="news-meta-dot">•</span>
-            <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
-          </div>
-          <h3 class="news-card-title">
-            <a href="/program/wakaf" class="news-title-link">
-              Santri Vokasi Agroteknologi: Dari Pembibitan Menuju Kemandirian Pangan
-            </a>
-          </h3>
-          <p class="news-card-desc">
-            Keterampilan riil pembibitan hortikultura dan green house modern yang diajarkan langsung pada santri SMK Skill Village.
-          </p>
-          <a href="/program/wakaf" class="news-card-action">
-            <span>Baca Selengkapnya</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <div class="news-thumb-wrap">
-          <img
-            src="/gambar design/interior mesjid 2.jpg"
-            alt="Sinergi Wakaf Tunai"
-            class="news-thumb-img"
-            loading="lazy"
-          />
-          <span class="news-category-badge">WAKAF DIGITAL</span>
-        </div>
-        <div class="news-card-body">
-          <div class="news-meta-row">
-            <span class="news-meta-date">28 Juni 2026</span>
-            <span class="news-meta-dot">•</span>
-            <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
-          </div>
-          <h3 class="news-card-title">
-            <a href="/program/infaq" class="news-title-link">
-              Sinergi Wakaf Tunai: Membuka Akses Sarana Digital Santri Vokasi
-            </a>
-          </h3>
-          <p class="news-card-desc">
-            Pemanfaatan instrumen wakaf uang untuk penyediaan sarana komputasi dan studio multimedia vokasi pesantren.
-          </p>
-          <a href="/program/infaq" class="news-card-action">
-            <span>Baca Selengkapnya</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <div class="news-thumb-wrap">
-          <img
-            src="/media-lp/WhatsApp Image 2026-10-05 at 09.22.04 (3).jpeg"
-            alt="Kemitraan Multipihak"
-            class="news-thumb-img"
-            loading="lazy"
-          />
-          <span class="news-category-badge">KEMITRAAN</span>
-        </div>
-        <div class="news-card-body">
-          <div class="news-meta-row">
-            <span class="news-meta-date">20 Juni 2026</span>
-            <span class="news-meta-dot">•</span>
-            <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
-          </div>
-          <h3 class="news-card-title">
-            <a href="/kemitraan" class="news-title-link">
-              Kemitraan Multipihak: Sinergi CSR Korporasi Memperkuat Pesantren Jonggol
-            </a>
-          </h3>
-          <p class="news-card-desc">
-            Kolaborasi strategis dengan berbagai lembaga dan perusahaan demi memperluas manfaat beasiswa santri dhuafa.
-          </p>
-          <a href="/kemitraan" class="news-card-action">
-            <span>Baca Selengkapnya</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="news-card">
-        <div class="news-thumb-wrap">
-          <img
-            src="/gambar design/panel surya.jpg"
-            alt="Mencetak Santri Berkarakter FAST"
-            class="news-thumb-img"
-            loading="lazy"
-          />
-          <span class="news-category-badge">PENDIDIKAN</span>
-        </div>
-        <div class="news-card-body">
-          <div class="news-meta-row">
-            <span class="news-meta-date">14 Juni 2026</span>
-            <span class="news-meta-dot">•</span>
-            <span class="news-meta-author">Oleh <strong class="author-highlight">Tim GVF</strong></span>
-          </div>
-          <h3 class="news-card-title">
-            <a href="/program/infaq" class="news-title-link">
-              Mencetak Santri Berkarakter FAST: Fathonah, Amanah, Shiddiq, dan Tabligh
-            </a>
-          </h3>
-          <p class="news-card-desc">
-            Pondasi karakter unggul islami dan kesiapan kemandirian vokasi yang terintegrasi dalam keseharian santri.
-          </p>
-          <a href="/program/infaq" class="news-card-action">
-            <span>Baca Selengkapnya</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-        </div>
-      </article>
+    <div class="news-footer-action">
+      <a href="/kabar" class="btn-all-kabar">
+        <span>Buka Semua Kabar &amp; Warta</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
@@ -463,6 +377,38 @@
   .news-card-action:hover {
     gap: 12px;
     color: #0752a8;
+  }
+
+  /* Footer Action */
+  .news-footer-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 56px;
+  }
+
+  .btn-all-kabar {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    color: #0969da;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Golos Text', system-ui, sans-serif;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .btn-all-kabar:hover {
+    background: #0969da;
+    color: #ffffff;
+    border-color: #0969da;
+    box-shadow: 0 8px 24px rgba(9, 105, 218, 0.25);
+    transform: translateY(-2px);
   }
 
   /* Responsive Breakpoints */

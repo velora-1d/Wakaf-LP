@@ -1,0 +1,462 @@
+---
+// src/pages/kabar/index.astro
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getActiveNewsArticles } from '../../lib/db';
+
+const articles = await getActiveNewsArticles(50);
+
+// Daftar kategori unik untuk filter
+const categories = ['Semua', ...new Set(articles.map(a => a.category))];
+
+const formatDate = (dateInput: Date | string | null) => {
+  if (!dateInput) return 'Terkini';
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(date);
+};
+---
+
+<BaseLayout
+  title="Kabar &amp; Literasi • Global Village Fund"
+  description="Warta terkini pembangunan kawasan, aktivitas santri vokasi, dan catatan fiqih wakaf produktif di Sukamakmur Jonggol."
+>
+  <div class="kabar-archive-page">
+    <!-- Header Section -->
+    <header class="archive-header-hero">
+      <div class="archive-container">
+        <div class="header-badge-pill">
+          <div class="dot-halo">
+            <div class="halo-ring"></div>
+            <div class="core-dot"></div>
+          </div>
+          <span class="badge-text">Pusat Kabar &amp; Warta</span>
+        </div>
+        <h1 class="archive-title">
+          Kabar Global Skill Village Fund &amp;<br />
+          Catatan Edukasi Kebermanfaatan
+        </h1>
+        <p class="archive-subtitle">
+          Dokumentasi berkala perkembangan fisik Masjid Khairu Ummah Sugro, pembelajaran santri vokasi agroteknologi, dan wawasan fiqih wakaf produktif berkelanjutan.
+        </p>
+
+        <!-- Category Filter Pills -->
+        <div class="archive-filter-row" id="kabar-filter-bar">
+          {categories.map((cat, idx) => (
+            <button
+              type="button"
+              class={`filter-pill ${idx === 0 ? 'active' : ''}`}
+              data-cat={cat}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+    </header>
+
+    <!-- Articles Grid Section -->
+    <section class="archive-grid-section">
+      <div class="archive-container">
+        {articles.length === 0 ? (
+          <div class="empty-state-box">
+            <div class="empty-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <h3 class="empty-title">Belum Ada Warta yang Dipublikasikan</h3>
+            <p class="empty-desc">Warta dan catatan literasi baru akan segera hadir.</p>
+          </div>
+        ) : (
+          <div class="archive-grid" id="kabar-grid">
+            {articles.map((article) => (
+              <article class="archive-card" data-category={article.category}>
+                <div class="card-thumb-wrap">
+                  <img
+                    src={article.imageUrl || '/gambar design/interior masjid.jpg'}
+                    alt={article.title}
+                    class="card-thumb-img"
+                    loading="lazy"
+                  />
+                  <span class="card-cat-badge">{article.category}</span>
+                </div>
+                <div class="card-body">
+                  <div class="card-meta">
+                    <span class="meta-date">{formatDate(article.publishedAt)}</span>
+                    <span class="meta-dot">&bull;</span>
+                    <span class="meta-author">Oleh <strong class="author-bold">{article.author || 'Tim GVF'}</strong></span>
+                  </div>
+                  <h2 class="card-title">
+                    <a href={`/kabar/${article.slug}`} class="card-title-link">
+                      {article.title}
+                    </a>
+                  </h2>
+                  <p class="card-summary">{article.summary}</p>
+                  <a href={`/kabar/${article.slug}`} class="card-action-link">
+                    <span>Baca Selengkapnya</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  function setupKabarFilters() {
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('#kabar-filter-bar .filter-pill');
+    const cards = document.querySelectorAll<HTMLElement>('#kabar-grid .archive-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const selectedCat = btn.getAttribute('data-cat') || 'Semua';
+
+        cards.forEach(card => {
+          const cardCat = card.getAttribute('data-category');
+          if (selectedCat === 'Semua' || cardCat === selectedCat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupKabarFilters);
+  if (document.readyState !== 'loading') {
+    setupKabarFilters();
+  }
+</script>
+
+<style>
+  .kabar-archive-page {
+    background-color: #fbfbf9;
+    min-height: 100vh;
+    padding-bottom: 120px;
+    font-family: 'Golos Text', system-ui, sans-serif;
+  }
+
+  .archive-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Header Hero */
+  .archive-header-hero {
+    padding: 100px 0 50px 0;
+    text-align: center;
+  }
+
+  .header-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px 5px 10px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.04);
+    border-radius: 32px;
+    margin-bottom: 20px;
+  }
+
+  .dot-halo {
+    width: 14px;
+    height: 14px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .halo-ring {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(9, 105, 218, 0.12);
+  }
+
+  .core-dot {
+    position: relative;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #0969da;
+  }
+
+  .badge-text {
+    font-size: 12px;
+    color: #0f172a;
+    font-weight: 600;
+  }
+
+  .archive-title {
+    font-size: clamp(32px, 3.8vw, 48px);
+    line-height: 1.2;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.02em;
+  }
+
+  .archive-subtitle {
+    font-size: 16px;
+    line-height: 26px;
+    color: #62625b;
+    max-width: 720px;
+    margin: 0 auto 36px auto;
+  }
+
+  /* Filter Pills */
+  .archive-filter-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .filter-pill {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  }
+
+  .filter-pill:hover {
+    border-color: #0969da;
+    color: #0969da;
+    transform: translateY(-1px);
+  }
+
+  .filter-pill.active {
+    background: #0969da;
+    border-color: #0969da;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(9, 105, 218, 0.25);
+  }
+
+  /* Grid Layout */
+  .archive-grid-section {
+    padding-top: 24px;
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .archive-card {
+    background: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .archive-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: #e2e8f0;
+  }
+
+  .card-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .archive-card:hover .card-thumb-img {
+    transform: scale(1.06);
+  }
+
+  .card-cat-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background-color: #0969da;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 32px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(9, 105, 218, 0.3);
+  }
+
+  .card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #64748b;
+  }
+
+  .meta-dot {
+    color: #cbd5e1;
+  }
+
+  .author-bold {
+    color: #0969da;
+    font-weight: 600;
+  }
+
+  .card-title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 600;
+    min-height: 52px;
+  }
+
+  .card-title-link {
+    color: #0f172a;
+    text-decoration: none;
+    transition: color 180ms ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-title-link:hover {
+    color: #0969da;
+  }
+
+  .card-summary {
+    font-size: 14px;
+    line-height: 22px;
+    color: #62625b;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0969da;
+    text-decoration: none;
+    margin-top: auto;
+    padding-top: 10px;
+    transition: gap 180ms ease, color 180ms ease;
+  }
+
+  .card-action-link:hover {
+    gap: 12px;
+    color: #0752a8;
+  }
+
+  /* Empty State */
+  .empty-state-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 60px 24px;
+    text-align: center;
+    max-width: 480px;
+    margin: 40px auto;
+  }
+
+  .empty-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px auto;
+  }
+
+  .empty-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+  }
+
+  .empty-desc {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+  }
+
+  @media (max-width: 1080px) {
+    .archive-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .archive-header-hero {
+      padding: 80px 0 36px 0;
+    }
+
+    .archive-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .card-title {
+      min-height: auto;
+    }
+  }
+</style>
