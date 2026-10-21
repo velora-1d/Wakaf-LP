@@ -144,7 +144,7 @@ export const programsData: Record<string, ProgramData> = {
     heroBgImage: '/gambar design/belakang masjid.jpg',
     
     pricingHeading: 'Pilihan Paket Wakaf Produktif',
-    pricingSubheading: 'Salurkan infaq material riil untuk percepatan penyelesaian Masjid Khairu Ummah Sugro & sarana santri di Jonggol. Semua laporan belanja terbuka dan dapat diakses publik.',
+    pricingSubheading: 'Salurkan wakaf produktif tanah dan infrastruktur abadi untuk kemaslahatan kawasan terpadu Jonggol.',
     packages: [
       {
         id: 'wakaf-pembebasan-lahan',
@@ -580,10 +580,10 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveSubblock2Desc1: 'Diprioritaskan untuk santri dhuafa, anak yatim, fisabilillah, dan keluarga prasejahtera sekitar pesantren di Desa Sukasirna Jonggol.',
     deepDiveSubblock2Desc2: 'Dengan beasiswa zakat penuh, santri dapat mengenyam pendidikan teknologi agribisnis dan menghafal 30 juz Al-Quran tanpa terkendala beban finansial.',
     portfolioShowcaseItems: [
-      { tag: 'BEASISWA ZAKAT', name: 'Santri Beasiswa Vokasi', category: 'Taman Rafflesia', image: '/gambar design/learning studio & workshop.jpg' },
-      { tag: 'PEMBERDAYAAN', name: 'Keluarga Binaan Dhuafa', category: 'Rawalumbu', image: '/gambar design/gh learning area.jpg' },
-      { tag: 'FI SABILILLAH', name: 'Santri Tahfidz Fi Sabilillah', category: 'Pekayon', image: '/gambar design/interior masjid.jpg' },
-      { tag: 'KEMANDIRIAN', name: 'Unit Agropreneur Santri', category: 'Sukasirna Jonggol', image: '/gambar design/belakang masjid.jpg' }
+      { tag: 'SARANA PENDIDIKAN', name: 'Kampus SMK Skill Village Jonggol', category: 'Arsitektur / Sarana Pendidikan', image: '/gambar design/learning studio & workshop.jpg' },
+      { tag: 'AGRO-TECHNOPARK', name: 'Greenhouse Agroteknologi Sugro', category: 'Agro-Technopark / Kemandirian Pangan', image: '/gambar design/gh learning area.jpg' },
+      { tag: 'SARANA IBADAH', name: 'Mezanin Tahfidz Masjid Sugro', category: 'Masjid & Sarana Ibadah', image: '/gambar design/interior masjid.jpg' },
+      { tag: 'FASILITAS SANTRI', name: 'Dapur Gizi Asrama Santri', category: 'Fasilitas Santri Vokasi', image: '/gambar design/belakang masjid.jpg' }
     ],
     guarantees: [
       'Tata kelola syariah diawasi Dewan Pengawas',
@@ -715,7 +715,7 @@ export const programsData: Record<string, ProgramData> = {
         answer: 'Zakat profesi paling utama ditunaikan setiap kali menerima penghasilan atau gaji bulanan. Zakat maal ditunaikan ketika harta simpanan telah genap mencapai haul 1 tahun hijriyah atau masehi.'
       },
       {
-        question: 'Kwitansi bukti setor zakat resmi (BSZ) dan laporan penyaluran berkala yang transparan.',
+        question: 'Apakah muzakki mendapatkan Bukti Setor Zakat (BSZ) resmi untuk pengurang pajak penghasilan?',
         answer: 'Setiap pembayaran zakat langsung diterbitkan kwitansi resmi digital dan dialokasikan ke rekening khusus mustahiq dengan laporan foto berkala.'
       }
     ],
@@ -1011,7 +1011,7 @@ export const programsData: Record<string, ProgramData> = {
           { bold: 'Doa Bersama Santri', text: 'Doa bersama santri sebelum memulai halaqah belajar harian' },
           { bold: 'Penyaluran Amanah 100%', text: 'Tepat sasaran santri dhuafa dan yatim' },
           { bold: 'Pahala Sedekah Makanan', text: 'Pahala sedekah makanan yang mengalir tiada henti' },
-          { bold: 'Tanda Terima Donasi Resmi', text: 'Tanda terima donasi resmi dari Yayasan YPCI' }
+          { bold: 'Tanda Terima Donasi Resmi', text: 'Tanda terima donasi resmi dari Yayasan Global Village Fund (GVF)' }
         ],
         ctaText: 'Salurkan Sedekah'
       },
@@ -1061,7 +1061,7 @@ export const programsData: Record<string, ProgramData> = {
           { bold: 'Mentoring Vokasi Intensif', text: 'Bimbingan intensif mentor vokasi teknologi dan keahlian' },
           { bold: 'Penyaluran Tepat Sasaran', text: 'Penyaluran langsung tepat sasaran santri yatim & dhuafa' },
           { bold: 'Silaturahmi Donatur & Santri', text: 'Silaturahmi berkala antara muhsinin dan santri asuh' },
-          { bold: 'Sertifikat Orang Tua Asuh', text: 'Sertifikat Orang Tua Asuh resmi dari Yayasan YPCI' }
+          { bold: 'Sertifikat Orang Tua Asuh', text: 'Sertifikat Orang Tua Asuh resmi dari Yayasan Global Village Fund (GVF)' }
         ],
         ctaText: 'Salurkan Sedekah'
       }
@@ -1108,10 +1108,10 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveSubblock2Desc1: 'Alhamdulillah, berkat dukungan sedekah para muhsinin, kebutuhan makan santri vokasi dan penghafal Quran dapat terpenuhi dengan baik setiap hari. Santri dapat belajar dengan tenang tanpa rasa lapar atau kekurangan asupan nutrisi.',
     deepDiveSubblock2Desc2: 'Setiap suapan makanan yang dinikmati santri mengalirkan tenaga untuk melafalkan ayat suci Al-Quran dan mempraktikkan keterampilan vokasi di Jonggol.',
     portfolioShowcaseItems: [
-      { tag: 'BANGUN RUMAH', name: 'Ustadz Pengasuh Asrama', category: 'Narogong Bekasi', image: '/gambar design/learning studio & workshop.jpg' },
-      { tag: 'BANGUN RUMAH', name: 'Santri Vokasi Agrotek', category: 'SMB', image: '/gambar design/gh learning area.jpg' },
-      { tag: 'BANGUN RUMAH', name: 'Santri Tahfidz Quran', category: 'Bukopin', image: '/gambar design/interior masjid.jpg' },
-      { tag: 'BANGUN RUMAH', name: 'Dapur Mandiri Santri', category: 'Sukasirna Jonggol', image: '/gambar design/belakang masjid.jpg' }
+      { tag: 'SARANA PENDIDIKAN', name: 'Kampus SMK Skill Village Jonggol', category: 'Arsitektur / Sarana Pendidikan', image: '/gambar design/learning studio & workshop.jpg' },
+      { tag: 'AGRO-TECHNOPARK', name: 'Greenhouse Agroteknologi Sugro', category: 'Agro-Technopark / Kemandirian Pangan', image: '/gambar design/gh learning area.jpg' },
+      { tag: 'SARANA IBADAH', name: 'Mezanin Tahfidz Masjid Sugro', category: 'Masjid & Sarana Ibadah', image: '/gambar design/interior masjid.jpg' },
+      { tag: 'FASILITAS SANTRI', name: 'Dapur Gizi Asrama Santri', category: 'Fasilitas Santri Vokasi', image: '/gambar design/belakang masjid.jpg' }
     ],
     guarantees: [
       'Menu 3 kali makan bergizi harian',
@@ -1120,7 +1120,7 @@ export const programsData: Record<string, ProgramData> = {
       'Dapur asrama bersih & higienis',
       'Laporan foto belanja & makan santri',
       'Doa bersama santri setiap waktu makan',
-      'Tanda terima & kwitansi resmi YPCI',
+      'Tanda terima & kwitansi resmi Yayasan Global Village Fund (GVF)',
       'Kunjungan langsung silaturahmi ke asrama'
     ],
     

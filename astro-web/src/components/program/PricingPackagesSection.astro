@@ -52,7 +52,7 @@ const { program } = Astro.props;
             </div>
 
             <div class="what-do-you-get-bar">
-              <span>WHAT DO YOU GET:</span>
+              <span>RINCIAN ALOKASI & MANFAAT DONASI:</span>
             </div>
 
             <ul class="card-deliverables-list">
@@ -290,9 +290,9 @@ const { program } = Astro.props;
     display: inline-block;
     font-family: 'Golos Text', sans-serif;
     font-size: 12px;
-    font-weight: 600;
-    color: #0969da;
-    background-color: rgba(9, 105, 218, 0.08);
+    font-weight: 700;
+    color: #0752a8;
+    background-color: rgba(9, 105, 218, 0.12);
     padding: 4px 14px;
     border-radius: 9999px;
     margin-top: 4px;
@@ -386,6 +386,11 @@ const { program } = Astro.props;
 
   .pkg-cta-button:active {
     transform: scale(0.97);
+  }
+
+  .pkg-cta-button:focus-visible {
+    outline: 2px solid #0969da;
+    outline-offset: 2px;
   }
 
   /* Add-on Table Section */

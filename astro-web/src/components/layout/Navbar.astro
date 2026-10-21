@@ -17,17 +17,17 @@ const currentPath = Astro.url.pathname;
       <ul class="isavo-nav-list">
         <li><a href="/" class={`isavo-nav-link ${currentPath === '/' ? 'active' : ''}`}>Home</a></li>
         <li class="isavo-has-dropdown">
-          <a href="/#program" class={`isavo-nav-link ${currentPath.startsWith('/program') ? 'active' : ''}`}>
+          <a href="/#program-kebaikan" class={`isavo-nav-link ${currentPath.startsWith('/program') ? 'active' : ''}`}>
             <span>Program</span>
             <svg class="isavo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </a>
           <ul class="isavo-dropdown-menu">
-            <li><a href="/program/sedekah">Shodaqoh</a></li>
-            <li><a href="/program/infaq">Infaq</a></li>
-            <li><a href="/program/zakat">Zakat</a></li>
             <li><a href="/program/wakaf">Wakaf</a></li>
+            <li><a href="/program/infaq">Infaq</a></li>
+            <li><a href="/program/sedekah">Shodaqoh</a></li>
+            <li><a href="/program/zakat">Zakat</a></li>
           </ul>
         </li>
         <li><a href="/kemitraan" class={`isavo-nav-link ${currentPath === '/kemitraan' ? 'active' : ''}`}>Kemitraan</a></li>
@@ -47,14 +47,14 @@ const currentPath = Astro.url.pathname;
         </div>
       </a>
 
-      <a href="#donasi" class="isavo-header-pill-btn" aria-label="Salurkan Donasi">
+      <a href={currentPath === '/' ? '#program-kebaikan' : '/program/wakaf'} class="isavo-header-pill-btn" aria-label="Salurkan Donasi">
         <svg class="pill-calc-icon" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
         <span>Salurkan Donasi</span>
       </a>
 
-      <a href="#rekening" class="isavo-circle-dots-btn" aria-label="Menu Ekstra Rekening">
+      <a href={currentPath === '/' ? '#program-kebaikan' : '/#program-kebaikan'} class="isavo-circle-dots-btn" aria-label="Lihat Program Kebaikan">
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
@@ -86,16 +86,16 @@ const currentPath = Astro.url.pathname;
       </div>
       <nav class="isavo-drawer-nav">
         <a href="/">Home</a>
-        <a href="/program/sedekah">Shodaqoh</a>
-        <a href="/program/infaq">Infaq</a>
-        <a href="/program/zakat">Zakat</a>
         <a href="/program/wakaf">Wakaf</a>
+        <a href="/program/infaq">Infaq</a>
+        <a href="/program/sedekah">Shodaqoh</a>
+        <a href="/program/zakat">Zakat</a>
         <a href="/kemitraan">Kemitraan</a>
         <a href="/tentang-kami">Tentang Kami</a>
         <a href="/contact">Kontak</a>
       </nav>
       <div class="isavo-drawer-bottom">
-        <a href="#donasi" class="isavo-header-pill-btn" style="width: 100%; justify-content: center;">
+        <a href={currentPath === '/' ? '#program-kebaikan' : '/program/wakaf'} class="isavo-header-pill-btn" style="width: 100%; justify-content: center;">
           Salurkan Donasi
         </a>
       </div>

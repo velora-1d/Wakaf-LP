@@ -713,50 +713,6 @@ const isEnabled = (key: string) => {
     color: #475569;
     white-space: nowrap;
   }
-  .pen-facility-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-  .pen-fac-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    padding: 1.25rem;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.02);
-  }
-  .pen-fac-img-wrap {
-    height: 240px;
-    border-radius: 14px;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 1.25rem;
-  }
-  .pen-fac-badge {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(8px);
-    color: #0969da;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    padding: 5px 12px;
-    border-radius: 9999px;
-  }
-  .pen-fac-name {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #0f172a;
-    font-family: 'Golos Text', system-ui, sans-serif;
-    margin: 0 0 0.35rem 0;
-  }
-  .pen-fac-cat {
-    font-size: 0.88rem;
-    color: #64748b;
-    margin: 0;
-  }
 
   /* 7. Final CTA */
   .pen-final-cta-section {
@@ -818,9 +774,6 @@ const isEnabled = (key: string) => {
     .pen-timeline-line {
       display: none;
     }
-    .pen-facility-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
 
   @media (max-width: 640px) {
@@ -828,8 +781,7 @@ const isEnabled = (key: string) => {
       padding: 110px 0 60px 0;
     }
     .pen-timeline-grid,
-    .pen-workflow-grid,
-    .pen-facility-grid {
+    .pen-workflow-grid {
       grid-template-columns: 1fr;
     }
     .pen-workflow-header,

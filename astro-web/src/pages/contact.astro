@@ -522,6 +522,12 @@ const isEnabled = (key: string) => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const target = e.target as HTMLFormElement;
+      const submitBtn = target.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Menghubungkan ke WhatsApp...';
+      }
+
       const formData = new FormData(target);
       const fullname = formData.get('fullname') || '';
       const phone = formData.get('phone') || '';
@@ -531,7 +537,9 @@ const isEnabled = (key: string) => {
 
       const waText = `Assalamualaikum Admin GVF, saya ingin konsultasi:\n\n*Nama:* ${fullname}\n*No HP:* ${phone}\n*Email:* ${email}\n*Program:* ${program}\n*Pesan:* ${message}`;
       const waUrl = `https://wa.me/6281226832326?text=${encodeURIComponent(waText)}`;
-      window.open(waUrl, '_blank');
+      
+      // Gunakan window.location.href secara universal agar tidak terblokir oleh popup blocker seluler
+      window.location.href = waUrl;
     });
   }
 </script>

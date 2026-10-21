@@ -102,7 +102,7 @@ const valueBoxIcons = [
               LAYANAN KONSULTASI
             </span>
             <h4 style="font-family: 'Golos Text', system-ui, sans-serif; font-size: 22px; color: #ffffff; margin: 0 0 12px 0; font-weight: 600;">
-              Konsultasi Ikrar Wakaf
+              {program.slug === 'zakat' ? 'Konsultasi Perhitungan Zakat' : program.slug === 'infaq' ? 'Konsultasi Penyaluran Infaq' : program.slug === 'sedekah' ? 'Konsultasi Sedekah Santri' : 'Konsultasi Ikrar Wakaf'}
             </h4>
             <div style="font-family: 'Golos Text', system-ui, sans-serif; font-size: 32px; color: #ffffff; margin: 8px 0; letter-spacing: 1px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
               0878-6599-4786
@@ -230,12 +230,7 @@ const valueBoxIcons = [
 
             <!-- Button: Lihat Lebih Banyak (Pen.dev Exact) -->
             <div style="display: flex; justify-content: center; margin: 30px 0 50px 0;">
-              <a
-                href="/portofolio"
-                style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background-color: #0969da; color: #ffffff; border-radius: 9999px; text-decoration: none; font-family: 'Golos Text', system-ui, sans-serif; font-size: 15px; font-weight: 600; transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);"
-                onmouseover="this.style.backgroundColor='#0752a8'; this.style.transform='translateY(-2px)'"
-                onmouseout="this.style.backgroundColor='#0969da'; this.style.transform='translateY(0)'"
-              >
+              <a href="/portofolio" class="pen-btn-portfolio-more">
                 <span>Lihat Lebih Banyak</span>
                 <span>&rarr;</span>
               </a>
@@ -255,7 +250,9 @@ const valueBoxIcons = [
                 'Kunjungan langsung ke lokasi Jonggol'
               ]).map((g) => (
                 <div class="pen-guarantee-item">
-                  <span class="pen-guarantee-check">✓</span>
+                  <span class="pen-guarantee-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </span>
                   <span>{g}</span>
                 </div>
               ))}
@@ -2378,6 +2375,39 @@ const valueBoxIcons = [
     font-weight: 700;
     font-size: 13px;
     flex-shrink: 0;
+  }
+
+  /* Button Lihat Lebih Banyak */
+  .pen-btn-portfolio-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background-color: #0969da;
+    color: #ffffff !important;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .pen-btn-portfolio-more:hover {
+    background-color: #0752a8;
+    transform: translateY(-2px);
+  }
+
+  /* FAQ Accordion Rotation */
+  details summary span:last-child {
+    display: inline-block;
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  details[open] summary span:last-child {
+    transform: rotate(45deg);
+    display: inline-block;
+    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   @media (max-width: 1024px) {

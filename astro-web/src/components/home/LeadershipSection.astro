@@ -36,6 +36,10 @@
             data-name="Ir. H. M. Hakim, M.M."
             data-role="DEWAN PEMBINA / FOUNDER"
             data-photo="/media-lp/pengurus-1.jpg"
+            role="button"
+            tabindex="0"
+            aria-pressed="true"
+            aria-label="Pilih Ir. H. M. Hakim, M.M. - Dewan Pembina / Founder"
           >
             <div class="pen-row-left">
               <span class="pen-member-num">01</span>
@@ -58,6 +62,10 @@
             data-name="Ust. Ahmad Fauzi, Lc., M.A."
             data-role="PENGAWAS SYARIAH"
             data-photo="/media-lp/pengurus-2.jpg"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            aria-label="Pilih Ust. Ahmad Fauzi, Lc., M.A. - Pengawas Syariah"
           >
             <div class="pen-row-left">
               <span class="pen-member-num">02</span>
@@ -80,6 +88,10 @@
             data-name="Dr. Hendra Gunawan, S.T., M.T."
             data-role="KETUA YAYASAN / DIREKTUR"
             data-photo="/media-lp/pengurus-3.jpg"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            aria-label="Pilih Dr. Hendra Gunawan, S.T., M.T. - Ketua Yayasan / Direktur"
           >
             <div class="pen-row-left">
               <span class="pen-member-num">03</span>
@@ -102,6 +114,10 @@
             data-name="Siti Rahmah, S.E., Ak."
             data-role="BENDAHARA & AKUNTABILITAS"
             data-photo="/media-lp/pengurus-4.jpg"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            aria-label="Pilih Siti Rahmah, S.E., Ak. - Bendahara & Akuntabilitas"
           >
             <div class="pen-row-left">
               <span class="pen-member-num">04</span>
@@ -124,6 +140,10 @@
             data-name="Ir. Bambang Trihatmojo"
             data-role="PERENCANAAN FISIK & KAWASAN"
             data-photo="/media-lp/pengurus-5.jpg"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            aria-label="Pilih Ir. Bambang Trihatmojo - Perencanaan Fisik & Kawasan"
           >
             <div class="pen-row-left">
               <span class="pen-member-num">05</span>
@@ -161,8 +181,10 @@
     rows.forEach((row, i) => {
       if (i === index) {
         row.classList.add('active');
+        row.setAttribute('aria-pressed', 'true');
       } else {
         row.classList.remove('active');
+        row.setAttribute('aria-pressed', 'false');
       }
     });
 
@@ -191,6 +213,14 @@
 
     row.addEventListener('click', () => {
       setActiveMember(i);
+    });
+
+    row.addEventListener('keydown', (e: Event) => {
+      const ke = e as KeyboardEvent;
+      if (ke.key === 'Enter' || ke.key === ' ') {
+        ke.preventDefault();
+        setActiveMember(i);
+      }
     });
   });
 
@@ -315,6 +345,11 @@
     cursor: pointer;
     transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
     user-select: none;
+  }
+
+  .pen-member-row:focus-visible {
+    outline: 2px solid #0969da;
+    outline-offset: 2px;
   }
 
   .pen-member-row:active {

@@ -17,110 +17,14 @@ import ElasticGallery from '../ui/ElasticGallery.astro';
     </div>
     <h2 class="gallery-title">Dokumentasi Riil &amp; Masterplan Kawasan</h2>
     <p class="gallery-subtitle">
-      Transparansi pembangunan fisik di Sukasirna Jonggol — memadukan dokumentasi riil lapangan dan visualisasi masterplan ekosistem pesantren terpadu.
+      Transparansi pembangunan fisik di Sukasirna Jonggol • memadukan dokumentasi riil lapangan dan visualisasi masterplan ekosistem pesantren terpadu.
     </p>
   </div>
 
   <div class="max-w-6xl mx-auto px-4" style="max-width: 1152px; margin: 0 auto; width: 100%;">
     <ElasticGallery defaultActiveId="01" />
   </div>
-
-  <dialog id="isavoGalleryModal" class="gallery-lightbox">
-    <div class="lightbox-inner">
-      <button type="button" class="lightbox-close" id="closeLightboxBtn" aria-label="Tutup Pratinjau">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-      <img id="lightboxImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Pratinjau Galeri" class="lightbox-img" />
-      <div id="lightboxCaption" class="lightbox-caption"></div>
-    </div>
-  </dialog>
 </section>
-
-<script>
-  // Parallax Scroll Animation for Gallery Section
-  const section = document.getElementById('galeri');
-  const row1 = document.getElementById('galleryRow1');
-  const row2 = document.getElementById('galleryRow2');
-
-  let currentTranslate1 = 0;
-  let currentTranslate2 = -350;
-  let targetTranslate1 = 0;
-  let targetTranslate2 = -350;
-
-  let isNear = true;
-  if (section && 'IntersectionObserver' in window) {
-    new IntersectionObserver(
-      (entries) => {
-        isNear = entries[0]?.isIntersecting ?? true;
-        if (isNear) updateParallax();
-      },
-      { rootMargin: '400px 0px 400px 0px' }
-    ).observe(section);
-  }
-
-  function updateParallax() {
-    if (!section || !row1 || !row2 || !isNear) return;
-
-    const rect = section.getBoundingClientRect();
-    const windowH = window.innerHeight;
-
-    const progress = (windowH - rect.top) / (windowH + rect.height);
-    const scrollShift = (progress - 0.5) * 750;
-
-    targetTranslate1 = -scrollShift - 150;
-    targetTranslate2 = scrollShift - 320;
-    currentTranslate1 = targetTranslate1;
-    currentTranslate2 = targetTranslate2;
-
-    row1.style.transform = `translate3d(${currentTranslate1.toFixed(2)}px, 0, 0)`;
-    row2.style.transform = `translate3d(${currentTranslate2.toFixed(2)}px, 0, 0)`;
-  }
-
-  let boundToLenis = false;
-  const bindLenis = (lenis: any) => {
-    if (boundToLenis || !lenis) return;
-    boundToLenis = true;
-    window.removeEventListener('scroll', updateParallax);
-    lenis.on('scroll', updateParallax);
-  };
-
-  window.addEventListener('scroll', updateParallax, { passive: true });
-  if ((window as any).lenis) {
-    bindLenis((window as any).lenis);
-  } else {
-    window.addEventListener('lenis:ready', (e) => bindLenis((e as CustomEvent).detail), { once: true });
-  }
-  window.addEventListener('resize', updateParallax, { passive: true });
-  updateParallax();
-
-  // Lightbox Modal Logic
-  const modal = document.getElementById('isavoGalleryModal') as HTMLDialogElement | null;
-  const modalImg = document.getElementById('lightboxImage') as HTMLImageElement | null;
-  const modalCaption = document.getElementById('lightboxCaption');
-  const closeBtn = document.getElementById('closeLightboxBtn');
-
-  document.querySelectorAll('.gallary-scroll-item').forEach((item) => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      if (img && modal && modalImg) {
-        modalImg.src = img.src;
-        modalImg.alt = img.alt;
-        if (modalCaption) modalCaption.textContent = img.alt;
-        modal.showModal();
-      }
-    });
-  });
-
-  if (closeBtn && modal) {
-    closeBtn.addEventListener('click', () => modal.close());
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.close();
-    });
-  }
-</script>
 
 <style>
   .isavo-gallery-section {
@@ -212,155 +116,6 @@ import ElasticGallery from '../ui/ElasticGallery.astro';
     max-width: 760px;
   }
 
-  /* Rows Wrapper */
-  .gallary-wrap {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    overflow: hidden;
-    padding: 15px 0;
-  }
-
-  .gallary-wrap.wrap-1 {
-    margin-bottom: 10px;
-  }
-
-  /* The Moving Flex Track with Pen.dev gap 30px */
-  .gallery-scroll-wrap {
-    display: flex;
-    gap: 30px;
-    width: max-content;
-    will-change: transform;
-  }
-
-  .gallery-scroll-wrap.row-top {
-    align-items: flex-end;
-  }
-
-  .gallery-scroll-wrap.row-bottom {
-    align-items: flex-start;
-  }
-
-  /* Gallery Item Cards Pen.dev: rounded 10px */
-  .gallary-scroll-item {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    background-color: #f6f6f3;
-    transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    flex-shrink: 0;
-  }
-
-  .gallary-scroll-item:hover {
-    transform: translateY(-4px) scale(1.015);
-    border-color: #0969da;
-    box-shadow: 0px 8px 24px rgba(9, 105, 218, 0.15);
-    z-index: 2;
-  }
-
-  .gallary-scroll-item:active {
-    transform: translateY(-2px) scale(0.99);
-  }
-
-  /* Exact Pen.dev Dimensions: 380x200, 480x280, 680x360 */
-  .card-sm {
-    width: 380px;
-    height: 200px;
-  }
-
-  .card-md {
-    width: 480px;
-    height: 280px;
-  }
-
-  .card-lg {
-    width: 680px;
-    height: 360px;
-  }
-
-  .gallery-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  .gallary-scroll-item:hover .gallery-img {
-    transform: scale(1.05);
-  }
-
-  /* Lightbox Modal */
-  .gallery-lightbox {
-    border: none;
-    border-radius: 16px;
-    padding: 0;
-    max-width: 90vw;
-    max-height: 90vh;
-    background: transparent;
-    overflow: visible;
-  }
-
-  .gallery-lightbox::backdrop {
-    background: rgba(6, 24, 41, 0.85);
-    backdrop-filter: blur(8px);
-  }
-
-  .lightbox-inner {
-    position: relative;
-    background: #061829;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-  }
-
-  .lightbox-close {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  .lightbox-close:hover {
-    background-color: #0969da;
-  }
-
-  .lightbox-close:active {
-    transform: scale(0.94);
-  }
-
-  .lightbox-img {
-    display: block;
-    max-width: 85vw;
-    max-height: 78vh;
-    object-fit: contain;
-    margin: 0 auto;
-  }
-
-  .lightbox-caption {
-    padding: 12px 20px;
-    background: #061829;
-    color: #e2e8f0;
-    font-size: 0.92rem;
-    font-weight: 500;
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
   @media (max-width: 768px) {
     .gallery-title {
       font-size: 32px;
@@ -369,21 +124,6 @@ import ElasticGallery from '../ui/ElasticGallery.astro';
     .gallery-subtitle {
       font-size: 14px;
       line-height: 22px;
-    }
-
-    .card-sm {
-      width: 280px;
-      height: 160px;
-    }
-
-    .card-md {
-      width: 340px;
-      height: 200px;
-    }
-
-    .card-lg {
-      width: 400px;
-      height: 240px;
     }
   }
 </style>

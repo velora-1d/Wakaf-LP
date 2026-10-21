@@ -1,6 +1,9 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "HUMANIZE-FIX-01", "name": "Perbaikan Humanize-UI Home & Navigasi Global (Ghost links, Kontak WA, Kontras News, A11y Leadership, Bersihkan Kode Mati)", "status": "closed" },
+    { "id": "HUMANIZE-FIX-02", "name": "Perbaikan Humanize-UI Program ZISWAF & Data Filantropi (Copywriting Filantropi, Rincian Alokasi, Data Jonggol, SVG Icons)", "status": "closed" },
+    { "id": "HUMANIZE-FIX-03", "name": "Perbaikan Humanize-UI Halaman Pendukung, Admin CMS & ElasticGallery (Mobile Drawer Admin, WA Redirect, Font & Asset Lokal)", "status": "closed" },
     { "id": "HUMANIZE-AUDIT-01", "name": "Audit Menyeluruh Humanize-UI Per Halaman & Section secara Paralel (Beranda, Program ZISWAF, Pendukung & Admin)", "status": "closed" },
     { "id": "TASTE-ALIGN-01", "name": "Penyelarasan Taste-Skill Frontend Art Direction & Micro-Interactions (Per Halaman & Section)", "status": "closed" },
     { "id": "ANTISLOP-CODE-01", "name": "Pembersihan Komentar Slop (Decorative Separators, Workflow Narration, Card Numbering & Empty Labels) di Template Astro, Style & Data", "status": "closed" },

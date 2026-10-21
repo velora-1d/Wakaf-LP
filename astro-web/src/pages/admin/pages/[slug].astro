@@ -1,6 +1,19 @@
 ---
 export const prerender = false;
 
+export async function getStaticPaths() {
+  return [
+    { params: { slug: 'home' } },
+    { params: { slug: 'tentang-kami' } },
+    { params: { slug: 'kemitraan' } },
+    { params: { slug: 'contact' } },
+    { params: { slug: 'wakaf' } },
+    { params: { slug: 'infaq' } },
+    { params: { slug: 'sedekah' } },
+    { params: { slug: 'zakat' } },
+  ];
+}
+
 import AdminLayout from '../../../layouts/AdminLayout.astro';
 import { db, getAllPageSections } from '../../../lib/db';
 import { pages } from '../../../lib/db/schema';
@@ -190,25 +203,34 @@ const publicPageUrl = getPublicUrl(slug);
     </div>
   </div>
 
-  <!-- Edit Section Slide-Over Drawer / Modal -->
+  <!-- Edit Section Slide-Over Drawer / Modal (User-Friendly UI/UX) -->
   <div
     id="editModal"
-    class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200"
+    class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5 opacity-0 pointer-events-none transition-opacity duration-200"
     role="dialog"
     aria-modal="true"
     aria-labelledby="modalTitle"
   >
-    <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-200" id="modalBox">
+    <div class="bg-white rounded-2xl w-full max-w-3xl max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-200 overflow-hidden" id="modalBox">
       <!-- Modal Header -->
-      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
-        <div>
-          <h3 id="modalTitle" class="text-base font-bold text-slate-900">Edit Section</h3>
-          <p id="modalSubtitle" class="text-xs text-slate-500 font-mono mt-0.5"></p>
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50/60">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 text-[#0969da] flex items-center justify-center font-bold text-xs shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 id="modalTitle" class="text-sm font-bold text-slate-900">Edit Konten Section</h3>
+            <p id="modalSubtitle" class="text-[11px] text-slate-500 font-mono mt-0.5"></p>
+          </div>
         </div>
+
         <button
           type="button"
           id="closeModalBtn"
-          class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+          class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
           aria-label="Tutup modal"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -218,44 +240,213 @@ const publicPageUrl = getPublicUrl(slug);
         </button>
       </div>
 
+      <!-- Tab Navigation (Form Visual vs JSON) -->
+      <div class="px-6 pt-3 border-b border-slate-200 flex items-center justify-between bg-white">
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="tabVisualBtn"
+            class="px-3.5 py-2 text-xs font-semibold border-b-2 border-[#0969da] text-[#0969da] flex items-center gap-1.5 transition-colors cursor-pointer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="18" x="3" y="3" rx="2"/>
+              <path d="M3 9h18"/>
+              <path d="M9 21V9"/>
+            </svg>
+            <span>Form Visual (User Friendly)</span>
+          </button>
+
+          <button
+            type="button"
+            id="tabJsonBtn"
+            class="px-3.5 py-2 text-xs font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-900 flex items-center gap-1.5 transition-colors cursor-pointer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+            <span>Mode Lanjutan (JSON)</span>
+          </button>
+        </div>
+      </div>
+
       <!-- Modal Body (Form Fields) -->
-      <div class="px-6 py-5 overflow-y-auto space-y-4 flex-1">
+      <div class="px-6 py-5 overflow-y-auto space-y-5 flex-1 max-h-[calc(92vh-140px)]">
         <input type="hidden" id="editSectionId" />
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="sm:col-span-2">
-            <label for="editTitle" class="block text-xs font-semibold text-slate-700 mb-1">
-              Nama / Judul Section (Internal CMS)
+        <!-- TAB 1: FORM VISUAL (USER FRIENDLY) -->
+        <div id="visualFormContainer" class="space-y-4">
+          <!-- Section 1: Heading & Badge -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-2">
+              <label for="vfHeading" class="block text-xs font-semibold text-slate-700 mb-1">
+                Judul Utama / Heading Section <span class="text-blue-600 font-normal">(Ditampilkan di web)</span>
+              </label>
+              <input
+                type="text"
+                id="vfHeading"
+                placeholder="Contoh: Membangun Peradaban Melalui Wakaf Berkelanjutan"
+                class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none transition-all"
+              />
+            </div>
+
+            <div>
+              <label for="vfBadge" class="block text-xs font-semibold text-slate-700 mb-1">
+                Badge / Label Tagline Kecil
+              </label>
+              <input
+                type="text"
+                id="vfBadge"
+                placeholder="Contoh: YAYASAN FILANTROPI ISLAM"
+                class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none transition-all"
+              />
+            </div>
+
+            <div>
+              <label for="vfSubheading" class="block text-xs font-semibold text-slate-700 mb-1">
+                Sub-Judul / Tagline Ringkas
+              </label>
+              <input
+                type="text"
+                id="vfSubheading"
+                placeholder="Ringkasan atau tagline singkat"
+                class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none transition-all"
+              />
+            </div>
+          </div>
+
+          <!-- Section 2: Narrative & Paragraphs -->
+          <div class="space-y-3">
+            <div>
+              <label for="vfDesc" class="block text-xs font-semibold text-slate-700 mb-1">
+                Deskripsi / Paragraf Utama
+              </label>
+              <textarea
+                id="vfDesc"
+                rows="3"
+                placeholder="Tuliskan narasi penjelasan lengkap section ini..."
+                class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none leading-relaxed transition-all"
+              ></textarea>
+            </div>
+
+            <div id="vfParagraph2Wrapper">
+              <label for="vfParagraph2" class="block text-xs font-semibold text-slate-700 mb-1">
+                Paragraf Tambahan <span class="text-slate-400 font-normal">(Opsional)</span>
+              </label>
+              <textarea
+                id="vfParagraph2"
+                rows="2"
+                placeholder="Paragraf lanjutan jika ada..."
+                class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none leading-relaxed transition-all"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Section 3: Call to Action (Buttons) -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+            <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wider block">
+              Tombol Aksi (Call To Action / Link)
+            </span>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="vfPrimaryCtaText" class="block text-[11px] font-semibold text-slate-600 mb-1">
+                  Teks Tombol Utama
+                </label>
+                <input
+                  type="text"
+                  id="vfPrimaryCtaText"
+                  placeholder="Misal: Salurkan Wakaf"
+                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none"
+                />
+              </div>
+              <div>
+                <label for="vfPrimaryCtaUrl" class="block text-[11px] font-semibold text-slate-600 mb-1">
+                  Link URL Tombol Utama
+                </label>
+                <input
+                  type="text"
+                  id="vfPrimaryCtaUrl"
+                  placeholder="Misal: /program/wakaf atau #donasi"
+                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none font-mono"
+                />
+              </div>
+
+              <div>
+                <label for="vfSecondaryCtaText" class="block text-[11px] font-semibold text-slate-600 mb-1">
+                  Teks Tombol Sekunder (Opsional)
+                </label>
+                <input
+                  type="text"
+                  id="vfSecondaryCtaText"
+                  placeholder="Misal: Jelajahi Ekosistem"
+                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none"
+                />
+              </div>
+              <div>
+                <label for="vfSecondaryCtaUrl" class="block text-[11px] font-semibold text-slate-600 mb-1">
+                  Link URL Tombol Sekunder
+                </label>
+                <input
+                  type="text"
+                  id="vfSecondaryCtaUrl"
+                  placeholder="Misal: #ekosistem atau /tentang-kami"
+                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none font-mono"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Media & Image Link -->
+          <div>
+            <label for="vfImageUrl" class="block text-xs font-semibold text-slate-700 mb-1">
+              URL Gambar / Media Banner <span class="text-slate-400 font-normal">(Opsional)</span>
             </label>
             <input
               type="text"
-              id="editTitle"
-              class="w-full bg-slate-50 border border-slate-300 focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none"
+              id="vfImageUrl"
+              placeholder="/images/... atau https://..."
+              class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none font-mono transition-all"
             />
           </div>
-          <div>
-            <label for="editSortOrder" class="block text-xs font-semibold text-slate-700 mb-1">
-              Urutan (Sort Order)
-            </label>
-            <input
-              type="number"
-              id="editSortOrder"
-              class="w-full bg-slate-50 border border-slate-300 focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none"
-            />
+
+          <!-- Section 5: Meta Info (Internal Title & Order) -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-200">
+            <div class="sm:col-span-2">
+              <label for="editTitle" class="block text-xs font-semibold text-slate-700 mb-1">
+                Label Internal Section (Admin)
+              </label>
+              <input
+                type="text"
+                id="editTitle"
+                class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-xl px-3 py-2 text-xs text-slate-900 outline-none"
+              />
+            </div>
+            <div>
+              <label for="editSortOrder" class="block text-xs font-semibold text-slate-700 mb-1">
+                Nomor Urutan
+              </label>
+              <input
+                type="number"
+                id="editSortOrder"
+                class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-xl px-3 py-2 text-xs text-slate-900 outline-none"
+              />
+            </div>
           </div>
         </div>
 
-        <div>
+        <!-- TAB 2: MODE LANJUTAN (JSON) -->
+        <div id="jsonFormContainer" class="space-y-2 hidden">
           <div class="flex items-center justify-between mb-1.5">
             <label for="editJsonContent" class="block text-xs font-semibold text-slate-700">
-              Isi Konten Section (JSON)
+              Struktur JSON Mentah
             </label>
-            <span class="text-[11px] text-slate-500 font-normal">Teks, Heading, Deskripsi, Metrik, Link & Media</span>
+            <span class="text-[11px] text-slate-500 font-normal">Sinkron otomatis dengan Form Visual</span>
           </div>
           <div class="relative">
             <textarea
               id="editJsonContent"
-              rows="12"
+              rows="14"
               class="w-full font-mono text-xs bg-slate-900 text-slate-100 border border-slate-800 rounded-xl p-3.5 focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/30 outline-none leading-relaxed"
               spellcheck="false"
             ></textarea>
@@ -265,21 +456,29 @@ const publicPageUrl = getPublicUrl(slug);
       </div>
 
       <!-- Modal Footer -->
-      <div class="px-6 py-4 border-t border-slate-200 bg-slate-50 rounded-b-2xl flex items-center justify-end gap-3">
-        <button
-          type="button"
-          id="cancelModalBtn"
-          class="px-4 py-2 rounded-xl border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
-        >
-          Batal
-        </button>
-        <button
-          type="button"
-          id="saveSectionBtn"
-          class="px-4 py-2 rounded-xl bg-[#0969da] hover:bg-[#0752a8] text-white text-xs font-semibold flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
-        >
-          <span id="saveBtnText">Simpan Perubahan</span>
-        </button>
+      <div class="px-6 py-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between gap-3">
+        <p class="text-[11px] text-slate-500 hidden sm:block">Perubahan akan langsung aktif di web publik setelah disimpan.</p>
+        <div class="flex items-center gap-2.5 ml-auto">
+          <button
+            type="button"
+            id="cancelModalBtn"
+            class="px-4 py-2 rounded-xl border border-slate-300 text-xs font-medium text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+          >
+            Batal
+          </button>
+          <button
+            type="button"
+            id="saveSectionBtn"
+            class="px-5 py-2 rounded-xl bg-[#0969da] hover:bg-[#0752a8] text-white text-xs font-semibold flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+              <polyline points="17 21 17 13 7 13 7 21"/>
+              <polyline points="7 3 7 8 15 8"/>
+            </svg>
+            <span id="saveBtnText">Simpan Perubahan</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -326,7 +525,7 @@ const publicPageUrl = getPublicUrl(slug);
       });
     });
 
-    // 2. Edit Modal Logic
+    // 2. Edit Modal Logic (Visual Form + Bidirectional JSON Sync)
     const editModal = document.getElementById('editModal');
     const modalBox = document.getElementById('modalBox');
     const closeModalBtn = document.getElementById('closeModalBtn');
@@ -341,8 +540,122 @@ const publicPageUrl = getPublicUrl(slug);
     const editJsonContent = document.getElementById('editJsonContent') as HTMLTextAreaElement;
     const modalSubtitle = document.getElementById('modalSubtitle');
 
+    // Visual Form Inputs
+    const vfHeading = document.getElementById('vfHeading') as HTMLInputElement;
+    const vfBadge = document.getElementById('vfBadge') as HTMLInputElement;
+    const vfSubheading = document.getElementById('vfSubheading') as HTMLInputElement;
+    const vfDesc = document.getElementById('vfDesc') as HTMLTextAreaElement;
+    const vfParagraph2 = document.getElementById('vfParagraph2') as HTMLTextAreaElement;
+    const vfPrimaryCtaText = document.getElementById('vfPrimaryCtaText') as HTMLInputElement;
+    const vfPrimaryCtaUrl = document.getElementById('vfPrimaryCtaUrl') as HTMLInputElement;
+    const vfSecondaryCtaText = document.getElementById('vfSecondaryCtaText') as HTMLInputElement;
+    const vfSecondaryCtaUrl = document.getElementById('vfSecondaryCtaUrl') as HTMLInputElement;
+    const vfImageUrl = document.getElementById('vfImageUrl') as HTMLInputElement;
+
+    // Tabs
+    const tabVisualBtn = document.getElementById('tabVisualBtn');
+    const tabJsonBtn = document.getElementById('tabJsonBtn');
+    const visualFormContainer = document.getElementById('visualFormContainer');
+    const jsonFormContainer = document.getElementById('jsonFormContainer');
+
+    let currentContentObj: any = {};
+
+    function switchTab(toVisual: boolean) {
+      if (toVisual) {
+        tabVisualBtn?.classList.add('border-[#0969da]', 'text-[#0969da]', 'font-semibold');
+        tabVisualBtn?.classList.remove('border-transparent', 'text-slate-500', 'font-medium');
+        tabJsonBtn?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'font-semibold');
+        tabJsonBtn?.classList.add('border-transparent', 'text-slate-500', 'font-medium');
+        visualFormContainer?.classList.remove('hidden');
+        jsonFormContainer?.classList.add('hidden');
+      } else {
+        syncVisualToJson();
+        tabJsonBtn?.classList.add('border-[#0969da]', 'text-[#0969da]', 'font-semibold');
+        tabJsonBtn?.classList.remove('border-transparent', 'text-slate-500', 'font-medium');
+        tabVisualBtn?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'font-semibold');
+        tabVisualBtn?.classList.add('border-transparent', 'text-slate-500', 'font-medium');
+        jsonFormContainer?.classList.remove('hidden');
+        visualFormContainer?.classList.add('hidden');
+      }
+    }
+
+    tabVisualBtn?.addEventListener('click', () => switchTab(true));
+    tabJsonBtn?.addEventListener('click', () => switchTab(false));
+
+    function syncVisualToJson() {
+      if (!currentContentObj || typeof currentContentObj !== 'object') currentContentObj = {};
+
+      if (vfHeading?.value !== undefined) {
+        if ('heading' in currentContentObj || !('title' in currentContentObj)) {
+          currentContentObj.heading = vfHeading.value;
+        } else {
+          currentContentObj.title = vfHeading.value;
+        }
+      }
+      if (vfBadge?.value !== undefined) currentContentObj.badge = vfBadge.value;
+      if (vfSubheading?.value !== undefined) currentContentObj.subheading = vfSubheading.value;
+      if (vfDesc?.value !== undefined) {
+        if ('paragraph1' in currentContentObj) currentContentObj.paragraph1 = vfDesc.value;
+        else if ('desc' in currentContentObj) currentContentObj.desc = vfDesc.value;
+        else currentContentObj.description = vfDesc.value;
+      }
+      if (vfParagraph2?.value !== undefined && ('paragraph2' in currentContentObj || vfParagraph2.value)) {
+        currentContentObj.paragraph2 = vfParagraph2.value;
+      }
+      if (vfPrimaryCtaText?.value !== undefined) {
+        if ('ctaText' in currentContentObj) currentContentObj.ctaText = vfPrimaryCtaText.value;
+        else currentContentObj.primaryCtaText = vfPrimaryCtaText.value;
+      }
+      if (vfPrimaryCtaUrl?.value !== undefined) {
+        if ('ctaUrl' in currentContentObj) currentContentObj.ctaUrl = vfPrimaryCtaUrl.value;
+        else currentContentObj.primaryCtaUrl = vfPrimaryCtaUrl.value;
+      }
+      if (vfSecondaryCtaText?.value !== undefined) currentContentObj.secondaryCtaText = vfSecondaryCtaText.value;
+      if (vfSecondaryCtaUrl?.value !== undefined) currentContentObj.secondaryCtaUrl = vfSecondaryCtaUrl.value;
+      if (vfImageUrl?.value !== undefined) {
+        if ('videoUrl' in currentContentObj) currentContentObj.videoUrl = vfImageUrl.value;
+        else currentContentObj.imageUrl = vfImageUrl.value;
+      }
+
+      if (editJsonContent) {
+        editJsonContent.value = JSON.stringify(currentContentObj, null, 2);
+      }
+    }
+
+    // Attach sync listener to all visual inputs
+    [vfHeading, vfBadge, vfSubheading, vfDesc, vfParagraph2, vfPrimaryCtaText, vfPrimaryCtaUrl, vfSecondaryCtaText, vfSecondaryCtaUrl, vfImageUrl].forEach((input) => {
+      input?.addEventListener('input', syncVisualToJson);
+    });
+
+    // When editing raw JSON, sync back to visual
+    editJsonContent?.addEventListener('input', () => {
+      try {
+        currentContentObj = JSON.parse(editJsonContent.value);
+        if (vfHeading) vfHeading.value = currentContentObj.heading || currentContentObj.title || '';
+        if (vfBadge) vfBadge.value = currentContentObj.badge || '';
+        if (vfSubheading) vfSubheading.value = currentContentObj.subheading || '';
+        if (vfDesc) vfDesc.value = currentContentObj.desc || currentContentObj.paragraph1 || currentContentObj.description || '';
+        if (vfParagraph2) vfParagraph2.value = currentContentObj.paragraph2 || '';
+        if (vfPrimaryCtaText) vfPrimaryCtaText.value = currentContentObj.primaryCtaText || currentContentObj.ctaText || '';
+        if (vfPrimaryCtaUrl) vfPrimaryCtaUrl.value = currentContentObj.primaryCtaUrl || currentContentObj.ctaUrl || '';
+        if (vfSecondaryCtaText) vfSecondaryCtaText.value = currentContentObj.secondaryCtaText || '';
+        if (vfSecondaryCtaUrl) vfSecondaryCtaUrl.value = currentContentObj.secondaryCtaUrl || '';
+        if (vfImageUrl) vfImageUrl.value = currentContentObj.imageUrl || currentContentObj.mediaUrl || currentContentObj.videoUrl || '';
+        if (jsonError) {
+          jsonError.textContent = '';
+          jsonError.classList.add('hidden');
+        }
+      } catch (err: any) {
+        if (jsonError) {
+          jsonError.textContent = `Peringatan format JSON: ${err.message}`;
+          jsonError.classList.remove('hidden');
+        }
+      }
+    });
+
     function openModal() {
       if (editModal && modalBox) {
+        switchTab(true); // Always default to Visual Form!
         editModal.classList.remove('opacity-0', 'pointer-events-none');
         modalBox.classList.remove('scale-95');
         modalBox.classList.add('scale-100');
@@ -363,6 +676,13 @@ const publicPageUrl = getPublicUrl(slug);
       if (e.target === editModal) closeModal();
     });
 
+    // Close modal on Escape key press
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && editModal && !editModal.classList.contains('pointer-events-none')) {
+        closeModal();
+      }
+    });
+
     // Open Edit Modal on Button Click
     const editBtns = document.querySelectorAll('.edit-section-btn');
     editBtns.forEach((btn) => {
@@ -373,11 +693,32 @@ const publicPageUrl = getPublicUrl(slug);
         const order = btn.getAttribute('data-section-order') || '1';
         const contentStr = btn.getAttribute('data-section-content') || '{}';
 
+        try {
+          currentContentObj = JSON.parse(contentStr);
+        } catch {
+          currentContentObj = {};
+        }
+
         if (editSectionId) editSectionId.value = id;
         if (editTitle) editTitle.value = title;
         if (editSortOrder) editSortOrder.value = order;
-        if (editJsonContent) editJsonContent.value = contentStr;
         if (modalSubtitle) modalSubtitle.textContent = `Section Key: ${key} (ID #${id})`;
+
+        // Populate Visual Inputs
+        if (vfHeading) vfHeading.value = currentContentObj.heading || currentContentObj.title || '';
+        if (vfBadge) vfBadge.value = currentContentObj.badge || '';
+        if (vfSubheading) vfSubheading.value = currentContentObj.subheading || '';
+        if (vfDesc) vfDesc.value = currentContentObj.desc || currentContentObj.paragraph1 || currentContentObj.description || '';
+        if (vfParagraph2) vfParagraph2.value = currentContentObj.paragraph2 || '';
+        if (vfPrimaryCtaText) vfPrimaryCtaText.value = currentContentObj.primaryCtaText || currentContentObj.ctaText || '';
+        if (vfPrimaryCtaUrl) vfPrimaryCtaUrl.value = currentContentObj.primaryCtaUrl || currentContentObj.ctaUrl || '';
+        if (vfSecondaryCtaText) vfSecondaryCtaText.value = currentContentObj.secondaryCtaText || '';
+        if (vfSecondaryCtaUrl) vfSecondaryCtaUrl.value = currentContentObj.secondaryCtaUrl || '';
+        if (vfImageUrl) vfImageUrl.value = currentContentObj.imageUrl || currentContentObj.mediaUrl || currentContentObj.videoUrl || '';
+
+        // Populate JSON textarea
+        if (editJsonContent) editJsonContent.value = JSON.stringify(currentContentObj, null, 2);
+
         if (jsonError) {
           jsonError.textContent = '';
           jsonError.classList.add('hidden');
@@ -389,12 +730,10 @@ const publicPageUrl = getPublicUrl(slug);
 
     // Save Section Content
     saveSectionBtn?.addEventListener('click', async () => {
-      if (jsonError) {
-        jsonError.textContent = '';
-        jsonError.classList.add('hidden');
-      }
+      // Sync latest visual inputs to content object
+      syncVisualToJson();
 
-      let parsedContent: any = {};
+      let parsedContent: any = currentContentObj;
       try {
         parsedContent = JSON.parse(editJsonContent.value);
       } catch (e: any) {
@@ -402,6 +741,7 @@ const publicPageUrl = getPublicUrl(slug);
           jsonError.textContent = `Format JSON tidak valid: ${e.message}`;
           jsonError.classList.remove('hidden');
         }
+        switchTab(false); // Switch to JSON tab to see error
         return;
       }
 
@@ -423,7 +763,7 @@ const publicPageUrl = getPublicUrl(slug);
         });
         const data = await res.json();
         if (data.success) {
-          (window as any).showToast('Perubahan konten berhasil disimpan ke PostgreSQL.');
+          (window as any).showToast('Perubahan teks & konten berhasil disimpan ke PostgreSQL.');
           // Update display title on card
           const titleDisplay = document.getElementById(`title-display-${payload.sectionId}`);
           if (titleDisplay) titleDisplay.textContent = payload.title;
