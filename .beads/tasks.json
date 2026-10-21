@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "HUMANIZE-AUDIT-01", "name": "Audit Menyeluruh Humanize-UI Per Halaman & Section secara Paralel (Beranda, Program ZISWAF, Pendukung & Admin)", "status": "closed" },
     { "id": "TASTE-ALIGN-01", "name": "Penyelarasan Taste-Skill Frontend Art Direction & Micro-Interactions (Per Halaman & Section)", "status": "closed" },
     { "id": "ANTISLOP-CODE-01", "name": "Pembersihan Komentar Slop (Decorative Separators, Workflow Narration, Card Numbering & Empty Labels) di Template Astro, Style & Data", "status": "closed" },
     { "id": "CMS-FASE-01", "name": "Setup Astro Adapter SSR (@astrojs/node) & Database Client (Drizzle ORM / postgres)", "status": "closed" },
