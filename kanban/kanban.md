@@ -1,16 +1,16 @@
 # Kanban Board: Pen.dev Alignment (Per Section)
 
 ## To Do
-- [ ] CMS-FASE-04: Dashboard Admin UI & Section Manager Editor (/admin, /admin/pages/[slug])
 - [ ] CMS-FASE-05: Integrasi SSR Dynamic Sections & Toggle Visibility di Frontend Publik
 - [ ] CMS-FASE-06: Uji Coba End-to-End Realtime Section Management
 
 ## In Progress
-- [/] CMS-FASE-03: Sistem Autentikasi Admin, Session Cookie & Halaman Login (/admin/login)
+- [/] CMS-FASE-04: Dashboard Admin UI & Section Manager Editor (/admin, /admin/pages/[slug])
 
 ## In Review / Test
 
 ## Done
+- [x] CMS-FASE-03: Sistem Autentikasi Admin, Session Cookie & Halaman Login (/admin/login)
 - [x] IMPECCABLE-03: Optimasi Performa & Anti-Slop Layout (Eliminasi Layout Thrashing Width/Padding, Touch Target 44px, Eliminasi Gradien AI)
 - [x] CMS-FASE-02: Skema PostgreSQL & Seeding Awal Seluruh Halaman & Section
 - [x] CMS-FASE-01: Setup Astro Adapter SSR (@astrojs/node) & Database Client (Drizzle ORM / postgres)
