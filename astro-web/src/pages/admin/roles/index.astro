@@ -5,8 +5,19 @@ export const prerender = false;
 import AdminLayout from '../../../layouts/AdminLayout.astro';
 import { getAllRoles, getAllAdminUsers } from '../../../lib/db';
 
+const currentAdmin = (Astro.locals as any).adminUser;
 const roles = await getAllRoles();
 const adminUsersList = await getAllAdminUsers();
+
+const formatDate = (date: Date | string | null) => {
+  if (!date) return '-';
+  const d = new Date(date);
+  return d.toLocaleDateString('id-ID', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+};
 
 const ALL_MENUS = [
   { key: 'overview', name: 'Ringkasan Dasbor', category: 'Modul Utama', desc: 'Melihat ringkasan metrik statistik penghimpunan' },
@@ -24,9 +35,9 @@ const ALL_MENUS = [
 ];
 
 const roleBadges: Record<string, { bg: string; text: string; border: string }> = {
-  superadmin: { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200' },
+  superadmin: { bg: 'bg-blue-50', text: 'text-[#0969da]', border: 'border-blue-200' },
   bendahara: { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
-  editor_konten: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
+  editor_konten: { bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200' },
   staf_lapangan: { bg: 'bg-amber-50', text: 'text-amber-800', border: 'border-amber-200' },
 };
 ---
@@ -166,13 +177,26 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
     </div>
 
     <!-- TAB 2: PER-USER ACCESS & ROLE ASSIGNMENT -->
-    <div id="tabContentUsers" class="hidden space-y-6">
+    <div id="tabContentUsers" class="hidden space-y-6" data-current-user-id={currentAdmin?.id || 0}>
       <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs space-y-4">
-        <div>
-          <h2 class="text-base font-bold text-slate-900 m-0">Daftar Akun Pengelola Admin GVF</h2>
-          <p class="text-xs text-slate-500 mt-1 mb-0">
-            Pilih pengguna untuk meninjau atau menetapkan hak akses kustom secara spesifik per akun.
-          </p>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+          <div>
+            <h2 class="text-base font-bold text-slate-900 m-0">Daftar Akun Pengelola Admin GVF</h2>
+            <p class="text-xs text-slate-500 mt-1 mb-0">
+              Kelola akun staf, username, kata sandi, serta hak akses kustom untuk setiap administrator.
+            </p>
+          </div>
+          <button
+            type="button"
+            id="btnOpenCreateUser"
+            class="h-8 px-3.5 rounded-md bg-[#0969da] hover:bg-[#0752a8] text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer inline-flex items-center gap-1.5 self-start sm:self-auto"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Tambah Pengguna Baru</span>
+          </button>
         </div>
 
         <div class="overflow-x-auto w-full">
@@ -183,39 +207,89 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
                 <th class="px-4 py-3">NAMA LENGKAP</th>
                 <th class="px-4 py-3">ROLE SAAT INI</th>
                 <th class="px-4 py-3">TOTAL MENU DIIZINKAN</th>
+                <th class="px-4 py-3">TANGGAL DIBUAT</th>
                 <th class="px-4 py-3 text-right">AKSI</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100">
               {adminUsersList.map((u) => {
                 const uPerms: string[] = Array.isArray(u.permissions) ? (u.permissions as string[]) : [];
+                const isSelf = currentAdmin && currentAdmin.id === u.id;
+                const badge = roleBadges[u.role] || { bg: 'bg-slate-50', text: 'text-slate-700', border: 'border-slate-200' };
+
                 return (
                   <tr class="hover:bg-slate-50/70 transition-colors">
                     <td class="px-4 py-3 font-mono font-bold text-slate-900">
-                      #{u.id} - @{u.username}
+                      <span class="text-slate-400 font-normal">#{u.id}</span> @{u.username}
+                      {isSelf && (
+                        <span class="ml-1.5 inline-flex px-1.5 py-0.2 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                          Anda
+                        </span>
+                      )}
                     </td>
                     <td class="px-4 py-3 font-semibold text-slate-800">
                       {u.name}
                     </td>
                     <td class="px-4 py-3">
-                      <span class="inline-flex px-2 py-0.5 rounded text-[11px] font-bold font-mono bg-blue-50 text-[#0969da] border border-blue-200">
+                      <span class={`inline-flex px-2 py-0.5 rounded text-[11px] font-bold font-mono border ${badge.bg} ${badge.text} ${badge.border}`}>
                         {u.role}
                       </span>
                     </td>
                     <td class="px-4 py-3 text-slate-600">
                       <span class="font-bold text-slate-900">{uPerms.length}</span> / {ALL_MENUS.length} menu aktif
                     </td>
+                    <td class="px-4 py-3 text-slate-500 whitespace-nowrap">
+                      {formatDate(u.createdAt)}
+                    </td>
                     <td class="px-4 py-3 text-right">
-                      <button
-                        type="button"
-                        class="btn-edit-user-perms h-7 px-3 rounded border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-2xs transition-colors cursor-pointer"
-                        data-user-id={u.id}
-                        data-user-name={u.name}
-                        data-user-role={u.role}
-                        data-user-perms={JSON.stringify(uPerms)}
-                      >
-                        Atur Menu Pengguna
-                      </button>
+                      <div class="inline-flex items-center gap-1.5 justify-end">
+                        <button
+                          type="button"
+                          class="btn-edit-user-account h-7 px-2.5 rounded border border-blue-200 bg-blue-50/70 hover:bg-[#0969da] text-[#0969da] hover:text-white text-xs font-semibold shadow-2xs transition-colors cursor-pointer inline-flex items-center gap-1"
+                          data-user-id={u.id}
+                          data-user-username={u.username}
+                          data-user-name={u.name}
+                          data-user-role={u.role}
+                          title="Edit Akun, Username &amp; Password"
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                            <path d="m15 5 4 4"/>
+                          </svg>
+                          <span>Edit</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          class="btn-edit-user-perms h-7 px-2.5 rounded border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-2xs transition-colors cursor-pointer inline-flex items-center gap-1"
+                          data-user-id={u.id}
+                          data-user-name={u.name}
+                          data-user-role={u.role}
+                          data-user-perms={JSON.stringify(uPerms)}
+                          title="Atur Menu &amp; Hak Akses Khusus"
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                          </svg>
+                          <span>Menu</span>
+                        </button>
+
+                        {!isSelf && u.username !== 'admin' && (
+                          <button
+                            type="button"
+                            class="btn-delete-user h-7 w-7 rounded border border-red-200 bg-red-50 hover:bg-red-600 text-red-600 hover:text-white shadow-2xs transition-colors cursor-pointer inline-flex items-center justify-center"
+                            data-user-id={u.id}
+                            data-user-username={u.username}
+                            title="Hapus Akun Pengguna"
+                          >
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M3 6h18"/>
+                              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                            </svg>
+                          </button>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 );
@@ -310,6 +384,156 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
           <span id="btnSaveUserText">Simpan Hak Akses</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL TAMBAH & EDIT PENGGUNA -->
+  <div id="userAccountModal" class="fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-xs flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden transform scale-95 transition-transform duration-200" id="userAccountModalBox">
+      <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 text-[#0969da] flex items-center justify-center">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <line x1="19" y1="8" x2="19" y2="14"/>
+              <line x1="22" y1="11" x2="16" y2="11"/>
+            </svg>
+          </span>
+          <div>
+            <h3 id="userAccountModalTitle" class="text-sm font-bold text-slate-900 m-0">Tambah Pengguna Baru</h3>
+            <p class="text-[11px] text-slate-400 m-0">Pengaturan kredensial login dan wewenang akun admin.</p>
+          </div>
+        </div>
+        <button type="button" id="btnCloseUserAccountModal" class="text-slate-400 hover:text-slate-700 p-1.5 rounded hover:bg-slate-100 transition-colors cursor-pointer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="userAccountForm" class="p-5 space-y-4">
+        <input type="hidden" id="inputUserId" value="" />
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1" for="inputUserName">
+            Nama Lengkap <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="inputUserName"
+            required
+            placeholder="Contoh: Mahin Utsman Nawawi"
+            class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1" for="inputUserUsername">
+            Nama Pengguna (Username) <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <span class="absolute left-3 top-2.5 text-xs text-slate-400 font-mono">@</span>
+            <input
+              type="text"
+              id="inputUserUsername"
+              required
+              placeholder="username_staf"
+              class="h-9 w-full rounded-md border border-slate-200 bg-white pl-7 pr-3 text-xs font-mono text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+            />
+          </div>
+          <span class="text-[10px] text-slate-400 mt-1 block">Digunakan untuk autentikasi login ke dasbor.</span>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1" for="inputUserPassword">
+            Kata Sandi (Password) <span id="inputUserPasswordRequiredStar" class="text-red-500">*</span>
+          </label>
+          <input
+            type="password"
+            id="inputUserPassword"
+            placeholder="Minimal 6 karakter"
+            class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+          />
+          <span id="inputUserPasswordHint" class="text-[10px] text-slate-400 mt-1 block">
+            Minimal 6 karakter. Dienkripsi aman dengan bcryptjs.
+          </span>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1" for="inputUserRoleSelect">
+            Role Jabatan &amp; Wewenang <span class="text-red-500">*</span>
+          </label>
+          <select id="inputUserRoleSelect" required class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+            {roles.map(r => (
+              <option value={r.roleKey}>{r.roleName} ({r.roleKey})</option>
+            ))}
+          </select>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+          <button
+            type="button"
+            id="btnCancelUserAccountModal"
+            class="h-8 px-3 rounded-md border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+          >
+            Batal
+          </button>
+          <button
+            type="submit"
+            id="btnSubmitUserAccount"
+            class="h-8 px-4 rounded-md bg-[#0969da] hover:bg-[#0752a8] text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer inline-flex items-center gap-1.5"
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span id="btnSubmitUserAccountText">Simpan Pengguna</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL KONFIRMASI HAPUS USER -->
+  <div id="deleteUserModal" class="fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-xs flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="w-full max-w-sm bg-white rounded-xl shadow-2xl border border-slate-200 p-5 space-y-4 transform scale-95 transition-transform duration-200" id="deleteUserModalBox">
+      <div class="flex items-center gap-3">
+        <span class="w-10 h-10 rounded-full bg-red-50 border border-red-200 text-red-600 flex items-center justify-center shrink-0">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18"/>
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+            <line x1="10" y1="11" x2="10" y2="17"/>
+            <line x1="14" y1="11" x2="14" y2="17"/>
+          </svg>
+        </span>
+        <div>
+          <h3 class="text-sm font-bold text-slate-900 m-0">Hapus Akun Pengguna?</h3>
+          <p class="text-xs text-slate-500 m-0 mt-0.5">Tindakan ini tidak dapat dibatalkan.</p>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-200 m-0 leading-relaxed">
+        Akun <strong id="deleteUserDisplay" class="font-mono text-slate-900"></strong> akan dihapus permanen dari basis data admin GVF.
+      </p>
+
+      <div class="flex items-center justify-end gap-2 pt-1">
+        <button
+          type="button"
+          id="btnCancelDeleteUserModal"
+          class="h-8 px-3 rounded-md border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+        >
+          Batal
+        </button>
+        <button
+          type="button"
+          id="btnExecuteDeleteUserModal"
+          class="h-8 px-3.5 rounded-md bg-red-600 hover:bg-red-700 text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer inline-flex items-center gap-1.5"
+        >
+          <span>Ya, Hapus</span>
         </button>
       </div>
     </div>
@@ -514,6 +738,243 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
       alert(`Gagal: ${err.message}`);
       btnSaveUserPermissions.removeAttribute('disabled');
       if (btnSaveUserText) btnSaveUserText.textContent = 'Simpan Hak Akses';
+    }
+  });
+
+  // ==========================================
+  // USER ACCOUNT MODAL (CREATE & EDIT)
+  // ==========================================
+  const userAccountModal = document.getElementById('userAccountModal');
+  const userAccountModalBox = document.getElementById('userAccountModalBox');
+  const userAccountModalTitle = document.getElementById('userAccountModalTitle');
+  const btnCloseUserAccountModal = document.getElementById('btnCloseUserAccountModal');
+  const btnCancelUserAccountModal = document.getElementById('btnCancelUserAccountModal');
+  const userAccountForm = document.getElementById('userAccountForm') as HTMLFormElement | null;
+  const inputUserId = document.getElementById('inputUserId') as HTMLInputElement | null;
+  const inputUserName = document.getElementById('inputUserName') as HTMLInputElement | null;
+  const inputUserUsername = document.getElementById('inputUserUsername') as HTMLInputElement | null;
+  const inputUserPassword = document.getElementById('inputUserPassword') as HTMLInputElement | null;
+  const inputUserPasswordRequiredStar = document.getElementById('inputUserPasswordRequiredStar');
+  const inputUserPasswordHint = document.getElementById('inputUserPasswordHint');
+  const inputUserRoleSelect = document.getElementById('inputUserRoleSelect') as HTMLSelectElement | null;
+  const btnSubmitUserAccount = document.getElementById('btnSubmitUserAccount') as HTMLButtonElement | null;
+  const btnSubmitUserAccountText = document.getElementById('btnSubmitUserAccountText');
+  const btnOpenCreateUser = document.getElementById('btnOpenCreateUser');
+
+  function openUserAccountModal() {
+    if (!userAccountModal || !userAccountModalBox) return;
+    userAccountModal.classList.remove('opacity-0', 'pointer-events-none');
+    userAccountModalBox.classList.remove('scale-95');
+    userAccountModalBox.classList.add('scale-100');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeUserAccountModal() {
+    if (!userAccountModal || !userAccountModalBox) return;
+    userAccountModal.classList.add('opacity-0', 'pointer-events-none');
+    userAccountModalBox.classList.remove('scale-100');
+    userAccountModalBox.classList.add('scale-95');
+    document.body.style.overflow = '';
+  }
+
+  btnCloseUserAccountModal?.addEventListener('click', closeUserAccountModal);
+  btnCancelUserAccountModal?.addEventListener('click', closeUserAccountModal);
+  userAccountModal?.addEventListener('click', (e) => {
+    if (e.target === userAccountModal) closeUserAccountModal();
+  });
+
+  // Open Create User Modal
+  btnOpenCreateUser?.addEventListener('click', () => {
+    if (userAccountForm) userAccountForm.reset();
+    if (inputUserId) inputUserId.value = '';
+    if (userAccountModalTitle) userAccountModalTitle.textContent = 'Tambah Pengguna Baru';
+    if (inputUserPassword) {
+      inputUserPassword.required = true;
+      inputUserPassword.placeholder = 'Minimal 6 karakter';
+    }
+    if (inputUserPasswordRequiredStar) inputUserPasswordRequiredStar.classList.remove('hidden');
+    if (inputUserPasswordHint) {
+      inputUserPasswordHint.textContent = 'Minimal 6 karakter. Kata sandi dienkripsi aman dengan bcryptjs.';
+    }
+    if (btnSubmitUserAccountText) btnSubmitUserAccountText.textContent = 'Buat Akun Pengguna';
+    openUserAccountModal();
+  });
+
+  // Open Edit User Modal
+  document.querySelectorAll('.btn-edit-user-account').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const uId = btn.getAttribute('data-user-id') || '';
+      const uUsername = btn.getAttribute('data-user-username') || '';
+      const uName = btn.getAttribute('data-user-name') || '';
+      const uRole = btn.getAttribute('data-user-role') || 'staf_lapangan';
+
+      if (inputUserId) inputUserId.value = uId;
+      if (inputUserName) inputUserName.value = uName;
+      if (inputUserUsername) inputUserUsername.value = uUsername;
+      if (inputUserRoleSelect) inputUserRoleSelect.value = uRole;
+
+      if (inputUserPassword) {
+        inputUserPassword.value = '';
+        inputUserPassword.required = false;
+        inputUserPassword.placeholder = 'Kosongkan jika tidak ingin mengubah kata sandi';
+      }
+      if (inputUserPasswordRequiredStar) inputUserPasswordRequiredStar.classList.add('hidden');
+      if (inputUserPasswordHint) {
+        inputUserPasswordHint.textContent = 'Biarkan kosong untuk mempertahankan kata sandi lama.';
+      }
+
+      if (userAccountModalTitle) userAccountModalTitle.textContent = `Edit Akun: @${uUsername}`;
+      if (btnSubmitUserAccountText) btnSubmitUserAccountText.textContent = 'Perbarui Akun';
+
+      openUserAccountModal();
+    });
+  });
+
+  // Submit User Account (Create or Update)
+  userAccountForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = inputUserId?.value;
+    const isEdit = Boolean(id);
+    const name = inputUserName?.value.trim();
+    const username = inputUserUsername?.value.trim();
+    const password = inputUserPassword?.value;
+    const role = inputUserRoleSelect?.value;
+
+    if (!name || !username || !role) {
+      alert('Nama lengkap, username, dan role jabatan wajib diisi.');
+      return;
+    }
+
+    if (!isEdit && (!password || password.length < 6)) {
+      alert('Kata sandi untuk pengguna baru minimal 6 karakter.');
+      return;
+    }
+
+    if (isEdit && password && password.length < 6) {
+      alert('Kata sandi baru minimal 6 karakter.');
+      return;
+    }
+
+    if (btnSubmitUserAccount) {
+      btnSubmitUserAccount.setAttribute('disabled', 'true');
+      if (btnSubmitUserAccountText) btnSubmitUserAccountText.textContent = isEdit ? 'Menyimpan...' : 'Membuat...';
+    }
+
+    try {
+      const endpoint = isEdit ? '/api/admin/users/update' : '/api/admin/users/create';
+      const payload: any = {
+        name,
+        username,
+        role,
+      };
+
+      if (isEdit) {
+        payload.id = Number(id);
+        if (password) payload.password = password;
+      } else {
+        payload.password = password;
+      }
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) {
+        throw new Error(result.error || 'Gagal memproses data akun pengguna.');
+      }
+
+      closeUserAccountModal();
+      alert(result.message || (isEdit ? 'Akun berhasil diperbarui!' : 'Akun berhasil dibuat!'));
+      window.location.reload();
+    } catch (err: any) {
+      alert(`Gagal: ${err.message}`);
+      if (btnSubmitUserAccount) {
+        btnSubmitUserAccount.removeAttribute('disabled');
+        if (btnSubmitUserAccountText) btnSubmitUserAccountText.textContent = isEdit ? 'Perbarui Akun' : 'Buat Akun Pengguna';
+      }
+    }
+  });
+
+  // ==========================================
+  // DELETE USER MODAL
+  // ==========================================
+  const deleteUserModal = document.getElementById('deleteUserModal');
+  const deleteUserModalBox = document.getElementById('deleteUserModalBox');
+  const deleteUserDisplay = document.getElementById('deleteUserDisplay');
+  const btnCancelDeleteUserModal = document.getElementById('btnCancelDeleteUserModal');
+  const btnExecuteDeleteUserModal = document.getElementById('btnExecuteDeleteUserModal');
+  let pendingDeleteUserId: number | null = null;
+
+  function openDeleteUserModal(userId: number, username: string) {
+    pendingDeleteUserId = userId;
+    if (deleteUserDisplay) deleteUserDisplay.textContent = `@${username}`;
+    if (!deleteUserModal || !deleteUserModalBox) return;
+    deleteUserModal.classList.remove('opacity-0', 'pointer-events-none');
+    deleteUserModalBox.classList.remove('scale-95');
+    deleteUserModalBox.classList.add('scale-100');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDeleteUserModal() {
+    pendingDeleteUserId = null;
+    if (!deleteUserModal || !deleteUserModalBox) return;
+    deleteUserModal.classList.add('opacity-0', 'pointer-events-none');
+    deleteUserModalBox.classList.remove('scale-100');
+    deleteUserModalBox.classList.add('scale-95');
+    document.body.style.overflow = '';
+  }
+
+  btnCancelDeleteUserModal?.addEventListener('click', closeDeleteUserModal);
+  deleteUserModal?.addEventListener('click', (e) => {
+    if (e.target === deleteUserModal) closeDeleteUserModal();
+  });
+
+  document.querySelectorAll('.btn-delete-user').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const uId = Number(btn.getAttribute('data-user-id'));
+      const uUsername = btn.getAttribute('data-user-username') || '';
+      if (!uId) return;
+      openDeleteUserModal(uId, uUsername);
+    });
+  });
+
+  btnExecuteDeleteUserModal?.addEventListener('click', async () => {
+    if (!pendingDeleteUserId) return;
+
+    btnExecuteDeleteUserModal.setAttribute('disabled', 'true');
+    btnExecuteDeleteUserModal.textContent = 'Menghapus...';
+
+    try {
+      const res = await fetch('/api/admin/users/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: pendingDeleteUserId }),
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) {
+        throw new Error(result.error || 'Gagal menghapus akun pengguna.');
+      }
+
+      closeDeleteUserModal();
+      alert('Akun pengguna berhasil dihapus.');
+      window.location.reload();
+    } catch (err: any) {
+      alert(`Gagal: ${err.message}`);
+      btnExecuteDeleteUserModal.removeAttribute('disabled');
+      btnExecuteDeleteUserModal.textContent = 'Ya, Hapus';
+    }
+  });
+
+  // Global ESC Key Listener
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeUserDrawer();
+      closeUserAccountModal();
+      closeDeleteUserModal();
     }
   });
 </script>

@@ -1,7 +1,8 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
+import bcrypt from 'bcryptjs';
 import * as schema from './schema';
-import { eq, and, asc, desc } from 'drizzle-orm';
+import { eq, and, asc, desc, sql } from 'drizzle-orm';
 
 const connectionString = 
   process.env.DATABASE_URL || 
@@ -265,7 +266,9 @@ export async function toggleNewsArticlePublish(id: number, isPublished: boolean)
 }
 
 export type DonationWithDonor = schema.Donation & {
-  donor: schema.Donor;
+  donor: schema.Donor & {
+    labels?: schema.Label[];
+  };
 };
 
 export async function getAllDonationsWithDonors(): Promise<DonationWithDonor[]> {
@@ -279,9 +282,28 @@ export async function getAllDonationsWithDonors(): Promise<DonationWithDonor[]> 
       .innerJoin(schema.donors, eq(schema.donations.donorId, schema.donors.id))
       .orderBy(desc(schema.donations.createdAt));
 
+    // Fetch all donor_labels joined with labels
+    const dlRows = await db
+      .select({
+        donorId: schema.donorLabels.donorId,
+        label: schema.labels,
+      })
+      .from(schema.donorLabels)
+      .innerJoin(schema.labels, eq(schema.donorLabels.labelId, schema.labels.id));
+
+    const donorLabelsMap = new Map<number, schema.Label[]>();
+    dlRows.forEach((r) => {
+      const existing = donorLabelsMap.get(r.donorId) || [];
+      existing.push(r.label);
+      donorLabelsMap.set(r.donorId, existing);
+    });
+
     return rows.map((r) => ({
       ...r.donation,
-      donor: r.donor,
+      donor: {
+        ...r.donor,
+        labels: donorLabelsMap.get(r.donor.id) || [],
+      },
     }));
   } catch (error) {
     console.error('[DB] Error fetching all donations with donors:', error);
@@ -451,6 +473,7 @@ export async function createDonationWithDonor(params: {
   campaignUtm?: string;
   catatanTransaksi?: string;
   verifiedBy?: string;
+  labelIds?: number[];
 }): Promise<schema.Donation | null> {
   try {
     const donor = await findOrCreateDonor({
@@ -508,6 +531,10 @@ export async function createDonationWithDonor(params: {
         .where(eq(schema.donors.id, donor.id));
     }
 
+    if (params.labelIds && Array.isArray(params.labelIds)) {
+      await setDonorLabels(donor.id, params.labelIds);
+    }
+
     return insertedDonation[0] || null;
   } catch (error) {
     console.error('[DB] Error creating donation with donor:', error);
@@ -538,6 +565,7 @@ export async function updateDonationWithDonor(params: {
   campaignUtm?: string;
   catatanTransaksi?: string;
   verifiedBy?: string;
+  labelIds?: number[];
 }): Promise<boolean> {
   try {
     const existing = await db
@@ -622,6 +650,10 @@ export async function updateDonationWithDonor(params: {
         updatedAt: new Date(),
       })
       .where(eq(schema.donors.id, oldDonation.donorId));
+
+    if (params.labelIds && Array.isArray(params.labelIds)) {
+      await setDonorLabels(oldDonation.donorId, params.labelIds);
+    }
 
     return true;
   } catch (error) {
@@ -1027,6 +1059,265 @@ export async function updateUserPermissions(
   } catch (error) {
     console.error(`[DB] Error updating user permissions for id ${userId}:`, error);
     return null;
+  }
+}
+
+export async function createAdminUser(params: {
+  username: string;
+  password: string;
+  name: string;
+  role: string;
+  permissions?: string[];
+}): Promise<{ success: boolean; user?: schema.AdminUser; error?: string }> {
+  try {
+    const cleanUsername = params.username.trim().toLowerCase();
+    if (!cleanUsername) return { success: false, error: 'Username wajib diisi.' };
+    if (!params.password || params.password.length < 6) return { success: false, error: 'Password minimal 6 karakter.' };
+    if (!params.name.trim()) return { success: false, error: 'Nama lengkap wajib diisi.' };
+
+    const existing = await db
+      .select()
+      .from(schema.adminUsers)
+      .where(eq(schema.adminUsers.username, cleanUsername))
+      .limit(1);
+
+    if (existing.length > 0) {
+      return { success: false, error: `Username @${cleanUsername} sudah digunakan.` };
+    }
+
+    let permissions = params.permissions;
+    if (!permissions || permissions.length === 0) {
+      const roleDef = await db
+        .select()
+        .from(schema.roleDefinitions)
+        .where(eq(schema.roleDefinitions.roleKey, params.role))
+        .limit(1);
+      permissions = roleDef[0]?.permissions || ['overview'];
+    }
+
+    const passwordHash = bcrypt.hashSync(params.password, 10);
+    const inserted = await db
+      .insert(schema.adminUsers)
+      .values({
+        username: cleanUsername,
+        passwordHash,
+        name: params.name.trim(),
+        role: params.role || 'staf_lapangan',
+        permissions,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      })
+      .returning();
+
+    return { success: true, user: inserted[0] };
+  } catch (error: any) {
+    console.error('[DB] Error creating admin user:', error);
+    return { success: false, error: error.message || 'Gagal menambahkan akun admin.' };
+  }
+}
+
+export async function updateAdminUser(params: {
+  id: number;
+  username: string;
+  name: string;
+  role: string;
+  password?: string;
+  permissions?: string[];
+}): Promise<{ success: boolean; user?: schema.AdminUser; error?: string }> {
+  try {
+    const cleanUsername = params.username.trim().toLowerCase();
+    if (!cleanUsername) return { success: false, error: 'Username wajib diisi.' };
+    if (!params.name.trim()) return { success: false, error: 'Nama lengkap wajib diisi.' };
+
+    const targetUser = await db
+      .select()
+      .from(schema.adminUsers)
+      .where(eq(schema.adminUsers.id, params.id))
+      .limit(1);
+
+    if (targetUser.length === 0) {
+      return { success: false, error: 'Akun pengguna tidak ditemukan.' };
+    }
+
+    if (cleanUsername !== targetUser[0].username) {
+      const duplicate = await db
+        .select()
+        .from(schema.adminUsers)
+        .where(eq(schema.adminUsers.username, cleanUsername))
+        .limit(1);
+      if (duplicate.length > 0) {
+        return { success: false, error: `Username @${cleanUsername} sudah digunakan oleh akun lain.` };
+      }
+    }
+
+    const updateData: Partial<schema.AdminUser> = {
+      username: cleanUsername,
+      name: params.name.trim(),
+      role: params.role || targetUser[0].role,
+      updatedAt: new Date(),
+    };
+
+    if (params.password && params.password.trim() !== '') {
+      if (params.password.length < 6) {
+        return { success: false, error: 'Password baru minimal 6 karakter.' };
+      }
+      updateData.passwordHash = bcrypt.hashSync(params.password, 10);
+    }
+
+    if (params.permissions && params.permissions.length > 0) {
+      updateData.permissions = params.permissions;
+    }
+
+    const updated = await db
+      .update(schema.adminUsers)
+      .set(updateData)
+      .where(eq(schema.adminUsers.id, params.id))
+      .returning();
+
+    return { success: true, user: updated[0] };
+  } catch (error: any) {
+    console.error('[DB] Error updating admin user:', error);
+    return { success: false, error: error.message || 'Gagal memperbarui akun admin.' };
+  }
+}
+
+export async function deleteAdminUser(params: {
+  userId: number;
+  currentUserId: number;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    if (params.userId === params.currentUserId) {
+      return { success: false, error: 'Anda tidak dapat menghapus akun Anda sendiri yang sedang aktif digunakan.' };
+    }
+
+    const target = await db
+      .select()
+      .from(schema.adminUsers)
+      .where(eq(schema.adminUsers.id, params.userId))
+      .limit(1);
+
+    if (target.length === 0) {
+      return { success: false, error: 'Akun pengguna tidak ditemukan.' };
+    }
+
+    if (target[0].username === 'admin') {
+      return { success: false, error: 'Akun Administrator Utama (@admin) dilindungi dan tidak dapat dihapus.' };
+    }
+
+    await db.delete(schema.adminUsers).where(eq(schema.adminUsers.id, params.userId));
+    return { success: true };
+  } catch (error: any) {
+    console.error('[DB] Error deleting admin user:', error);
+    return { success: false, error: error.message || 'Gagal menghapus akun admin.' };
+  }
+}
+
+// ==========================================
+// LABEL MANAGEMENT (CRUD & RELASI DONATUR)
+// ==========================================
+
+export interface LabelWithCount extends schema.Label {
+  donorCount: number;
+}
+
+export async function getAllLabels(): Promise<LabelWithCount[]> {
+  try {
+    const allLabels = await db
+      .select()
+      .from(schema.labels)
+      .orderBy(asc(schema.labels.nama));
+
+    const counts = await db
+      .select({
+        labelId: schema.donorLabels.labelId,
+        count: sql<number>`count(*)::int`,
+      })
+      .from(schema.donorLabels)
+      .groupBy(schema.donorLabels.labelId);
+
+    const countMap = new Map<number, number>();
+    counts.forEach((c) => countMap.set(c.labelId, c.count));
+
+    return allLabels.map((l) => ({
+      ...l,
+      donorCount: countMap.get(l.id) || 0,
+    }));
+  } catch (error) {
+    console.error('[DB] Error fetching all labels:', error);
+    return [];
+  }
+}
+
+export async function createLabel(data: {
+  nama: string;
+  warna?: string;
+  deskripsi?: string;
+}): Promise<schema.Label | null> {
+  try {
+    const inserted = await db
+      .insert(schema.labels)
+      .values({
+        nama: data.nama.trim(),
+        warna: (data.warna || 'blue').trim().toLowerCase(),
+        deskripsi: data.deskripsi?.trim() || null,
+        updatedAt: new Date(),
+      })
+      .returning();
+    return inserted[0] || null;
+  } catch (error) {
+    console.error('[DB] Error creating label:', error);
+    return null;
+  }
+}
+
+export async function updateLabel(
+  id: number,
+  data: { nama: string; warna?: string; deskripsi?: string }
+): Promise<boolean> {
+  try {
+    await db
+      .update(schema.labels)
+      .set({
+        nama: data.nama.trim(),
+        warna: (data.warna || 'blue').trim().toLowerCase(),
+        deskripsi: data.deskripsi?.trim() || null,
+        updatedAt: new Date(),
+      })
+      .where(eq(schema.labels.id, id));
+    return true;
+  } catch (error) {
+    console.error(`[DB] Error updating label #${id}:`, error);
+    return false;
+  }
+}
+
+export async function deleteLabel(id: number): Promise<boolean> {
+  try {
+    await db.delete(schema.labels).where(eq(schema.labels.id, id));
+    return true;
+  } catch (error) {
+    console.error(`[DB] Error deleting label #${id}:`, error);
+    return false;
+  }
+}
+
+export async function setDonorLabels(donorId: number, labelIds: number[]): Promise<boolean> {
+  try {
+    await db.delete(schema.donorLabels).where(eq(schema.donorLabels.donorId, donorId));
+    if (labelIds && labelIds.length > 0) {
+      // Deduplicate labelIds
+      const uniqueIds = Array.from(new Set(labelIds));
+      await db.insert(schema.donorLabels).values(
+        uniqueIds.map((lid) => ({
+          donorId,
+          labelId: lid,
+        }))
+      );
+    }
+    return true;
+  } catch (error) {
+    console.error(`[DB] Error setting labels for donor #${donorId}:`, error);
+    return false;
   }
 }
 
