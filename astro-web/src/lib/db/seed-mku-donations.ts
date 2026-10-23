@@ -67,6 +67,9 @@ const rawDonations: RawDonation[] = [
   { no: 55, nama: 'Linda', nominal: 5000000, tanggal: '19/10/2026', keterangan: '-' },
   { no: 56, nama: 'Bude Pasar CI', nominal: 100000, tanggal: '20/10/2026', keterangan: '-' },
   { no: 57, nama: 'Bu Iroy', nominal: 100000, tanggal: '21/10/2026', keterangan: '-' },
+  { no: 58, nama: 'eds', nominal: 75000, tanggal: '23/10/2026', keterangan: '-' },
+  { no: 59, nama: 'Bu Emi', nominal: 1000000, tanggal: '23/10/2026', keterangan: '-' },
+  { no: 60, nama: 'Bu Endang', nominal: 500000, tanggal: '23/10/2026', keterangan: '-' },
 ];
 
 function parseDate(tgl: string, index: number): Date {
