@@ -430,6 +430,8 @@ export async function findOrCreateDonor(data: {
 }
 
 export async function createDonationWithDonor(params: {
+  kodeTransaksi?: string;
+  tanggalTransaksi?: string | Date;
   namaLengkap: string;
   namaTampilan?: string;
   tipeDonatur?: string;
@@ -463,7 +465,10 @@ export async function createDonationWithDonor(params: {
     if (!donor) throw new Error('Gagal memproses profil donatur');
 
     const timestampCode = Date.now().toString().slice(-6);
-    const kodeTransaksi = `GVF-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}-${timestampCode}`;
+    const txnDate = params.tanggalTransaksi ? new Date(params.tanggalTransaksi) : new Date();
+    const finalKodeTransaksi = (params.kodeTransaksi && params.kodeTransaksi.trim() !== '')
+      ? params.kodeTransaksi.trim()
+      : `GVF-${txnDate.getFullYear()}${String(txnDate.getMonth() + 1).padStart(2, '0')}-${timestampCode}`;
     const kodeUnik = params.kodeUnik || 0;
     const nominalTotal = params.nominal + kodeUnik;
     const isLunas = params.statusPembayaran === 'lunas';
@@ -471,7 +476,7 @@ export async function createDonationWithDonor(params: {
     const insertedDonation = await db
       .insert(schema.donations)
       .values({
-        kodeTransaksi,
+        kodeTransaksi: finalKodeTransaksi,
         donorId: donor.id,
         programTujuan: params.programTujuan,
         nominal: params.nominal,
@@ -488,7 +493,7 @@ export async function createDonationWithDonor(params: {
         sumberLeads: params.sumberLeads || 'relasi_langsung',
         campaignUtm: params.campaignUtm || null,
         catatanTransaksi: params.catatanTransaksi || null,
-        createdAt: new Date(),
+        createdAt: txnDate,
       })
       .returning();
 
@@ -928,4 +933,85 @@ export async function deleteCashAllocation(id: number): Promise<boolean> {
     return false;
   }
 }
+
+/**
+ * ====================================================
+ * ROLE & PERMISSION (RBAC) FUNCTIONS
+ * ====================================================
+ */
+
+export async function getAllRoles(): Promise<schema.RoleDefinition[]> {
+  try {
+    return await db.select().from(schema.roleDefinitions).orderBy(schema.roleDefinitions.roleKey);
+  } catch (error) {
+    console.error('[DB] Error fetching roles:', error);
+    return [];
+  }
+}
+
+export async function getAllAdminUsers(): Promise<schema.AdminUser[]> {
+  try {
+    return await db.select().from(schema.adminUsers).orderBy(schema.adminUsers.id);
+  } catch (error) {
+    console.error('[DB] Error fetching admin users:', error);
+    return [];
+  }
+}
+
+export async function updateRolePermissions(
+  roleKey: string,
+  permissions: string[]
+): Promise<schema.RoleDefinition | null> {
+  try {
+    const updated = await db
+      .update(schema.roleDefinitions)
+      .set({
+        permissions,
+        updatedAt: new Date(),
+      })
+      .where(eq(schema.roleDefinitions.roleKey, roleKey))
+      .returning();
+
+    // Juga update semua admin users yang memiliki role ini jika user tidak memiliki custom override
+    await db
+      .update(schema.adminUsers)
+      .set({
+        permissions,
+        updatedAt: new Date(),
+      })
+      .where(eq(schema.adminUsers.role, roleKey));
+
+    return updated[0] || null;
+  } catch (error) {
+    console.error(`[DB] Error updating role permissions for ${roleKey}:`, error);
+    return null;
+  }
+}
+
+export async function updateUserPermissions(
+  userId: number,
+  permissions: string[],
+  role?: string
+): Promise<schema.AdminUser | null> {
+  try {
+    const data: Partial<schema.AdminUser> = {
+      permissions,
+      updatedAt: new Date(),
+    };
+    if (role) {
+      data.role = role;
+    }
+    const updated = await db
+      .update(schema.adminUsers)
+      .set(data)
+      .where(eq(schema.adminUsers.id, userId))
+      .returning();
+
+    return updated[0] || null;
+  } catch (error) {
+    console.error(`[DB] Error updating user permissions for id ${userId}:`, error);
+    return null;
+  }
+}
+
 

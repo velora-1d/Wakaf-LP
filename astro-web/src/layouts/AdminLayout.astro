@@ -7,7 +7,20 @@ interface Props {
 }
 
 const { title, activeSlug } = Astro.props;
-const adminUser = (Astro.locals as any).adminUser || { username: 'admin', name: 'Administrator GVF', role: 'superadmin' };
+const adminUser = (Astro.locals as any).adminUser || { 
+  username: 'admin', 
+  name: 'Administrator GVF', 
+  role: 'superadmin',
+  permissions: [
+    'overview', 'kabar', 'donatur', 'roles',
+    'home', 'tentang-kami', 'kemitraan', 'contact',
+    'wakaf', 'infaq', 'sedekah', 'zakat'
+  ]
+};
+
+const userPerms: string[] = Array.isArray(adminUser.permissions) ? adminUser.permissions : [];
+const isSuperAdmin = adminUser.role === 'superadmin';
+const canAccess = (key: string) => isSuperAdmin || userPerms.includes(key);
 
 const navPages = [
   { slug: 'home', name: 'Beranda Utama', icon: 'home' },
@@ -19,6 +32,8 @@ const navPages = [
   { slug: 'sedekah', name: 'Program Sedekah', icon: 'heart' },
   { slug: 'zakat', name: 'Program Zakat', icon: 'shield' },
 ];
+
+const hasPermissionForCurrentPage = !activeSlug || canAccess(activeSlug);
 ---
 
 <!doctype html>
@@ -30,6 +45,13 @@ const navPages = [
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script is:inline>
+      try {
+        if (localStorage.getItem('gvf_admin_sidebar_collapsed') === 'true') {
+          document.documentElement.classList.add('sidebar-init-collapsed');
+        }
+      } catch (e) {}
+    </script>
     <style is:global>
       body {
         font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
@@ -43,6 +65,54 @@ const navPages = [
         margin: 0;
         font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, sans-serif;
       }
+
+      /* Collapsible Sidebar Styles */
+      #adminSidebar {
+        transition: width 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), min-width 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), max-width 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.3s ease-in-out !important;
+      }
+      
+      html.sidebar-init-collapsed #adminSidebar,
+      #adminSidebar.is-collapsed {
+        width: 4.5rem !important;
+        min-width: 4.5rem !important;
+        max-width: 4.5rem !important;
+      }
+
+      html.sidebar-init-collapsed #adminSidebar .sidebar-text,
+      html.sidebar-init-collapsed #adminSidebar .sidebar-label,
+      html.sidebar-init-collapsed #adminSidebar .sidebar-badge-dot,
+      html.sidebar-init-collapsed #adminSidebar .sidebar-user-info,
+      html.sidebar-init-collapsed #adminSidebar .sidebar-separator-text,
+      #adminSidebar.is-collapsed .sidebar-text,
+      #adminSidebar.is-collapsed .sidebar-label,
+      #adminSidebar.is-collapsed .sidebar-badge-dot,
+      #adminSidebar.is-collapsed .sidebar-user-info,
+      #adminSidebar.is-collapsed .sidebar-separator-text {
+        display: none !important;
+      }
+
+      html.sidebar-init-collapsed #adminSidebar .sidebar-separator-line,
+      #adminSidebar.is-collapsed .sidebar-separator-line {
+        display: block !important;
+      }
+
+      html.sidebar-init-collapsed #adminSidebar .sidebar-nav-item,
+      #adminSidebar.is-collapsed .sidebar-nav-item {
+        justify-content: center !important;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+      }
+
+      html.sidebar-init-collapsed #adminSidebar .sidebar-user-box,
+      #adminSidebar.is-collapsed .sidebar-user-box {
+        justify-content: center !important;
+        padding: 0.5rem 0.25rem !important;
+      }
+
+      html.sidebar-init-collapsed #adminSidebar .sidebar-logout-btn,
+      #adminSidebar.is-collapsed .sidebar-logout-btn {
+        display: none !important;
+      }
     </style>
   </head>
   <body class="min-h-screen antialiased text-slate-800 bg-[#f8fafc]" translate="no">
@@ -54,25 +124,40 @@ const navPages = [
         aria-hidden="true"
       ></div>
 
-      <!-- Sidebar Navigation (BEKU / STICKY DI VIEWPORT) -->
+      <!-- Sidebar Navigation (BEKU / STICKY DI VIEWPORT & BISA DICULIK/COLLAPSIBLE) -->
       <aside
         id="adminSidebar"
-        class="fixed inset-y-0 left-0 z-50 w-64 bg-white text-slate-700 flex flex-col shrink-0 border-r border-slate-200 h-full transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0 md:sticky md:top-0 md:h-screen md:max-h-screen md:w-60 md:min-w-[15rem] md:max-w-[15rem] shadow-2xl md:shadow-none"
+        class="fixed inset-y-0 left-0 z-50 w-64 bg-white text-slate-700 flex flex-col shrink-0 border-r border-slate-200 h-full -translate-x-full md:translate-x-0 md:sticky md:top-0 md:h-screen md:max-h-screen md:w-60 md:min-w-[15rem] md:max-w-[15rem] shadow-2xl md:shadow-none"
         translate="no"
       >
         <!-- Sidebar Header (Beku di atas sidebar) -->
-        <div class="h-14 flex items-center justify-between px-4 border-b border-slate-200 shrink-0 bg-white">
+        <div class="h-14 flex items-center justify-between px-3 border-b border-slate-200 shrink-0 bg-white overflow-hidden">
           <div class="flex items-center gap-2.5 min-w-0">
-            <div class="w-8 h-8 rounded-lg bg-[#0969da] flex items-center justify-center text-white font-bold text-sm shadow-xs shrink-0">
+            <div class="w-8 h-8 rounded-lg bg-[#0969da] flex items-center justify-center text-white font-bold text-sm shadow-xs shrink-0" title="Global Village Fund">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
               </svg>
             </div>
-            <div class="min-w-0">
+            <div class="sidebar-text min-w-0">
               <span class="font-bold text-slate-900 tracking-tight text-xs block leading-tight truncate">Global Village Fund</span>
               <span class="text-[10px] text-[#0969da] block font-semibold leading-tight">Panel Kelola Konten</span>
             </div>
           </div>
+          <!-- Desktop Collapse Button -->
+          <button
+            type="button"
+            id="sidebarDesktopCollapseBtn"
+            class="hidden md:flex p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-md transition-colors cursor-pointer"
+            title="Ciutkan / Perluas Bilah Samping"
+            aria-label="Toggle Collapse Sidebar"
+          >
+            <svg id="collapseIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="18" x="3" y="3" rx="2"/>
+              <path d="M9 3v18"/>
+              <path d="m14 9-3 3 3 3"/>
+            </svg>
+          </button>
+          <!-- Mobile Close Button -->
           <button
             type="button"
             id="sidebarCloseBtn"
@@ -86,207 +171,254 @@ const navPages = [
           </button>
         </div>
 
-        <!-- Navigation Links (Menu Aktif Solid & Sangat Jelas) -->
-        <nav class="flex-1 px-3 py-3 space-y-1 overflow-y-auto">
+        <!-- Navigation Links (Dinamis Sesuai Role & Hak Akses Checkbox) -->
+        <nav class="flex-1 px-2.5 py-3 space-y-1 overflow-y-auto">
           <!-- Menu Dasbor Utama -->
-          <a
-            href="/admin"
-            class={`flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs font-semibold transition-all ${
-              !activeSlug || activeSlug === 'overview'
-                ? 'bg-[#0969da] text-white shadow-xs'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-            }`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class={`shrink-0 ${!activeSlug || activeSlug === 'overview' ? 'text-white' : 'text-slate-400'}`}
+          {canAccess('overview') && (
+            <a
+              href="/admin"
+              class={`sidebar-nav-item flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs font-semibold transition-all ${
+                !activeSlug || activeSlug === 'overview'
+                  ? 'bg-[#0969da] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+              title="Ringkasan Dasbor"
             >
-              <rect width="7" height="9" x="3" y="3" rx="1"/>
-              <rect width="7" height="5" x="14" y="3" rx="1"/>
-              <rect width="7" height="9" x="14" y="12" rx="1"/>
-              <rect width="7" height="5" x="3" y="16" rx="1"/>
-            </svg>
-            <span class="truncate flex-1">Ringkasan Dasbor</span>
-            {(!activeSlug || activeSlug === 'overview') && (
-              <span class="w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
-            )}
-          </a>
-
-          <!-- Menu Kelola Kabar & Warta -->
-          <a
-            href="/admin/kabar"
-            class={`flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs font-semibold transition-all ${
-              activeSlug === 'kabar'
-                ? 'bg-[#0969da] text-white shadow-xs'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-            }`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class={`shrink-0 ${activeSlug === 'kabar' ? 'text-white' : 'text-slate-400'}`}
-            >
-              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
-              <path d="M18 14h-8"/>
-              <path d="M15 18h-5"/>
-              <path d="M10 6h8v4h-8V6Z"/>
-            </svg>
-            <span class="truncate flex-1">Kabar &amp; Warta</span>
-            {activeSlug === 'kabar' && (
-              <span class="w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
-            )}
-          </a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class={`shrink-0 ${!activeSlug || activeSlug === 'overview' ? 'text-white' : 'text-slate-400'}`}
+              >
+                <rect width="7" height="9" x="3" y="3" rx="1"/>
+                <rect width="7" height="5" x="14" y="3" rx="1"/>
+                <rect width="7" height="9" x="14" y="12" rx="1"/>
+                <rect width="7" height="5" x="3" y="16" rx="1"/>
+              </svg>
+              <span class="sidebar-label truncate flex-1">Ringkasan Dasbor</span>
+              {(!activeSlug || activeSlug === 'overview') && (
+                <span class="sidebar-badge-dot w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
+              )}
+            </a>
+          )}
 
           <!-- Menu Donatur & Saluran Leads -->
-          <a
-            href="/admin/donatur"
-            class={`flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs font-semibold transition-all ${
-              activeSlug === 'donatur'
-                ? 'bg-[#0969da] text-white shadow-xs'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-            }`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class={`shrink-0 ${activeSlug === 'donatur' ? 'text-white' : 'text-slate-400'}`}
+          {canAccess('donatur') && (
+            <a
+              href="/admin/donatur"
+              class={`sidebar-nav-item flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs font-semibold transition-all ${
+                activeSlug === 'donatur'
+                  ? 'bg-[#0969da] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+              title="Donatur & Leads"
             >
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-            <span class="truncate flex-1">Donatur &amp; Leads</span>
-            {activeSlug === 'donatur' && (
-              <span class="w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
-            )}
-          </a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class={`shrink-0 ${activeSlug === 'donatur' ? 'text-white' : 'text-slate-400'}`}
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <span class="sidebar-label truncate flex-1">Donatur &amp; Leads</span>
+              {activeSlug === 'donatur' && (
+                <span class="sidebar-badge-dot w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
+              )}
+            </a>
+          )}
+
+          <!-- Menu Kelola Kabar & Warta -->
+          {canAccess('kabar') && (
+            <a
+              href="/admin/kabar"
+              class={`sidebar-nav-item flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs font-semibold transition-all ${
+                activeSlug === 'kabar'
+                  ? 'bg-[#0969da] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+              title="Kabar & Warta"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class={`shrink-0 ${activeSlug === 'kabar' ? 'text-white' : 'text-slate-400'}`}
+              >
+                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                <path d="M18 14h-8"/>
+                <path d="M15 18h-5"/>
+                <path d="M10 6h8v4h-8V6Z"/>
+              </svg>
+              <span class="sidebar-label truncate flex-1">Kabar &amp; Warta</span>
+              {activeSlug === 'kabar' && (
+                <span class="sidebar-badge-dot w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
+              )}
+            </a>
+          )}
+
+          <!-- Menu Hak Akses & Roles (RBAC) -->
+          {canAccess('roles') && (
+            <a
+              href="/admin/roles"
+              class={`sidebar-nav-item flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs font-semibold transition-all ${
+                activeSlug === 'roles'
+                  ? 'bg-[#0969da] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+              title="Hak Akses & Roles"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class={`shrink-0 ${activeSlug === 'roles' ? 'text-white' : 'text-slate-400'}`}
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span class="sidebar-label truncate flex-1">Hak Akses &amp; Roles</span>
+              {activeSlug === 'roles' && (
+                <span class="sidebar-badge-dot w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
+              )}
+            </a>
+          )}
 
           <!-- Separator Menu Halaman -->
-          <div class="pt-3 pb-1 px-3">
-            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">MENU HALAMAN</span>
-          </div>
+          {navPages.some((p) => canAccess(p.slug)) && (
+            <div class="pt-3 pb-1 px-3">
+              <span class="sidebar-separator-text text-[10px] uppercase font-bold tracking-wider text-slate-400">MENU HALAMAN</span>
+              <div class="sidebar-separator-line hidden h-px bg-slate-200 my-1"></div>
+            </div>
+          )}
 
-          <!-- Daftar Menu Halaman -->
-          {navPages.map((page) => {
-            const isActive = activeSlug === page.slug;
-            return (
-              <a
-                href={`/admin/pages/${page.slug}`}
-                class={`flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs transition-all ${
-                  isActive
-                    ? 'bg-[#0969da] text-white font-bold shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium'
-                }`}
-                title={page.name}
-              >
-                {page.slug === 'home' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9 22 9 12 15 12 15 22"/>
-                  </svg>
-                )}
-                {page.slug === 'tentang-kami' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 16v-4"/>
-                    <path d="M12 8h.01"/>
-                  </svg>
-                )}
-                {page.slug === 'kemitraan' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                  </svg>
-                )}
-                {page.slug === 'contact' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
-                    <rect width="20" height="16" x="2" y="4" rx="2"/>
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                  </svg>
-                )}
-                {page.slug === 'wakaf' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
-                    <line x1="3" x2="21" y1="22" y2="22"/>
-                    <line x1="6" x2="6" y1="18" y2="11"/>
-                    <line x1="10" x2="10" y1="18" y2="11"/>
-                    <line x1="14" x2="14" y1="18" y2="11"/>
-                    <line x1="18" x2="18" y1="18" y2="11"/>
-                    <polygon points="12 2 20 7 4 7"/>
-                  </svg>
-                )}
-                {page.slug === 'infaq' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
-                    <circle cx="8" cy="8" r="6"/>
-                    <path d="M18.09 10.37A6 6 0 1 1 10.34 18"/>
-                    <path d="M7 6h1v4"/>
-                    <path d="m16.71 13.88.7.71-2.82 2.82"/>
-                  </svg>
-                )}
-                {page.slug === 'sedekah' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
-                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-                  </svg>
-                )}
-                {page.slug === 'zakat' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
-                    <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
-                    <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
-                    <path d="M7 21h10"/>
-                    <path d="M12 3v18"/>
-                    <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>
-                  </svg>
-                )}
-                <span class="truncate flex-1">{page.name}</span>
-                {isActive && (
-                  <span class="w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
-                )}
-              </a>
-            );
-          })}
+          <!-- Daftar Menu Halaman (Difilter Sesuai Izin Checkbox) -->
+          {navPages
+            .filter((page) => canAccess(page.slug))
+            .map((page) => {
+              const isActive = activeSlug === page.slug;
+              return (
+                <a
+                  href={`/admin/pages/${page.slug}`}
+                  class={`sidebar-nav-item flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs transition-all ${
+                    isActive
+                      ? 'bg-[#0969da] text-white font-bold shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium'
+                  }`}
+                  title={page.name}
+                >
+                  {page.slug === 'home' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                      <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                  )}
+                  {page.slug === 'tentang-kami' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                      <circle cx="12" cy="12" r="10"/>
+                      <path d="M12 16v-4"/>
+                      <path d="M12 8h.01"/>
+                    </svg>
+                  )}
+                  {page.slug === 'kemitraan' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                  )}
+                  {page.slug === 'contact' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                      <rect width="20" height="16" x="2" y="4" rx="2"/>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                  )}
+                  {page.slug === 'wakaf' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                      <line x1="3" x2="21" y1="22" y2="22"/>
+                      <line x1="6" x2="6" y1="18" y2="11"/>
+                      <line x1="10" x2="10" y1="18" y2="11"/>
+                      <line x1="14" x2="14" y1="18" y2="11"/>
+                      <line x1="18" x2="18" y1="18" y2="11"/>
+                      <polygon points="12 2 20 7 4 7"/>
+                    </svg>
+                  )}
+                  {page.slug === 'infaq' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                      <circle cx="8" cy="8" r="6"/>
+                      <path d="M18.09 10.37A6 6 0 1 1 10.34 18"/>
+                      <path d="M7 6h1v4"/>
+                      <path d="m16.71 13.88.7.71-2.82 2.82"/>
+                    </svg>
+                  )}
+                  {page.slug === 'sedekah' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
+                  )}
+                  {page.slug === 'zakat' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                      <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                      <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                      <path d="M7 21h10"/>
+                      <path d="M12 3v18"/>
+                      <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>
+                    </svg>
+                  )}
+                  <span class="sidebar-label truncate flex-1">{page.name}</span>
+                  {isActive && (
+                    <span class="sidebar-badge-dot w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
+                  )}
+                </a>
+              );
+            })}
         </nav>
 
         <!-- User Profile & Logout (Beku di dasar sidebar) -->
-        <div class="p-3 border-t border-slate-200 mt-auto shrink-0 bg-white">
-          <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+        <div class="p-2.5 border-t border-slate-200 mt-auto shrink-0 bg-white">
+          <div class="sidebar-user-box flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
             <div class="flex items-center gap-2.5 min-w-0">
-              <div class="w-7 h-7 rounded-md bg-blue-100 text-[#0969da] font-bold text-xs flex items-center justify-center shrink-0">
+              <div class="w-7 h-7 rounded-md bg-blue-100 text-[#0969da] font-bold text-xs flex items-center justify-center shrink-0" title={adminUser.name}>
                 {(adminUser?.username || 'admin').substring(0, 2).toUpperCase()}
               </div>
-              <div class="min-w-0">
+              <div class="sidebar-user-info min-w-0">
                 <p class="text-xs font-semibold text-slate-900 truncate leading-tight">{adminUser.name}</p>
                 <p class="text-[10px] text-slate-500 truncate leading-tight">
-                  {adminUser.role === 'superadmin' ? 'Pengelola Utama' : 'Administrator'}
+                  {adminUser.role === 'superadmin' ? 'Pengelola Utama' : `Role: ${adminUser.role}`}
                 </p>
               </div>
             </div>
             <a
               href="/api/admin/logout"
-              class="text-slate-400 hover:text-red-600 p-1.5 rounded-md hover:bg-red-50 transition-colors shrink-0"
+              class="sidebar-logout-btn text-slate-400 hover:text-red-600 p-1.5 rounded-md hover:bg-red-50 transition-colors shrink-0"
               title="Keluar dari Panel Admin"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -339,9 +471,22 @@ const navPages = [
           </div>
         </div>
 
-        <!-- Desktop Top Header Bar (shadcn style) -->
+        <!-- Desktop Top Header Bar (shadcn style with collapse toggle) -->
         <header class="hidden md:flex h-14 bg-white/95 backdrop-blur border-b border-slate-200 px-6 items-center justify-between sticky top-0 z-30">
           <div class="flex items-center gap-3">
+            <!-- Desktop Collapse Toggle Button -->
+            <button
+              id="desktopSidebarToggle"
+              type="button"
+              class="p-2 -ml-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer flex items-center justify-center"
+              title="Ciutkan / Perluas Bilah Samping"
+              aria-label="Toggle Sidebar"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2"/>
+                <path d="M9 3v18"/>
+              </svg>
+            </button>
             <h1 class="text-sm font-semibold tracking-tight text-slate-900 m-0">{title}</h1>
             <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -366,9 +511,33 @@ const navPages = [
           </div>
         </header>
 
-        <!-- Main Body (Full Width without excess margins) -->
+        <!-- Main Body (Full Width with Access Check) -->
         <main class="flex-1 p-6 w-full">
-          <slot />
+          {!hasPermissionForCurrentPage ? (
+            <div class="max-w-md mx-auto my-16 p-8 bg-white rounded-2xl border border-amber-200 shadow-sm text-center space-y-3">
+              <div class="w-12 h-12 mx-auto rounded-full bg-amber-50 text-amber-600 flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              </div>
+              <h2 class="text-base font-bold text-slate-900">Akses Menu Dibatasi</h2>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Akun Anda ({adminUser.username}) dengan role <strong>{adminUser.role}</strong> tidak memiliki izin akses untuk menu <code>{activeSlug}</code>. Hubungi Super Administrator untuk meminta izin centang menu.
+              </p>
+              <div class="pt-2">
+                <a
+                  href="/admin"
+                  class="inline-flex items-center justify-center h-8 px-4 rounded-md text-xs font-semibold bg-[#0969da] text-white hover:bg-[#0752a8] transition-colors shadow-2xs"
+                >
+                  Kembali ke Dasbor Utama
+                </a>
+              </div>
+            </div>
+          ) : (
+            <slot />
+          )}
         </main>
 
         <!-- Footer Bar -->
@@ -387,8 +556,30 @@ const navPages = [
         // Sidebar Mobile Drawer Toggle
         const sidebar = document.getElementById('adminSidebar');
         const backdrop = document.getElementById('sidebarBackdrop');
-        const toggleBtn = document.getElementById('mobileSidebarToggle');
+        const mobileToggleBtn = document.getElementById('mobileSidebarToggle');
+        const desktopToggleBtn = document.getElementById('desktopSidebarToggle');
+        const sidebarDesktopCollapseBtn = document.getElementById('sidebarDesktopCollapseBtn');
         const closeBtn = document.getElementById('sidebarCloseBtn');
+
+        const STORAGE_KEY = 'gvf_admin_sidebar_collapsed';
+
+        // Check initial state from localStorage
+        const isCollapsedInit = localStorage.getItem(STORAGE_KEY) === 'true';
+        if (isCollapsedInit && sidebar) {
+          sidebar.classList.add('is-collapsed');
+        }
+
+        function toggleDesktopCollapse() {
+          if (!sidebar) return;
+          document.documentElement.classList.remove('sidebar-init-collapsed');
+          const isNowCollapsed = sidebar.classList.toggle('is-collapsed');
+          try {
+            localStorage.setItem(STORAGE_KEY, String(isNowCollapsed));
+          } catch (e) {}
+        }
+
+        desktopToggleBtn?.addEventListener('click', toggleDesktopCollapse);
+        sidebarDesktopCollapseBtn?.addEventListener('click', toggleDesktopCollapse);
 
         function openSidebar() {
           if (!sidebar || !backdrop) return;
@@ -404,7 +595,7 @@ const navPages = [
           document.body.style.overflow = '';
         }
 
-        toggleBtn?.addEventListener('click', openSidebar);
+        mobileToggleBtn?.addEventListener('click', openSidebar);
         closeBtn?.addEventListener('click', closeSidebar);
         backdrop?.addEventListener('click', closeSidebar);
 
@@ -421,7 +612,7 @@ const navPages = [
           toast.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${isError ? 'text-red-400' : 'text-blue-400'}">
               ${isError 
-                ? '<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>' 
+                ? '<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y2="16" y2="16"/>' 
                 : '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'}
             </svg>
             <span>${message}</span>

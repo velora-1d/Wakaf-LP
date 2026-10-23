@@ -254,6 +254,16 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
             <option value="zakat">Zakat (Zakat Maal &amp; Fitrah)</option>
           </select>
 
+          <!-- Filter Rentang Nominal -->
+          <select id="filterNominal" class="h-9 rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-2xs focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+            <option value="all">Semua Nominal</option>
+            <option value="under_100k">&lt; Rp 100.000</option>
+            <option value="100k_500k">Rp 100.000 - Rp 500.000</option>
+            <option value="500k_1m">Rp 500.000 - Rp 1.000.000</option>
+            <option value="1m_5m">Rp 1.000.000 - Rp 5.000.000</option>
+            <option value="above_5m">&gt; Rp 5.000.000 (Besar / VIP)</option>
+          </select>
+
           <button
             type="button"
             id="btnResetFilters"
@@ -353,6 +363,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
                     data-status={d.statusPembayaran}
                     data-lead={d.sumberLeads}
                     data-program={d.programTujuan}
+                    data-nominal={d.nominalTotal}
                     data-id={d.id}
                   >
                     <!-- Checkbox -->
@@ -575,9 +586,52 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
           </tbody>
         </table>
       </div>
-      <div class="px-4 py-2.5 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between text-xs text-slate-500">
-        <span>Menampilkan <strong id="displayedRowsCount" class="font-semibold text-slate-700">{donations.length}</strong> data donasi</span>
-        <span class="font-mono text-[11px] text-slate-400">PostgreSQL Live Sync</span>
+      <div class="px-4 py-3 border-t border-slate-200 bg-slate-50/75 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+        <!-- Per-page selection & count -->
+        <div class="flex items-center gap-2.5">
+          <span class="text-slate-500">Tampilkan</span>
+          <select id="donationsPerPage" class="h-8 rounded-md border border-slate-200 bg-white px-2 py-0.5 text-xs font-semibold text-slate-700 shadow-2xs focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+            <option value="10">10 data</option>
+            <option value="25" selected>25 data</option>
+            <option value="50">50 data</option>
+            <option value="all">Semua</option>
+          </select>
+          <span class="text-slate-500">
+            dari <strong id="donationsTotalCount" class="font-semibold text-slate-800">{donations.length}</strong> data
+            <span id="donationsRangeText" class="text-slate-400 text-[11px] ml-1"></span>
+          </span>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="flex items-center gap-1.5" id="donationsPaginationControls">
+          <button
+            type="button"
+            id="btnDonationsPrevPage"
+            class="h-8 px-2.5 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-2xs flex items-center gap-1 font-medium cursor-pointer"
+            aria-label="Halaman Sebelumnya"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span class="hidden sm:inline">Sebelumnya</span>
+          </button>
+
+          <div id="donationsPageNumbers" class="flex items-center gap-1">
+            <!-- Injected by JS -->
+          </div>
+
+          <button
+            type="button"
+            id="btnDonationsNextPage"
+            class="h-8 px-2.5 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-2xs flex items-center gap-1 font-medium cursor-pointer"
+            aria-label="Halaman Berikutnya"
+          >
+            <span class="hidden sm:inline">Berikutnya</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -897,9 +951,52 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
           </tbody>
         </table>
       </div>
-      <div class="px-4 py-2.5 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between text-xs text-slate-500">
-        <span>Menampilkan <strong id="displayedAlokasiCount" class="font-semibold text-slate-700">{allocations.length}</strong> transaksi kas</span>
-        <span class="font-mono text-[11px] text-slate-400">Buku Besar Kas GVF &bull; PostgreSQL Live Sync</span>
+      <div class="px-4 py-3 border-t border-slate-200 bg-slate-50/75 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+        <!-- Per-page selection & count -->
+        <div class="flex items-center gap-2.5">
+          <span class="text-slate-500">Tampilkan</span>
+          <select id="alokasiPerPage" class="h-8 rounded-md border border-slate-200 bg-white px-2 py-0.5 text-xs font-semibold text-slate-700 shadow-2xs focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+            <option value="10">10 data</option>
+            <option value="25" selected>25 data</option>
+            <option value="50">50 data</option>
+            <option value="all">Semua</option>
+          </select>
+          <span class="text-slate-500">
+            dari <strong id="alokasiTotalCount" class="font-semibold text-slate-800">{allocations.length}</strong> transaksi
+            <span id="alokasiRangeText" class="text-slate-400 text-[11px] ml-1"></span>
+          </span>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="flex items-center gap-1.5" id="alokasiPaginationControls">
+          <button
+            type="button"
+            id="btnAlokasiPrevPage"
+            class="h-8 px-2.5 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-2xs flex items-center gap-1 font-medium cursor-pointer"
+            aria-label="Halaman Sebelumnya"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span class="hidden sm:inline">Sebelumnya</span>
+          </button>
+
+          <div id="alokasiPageNumbers" class="flex items-center gap-1">
+            <!-- Injected by JS -->
+          </div>
+
+          <button
+            type="button"
+            id="btnAlokasiNextPage"
+            class="h-8 px-2.5 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-2xs flex items-center gap-1 font-medium cursor-pointer"
+            aria-label="Halaman Berikutnya"
+          >
+            <span class="hidden sm:inline">Berikutnya</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1695,14 +1792,116 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
     }
   });
 
-  // 3. SEARCH & FILTER TABLE REALTIME
+  // 3. SEARCH & FILTER TABLE REALTIME WITH PAGINATION
+  const donationsPerPageSelect = document.getElementById('donationsPerPage') as HTMLSelectElement | null;
+  const donationsTotalCount = document.getElementById('donationsTotalCount');
+  const donationsRangeText = document.getElementById('donationsRangeText');
+  const btnDonationsPrevPage = document.getElementById('btnDonationsPrevPage') as HTMLButtonElement | null;
+  const btnDonationsNextPage = document.getElementById('btnDonationsNextPage') as HTMLButtonElement | null;
+  const donationsPageNumbers = document.getElementById('donationsPageNumbers');
+
+  let donationsCurrentPage = 1;
+  let donationsMatchedRows: HTMLTableRowElement[] = [];
+
+  function getSmartPaginationRange(current: number, total: number): (number | string)[] {
+    if (total <= 7) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+    if (current <= 4) {
+      return [1, 2, 3, 4, 5, '...', total];
+    }
+    if (current >= total - 3) {
+      return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
+    }
+    return [1, '...', current - 1, current, current + 1, '...', total];
+  }
+
+  function renderDonationsPagination() {
+    const rawPageSize = donationsPerPageSelect?.value || '25';
+    const isAll = rawPageSize === 'all';
+    const pageSize = isAll ? Math.max(1, donationsMatchedRows.length) : parseInt(rawPageSize, 10);
+    const totalItems = donationsMatchedRows.length;
+    const totalPages = isAll ? 1 : Math.max(1, Math.ceil(totalItems / pageSize));
+
+    if (donationsCurrentPage > totalPages) donationsCurrentPage = totalPages;
+    if (donationsCurrentPage < 1) donationsCurrentPage = 1;
+
+    // Sembunyikan semua row dahulu
+    tableRows.forEach(r => { r.style.display = 'none'; });
+
+    // Tampilkan hanya baris untuk halaman saat ini
+    const startIdx = (donationsCurrentPage - 1) * pageSize;
+    const endIdx = isAll ? totalItems : Math.min(startIdx + pageSize, totalItems);
+
+    for (let i = startIdx; i < endIdx; i++) {
+      if (donationsMatchedRows[i]) {
+        donationsMatchedRows[i].style.display = '';
+      }
+    }
+
+    // Perbarui teks info count & range
+    if (donationsTotalCount) donationsTotalCount.textContent = String(totalItems);
+    if (donationsRangeText) {
+      if (totalItems === 0) {
+        donationsRangeText.textContent = '(0 ditampilkan)';
+      } else {
+        donationsRangeText.textContent = `(Baris ${startIdx + 1} - ${endIdx})`;
+      }
+    }
+
+    // Tombol Prev / Next
+    if (btnDonationsPrevPage) btnDonationsPrevPage.disabled = donationsCurrentPage <= 1;
+    if (btnDonationsNextPage) btnDonationsNextPage.disabled = donationsCurrentPage >= totalPages;
+
+    // Render Tombol Nomor Halaman
+    if (donationsPageNumbers) {
+      donationsPageNumbers.innerHTML = '';
+      if (totalPages <= 1) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'h-8 w-8 rounded-md text-xs font-semibold bg-[#0969da] text-white flex items-center justify-center cursor-default';
+        btn.textContent = '1';
+        donationsPageNumbers.appendChild(btn);
+      } else {
+        const pages = getSmartPaginationRange(donationsCurrentPage, totalPages);
+        pages.forEach((p) => {
+          if (p === '...') {
+            const span = document.createElement('span');
+            span.className = 'px-1 text-slate-400 font-bold select-none';
+            span.textContent = '...';
+            donationsPageNumbers.appendChild(span);
+          } else {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = `h-8 w-8 rounded-md text-xs font-semibold transition-colors shadow-2xs flex items-center justify-center cursor-pointer ${
+              Number(p) === donationsCurrentPage
+                ? 'bg-[#0969da] text-white font-bold'
+                : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+            }`;
+            btn.textContent = String(p);
+            btn.addEventListener('click', () => {
+              donationsCurrentPage = Number(p);
+              renderDonationsPagination();
+            });
+            donationsPageNumbers.appendChild(btn);
+          }
+        });
+      }
+    }
+
+    updateBulkActionBar();
+  }
+
+  const filterNominal = document.getElementById('filterNominal') as HTMLSelectElement | null;
+
   function applyFilters() {
     const q = (searchInput?.value || '').toLowerCase().trim();
     const st = filterStatus?.value || 'all';
     const ld = filterLeads?.value || 'all';
     const pg = filterProgram?.value || 'all';
+    const nm = filterNominal?.value || 'all';
 
-    let visibleCount = 0;
+    donationsMatchedRows = [];
 
     tableRows.forEach((row) => {
       const searchMatch = !q || (row.getAttribute('data-search') || '').includes(q);
@@ -1710,32 +1909,68 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       const leadMatch = ld === 'all' || row.getAttribute('data-lead') === ld;
       const progMatch = pg === 'all' || row.getAttribute('data-program') === pg;
 
-      if (searchMatch && statusMatch && leadMatch && progMatch) {
-        row.style.display = '';
-        visibleCount++;
+      // Filter Range Nominal
+      const rowNominal = Number(row.getAttribute('data-nominal') || 0);
+      let nominalMatch = true;
+      if (nm === 'under_100k') {
+        nominalMatch = rowNominal < 100000;
+      } else if (nm === '100k_500k') {
+        nominalMatch = rowNominal >= 100000 && rowNominal <= 500000;
+      } else if (nm === '500k_1m') {
+        nominalMatch = rowNominal > 500000 && rowNominal <= 1000000;
+      } else if (nm === '1m_5m') {
+        nominalMatch = rowNominal > 1000000 && rowNominal <= 5000000;
+      } else if (nm === 'above_5m') {
+        nominalMatch = rowNominal > 5000000;
+      }
+
+      if (searchMatch && statusMatch && leadMatch && progMatch && nominalMatch) {
+        donationsMatchedRows.push(row);
       } else {
-        row.style.display = 'none';
         const cb = row.querySelector('.row-checkbox') as HTMLInputElement | null;
         if (cb) cb.checked = false;
       }
     });
 
-    if (displayedRowsCount) displayedRowsCount.textContent = String(visibleCount);
-    updateBulkActionBar();
+    donationsCurrentPage = 1;
+    renderDonationsPagination();
   }
+
+  btnDonationsPrevPage?.addEventListener('click', () => {
+    if (donationsCurrentPage > 1) {
+      donationsCurrentPage--;
+      renderDonationsPagination();
+    }
+  });
+
+  btnDonationsNextPage?.addEventListener('click', () => {
+    donationsCurrentPage++;
+    renderDonationsPagination();
+  });
+
+  donationsPerPageSelect?.addEventListener('change', () => {
+    donationsCurrentPage = 1;
+    renderDonationsPagination();
+  });
 
   searchInput?.addEventListener('input', applyFilters);
   filterStatus?.addEventListener('change', applyFilters);
   filterLeads?.addEventListener('change', applyFilters);
   filterProgram?.addEventListener('change', applyFilters);
+  filterNominal?.addEventListener('change', applyFilters);
 
   btnResetFilters?.addEventListener('click', () => {
     if (searchInput) searchInput.value = '';
     if (filterStatus) filterStatus.value = 'all';
     if (filterLeads) filterLeads.value = 'all';
     if (filterProgram) filterProgram.value = 'all';
+    if (filterNominal) filterNominal.value = 'all';
+    if (donationsPerPageSelect) donationsPerPageSelect.value = '25';
     applyFilters();
   });
+
+  // Jalankan inisialisasi pagination awal
+  applyFilters();
 
   // 4. DROPZONE UPLOAD MINIO S3
   dropzoneContainer?.addEventListener('click', (e) => {
@@ -2434,21 +2669,109 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
     }
   });
 
-  // Alokasi Realtime Filter
+  // Alokasi Realtime Filter with Pagination
   const alokasiSearchInput = document.getElementById('alokasiSearchInput') as HTMLInputElement | null;
   const alokasiFilterProgram = document.getElementById('alokasiFilterProgram') as HTMLSelectElement | null;
   const alokasiFilterJenis = document.getElementById('alokasiFilterJenis') as HTMLSelectElement | null;
   const alokasiBtnResetFilters = document.getElementById('alokasiBtnResetFilters');
   const alokasiRows = document.querySelectorAll('.alokasi-row') as NodeListOf<HTMLTableRowElement>;
-  const displayedAlokasiCount = document.getElementById('displayedAlokasiCount');
   const emptyAlokasiRow = document.getElementById('emptyAlokasiRow');
+
+  const alokasiPerPageSelect = document.getElementById('alokasiPerPage') as HTMLSelectElement | null;
+  const alokasiTotalCount = document.getElementById('alokasiTotalCount');
+  const alokasiRangeText = document.getElementById('alokasiRangeText');
+  const btnAlokasiPrevPage = document.getElementById('btnAlokasiPrevPage') as HTMLButtonElement | null;
+  const btnAlokasiNextPage = document.getElementById('btnAlokasiNextPage') as HTMLButtonElement | null;
+  const alokasiPageNumbers = document.getElementById('alokasiPageNumbers');
+
+  let alokasiCurrentPage = 1;
+  let alokasiMatchedRows: HTMLTableRowElement[] = [];
+
+  function renderAlokasiPagination() {
+    const rawPageSize = alokasiPerPageSelect?.value || '25';
+    const isAll = rawPageSize === 'all';
+    const pageSize = isAll ? Math.max(1, alokasiMatchedRows.length) : parseInt(rawPageSize, 10);
+    const totalItems = alokasiMatchedRows.length;
+    const totalPages = isAll ? 1 : Math.max(1, Math.ceil(totalItems / pageSize));
+
+    if (alokasiCurrentPage > totalPages) alokasiCurrentPage = totalPages;
+    if (alokasiCurrentPage < 1) alokasiCurrentPage = 1;
+
+    // Sembunyikan semua row dahulu
+    alokasiRows.forEach(r => { r.style.display = 'none'; });
+
+    // Tampilkan hanya baris untuk halaman saat ini
+    const startIdx = (alokasiCurrentPage - 1) * pageSize;
+    const endIdx = isAll ? totalItems : Math.min(startIdx + pageSize, totalItems);
+
+    for (let i = startIdx; i < endIdx; i++) {
+      if (alokasiMatchedRows[i]) {
+        alokasiMatchedRows[i].style.display = '';
+      }
+    }
+
+    if (emptyAlokasiRow) {
+      emptyAlokasiRow.style.display = totalItems === 0 ? '' : 'none';
+    }
+
+    // Perbarui teks info count & range
+    if (alokasiTotalCount) alokasiTotalCount.textContent = String(totalItems);
+    if (alokasiRangeText) {
+      if (totalItems === 0) {
+        alokasiRangeText.textContent = '(0 ditampilkan)';
+      } else {
+        alokasiRangeText.textContent = `(Baris ${startIdx + 1} - ${endIdx})`;
+      }
+    }
+
+    // Tombol Prev / Next
+    if (btnAlokasiPrevPage) btnAlokasiPrevPage.disabled = alokasiCurrentPage <= 1;
+    if (btnAlokasiNextPage) btnAlokasiNextPage.disabled = alokasiCurrentPage >= totalPages;
+
+    // Render Tombol Nomor Halaman
+    if (alokasiPageNumbers) {
+      alokasiPageNumbers.innerHTML = '';
+      if (totalPages <= 1) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'h-8 w-8 rounded-md text-xs font-semibold bg-[#0969da] text-white flex items-center justify-center cursor-default';
+        btn.textContent = '1';
+        alokasiPageNumbers.appendChild(btn);
+      } else {
+        const pages = getSmartPaginationRange(alokasiCurrentPage, totalPages);
+        pages.forEach((p) => {
+          if (p === '...') {
+            const span = document.createElement('span');
+            span.className = 'px-1 text-slate-400 font-bold select-none';
+            span.textContent = '...';
+            alokasiPageNumbers.appendChild(span);
+          } else {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = `h-8 w-8 rounded-md text-xs font-semibold transition-colors shadow-2xs flex items-center justify-center cursor-pointer ${
+              Number(p) === alokasiCurrentPage
+                ? 'bg-[#0969da] text-white font-bold'
+                : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+            }`;
+            btn.textContent = String(p);
+            btn.addEventListener('click', () => {
+              alokasiCurrentPage = Number(p);
+              renderAlokasiPagination();
+            });
+            alokasiPageNumbers.appendChild(btn);
+          }
+        });
+      }
+    }
+  }
 
   function applyAlokasiFilters() {
     const q = (alokasiSearchInput?.value || '').toLowerCase().trim();
     const pg = alokasiFilterProgram?.value || 'all';
     const jn = alokasiFilterJenis?.value || 'all';
 
-    let count = 0;
+    alokasiMatchedRows = [];
+
     alokasiRows.forEach((row) => {
       const rowSearch = row.getAttribute('data-search') || '';
       const rowProgram = row.getAttribute('data-program') || '';
@@ -2459,18 +2782,30 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       const matchJenis = jn === 'all' || rowJenis === jn;
 
       if (matchSearch && matchProgram && matchJenis) {
-        row.style.display = '';
-        count++;
-      } else {
-        row.style.display = 'none';
+        alokasiMatchedRows.push(row);
       }
     });
 
-    if (displayedAlokasiCount) displayedAlokasiCount.textContent = String(count);
-    if (emptyAlokasiRow) {
-      emptyAlokasiRow.style.display = count === 0 ? '' : 'none';
-    }
+    alokasiCurrentPage = 1;
+    renderAlokasiPagination();
   }
+
+  btnAlokasiPrevPage?.addEventListener('click', () => {
+    if (alokasiCurrentPage > 1) {
+      alokasiCurrentPage--;
+      renderAlokasiPagination();
+    }
+  });
+
+  btnAlokasiNextPage?.addEventListener('click', () => {
+    alokasiCurrentPage++;
+    renderAlokasiPagination();
+  });
+
+  alokasiPerPageSelect?.addEventListener('change', () => {
+    alokasiCurrentPage = 1;
+    renderAlokasiPagination();
+  });
 
   alokasiSearchInput?.addEventListener('input', applyAlokasiFilters);
   alokasiFilterProgram?.addEventListener('change', applyAlokasiFilters);
@@ -2480,8 +2815,12 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
     if (alokasiSearchInput) alokasiSearchInput.value = '';
     if (alokasiFilterProgram) alokasiFilterProgram.value = 'all';
     if (alokasiFilterJenis) alokasiFilterJenis.value = 'all';
+    if (alokasiPerPageSelect) alokasiPerPageSelect.value = '25';
     applyAlokasiFilters();
   });
+
+  // Inisialisasi awal alokasi pagination
+  applyAlokasiFilters();
 
   // Alokasi Table Actions (Edit & Delete)
   const deleteAlokasiModal = document.getElementById('deleteAlokasiModal');

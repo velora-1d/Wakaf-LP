@@ -1,0 +1,519 @@
+---
+// src/pages/admin/roles/index.astro
+export const prerender = false;
+
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { getAllRoles, getAllAdminUsers } from '../../../lib/db';
+
+const roles = await getAllRoles();
+const adminUsersList = await getAllAdminUsers();
+
+const ALL_MENUS = [
+  { key: 'overview', name: 'Ringkasan Dasbor', category: 'Modul Utama', desc: 'Melihat ringkasan metrik statistik penghimpunan' },
+  { key: 'donatur', name: 'Donatur & Arus Kas', category: 'Modul Keuangan', desc: 'Kelola data donatur, verifikasi transfer, & buku kas' },
+  { key: 'kabar', name: 'Kabar & Warta', category: 'Modul Publikasi', desc: 'Kelola berita kegiatan, artikel, & dokumentasi' },
+  { key: 'roles', name: 'Hak Akses & Roles', category: 'Modul Sistem', desc: 'Atur wewenang dan izin menu untuk setiap staf' },
+  { key: 'home', name: 'Halaman Beranda', category: 'Editor Landing Page', desc: 'Kelola section & visual halaman utama' },
+  { key: 'tentang-kami', name: 'Halaman Tentang Kami', category: 'Editor Landing Page', desc: 'Kelola profil, sejarah, & legalitas GVF' },
+  { key: 'kemitraan', name: 'Halaman Kemitraan', category: 'Editor Landing Page', desc: 'Kelola sinergi kemitraan CSR & korporasi' },
+  { key: 'contact', name: 'Halaman Kontak', category: 'Editor Landing Page', desc: 'Kelola informasi kontak & saluran resmi' },
+  { key: 'wakaf', name: 'Program Wakaf', category: 'Editor Program', desc: 'Kelola konten & live feed program Wakaf' },
+  { key: 'infaq', name: 'Program Infaq', category: 'Editor Program', desc: 'Kelola konten & live feed program Infaq' },
+  { key: 'sedekah', name: 'Program Sedekah', category: 'Editor Program', desc: 'Kelola konten & live feed program Sedekah' },
+  { key: 'zakat', name: 'Program Zakat', category: 'Editor Program', desc: 'Kelola konten & live feed program Zakat' },
+];
+
+const roleBadges: Record<string, { bg: string; text: string; border: string }> = {
+  superadmin: { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200' },
+  bendahara: { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
+  editor_konten: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
+  staf_lapangan: { bg: 'bg-amber-50', text: 'text-amber-800', border: 'border-amber-200' },
+};
+---
+
+<AdminLayout title="Manajemen Hak Akses & Roles" activeSlug="roles">
+  <div class="w-full space-y-6">
+    <!-- Header Section -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-slate-200">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-[#0969da] border border-blue-200">
+            Sistem Keamanan &amp; Wewenang (RBAC)
+          </span>
+          <span class="text-slate-300 text-xs">&bull;</span>
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            12 Menu Terdaftar
+          </span>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 m-0">Hak Akses Menu &amp; Pengelolaan Role</h1>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1 mb-0">
+          Gunakan centang (checkbox) untuk mengatur menu apa saja yang boleh diakses dan tampil di bilah navigasi admin.
+        </p>
+      </div>
+    </div>
+
+    <!-- Main Tabs Navigation -->
+    <div class="flex items-center gap-2 border-b border-slate-200">
+      <button
+        type="button"
+        id="tabBtnRoles"
+        class="tab-btn active inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold border-b-2 border-[#0969da] text-[#0969da] bg-blue-50/50 rounded-t-lg transition-all cursor-pointer"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+        </svg>
+        <span>Konfigurasi Per Role ({roles.length} Role)</span>
+      </button>
+
+      <button
+        type="button"
+        id="tabBtnUsers"
+        class="tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50 rounded-t-lg transition-all cursor-pointer"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <span>Pengguna Admin ({adminUsersList.length} Akun)</span>
+      </button>
+    </div>
+
+    <!-- TAB 1: ROLES CONFIGURATION WITH CHECKBOX PER MENU -->
+    <div id="tabContentRoles" class="space-y-6">
+      <div class="grid grid-cols-1 gap-6">
+        {roles.map((r) => {
+          const badge = roleBadges[r.roleKey] || { bg: 'bg-slate-50', text: 'text-slate-700', border: 'border-slate-200' };
+          const perms: string[] = Array.isArray(r.permissions) ? (r.permissions as string[]) : [];
+          const isSuper = r.roleKey === 'superadmin';
+
+          return (
+            <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs space-y-4" data-role-card={r.roleKey}>
+              <!-- Role Header -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+                <div class="space-y-1">
+                  <div class="flex items-center gap-2.5">
+                    <h2 class="text-base font-bold text-slate-900 m-0">{r.roleName}</h2>
+                    <span class={`inline-flex px-2 py-0.5 rounded text-[11px] font-bold font-mono border ${badge.bg} ${badge.text} ${badge.border}`}>
+                      {r.roleKey}
+                    </span>
+                  </div>
+                  <p class="text-xs text-slate-500 m-0">{r.description || 'Tidak ada deskripsi.'}</p>
+                </div>
+
+                <!-- Quick Action Buttons -->
+                <div class="flex items-center gap-2 shrink-0">
+                  <button
+                    type="button"
+                    class="btn-select-all h-7 px-2.5 rounded border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium transition-colors cursor-pointer"
+                    data-target-role={r.roleKey}
+                  >
+                    Pilih Semua
+                  </button>
+                  <button
+                    type="button"
+                    class="btn-deselect-all h-7 px-2.5 rounded border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium transition-colors cursor-pointer"
+                    data-target-role={r.roleKey}
+                  >
+                    Hapus Semua
+                  </button>
+                  <button
+                    type="button"
+                    class="btn-save-role h-7 px-3 rounded bg-[#0969da] hover:bg-[#0752a8] text-white text-xs font-semibold shadow-2xs transition-colors cursor-pointer flex items-center gap-1.5"
+                    data-target-role={r.roleKey}
+                  >
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>Simpan Peran</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Menu Checkboxes Grid -->
+              <div>
+                <p class="text-xs font-bold text-slate-600 uppercase tracking-wider mb-3">
+                  Centang Menu yang Diizinkan:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                  {ALL_MENUS.map((menu) => {
+                    const isChecked = perms.includes(menu.key);
+                    return (
+                      <label class="flex items-start gap-2.5 p-3 rounded-lg border border-slate-200 bg-slate-50/50 hover:bg-blue-50/40 hover:border-blue-200 transition-colors cursor-pointer select-none">
+                        <input
+                          type="checkbox"
+                          class="role-menu-checkbox h-4 w-4 mt-0.5 rounded border-slate-300 text-[#0969da] focus:ring-1 focus:ring-[#0969da] cursor-pointer shrink-0"
+                          data-role={r.roleKey}
+                          data-menu={menu.key}
+                          checked={isChecked}
+                        />
+                        <div class="min-w-0">
+                          <span class="text-xs font-bold text-slate-800 block leading-tight">{menu.name}</span>
+                          <span class="text-[10px] text-[#0969da] font-mono block mt-0.5">{menu.category}</span>
+                          <span class="text-[11px] text-slate-400 block mt-1 leading-tight line-clamp-2">{menu.desc}</span>
+                        </div>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- TAB 2: PER-USER ACCESS & ROLE ASSIGNMENT -->
+    <div id="tabContentUsers" class="hidden space-y-6">
+      <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs space-y-4">
+        <div>
+          <h2 class="text-base font-bold text-slate-900 m-0">Daftar Akun Pengelola Admin GVF</h2>
+          <p class="text-xs text-slate-500 mt-1 mb-0">
+            Pilih pengguna untuk meninjau atau menetapkan hak akses kustom secara spesifik per akun.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto w-full">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 bg-slate-50 text-slate-600 font-semibold">
+                <th class="px-4 py-3">ID &amp; USERNAME</th>
+                <th class="px-4 py-3">NAMA LENGKAP</th>
+                <th class="px-4 py-3">ROLE SAAT INI</th>
+                <th class="px-4 py-3">TOTAL MENU DIIZINKAN</th>
+                <th class="px-4 py-3 text-right">AKSI</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              {adminUsersList.map((u) => {
+                const uPerms: string[] = Array.isArray(u.permissions) ? (u.permissions as string[]) : [];
+                return (
+                  <tr class="hover:bg-slate-50/70 transition-colors">
+                    <td class="px-4 py-3 font-mono font-bold text-slate-900">
+                      #{u.id} - @{u.username}
+                    </td>
+                    <td class="px-4 py-3 font-semibold text-slate-800">
+                      {u.name}
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex px-2 py-0.5 rounded text-[11px] font-bold font-mono bg-blue-50 text-[#0969da] border border-blue-200">
+                        {u.role}
+                      </span>
+                    </td>
+                    <td class="px-4 py-3 text-slate-600">
+                      <span class="font-bold text-slate-900">{uPerms.length}</span> / {ALL_MENUS.length} menu aktif
+                    </td>
+                    <td class="px-4 py-3 text-right">
+                      <button
+                        type="button"
+                        class="btn-edit-user-perms h-7 px-3 rounded border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-2xs transition-colors cursor-pointer"
+                        data-user-id={u.id}
+                        data-user-name={u.name}
+                        data-user-role={u.role}
+                        data-user-perms={JSON.stringify(uPerms)}
+                      >
+                        Atur Menu Pengguna
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE-OVER DRAWER EDIT PERMISSIONS PER USER -->
+  <div id="userDrawerBackdrop" class="fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-xs flex justify-end opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="userDrawerBox" class="w-full sm:w-[600px] h-full bg-white flex flex-col shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 ease-out overflow-hidden">
+      <!-- Drawer Header -->
+      <div class="h-16 px-6 border-b border-slate-200 flex items-center justify-between bg-white shrink-0">
+        <div>
+          <span class="inline-flex px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-[#0969da] border border-blue-200 uppercase mb-0.5">
+            Hak Akses Akun Pengguna
+          </span>
+          <h2 id="userDrawerTitle" class="text-base font-bold text-slate-900 m-0">Atur Menu Pengguna</h2>
+        </div>
+        <button
+          type="button"
+          id="btnCloseUserDrawer"
+          class="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+          aria-label="Tutup Panel"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Drawer Body -->
+      <div class="flex-1 overflow-y-auto p-6 space-y-5">
+        <input type="hidden" id="editUserId" />
+
+        <div class="space-y-1.5">
+          <label class="text-xs font-bold text-slate-700">Role Pengguna</label>
+          <select id="editUserRole" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs font-medium text-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-950">
+            {roles.map(r => (
+              <option value={r.roleKey}>{r.roleName} ({r.roleKey})</option>
+            ))}
+          </select>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold text-slate-700 uppercase tracking-wide">Menu yang Diizinkan (Checkbox):</label>
+            <div class="flex gap-2">
+              <button type="button" id="btnUserSelectAll" class="text-[11px] font-semibold text-[#0969da] hover:underline cursor-pointer">Centang Semua</button>
+              <span class="text-slate-300">&bull;</span>
+              <button type="button" id="btnUserDeselectAll" class="text-[11px] font-semibold text-rose-600 hover:underline cursor-pointer">Hapus Centang</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            {ALL_MENUS.map((menu) => (
+              <label class="flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-slate-50/50 hover:bg-blue-50/30 transition-colors cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  class="user-menu-checkbox h-4 w-4 mt-0.5 rounded border-slate-300 text-[#0969da] focus:ring-1 focus:ring-[#0969da] cursor-pointer shrink-0"
+                  value={menu.key}
+                />
+                <div class="min-w-0">
+                  <span class="text-xs font-bold text-slate-800 block leading-tight">{menu.name}</span>
+                  <span class="text-[10px] text-slate-400 block leading-tight">{menu.category}</span>
+                </div>
+              </label>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-end gap-2.5 shrink-0">
+        <button
+          type="button"
+          id="btnCancelUserDrawer"
+          class="h-9 px-4 rounded-md border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+        >
+          Batal
+        </button>
+        <button
+          type="button"
+          id="btnSaveUserPermissions"
+          class="h-9 px-5 rounded-md bg-[#0969da] hover:bg-[#0752a8] text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer flex items-center gap-1.5"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span id="btnSaveUserText">Simpan Hak Akses</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</AdminLayout>
+
+<script>
+  // Tab Switching
+  const tabBtnRoles = document.getElementById('tabBtnRoles');
+  const tabBtnUsers = document.getElementById('tabBtnUsers');
+  const tabContentRoles = document.getElementById('tabContentRoles');
+  const tabContentUsers = document.getElementById('tabContentUsers');
+
+  tabBtnRoles?.addEventListener('click', () => {
+    tabBtnRoles.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+    tabBtnRoles.classList.remove('border-transparent', 'text-slate-500');
+    tabBtnUsers?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+    tabBtnUsers?.classList.add('border-transparent', 'text-slate-500');
+    tabContentRoles?.classList.remove('hidden');
+    tabContentUsers?.classList.add('hidden');
+  });
+
+  tabBtnUsers?.addEventListener('click', () => {
+    tabBtnUsers.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+    tabBtnUsers.classList.remove('border-transparent', 'text-slate-500');
+    tabBtnRoles?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+    tabBtnRoles?.classList.add('border-transparent', 'text-slate-500');
+    tabContentUsers?.classList.remove('hidden');
+    tabContentRoles?.classList.add('hidden');
+  });
+
+  // Role Select All & Deselect All
+  document.querySelectorAll('.btn-select-all').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const roleKey = btn.getAttribute('data-target-role');
+      document.querySelectorAll(`.role-menu-checkbox[data-role="${roleKey}"]`).forEach((cb) => {
+        (cb as HTMLInputElement).checked = true;
+      });
+    });
+  });
+
+  document.querySelectorAll('.btn-deselect-all').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const roleKey = btn.getAttribute('data-target-role');
+      document.querySelectorAll(`.role-menu-checkbox[data-role="${roleKey}"]`).forEach((cb) => {
+        (cb as HTMLInputElement).checked = false;
+      });
+    });
+  });
+
+  // Save Role Permissions
+  document.querySelectorAll('.btn-save-role').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const roleKey = btn.getAttribute('data-target-role');
+      if (!roleKey) return;
+
+      const checkedMenus: string[] = [];
+      document.querySelectorAll(`.role-menu-checkbox[data-role="${roleKey}"]:checked`).forEach((cb) => {
+        const m = cb.getAttribute('data-menu');
+        if (m) checkedMenus.push(m);
+      });
+
+      btn.setAttribute('disabled', 'true');
+      const originalText = btn.innerHTML;
+      btn.textContent = 'Menyimpan...';
+
+      try {
+        const res = await fetch('/api/admin/roles/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            targetType: 'role',
+            roleKey,
+            permissions: checkedMenus,
+          }),
+        });
+
+        const result = await res.json();
+        if (!res.ok || !result.success) {
+          throw new Error(result.error || 'Gagal menyimpan perubahan.');
+        }
+
+        if ((window as any).showToast) {
+          (window as any).showToast(result.message || 'Hak akses role berhasil disimpan!');
+        } else {
+          alert('Hak akses role berhasil disimpan!');
+        }
+      } catch (err: any) {
+        alert(`Gagal: ${err.message}`);
+      } finally {
+        btn.removeAttribute('disabled');
+        btn.innerHTML = originalText;
+      }
+    });
+  });
+
+  // User Drawer Controls
+  const userDrawerBackdrop = document.getElementById('userDrawerBackdrop');
+  const userDrawerBox = document.getElementById('userDrawerBox');
+  const btnCloseUserDrawer = document.getElementById('btnCloseUserDrawer');
+  const btnCancelUserDrawer = document.getElementById('btnCancelUserDrawer');
+  const editUserId = document.getElementById('editUserId') as HTMLInputElement | null;
+  const editUserRole = document.getElementById('editUserRole') as HTMLSelectElement | null;
+  const userDrawerTitle = document.getElementById('userDrawerTitle');
+  const btnSaveUserPermissions = document.getElementById('btnSaveUserPermissions');
+  const btnSaveUserText = document.getElementById('btnSaveUserText');
+
+  function openUserDrawer() {
+    if (!userDrawerBackdrop || !userDrawerBox) return;
+    userDrawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+    userDrawerBox.classList.remove('translate-x-full');
+    userDrawerBox.classList.add('translate-x-0');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeUserDrawer() {
+    if (!userDrawerBackdrop || !userDrawerBox) return;
+    userDrawerBackdrop.classList.add('opacity-0', 'pointer-events-none');
+    userDrawerBox.classList.remove('translate-x-0');
+    userDrawerBox.classList.add('translate-x-full');
+    document.body.style.overflow = '';
+  }
+
+  btnCloseUserDrawer?.addEventListener('click', closeUserDrawer);
+  btnCancelUserDrawer?.addEventListener('click', closeUserDrawer);
+  userDrawerBackdrop?.addEventListener('click', (e) => {
+    if (e.target === userDrawerBackdrop) closeUserDrawer();
+  });
+
+  // Edit User Button Handlers
+  document.querySelectorAll('.btn-edit-user-perms').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const uId = btn.getAttribute('data-user-id') || '';
+      const uName = btn.getAttribute('data-user-name') || '';
+      const uRole = btn.getAttribute('data-user-role') || 'superadmin';
+      let uPerms: string[] = [];
+      try {
+        uPerms = JSON.parse(btn.getAttribute('data-user-perms') || '[]');
+      } catch (e) {}
+
+      if (editUserId) editUserId.value = uId;
+      if (editUserRole) editUserRole.value = uRole;
+      if (userDrawerTitle) userDrawerTitle.textContent = `Atur Menu: ${uName}`;
+
+      document.querySelectorAll('.user-menu-checkbox').forEach((cb) => {
+        const input = cb as HTMLInputElement;
+        input.checked = uPerms.includes(input.value);
+      });
+
+      openUserDrawer();
+    });
+  });
+
+  document.getElementById('btnUserSelectAll')?.addEventListener('click', () => {
+    document.querySelectorAll('.user-menu-checkbox').forEach((cb) => {
+      (cb as HTMLInputElement).checked = true;
+    });
+  });
+
+  document.getElementById('btnUserDeselectAll')?.addEventListener('click', () => {
+    document.querySelectorAll('.user-menu-checkbox').forEach((cb) => {
+      (cb as HTMLInputElement).checked = false;
+    });
+  });
+
+  btnSaveUserPermissions?.addEventListener('click', async () => {
+    const userId = editUserId?.value;
+    const role = editUserRole?.value;
+    if (!userId) return;
+
+    const checkedMenus: string[] = [];
+    document.querySelectorAll('.user-menu-checkbox:checked').forEach((cb) => {
+      checkedMenus.push((cb as HTMLInputElement).value);
+    });
+
+    btnSaveUserPermissions.setAttribute('disabled', 'true');
+    if (btnSaveUserText) btnSaveUserText.textContent = 'Menyimpan...';
+
+    try {
+      const res = await fetch('/api/admin/roles/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          targetType: 'user',
+          userId: Number(userId),
+          role,
+          permissions: checkedMenus,
+        }),
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) {
+        throw new Error(result.error || 'Gagal menyimpan.');
+      }
+
+      closeUserDrawer();
+      if ((window as any).showToast) {
+        (window as any).showToast('Hak akses pengguna berhasil diperbarui!');
+      }
+      setTimeout(() => window.location.reload(), 600);
+    } catch (err: any) {
+      alert(`Gagal: ${err.message}`);
+      btnSaveUserPermissions.removeAttribute('disabled');
+      if (btnSaveUserText) btnSaveUserText.textContent = 'Simpan Hak Akses';
+    }
+  });
+</script>

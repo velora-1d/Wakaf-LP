@@ -6,7 +6,16 @@ export const adminUsers = pgTable('admin_users', {
   passwordHash: text('password_hash').notNull(),
   name: varchar('name', { length: 255 }).default('Administrator GVF'),
   role: varchar('role', { length: 50 }).default('superadmin').notNull(),
+  permissions: jsonb('permissions').$type<string[]>(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+export const roleDefinitions = pgTable('role_definitions', {
+  roleKey: varchar('role_key', { length: 50 }).primaryKey(),
+  roleName: varchar('role_name', { length: 100 }).notNull(),
+  description: text('description'),
+  permissions: jsonb('permissions').$type<string[]>().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 
@@ -56,6 +65,9 @@ export const newsArticles = pgTable('news_articles', {
 
 export type AdminUser = typeof adminUsers.$inferSelect;
 export type NewAdminUser = typeof adminUsers.$inferInsert;
+
+export type RoleDefinition = typeof roleDefinitions.$inferSelect;
+export type NewRoleDefinition = typeof roleDefinitions.$inferInsert;
 
 export type Page = typeof pages.$inferSelect;
 export type NewPage = typeof pages.$inferInsert;

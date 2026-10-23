@@ -1,6 +1,11 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "DONATUR-INPUT-KODE-TGL-01", "name": "Penambahan Kolom Input Kode Transaksi & Tanggal Transaksi pada Form Donasi Admin (/admin/donatur), Integrasi API Create & Update, serta Drizzle ORM", "status": "in_progress" },
+    { "id": "ADMIN-FILTER-NOMINAL-01", "name": "Filter menurut nominal donasi (preset rentang nominal & kalkulasi realtime dengan pagination) di /admin/donatur", "status": "closed" },
+    { "id": "ADMIN-RBAC-ROLES-01", "name": "Sistem Role & Hak Akses Menu Dinamis dengan Checkbox (Cekbk) Per Menu di Admin CMS & Pengaturan Izin Akses Sidebar", "status": "closed" },
+    { "id": "ADMIN-SIDEBAR-COLLAPSE-01", "name": "Fitur Sidebar Collapsible (Expand/Collapse Compact Mode) di AdminLayout dengan Persistensi State LocalStorage", "status": "closed" },
+    { "id": "ADMIN-PAGINATION-01", "name": "Komponen Pagination Interaktif untuk Tabel Donatur & Penerimaan serta Tabel Realisasi Alokasi Kas (Page Selector, Prev/Next, & Status Items)", "status": "closed" },
     { "id": "CASH-ALLOC-TABS-01", "name": "Implementasi Tab Realisasi Alokasi Kas (Debit-Kredit-Saldo) di /admin/donatur Terintegrasi DB PostgreSQL (Drizzle ORM), API CRUD, & MinIO S3", "status": "closed" },
     { "id": "DONATUR-SEED-MKU-01", "name": "Seeding 57 Transaksi Donasi Masjid Khairu Ummah ke Shodaqoh/Sedekah (/program/sedekah) Senilai Rp 55.927.000, Update Kredensial Admin, & Standardisasi 4 Program Resmi Web (Wakaf, Infaq, Sedekah, Zakat)", "status": "closed" },
     { "id": "BRAND-LOGO-GVF-01", "name": "Penerapan Logo Baru Global Village Fund (3D Silver-Gold) di Komponen Publik (Program Consultation Box, Footer, dan Navbar)", "status": "closed" },

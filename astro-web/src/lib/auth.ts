@@ -13,6 +13,7 @@ export interface AdminSessionUser {
   username: string;
   name: string;
   role: string;
+  permissions?: string[];
 }
 
 /**
@@ -60,6 +61,11 @@ export function verifySessionToken(token: string): AdminSessionUser | null {
       username: payload.username,
       name: payload.name,
       role: payload.role,
+      permissions: payload.permissions || [
+        'overview', 'kabar', 'donatur', 'roles',
+        'home', 'tentang-kami', 'kemitraan', 'contact',
+        'wakaf', 'infaq', 'sedekah', 'zakat'
+      ],
     };
   } catch (error) {
     return null;
@@ -98,6 +104,11 @@ export async function authenticateAdmin(
         username: user.username,
         name: user.name || 'Administrator GVF',
         role: user.role,
+        permissions: (user.permissions as string[]) || [
+          'overview', 'kabar', 'donatur', 'roles',
+          'home', 'tentang-kami', 'kemitraan', 'contact',
+          'wakaf', 'infaq', 'sedekah', 'zakat'
+        ],
       },
     };
   } catch (error: any) {
