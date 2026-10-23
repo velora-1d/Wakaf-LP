@@ -7,6 +7,7 @@
 ## In Review / Test
 
 ## Done
+- [x] DOCKER-PNPM-V11-FIX-01: Migrasi Konfigurasi Build Script pnpm v11+ (allowBuilds esbuild, sharp, bcryptjs) ke pnpm-workspace.yaml & Standalone pnpm-lock.yaml di Dockerfile astro-web (Lulus Push Remote Main)
 - [x] CASH-ALLOC-TABS-01: Implementasi Tab Realisasi Alokasi Kas (Debit-Kredit-Saldo) di /admin/donatur Terintegrasi DB PostgreSQL (Drizzle ORM), API CRUD, & MinIO S3 (Lulus Uji End-to-End & Live SSR)
 - [x] DONATUR-SEED-MKU-01: Seeding 57 Transaksi Donasi Masjid Khairu Ummah ke Shodaqoh/Sedekah (/program/sedekah) Senilai Rp 55.927.000, Update Kredensial Admin, & Standardisasi 4 Program Resmi Web (Wakaf, Infaq, Sedekah, Zakat)
 - [x] BRAND-LOGO-GVF-01: Penerapan Logo Baru Global Village Fund (3D Silver-Gold) di Komponen Publik (Program Consultation Box, Footer, dan Navbar - Integrasi Aset Bersih & Terverifikasi Browser Empiris)
