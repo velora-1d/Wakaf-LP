@@ -9,6 +9,9 @@ const currentAdmin = (Astro.locals as any).adminUser;
 const roles = await getAllRoles();
 const adminUsersList = await getAllAdminUsers();
 
+const activeTabParam = Astro.url.searchParams.get('tab');
+const isUsersTab = activeTabParam === 'users';
+
 const formatDate = (date: Date | string | null) => {
   if (!date) return '-';
   const d = new Date(date);
@@ -69,7 +72,11 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
       <button
         type="button"
         id="tabBtnRoles"
-        class="tab-btn active inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold border-b-2 border-[#0969da] text-[#0969da] bg-blue-50/50 rounded-t-lg transition-all cursor-pointer"
+        class={`tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-t-lg transition-all cursor-pointer ${
+          !isUsersTab
+            ? 'active border-b-2 border-[#0969da] text-[#0969da] bg-blue-50/50'
+            : 'border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+        }`}
       >
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
@@ -80,7 +87,11 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
       <button
         type="button"
         id="tabBtnUsers"
-        class="tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50 rounded-t-lg transition-all cursor-pointer"
+        class={`tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-t-lg transition-all cursor-pointer ${
+          isUsersTab
+            ? 'active border-b-2 border-[#0969da] text-[#0969da] bg-blue-50/50'
+            : 'border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+        }`}
       >
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
@@ -93,7 +104,7 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
     </div>
 
     <!-- TAB 1: ROLES CONFIGURATION WITH CHECKBOX PER MENU -->
-    <div id="tabContentRoles" class="space-y-6">
+    <div id="tabContentRoles" class={isUsersTab ? 'hidden space-y-6' : 'space-y-6'}>
       <div class="grid grid-cols-1 gap-6">
         {roles.map((r) => {
           const badge = roleBadges[r.roleKey] || { bg: 'bg-slate-50', text: 'text-slate-700', border: 'border-slate-200' };
@@ -177,7 +188,7 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
     </div>
 
     <!-- TAB 2: PER-USER ACCESS & ROLE ASSIGNMENT -->
-    <div id="tabContentUsers" class="hidden space-y-6" data-current-user-id={currentAdmin?.id || 0}>
+    <div id="tabContentUsers" class={isUsersTab ? 'space-y-6' : 'hidden space-y-6'} data-current-user-id={currentAdmin?.id || 0}>
       <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs space-y-4">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
           <div>
@@ -561,13 +572,13 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
 </AdminLayout>
 
 <script>
-  // Tab Switching with Persistence (Hash & LocalStorage)
+  // Tab Switching with Persistence (Query Param, Hash & LocalStorage)
   const tabBtnRoles = document.getElementById('tabBtnRoles');
   const tabBtnUsers = document.getElementById('tabBtnUsers');
   const tabContentRoles = document.getElementById('tabContentRoles');
   const tabContentUsers = document.getElementById('tabContentUsers');
 
-  function switchRolesTab(activeTab: 'roles' | 'users') {
+  function switchRolesTab(activeTab: 'roles' | 'users', updateUrl = true) {
     if (activeTab === 'roles') {
       tabBtnRoles?.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
       tabBtnRoles?.classList.remove('border-transparent', 'text-slate-500');
@@ -576,7 +587,14 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
       tabContentRoles?.classList.remove('hidden');
       tabContentUsers?.classList.add('hidden');
 
-      window.history.replaceState(null, '', '#tab=roles');
+      if (updateUrl) {
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.set('tab', 'roles');
+          url.hash = 'tab=roles';
+          window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+        } catch (e) {}
+      }
       try { localStorage.setItem('gvf_admin_roles_active_tab', 'roles'); } catch (e) {}
     } else {
       tabBtnUsers?.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
@@ -586,9 +604,24 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
       tabContentUsers?.classList.remove('hidden');
       tabContentRoles?.classList.add('hidden');
 
-      window.history.replaceState(null, '', '#tab=users');
+      if (updateUrl) {
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.set('tab', 'users');
+          url.hash = 'tab=users';
+          window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+        } catch (e) {}
+      }
       try { localStorage.setItem('gvf_admin_roles_active_tab', 'users'); } catch (e) {}
     }
+  }
+
+  function reloadToUsersTab() {
+    try { localStorage.setItem('gvf_admin_roles_active_tab', 'users'); } catch (e) {}
+    const url = new URL(window.location.href);
+    url.searchParams.set('tab', 'users');
+    url.hash = 'tab=users';
+    window.location.href = url.pathname + url.search + url.hash;
   }
 
   tabBtnRoles?.addEventListener('click', () => switchRolesTab('roles'));
@@ -600,10 +633,13 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
     savedRolesTab = localStorage.getItem('gvf_admin_roles_active_tab') || 'roles';
   } catch (e) {}
 
-  if (window.location.hash.includes('users') || (!window.location.hash.includes('roles') && savedRolesTab === 'users')) {
-    switchRolesTab('users');
+  const urlParams = new URLSearchParams(window.location.search);
+  const hash = window.location.hash;
+
+  if (urlParams.get('tab') === 'users' || hash.includes('users') || (!urlParams.has('tab') && savedRolesTab === 'users')) {
+    switchRolesTab('users', false);
   } else {
-    switchRolesTab('roles');
+    switchRolesTab('roles', false);
   }
 
   // Role Select All & Deselect All
@@ -774,7 +810,7 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
       if ((window as any).showToast) {
         (window as any).showToast('Hak akses pengguna berhasil diperbarui!');
       }
-      setTimeout(() => window.location.reload(), 600);
+      setTimeout(() => reloadToUsersTab(), 600);
     } catch (err: any) {
       alert(`Gagal: ${err.message}`);
       btnSaveUserPermissions.removeAttribute('disabled');
@@ -954,7 +990,7 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
 
       closeUserAccountModal();
       alert(result.message || (isEdit ? 'Akun berhasil diperbarui!' : 'Akun berhasil dibuat!'));
-      window.location.reload();
+      reloadToUsersTab();
     } catch (err: any) {
       alert(`Gagal: ${err.message}`);
       if (btnSubmitUserAccount) {
@@ -1027,7 +1063,7 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
 
       closeDeleteUserModal();
       alert('Akun pengguna berhasil dihapus.');
-      window.location.reload();
+      reloadToUsersTab();
     } catch (err: any) {
       alert(`Gagal: ${err.message}`);
       btnExecuteDeleteUserModal.removeAttribute('disabled');

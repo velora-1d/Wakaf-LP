@@ -17,6 +17,9 @@ const allocations = await getAllCashAllocations();
 const allocMetrics = await getCashAllocationMetrics();
 const allLabels = await getAllLabels();
 
+const activeTabParam = Astro.url.searchParams.get('tab');
+const isAlokasiTab = activeTabParam === 'alokasi';
+
 const labelColorMap: Record<string, { bg: string; text: string; border: string }> = {
   blue: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
   emerald: { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
@@ -136,7 +139,11 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       <button
         type="button"
         id="tabBtnDonatur"
-        class="tab-btn active inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold border-b-2 border-[#0969da] text-[#0969da] bg-blue-50/50 rounded-t-lg transition-all cursor-pointer"
+        class={`tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-t-lg transition-all cursor-pointer ${
+          !isAlokasiTab
+            ? 'active border-b-2 border-[#0969da] text-[#0969da] bg-blue-50/50'
+            : 'border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+        }`}
       >
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
@@ -153,7 +160,11 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       <button
         type="button"
         id="tabBtnAlokasi"
-        class="tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50 rounded-t-lg transition-all cursor-pointer"
+        class={`tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-t-lg transition-all cursor-pointer ${
+          isAlokasiTab
+            ? 'active border-b-2 border-[#0969da] text-[#0969da] bg-blue-50/50'
+            : 'border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+        }`}
       >
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
@@ -167,7 +178,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
     </div>
 
     <!-- TAB 1: RIWAYAT DONATUR & PENERIMAAN -->
-    <div id="tabContentDonatur" class="space-y-5">
+    <div id="tabContentDonatur" class={isAlokasiTab ? 'hidden space-y-5' : 'space-y-5'}>
       <!-- Metrik Statistik Dashboard (Shadcn Card Style) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
       <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
@@ -706,7 +717,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
   <!-- END TAB 1: RIWAYAT DONATUR & PENERIMAAN -->
 
   <!-- TAB 2: REALISASI ALOKASI KAS (DEBIT • KREDIT • SALDO) -->
-  <div id="tabContentAlokasi" class="hidden space-y-5">
+  <div id="tabContentAlokasi" class={isAlokasiTab ? 'space-y-5' : 'hidden space-y-5'}>
     <!-- Metrik Arus Kas (Shadcn Card Style) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
       <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
@@ -2026,7 +2037,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
           body: JSON.stringify({ donationId: Number(id), status: 'lunas' }),
         });
       }
-      window.location.reload();
+      reloadToDonaturTab();
     } catch (err: any) {
       alert(`Gagal verifikasi masal: ${err.message}`);
       btnBulkVerifyLunas.removeAttribute('disabled');
@@ -2424,7 +2435,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       }
 
       alert(isEditMode ? 'Alhamdulillah! Data transaksi & donatur berhasil diperbarui.' : 'Alhamdulillah! Donasi dan profil donatur berhasil dicatat.');
-      window.location.reload();
+      reloadToDonaturTab();
     } catch (err: any) {
       alert(`Terjadi kesalahan: ${err.message}`);
       btnSubmitDonation.removeAttribute('disabled');
@@ -2675,7 +2686,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       if (!res.ok || !data.success) {
         throw new Error(data.error || 'Gagal mengubah status di database');
       }
-      window.location.reload();
+      reloadToDonaturTab();
     } catch (err: any) {
       alert(`Gagal verifikasi: ${err.message}`);
       if (actionEl) {
@@ -2696,7 +2707,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       if (!res.ok || !data.success) {
         throw new Error(data.error || 'Gagal menghapus transaksi dari database');
       }
-      window.location.reload();
+      reloadToDonaturTab();
     } catch (err: any) {
       alert(`Gagal menghapus: ${err.message}`);
       if (actionEl) {
@@ -2740,7 +2751,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
   const tabContentAlokasi = document.getElementById('tabContentAlokasi');
   const btnOpenCreateAlokasiHeader = document.getElementById('btnOpenCreateAlokasiHeader');
 
-  function switchTab(activeTab: 'donatur' | 'alokasi') {
+  function switchTab(activeTab: 'donatur' | 'alokasi', updateUrl = true) {
     if (activeTab === 'donatur') {
       tabContentDonatur?.classList.remove('hidden');
       tabContentAlokasi?.classList.add('hidden');
@@ -2751,7 +2762,14 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       tabBtnAlokasi?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
       tabBtnAlokasi?.classList.add('border-transparent', 'text-slate-500');
 
-      window.history.replaceState(null, '', '#tab=donatur');
+      if (updateUrl) {
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.set('tab', 'donatur');
+          url.hash = 'tab=donatur';
+          window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+        } catch (e) {}
+      }
       try { localStorage.setItem('gvf_admin_donatur_active_tab', 'donatur'); } catch (e) {}
     } else {
       tabContentDonatur?.classList.add('hidden');
@@ -2763,9 +2781,32 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       tabBtnDonatur?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
       tabBtnDonatur?.classList.add('border-transparent', 'text-slate-500');
 
-      window.history.replaceState(null, '', '#tab=alokasi');
+      if (updateUrl) {
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.set('tab', 'alokasi');
+          url.hash = 'tab=alokasi';
+          window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+        } catch (e) {}
+      }
       try { localStorage.setItem('gvf_admin_donatur_active_tab', 'alokasi'); } catch (e) {}
     }
+  }
+
+  function reloadToAlokasiTab() {
+    try { localStorage.setItem('gvf_admin_donatur_active_tab', 'alokasi'); } catch (e) {}
+    const url = new URL(window.location.href);
+    url.searchParams.set('tab', 'alokasi');
+    url.hash = 'tab=alokasi';
+    window.location.href = url.pathname + url.search + url.hash;
+  }
+
+  function reloadToDonaturTab() {
+    try { localStorage.setItem('gvf_admin_donatur_active_tab', 'donatur'); } catch (e) {}
+    const url = new URL(window.location.href);
+    url.searchParams.set('tab', 'donatur');
+    url.hash = 'tab=donatur';
+    window.location.href = url.pathname + url.search + url.hash;
   }
 
   tabBtnDonatur?.addEventListener('click', () => switchTab('donatur'));
@@ -2778,16 +2819,19 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
     openAlokasiDrawer();
   });
 
-  // Check initial hash or localStorage on load
+  // Check initial search param, hash or localStorage on load
   let savedDonaturTab = 'donatur';
   try {
     savedDonaturTab = localStorage.getItem('gvf_admin_donatur_active_tab') || 'donatur';
   } catch (e) {}
 
-  if (window.location.hash.includes('alokasi') || (!window.location.hash.includes('donatur') && savedDonaturTab === 'alokasi')) {
-    switchTab('alokasi');
+  const donaturUrlParams = new URLSearchParams(window.location.search);
+  const donaturHash = window.location.hash;
+
+  if (donaturUrlParams.get('tab') === 'alokasi' || donaturHash.includes('alokasi') || (!donaturUrlParams.has('tab') && savedDonaturTab === 'alokasi')) {
+    switchTab('alokasi', false);
   } else {
-    switchTab('donatur');
+    switchTab('donatur', false);
   }
 
   // ==========================================
@@ -2993,8 +3037,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
         throw new Error(result.error || 'Gagal menyimpan transaksi kas');
       }
 
-      window.location.hash = '#tab=alokasi';
-      window.location.reload();
+      reloadToAlokasiTab();
     } catch (err: any) {
       alert(`Terjadi kesalahan: ${err.message}`);
       btnSubmitAlokasi.removeAttribute('disabled');
@@ -3244,8 +3287,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
         throw new Error(data.error || 'Gagal menghapus transaksi');
       }
 
-      window.location.hash = '#tab=alokasi';
-      window.location.reload();
+      reloadToAlokasiTab();
     } catch (err: any) {
       alert(`Gagal menghapus: ${err.message}`);
       btnExecuteDeleteAlokasiModal.removeAttribute('disabled');
