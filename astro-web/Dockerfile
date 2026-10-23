@@ -14,16 +14,13 @@ WORKDIR /app
 # Stage 2: Dependencies
 FROM base AS deps
 COPY package.json pnpm-lock.yaml* ./
-# Izinkan esbuild & build scripts yang diblokir oleh pnpm strict mode
-RUN echo "enable-pre-post-scripts=true" > .npmrc && \
-    echo "unsafe-perm=true" >> .npmrc
-RUN pnpm install --shamefully-hoist
+# pnpm v9+ - onlyBuiltDependencies di package.json sudah whitelist esbuild & sharp
+RUN pnpm install --frozen-lockfile
 
 # Stage 3: Builder
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/.npmrc ./.npmrc
 COPY . .
 
 # Build Astro SSR standalone app

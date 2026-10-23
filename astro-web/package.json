@@ -41,5 +41,13 @@
     "drizzle-kit": "^0.31.11",
     "sharp": "^0.35.5",
     "tsx": "^4.23.15"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "@node-rs/argon2",
+      "bcryptjs"
+    ]
   }
 }
