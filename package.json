@@ -5,6 +5,7 @@
   "scripts": {
     "dev:lp": "pnpm --filter landing-page dev",
     "dev:web": "pnpm --filter astro-web dev",
+    "build": "pnpm --filter astro-web build",
     "build:lp": "pnpm --filter landing-page build",
     "build:web": "pnpm --filter astro-web build",
     "preview:lp": "pnpm --filter landing-page preview",
