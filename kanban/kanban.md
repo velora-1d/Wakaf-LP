@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] ADMIN-FILTER-NOMINAL-CUSTOM-01: Kolom Input Dinamis Filter Rentang Nominal Min & Max (Format Rupiah & Integrasi Preset Realtime) di /admin/donatur Terverifikasi Build
 - [x] ADMIN-RBAC-ROLES-01: Sistem Role & Hak Akses Menu Dinamis dengan Checkbox (Cekbk) Per Menu di Admin CMS & Pengaturan Izin Akses Sidebar Terverifikasi Build
 - [x] ADMIN-FILTER-NOMINAL-01: Filter menurut nominal donasi (preset rentang nominal & kalkulasi realtime dengan pagination) di /admin/donatur Terverifikasi Build
 - [x] ADMIN-SIDEBAR-COLLAPSE-01: Fitur Sidebar Collapsible (Expand/Collapse Compact Mode) di AdminLayout dengan Persistensi State LocalStorage

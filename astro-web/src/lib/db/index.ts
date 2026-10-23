@@ -517,6 +517,8 @@ export async function createDonationWithDonor(params: {
 
 export async function updateDonationWithDonor(params: {
   donationId: number;
+  kodeTransaksi?: string;
+  tanggalTransaksi?: string | Date;
   namaLengkap: string;
   namaTampilan?: string;
   tipeDonatur?: string;
@@ -567,26 +569,40 @@ export async function updateDonationWithDonor(params: {
     const newStatus = params.statusPembayaran || oldDonation.statusPembayaran;
     const isLunas = newStatus === 'lunas';
 
+    const txnDate = params.tanggalTransaksi ? new Date(params.tanggalTransaksi) : undefined;
+    const finalKodeTransaksi = (params.kodeTransaksi && params.kodeTransaksi.trim() !== '')
+      ? params.kodeTransaksi.trim()
+      : undefined;
+
     // 3. Update data transaksi
+    const donationUpdateData: any = {
+      programTujuan: params.programTujuan,
+      nominal: params.nominal,
+      kodeUnik,
+      nominalTotal,
+      akadPeruntukan: params.akadPeruntukan || 'Wakaf Muabbad (Abadi)',
+      atasNamaNiat: params.atasNamaNiat || null,
+      doaDonatur: params.doaDonatur || null,
+      metodePembayaran: params.metodePembayaran || 'BSI Transfer',
+      buktiTransferUrl: params.buktiTransferUrl !== undefined ? params.buktiTransferUrl : oldDonation.buktiTransferUrl,
+      statusPembayaran: newStatus,
+      verifiedBy: isLunas ? (oldDonation.verifiedBy || params.verifiedBy || 'Admin GVF') : null,
+      verifiedAt: isLunas ? (oldDonation.verifiedAt || new Date()) : null,
+      sumberLeads: params.sumberLeads || 'relasi_langsung',
+      campaignUtm: params.campaignUtm || null,
+      catatanTransaksi: params.catatanTransaksi || null,
+    };
+
+    if (finalKodeTransaksi) {
+      donationUpdateData.kodeTransaksi = finalKodeTransaksi;
+    }
+    if (txnDate && !isNaN(txnDate.getTime())) {
+      donationUpdateData.createdAt = txnDate;
+    }
+
     await db
       .update(schema.donations)
-      .set({
-        programTujuan: params.programTujuan,
-        nominal: params.nominal,
-        kodeUnik,
-        nominalTotal,
-        akadPeruntukan: params.akadPeruntukan || 'Wakaf Muabbad (Abadi)',
-        atasNamaNiat: params.atasNamaNiat || null,
-        doaDonatur: params.doaDonatur || null,
-        metodePembayaran: params.metodePembayaran || 'BSI Transfer',
-        buktiTransferUrl: params.buktiTransferUrl !== undefined ? params.buktiTransferUrl : oldDonation.buktiTransferUrl,
-        statusPembayaran: newStatus,
-        verifiedBy: isLunas ? (oldDonation.verifiedBy || params.verifiedBy || 'Admin GVF') : null,
-        verifiedAt: isLunas ? (oldDonation.verifiedAt || new Date()) : null,
-        sumberLeads: params.sumberLeads || 'relasi_langsung',
-        campaignUtm: params.campaignUtm || null,
-        catatanTransaksi: params.catatanTransaksi || null,
-      })
+      .set(donationUpdateData)
       .where(eq(schema.donations.id, params.donationId));
 
     // 4. Hitung ulang akumulasi donasi donatur jika nominal atau status berubah

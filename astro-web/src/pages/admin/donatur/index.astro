@@ -254,15 +254,36 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
             <option value="zakat">Zakat (Zakat Maal &amp; Fitrah)</option>
           </select>
 
-          <!-- Filter Rentang Nominal -->
-          <select id="filterNominal" class="h-9 rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-2xs focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
-            <option value="all">Semua Nominal</option>
-            <option value="under_100k">&lt; Rp 100.000</option>
-            <option value="100k_500k">Rp 100.000 - Rp 500.000</option>
-            <option value="500k_1m">Rp 500.000 - Rp 1.000.000</option>
-            <option value="1m_5m">Rp 1.000.000 - Rp 5.000.000</option>
-            <option value="above_5m">&gt; Rp 5.000.000 (Besar / VIP)</option>
-          </select>
+          <!-- Filter Rentang Nominal Dinamis (Preset + Input Min/Max) -->
+          <div class="flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-2 py-1 shadow-2xs">
+            <select id="filterNominal" class="h-7 rounded border-0 bg-transparent pr-1 text-xs font-medium text-slate-700 focus:outline-none focus:ring-0 cursor-pointer">
+              <option value="all">Semua Nominal</option>
+              <option value="custom">Kustom (Min - Max)</option>
+              <option value="under_100k">&lt; Rp 100.000</option>
+              <option value="100k_500k">Rp 100.000 - Rp 500.000</option>
+              <option value="500k_1m">Rp 500.000 - Rp 1.000.000</option>
+              <option value="1m_5m">Rp 1.000.000 - Rp 5.000.000</option>
+              <option value="above_5m">&gt; Rp 5.000.000 (Besar / VIP)</option>
+            </select>
+            <div class="flex items-center gap-1 pl-1.5 border-l border-slate-200">
+              <span class="text-[11px] font-semibold text-slate-400 select-none">Rp</span>
+              <input
+                type="text"
+                id="inputNominalMin"
+                placeholder="Min"
+                class="h-7 w-20 sm:w-24 rounded border border-slate-200 bg-slate-50/60 px-2 py-0.5 text-xs text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-[#0969da] focus:outline-none focus:ring-1 focus:ring-[#0969da]"
+                title="Nominal Minimum (contoh: 50.000)"
+              />
+              <span class="text-slate-300 font-bold select-none">-</span>
+              <input
+                type="text"
+                id="inputNominalMax"
+                placeholder="Max"
+                class="h-7 w-20 sm:w-24 rounded border border-slate-200 bg-slate-50/60 px-2 py-0.5 text-xs text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-[#0969da] focus:outline-none focus:ring-1 focus:ring-[#0969da]"
+                title="Nominal Maksimum (contoh: 1.000.000)"
+              />
+            </div>
+          </div>
 
           <button
             type="button"
@@ -536,6 +557,8 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
                           data-id={d.id}
                           data-json={JSON.stringify({
                             id: d.id,
+                            kodeTransaksi: d.kodeTransaksi,
+                            tanggalTransaksi: d.createdAt ? new Date(d.createdAt).toISOString().split('T')[0] : '',
                             namaLengkap: d.donor.namaLengkap,
                             namaTampilan: d.donor.namaTampilan || '',
                             tipeDonatur: d.donor.tipeDonatur,
@@ -1408,12 +1431,39 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
               <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100">
                 <span class="w-6 h-6 rounded-full bg-[#0969da] text-white text-xs font-bold flex items-center justify-center">2</span>
                 <div>
-                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Program Donasi &amp; Akad Syariah</h3>
-                  <p class="text-[11px] text-slate-400 m-0">Alokasi program dan kejelasan niat wakaf.</p>
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Rincian Transaksi, Program &amp; Akad</h3>
+                  <p class="text-[11px] text-slate-400 m-0">Kode transaksi, tanggal, alokasi program dan kejelasan niat donasi.</p>
                 </div>
               </div>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputKodeTransaksi">
+                    Kode Transaksi (Opsional)
+                  </label>
+                  <input
+                    type="text"
+                    id="inputKodeTransaksi"
+                    placeholder="Otomatis jika kosong (GVF-...)"
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs font-mono text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+                  />
+                  <span class="text-[10px] text-slate-400 mt-1 block">Bisa diisi manual nomor kwitansi / invoice</span>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1" for="inputTanggalTransaksi">
+                    Tanggal Transaksi <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    id="inputTanggalTransaksi"
+                    required
+                    value={new Date().toISOString().split('T')[0]}
+                    class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer"
+                  />
+                  <span class="text-[10px] text-slate-400 mt-1 block">Default otomatis tanggal hari ini</span>
+                </div>
+
                 <div>
                   <label class="block text-xs font-medium text-slate-700 mb-1" for="inputProgramTujuan">
                     Program Pilihan <span class="text-red-500">*</span>
@@ -1893,13 +1943,26 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
   }
 
   const filterNominal = document.getElementById('filterNominal') as HTMLSelectElement | null;
+  const inputNominalMin = document.getElementById('inputNominalMin') as HTMLInputElement | null;
+  const inputNominalMax = document.getElementById('inputNominalMax') as HTMLInputElement | null;
+
+  function formatRibuanInput(val: string): string {
+    const raw = val.replace(/\D/g, '');
+    if (!raw) return '';
+    return new Intl.NumberFormat('id-ID').format(Number(raw));
+  }
 
   function applyFilters() {
     const q = (searchInput?.value || '').toLowerCase().trim();
     const st = filterStatus?.value || 'all';
     const ld = filterLeads?.value || 'all';
     const pg = filterProgram?.value || 'all';
-    const nm = filterNominal?.value || 'all';
+
+    // Nominal Range Dinamis (Min & Max)
+    const rawMin = (inputNominalMin?.value || '').replace(/\D/g, '');
+    const rawMax = (inputNominalMax?.value || '').replace(/\D/g, '');
+    const minNominal = rawMin ? Number(rawMin) : 0;
+    const maxNominal = rawMax ? Number(rawMax) : Infinity;
 
     donationsMatchedRows = [];
 
@@ -1909,20 +1972,9 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       const leadMatch = ld === 'all' || row.getAttribute('data-lead') === ld;
       const progMatch = pg === 'all' || row.getAttribute('data-program') === pg;
 
-      // Filter Range Nominal
+      // Filter Range Nominal Dinamis
       const rowNominal = Number(row.getAttribute('data-nominal') || 0);
-      let nominalMatch = true;
-      if (nm === 'under_100k') {
-        nominalMatch = rowNominal < 100000;
-      } else if (nm === '100k_500k') {
-        nominalMatch = rowNominal >= 100000 && rowNominal <= 500000;
-      } else if (nm === '500k_1m') {
-        nominalMatch = rowNominal > 500000 && rowNominal <= 1000000;
-      } else if (nm === '1m_5m') {
-        nominalMatch = rowNominal > 1000000 && rowNominal <= 5000000;
-      } else if (nm === 'above_5m') {
-        nominalMatch = rowNominal > 5000000;
-      }
+      const nominalMatch = rowNominal >= minNominal && rowNominal <= maxNominal;
 
       if (searchMatch && statusMatch && leadMatch && progMatch && nominalMatch) {
         donationsMatchedRows.push(row);
@@ -1957,7 +2009,45 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
   filterStatus?.addEventListener('change', applyFilters);
   filterLeads?.addEventListener('change', applyFilters);
   filterProgram?.addEventListener('change', applyFilters);
-  filterNominal?.addEventListener('change', applyFilters);
+
+  // Event handler untuk sinkronisasi Dropdown Preset Nominal -> Input Dinamis
+  filterNominal?.addEventListener('change', () => {
+    const nm = filterNominal.value;
+    if (nm === 'all') {
+      if (inputNominalMin) inputNominalMin.value = '';
+      if (inputNominalMax) inputNominalMax.value = '';
+    } else if (nm === 'under_100k') {
+      if (inputNominalMin) inputNominalMin.value = '';
+      if (inputNominalMax) inputNominalMax.value = '100.000';
+    } else if (nm === '100k_500k') {
+      if (inputNominalMin) inputNominalMin.value = '100.000';
+      if (inputNominalMax) inputNominalMax.value = '500.000';
+    } else if (nm === '500k_1m') {
+      if (inputNominalMin) inputNominalMin.value = '500.000';
+      if (inputNominalMax) inputNominalMax.value = '1.000.000';
+    } else if (nm === '1m_5m') {
+      if (inputNominalMin) inputNominalMin.value = '1.000.000';
+      if (inputNominalMax) inputNominalMax.value = '5.000.000';
+    } else if (nm === 'above_5m') {
+      if (inputNominalMin) inputNominalMin.value = '5.000.000';
+      if (inputNominalMax) inputNominalMax.value = '';
+    }
+    applyFilters();
+  });
+
+  // Event handler untuk Input Dinamis Min/Max -> Auto Format Ribuan & Real-time Filter
+  [inputNominalMin, inputNominalMax].forEach((inp) => {
+    inp?.addEventListener('input', () => {
+      const formatted = formatRibuanInput(inp.value);
+      if (inp.value !== formatted) {
+        inp.value = formatted;
+      }
+      if (filterNominal && filterNominal.value !== 'custom') {
+        filterNominal.value = 'custom';
+      }
+      applyFilters();
+    });
+  });
 
   btnResetFilters?.addEventListener('click', () => {
     if (searchInput) searchInput.value = '';
@@ -1965,6 +2055,8 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
     if (filterLeads) filterLeads.value = 'all';
     if (filterProgram) filterProgram.value = 'all';
     if (filterNominal) filterNominal.value = 'all';
+    if (inputNominalMin) inputNominalMin.value = '';
+    if (inputNominalMax) inputNominalMax.value = '';
     if (donationsPerPageSelect) donationsPerPageSelect.value = '25';
     applyFilters();
   });
@@ -2050,6 +2142,8 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
 
   // 5. SUBMIT FORM CATAT DONASI
   btnSubmitDonation?.addEventListener('click', async () => {
+    const kodeTransaksi = (document.getElementById('inputKodeTransaksi') as HTMLInputElement)?.value.trim();
+    const tanggalTransaksi = (document.getElementById('inputTanggalTransaksi') as HTMLInputElement)?.value;
     const namaLengkap = (document.getElementById('inputNamaLengkap') as HTMLInputElement)?.value.trim();
     const namaTampilan = (document.getElementById('inputNamaTampilan') as HTMLInputElement)?.value.trim();
     const tipeDonatur = (document.getElementById('inputTipeDonatur') as HTMLSelectElement)?.value;
@@ -2086,6 +2180,8 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
     try {
       const endpoint = isEditMode ? '/api/admin/donatur/update' : '/api/admin/donatur/create';
       const payload: any = {
+        kodeTransaksi,
+        tanggalTransaksi,
         namaLengkap,
         namaTampilan,
         tipeDonatur,
@@ -2268,6 +2364,11 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
 
   function resetDonationForm() {
     (document.getElementById('inputDonationId') as HTMLInputElement).value = '';
+    (document.getElementById('inputKodeTransaksi') as HTMLInputElement).value = '';
+    const todayStr = new Date().toISOString().split('T')[0];
+    const tglInput = document.getElementById('inputTanggalTransaksi') as HTMLInputElement | null;
+    if (tglInput) tglInput.value = todayStr;
+
     (document.getElementById('inputNamaLengkap') as HTMLInputElement).value = '';
     (document.getElementById('inputNamaTampilan') as HTMLInputElement).value = '';
     (document.getElementById('inputTipeDonatur') as HTMLSelectElement).value = 'individu';
@@ -2300,6 +2401,11 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
 
   function populateDrawerForEdit(data: any) {
     (document.getElementById('inputDonationId') as HTMLInputElement).value = String(data.id || '');
+    (document.getElementById('inputKodeTransaksi') as HTMLInputElement).value = data.kodeTransaksi || '';
+    const dateVal = data.tanggalTransaksi || (data.createdAt ? new Date(data.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]);
+    const tglInput = document.getElementById('inputTanggalTransaksi') as HTMLInputElement | null;
+    if (tglInput) tglInput.value = dateVal;
+
     (document.getElementById('inputNamaLengkap') as HTMLInputElement).value = data.namaLengkap || '';
     (document.getElementById('inputNamaTampilan') as HTMLInputElement).value = data.namaTampilan || '';
     (document.getElementById('inputTipeDonatur') as HTMLSelectElement).value = data.tipeDonatur || 'individu';

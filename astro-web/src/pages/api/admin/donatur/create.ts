@@ -17,6 +17,8 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   try {
     const body = await request.json();
     const {
+      kodeTransaksi,
+      tanggalTransaksi,
       namaLengkap,
       namaTampilan,
       tipeDonatur,
@@ -59,6 +61,8 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     }
 
     const newDonation = await createDonationWithDonor({
+      kodeTransaksi: kodeTransaksi ? String(kodeTransaksi).trim() : undefined,
+      tanggalTransaksi: tanggalTransaksi ? String(tanggalTransaksi).trim() : undefined,
       namaLengkap: String(namaLengkap).trim(),
       namaTampilan: namaTampilan ? String(namaTampilan).trim() : 'Hamba Allah',
       tipeDonatur: tipeDonatur ? String(tipeDonatur).trim() : 'individu',
