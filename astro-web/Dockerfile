@@ -13,9 +13,9 @@ WORKDIR /app
 
 # Stage 2: Dependencies
 FROM base AS deps
-COPY package.json pnpm-lock.yaml* ./
-# pnpm v9+ - onlyBuiltDependencies di package.json sudah whitelist esbuild & sharp
-RUN pnpm install --frozen-lockfile
+COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* ./
+# pnpm v11+ uses allowBuilds in pnpm-workspace.yaml
+RUN pnpm install --no-frozen-lockfile
 
 # Stage 3: Builder
 FROM base AS builder

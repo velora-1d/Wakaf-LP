@@ -1,0 +1,5 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+  bcryptjs: true
+  "@node-rs/argon2": true

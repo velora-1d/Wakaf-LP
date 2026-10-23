@@ -4,6 +4,9 @@ packages:
 
 allowBuilds:
   esbuild: true
+  sharp: true
+  bcryptjs: true
+  "@node-rs/argon2": true
 
 minimumReleaseAgeExclude:
   - '@astrojs/check@0.9.11'
