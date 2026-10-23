@@ -3,11 +3,12 @@
 ## To Do
 
 ## In Progress
-- [/] DONATUR-INPUT-KODE-TGL-01: Penambahan Kolom Input Kode Transaksi & Tanggal Transaksi pada Form Donasi Admin (/admin/donatur), Integrasi API Create & Update, serta Drizzle ORM
+- [/] DONATUR-LABEL-CRUD-01: Fitur Label & CRUD Label Donatur (Tabel labels & donor_labels PostgreSQL, API CRUD, Modal Kelola Label, Penandaan di Drawer, Badge di Tabel, & Filter Label)
 
 ## In Review / Test
 
 ## Done
+- [x] DONATUR-INPUT-KODE-TGL-01: Penambahan Kolom Input Kode Transaksi & Tanggal Transaksi pada Form Donasi Admin (/admin/donatur), Integrasi API Create & Update, serta Drizzle ORM
 - [x] ADMIN-FILTER-NOMINAL-CUSTOM-01: Kolom Input Dinamis Filter Rentang Nominal Min & Max (Format Rupiah & Integrasi Preset Realtime) di /admin/donatur Terverifikasi Build
 - [x] ADMIN-RBAC-ROLES-01: Sistem Role & Hak Akses Menu Dinamis dengan Checkbox (Cekbk) Per Menu di Admin CMS & Pengaturan Izin Akses Sidebar Terverifikasi Build
 - [x] ADMIN-FILTER-NOMINAL-01: Filter menurut nominal donasi (preset rentang nominal & kalkulasi realtime dengan pagination) di /admin/donatur Terverifikasi Build
