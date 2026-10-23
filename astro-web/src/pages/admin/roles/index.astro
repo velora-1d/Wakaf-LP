@@ -561,29 +561,50 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
 </AdminLayout>
 
 <script>
-  // Tab Switching
+  // Tab Switching with Persistence (Hash & LocalStorage)
   const tabBtnRoles = document.getElementById('tabBtnRoles');
   const tabBtnUsers = document.getElementById('tabBtnUsers');
   const tabContentRoles = document.getElementById('tabContentRoles');
   const tabContentUsers = document.getElementById('tabContentUsers');
 
-  tabBtnRoles?.addEventListener('click', () => {
-    tabBtnRoles.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
-    tabBtnRoles.classList.remove('border-transparent', 'text-slate-500');
-    tabBtnUsers?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
-    tabBtnUsers?.classList.add('border-transparent', 'text-slate-500');
-    tabContentRoles?.classList.remove('hidden');
-    tabContentUsers?.classList.add('hidden');
-  });
+  function switchRolesTab(activeTab: 'roles' | 'users') {
+    if (activeTab === 'roles') {
+      tabBtnRoles?.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+      tabBtnRoles?.classList.remove('border-transparent', 'text-slate-500');
+      tabBtnUsers?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+      tabBtnUsers?.classList.add('border-transparent', 'text-slate-500');
+      tabContentRoles?.classList.remove('hidden');
+      tabContentUsers?.classList.add('hidden');
 
-  tabBtnUsers?.addEventListener('click', () => {
-    tabBtnUsers.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
-    tabBtnUsers.classList.remove('border-transparent', 'text-slate-500');
-    tabBtnRoles?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
-    tabBtnRoles?.classList.add('border-transparent', 'text-slate-500');
-    tabContentUsers?.classList.remove('hidden');
-    tabContentRoles?.classList.add('hidden');
-  });
+      window.history.replaceState(null, '', '#tab=roles');
+      try { localStorage.setItem('gvf_admin_roles_active_tab', 'roles'); } catch (e) {}
+    } else {
+      tabBtnUsers?.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+      tabBtnUsers?.classList.remove('border-transparent', 'text-slate-500');
+      tabBtnRoles?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+      tabBtnRoles?.classList.add('border-transparent', 'text-slate-500');
+      tabContentUsers?.classList.remove('hidden');
+      tabContentRoles?.classList.add('hidden');
+
+      window.history.replaceState(null, '', '#tab=users');
+      try { localStorage.setItem('gvf_admin_roles_active_tab', 'users'); } catch (e) {}
+    }
+  }
+
+  tabBtnRoles?.addEventListener('click', () => switchRolesTab('roles'));
+  tabBtnUsers?.addEventListener('click', () => switchRolesTab('users'));
+
+  // Initial tab restoration on load
+  let savedRolesTab = 'roles';
+  try {
+    savedRolesTab = localStorage.getItem('gvf_admin_roles_active_tab') || 'roles';
+  } catch (e) {}
+
+  if (window.location.hash.includes('users') || (!window.location.hash.includes('roles') && savedRolesTab === 'users')) {
+    switchRolesTab('users');
+  } else {
+    switchRolesTab('roles');
+  }
 
   // Role Select All & Deselect All
   document.querySelectorAll('.btn-select-all').forEach((btn) => {

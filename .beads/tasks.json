@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "ADMIN-TAB-PERSIST-01", "name": "Persistensi Tab Aktif (Roles & Users di /admin/roles dan Donatur & Alokasi di /admin/donatur) via URL Hash & LocalStorage saat Refresh", "status": "closed" },
     { "id": "ADMIN-USER-PW-EYE-01", "name": "Fitur Toggle Show/Hide Password dengan Ikon Mata (Lucide SVG Eye & EyeOff) pada Modal Input/Edit Akun Pengguna di /admin/roles", "status": "closed" },
     { "id": "ADMIN-USER-CRUD-01", "name": "Fitur CRUD Pengguna Admin (Tambah Akun Baru, Edit Profil/Password/Role, Hapus Akun, Validasi Bcrypt & Proteksi Akun Sendiri di /admin/roles)", "status": "closed" },
     { "id": "DONATUR-INPUT-KODE-TGL-01", "name": "Penambahan Kolom Input Kode Transaksi & Tanggal Transaksi pada Form Donasi Admin (/admin/donatur), Integrasi API Create & Update, serta Drizzle ORM", "status": "closed" },

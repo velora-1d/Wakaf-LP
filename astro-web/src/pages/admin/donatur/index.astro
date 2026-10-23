@@ -485,7 +485,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
                     <!-- Nominal -->
                     <td class="px-3 py-3 whitespace-nowrap">
                       <span class="font-mono font-bold text-slate-900 text-xs block">{formatRupiah(d.nominalTotal)}</span>
-                      {d.kodeUnik > 0 && (
+                      {d.kodeUnik != null && d.kodeUnik > 0 && (
                         <span class="font-mono text-[10px] text-slate-400 block">Kode: +{d.kodeUnik}</span>
                       )}
                     </td>
@@ -2752,6 +2752,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       tabBtnAlokasi?.classList.add('border-transparent', 'text-slate-500');
 
       window.history.replaceState(null, '', '#tab=donatur');
+      try { localStorage.setItem('gvf_admin_donatur_active_tab', 'donatur'); } catch (e) {}
     } else {
       tabContentDonatur?.classList.add('hidden');
       tabContentAlokasi?.classList.remove('hidden');
@@ -2763,6 +2764,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       tabBtnDonatur?.classList.add('border-transparent', 'text-slate-500');
 
       window.history.replaceState(null, '', '#tab=alokasi');
+      try { localStorage.setItem('gvf_admin_donatur_active_tab', 'alokasi'); } catch (e) {}
     }
   }
 
@@ -2776,9 +2778,16 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
     openAlokasiDrawer();
   });
 
-  // Check initial hash on load
-  if (window.location.hash.includes('alokasi')) {
+  // Check initial hash or localStorage on load
+  let savedDonaturTab = 'donatur';
+  try {
+    savedDonaturTab = localStorage.getItem('gvf_admin_donatur_active_tab') || 'donatur';
+  } catch (e) {}
+
+  if (window.location.hash.includes('alokasi') || (!window.location.hash.includes('donatur') && savedDonaturTab === 'alokasi')) {
     switchTab('alokasi');
+  } else {
+    switchTab('donatur');
   }
 
   // ==========================================
