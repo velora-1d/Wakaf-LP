@@ -16,7 +16,7 @@ async function runE2ETest() {
 
   // Test 2: Authentication
   console.log('\n[TEST 2] Testing Admin Authentication...');
-  const authValid = await authenticateAdmin('admin', 'AdminGVF2026!');
+  const authValid = await authenticateAdmin('admin', 'admin123');
   console.log('Auth with valid password:', authValid.success, authValid.user);
   if (!authValid.success || !authValid.user) {
     throw new Error('Valid login failed!');

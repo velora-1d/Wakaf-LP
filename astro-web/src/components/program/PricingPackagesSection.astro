@@ -17,8 +17,8 @@ const pricingHeading = dbPackageData?.heading || program.pricingHeading;
 const pricingSubheading = dbPackageData?.subheading || program.pricingSubheading;
 const packages = (dbPackageData?.packages && dbPackageData.packages.length > 0) ? dbPackageData.packages : program.packages;
 
-// Ambil riwayat donatur terverifikasi (lunas) real-time untuk program ini
-const verifiedDonations = await getVerifiedDonationsByProgram(program.slug, 8);
+// Ambil riwayat donatur terverifikasi (lunas) real-time untuk program ini (hingga 100 donatur)
+const verifiedDonations = await getVerifiedDonationsByProgram(program.slug, 100);
 const totalTerhimpun = verifiedDonations.reduce((acc, cur) => acc + (cur.nominalTotal || 0), 0);
 
 function formatRupiah(amount: number): string {
@@ -699,7 +699,25 @@ function formatRelativeDate(date: Date | string): string {
 
   .donatur-table-scroll {
     overflow-x: auto;
+    overflow-y: auto;
+    max-height: 520px;
     width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: #0969da #f1f5f9;
+  }
+
+  .donatur-table-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .donatur-table-scroll::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  .donatur-table-scroll::-webkit-scrollbar-thumb {
+    background: #0969da;
+    border-radius: 4px;
   }
 
   .donatur-table {
@@ -711,6 +729,9 @@ function formatRelativeDate(date: Date | string): string {
 
   .donatur-table thead tr {
     background-color: #0f172a;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 
   .donatur-table th {
@@ -721,6 +742,7 @@ function formatRelativeDate(date: Date | string): string {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    background-color: #0f172a;
   }
 
   .donatur-table th.col-amount {

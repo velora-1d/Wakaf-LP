@@ -112,3 +112,21 @@ export type NewDonor = typeof donors.$inferInsert;
 export type Donation = typeof donations.$inferSelect;
 export type NewDonation = typeof donations.$inferInsert;
 
+export const cashAllocations = pgTable('cash_allocations', {
+  id: serial('id').primaryKey(),
+  kodeTransaksi: varchar('kode_transaksi', { length: 50 }).notNull().unique(),
+  program: varchar('program', { length: 30 }).notNull(), // 'wakaf', 'infaq', 'sedekah', 'zakat'
+  posAnggaran: varchar('pos_anggaran', { length: 100 }).notNull(),
+  uraian: text('uraian').notNull(),
+  jenisTransaksi: varchar('jenis_transaksi', { length: 20 }).notNull(), // 'debit' | 'kredit'
+  nominal: bigint('nominal', { mode: 'number' }).notNull(),
+  buktiNotaUrl: text('bukti_nota_url'),
+  pic: varchar('pic', { length: 100 }).default('Amil Lapangan GVF'),
+  tanggalTransaksi: timestamp('tanggal_transaksi').defaultNow().notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+export type CashAllocation = typeof cashAllocations.$inferSelect;
+export type NewCashAllocation = typeof cashAllocations.$inferInsert;
+

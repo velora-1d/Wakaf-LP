@@ -141,29 +141,29 @@ async function run() {
           sumber_leads, campaign_utm, catatan_transaksi
         ) VALUES
         (
-          'GVF-202610-0001', ${d1.id}, 'wakaf-produktif', 15000000, 125, 15000125,
+          'GVF-202610-0001', ${d1.id}, 'wakaf', 15000000, 125, 15000125,
           'Wakaf Muabbad (Abadi)', 'Alm. H. Sulistyo bin Kartowijoyo', 'Semoga menjadi amal jariyah untuk kedua orang tua kami tercinta.',
           'BSI Transfer', 'https://s3.skillage-mart.com/skillage-website/donasi/bukti-bsi-contoh1.jpg',
           'lunas', 'Admin Amil Utama', NOW(),
           'safari_dakwah', 'safari-bogor-okt26', 'Verifikasi via mutasi BSI Rek 7123456789'
         ),
         (
-          'GVF-202610-0002', ${d1.id}, 'masjid-khairu-ummah', 10000000, 340, 10000340,
+          'GVF-202610-0002', ${d1.id}, 'wakaf', 10000000, 340, 10000340,
           'Wakaf Muabbad (Abadi)', 'H. Bambang & Keluarga', 'Mohon doa agar anak-anak kami menjadi hafiz Quran yang istiqamah.',
           'BSI Transfer', 'https://s3.skillage-mart.com/skillage-website/donasi/bukti-bsi-contoh2.jpg',
           'lunas', 'Admin Amil Utama', NOW(),
           'relasi_langsung', 'founder-network', 'Transfer kedua bulan Oktober 2026'
         ),
         (
-          'GVF-202610-0003', ${d2.id}, 'beasiswa-santri', 50000000, 0, 50000000,
-          'Infaq Terikat CSR', 'CSR PT Sinergi Berkah Nusantara', 'Pemberdayaan vokasi generasi muda mandiri pangan.',
+          'GVF-202610-0003', ${d2.id}, 'sedekah', 50000000, 0, 50000000,
+          'Sedekah Pangan Santri', 'CSR PT Sinergi Berkah Nusantara', 'Pemberdayaan vokasi generasi muda mandiri pangan.',
           'BCA', 'https://s3.skillage-mart.com/skillage-website/donasi/bukti-bca-csr.jpg',
           'lunas', 'Admin Amil Utama', NOW(),
           'walk_in', 'visit-kawasan-jonggol', 'MoU Kemitraan CSR Vokasi 2026-2027'
         ),
         (
-          'GVF-202610-0004', ${d3.id}, 'wakaf-produktif', 1500000, 782, 1500782,
-          'Wakaf Muabbad (Abadi)', 'Ibu Siti Rahmayanti', 'Bismillah untuk kebun alpukat produktif santri.',
+          'GVF-202610-0004', ${d3.id}, 'infaq', 1500000, 782, 1500782,
+          'Infaq Pembangunan Fisik', 'Ibu Siti Rahmayanti', 'Bismillah untuk percepatan pembangunan fasilitas santri.',
           'QRIS Skillage', NULL,
           'menunggu_verifikasi', NULL, NULL,
           'meta_ads', 'fb-ig-wakaf-alpukat-okt', 'Menunggu amil mengecek screenshot QRIS'

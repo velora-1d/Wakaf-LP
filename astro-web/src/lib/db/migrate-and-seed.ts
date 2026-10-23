@@ -71,17 +71,23 @@ async function main() {
 
     // 2. Admin User Seeding
     const existingAdmin = await sql`SELECT id FROM admin_users WHERE username = 'admin' LIMIT 1`;
+    const defaultPassword = 'admin123';
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(defaultPassword, salt);
+
     if (existingAdmin.length === 0) {
-      const defaultPassword = 'AdminGVF2026!';
-      const salt = bcrypt.genSaltSync(10);
-      const hash = bcrypt.hashSync(defaultPassword, salt);
       await sql`
         INSERT INTO admin_users (username, password_hash, name, role)
         VALUES ('admin', ${hash}, 'Administrator GVF', 'superadmin')
       `;
       console.log(`[DB-INIT] Default admin created! Username: admin, Initial Password: ${defaultPassword}`);
     } else {
-      console.log('[DB-INIT] Admin user already exists.');
+      await sql`
+        UPDATE admin_users 
+        SET password_hash = ${hash}, updated_at = CURRENT_TIMESTAMP 
+        WHERE username = 'admin'
+      `;
+      console.log(`[DB-INIT] Admin user password updated to ${defaultPassword}.`);
     }
 
     // 3. Pages Seeding

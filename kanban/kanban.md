@@ -7,6 +7,8 @@
 ## In Review / Test
 
 ## Done
+- [x] CASH-ALLOC-TABS-01: Implementasi Tab Realisasi Alokasi Kas (Debit-Kredit-Saldo) di /admin/donatur Terintegrasi DB PostgreSQL (Drizzle ORM), API CRUD, & MinIO S3 (Lulus Uji End-to-End & Live SSR)
+- [x] DONATUR-SEED-MKU-01: Seeding 57 Transaksi Donasi Masjid Khairu Ummah ke Shodaqoh/Sedekah (/program/sedekah) Senilai Rp 55.927.000, Update Kredensial Admin, & Standardisasi 4 Program Resmi Web (Wakaf, Infaq, Sedekah, Zakat)
 - [x] BRAND-LOGO-GVF-01: Penerapan Logo Baru Global Village Fund (3D Silver-Gold) di Komponen Publik (Program Consultation Box, Footer, dan Navbar - Integrasi Aset Bersih & Terverifikasi Browser Empiris)
 - [x] PROGRAM-PACKAGES-CMS-01: Sinkronisasi Skema DB PostgreSQL & Visual Package Editor di Admin CMS untuk Seluruh Halaman Program (Wakaf, Infaq, Sedekah, Zakat) Secara Paralel
 - [x] PROGRAM-DONORS-FEED-01: Transformasi Tabel Add-on Tambahan menjadi Live Donatur Feed per Kategori Program di Halaman Publik (Wakaf, Infaq, Sedekah, Zakat) Terintegrasi DB PostgreSQL

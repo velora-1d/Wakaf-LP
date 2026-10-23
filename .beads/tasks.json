@@ -1,6 +1,8 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "CASH-ALLOC-TABS-01", "name": "Implementasi Tab Realisasi Alokasi Kas (Debit-Kredit-Saldo) di /admin/donatur Terintegrasi DB PostgreSQL (Drizzle ORM), API CRUD, & MinIO S3", "status": "closed" },
+    { "id": "DONATUR-SEED-MKU-01", "name": "Seeding 57 Transaksi Donasi Masjid Khairu Ummah ke Shodaqoh/Sedekah (/program/sedekah) Senilai Rp 55.927.000, Update Kredensial Admin, & Standardisasi 4 Program Resmi Web (Wakaf, Infaq, Sedekah, Zakat)", "status": "closed" },
     { "id": "BRAND-LOGO-GVF-01", "name": "Penerapan Logo Baru Global Village Fund (3D Silver-Gold) di Komponen Publik (Program Consultation Box, Footer, dan Navbar)", "status": "closed" },
     { "id": "PROGRAM-PACKAGES-CMS-01", "name": "Sinkronisasi Skema DB PostgreSQL & Visual Package Editor di Admin CMS untuk Seluruh Halaman Program (Wakaf, Infaq, Sedekah, Zakat) Secara Paralel", "status": "closed" },
     { "id": "PROGRAM-DONORS-FEED-01", "name": "Transformasi Tabel Add-on Tambahan menjadi Live Donatur Feed per Kategori Program di Halaman Publik (Wakaf, Infaq, Sedekah, Zakat) Terintegrasi DB PostgreSQL", "status": "closed" },
