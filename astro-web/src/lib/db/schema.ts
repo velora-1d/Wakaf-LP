@@ -142,3 +142,21 @@ export const cashAllocations = pgTable('cash_allocations', {
 export type CashAllocation = typeof cashAllocations.$inferSelect;
 export type NewCashAllocation = typeof cashAllocations.$inferInsert;
 
+export const labels = pgTable('labels', {
+  id: serial('id').primaryKey(),
+  nama: varchar('nama', { length: 100 }).notNull().unique(),
+  warna: varchar('warna', { length: 30 }).default('blue').notNull(),
+  deskripsi: text('deskripsi'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+export const donorLabels = pgTable('donor_labels', {
+  donorId: integer('donor_id').references(() => donors.id, { onDelete: 'cascade' }).notNull(),
+  labelId: integer('label_id').references(() => labels.id, { onDelete: 'cascade' }).notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export type Label = typeof labels.$inferSelect;
+export type NewLabel = typeof labels.$inferInsert;
+export type DonorLabel = typeof donorLabels.$inferSelect;

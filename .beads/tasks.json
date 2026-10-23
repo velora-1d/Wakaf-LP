@@ -4,7 +4,7 @@
     { "id": "ADMIN-USER-PW-EYE-01", "name": "Fitur Toggle Show/Hide Password dengan Ikon Mata (Lucide SVG Eye & EyeOff) pada Modal Input/Edit Akun Pengguna di /admin/roles", "status": "closed" },
     { "id": "ADMIN-USER-CRUD-01", "name": "Fitur CRUD Pengguna Admin (Tambah Akun Baru, Edit Profil/Password/Role, Hapus Akun, Validasi Bcrypt & Proteksi Akun Sendiri di /admin/roles)", "status": "closed" },
     { "id": "DONATUR-INPUT-KODE-TGL-01", "name": "Penambahan Kolom Input Kode Transaksi & Tanggal Transaksi pada Form Donasi Admin (/admin/donatur), Integrasi API Create & Update, serta Drizzle ORM", "status": "closed" },
-    { "id": "DONATUR-LABEL-CRUD-01", "name": "Fitur Label & CRUD Label Donatur (Tabel labels & donor_labels PostgreSQL, API CRUD, Modal Kelola Label, Penandaan di Drawer, Badge di Tabel, & Filter Label)", "status": "in_progress" },
+    { "id": "DONATUR-LABEL-CRUD-01", "name": "Fitur Label & CRUD Label Donatur (Tabel labels & donor_labels PostgreSQL, API CRUD, Modal Kelola Label, Penandaan di Drawer, Badge di Tabel, & Filter Label)", "status": "closed" },
     { "id": "ADMIN-FILTER-NOMINAL-CUSTOM-01", "name": "Kolom Input Dinamis Filter Rentang Nominal Min & Max (Format Rupiah & Integrasi Preset) di /admin/donatur", "status": "closed" },
     { "id": "ADMIN-FILTER-NOMINAL-01", "name": "Filter menurut nominal donasi (preset rentang nominal & kalkulasi realtime dengan pagination) di /admin/donatur", "status": "closed" },
     { "id": "ADMIN-RBAC-ROLES-01", "name": "Sistem Role & Hak Akses Menu Dinamis dengan Checkbox (Cekbk) Per Menu di Admin CMS & Pengaturan Izin Akses Sidebar", "status": "closed" },

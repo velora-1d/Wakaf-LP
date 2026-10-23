@@ -91,6 +91,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       campaignUtm: campaignUtm ? String(campaignUtm).trim() : undefined,
       catatanTransaksi: catatanTransaksi ? String(catatanTransaksi).trim() : undefined,
       verifiedBy: user.name,
+      labelIds: Array.isArray(body.labelIds) ? body.labelIds.map((id: any) => Number(id)).filter((id: number) => !isNaN(id)) : undefined,
     });
 
     if (!success) {

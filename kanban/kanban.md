@@ -3,11 +3,11 @@
 ## To Do
 
 ## In Progress
-- [/] DONATUR-LABEL-CRUD-01: Fitur Label & CRUD Label Donatur (Tabel labels & donor_labels PostgreSQL, API CRUD, Modal Kelola Label, Penandaan di Drawer, Badge di Tabel, & Filter Label)
 
 ## In Review / Test
 
 ## Done
+- [x] DONATUR-LABEL-CRUD-01: Fitur Label & CRUD Label Donatur (Tabel labels & donor_labels PostgreSQL, API CRUD, Modal Kelola Label, Penandaan di Drawer, Badge di Tabel, & Filter Label) Terverifikasi Build
 - [x] ADMIN-USER-PW-EYE-01: Fitur Toggle Show/Hide Password dengan Ikon Mata (Lucide SVG Eye & EyeOff) pada Modal Input/Edit Akun Pengguna di /admin/roles
 - [x] ADMIN-USER-CRUD-01: Fitur CRUD Pengguna Admin (Tambah Akun Baru, Edit Profil/Password/Role, Hapus Akun, Validasi Bcrypt & Proteksi Akun Sendiri di /admin/roles)
 - [x] DONATUR-INPUT-KODE-TGL-01: Penambahan Kolom Input Kode Transaksi & Tanggal Transaksi pada Form Donasi Admin (/admin/donatur), Integrasi API Create & Update, serta Drizzle ORM
