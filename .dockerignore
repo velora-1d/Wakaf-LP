@@ -1,0 +1,14 @@
+.git
+.github
+node_modules
+dist
+build
+.cache
+.astro
+.vercel
+docs
+kanban
+*.md
+!package.json
+!pnpm-lock.yaml
+!pnpm-workspace.yaml
