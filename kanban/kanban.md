@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] ADMIN-USER-PW-EYE-01: Fitur Toggle Show/Hide Password dengan Ikon Mata (Lucide SVG Eye & EyeOff) pada Modal Input/Edit Akun Pengguna di /admin/roles
 - [x] ADMIN-USER-CRUD-01: Fitur CRUD Pengguna Admin (Tambah Akun Baru, Edit Profil/Password/Role, Hapus Akun, Validasi Bcrypt & Proteksi Akun Sendiri di /admin/roles)
 - [x] DONATUR-INPUT-KODE-TGL-01: Penambahan Kolom Input Kode Transaksi & Tanggal Transaksi pada Form Donasi Admin (/admin/donatur), Integrasi API Create & Update, serta Drizzle ORM
 - [x] ADMIN-FILTER-NOMINAL-CUSTOM-01: Kolom Input Dinamis Filter Rentang Nominal Min & Max (Format Rupiah & Integrasi Preset Realtime) di /admin/donatur Terverifikasi Build
