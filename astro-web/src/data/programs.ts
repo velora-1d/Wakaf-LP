@@ -1,5 +1,5 @@
 // src/data/programs.ts
-// Data Terpusat Program ZISWAF Global Village Fund (GVF) Presisi 100% Mengadopsi ISAVO
+// Data Terpusat Program Global Village Fund (GVF) Presisi 100% Mengadopsi ISAVO
 
 export interface DeliverableItem {
   bold: string;
@@ -676,7 +676,7 @@ export const programsData: Record<string, ProgramData> = {
       {
         institution: 'Kemenkumham RI',
         regNumber: 'AHU-0014285.AH.01.04.Tahun 2026',
-        authority: 'Izin Lembaga Filantropi & Pengelola ZISWAF',
+        authority: 'Izin Lembaga Filantropi & Pengelola Donasi',
         description: 'Pengelolaan dana zakat amanah, transparan, dan terdaftar resmi.'
       }
     ],

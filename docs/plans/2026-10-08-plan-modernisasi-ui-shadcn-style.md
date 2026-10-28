@@ -102,7 +102,7 @@ Fokus: Membersihkan kotak-kotak generik di bagian tengah beranda.
 
 ---
 
-### 🔹 FASE 3: Halaman Program ZISWAF (`/program/wakaf`, `/program/infaq`, dll.)
+### 🔹 FASE 3: Halaman Program GVF (`/program/wakaf`, `/program/infaq`, dll.)
 Fokus: Mengeliminasi kotak kaku pada halaman detail program di `ProgramLayout.astro`.
 
 - [ ] **Task 3.1: Modernisasi Pricing Packages Card**

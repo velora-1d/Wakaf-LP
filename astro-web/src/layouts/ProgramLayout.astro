@@ -1,6 +1,6 @@
 ---
 // src/layouts/ProgramLayout.astro
-// Master Template Program ZISWAF Presisi 100% Desain Pen.dev (global village fund.pen)
+// Master Template Program GVF Presisi 100% Desain Pen.dev (global village fund.pen)
 import BaseLayout from './BaseLayout.astro';
 import type { ProgramData } from '../data/programs';
 import PricingPackagesSection from '../components/program/PricingPackagesSection.astro';
@@ -25,7 +25,7 @@ const isEnabled = (key: string) => {
 const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
 const breadcrumbs = [
   { name: 'Beranda', url: '/' },
-  { name: 'Program ZISWAF', url: '/#programs' },
+  { name: 'Program GVF', url: '/#programs' },
   { name: program.title, url: `/program/${program.slug}` },
 ];
 
@@ -135,7 +135,7 @@ const valueBoxIcons = [
               www.globalvillagefund.org
             </div>
             <a
-              href="https://wa.me/6287865994786?text=Assalamualaikum%20Layanan%20Donatur%20GVF%2C%20saya%20ingin%20konsultasi%20program%20ZISWAF."
+              href="https://wa.me/6287865994786?text=Assalamualaikum%20Layanan%20Donatur%20GVF%2C%20saya%20ingin%20konsultasi%20program%20GVF."
               target="_blank"
               rel="noopener noreferrer"
               class="uiverse-ripple-btn uiverse-ripple-btn-dark pen-sidebar-cta"
@@ -270,7 +270,7 @@ const valueBoxIcons = [
                 'Dokumentasi foto penyaluran di lokasi',
                 'Pengawasan kualitas & mutu bangunan',
                 'RAB terperinci dan terbuka',
-                'Akad ZISWAF transparan & terpercaya',
+                'Akad donasi transparan & terpercaya',
                 'Kunjungan langsung ke lokasi Jonggol'
               ]).map((g) => (
                 <div class="pen-guarantee-item">

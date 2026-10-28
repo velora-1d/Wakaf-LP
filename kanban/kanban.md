@@ -39,9 +39,9 @@
 - [x] DONATUR-DB-01: Penambahan skema `donors` & `donations` di Drizzle ORM serta eksekusi DDL migrasi PostgreSQL (Tabel, Relasi, Indeks & Seeding Berhasil)
 - [x] UIVERSE-BTN-01: Penerapan Efek Animasi Tombol Uiverse (Circle Ripple Expansion Biru ISAVO) pada Hero, Program Portofolio, About & Kontak WA secara Paralel
 - [x] HUMANIZE-FIX-01: Perbaikan Humanize-UI Home & Navigasi Global (Ghost links, Kontak WA, Kontras News, A11y Leadership, Bersihkan Kode Mati)
-- [x] HUMANIZE-FIX-02: Perbaikan Humanize-UI Program ZISWAF & Data Filantropi (Copywriting Filantropi, Rincian Alokasi, Data Jonggol, SVG Icons)
+- [x] HUMANIZE-FIX-02: Perbaikan Humanize-UI Program GVF & Data Filantropi (Copywriting Filantropi, Rincian Alokasi, Data Jonggol, SVG Icons)
 - [x] HUMANIZE-FIX-03: Perbaikan Humanize-UI Halaman Pendukung, Admin CMS & ElasticGallery (Mobile Drawer Admin, WA Redirect, Font & Asset Lokal)
-- [x] HUMANIZE-AUDIT-01: Audit Menyeluruh Humanize-UI Per Halaman & Section secara Paralel (Beranda, Program ZISWAF, Pendukung & Admin)
+- [x] HUMANIZE-AUDIT-01: Audit Menyeluruh Humanize-UI Per Halaman & Section secara Paralel (Beranda, Program GVF, Pendukung & Admin)
 - [x] TASTE-ALIGN-01: Penyelarasan Taste-Skill Frontend Art Direction & Micro-Interactions (Per Halaman & Section - Easing cubic-bezier(.2, .8, .2, 1), Taktil Motion, Visual Hierarchy)
 - [x] ANTISLOP-CODE-01: Pembersihan Komentar Slop (Decorative Separators, Workflow Narration, Card Numbering & Empty Labels) di Template Astro, Style & Data
 - [x] CMS-FASE-06: Uji Coba End-to-End Realtime Section Management

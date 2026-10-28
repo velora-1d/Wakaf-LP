@@ -1,4 +1,4 @@
-# Master Plan: Template Halaman Program ZISWAF ala ISAVO (isavo.co.id)
+# Master Plan: Template Halaman Program GVF (Infaq, Sedekah, Zakat, Wakaf) ala ISAVO (isavo.co.id)
 **Global Village Fund (GVF) • Astro Fullstack**
 
 ---

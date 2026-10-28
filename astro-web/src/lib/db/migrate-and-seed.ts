@@ -141,7 +141,7 @@ async function main() {
         sort_order: 2,
         content: {
           heading: 'Empat Pilar Filantropi GVF',
-          subheading: 'Solusi terpadu pengentasan kemiskinan dan kemandirian ekonomi umat melalui ZISWAF berstandar profesional.',
+          subheading: 'Solusi terpadu pengentasan kemiskinan dan kemandirian ekonomi umat melalui program infaq, sedekah, zakat, dan wakaf berstandar profesional.',
           programs: [
             { id: 'wakaf', title: 'Wakaf Produktif', tag: 'Aset Abadi', desc: 'Pengembangan kawasan sarana ibadah, pendidikan sains, dan agroekosistem mandiri.' },
             { id: 'infaq', title: 'Infaq Pemberdayaan', tag: 'Dampak Cepat', desc: 'Dukungan fasilitas umum, beasiswa generasi santri unggul, dan modal bergulir.' },
@@ -185,7 +185,7 @@ async function main() {
           heading: 'Standar Tata Kelola Amanah dan Transparan',
           subheading: 'Alur komprehensif dari penghimpunan hingga audit independen untuk memastikan setiap rupiah tepat guna.',
           steps: [
-            { number: '01', title: 'Penerimaan & Akad Sah', desc: 'Penerimaan dana ZISWAF dengan bukti digital dan akad syariah yang sah serta mengikat.' },
+            { number: '01', title: 'Penerimaan & Akad Sah', desc: 'Penerimaan dana donasi & wakaf dengan bukti digital dan akad syariah yang sah serta mengikat.' },
             { number: '02', title: 'Pengalokasian Strategis', desc: 'Distribusi dana sesuai masterplan kawasan dan asnaf prioritas hasil studi kelayakan lapangan.' },
             { number: '03', title: 'Eksekusi & Konstruksi', desc: 'Pembangunan sarana dan pembinaan komunitas mustahik dengan kontrol mutu berkala.' },
             { number: '04', title: 'Audit & Pelaporan Terbuka', desc: 'Laporan keuangan dan dampak sosial dipublikasikan secara transparan dengan opini WTP.' }

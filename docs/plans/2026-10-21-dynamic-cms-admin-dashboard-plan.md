@@ -82,7 +82,7 @@ Manajemen aset gambar yang diunggah / digunakan di CMS.
 | No | Section Key | Nama Section di Admin | Konten Dinamis yang Bisa Diedit via Admin |
 | :--- | :--- | :--- | :--- |
 | 1 | `hero` | 01. Hero Slider Cinematic | 4 slide (judul, subtitle, badge, foto background, teks tombol CTA) |
-| 2 | `programs_pillar` | 02. Empat Pilar Program ZISWAF | Kicker badge, judul utama, 4 kartu program (Wakaf, Zakat, Infaq, Sedekah) |
+| 2 | `programs_pillar` | 02. Empat Pilar Program GVF | Kicker badge, judul utama, 4 kartu program (Wakaf, Zakat, Infaq, Sedekah) |
 | 3 | `about_split` | 03. Tentang Kami & Visi | Tagline, judul narasi, 4 poin checklist keunggulan, foto dokumentasi |
 | 4 | `interactive_services` | 04. Jelajahi Ekosistem Terpadu | Header, foto display, accordion tab 01-04 (Masjid, SMK, Lab, Greenhouse) |
 | 5 | `workflow` | 05. Alur Filantropi & Tahapan | 4 kartu langkah (01 Hisab, 02 Akad, 03 Realisasi, 04 Laporan) |
@@ -125,7 +125,7 @@ Manajemen aset gambar yang diunggah / digunakan di CMS.
 
 ---
 
-### Halaman 5 s/d 8: Halaman Detail Program ZISWAF
+### Halaman 5 s/d 8: Halaman Detail Program GVF (Wakaf, Infaq, Sedekah, Zakat)
 *(Berlaku untuk `/program/wakaf`, `/program/zakat`, `/program/infaq`, `/program/sedekah`)*
 | No | Section Key | Nama Section di Admin | Konten Dinamis yang Bisa Diedit via Admin |
 | :--- | :--- | :--- | :--- |
