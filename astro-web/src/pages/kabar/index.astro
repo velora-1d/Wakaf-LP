@@ -4,6 +4,7 @@ export const prerender = false;
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getActiveNewsArticles } from '../../lib/db';
+import { getBreadcrumbSchema } from '../../lib/seo-schema';
 
 const articles = await getActiveNewsArticles(50);
 
@@ -19,11 +20,19 @@ const formatDate = (dateInput: Date | string | null) => {
     year: 'numeric'
   }).format(date);
 };
+
+const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Kabar GVF', url: '/kabar' },
+];
+const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
 ---
 
 <BaseLayout
-  title="Kabar &amp; Literasi • Global Village Fund"
+  title="Kabar & Literasi • Global Village Fund"
   description="Warta terkini pembangunan kawasan, aktivitas santri vokasi, dan catatan fiqih wakaf produktif di Sukamakmur Jonggol."
+  schema={pageSchema}
 >
   <div class="kabar-archive-page">
     <!-- Header Section -->

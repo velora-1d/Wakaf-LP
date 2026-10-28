@@ -1,0 +1,41 @@
+# robots.txt for Global Village Fund
+# https://globalvillagefund.org
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Explicit allowance for major AI Crawlers & Answer Engines (AEO/GEO)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://globalvillagefund.org/sitemap.xml

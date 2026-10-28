@@ -6,6 +6,7 @@ export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ElasticGallery from '../components/ui/ElasticGallery.astro';
 import { getActivePageSections } from '../lib/db';
+import { getBreadcrumbSchema } from '../lib/seo-schema';
 
 const activeSections = await getActivePageSections('tentang-kami');
 const sectionMap = new Map(activeSections.map((s) => [s.sectionKey, s]));
@@ -13,11 +14,19 @@ const isEnabled = (key: string) => {
   if (activeSections.length === 0) return true;
   return sectionMap.has(key);
 };
+
+const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Tentang Kami', url: '/tentang-kami' },
+];
+const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
 ---
 
 <BaseLayout
   title="Tentang Global Village Fund • Yayasan Permata Cendekia Indonesia"
   description="Membangun ekosistem pesantren integratif holistik di Sukasirna, Jonggol, Kabupaten Bogor menuju kemandirian dan kebermanfaatan abadi."
+  schema={pageSchema}
 >
   {isEnabled('about_hero') && (
   <section class="pen-about-banner">

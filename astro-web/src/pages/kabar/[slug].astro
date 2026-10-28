@@ -5,6 +5,7 @@ export const prerender = false;
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getNewsArticleBySlug, getActiveNewsArticles } from '../../lib/db';
 import { verifySessionToken } from '../../lib/auth';
+import { getArticleSchema, getBreadcrumbSchema } from '../../lib/seo-schema';
 
 const { slug } = Astro.params;
 
@@ -48,12 +49,41 @@ const getReadTime = (content: string) => {
 
 // Pemisahan paragraf isi berita
 const paragraphs = article?.content ? article.content.split(/\n\s*\n/).filter(p => p.trim().length > 0) : [];
+
+// Skema SEO Artikel & Breadcrumb
+const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
+const articleBreadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Kabar GVF', url: '/kabar' },
+  ...(article ? [{ name: article.title, url: `/kabar/${article.slug}` }] : []),
+];
+
+const articleSchemas = article
+  ? [
+      getBreadcrumbSchema(articleBreadcrumbs, siteUrl),
+      getArticleSchema(
+        {
+          title: article.title,
+          summary: article.summary,
+          slug: article.slug,
+          coverImage: article.coverImage,
+          createdAt: article.publishedAt || article.createdAt,
+          updatedAt: article.updatedAt,
+          author: article.author || 'Global Village Fund',
+        },
+        siteUrl
+      ),
+    ]
+  : null;
 ---
 
 <BaseLayout
   title={article ? `${article.title} • Kabar Global Village Fund` : 'Artikel Tidak Ditemukan • Global Village Fund'}
   description={article ? (article.summary || article.title) : 'Kabar dan warta terkini program filantropi Global Village Fund.'}
   ogImage={article?.coverImage || '/logo-gvf.png'}
+  ogType="article"
+  schema={articleSchemas}
+  noindex={!canView || !article?.isPublished}
 >
   {!canView ? (
     <div class="kabar-not-found">

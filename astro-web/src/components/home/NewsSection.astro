@@ -103,6 +103,7 @@ const formatDate = (dateInput: Date | string | null) => {
               alt={article.title}
               class="news-thumb-img"
               loading="lazy"
+              decoding="async"
             />
             <span class="news-category-badge">{article.category}</span>
           </div>

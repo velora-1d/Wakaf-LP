@@ -5,19 +5,49 @@ import Footer from '../components/layout/Footer.astro';
 import 'lenis/dist/lenis.css';
 import '../styles/tailwind.css';
 import '../styles/design-tokens.css';
-
+import { getOrganizationSchema, getWebSiteSchema } from '../lib/seo-schema';
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  ogType?: 'website' | 'article';
+  canonicalUrl?: string;
+  noindex?: boolean;
+  schema?: Record<string, any> | Record<string, any>[] | null;
 }
 
 const {
   title = "Global Village Fund • Wakaf Produktif & Pendidikan Berkelanjutan",
   description = "Wadah filantropi dan wakaf produktif untuk pembangunan Masjid Khairu Ummah Sugro dan Pesantren Integratif Holistik SMK Skill Village Islamic School.",
-  ogImage = "/logo-gvf.png"
+  ogImage = "/logo-gvf.png",
+  ogType = "website",
+  canonicalUrl,
+  noindex = false,
+  schema = null,
 } = Astro.props;
+
+const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
+const currentPath = Astro.url.pathname;
+const canonicalHref = canonicalUrl || `${siteUrl}${currentPath === '/' ? '' : currentPath}`;
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
+const robotsContent = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+
+// Base schemas (Organization & WebSite)
+const baseSchemas = [
+  getOrganizationSchema(siteUrl),
+  getWebSiteSchema(siteUrl),
+];
+
+const customSchemas = Array.isArray(schema)
+  ? schema.filter(Boolean)
+  : schema
+    ? [schema]
+    : [];
+
+const allSchemas = [...baseSchemas, ...customSchemas];
 ---
 
 <!DOCTYPE html>
@@ -28,13 +58,32 @@ const {
   <title>{title}</title>
   <meta name="title" content={title} />
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalHref} />
+
+  <!-- Robots & Indexing -->
+  <meta name="robots" content={robotsContent} />
+  <meta name="googlebot" content={robotsContent} />
 
   <!-- Open Graph / Meta -->
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:site_name" content="Global Village Fund" />
+  <meta property="og:url" content={canonicalHref} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={ogImage} />
+  <meta property="og:image" content={fullOgImage} />
+  <meta property="og:locale" content="id_ID" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@globalvillagefund" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={fullOgImage} />
+
+  <!-- Structured Data JSON-LD -->
+  {allSchemas.map((s) => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
 
   <!-- Favicon -->
   <link rel="icon" type="image/webp" href="/favicon.webp" />

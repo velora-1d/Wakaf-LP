@@ -5,6 +5,7 @@ export const prerender = false;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getActivePageSections } from '../lib/db';
+import { getBreadcrumbSchema } from '../lib/seo-schema';
 
 const activeSections = await getActivePageSections('contact');
 const sectionMap = new Map(activeSections.map((s) => [s.sectionKey, s]));
@@ -12,11 +13,19 @@ const isEnabled = (key: string) => {
   if (activeSections.length === 0) return true;
   return sectionMap.has(key);
 };
+
+const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Kontak Kami', url: '/contact' },
+];
+const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
 ---
 
 <BaseLayout
   title="Layanan Donatur & Kontak Kami • Global Village Fund"
   description="Konsultasi program wakaf produktif, zakat, infaq, sedekah, dan kemitraan kolaborasi bersama tim pengurus resmi Global Village Fund."
+  schema={pageSchema}
 >
   {isEnabled('contact_hero') && (
   <section class="pen-contact-banner">

@@ -7,6 +7,11 @@
 ## In Review / Test
 
 ## Done
+- [x] SEO-FND-01: Fondasi Meta Tags, Canonical URL Dinamis, Twitter Cards, & OpenGraph di BaseLayout & Halaman Publik
+- [x] SEO-ROBOTS-SITEMAP-01: Implementasi robots.txt & Dynamic SSR Sitemap XML (/sitemap.xml) di Astro Terverifikasi Build
+- [x] SEO-SCHEMA-JSONLD-01: Utility Generator Schema.org & Integrasi JSON-LD (Organization, WebSite, FAQPage, DonateAction, BreadcrumbList, NewsArticle)
+- [x] SEO-GEO-LLMSTXT-01: Generative Engine Optimization (GEO/AEO) via llms.txt & llms-full.txt
+- [x] SEO-IMG-VERIFY-01: Image SEO (Alt, Loading Lazy, Decoding Async) & Uji Validasi Build Empiris (TypeScript Check & Astro Build Lulus 100%)
 - [x] ADMIN-TAB-PERSIST-01: Persistensi Tab Aktif (Roles & Users di /admin/roles dan Donatur & Alokasi di /admin/donatur) via URL Hash & LocalStorage saat Refresh Terverifikasi Build
 - [x] DONATUR-LABEL-CRUD-01: Fitur Label & CRUD Label Donatur (Tabel labels & donor_labels PostgreSQL, API CRUD, Modal Kelola Label, Penandaan di Drawer, Badge di Tabel, & Filter Label) Terverifikasi Build
 - [x] ADMIN-USER-PW-EYE-01: Fitur Toggle Show/Hide Password dengan Ikon Mata (Lucide SVG Eye & EyeOff) pada Modal Input/Edit Akun Pengguna di /admin/roles

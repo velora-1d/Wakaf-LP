@@ -5,6 +5,7 @@ import BaseLayout from './BaseLayout.astro';
 import type { ProgramData } from '../data/programs';
 import PricingPackagesSection from '../components/program/PricingPackagesSection.astro';
 import { getActivePageSections } from '../lib/db';
+import { getBreadcrumbSchema, getFaqSchema, getProgramSchema } from '../lib/seo-schema';
 
 interface Props {
   program: ProgramData;
@@ -19,6 +20,28 @@ const isEnabled = (key: string) => {
   if (activeSections.length === 0) return true;
   return sectionMap.has(key);
 };
+
+// Site URL & SEO Schema Definitions
+const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
+const breadcrumbs = [
+  { name: 'Beranda', url: '/' },
+  { name: 'Program ZISWAF', url: '/#programs' },
+  { name: program.title, url: `/program/${program.slug}` },
+];
+
+const programSchemas = [
+  getBreadcrumbSchema(breadcrumbs, siteUrl),
+  getProgramSchema(
+    {
+      title: program.title,
+      slug: program.slug,
+      heroSubtitle: program.heroSubtitle,
+      heroBgImage: program.heroBgImage,
+    },
+    siteUrl
+  ),
+  program.faqs ? getFaqSchema(program.faqs) : null,
+].filter(Boolean);
 
 // Daftar link program untuk sticky sidebar
 const programNavLinks = [
@@ -41,6 +64,7 @@ const valueBoxIcons = [
   title={`${program.title} • Global Village Fund`}
   description={program.heroSubtitle}
   ogImage={program.heroBgImage}
+  schema={programSchemas}
 >
   {isEnabled('prog_hero') && (
   <section
