@@ -299,49 +299,49 @@ export const programsData: Record<string, ProgramData> = {
         id: 'gal-1',
         title: 'Hamparan Lahan Wakaf Abadi ±3 Hektare',
         category: 'Pembebasan Lahan',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/lahan%20donasi.jpg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/drone-lahan-dan-pemukiman.webp',
         status: 'Aset Fisik Riil',
         caption: 'Batas lahan pengembangan kampus terpadu SMK Skill Village dan kawasan agro-technopark di Sukasirna Jonggol.'
       },
       {
         id: 'gal-2',
-        title: 'Pelataran Megah Masjid Khairu Ummah',
+        title: 'Pelataran & Progres Masjid Khairu Ummah',
         category: 'Poros Ibadah',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/pelataran%20mesjid.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp',
         status: 'Fasilitas Aktif',
         caption: 'Ruang salat dan pelataran luas penampung ibadah harian santri dan masyarakat sekitar Jonggol.'
       },
       {
         id: 'gal-3',
-        title: 'Unit Green House Pertanian Presisi',
+        title: 'Greenhouse Budidaya Melon Presisi',
         category: 'Wakaf Produktif Agro',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/gh%20greenhouse.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp',
         status: 'Beroperasi Aktif',
         caption: 'Laboratorium pertanian presisi modern penunjang kemandirian pangan dan teaching factory santri.'
       },
       {
         id: 'gal-4',
-        title: 'Suasana Belajar Terapan di Kelas',
+        title: 'Halaqah & Pembinaan Karakter Santri',
         category: 'SMK Skill Village',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/belajar%20kelas.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/halaqah-santri-melingkar.webp',
         status: 'KBM Aktif',
         caption: 'Santri vokasi mendalami kurikulum kejuruan teknologi dan pembinaan karakter berbasis adab FAST.'
       },
       {
         id: 'gal-5',
-        title: 'Sanctuary Utama & Interior Masjid',
-        category: 'Interior Rumah Ibadah',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20masjid.jpg',
-        status: 'Finishing & Desain Rinci',
-        caption: 'Ruang salat utama berkapasitas 500 jamaah dengan bukaan skylight vertikal yang sejuk.'
+        title: 'Progres Pembangunan Lantai 2 & Wudhu',
+        category: 'Konstruksi Fisik',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp',
+        status: 'Tahap Struktur',
+        caption: 'Pembangunan lantai dua, tempat wudhu, dan mezanin ramah lingkungan Masjid Khairu Ummah Sugro.'
       },
       {
         id: 'gal-6',
-        title: 'Learning Studio & Workshop Vokasi',
-        category: 'SMK Skill Village',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/learning%20studio%20%26%20workshop.jpg',
-        status: 'Tahap Struktur',
-        caption: 'Gedung workshop kolaboratif berkonsep arsitektur tropis ramah lingkungan.'
+        title: 'KBM Terpadu Putra-Putri di Kelas',
+        category: 'Pendidikan Vokasi',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kbm-santri-putra-putri-kelas.webp',
+        status: 'Aktif Berjalan',
+        caption: 'Ruang kelas interaktif dengan sarana pembelajaran digital dan teknologi multimedia.'
       }
     ],
     
@@ -602,9 +602,9 @@ export const programsData: Record<string, ProgramData> = {
     galleryItems: [
       {
         id: 'gal-z1',
-        title: 'Penyerahan Beasiswa Penuh Santri',
+        title: 'Penyerahan Beasiswa Santri Berprestasi',
         category: 'Beasiswa Fi Sabilillah',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/pengajian%20rame.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/duta-santri-berprestasi-1.webp',
         status: 'Penyaluran Rutin',
         caption: 'Penerima manfaat zakat mendapatkan dukungan penuh biaya asrama dan perlengkapan studi vokasi.'
       },
@@ -612,7 +612,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'gal-z2',
         title: 'Praktik Agroteknologi Modern',
         category: 'Kemandirian Mustahiq',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/gh%20greenhouse.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp',
         status: 'Pelatihan Kejuruan',
         caption: 'Santri mustahiq dilatih keterampilan bertani presisi agar mandiri finansial di masa depan.'
       },
@@ -620,7 +620,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'gal-z3',
         title: 'Halaqah Tahfidz Quran Santri Zakat',
         category: 'Pendidikan Al-Quran',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/pelataran%20mesjid.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/halaqah-santri-melingkar.webp',
         status: 'Halaqah Harian',
         caption: 'Santri binaan zakat aktif menghafal Al-Quran dan mendalami ilmu syariah di masjid asrama.'
       }
@@ -859,7 +859,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'gal-i1',
         title: 'Pelataran Megah Masjid Khairu Ummah',
         category: 'Pengecoran Fisik',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/pelataran%20mesjid.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp',
         status: 'Realisasi Lapangan',
         caption: 'Pengecoran lantai pelataran masjid yang menampung ratusan santri dan jamaah.'
       },
@@ -867,7 +867,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'gal-i2',
         title: 'Fasilitas Sanitasi & Wudhu Bersih',
         category: 'Sanitasi Higienis',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/wc%20mesjid.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kamar-mandi-wc-masjid.webp',
         status: 'Fasilitas Aktif',
         caption: 'Penyediaan kran wudhu hemat air dengan sirkulasi udara alami dan drainase bersih.'
       },
@@ -875,7 +875,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'gal-i3',
         title: 'Ruang Kelas & Fasilitas Belajar Santri',
         category: 'Sarana Kelas',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/belajar%20kelas.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kbm-santri-ikhwan-menulis.webp',
         status: 'KBM Aktif',
         caption: 'Ruang belajar berfasilitas lengkap untuk mencetak santri vokasi berdaya saing tinggi.'
       },
@@ -883,7 +883,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'gal-i4',
         title: 'Pembangunan Green House Agro-Technopark',
         category: 'Sarana Praktik',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/gh%20greenhouse.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp',
         status: 'Operasional',
         caption: 'Fasilitas penunjang praktik agroteknologi modern bagi santri vokasi.'
       }
@@ -1130,17 +1130,17 @@ export const programsData: Record<string, ProgramData> = {
     galleryItems: [
       {
         id: 'gal-s1',
-        title: 'Panen Sayur Segar Agro-Technopark',
+        title: 'Panen Melon Segar Agro-Technopark',
         category: 'Kemandirian Pangan',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/gh%20update%202.jpeg',
-        status: 'Panen Harian',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp',
+        status: 'Panen Berkala',
         caption: 'Sebagian kebutuhan konsumsi dapur santri dipasok langsung dari greenhouse pertanian presisi.'
       },
       {
         id: 'gal-s2',
         title: 'Pembinaan Karakter Santri Vokasi',
         category: 'Bina Karakter FAST',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/pengajian%20rame.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-ramai-menyimak-ustadz-mengajar.webp',
         status: 'Rutinitas Harian',
         caption: 'Santri sehat dan berenergi mengikuti rangkaian pembinaan adab serta keahlian industri.'
       },
@@ -1148,7 +1148,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'gal-s3',
         title: 'Unit Pertanian Presisi Green House',
         category: 'Laboratorium Agro',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar-bahan/gh%20greenhouse.jpeg',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/greenhouse-pertanian.webp',
         status: 'Beroperasi Aktif',
         caption: 'Praktik budidaya melon dan tanaman hortikultura modern berstandar agribisnis terapan.'
       }

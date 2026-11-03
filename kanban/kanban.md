@@ -3,10 +3,12 @@
 ## To Do
 
 ## In Progress
+- [/] LP-UIUX-WAKAFRUTIN-01: Redesain UI/UX Landing Page Masjid Khairu Ummah Sugro berbasis Desain Sistem Wakaf-Rutin dengan Konten, Aset & Video Asli
 
 ## In Review / Test
 
 ## Done
+- [x] CONTENT-S3-ALIGN-01: Pembaruan Gambar dan Teks Diskusi Mendalam Terintegrasi Penuh MinIO S3 (Hero, Tentang Kami, Program, dan Showcase)
 - [x] SEO-FND-01: Fondasi Meta Tags, Canonical URL Dinamis, Twitter Cards, & OpenGraph di BaseLayout & Halaman Publik
 - [x] SEO-ROBOTS-SITEMAP-01: Implementasi robots.txt & Dynamic SSR Sitemap XML (/sitemap.xml) di Astro Terverifikasi Build
 - [x] SEO-SCHEMA-JSONLD-01: Utility Generator Schema.org & Integrasi JSON-LD (Organization, WebSite, FAQPage, DonateAction, BreadcrumbList, NewsArticle)
