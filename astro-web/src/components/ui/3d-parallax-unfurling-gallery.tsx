@@ -11,64 +11,64 @@ interface FacilityItem {
 
 const GVF_FACILITIES: FacilityItem[] = [
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20masjid.jpg",
-    title: "Interior Masjid Utama",
-    category: "Fasilitas Ibadah",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp",
+    title: "Pelataran Masjid Khairu Ummah",
+    category: "Pusat Ibadah",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/belakang%20masjid.jpg",
-    title: "Lanskap Belakang Masjid",
-    category: "Kawasan Hijau",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp",
+    title: "Greenhouse Budidaya Melon",
+    category: "Agro-Technopark",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/learning%20studio%20%26%20workshop.jpg",
-    title: "Studio Vokasi & Workshop",
-    category: "Pendidikan & Skill",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/tiga-santri-juara-mtq-jonggol-piala.webp",
+    title: "Prestasi Santri Juara MTQ",
+    category: "Pendidikan Berprestasi",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/gh%20learning%20area.jpg",
-    title: "Greenhouse Agro-Technopark",
-    category: "Agrikultur Mandiri",
-  },
-  {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/skywalk%20learning%20room.jpg",
-    title: "Skywalk Ruang Belajar Santri",
-    category: "Sarana Pembelajaran",
-  },
-  {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/panel%20surya.jpg",
-    title: "Instalasi Panel Surya Terpadu",
-    category: "Energi Mandiri",
-  },
-  {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/tempat%20wudu.jpg",
-    title: "Tempat Wudhu Sirkulasi Alami",
-    category: "Fasilitas Penunjang",
-  },
-  {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20mesjid%202.jpg",
-    title: "Mihrab & Ruang Sholat Utama",
-    category: "Pusat Spiritualitas",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=800&q=80",
-    title: "Masterplan Arsitektur Kawasan",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/drone-lapangan-dan-lahan-tani.webp",
+    title: "Hamparan Lahan Wakaf ±3 Ha",
     category: "Kawasan Terpadu",
   },
   {
-    src: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
-    title: "Area Diskusi Terbuka",
-    category: "Sarana Kolaborasi",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/atap-rangka-baja-aula.webp",
+    title: "Konstruksi Rangka Baja Aula",
+    category: "Fasilitas Belajar",
   },
   {
-    src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
-    title: "Laboratorium Terapan",
-    category: "Riset & Pengembangan",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-diskusi-belajar-meja-lipat.webp",
+    title: "Diskusi Halaqah Santri Ikhwan",
+    category: "KBM & Karakter FAST",
   },
   {
-    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-    title: "Gedung Pusat Administrasi",
-    category: "Manajemen & Layanan",
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp",
+    title: "Progres Pembangunan Lantai 2",
+    category: "Infrastruktur Fisik",
+  },
+  {
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-bertiga-mencatat-di-aula.webp",
+    title: "KBM Santriwati Menyimak Materi",
+    category: "Pendidikan Holistik",
+  },
+  {
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/tampak-gedung-dan-halaman-asrama.webp",
+    title: "Gedung & Halaman Asrama Santri",
+    category: "Hunian Mandiri",
+  },
+  {
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/duta-santri-berprestasi-1.webp",
+    title: "Duta Santri Inspiratif",
+    category: "Generasi Emas",
+  },
+  {
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/dinding-hebel-ventilasi-roster-1.webp",
+    title: "Dinding Bata Ringan Roster SNI",
+    category: "Arsitektur Ramah Lingkungan",
+  },
+  {
+    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/sholat-berjamaah-imam-santri-belakang.webp",
+    title: "Shalat Berjamaah Santri Asrama",
+    category: "Spiritualitas Berkelanjutan",
   },
 ];
 

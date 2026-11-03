@@ -141,7 +141,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Wakaf Produktif & Lahan',
     heroSubtitle: 'Investasi Abadi Membangun Masjid Khairu Ummah & SMK Skill Village di Kawasan Terpadu Jonggol Bogor.',
     categoryBadge: 'WAKAF PRODUKTIF',
-    heroBgImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/belakang%20masjid.jpg',
+    heroBgImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/drone-pembangunan-gedung-asrama.webp',
     
     pricingHeading: 'Pilihan Paket Wakaf Produktif',
     pricingSubheading: 'Salurkan wakaf produktif tanah dan infrastruktur abadi untuk kemaslahatan kawasan terpadu Jonggol.',
@@ -241,7 +241,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Global Village Fund mengelola wakaf produktif dengan pendekatan ekosistem terpadu di kawasan seluas ±3 hektare, Desa Sukasirna, Jonggol. Wakaf diarahkan untuk aset abadi yang memberikan manfaat sosial dan ekonomi berkelanjutan bagi santri dan masyarakat.',
     deepDiveStory1: 'Dari pembebasan lahan pesantren, pembangunan Masjid Khairu Ummah Sugro, hingga pendirian Agro-Technopark, setiap jengkal tanah wakaf dikelola profesional sesuai tuntunan syariat dan ketentuan perundang-undangan Badan Wakaf Indonesia (BWI).',
     deepDiveStory2: '',
-    deepDiveBannerImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20masjid.jpg',
+    deepDiveBannerImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/drone-lapangan-dan-lahan-tani.webp',
     valueBoxes: [
       {
         icon: 'infinity',
@@ -265,8 +265,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     deepDiveTwinImages: [
-      'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/skywalk%20learning%20room.jpg',
-      'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/belakang%20masjid.jpg'
+      'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp',
+      'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/atap-rangka-baja-aula.webp'
     ],
     deepDiveSubblock1Title: 'Integrasi Pesantren & Agro-Technopark',
     deepDiveSubblock1Desc1: 'Masjid Khairu Ummah Sugro dirancang dengan arsitektur tropis ramah lingkungan yang memanfaatkan pencahayaan alami dan ventilasi silang, mengurangi konsumsi listrik dan menghadirkan suasana khusyuk bagi para jamaah.',
@@ -275,10 +275,10 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveSubblock2Desc1: 'Dokumentasi progres pembangunan riil Masjid Khairu Ummah Sugro di Sukasirna Jonggol — dari pemancangan tiang, pengecoran lantai, pemasangan dinding bata ringan, hingga instalasi sanitasi.',
     deepDiveSubblock2Desc2: 'Setiap kemajuan di lapangan adalah buah dari gotong royong dan ketulusan para muhsinin yang menyalurkan infaq terbaiknya.',
     portfolioShowcaseItems: [
-      { tag: 'ARSITEKTUR', name: 'Masjid Khairu Ummah Sugro', category: 'Arsitektur', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20masjid.jpg' },
-      { tag: 'ARSITEKTUR', name: 'Kawasan Masterplan 3 Ha', category: 'Arsitektur', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/skywalk%20learning%20room.jpg' },
-      { tag: 'ARSITEKTUR', name: 'Greenhouse & Pertanian', category: 'Arsitektur', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/tempat%20wudu.jpg' },
-      { tag: 'ARSITEKTUR', name: 'Instalasi Panel Surya Energi', category: 'Arsitektur', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/panel%20surya.jpg' }
+      { tag: 'ARSITEKTUR', name: 'Masjid Khairu Ummah Sugro', category: 'Poros Ibadah', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp' },
+      { tag: 'KAWASAN', name: 'Masterplan Lahan Terpadu 3 Ha', category: 'Lahan Abadi', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/drone-lahan-dan-pemukiman.webp' },
+      { tag: 'AGRO', name: 'Greenhouse & Hortikultura', category: 'Kemandirian Pangan', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/greenhouse-pertanian.webp' },
+      { tag: 'ASRAMA', name: 'Gedung Asrama Santri Vokasi', category: 'Infrastruktur', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/tampak-gedung-dan-halaman-asrama.webp' }
     ],
     guarantees: [
       'Material bersertifikasi standar SNI',
@@ -472,7 +472,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Zakat Maal & Profesi',
     heroSubtitle: 'Tunaikan Kewajiban Zakat 2,5% untuk Beasiswa Fi Sabilillah & Kemandirian Santri Dhuafa di Jonggol.',
     categoryBadge: 'ZAKAT MAAL',
-    heroBgImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20masjid.jpg',
+    heroBgImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp',
     
     pricingHeading: 'Pilihan Saluran Zakat Maal & Profesi',
     pricingSubheading: 'Tunaikan kewajiban zakat 2,5% secara amanah, tepat hisab, dan tepat sasaran. Disalurkan langsung untuk 8 asnaf, terutama beasiswa fi sabilillah dan kemandirian santri dhuafa di Sukasirna Jonggol.',
@@ -546,7 +546,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Program Zakat Global Village Fund difokuskan untuk memenuhi hak 8 golongan asnaf sesuai syariat Islam, dengan prioritas utama beasiswa pendidikan vokasi penuh bagi santri yatim, dhuafa, dan fi sabilillah di Pesantren Jonggol. Zakat yang Anda tunaikan menjadi jembatan kemandirian generasi muda.',
     deepDiveStory1: 'Dari pemilihan kurikulum kejuruan agrotek hingga sarana asrama, setiap dana zakat disalurkan untuk menciptakan dampak berkelanjutan, bukan sekadar santunan konsumtif.',
     deepDiveStory2: '',
-    deepDiveBannerImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/learning%20studio%20%26%20workshop.jpg',
+    deepDiveBannerImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/panggung-musabaqah-tilawatil-quran-jonggol.webp',
     valueBoxes: [
       {
         icon: 'shield-check',
@@ -570,8 +570,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     deepDiveTwinImages: [
-      'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/skywalk%20learning%20room.jpg',
-      'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/gh%20learning%20area.jpg'
+      'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/muhammad-syamil-ghazwan-juara-1-tahfidz-5-juz.webp',
+      'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/salman-aufa-juara-2-tahfidz-10-juz.webp'
     ],
     deepDiveSubblock1Title: 'Prinsip Akuntabilitas Penyaluran Zakat',
     deepDiveSubblock1Desc1: 'Setiap rupiah zakat dihisab secara presisi, diawasi oleh Dewan Pengawas Syariah, dan disalurkan secara produktif agar mustahiq bertransformasi menjadi muzakki baru yang berdaya.',
@@ -580,10 +580,10 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveSubblock2Desc1: 'Diprioritaskan untuk santri dhuafa, anak yatim, fisabilillah, dan keluarga prasejahtera sekitar pesantren di Desa Sukasirna Jonggol.',
     deepDiveSubblock2Desc2: 'Dengan beasiswa zakat penuh, santri dapat mengenyam pendidikan teknologi agribisnis dan menghafal 30 juz Al-Quran tanpa terkendala beban finansial.',
     portfolioShowcaseItems: [
-      { tag: 'SARANA PENDIDIKAN', name: 'Kampus SMK Skill Village Jonggol', category: 'Arsitektur / Sarana Pendidikan', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/learning%20studio%20%26%20workshop.jpg' },
-      { tag: 'AGRO-TECHNOPARK', name: 'Greenhouse Agroteknologi Sugro', category: 'Agro-Technopark / Kemandirian Pangan', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/gh%20learning%20area.jpg' },
-      { tag: 'SARANA IBADAH', name: 'Mezanin Tahfidz Masjid Sugro', category: 'Masjid & Sarana Ibadah', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20masjid.jpg' },
-      { tag: 'FASILITAS SANTRI', name: 'Dapur Gizi Asrama Santri', category: 'Fasilitas Santri Vokasi', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/belakang%20masjid.jpg' }
+      { tag: 'BEASISWA', name: 'Santri Juara Kaligrafi Jonggol', category: 'Prestasi Seni Islam', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/muhammad-kholid-juara-2-kaligrafi.webp' },
+      { tag: 'TAHFIDZ', name: 'Juara Musabaqah Tilawatil Quran', category: 'Tahfidz Al-Quran', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/dua-santri-juara-2-mtq-jonggol-piala.webp' },
+      { tag: 'VOKASI', name: 'Santri Binaan Prestasi Nasional', category: 'Kemandirian Vokasi', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-berprestasi-juara-lomba-mtq.webp' },
+      { tag: 'KEMANDIRIAN', name: 'Duta Santri Inspiratif 2026', category: 'Pemberdayaan Santri', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/duta-santri-berprestasi-2.webp' }
     ],
     guarantees: [
       'Tata kelola syariah diawasi Dewan Pengawas',
@@ -610,19 +610,19 @@ export const programsData: Record<string, ProgramData> = {
       },
       {
         id: 'gal-z2',
-        title: 'Praktik Agroteknologi Modern',
+        title: 'Halaqah Pembinaan & Karakter Santri',
         category: 'Kemandirian Mustahiq',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/kajian-santri-ikhwan-ustadz-whiteboard.webp',
         status: 'Pelatihan Kejuruan',
-        caption: 'Santri mustahiq dilatih keterampilan bertani presisi agar mandiri finansial di masa depan.'
+        caption: 'Santri mustahiq dibina intensif keilmuan agama dan adab FAST oleh asatidz pembina.'
       },
       {
         id: 'gal-z3',
-        title: 'Halaqah Tahfidz Quran Santri Zakat',
+        title: 'Penyerahan Beasiswa Duta Santri',
         category: 'Pendidikan Al-Quran',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/halaqah-santri-melingkar.webp',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/duta-santri-berprestasi-5.webp',
         status: 'Halaqah Harian',
-        caption: 'Santri binaan zakat aktif menghafal Al-Quran dan mendalami ilmu syariah di masjid asrama.'
+        caption: 'Santri binaan zakat aktif berprestasi dan siap menjadi duta kebaikan bagi masyarakat luas.'
       }
     ],
     
@@ -728,7 +728,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Infaq Pembangunan Fisik',
     heroSubtitle: 'Percepat Penyelesaian Fasilitas Ibadah, Perpustakaan, dan Sarana Santri Vokasi di Jonggol.',
     categoryBadge: 'INFAQ FISIK',
-    heroBgImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20masjid.jpg',
+    heroBgImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/konstruksi-atap-aula-paranet.webp',
     
     pricingHeading: 'Pilih Paket Infaq Pembangunan',
     pricingSubheading: 'Salurkan infaq material riil untuk percepatan penyelesaian Masjid Khairu Ummah Sugro & sarana santri di Jonggol. Semua laporan belanja terbuka dan dapat diakses publik.',
@@ -827,7 +827,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Program Infaq Pembangunan Fisik Global Village Fund menghadirkan sarana nyata bagi kaum muslimin untuk berpartisipasi langsung dalam penyediaan material konstruksi Masjid Khairu Ummah Sugro di Jonggol. Dari semen, bata ringan, hingga sanitasi wudhu, setiap rupiah dialokasikan secara amanah dan terhisab akurat.',
     deepDiveStory1: 'Pembangunan fisik masjid ini menjadi jantung ekosistem pesantren yang menaungi ratusan santri vokasi. Setiap material yang Anda infaqkan menjadi saksi amal jariyah yang pahalanya terus mengalir abadi.',
     deepDiveStory2: '',
-    deepDiveBannerImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20masjid.jpg',
+    deepDiveBannerImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/atap-rangka-baja-aula.webp',
     valueBoxes: [
       {
         icon: 'package',
@@ -857,11 +857,11 @@ export const programsData: Record<string, ProgramData> = {
     galleryItems: [
       {
         id: 'gal-i1',
-        title: 'Pelataran Megah Masjid Khairu Ummah',
-        category: 'Pengecoran Fisik',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp',
+        title: 'Pemasangan Bata Ringan & Struktur',
+        category: 'Pengadaan Material',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/dinding-hebel-ventilasi-roster-1.webp',
         status: 'Realisasi Lapangan',
-        caption: 'Pengecoran lantai pelataran masjid yang menampung ratusan santri dan jamaah.'
+        caption: 'Dinding bata hebel presisi untuk ruang aula belajar dan asrama santri Jonggol.'
       },
       {
         id: 'gal-i2',
@@ -873,19 +873,19 @@ export const programsData: Record<string, ProgramData> = {
       },
       {
         id: 'gal-i3',
-        title: 'Ruang Kelas & Fasilitas Belajar Santri',
+        title: 'Fasilitas Belajar Santri Vokasi',
         category: 'Sarana Kelas',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kbm-santri-ikhwan-menulis.webp',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-bersarung-mencatat-pelajaran.webp',
         status: 'KBM Aktif',
-        caption: 'Ruang belajar berfasilitas lengkap untuk mencetak santri vokasi berdaya saing tinggi.'
+        caption: 'Ruang belajar berfasilitas meja lipat dan alat tulis untuk mencetak santri berdaya saing.'
       },
       {
         id: 'gal-i4',
-        title: 'Pembangunan Green House Agro-Technopark',
-        category: 'Sarana Praktik',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp',
+        title: 'Roster Sirkulasi Udara Alami',
+        category: 'Material Ventilasi',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/dinding-hebel-ventilasi-roster-2.webp',
         status: 'Operasional',
-        caption: 'Fasilitas penunjang praktik agroteknologi modern bagi santri vokasi.'
+        caption: 'Bata roster arsitektural untuk sirkulasi udara alami ruang santri ramah lingkungan.'
       }
     ],
     
@@ -987,7 +987,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Sedekah Nutrisi & Pangan Santri',
     heroSubtitle: 'Dukung Kebutuhan Nutrisi, Vitamin & Makan Bergizi Santri Penghafal Al-Quran di Jonggol.',
     categoryBadge: 'SEDEKAH NUTRISI',
-    heroBgImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/learning%20studio%20%26%20workshop.jpg',
+    heroBgImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp',
     
     pricingHeading: 'Pilih Paket Sedekah Nutrisi Santri',
     pricingSubheading: 'Dukung kebutuhan nutrisi harian santri vokasi dan penghafal Quran di Pesantren Jonggol. Makanan bergizi menopang stamina mereka menuntut ilmu dan menghafal kalamullah.',
@@ -1074,7 +1074,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Program Sedekah Nutrisi & Pangan Santri Global Village Fund bertujuan memastikan ratusan santri vokasi dan penghafal Quran di Pesantren Jonggol mendapatkan asupan makanan halal, sehat, dan bergizi seimbang. Nutrisi yang prima adalah kunci ketajaman berpikir dan ketahanan fisik santri dalam menuntut ilmu.',
     deepDiveStory1: 'Kebutuhan pangan diolah langsung di dapur umum asrama dan diperkuat oleh hasil panen kebun hortikultura serta greenhouse santri, menciptakan siklus kemandirian pangan yang berkah dan berkelanjutan.',
     deepDiveStory2: '',
-    deepDiveBannerImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/gh%20learning%20area.jpg',
+    deepDiveBannerImage: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-tersenyum-di-kamar-asrama.webp',
     valueBoxes: [
       {
         icon: 'shield-check',
@@ -1098,8 +1098,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     deepDiveTwinImages: [
-      'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/learning%20studio%20%26%20workshop.jpg',
-      'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/gh%20learning%20area.jpg'
+      'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kajian-santri-aula.webp',
+      'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-menyimak-pengajian.webp'
     ],
     deepDiveSubblock1Title: 'Siklus Penyaluran Sedekah Amanah',
     deepDiveSubblock1Desc1: 'Setiap dana sedekah yang masuk dihimpun dan dialokasikan sesuai jadwal belanja harian dan mingguan dapur asrama. Tim pengurus memastikan bahan makanan dibeli dalam kondisi segar dan berkualitas standar konsumsi terbaik.',
@@ -1108,10 +1108,10 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveSubblock2Desc1: 'Alhamdulillah, berkat dukungan sedekah para muhsinin, kebutuhan makan santri vokasi dan penghafal Quran dapat terpenuhi dengan baik setiap hari. Santri dapat belajar dengan tenang tanpa rasa lapar atau kekurangan asupan nutrisi.',
     deepDiveSubblock2Desc2: 'Setiap suapan makanan yang dinikmati santri mengalirkan tenaga untuk melafalkan ayat suci Al-Quran dan mempraktikkan keterampilan vokasi di Jonggol.',
     portfolioShowcaseItems: [
-      { tag: 'SARANA PENDIDIKAN', name: 'Kampus SMK Skill Village Jonggol', category: 'Arsitektur / Sarana Pendidikan', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/learning%20studio%20%26%20workshop.jpg' },
-      { tag: 'AGRO-TECHNOPARK', name: 'Greenhouse Agroteknologi Sugro', category: 'Agro-Technopark / Kemandirian Pangan', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/gh%20learning%20area.jpg' },
-      { tag: 'SARANA IBADAH', name: 'Mezanin Tahfidz Masjid Sugro', category: 'Masjid & Sarana Ibadah', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20masjid.jpg' },
-      { tag: 'FASILITAS SANTRI', name: 'Dapur Gizi Asrama Santri', category: 'Fasilitas Santri Vokasi', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/belakang%20masjid.jpg' }
+      { tag: 'AGRO', name: 'Greenhouse Hortikultura Sugro', category: 'Kemandirian Pangan', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp' },
+      { tag: 'KECERIAAN', name: 'Santriwati Aktif & Ceria', category: 'Kesejahteraan Santri', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-pose-ceria-di-paten-jonggol-1.webp' },
+      { tag: 'PEMBINAAN', name: 'Halaqah & Adab Santri', category: 'Pembinaan Karakter', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-ramai-menyimak-ustadz-mengajar.webp' },
+      { tag: 'ASRAMA', name: 'Kenyamanan Asrama Santriwati', category: 'Hunian Sehat', image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-tersenyum-di-kamar-asrama.webp' }
     ],
     guarantees: [
       'Menu 3 kali makan bergizi harian',
@@ -1146,11 +1146,11 @@ export const programsData: Record<string, ProgramData> = {
       },
       {
         id: 'gal-s3',
-        title: 'Unit Pertanian Presisi Green House',
-        category: 'Laboratorium Agro',
-        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/greenhouse-pertanian.webp',
-        status: 'Beroperasi Aktif',
-        caption: 'Praktik budidaya melon dan tanaman hortikultura modern berstandar agribisnis terapan.'
+        title: 'Kajian Rutin Santriwati & Ustadz',
+        category: 'Pembinaan Keagamaan',
+        image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/kajian-santriwati-bersama-ustadz.webp',
+        status: 'Halaqah Pekanan',
+        caption: 'Kajian rutin santriwati memperdalam fiqih ibadah dan adab penuntut ilmu Al-Quran.'
       }
     ],
     

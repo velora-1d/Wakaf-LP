@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "DIFF-IMAGES-PAGES-01", "name": "Diversifikasi Gambar Unik Non-Repetitif per Halaman Berbasis 70 Aset Riil MinIO S3", "status": "closed" },
     { "id": "CONTENT-S3-ALIGN-01", "name": "Pembaruan Gambar dan Teks Diskusi Mendalam Terintegrasi Penuh MinIO S3 (Hero, Tentang Kami, Program, dan Showcase)", "status": "closed" },
     { "id": "LP-UIUX-WAKAFRUTIN-01", "name": "Redesain UI/UX Landing Page Masjid Khairu Ummah Sugro berbasis Desain Sistem Wakaf-Rutin dengan Konten, Aset & Video Asli", "status": "in_progress" },
     { "id": "ADMIN-TAB-PERSIST-01", "name": "Persistensi Tab Aktif (Roles & Users di /admin/roles dan Donatur & Alokasi di /admin/donatur) via URL Hash & LocalStorage saat Refresh", "status": "closed" },
