@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] ABOUT-REMOVE-REDUNDANT-TEXT-01: Eliminasi Redundansi Teks 'Tentang Kami' pada Hero Banner Breadcrumb dan Badge Pill Section Intro Terverifikasi Build
 - [x] ABOUT-PAGE-TITLES-ALIGN: Penyelarasan Judul Banner Hero (Tentang Kami) dan Judul Section Intro (Mengenal Global Village Fund) Terverifikasi Build
 - [x] HERO-CONTROLS-SUBTLE-MINI-01: Pengecilan Ukuran & Pengurangan Kontras Kontrol Slide Manual Hero agar Lebih Halus dan Elegan (Opacity 0.55, Tombol 22px, Dot 14px) Terverifikasi Build
 - [x] HERO-MANUAL-CONTROLS-01: Implementasi Tombol Kontrol Manual & Indikator Slide Hero Beranda (Prev, Next, Dots, & Pause) Terverifikasi Build

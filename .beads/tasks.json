@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "ABOUT-REMOVE-REDUNDANT-TEXT-01", "name": "Eliminasi Redundansi Teks 'Tentang Kami' pada Hero Banner Breadcrumb dan Badge Pill Section Intro", "status": "closed" },
     { "id": "ABOUT-PAGE-TITLES-ALIGN", "name": "Penyelarasan Judul Banner Hero (Tentang Kami) dan Judul Section Intro (Mengenal Global Village Fund)", "status": "closed" },
     { "id": "HERO-CONTROLS-SUBTLE-MINI-01", "name": "Pengecilan Ukuran & Pengurangan Kontras Kontrol Slide Manual Hero agar Lebih Halus dan Elegan (Opacity 0.55, Tombol 22px, Dot 14px)", "status": "closed" },
     { "id": "HERO-MANUAL-CONTROLS-01", "name": "Implementasi Tombol Kontrol Manual & Indikator Slide Hero Beranda (Prev, Next, Dots, & Pause)", "status": "closed" },
