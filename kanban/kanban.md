@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] HERO-CONTROLS-SUBTLE-MINI-01: Pengecilan Ukuran & Pengurangan Kontras Kontrol Slide Manual Hero agar Lebih Halus dan Elegan (Opacity 0.55, Tombol 22px, Dot 14px) Terverifikasi Build
 - [x] HERO-MANUAL-CONTROLS-01: Implementasi Tombol Kontrol Manual & Indikator Slide Hero Beranda (Prev, Next, Dots, & Pause) Terverifikasi Build
 - [x] HERO-SLIDE-1-VERTICAL-ALIGN: Penyesuaian Posisi Vertikal Konten & Framing Slide 1 Hero Beranda agar Tidak Terpotong ke Atas (Lift Deck -24px, Padding Efisien & Object Position 80%) Terverifikasi Build
 - [x] HERO-4-SLIDES-REAL-ASSETS: Penyelarasan 4 Slide Hero Beranda GVF dengan 4 Foto Riil Autentik Lapangan (Masjid Konstruksi, Kajian Whiteboard, Halaqah Adab, & Lorong Asrama Bata Merah) S3 Terverifikasi Build
