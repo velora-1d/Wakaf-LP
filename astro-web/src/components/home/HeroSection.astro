@@ -121,8 +121,8 @@ const heroSlides = [
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 130px;
-    padding-bottom: 70px;
+    padding-top: clamp(80px, 10vh, 100px);
+    padding-bottom: 40px;
     overflow: hidden;
     background-color: #070e17;
   }
@@ -163,7 +163,13 @@ const heroSlides = [
     display: block;
     filter: brightness(0.85);
     transform: scale(1.0);
+    transform-origin: center 75%;
     transition: transform 7s cubic-bezier(0.1, 0.9, 0.2, 1);
+  }
+
+  /* Khusus Slide 1: Fokuskan framing ke bawah agar santri di lantai terangkat ke atas */
+  .hero-bg-item[data-bg-index="0"] .hero-bg-img {
+    object-position: center 80%;
   }
 
   .hero-bg-item.is-active .hero-bg-img {
@@ -189,12 +195,13 @@ const heroSlides = [
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 32px;
+    transform: translateY(-24px);
   }
 
   .hero-slides-deck {
     max-width: 960px;
     position: relative;
-    padding-top: 20px;
+    padding-top: 0;
   }
 
   /* Slide Pane Transition */
@@ -216,10 +223,10 @@ const heroSlides = [
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 8px 18px;
+    padding: 7px 16px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 32px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(4px);
   }
@@ -243,19 +250,19 @@ const heroSlides = [
 
   /* Pen.dev 72px Display Title */
   .isavo-hero-title {
-    font-size: clamp(2.8rem, 5.2vw, 4.5rem);
+    font-size: clamp(2.4rem, 4.8vw, 4.2rem);
     font-weight: 500;
     line-height: 1.15;
     letter-spacing: -0.02em;
     color: #ffffff;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     font-family: 'Golos Text', system-ui, sans-serif;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }
 
   .isavo-hero-sub {
     max-width: 720px;
-    margin-bottom: 36px;
+    margin-bottom: 24px;
   }
 
   .isavo-hero-sub p {
