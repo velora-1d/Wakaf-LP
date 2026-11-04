@@ -35,7 +35,21 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
   schema={pageSchema}
 >
   <div class="kabar-archive-page">
-    <!-- Header Section -->
+    <!-- Header Banner Standar ISAVO GVF -->
+    <section class="pen-kabar-banner">
+      <div class="pen-banner-bg"></div>
+      <div class="pen-banner-overlay"></div>
+      <div class="pen-banner-container">
+        <h1 class="pen-banner-title">Kabar &amp; Edukasi Kebermanfaatan</h1>
+        <div class="pen-breadcrumb-wrap">
+          <a href="/" class="pen-breadcrumb-link">BERANDA</a>
+          <span class="pen-breadcrumb-sep">-</span>
+          <span class="pen-breadcrumb-current">KABAR GVF</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Subheader Section -->
     <header class="archive-header-hero">
       <div class="archive-container">
         <div class="header-badge-pill">
@@ -45,10 +59,9 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
           </div>
           <span class="badge-text">Pusat Kabar &amp; Warta</span>
         </div>
-        <h1 class="archive-title">
-          Kabar Global Skill Village Fund &amp;<br />
-          Catatan Edukasi Kebermanfaatan
-        </h1>
+        <h2 class="archive-sub-heading">
+          Warta Pembangunan Kawasan &amp; Pembelajaran Santri
+        </h2>
         <p class="archive-subtitle">
           Dokumentasi berkala perkembangan fisik Masjid Khairu Ummah Sugro, pembelajaran santri vokasi agroteknologi, dan wawasan fiqih wakaf produktif berkelanjutan.
         </p>
@@ -171,10 +184,80 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     padding: 0 2rem;
   }
 
-  /* Header Hero */
-  .archive-header-hero {
-    padding: 100px 0 50px 0;
+  /* 1. Header Banner Standar ISAVO */
+  .pen-kabar-banner {
+    position: relative;
+    background-color: #061829;
+    padding: 140px 0 90px 0;
+    overflow: hidden;
     text-align: center;
+  }
+  .pen-banner-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lapangan-dan-lahan-tani.webp');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35;
+    z-index: 0;
+  }
+  .pen-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6, 24, 41, 0.85) 0%, rgba(6, 24, 41, 0.95) 100%);
+    z-index: 1;
+  }
+  .pen-banner-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .pen-banner-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 700;
+    color: #ffffff;
+    font-family: 'Golos Text', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem 0;
+  }
+  .pen-breadcrumb-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .pen-breadcrumb-link {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .pen-breadcrumb-link:hover {
+    color: #ffffff;
+  }
+  .pen-breadcrumb-sep {
+    color: #64748b;
+  }
+  .pen-breadcrumb-current {
+    color: #0969da;
+  }
+
+  /* 2. Filter & Subheader Section */
+  .archive-header-hero {
+    padding: 50px 0 30px 0;
+    text-align: center;
+  }
+
+  .archive-sub-heading {
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.25;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 14px 0;
+    letter-spacing: -0.02em;
   }
 
   .header-badge-pill {

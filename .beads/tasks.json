@@ -83,6 +83,7 @@
     { "id": "SEO-ROBOTS-SITEMAP-01", "name": "Implementasi robots.txt & Dynamic SSR Sitemap XML (/sitemap.xml) di Astro", "status": "closed" },
     { "id": "SEO-SCHEMA-JSONLD-01", "name": "Utility Generator Schema.org & Integrasi JSON-LD (Organization, WebSite, FAQPage, DonateAction, BreadcrumbList, NewsArticle)", "status": "closed" },
     { "id": "SEO-GEO-LLMSTXT-01", "name": "Generative Engine Optimization (GEO/AEO) via llms.txt & llms-full.txt", "status": "closed" },
-    { "id": "SEO-IMG-VERIFY-01", "name": "Image SEO (Alt, Loading Lazy, Decoding Async) & Uji Validasi Build Empiris (TypeScript Check & Astro Build)", "status": "closed" }
+    { "id": "SEO-IMG-VERIFY-01", "name": "Image SEO (Alt, Loading Lazy, Decoding Async) & Uji Validasi Build Empiris (TypeScript Check & Astro Build)", "status": "closed" },
+    { "id": "NAVBAR-CONTRAST-01", "name": "Perbaikan Kontras & Visibilitas Navbar pada Halaman Berlatar Terang (/kabar dan /kabar/[slug]) dengan Architectural Dark Banner Standar ISAVO", "status": "closed" }
   ]
 }

@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] NAVBAR-CONTRAST-01: Perbaikan Kontras & Visibilitas Navbar pada Halaman Berlatar Terang (/kabar dan /kabar/[slug]) dengan Architectural Dark Banner Standar ISAVO & Scrim Protection
 - [x] DIFF-IMAGES-PAGES-01: Diversifikasi Gambar Unik Non-Repetitif per Halaman Berbasis 70 Aset Riil MinIO S3 (Tentang Kami, Program Wakaf, Zakat, Infaq, Sedekah, Kemitraan, & Parallax Gallery)
 - [x] CONTENT-S3-ALIGN-01: Pembaruan Gambar dan Teks Diskusi Mendalam Terintegrasi Penuh MinIO S3 (Hero, Tentang Kami, Program, dan Showcase)
 - [x] SEO-FND-01: Fondasi Meta Tags, Canonical URL Dinamis, Twitter Cards, & OpenGraph di BaseLayout & Halaman Publik
