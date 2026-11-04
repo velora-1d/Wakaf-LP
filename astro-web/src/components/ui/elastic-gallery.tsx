@@ -77,7 +77,7 @@ export function ElasticGallery({
     <div className={cn("w-full py-6 md:py-8 flex justify-center", className)} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
       <div 
         className="mx-auto flex h-[480px] md:h-[560px] w-full max-w-6xl flex-col gap-3 px-3 md:flex-row md:gap-4"
-        style={{ width: '100%', maxWidth: '1152px', margin: '0 auto', display: 'flex' }}
+        style={{ width: '100%', maxWidth: '1152px', margin: '0 auto', display: 'flex', height: '560px', minHeight: '480px' }}
       >
         {items.map((item) => {
           const isActive = activeId === item.id;
@@ -89,6 +89,11 @@ export function ElasticGallery({
               style={{
                 flex: isActive ? '3.5 1 0%' : '1 1 0%',
                 minWidth: 0,
+                height: '100%',
+                position: 'relative',
+                overflow: 'hidden',
+                borderRadius: '24px',
+                backgroundColor: '#0f172a',
                 transition: 'flex 0.7s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, box-shadow 0.3s ease',
               }}
               className={cn(
@@ -102,13 +107,25 @@ export function ElasticGallery({
               <img
                 src={item.src}
                 alt={item.alt}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block',
+                  transition: 'transform 0.7s ease, filter 0.7s ease',
+                  transform: isActive ? 'scale(1)' : 'scale(1.05)',
+                  filter: isActive ? 'brightness(1)' : 'brightness(0.45)',
+                }}
                 className={cn(
                   "absolute inset-0 h-full w-full object-cover transition-all duration-700",
                   isActive
                     ? "scale-100 brightness-100"
                     : "scale-105 brightness-[0.4] group-hover:brightness-[0.55]"
                 )}
-                loading="lazy"
+                loading="eager"
               />
 
               {/* Gradient Natural Dari Bawah ke Atas */}
