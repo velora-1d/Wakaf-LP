@@ -110,6 +110,65 @@ const heroSlides = [
       ))}
     </div>
 
+    <!-- Kontrol Slide Manual (Tombol Kecil Prev/Next & Indikator) -->
+    <div class="hero-carousel-controls" role="group" aria-label="Kontrol slide manual">
+      <div class="hero-dots-row" role="tablist" aria-label="Pilih slide">
+        {heroSlides.map((slide, i) => (
+          <button
+            type="button"
+            class={`hero-dot-btn ${i === 0 ? 'is-active' : ''}`}
+            data-slide-index={i}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-label={`Slide ${slide.index}: ${slide.label}`}
+            title={`Slide ${slide.index}: ${slide.label}`}
+          />
+        ))}
+      </div>
+
+      <div class="hero-control-actions">
+        <button
+          type="button"
+          id="hero-prev-btn"
+          class="hero-ctrl-btn"
+          aria-label="Slide sebelumnya"
+          title="Slide sebelumnya"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          id="hero-next-btn"
+          class="hero-ctrl-btn"
+          aria-label="Slide berikutnya"
+          title="Slide berikutnya"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          id="hero-pause-btn"
+          class="hero-ctrl-btn"
+          aria-label="Jeda rotasi otomatis slide"
+          aria-pressed="false"
+          title="Jeda rotasi otomatis"
+        >
+          <svg id="hero-pause-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+            <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          </svg>
+          <svg id="hero-play-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -416,24 +475,24 @@ const heroSlides = [
   .hero-carousel-controls {
     display: inline-flex;
     align-items: center;
-    gap: 16px;
-    margin-top: 36px;
-    padding: 8px 16px;
-    background: rgba(6, 24, 41, 0.65);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    gap: 14px;
+    margin-top: 22px;
+    padding: 6px 14px;
+    background: rgba(6, 24, 41, 0.72);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 9999px;
   }
 
   .hero-dots-row {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
   }
 
   .hero-dot-btn {
-    width: 24px;
-    height: 6px;
+    width: 20px;
+    height: 5px;
     border-radius: 9999px;
     background: rgba(255, 255, 255, 0.3);
     border: none;
@@ -446,11 +505,11 @@ const heroSlides = [
   .hero-dot-btn::after {
     content: '';
     position: absolute;
-    inset: -14px -6px;
+    inset: -10px -4px;
   }
 
   .hero-dot-btn.is-active {
-    width: 40px;
+    width: 32px;
     background: #0969da;
   }
 
@@ -458,16 +517,16 @@ const heroSlides = [
     display: flex;
     align-items: center;
     gap: 4px;
-    border-left: 1px solid rgba(255, 255, 255, 0.15);
-    padding-left: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+    padding-left: 10px;
   }
 
   .hero-ctrl-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: transparent;
     border: 1px solid transparent;
@@ -477,14 +536,14 @@ const heroSlides = [
   }
 
   .hero-ctrl-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.16);
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
   }
 
   .hero-ctrl-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.92);
   }
 
   @media (max-width: 900px) {
@@ -496,7 +555,7 @@ const heroSlides = [
       padding-bottom: 60px;
     }
     .hero-carousel-controls {
-      margin-top: 28px;
+      margin-top: 20px;
     }
   }
 </style>

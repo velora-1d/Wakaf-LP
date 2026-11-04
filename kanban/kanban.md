@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] HERO-MANUAL-CONTROLS-01: Implementasi Tombol Kontrol Manual & Indikator Slide Hero Beranda (Prev, Next, Dots, & Pause) Terverifikasi Build
 - [x] HERO-SLIDE-1-VERTICAL-ALIGN: Penyesuaian Posisi Vertikal Konten & Framing Slide 1 Hero Beranda agar Tidak Terpotong ke Atas (Lift Deck -24px, Padding Efisien & Object Position 80%) Terverifikasi Build
 - [x] HERO-4-SLIDES-REAL-ASSETS: Penyelarasan 4 Slide Hero Beranda GVF dengan 4 Foto Riil Autentik Lapangan (Masjid Konstruksi, Kajian Whiteboard, Halaqah Adab, & Lorong Asrama Bata Merah) S3 Terverifikasi Build
 - [x] HOME-HERO-SLIDES-01: Pembaruan Teks 4 Slide Hero Beranda (Membangun Kebaikan, Menghubungkan Kebaikan, Dari Kepedulian Menuju Kemandirian, Menguatkan Ekosistem)
