@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "ABOUT-PAGE-TITLES-ALIGN", "name": "Penyelarasan Judul Banner Hero (Tentang Kami) dan Judul Section Intro (Mengenal Global Village Fund)", "status": "closed" },
     { "id": "HERO-CONTROLS-SUBTLE-MINI-01", "name": "Pengecilan Ukuran & Pengurangan Kontras Kontrol Slide Manual Hero agar Lebih Halus dan Elegan (Opacity 0.55, Tombol 22px, Dot 14px)", "status": "closed" },
     { "id": "HERO-MANUAL-CONTROLS-01", "name": "Implementasi Tombol Kontrol Manual & Indikator Slide Hero Beranda (Prev, Next, Dots, & Pause)", "status": "closed" },
     { "id": "HERO-SLIDE-1-VERTICAL-ALIGN", "name": "Penyesuaian Posisi Vertikal Konten & Framing Slide 1 Hero Beranda agar Tidak Terpotong ke Atas (Lift Deck -24px, Padding Efisien & Object Position 80%)", "status": "closed" },
