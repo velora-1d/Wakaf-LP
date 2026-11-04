@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] GENERATE-2-DOCX-CONTENT-INVENTORY: Pembuatan 2 Dokumen Word (.docx) Inventarisasi Konten, Narasi & Aset Gambar GVF untuk Diskusi & Pengisian Tim Terverifikasi
 - [x] ABOUT-REMOVE-REDUNDANT-TEXT-01: Eliminasi Redundansi Teks 'Tentang Kami' pada Hero Banner Breadcrumb dan Badge Pill Section Intro Terverifikasi Build
 - [x] ABOUT-PAGE-TITLES-ALIGN: Penyelarasan Judul Banner Hero (Tentang Kami) dan Judul Section Intro (Mengenal Global Village Fund) Terverifikasi Build
 - [x] HERO-CONTROLS-SUBTLE-MINI-01: Pengecilan Ukuran & Pengurangan Kontras Kontrol Slide Manual Hero agar Lebih Halus dan Elegan (Opacity 0.55, Tombol 22px, Dot 14px) Terverifikasi Build
