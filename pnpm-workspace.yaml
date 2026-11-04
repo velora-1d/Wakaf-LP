@@ -1,6 +1,7 @@
 packages:
   - 'landing-page'
   - 'astro-web'
+  - 'wakaf-rutin'
 
 allowBuilds:
   esbuild: true
