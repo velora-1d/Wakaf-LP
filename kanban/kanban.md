@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] HERO-4-SLIDES-REAL-ASSETS: Penyelarasan 4 Slide Hero Beranda GVF dengan 4 Foto Riil Autentik Lapangan (Masjid Konstruksi, Kajian Whiteboard, Halaqah Adab, & Lorong Asrama Bata Merah) S3 Terverifikasi Build
 - [x] HOME-HERO-SLIDES-01: Pembaruan Teks 4 Slide Hero Beranda (Membangun Kebaikan, Menghubungkan Kebaikan, Dari Kepedulian Menuju Kemandirian, Menguatkan Ekosistem)
 - [x] NAVBAR-CONTRAST-01: Perbaikan Kontras & Visibilitas Navbar pada Halaman Berlatar Terang (/kabar dan /kabar/[slug]) dengan Architectural Dark Banner Standar ISAVO & Scrim Protection
 - [x] DIFF-IMAGES-PAGES-01: Diversifikasi Gambar Unik Non-Repetitif per Halaman Berbasis 70 Aset Riil MinIO S3 (Tentang Kami, Program Wakaf, Zakat, Infaq, Sedekah, Kemitraan, & Parallax Gallery)

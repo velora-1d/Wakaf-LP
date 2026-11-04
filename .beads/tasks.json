@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "HERO-4-SLIDES-REAL-ASSETS", "name": "Penyelarasan 4 Slide Hero Beranda GVF dengan 4 Foto Riil Autentik Lapangan (Masjid Konstruksi, Kajian Whiteboard, Halaqah Adab, & Lorong Asrama Bata Merah) S3 Terverifikasi Build", "status": "closed" },
     { "id": "HOME-HERO-SLIDES-01", "name": "Pembaruan Teks 4 Slide Hero Beranda (Membangun Kebaikan, Menghubungkan Kebaikan, Dari Kepedulian Menuju Kemandirian, Menguatkan Ekosistem)", "status": "closed" },
     { "id": "DIFF-IMAGES-PAGES-01", "name": "Diversifikasi Gambar Unik Non-Repetitif per Halaman Berbasis 70 Aset Riil MinIO S3", "status": "closed" },
     { "id": "CONTENT-S3-ALIGN-01", "name": "Pembaruan Gambar dan Teks Diskusi Mendalam Terintegrasi Penuh MinIO S3 (Hero, Tentang Kami, Program, dan Showcase)", "status": "closed" },
