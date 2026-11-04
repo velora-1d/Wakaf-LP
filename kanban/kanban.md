@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] GENERATE-MASTER-DOCX-WITH-EMBEDDED-IMAGES: Pembuatan 1 File Master Dokumen Word (.docx) Inventarisasi Konten & Visual GVF Terpadu dengan 42 Thumbnail Foto Asli Tersemat Langsung di Tabel Terverifikasi Empiris
 - [x] GENERATE-2-DOCX-CONTENT-INVENTORY: Pembuatan 2 Dokumen Word (.docx) Inventarisasi Konten, Narasi & Aset Gambar GVF untuk Diskusi & Pengisian Tim Terverifikasi
 - [x] ABOUT-REMOVE-REDUNDANT-TEXT-01: Eliminasi Redundansi Teks 'Tentang Kami' pada Hero Banner Breadcrumb dan Badge Pill Section Intro Terverifikasi Build
 - [x] ABOUT-PAGE-TITLES-ALIGN: Penyelarasan Judul Banner Hero (Tentang Kami) dan Judul Section Intro (Mengenal Global Village Fund) Terverifikasi Build
