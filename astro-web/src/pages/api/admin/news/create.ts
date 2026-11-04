@@ -45,7 +45,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       category: category.trim(),
       summary: summary.trim(),
       content: content.trim(),
-      coverImage: (coverImage || 'https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp').trim(),
+      coverImage: (coverImage || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp').trim(),
       author: (author || 'Tim GVF').trim(),
       isPublished: isPublished !== undefined ? Boolean(isPublished) : true,
       publishedAt: publishedAt || new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),

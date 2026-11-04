@@ -7,7 +7,7 @@ import { OrbButton } from "@/components/ui/hero-with-cards-utils/orb-button";
 
 const CARDS = [
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp",
     alt: "Masjid Khairu Ummah",
     title: "Masjid Khairu Ummah",
     rotate: -18,
@@ -15,7 +15,7 @@ const CARDS = [
     z: 10,
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/drone-lahan-dan-pemukiman.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lahan-dan-pemukiman.webp",
     alt: "Kawasan Wakaf Jonggol",
     title: "Kawasan Wakaf Jonggol",
     rotate: -9,
@@ -23,7 +23,7 @@ const CARDS = [
     z: 20,
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kbm-santri-putra-putri-kelas.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kbm-santri-putra-putri-kelas.webp",
     alt: "SMK Skill Village",
     title: "SMK Skill Village",
     rotate: 0,
@@ -31,7 +31,7 @@ const CARDS = [
     z: 30,
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/halaqah-santri-melingkar.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/halaqah-santri-melingkar.webp",
     alt: "Pendidikan Santri",
     title: "Pendidikan Santri",
     rotate: 9,
@@ -39,7 +39,7 @@ const CARDS = [
     z: 20,
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp",
     alt: "Agro-Technopark",
     title: "Agro-Technopark",
     rotate: 18,
@@ -53,7 +53,7 @@ const HeroSectionwithCards: React.FC = () => {
     <section
       className="relative w-full min-w-full min-h-screen flex flex-col justify-center items-center overflow-hidden bg-slate-950"
       style={{
-        backgroundImage: `linear-gradient(180deg, rgba(7, 11, 20, 0.94) 0%, rgba(9, 14, 26, 0.85) 45%, rgba(6, 10, 18, 0.98) 100%), url('https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/drone-pembangunan-gedung-asrama.webp')`,
+        backgroundImage: `linear-gradient(180deg, rgba(7, 11, 20, 0.94) 0%, rgba(9, 14, 26, 0.85) 45%, rgba(6, 10, 18, 0.98) 100%), url('https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-pembangunan-gedung-asrama.webp')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

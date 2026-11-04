@@ -6,10 +6,12 @@ const connectionString =
   process.env.PG_DATABASE_URL || 
   'postgresql://DB-PGbase:OjRqOooKEny2kXMSSqIk@100.77.202.57:5433/gvf?application_name=pgbase&sslmode=disable';
 
+const useSsl = connectionString.includes('sslmode=require') || connectionString.includes('neon.tech');
+
 const sql = postgres(connectionString, {
   max: 1,
   connect_timeout: 15,
-  ssl: false,
+  ssl: useSsl ? 'require' : false,
 });
 
 async function syncPackages() {

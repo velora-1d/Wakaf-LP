@@ -7,10 +7,12 @@ const connectionString =
 
 console.log('[MIGRATE-DONORS] Menghubungkan ke PostgreSQL di 100.77.202.57:5433...');
 
+const useSsl = connectionString.includes('sslmode=require') || connectionString.includes('neon.tech');
+
 const sql = postgres(connectionString, {
   max: 1,
   connect_timeout: 15,
-  ssl: false,
+  ssl: useSsl ? 'require' : false,
 });
 
 async function run() {
@@ -143,21 +145,21 @@ async function run() {
         (
           'GVF-202610-0001', ${d1.id}, 'wakaf', 15000000, 125, 15000125,
           'Wakaf Muabbad (Abadi)', 'Alm. H. Sulistyo bin Kartowijoyo', 'Semoga menjadi amal jariyah untuk kedua orang tua kami tercinta.',
-          'BSI Transfer', 'https://s3.skillage-mart.com/skillage-website/donasi/bukti-bsi-contoh1.jpg',
+          'BSI Transfer', 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/donasi/bukti-bsi-contoh1.jpg',
           'lunas', 'Admin Amil Utama', NOW(),
           'safari_dakwah', 'safari-bogor-okt26', 'Verifikasi via mutasi BSI Rek 7123456789'
         ),
         (
           'GVF-202610-0002', ${d1.id}, 'wakaf', 10000000, 340, 10000340,
           'Wakaf Muabbad (Abadi)', 'H. Bambang & Keluarga', 'Mohon doa agar anak-anak kami menjadi hafiz Quran yang istiqamah.',
-          'BSI Transfer', 'https://s3.skillage-mart.com/skillage-website/donasi/bukti-bsi-contoh2.jpg',
+          'BSI Transfer', 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/donasi/bukti-bsi-contoh2.jpg',
           'lunas', 'Admin Amil Utama', NOW(),
           'relasi_langsung', 'founder-network', 'Transfer kedua bulan Oktober 2026'
         ),
         (
           'GVF-202610-0003', ${d2.id}, 'sedekah', 50000000, 0, 50000000,
           'Sedekah Pangan Santri', 'CSR PT Sinergi Berkah Nusantara', 'Pemberdayaan vokasi generasi muda mandiri pangan.',
-          'BCA', 'https://s3.skillage-mart.com/skillage-website/donasi/bukti-bca-csr.jpg',
+          'BCA', 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/donasi/bukti-bca-csr.jpg',
           'lunas', 'Admin Amil Utama', NOW(),
           'walk_in', 'visit-kawasan-jonggol', 'MoU Kemitraan CSR Vokasi 2026-2027'
         ),

@@ -7,10 +7,12 @@ const connectionString =
 
 console.log('[MIGRATE-NEWS] Menghubungkan ke PostgreSQL di 100.77.202.57:5433...');
 
+const useSsl = connectionString.includes('sslmode=require') || connectionString.includes('neon.tech');
+
 const sql = postgres(connectionString, {
   max: 1,
   connect_timeout: 15,
-  ssl: false,
+  ssl: useSsl ? 'require' : false,
 });
 
 async function run() {
@@ -55,7 +57,7 @@ Di Global Village Fund (GVF), konsep wakaf produktif diterapkan secara nyata pad
 Hasil perputaran nilai ekonomi dari kebun buah dan fasilitas produktif tersebut dialokasikan kembali untuk mendanai beasiswa pendidikan penuh santri penghafal Quran, penyediaan fasilitas asrama yang layak, serta program ketahanan pangan masyarakat dhuafa di sekitar kawasan.
 
 Prinsip utama yang dipegang teguh oleh GVF adalah menjaga pokok aset wakaf agar tetap utuh dan abadi (tahbisul ashli), sementara hasil kemanfaatannya disalurkan seluas-luasnya untuk kemaslahatan umat (tasbilul tsamarah). Dengan model ini, setiap rupiah wakaf yang disalurkan tidak hanya bernilai pahala jariyah di akhirat, tetapi juga melahirkan dampak sosial-ekonomi nyata lintas generasi.`,
-          cover_image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20masjid.jpg',
+          cover_image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/gambar%20design/interior%20masjid.jpg',
           author: 'Dewan Syariah GVF',
           published_at: '18 Juli 2026',
         },
@@ -69,7 +71,7 @@ Prinsip utama yang dipegang teguh oleh GVF adalah menjaga pokok aset wakaf agar 
 Lantai mezanin ini dirancang secara khusus untuk memberikan ruang ibadah tambahan yang tenang bagi santri putri serta area pembelajaran tahfidz Al-Quran intensif. Dengan pencahayaan alami yang melimpah dan sirkulasi udara pasif arsitektural modern, masjid ini memadukan kekhusyukan ibadah dengan efisiensi energi.
 
 Ketua tim pembangunan GVF menyatakan bahwa tahap berikutnya akan difokuskan pada penyelesaian lantai granit ramah wudhu, ornamen ventilasi roster artistik, dan sistem penampungan air hujan ramah lingkungan (rainwater harvesting) untuk menyuplai area sanitasi mandiri.`,
-          cover_image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/belakang%20masjid.jpg',
+          cover_image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/gambar%20design/belakang%20masjid.jpg',
           author: 'Tim Konstruksi GVF',
           published_at: '12 Juli 2026',
         },
@@ -83,7 +85,7 @@ Ketua tim pembangunan GVF menyatakan bahwa tahap berikutnya akan difokuskan pada
 Di dalam green house seluas 1.200 meter persegi, para santri mempraktikkan teknik pembibitan anggur varietas unggul, budidaya melon hidroponik, dan sayuran organik bernilai ekonomi tinggi. Setiap santri dilatih memahami manajemen nutrisi tanaman, pengendalian hama hayati tanpa pestisida kimiawi, serta rantai distribusi pascapanen.
 
 Program ini membuktikan bahwa pesantren masa kini mampu menjadi inkubator technopreneur muda yang memiliki keahlian teknis tinggi sekaligus berjiwa kepemimpinan yang amanah.`,
-          cover_image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/learning%20studio%20%26%20workshop.jpg',
+          cover_image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/gambar%20design/learning%20studio%20%26%20workshop.jpg',
           author: 'Instruktur Vokasi GVF',
           published_at: '5 Juli 2026',
         },
@@ -97,7 +99,7 @@ Program ini membuktikan bahwa pesantren masa kini mampu menjadi inkubator techno
 Berkat kontribusi para wakif melalui platform digital GVF, puluhan workstation komputer berspesifikasi tinggi kini telah tersedia di studio workshop santri. Fasilitas ini digunakan setiap hari untuk pembelajaran desain arsitektur 3D, animasi dakwah, dan keterampilan rekayasa perangkat lunak.
 
 Penyaluran wakaf tunai yang tepat guna ini menjadi saksi nyata bagaimana dana filantropi Islam dapat menjadi akselerator pemerataan kualitas pendidikan digital bagi anak-anak dhuafa berprestasi.`,
-          cover_image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/interior%20mesjid%202.jpg',
+          cover_image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/gambar%20design/interior%20mesjid%202.jpg',
           author: 'Tim Digital GVF',
           published_at: '28 Juni 2026',
         },
@@ -111,7 +113,7 @@ Penyaluran wakaf tunai yang tepat guna ini menjadi saksi nyata bagaimana dana fi
 Sepanjang kuartal kedua 2026, Global Village Fund telah menandatangani nota kesepahaman (MoU) kemitraan strategis dengan beberapa perusahaan nasional terkemuka. Program kemitraan ini mencakup penyaluran dana Corporate Social Responsibility (CSR) untuk pembiayaan beasiswa vokasi, penyediaan genset ramah lingkungan, serta magang industri bersertifikat bagi para santri tingkat akhir.
 
 GVF memastikan setiap bentuk kemitraan dikawal dengan pelaporan dampak sosial (Social Return on Investment / SROI) yang transparan dan dapat diaudit secara independen.`,
-          cover_image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/media-lp/WhatsApp%20Image%202026-10-05%20at%2009.22.04%20(3).jpeg',
+          cover_image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/media-lp/WhatsApp%20Image%202026-10-05%20at%2009.22.04%20(3).jpeg',
           author: 'Divisi Kemitraan GVF',
           published_at: '20 Juni 2026',
         },
@@ -125,7 +127,7 @@ GVF memastikan setiap bentuk kemitraan dikawal dengan pelaporan dampak sosial (S
 Setiap hari santri memulai aktivitas sebelum fajar dengan tahajud berjamaah dan halaqah Al-Quran. Selepas dhuha, mereka masuk ke laboratorium workshop teknik dan agroteknologi untuk mempraktikkan sains modern dengan etos kerja tinggi.
 
 Pendekatan holistik ini bertujuan melahirkan lulusan vokasi yang tidak hanya mahir secara teknis di dunia industri, tetapi juga memiliki akhlak mulia dan komitmen kuat untuk membangun daerah asalnya masing-masing.`,
-          cover_image: 'https://s3.skillage-mart.com/skillage-website/gvf/assets/gambar%20design/panel%20surya.jpg',
+          cover_image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/gambar%20design/panel%20surya.jpg',
           author: 'Bidang Kurikulum GVF',
           published_at: '14 Juni 2026',
         }

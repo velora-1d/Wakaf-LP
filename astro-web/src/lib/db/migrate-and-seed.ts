@@ -8,10 +8,12 @@ const connectionString =
 
 console.log('[DB-INIT] Connecting to PostgreSQL at 100.77.202.57:5433 (database: gvf)...');
 
+const useSsl = connectionString.includes('sslmode=require') || connectionString.includes('neon.tech');
+
 const sql = postgres(connectionString, {
   max: 1,
   connect_timeout: 15,
-  ssl: false,
+  ssl: useSsl ? 'require' : false,
 });
 
 async function main() {

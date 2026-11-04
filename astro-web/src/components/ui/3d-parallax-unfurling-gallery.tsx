@@ -11,62 +11,62 @@ interface FacilityItem {
 
 const GVF_FACILITIES: FacilityItem[] = [
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp",
     title: "Pelataran Masjid Khairu Ummah",
     category: "Pusat Ibadah",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp",
     title: "Greenhouse Budidaya Melon",
     category: "Agro-Technopark",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/tiga-santri-juara-mtq-jonggol-piala.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/tiga-santri-juara-mtq-jonggol-piala.webp",
     title: "Prestasi Santri Juara MTQ",
     category: "Pendidikan Berprestasi",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/drone-lapangan-dan-lahan-tani.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lapangan-dan-lahan-tani.webp",
     title: "Hamparan Lahan Wakaf ±3 Ha",
     category: "Kawasan Terpadu",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/atap-rangka-baja-aula.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/atap-rangka-baja-aula.webp",
     title: "Konstruksi Rangka Baja Aula",
     category: "Fasilitas Belajar",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-diskusi-belajar-meja-lipat.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-diskusi-belajar-meja-lipat.webp",
     title: "Diskusi Halaqah Santri Ikhwan",
     category: "KBM & Karakter FAST",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp",
     title: "Progres Pembangunan Lantai 2",
     category: "Infrastruktur Fisik",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-bertiga-mencatat-di-aula.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-bertiga-mencatat-di-aula.webp",
     title: "KBM Santriwati Menyimak Materi",
     category: "Pendidikan Holistik",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/tampak-gedung-dan-halaman-asrama.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/tampak-gedung-dan-halaman-asrama.webp",
     title: "Gedung & Halaman Asrama Santri",
     category: "Hunian Mandiri",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/duta-santri-berprestasi-1.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/duta-santri-berprestasi-1.webp",
     title: "Duta Santri Inspiratif",
     category: "Generasi Emas",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/dinding-hebel-ventilasi-roster-1.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/dinding-hebel-ventilasi-roster-1.webp",
     title: "Dinding Bata Ringan Roster SNI",
     category: "Arsitektur Ramah Lingkungan",
   },
   {
-    src: "https://s3.skillage-mart.com/skillage-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/sholat-berjamaah-imam-santri-belakang.webp",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/sholat-berjamaah-imam-santri-belakang.webp",
     title: "Shalat Berjamaah Santri Asrama",
     category: "Spiritualitas Berkelanjutan",
   },

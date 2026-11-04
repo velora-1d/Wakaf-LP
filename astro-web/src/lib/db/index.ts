@@ -9,13 +9,15 @@ const connectionString =
   process.env.PG_DATABASE_URL || 
   'postgresql://DB-PGbase:OjRqOooKEny2kXMSSqIk@100.77.202.57:5433/gvf?application_name=pgbase&sslmode=disable';
 
-// Postgres connection with pooling and timeout controls (optimized for Tailscale VPN)
+const useSsl = connectionString.includes('sslmode=require') || connectionString.includes('neon.tech');
+
+// Postgres connection with pooling and timeout controls
 export const client = postgres(connectionString, {
   max: 8,
   idle_timeout: 10,
-  connect_timeout: 5,
-  prepare: false, // critical for remote Tailscale VPN to avoid prepared statement stale errors
-  ssl: false,
+  connect_timeout: 10,
+  prepare: false,
+  ssl: useSsl ? 'require' : false,
 });
 
 export const db = drizzle(client, { schema });
