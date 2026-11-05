@@ -118,7 +118,7 @@ const valueBoxIcons = [
           </ul>
         </div>
 
-        <div style="position: relative; border-radius: 24px; overflow: hidden; padding: 48px 24px; text-align: center; color: #ffffff; min-height: 440px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.12); background-image: url('https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-pembangunan-gedung-asrama.webp'); background-size: cover; background-position: center;">
+        <div style="position: relative; border-radius: 24px; overflow: hidden; padding: 48px 24px; text-align: center; color: #ffffff; min-height: 440px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.12); background-image: url('/bahan-konten/fasilitas-dan-infrastruktur/drone-pembangunan-gedung-asrama.webp'); background-size: cover; background-position: center;">
           <div style="position: absolute; inset: 0; background: rgba(6, 24, 41, 0.82); z-index: 0;"></div>
           <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; width: 100%;">
             <img src="/logo-gvf-3d.png" alt="Global Village Fund Logo" style="height: 54px; width: auto; object-fit: contain; margin-bottom: 16px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));" />
@@ -152,7 +152,7 @@ const valueBoxIcons = [
           <!-- Main Hero Image -->
           <div class="pen-deepdive-hero-img-wrap">
             <img
-              src={program.heroImage || "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp"}
+              src={program.heroImage || program.deepDiveBannerImage || "/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp"}
               alt={program.deepDiveTitle}
               class="pen-deepdive-hero-img"
               loading="lazy"
@@ -193,13 +193,13 @@ const valueBoxIcons = [
           <!-- 2 Side-by-side Images (Pen.dev) -->
           <div class="pen-twins-img-grid">
             <img
-              src={program.deepDiveTwinImages ? program.deepDiveTwinImages[0] : "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/halaqah-santri-melingkar.webp"}
+              src={program.deepDiveTwinImages ? program.deepDiveTwinImages[0] : "/bahan-konten/halaqah-santri-melingkar.webp"}
               alt="Dokumentasi Fasilitas Jonggol 1"
               class="pen-twin-img"
               loading="lazy"
             />
             <img
-              src={program.deepDiveTwinImages ? program.deepDiveTwinImages[1] : "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp"}
+              src={program.deepDiveTwinImages ? program.deepDiveTwinImages[1] : "/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp"}
               alt="Dokumentasi Fasilitas Jonggol 2"
               class="pen-twin-img"
               loading="lazy"
@@ -234,10 +234,10 @@ const valueBoxIcons = [
             <!-- 4 Portfolio Showcase Cards Grid (Pen.dev Exact) -->
             <div class="pen-portfolio-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 30px 0;">
               {(program.portfolioShowcaseItems || [
-                { tag: 'ARSITEKTUR', name: 'Ruang Utama Shalat & Wudhu', category: 'Arsitektur', image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp' },
-                { tag: 'PENDIDIKAN', name: 'KBM Santri di Kelas', category: 'Pendidikan Vokasi', image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kbm-santri-putra-putri-kelas.webp' },
-                { tag: 'SARANA IBADAH', name: 'Pelataran Depan Masjid', category: 'Fasilitas Ibadah', image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp' },
-                { tag: 'INFRASTRUKTUR', name: 'Gedung Asrama Santri', category: 'Infrastruktur Kawasan', image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-pembangunan-gedung-asrama.webp' },
+                { tag: 'ARSITEKTUR', name: 'Ruang Utama Shalat & Wudhu', category: 'Arsitektur', image: '/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp' },
+                { tag: 'PENDIDIKAN', name: 'KBM Santri di Kelas', category: 'Pendidikan Vokasi', image: '/bahan-konten/kbm-santri-putra-putri-kelas.webp' },
+                { tag: 'SARANA IBADAH', name: 'Pelataran Depan Masjid', category: 'Fasilitas Ibadah', image: '/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp' },
+                { tag: 'INFRASTRUKTUR', name: 'Gedung Asrama Santri', category: 'Infrastruktur Kawasan', image: '/bahan-konten/fasilitas-dan-infrastruktur/drone-pembangunan-gedung-asrama.webp' },
               ]).map((item) => (
                 <div class="pen-showcase-card">
                   <div class="pen-showcase-img-box">

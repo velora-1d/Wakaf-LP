@@ -135,7 +135,7 @@ export interface ProgramData {
   ctaBannerText: string;
 }
 
-const S3_BASE = 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets';
+const S3_BASE = '';
 
 export const programsData: Record<string, ProgramData> = {
   wakaf: {
@@ -143,7 +143,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Wakaf untuk Aset dan Manfaat Berkelanjutan',
     heroSubtitle: 'Dukung pengembangan aset dan sarana yang dapat memberikan manfaat jangka panjang bagi ekosistem Skill Village di Jonggol.',
     categoryBadge: 'WAKAF PRODUKTIF & SARANA IBADAH',
-    heroBgImage: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-dan-pemukiman.webp`,
+    heroBgImage: '/bahan-konten/Design%20Masjid/skywalk%20learning%20room.jpg',
     
     pricingHeading: 'Pilihan Program Wakaf Berkelanjutan',
     pricingSubheading: 'Tunaikan wakaf berdasarkan peruntukan yang tersedia: sarana ibadah dan wakaf produktif untuk menopang kemandirian umat.',
@@ -230,7 +230,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Global Village Fund mengelola wakaf produktif dan sarana ibadah di bawah naungan Yayasan Permata Cendekia Indonesia (YPCI). Wakaf diarahkan untuk mendukung aset fisik yang manfaatnya dapat digunakan secara berkelanjutan bagi santri dan masyarakat.',
     deepDiveStory1: 'Pengelolaan dan peruntukan wakaf dijelaskan secara terbuka sesuai akad yang disepakati. Dari penyelesaian sarana ibadah Masjid Khairu Ummah Sugro hingga pembebasan lahan kawasan terpadu di Sukasirna Jonggol, setiap kontribusi dijaga keutuhannya.',
     deepDiveStory2: '',
-    deepDiveBannerImage: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/drone-lapangan-dan-lahan-tani.webp`,
+    deepDiveBannerImage: '/bahan-konten/Design%20Masjid/interior%20mesjid%202.jpg',
     valueBoxes: [
       {
         icon: 'infinity',
@@ -254,8 +254,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     deepDiveTwinImages: [
-      `${S3_BASE}/media-lp/masjid-tampak-dalam-konstruksi.webp`,
-      `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-perkebunan.webp`
+      '/bahan-konten/masjid%20dan%20kelas/masjid%20tampak%20dalam.jpeg',
+      '/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp'
     ],
     deepDiveSubblock1Title: 'Pusat Ibadah Masjid Khairu Ummah',
     deepDiveSubblock1Desc1: 'Masjid Khairu Ummah Sugro dirancang dengan konsep ramah lingkungan yang mengoptimalkan pencahayaan dan sirkulasi udara alami, menjadi pusat shalat berjamaah dan pembinaan karakter santri.',
@@ -455,7 +455,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Infak untuk Pendidikan dan Fasilitas',
     heroSubtitle: 'Dukung kebutuhan sarana pendidikan, fasilitas hunian, dan pengembangan kompetensi santri Skill Village.',
     categoryBadge: 'INFAK SARANA PENDIDIKAN',
-    heroBgImage: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/kbm-santri-ikhwan-menulis.webp`,
+    heroBgImage: '/bahan-konten/asrama%20putra%20baru/tampak%20samping%20asrama%20ikhwan%20baru.jpeg',
     
     pricingHeading: 'Pilihan Program Infak Sarana & Pendidikan',
     pricingSubheading: 'Tampilkan kebutuhan infak yang sedang dibuka: perlengkapan belajar, material pembangunan kelas, dan fasilitas asrama santri.',
@@ -542,7 +542,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Fasilitas yang aman dan layak membantu menciptakan lingkungan belajar dan hunian yang nyaman, menenangkan santri dalam mendalami ilmu agama maupun keterampilan vokasi.',
     deepDiveStory1: 'Kondisi fisik gedung yang aman, pencahayaan cukup, dan ruang tidur sehat memberikan ketenangan bagi para santri yang tinggal jauh dari orang tua untuk fokus belajar dan membina karakter mandiri.',
     deepDiveStory2: '',
-    deepDiveBannerImage: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/konstruksi-atap-aula-paranet.webp`,
+    deepDiveBannerImage: '/bahan-konten/masjid%20dan%20kelas/pondasi%20kelas%20lt2.jpeg',
     valueBoxes: [
       {
         icon: 'book-open',
@@ -566,8 +566,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     deepDiveTwinImages: [
-      `${S3_BASE}/bahan-konten/masjid%20dan%20kelas/tangga%20kelas%20ke%20lt2.jpeg`,
-      `${S3_BASE}/bahan-konten/asrama%20putra%20baru/pembangunan%20asrama%20ikhwan%20baru.jpeg`
+      '/bahan-konten/masjid%20dan%20kelas/tangga%20kelas%20ke%20lt2.jpeg',
+      '/bahan-konten/asrama%20putra%20baru/pembangunan%20asrama%20ikhwan%20baru.jpeg'
     ],
     deepDiveSubblock1Title: 'Penyelesaian Ruang Kelas Lantai 2',
     deepDiveSubblock1Desc1: 'Pekerjaan konstruksi ruang kelas lantai dua mencakup plester dinding bata hebel, pemasangan jendela ventilasi, dan pengamanan tangga akses santri.',
@@ -722,7 +722,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Sedekah untuk Kebutuhan Pangan dan Operasional',
     heroSubtitle: 'Dukung pemenuhan kebutuhan pangan harian, gizi santri, dan operasional lingkungan pesantren.',
     categoryBadge: 'SEDEKAH PANGAN & OPERASIONAL',
-    heroBgImage: `${S3_BASE}/bahan-konten/masjid%20dan%20kelas/Sayuran%20Kangkung.jpeg`,
+    heroBgImage: '/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp',
     
     pricingHeading: 'Pilihan Program Sedekah Pangan & Kehidupan',
     pricingSubheading: 'Tampilkan kebutuhan yang sedang dibuka: dukungan makan harian, bahan pangan pokok beras, dan kebutuhan operasional pesantren.',
@@ -807,7 +807,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Dukungan pangan membantu memenuhi kebutuhan harian santri sehingga lingkungan pesantren dapat menjalankan kegiatan belajar, pembinaan adab, dan ibadah dengan tenang.',
     deepDiveStory1: 'Setiap butir nasi dan lauk sehat yang disajikan menjadi sumber tenaga bagi para santri yang menuntut ilmu di Jonggol. Dukungan sedekah rutin memastikan asupan gizi mereka terpenuhi secara layak dan berkesinambungan.',
     deepDiveStory2: '',
-    deepDiveBannerImage: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp`,
+    deepDiveBannerImage: '/bahan-konten/masjid%20dan%20kelas/kandang%20ayam%20petelur.jpeg',
     valueBoxes: [
       {
         icon: 'heart',
@@ -831,8 +831,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     deepDiveTwinImages: [
-      `${S3_BASE}/bahan-konten/masjid%20dan%20kelas/Sayuran%20Kangkung.jpeg`,
-      `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ramai-menyimak-ustadz-mengajar.webp`
+      '/bahan-konten/masjid%20dan%20kelas/Sayuran%20Kangkung.jpeg',
+      '/bahan-konten/masjid%20dan%20kelas/lahan%20kebun.jpeg'
     ],
     deepDiveSubblock1Title: 'Hasil Kebun untuk Konsumsi Asrama',
     deepDiveSubblock1Desc1: 'Di samping pengadaan bahan pangan dari pasar, pesantren mengembangkan kebun sayuran kangkung dan hortikultura yang hasilnya dimanfaatkan langsung untuk melengkapi menu dapur santri.',
@@ -979,7 +979,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Zakat yang Disalurkan Sesuai Ketentuan Syariah',
     heroSubtitle: 'Salurkan zakat melalui program yang memperhatikan ketentuan syariat dan kelayakan penerima manfaat 8 asnaf.',
     categoryBadge: 'ZAKAT MAAL & FITRAH',
-    heroBgImage: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp`,
+    heroBgImage: '/bahan-konten/kegiatan-dan-prestasi-santri/tiga-santri-juara-mtq-jonggol-piala.webp',
     
     pricingHeading: 'Layanan Penyaluran Zakat Terverifikasi',
     pricingSubheading: 'Tunaikan kewajiban zakat 2,5% secara amanah, tepat hisab, dan disalurkan kepada asnaf yang berhak menerima.',
@@ -1059,7 +1059,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Zakat dikelola dengan memperhatikan ketentuan syariah, ketepatan sasaran, dan pencatatan penyaluran agar amanah para muzakki dapat dipertanggungjawabkan.',
     deepDiveStory1: 'Verifikasi kelayakan dilakukan secara cermat agar dana zakat benar-benar diterima oleh asnaf yang berhak, terutama santri penuntut ilmu agama dan vokasi yang memenuhi kriteria fi sabilillah, serta warga prasejahtera di sekitar pesantren.',
     deepDiveStory2: '',
-    deepDiveBannerImage: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/drone-pembangunan-gedung-asrama.webp`,
+    deepDiveBannerImage: '/bahan-konten/kegiatan-dan-prestasi-santri/salman-aufa-juara-2-tahfidz-10-juz.webp',
     valueBoxes: [
       {
         icon: 'check-circle',
@@ -1083,8 +1083,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     deepDiveTwinImages: [
-      `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp`,
-      `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-mencatat-dan-berdiskusi.webp`
+      '/bahan-konten/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp',
+      '/bahan-konten/kegiatan-dan-prestasi-santri/muhammad-syamil-ghazwan-juara-1-tahfidz-5-juz.webp'
     ],
     deepDiveSubblock1Title: 'Beasiswa Pendidikan Santri Fi Sabilillah',
     deepDiveSubblock1Desc1: 'Zakat diarahkan untuk membebaskan biaya pendidikan, penyediaan kitab kajian, dan pemenuhan kebutuhan dasar santri dhuafa berprestasi.',
