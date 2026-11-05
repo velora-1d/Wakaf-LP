@@ -979,7 +979,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Zakat yang Disalurkan Sesuai Ketentuan Syariah',
     heroSubtitle: 'Salurkan zakat melalui program yang memperhatikan ketentuan syariat dan kelayakan penerima manfaat 8 asnaf.',
     categoryBadge: 'ZAKAT MAAL & FITRAH',
-    heroBgImage: '/bahan-konten/kegiatan-dan-prestasi-santri/tiga-santri-juara-mtq-jonggol-piala.webp',
+    heroBgImage: '/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kbm-santri-ikhwan-di-aula.webp',
     
     pricingHeading: 'Layanan Penyaluran Zakat Terverifikasi',
     pricingSubheading: 'Tunaikan kewajiban zakat 2,5% secara amanah, tepat hisab, dan disalurkan kepada asnaf yang berhak menerima.',
