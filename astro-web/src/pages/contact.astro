@@ -32,12 +32,10 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     <div class="pen-banner-bg"></div>
     <div class="pen-banner-overlay"></div>
     <div class="pen-banner-container">
-      <h1 class="pen-banner-title">Layanan Donatur & Kontak</h1>
-      <div class="pen-breadcrumb-wrap">
-        <a href="/" class="pen-breadcrumb-link">BERANDA</a>
-        <span class="pen-breadcrumb-sep">-</span>
-        <span class="pen-breadcrumb-current">KONTAK KAMI</span>
-      </div>
+      <h1 class="pen-banner-title">Layanan Donatur &amp; Kontak</h1>
+      <p class="pen-banner-lead">
+        Hubungi tim Global Village Fund untuk memperoleh informasi mengenai program, zakat, infak, sedekah, wakaf, dan peluang kolaborasi.
+      </p>
     </div>
   </section>
   )}
@@ -62,11 +60,27 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
         <div class="pen-contact-info-col">
           <div class="pen-info-card">
             <div class="pen-info-item">
-              <span class="pen-info-label">Alamat Kantor & Lokasi Kawasan</span>
+              <span class="pen-info-label">Alamat Kantor &amp; Lokasi Kawasan</span>
               <p class="pen-info-text">
                 Kawasan Pesantren Integratif Holistik SMK Skill Village,<br />
                 Desa Sukasirna, Kec. Jonggol, Kab. Bogor, Jawa Barat 16830
               </p>
+            </div>
+
+            <div class="pen-info-item">
+              <span class="pen-info-label">Jam Layanan Konsultasi</span>
+              <p class="pen-info-text">
+                Senin – Sabtu: Pukul 08.00 – 17.00 WIB
+              </p>
+            </div>
+
+            <div class="pen-info-item">
+              <span class="pen-info-label">Rekening Donasi Resmi (YPCI)</span>
+              <div class="pen-bank-box">
+                <div class="pen-bank-name">Bank Syariah Indonesia (BSI)</div>
+                <div class="pen-bank-num">727-891-9988</div>
+                <div class="pen-bank-an">a.n. Yayasan Permata Cendekia Indonesia</div>
+              </div>
             </div>
 
             <div class="pen-info-item">
@@ -253,6 +267,13 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     letter-spacing: -0.02em;
     margin: 0 0 1.25rem 0;
   }
+  .pen-banner-lead {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+    max-width: 680px;
+    margin: 0 auto;
+  }
   .pen-breadcrumb-wrap {
     display: inline-flex;
     align-items: center;
@@ -364,6 +385,30 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     line-height: 1.6;
     color: #1e293b;
     margin: 0;
+  }
+  .pen-bank-box {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+  }
+  .pen-bank-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0969da;
+    margin-bottom: 0.25rem;
+  }
+  .pen-bank-num {
+    font-size: 1.25rem;
+    font-weight: 800;
+    font-family: monospace;
+    letter-spacing: 0.05em;
+    color: #0f172a;
+    margin-bottom: 0.25rem;
+  }
+  .pen-bank-an {
+    font-size: 0.8rem;
+    color: #64748b;
   }
   .pen-contact-links {
     display: flex;

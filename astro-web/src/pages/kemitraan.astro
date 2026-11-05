@@ -34,12 +34,10 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     <div class="pen-banner-bg"></div>
     <div class="pen-banner-overlay"></div>
     <div class="pen-banner-container">
-      <h1 class="pen-banner-title">Kemitraan Multipihak</h1>
-      <div class="pen-breadcrumb-wrap">
-        <a href="/" class="pen-breadcrumb-link">BERANDA</a>
-        <span class="pen-breadcrumb-sep">-</span>
-        <span class="pen-breadcrumb-current">KEMITRAAN STRATEGIS</span>
-      </div>
+      <h1 class="pen-banner-title">Berkolaborasi untuk Menguatkan Ekosistem</h1>
+      <p class="pen-banner-lead">
+        GVF membuka ruang kolaborasi dengan individu, komunitas, lembaga filantropi, dunia usaha, dan institusi pendidikan untuk mendukung pengembangan ekosistem Skill Village di Jonggol.
+      </p>
     </div>
   </section>
   )}
@@ -50,13 +48,13 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
       <div class="pen-gallery-header">
         <div class="pen-badge-pill">
           <span class="pen-badge-dot"></span>
-          <span class="pen-badge-text">GALERI KAMI</span>
+          <span class="pen-badge-text">REKAM JEJAK KOLABORASI</span>
         </div>
         <h2 class="pen-gallery-title">
-          Sinergi Lembaga, Dunia Usaha & Komunitas
+          Dokumentasi Kerja Sama &amp; Sinergi Lapangan
         </h2>
         <p class="pen-gallery-sub">
-          Dokumentasi riil pembangunan infrastruktur, fasilitas belajar vokasi, dan sarana ibadah santri yang terwujud berkat gotong royong multipihak.
+          Dokumentasi riil kunjungan mitra, pembangunan fasilitas belajar vokasi, dan sarana ibadah santri yang terwujud melalui gotong royong multipihak di Sukasirna, Jonggol.
         </p>
       </div>
 
@@ -71,6 +69,64 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     <>
       <CollaborateSection />
 
+      <!-- Formulir Minat Kemitraan Multipihak -->
+      <section class="pen-partner-form-section" id="form-kemitraan">
+        <div class="pen-container">
+          <div class="pen-form-header text-center">
+            <div class="pen-badge-pill">
+              <span class="pen-badge-dot"></span>
+              <span class="pen-badge-text">RUANG SINERGI TERBUKA</span>
+            </div>
+            <h2 class="pen-form-title">
+              Sampaikan Gagasan Kemitraan Anda
+            </h2>
+            <p class="pen-form-sub">
+              Mari diskusikan bagaimana lembaga, perusahaan, atau keahlian Anda dapat berkolaborasi bersama Global Village Fund dalam memajukan peradaban dan kemandirian umat.
+            </p>
+          </div>
+
+          <div class="pen-form-card">
+            <form id="partnerForm" class="pen-actual-form">
+              <div class="pen-form-grid">
+                <div class="pen-field">
+                  <label for="pName" class="pen-label">Nama Lengkap / PIC *</label>
+                  <input type="text" id="pName" name="name" required class="pen-input" placeholder="Nama Anda" />
+                </div>
+                <div class="pen-field">
+                  <label for="pOrg" class="pen-label">Lembaga / Perusahaan / Komunitas *</label>
+                  <input type="text" id="pOrg" name="organization" required class="pen-input" placeholder="Nama instansi atau inisiatif" />
+                </div>
+                <div class="pen-field">
+                  <label for="pPhone" class="pen-label">Nomor WhatsApp *</label>
+                  <input type="tel" id="pPhone" name="phone" required class="pen-input" placeholder="0812-xxxx-xxxx" />
+                </div>
+                <div class="pen-field">
+                  <label for="pCategory" class="pen-label">Kategori Minat Kolaborasi *</label>
+                  <select id="pCategory" name="category" required class="pen-select">
+                    <option value="" disabled selected>Pilih Kategori Kolaborasi</option>
+                    <option value="Kolaborasi Program">Kolaborasi Program (Pendidikan, Beasiswa, & Fasilitas)</option>
+                    <option value="Kolaborasi Keahlian">Kolaborasi Keahlian (Akademisi, Riset, & Vokasi)</option>
+                    <option value="Kolaborasi Usaha">Kolaborasi Usaha (Offtaker Hasil Tani & Unit Produktif)</option>
+                    <option value="Kolaborasi Filantropi">Kolaborasi Filantropi (Pendanaan Bersama & ZISWAF)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="pen-field pen-field-full">
+                <label for="pNotes" class="pen-label">Ringkasan Bentuk Kerja Sama *</label>
+                <textarea id="pNotes" name="notes" rows="4" required class="pen-textarea" placeholder="Ceritakan ide kolaborasi, dukungan yang dapat diberikan, atau rencana sinergi yang ingin dibahas bersama..."></textarea>
+              </div>
+
+              <div class="pen-form-submit-wrap">
+                <button type="submit" class="pen-btn-submit">
+                  Kirimkan Minat Kolaborasi via WhatsApp
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <section class="pen-final-cta-section">
         <div class="pen-container">
           <div class="pen-cta-box">
@@ -78,7 +134,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
               Mulai Perjalanan Kolaborasi Anda Bersama Kami
             </h2>
             <p class="pen-cta-desc">
-              Bicaralah dengan tim kemitraan kami — tanpa kewajiban dan tanpa tekanan. Kami siap menyusun skema kemitraan strategis CSR, program link & match vokasi, serta wakaf produktif yang berdampak terukur.
+              Bicaralah dengan tim kemitraan kami — tanpa beban dan tanpa tekanan. Kami siap menyusun skema kemitraan terbuka, program link &amp; match vokasi santri, serta wakaf produktif yang berdampak nyata.
             </p>
             <div class="pen-cta-btn-wrap">
               <a href="/contact" class="pen-btn-primary">
@@ -91,6 +147,25 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     </>
   )}
 </BaseLayout>
+
+<script>
+  const partnerForm = document.getElementById('partnerForm') as HTMLFormElement | null;
+  if (partnerForm) {
+    partnerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(partnerForm);
+      const name = fd.get('name') || '';
+      const org = fd.get('organization') || '';
+      const phone = fd.get('phone') || '';
+      const category = fd.get('category') || '';
+      const notes = fd.get('notes') || '';
+
+      const text = `Assalamu'alaikum Admin GVF,\n\nSaya ingin menyampaikan minat kemitraan strategis:\n- Nama: ${name}\n- Lembaga: ${org}\n- Kontak/WA: ${phone}\n- Bidang Kolaborasi: ${category}\n- Rencana Kerja Sama: ${notes}\n\nMohon informasi tindak lanjut. Terima kasih.`;
+      const waUrl = `https://wa.me/6281226832326?text=${encodeURIComponent(text)}`;
+      window.open(waUrl, '_blank');
+    });
+  }
+</script>
 
 <style>
   .pen-partner-banner {
@@ -205,6 +280,99 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     line-height: 1.65;
     color: #64748b;
     margin: 0;
+  }
+
+  /* 3. Partner Form Section */
+  .pen-partner-form-section {
+    background-color: #f8fafc;
+    padding: 90px 0 100px 0;
+    border-top: 1px solid #e2e8f0;
+  }
+  .pen-form-header {
+    max-width: 720px;
+    margin: 0 auto 3rem auto;
+  }
+  .pen-form-title {
+    font-size: clamp(2rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    color: #0f172a;
+    font-family: 'Golos Text', system-ui, sans-serif;
+    margin: 0 0 1rem 0;
+  }
+  .pen-form-sub {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #64748b;
+  }
+  .pen-form-card {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+  }
+  .pen-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 640px) {
+    .pen-form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .pen-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .pen-field-full {
+    margin-bottom: 2rem;
+  }
+  .pen-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #1e293b;
+  }
+  .pen-input, .pen-select, .pen-textarea {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: #0f172a;
+    background: #f8fafc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .pen-input:focus, .pen-select:focus, .pen-textarea:focus {
+    outline: none;
+    border-color: #0969da;
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
+    background: #ffffff;
+  }
+  .pen-form-submit-wrap {
+    text-align: center;
+  }
+  .pen-btn-submit {
+    display: inline-block;
+    background-color: #0969da;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(9, 105, 218, 0.25);
+    transition: background-color 0.2s, transform 0.15s;
+  }
+  .pen-btn-submit:hover {
+    background-color: #0752a8;
+    transform: translateY(-2px);
   }
 
   /* 4. Final CTA */

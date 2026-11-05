@@ -6,6 +6,7 @@ export interface ElasticItemProps {
   id: string;
   title: string;
   category: string;
+  statusBadge?: string;
   src: string;
   alt: string;
   link?: string;
@@ -23,6 +24,7 @@ const defaultItems: ElasticItemProps[] = [
     id: "01",
     title: "Masjid Khairu Ummah Sugro",
     category: "Pusat Ibadah & Halaqah",
+    statusBadge: "Konstruksi Berjalan",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp",
     alt: "Pelataran dan Pembangunan Masjid Khairu Ummah Sugro Jonggol",
     link: "/program/wakaf",
@@ -32,6 +34,7 @@ const defaultItems: ElasticItemProps[] = [
     id: "02",
     title: "Diskusi & KBM Santri Vokasi",
     category: "Pendidikan & Karakter FAST",
+    statusBadge: "Fasilitas Aktif",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-diskusi-belajar-meja-lipat.webp",
     alt: "Santri Berdiskusi di Meja Lipat",
     link: "/program/infaq",
@@ -41,6 +44,7 @@ const defaultItems: ElasticItemProps[] = [
     id: "03",
     title: "Konstruksi Rangka Baja Aula",
     category: "Infrastruktur Workshop",
+    statusBadge: "Tahap Struktur",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/atap-rangka-baja-aula.webp",
     alt: "Pemasangan Rangka Baja Aula Pertemuan",
     link: "/kemitraan",
@@ -50,6 +54,7 @@ const defaultItems: ElasticItemProps[] = [
     id: "04",
     title: "Prestasi Santri Juara MTQ",
     category: "Duta Santri Berprestasi",
+    statusBadge: "Capaian Santri",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/tiga-santri-juara-mtq-jonggol-piala.webp",
     alt: "Santri Peraih Piala Juara MTQ Kecamatan Jonggol",
     link: "/program/zakat",
@@ -59,6 +64,7 @@ const defaultItems: ElasticItemProps[] = [
     id: "05",
     title: "Lahan Perkebunan Abadi Jonggol",
     category: "Masterplan Kawasan",
+    statusBadge: "Lahan Wakaf Produktif",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lahan-perkebunan.webp",
     alt: "Foto Udara Lanskap Lahan Perkebunan Jonggol",
     link: "/tentang-kami",
@@ -189,8 +195,8 @@ export function ElasticGallery({
                   pointerEvents: isActive ? 'auto' : 'none',
                 }}
               >
-                {/* Kategori Subtitle */}
-                <div style={{ marginBottom: '8px' }}>
+                {/* Kategori Subtitle & Status Badge */}
+                <div style={{ marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                   <span
                     style={{
                       display: 'inline-block',
@@ -203,6 +209,24 @@ export function ElasticGallery({
                   >
                     {item.category}
                   </span>
+                  {item.statusBadge && (
+                    <span
+                      style={{
+                        display: 'inline-block',
+                        fontSize: '10px',
+                        fontWeight: 700,
+                        padding: '2px 8px',
+                        borderRadius: '9999px',
+                        backgroundColor: 'rgba(56, 189, 248, 0.2)',
+                        color: '#bae6fd',
+                        border: '1px solid rgba(56, 189, 248, 0.4)',
+                        letterSpacing: '0.5px',
+                        textTransform: 'uppercase',
+                      }}
+                    >
+                      {item.statusBadge}
+                    </span>
+                  )}
                 </div>
 
                 {/* Judul Fasilitas */}

@@ -5,6 +5,7 @@ export const prerender = false;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ElasticGallery from '../components/ui/ElasticGallery.astro';
+import LeadershipSection from '../components/home/LeadershipSection.astro';
 import { getActivePageSections } from '../lib/db';
 import { getBreadcrumbSchema } from '../lib/seo-schema';
 
@@ -34,6 +35,9 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     <div class="pen-banner-overlay"></div>
     <div class="pen-banner-container">
       <h1 class="pen-banner-title">Tentang Kami</h1>
+      <p class="pen-banner-lead">
+        Mengenal Global Village Fund dan ikhtiar filantropi yang menghubungkan kepedulian dengan pengembangan ekosistem Skill Village.
+      </p>
     </div>
   </section>
   )}
@@ -178,16 +182,16 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
         <div class="pen-workflow-header-left">
           <div class="pen-badge-pill">
             <span class="pen-badge-dot"></span>
-            <span class="pen-badge-text">CARA KAMI BEKERJA</span>
+            <span class="pen-badge-text">TATA KELOLA AMANAH</span>
           </div>
           <h2 class="pen-section-title">
-            Proses 4 Langkah Realisasi<br />
-            Amanah Kebaikan Anda
+            Bagaimana Kebaikan Bergerak<br />
+            Membangun Ekosistem
           </h2>
         </div>
         <div class="pen-workflow-header-right">
           <p class="pen-workflow-lead">
-            Setiap tahapan dirancang terstruktur, transparan, dan dapat dipantau langsung — dari konsultasi awal hingga kemanfaatan abadi santri.
+            Alur tata kelola dan penyaluran amanah yang terarah, transparan, dan berkesinambungan demi kemandirian santri dan kebermanfaatan jangka panjang.
           </p>
         </div>
       </div>
@@ -197,15 +201,15 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
           <div class="pen-wf-img-box">
             <img
               src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-berkacamata-fokus-menyimak.webp"
-              alt="Survey & Konsultasi Niat"
+              alt="Memahami Kebutuhan"
               class="pen-img-cover"
               loading="lazy"
             />
           </div>
           <div class="pen-wf-body">
-            <h3 class="pen-wf-title">01. Survey &amp; Konsultasi Niat</h3>
+            <h3 class="pen-wf-title">01. Memahami Kebutuhan</h3>
             <p class="pen-wf-desc">
-              Kami memetakan niat donasi, preferensi program (pendidikan, masjid, atau kemandirian pangan), dan alokasi dana secara terarah.
+              Mengenali kebutuhan riil santri dan peluang pengembangan kawasan terpadu secara langsung di lapangan Sukasirna, Jonggol.
             </p>
           </div>
         </div>
@@ -214,15 +218,15 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
           <div class="pen-wf-img-box">
             <img
               src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-menulis-tugas-pensil.webp"
-              alt="Akad & Visualisasi Program"
+              alt="Menghubungkan Kepedulian"
               class="pen-img-cover"
               loading="lazy"
             />
           </div>
           <div class="pen-wf-body">
-            <h3 class="pen-wf-title">02. Akad &amp; Visualisasi Program</h3>
+            <h3 class="pen-wf-title">02. Menghubungkan Kepedulian</h3>
             <p class="pen-wf-desc">
-              Penerbitan akta ikrar wakaf / bukti donasi resmi disertai blueprint peruntukan dana dan timeline pembangunan kawasan yang transparan.
+              Mempertemukan niat baik donatur dan mitra melalui akad filantropi Islam (zakat, infak, sedekah, wakaf) serta ruang sinergi yang tepat sasaran.
             </p>
           </div>
         </div>
@@ -231,15 +235,15 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
           <div class="pen-wf-img-box">
             <img
               src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/dinding-hebel-ventilasi-roster-2.webp"
-              alt="Eksekusi & Laporan Berkala"
+              alt="Mewujudkan Pengembangan"
               class="pen-img-cover"
               loading="lazy"
             />
           </div>
           <div class="pen-wf-body">
-            <h3 class="pen-wf-title">03. Eksekusi &amp; Laporan Berkala</h3>
+            <h3 class="pen-wf-title">03. Mewujudkan Pengembangan</h3>
             <p class="pen-wf-desc">
-              Pembangunan sarana dan penyaluran beasiswa santri dilaksanakan dengan audit berkala serta update dokumentasi riil kepada para muwakif.
+              Mendukung pembangunan fisik sarana ibadah, pengadaan sarana belajar, beasiswa santri, dan rintisan unit produktif sesuai amanah peruntukan dana.
             </p>
           </div>
         </div>
@@ -248,15 +252,15 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
           <div class="pen-wf-img-box">
             <img
               src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/sholat-berjamaah-imam-santri-belakang.webp"
-              alt="Serah Terima & Keberkahan Abadi"
+              alt="Menumbuhkan Keberlanjutan"
               class="pen-img-cover"
               loading="lazy"
             />
           </div>
           <div class="pen-wf-body">
-            <h3 class="pen-wf-title">04. Serah Terima &amp; Keberkahan</h3>
+            <h3 class="pen-wf-title">04. Menumbuhkan Keberlanjutan</h3>
             <p class="pen-wf-desc">
-              Fasilitas beroperasi penuh mencetak generasi santri vokasi mandiri. Pahala jariyah terus mengalir tanpa terputus bagi donatur.
+              Mengembangkan manfaat jangka panjang agar menjadi bagian dari ekosistem Skill Village yang mandiri, produktif, dan saling menguatkan.
             </p>
           </div>
         </div>
@@ -272,14 +276,14 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
         <div>
           <div class="pen-badge-pill">
             <span class="pen-badge-dot"></span>
-            <span class="pen-badge-text">DOKUMENTASI & FASILITAS KAWASAN</span>
+            <span class="pen-badge-text">EKOSISTEM &amp; FASILITAS</span>
           </div>
           <h2 class="pen-section-title">
-            Dokumentasi Kawasan &<br />
-            Fasilitas Pesantren Jonggol
+            Dokumentasi Kawasan &amp;<br />
+            Fasilitas Skill Village
           </h2>
           <p class="pen-facility-sub">
-            Jelajahi perkembangan fasilitas fisik dan kawasan terpadu Pesantren Jonggol seluas ±3 hektare — dari masjid, studio vokasi kejuruan, sarana santri, hingga agro-technopark berkelanjutan.
+            Skill Village mengintegrasikan pendidikan dan pembinaan karakter, pengembangan bahasa, budaya kerja profesional, kepemimpinan, keterampilan vokasi, kewirausahaan, pertanian produktif, serta lingkungan kehidupan pesantren.
           </p>
         </div>
         <div class="pen-facility-tag">
@@ -299,24 +303,28 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
   )}
 
   {isEnabled('about_team') && (
-  <section class="pen-final-cta-section">
-    <div class="pen-container">
-      <div class="pen-cta-box">
-        <h2 class="pen-cta-title">
-          Mari Berkolaborasi Bersama Kami<br />
-          Membangun Kemandirian Umat
-        </h2>
-        <p class="pen-cta-desc">
-          Buka ruang kemitraan filantropi, zakat, infaq, dan wakaf produktif bersama Global Village Fund. Bersama-sama kita hadirkan dampak nyata dan abadi.
-        </p>
-        <div class="pen-cta-btn-wrap">
-          <a href="/contact" class="pen-btn-primary">
-            Konsultasi Program Kemitraan
-          </a>
+    <>
+      <LeadershipSection />
+
+      <section class="pen-final-cta-section">
+        <div class="pen-container">
+          <div class="pen-cta-box">
+            <h2 class="pen-cta-title">
+              Mari Berkolaborasi Bersama Kami<br />
+              Membangun Kemandirian Umat
+            </h2>
+            <p class="pen-cta-desc">
+              Buka ruang kemitraan filantropi, zakat, infak, sedekah, dan wakaf produktif bersama Global Village Fund. Bersama-sama kita hadirkan dampak nyata dan berkelanjutan.
+            </p>
+            <div class="pen-cta-btn-wrap">
+              <a href="/contact" class="pen-btn-primary">
+                Konsultasi Program Kemitraan
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    </>
   )}
 </BaseLayout>
 
@@ -358,6 +366,13 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     font-family: 'Golos Text', system-ui, sans-serif;
     letter-spacing: -0.02em;
     margin: 0 0 1.25rem 0;
+  }
+  .pen-banner-lead {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+    max-width: 680px;
+    margin: 0 auto;
   }
   .pen-breadcrumb-wrap {
     display: inline-flex;
