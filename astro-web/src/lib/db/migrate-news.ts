@@ -56,7 +56,7 @@ Di Global Village Fund (GVF), konsep wakaf produktif diterapkan secara nyata pad
 Hasil perputaran nilai ekonomi dari kebun buah dan fasilitas produktif tersebut dialokasikan kembali untuk mendanai beasiswa pendidikan penuh santri penghafal Quran, penyediaan fasilitas asrama yang layak, serta program ketahanan pangan masyarakat dhuafa di sekitar kawasan.
 
 Prinsip utama yang dipegang teguh oleh GVF adalah menjaga pokok aset wakaf agar tetap utuh dan abadi (tahbisul ashli), sementara hasil kemanfaatannya disalurkan seluas-luasnya untuk kemaslahatan umat (tasbilul tsamarah). Dengan model ini, setiap rupiah wakaf yang disalurkan tidak hanya bernilai pahala jariyah di akhirat, tetapi juga melahirkan dampak sosial-ekonomi nyata lintas generasi.`,
-        cover_image: '/bahan-konten/design-masjid/interior-masjid.jpg',
+        cover_image: '/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-dan-pemukiman.webp',
         author: 'Dewan Syariah GVF',
         published_at: '18 Juli 2026',
       },
