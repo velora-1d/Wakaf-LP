@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] KABAR-DETAIL-SLOP-FIX-01: Eliminasi Garis Vertikal Slop pada Lead Artikel & Pemolesan Tipografi Editorial Halaman Detail Warta (/kabar/[slug]) Terverifikasi Build
 - [x] BLOSSOM-CAROUSEL-INTEG-01: Instalasi @blossom-carousel/web, Komponen Reusable BlossomCarousel.astro, & Integrasi Carousel Kabar Terverifikasi Build 100%
 - [x] PLAN-REVISI-KONTEN-MASTER-GVF: Implementasi & Penyelarasan Revisi Master Konten Website GVF (YPCI, 4 Pilar ZISWAF, Beranda, Tentang Kami, Kemitraan, Kontak & Foto Riil Lapangan) Terverifikasi Build 100%
 - [x] GENERATE-MASTER-DOCX-WITH-EMBEDDED-IMAGES: Pembuatan 1 File Master Dokumen Word (.docx) Inventarisasi Konten & Visual GVF Terpadu dengan 42 Thumbnail Foto Asli Tersemat Langsung di Tabel Terverifikasi Empiris
