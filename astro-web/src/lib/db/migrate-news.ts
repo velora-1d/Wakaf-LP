@@ -84,7 +84,7 @@ Ketua tim pembangunan GVF menyatakan bahwa tahap berikutnya akan difokuskan pada
 Di dalam green house seluas 1.200 meter persegi, para santri mempraktikkan teknik pembibitan anggur varietas unggul, budidaya melon hidroponik, dan sayuran organik bernilai ekonomi tinggi. Setiap santri dilatih memahami manajemen nutrisi tanaman, pengendalian hama hayati tanpa pestisida kimiawi, serta rantai distribusi pascapanen.
 
 Program ini membuktikan bahwa pesantren masa kini mampu menjadi inkubator technopreneur muda yang memiliki keahlian teknis tinggi sekaligus berjiwa kepemimpinan yang amanah.`,
-        cover_image: '/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp',
+        cover_image: '/bahan-konten/masjid-dan-kelas/sayuran-kangkung.jpeg',
         author: 'Instruktur Vokasi GVF',
         published_at: '5 Juli 2026',
       },

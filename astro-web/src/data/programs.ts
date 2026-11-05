@@ -722,7 +722,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Sedekah untuk Kebutuhan Pangan dan Operasional',
     heroSubtitle: 'Dukung pemenuhan kebutuhan pangan harian, gizi santri, dan operasional lingkungan pesantren.',
     categoryBadge: 'SEDEKAH PANGAN & OPERASIONAL',
-    heroBgImage: '/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp',
+    heroBgImage: '/bahan-konten/masjid-dan-kelas/sayuran-kangkung.jpeg',
     
     pricingHeading: 'Pilihan Program Sedekah Pangan & Kehidupan',
     pricingSubheading: 'Tampilkan kebutuhan yang sedang dibuka: dukungan makan harian, bahan pangan pokok beras, dan kebutuhan operasional pesantren.',
