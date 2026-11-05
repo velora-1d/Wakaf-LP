@@ -7,6 +7,48 @@
       "skillPath": "skills/agent-browser/SKILL.md",
       "computedHash": "81171f7cb0b1a0e0fa80d2f5be82fc8074277e72c8ca2998606a4c1238e8edf7"
     },
+    "blossom-carousel-core": {
+      "source": "blossom-carousel.com",
+      "sourceUrl": "https://blossom-carousel.com",
+      "sourceType": "well-known",
+      "computedHash": "b8dae96af84969ca600dae076b3d587364ec3a6cdcd84e1a5ca89f2aae60febe",
+      "wellKnownDigest": "sha256:018cbb2731ba5bf111494ab7e07dbf650b567bfcb8d79b41b598c229367d1c68"
+    },
+    "blossom-carousel-migration": {
+      "source": "blossom-carousel.com",
+      "sourceUrl": "https://blossom-carousel.com",
+      "sourceType": "well-known",
+      "computedHash": "9b997e6155039e1e39f0e0a6227ced746cfadc70d64730d56ceed8c67da42bd9",
+      "wellKnownDigest": "sha256:5937507852c2b13f2b12a3cc7ae7bf489bc614830cd7e22a87f0937e5a44b406"
+    },
+    "blossom-carousel-react": {
+      "source": "blossom-carousel.com",
+      "sourceUrl": "https://blossom-carousel.com",
+      "sourceType": "well-known",
+      "computedHash": "419a72d63fb545434638e5365a74aeb247ef6df9047585577bf47c413000921c",
+      "wellKnownDigest": "sha256:13c225a3450e9d234254cf701e5e9edc43cdcf853fb39a9ef963b4c5e3e91b26"
+    },
+    "blossom-carousel-svelte": {
+      "source": "blossom-carousel.com",
+      "sourceUrl": "https://blossom-carousel.com",
+      "sourceType": "well-known",
+      "computedHash": "26b5b1bc382ef9e887c4f26f6f47e9a3faaab0271a4d3b3c71b135286d84c9db",
+      "wellKnownDigest": "sha256:69f1d119df266dfaa0532d05053d793953cce27a37ea4b090d81ab4646b6254b"
+    },
+    "blossom-carousel-vue": {
+      "source": "blossom-carousel.com",
+      "sourceUrl": "https://blossom-carousel.com",
+      "sourceType": "well-known",
+      "computedHash": "ffd6f84faf12dfb65742211fe4dff90b9ad2feaff857134fcf7c7fec133e8119",
+      "wellKnownDigest": "sha256:61998a2be12e828dca3c2325e5eedf502351a4ee235f82cd3fa5fe5975da31e9"
+    },
+    "blossom-carousel-web": {
+      "source": "blossom-carousel.com",
+      "sourceUrl": "https://blossom-carousel.com",
+      "sourceType": "well-known",
+      "computedHash": "03a4a901cd6d3cccbdf4c733235dc18ccd29960da9aee366fde6703e97b3a823",
+      "wellKnownDigest": "sha256:28b77cd5afe7de3f52b18d4df510742298f388aeb58a1e92bfdc4605ef9e25ee"
+    },
     "cavecrew": {
       "source": "juliusbrussee/caveman",
       "sourceType": "github",
