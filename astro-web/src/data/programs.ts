@@ -143,7 +143,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Wakaf untuk Aset dan Manfaat Berkelanjutan',
     heroSubtitle: 'Dukung pengembangan aset dan sarana yang dapat memberikan manfaat jangka panjang bagi ekosistem Skill Village di Jonggol.',
     categoryBadge: 'WAKAF PRODUKTIF & SARANA IBADAH',
-    heroBgImage: '/bahan-konten/Design%20Masjid/skywalk%20learning%20room.jpg',
+    heroBgImage: '/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-dan-pemukiman.webp',
     
     pricingHeading: 'Pilihan Program Wakaf Berkelanjutan',
     pricingSubheading: 'Tunaikan wakaf berdasarkan peruntukan yang tersedia: sarana ibadah dan wakaf produktif untuk menopang kemandirian umat.',
@@ -230,7 +230,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Global Village Fund mengelola wakaf produktif dan sarana ibadah di bawah naungan Yayasan Permata Cendekia Indonesia (YPCI). Wakaf diarahkan untuk mendukung aset fisik yang manfaatnya dapat digunakan secara berkelanjutan bagi santri dan masyarakat.',
     deepDiveStory1: 'Pengelolaan dan peruntukan wakaf dijelaskan secara terbuka sesuai akad yang disepakati. Dari penyelesaian sarana ibadah Masjid Khairu Ummah Sugro hingga pembebasan lahan kawasan terpadu di Sukasirna Jonggol, setiap kontribusi dijaga keutuhannya.',
     deepDiveStory2: '',
-    deepDiveBannerImage: '/bahan-konten/Design%20Masjid/interior%20mesjid%202.jpg',
+    deepDiveBannerImage: '/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp',
     valueBoxes: [
       {
         icon: 'infinity',
@@ -254,8 +254,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     deepDiveTwinImages: [
-      '/bahan-konten/masjid%20dan%20kelas/masjid%20tampak%20dalam.jpeg',
-      '/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp'
+      '/bahan-konten/masjid-dan-kelas/masjid-tampak-dalam.jpeg',
+      '/bahan-konten/masjid-dan-kelas/mezanine-belum-jadi.jpeg'
     ],
     deepDiveSubblock1Title: 'Pusat Ibadah Masjid Khairu Ummah',
     deepDiveSubblock1Desc1: 'Masjid Khairu Ummah Sugro dirancang dengan konsep ramah lingkungan yang mengoptimalkan pencahayaan dan sirkulasi udara alami, menjadi pusat shalat berjamaah dan pembinaan karakter santri.',
@@ -266,7 +266,7 @@ export const programsData: Record<string, ProgramData> = {
     portfolioShowcaseItems: [
       { tag: 'SARANA IBADAH', name: 'Masjid Khairu Ummah Sugro', category: 'Kondisi Konstruksi', image: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp` },
       { tag: 'KAWASAN', name: 'Kawasan Terpadu 3 Hektare', category: 'Lahan Abadi', image: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-dan-pemukiman.webp` },
-      { tag: 'UNIT AGRO', name: 'Greenhouse & Pertanian', category: 'Pertanian Presisi', image: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/greenhouse-pertanian.webp` },
+      { tag: 'UNIT AGRO', name: 'Lahan Pertanian Terpadu', category: 'Pertanian Mandiri', image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/lahan-kebun.jpeg` },
       { tag: 'HUNIAN', name: 'Gedung Asrama Santri', category: 'Fasilitas Kehidupan', image: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/tampak-gedung-dan-halaman-asrama.webp` }
     ],
     guarantees: [
@@ -302,17 +302,17 @@ export const programsData: Record<string, ProgramData> = {
       },
       {
         id: 'gal-3',
-        title: 'Greenhouse Pertanian Terpadu',
-        category: 'Wakaf Produktif Agro',
-        image: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp`,
+        title: 'Kebun Sayuran Kangkung Pesantren',
+        category: 'Ketahanan Pangan',
+        image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/sayuran-kangkung.jpeg`,
         status: 'Unit Produktif',
-        caption: 'Fasilitas greenhouse hortikultura sebagai laboratorium belajar pertanian santri.'
+        caption: 'Budidaya sayuran kangkung segar penopang gizi santri di kawasan Sukasirna.'
       },
       {
         id: 'gal-4',
         title: 'Halaqah Pembinaan Adab Santri',
         category: 'Pendidikan Karakter',
-        image: `${S3_BASE}/bahan-konten/halaqah-santri-melingkar.webp`,
+        image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/halaqah-santri-melingkar.webp`,
         status: 'Kegiatan Aktif',
         caption: 'Santri mukim mengikuti pembinaan karakter dan tadarus Quran terpadu.'
       },
@@ -328,7 +328,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'gal-6',
         title: 'Kegiatan Belajar di Ruang Kelas',
         category: 'Pendidikan Santri',
-        image: `${S3_BASE}/bahan-konten/kbm-santri-putra-putri-kelas.webp`,
+        image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kbm-santri-ikhwan-di-aula.webp`,
         status: 'Kegiatan Berjalan',
         caption: 'Suasana pembelajaran di ruang kelas pesantren binaan.'
       }
@@ -455,7 +455,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Infak untuk Pendidikan dan Fasilitas',
     heroSubtitle: 'Dukung kebutuhan sarana pendidikan, fasilitas hunian, dan pengembangan kompetensi santri Skill Village.',
     categoryBadge: 'INFAK SARANA PENDIDIKAN',
-    heroBgImage: '/bahan-konten/asrama%20putra%20baru/tampak%20samping%20asrama%20ikhwan%20baru.jpeg',
+    heroBgImage: '/bahan-konten/fasilitas-dan-infrastruktur/tampak-gedung-dan-halaman-asrama.webp',
     
     pricingHeading: 'Pilihan Program Infak Sarana & Pendidikan',
     pricingSubheading: 'Tampilkan kebutuhan infak yang sedang dibuka: perlengkapan belajar, material pembangunan kelas, dan fasilitas asrama santri.',
@@ -542,7 +542,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Fasilitas yang aman dan layak membantu menciptakan lingkungan belajar dan hunian yang nyaman, menenangkan santri dalam mendalami ilmu agama maupun keterampilan vokasi.',
     deepDiveStory1: 'Kondisi fisik gedung yang aman, pencahayaan cukup, dan ruang tidur sehat memberikan ketenangan bagi para santri yang tinggal jauh dari orang tua untuk fokus belajar dan membina karakter mandiri.',
     deepDiveStory2: '',
-    deepDiveBannerImage: '/bahan-konten/masjid%20dan%20kelas/pondasi%20kelas%20lt2.jpeg',
+    deepDiveBannerImage: '/bahan-konten/masjid-dan-kelas/pondasi-kelas-lt2.jpeg',
     valueBoxes: [
       {
         icon: 'book-open',
@@ -566,8 +566,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     deepDiveTwinImages: [
-      '/bahan-konten/masjid%20dan%20kelas/tangga%20kelas%20ke%20lt2.jpeg',
-      '/bahan-konten/asrama%20putra%20baru/pembangunan%20asrama%20ikhwan%20baru.jpeg'
+      '/bahan-konten/masjid-dan-kelas/tangga-kelas-ke-lt2.jpeg',
+      '/bahan-konten/asrama-putra-baru/pembangunan-asrama-ikhwan-baru.jpeg'
     ],
     deepDiveSubblock1Title: 'Penyelesaian Ruang Kelas Lantai 2',
     deepDiveSubblock1Desc1: 'Pekerjaan konstruksi ruang kelas lantai dua mencakup plester dinding bata hebel, pemasangan jendela ventilasi, dan pengamanan tangga akses santri.',
@@ -576,9 +576,9 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveSubblock2Desc1: 'Gedung asrama santri baru terus disempurnakan agar mampu menyediakan kamar yang sehat dengan sirkulasi udara optimal dan pencahayaan memadai.',
     deepDiveSubblock2Desc2: 'Dukungan infak Anda memastikan tersedianya ranjang susun kokoh dan perlengkapan kamar yang layak bagi para penuntut ilmu.',
     portfolioShowcaseItems: [
-      { tag: 'KELAS', name: 'Tangga Akses Lantai 2', category: 'Tahap Struktur', image: `${S3_BASE}/bahan-konten/masjid%20dan%20kelas/tangga%20kelas%20ke%20lt2.jpeg` },
-      { tag: 'ASRAMA', name: 'Gedung Asrama Putra Baru', category: 'Pembangunan Fisik', image: `${S3_BASE}/bahan-konten/asrama%20putra%20baru/pembangunan%20asrama%20ikhwan%20baru.jpeg` },
-      { tag: 'KBM', name: 'Suasana Belajar Mandiri', category: 'Aktivitas Santri', image: `${S3_BASE}/gambar-bahan/belajar%20mandiri.jpeg` },
+      { tag: 'KELAS', name: 'Tangga Akses Lantai 2', category: 'Tahap Struktur', image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/tangga-kelas-ke-lt2.jpeg` },
+      { tag: 'ASRAMA', name: 'Gedung Asrama Putra Baru', category: 'Pembangunan Fisik', image: `${S3_BASE}/bahan-konten/asrama-putra-baru/pembangunan-asrama-ikhwan-baru.jpeg` },
+      { tag: 'KBM', name: 'Sarana Belajar Meja Lipat', category: 'Aktivitas Santri', image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-diskusi-belajar-meja-lipat.webp` },
       { tag: 'LORONG', name: 'Lorong Asrama Bata Merah', category: 'Hunian Sehat', image: `${S3_BASE}/media-lp/lorong-asrama-bata-merah.webp` }
     ],
     guarantees: [
@@ -596,11 +596,11 @@ export const programsData: Record<string, ProgramData> = {
     galleryItems: [
       {
         id: 'inf-1',
-        title: 'Santri Belajar Mandiri di Selasar',
+        title: 'Santri Belajar dengan Meja Lipat',
         category: 'Aktivitas Belajar',
-        image: `${S3_BASE}/gambar-bahan/belajar%20mandiri.jpeg`,
+        image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-diskusi-belajar-meja-lipat.webp`,
         status: 'Kegiatan Aktif',
-        caption: 'Santri memanfaatkan waktu luang di selasar asrama untuk mengulang hafalan dan membaca materi.'
+        caption: 'Santri memanfaatkan sarana meja lipat untuk mencatat materi kajian dan berdiskusi tertib.'
       },
       {
         id: 'inf-2',
@@ -614,7 +614,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'inf-3',
         title: 'Tangga Akses Ruang Belajar Lantai 2',
         category: 'Progres Pembangunan',
-        image: `${S3_BASE}/bahan-konten/masjid%20dan%20kelas/tangga%20kelas%20ke%20lt2.jpeg`,
+        image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/tangga-kelas-ke-lt2.jpeg`,
         status: 'Dalam Pengerjaan',
         caption: 'Pekerjaan struktur tangga penghubung lantai dasar menuju ruang kelas lantai dua.'
       },
@@ -622,7 +622,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'inf-4',
         title: 'Pembangunan Gedung Asrama Santri',
         category: 'Konstruksi Hunian',
-        image: `${S3_BASE}/bahan-konten/asrama%20putra%20baru/pembangunan%20asrama%20ikhwan%20baru.jpeg`,
+        image: `${S3_BASE}/bahan-konten/asrama-putra-baru/pembangunan-asrama-ikhwan-baru.jpeg`,
         status: 'Dalam Pengerjaan',
         caption: 'Tahapan penyelesaian dinding dan instalasi hunian asrama santri ikhwan baru.'
       }
@@ -807,7 +807,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Dukungan pangan membantu memenuhi kebutuhan harian santri sehingga lingkungan pesantren dapat menjalankan kegiatan belajar, pembinaan adab, dan ibadah dengan tenang.',
     deepDiveStory1: 'Setiap butir nasi dan lauk sehat yang disajikan menjadi sumber tenaga bagi para santri yang menuntut ilmu di Jonggol. Dukungan sedekah rutin memastikan asupan gizi mereka terpenuhi secara layak dan berkesinambungan.',
     deepDiveStory2: '',
-    deepDiveBannerImage: '/bahan-konten/masjid%20dan%20kelas/kandang%20ayam%20petelur.jpeg',
+    deepDiveBannerImage: '/bahan-konten/masjid-dan-kelas/kandang-ayam-petelur.jpeg',
     valueBoxes: [
       {
         icon: 'heart',
@@ -831,8 +831,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     deepDiveTwinImages: [
-      '/bahan-konten/masjid%20dan%20kelas/Sayuran%20Kangkung.jpeg',
-      '/bahan-konten/masjid%20dan%20kelas/lahan%20kebun.jpeg'
+      '/bahan-konten/masjid-dan-kelas/sayuran-kangkung.jpeg',
+      '/bahan-konten/masjid-dan-kelas/lahan-kebun.jpeg'
     ],
     deepDiveSubblock1Title: 'Hasil Kebun untuk Konsumsi Asrama',
     deepDiveSubblock1Desc1: 'Di samping pengadaan bahan pangan dari pasar, pesantren mengembangkan kebun sayuran kangkung dan hortikultura yang hasilnya dimanfaatkan langsung untuk melengkapi menu dapur santri.',
@@ -841,10 +841,10 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveSubblock2Desc1: 'Waktu makan bersama di selasar asrama dijalankan dengan membiasakan adab Islam: membaca basmalah, makan dengan tangan kanan, dan menjaga kebersihan tempat.',
     deepDiveSubblock2Desc2: 'Keceriaan santri saat menyantap hidangan sehat menjadi cerminan nyata dari amanah sedekah yang Anda titipkan.',
     portfolioShowcaseItems: [
-      { tag: 'KEBUN', name: 'Panen Sayur Kangkung', category: 'Pangan Mandiri', image: `${S3_BASE}/bahan-konten/masjid%20dan%20kelas/Sayuran%20Kangkung.jpeg` },
-      { tag: 'LAHAN', name: 'Lahan Kebun Pertanian', category: 'Ketahanan Pangan', image: `${S3_BASE}/bahan-konten/masjid%20dan%20kelas/lahan%20kebun.jpeg` },
-      { tag: 'TERNAK', name: 'Rintisan Unit Peternakan', category: 'Kemandirian Usaha', image: `${S3_BASE}/bahan-konten/masjid%20dan%20kelas/kandang%20ayam%20petelur.jpeg` },
-      { tag: 'AGRO', name: 'Greenhouse Melon', category: 'Pertanian Presisi', image: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp` }
+      { tag: 'KEBUN', name: 'Panen Sayur Kangkung', category: 'Pangan Mandiri', image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/sayuran-kangkung.jpeg` },
+      { tag: 'LAHAN', name: 'Lahan Kebun Pertanian', category: 'Ketahanan Pangan', image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/lahan-kebun.jpeg` },
+      { tag: 'TERNAK', name: 'Rintisan Unit Peternakan', category: 'Kemandirian Usaha', image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/kandang-ayam-petelur.jpeg` },
+      { tag: 'AGRO', name: 'Lanskap Perkebunan Hijau', category: 'Agro Berkelanjutan', image: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-perkebunan.webp` }
     ],
     guarantees: [
       'Penyaluran langsung dalam bentuk bahan pangan dan porsi makan santri',
@@ -862,7 +862,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'sed-1',
         title: 'Panen Sayuran Kangkung Asrama',
         category: 'Hasil Kebun',
-        image: `${S3_BASE}/bahan-konten/masjid%20dan%20kelas/Sayuran%20Kangkung.jpeg`,
+        image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/sayuran-kangkung.jpeg`,
         status: 'Panen Rutin',
         caption: 'Hasil panen sayur kangkung segar dari kebun pesantren untuk menu dapur harian santri.'
       },
@@ -870,7 +870,7 @@ export const programsData: Record<string, ProgramData> = {
         id: 'sed-2',
         title: 'Hamparan Lahan Kebun Pertanian',
         category: 'Ketahanan Pangan',
-        image: `${S3_BASE}/bahan-konten/masjid%20dan%20kelas/lahan%20kebun.jpeg`,
+        image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/lahan-kebun.jpeg`,
         status: 'Area Produktif',
         caption: 'Lahan kebun pertanian terbuka yang ditanami aneka sayuran penunjang kebutuhan asrama.'
       },
@@ -878,17 +878,17 @@ export const programsData: Record<string, ProgramData> = {
         id: 'sed-3',
         title: 'Rintisan Kandang Ayam Petelur',
         category: 'Unit Ternak Mandiri',
-        image: `${S3_BASE}/bahan-konten/masjid%20dan%20kelas/kandang%20ayam%20petelur.jpeg`,
+        image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/kandang-ayam-petelur.jpeg`,
         status: 'Unit Rintisan',
         caption: 'Fasilitas rintisan peternakan ayam petelur untuk mendukung pasokan protein mandiri.'
       },
       {
         id: 'sed-4',
-        title: 'Greenhouse Hortikultura Presisi',
-        category: 'Pertanian Modern',
-        image: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp`,
-        status: 'Beroperasi',
-        caption: 'Budidaya melon hidroponik presisi sebagai teaching factory kejuruan santri.'
+        title: 'Kawasan Perkebunan Produktif Jonggol',
+        category: 'Agro Berkelanjutan',
+        image: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-perkebunan.webp`,
+        status: 'Area Produktif',
+        caption: 'Hamparan perkebunan hijau asri penunjang ketahanan pangan mandiri pesantren.'
       }
     ],
     
@@ -1083,8 +1083,8 @@ export const programsData: Record<string, ProgramData> = {
       }
     ],
     deepDiveTwinImages: [
-      '/bahan-konten/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp',
-      '/bahan-konten/kegiatan-dan-prestasi-santri/muhammad-syamil-ghazwan-juara-1-tahfidz-5-juz.webp'
+      '/bahan-konten/beras-zakat-fitrah-mustahik.webp',
+      '/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kbm-santri-ikhwan-di-aula.webp'
     ],
     deepDiveSubblock1Title: 'Beasiswa Pendidikan Santri Fi Sabilillah',
     deepDiveSubblock1Desc1: 'Zakat diarahkan untuk membebaskan biaya pendidikan, penyediaan kitab kajian, dan pemenuhan kebutuhan dasar santri dhuafa berprestasi.',
@@ -1093,10 +1093,10 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveSubblock2Desc1: 'Di samping beasiswa santri, penyaluran zakat menjangkau warga dhuafa sekitar Sukasirna Jonggol melalui program bantuan pangan dan santunan.',
     deepDiveSubblock2Desc2: 'Kehadiran pesantren menjadi bagian yang menguatkan kerukunan dan kepedulian sosial dengan lingkungan sekitar.',
     portfolioShowcaseItems: [
-      { tag: 'BEASISWA', name: 'Pembinaan Duta Santri', category: 'Pendidikan', image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp` },
-      { tag: 'TAHFIDZ', name: 'Santri Juara Musabaqah', category: 'Prestasi', image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/muhammad-syamil-ghazwan-juara-1-tahfidz-5-juz.webp` },
-      { tag: 'KBM', name: 'Santri Tekun Menuntut Ilmu', category: 'Pembinaan Adab', image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-mencatat-dan-berdiskusi.webp` },
-      { tag: 'KAJIAN', name: 'Halaqah Quran Intensif', category: 'Fi Sabilillah', image: `${S3_BASE}/bahan-konten/halaqah-santri-melingkar.webp` }
+      { tag: 'PANGAN ASNAF', name: 'Penyaluran Beras Pokok', category: 'Zakat Fitrah & Maal', image: `${S3_BASE}/bahan-konten/beras-zakat-fitrah-mustahik.webp` },
+      { tag: 'BEASISWA', name: 'Santri Dhuafa Fi Sabilillah', category: 'Pendidikan Mustahik', image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kbm-santri-ikhwan-di-aula.webp` },
+      { tag: 'PEMBINAAN', name: 'Pendampingan Duta Santri', category: 'Bimbingan Adab', image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp` },
+      { tag: 'PENUNTUT ILMU', name: 'Kajian & Tadarus Quran', category: 'Asnaf Fi Sabilillah', image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/halaqah-santri-melingkar.webp` }
     ],
     guarantees: [
       'Penyaluran berpedoman teguh pada kaidah syariah 8 asnaf',
@@ -1106,41 +1106,41 @@ export const programsData: Record<string, ProgramData> = {
       'Pencatatan mutasi penyaluran yang dapat diverifikasi'
     ],
     
-    galleryBadge: 'DOKUMENTASI PENYALURAN',
-    galleryTitle: 'Dokumentasi Santri Penerima Manfaat',
-    gallerySubtitle: 'Potret pembinaan dan semangat santri penerima beasiswa pendidikan di Jonggol.',
+    galleryBadge: 'DOKUMENTASI MUSTAHIK & PENYALURAN',
+    galleryTitle: 'Dokumentasi Amanah Zakat bagi Asnaf',
+    gallerySubtitle: 'Penyaluran beras pangan zakat fitrah dan beasiswa pendidikan santri fi sabilillah di Jonggol.',
     galleryItems: [
       {
         id: 'zak-1',
-        title: 'Pembinaan Santri Penerima Manfaat',
-        category: 'Beasiswa Pendidikan',
-        image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp`,
-        status: 'Program Berjalan',
-        caption: 'Ustadz pembina bersama santri penerima beasiswa pendidikan dan tahfidz Quran.'
+        title: 'Penyaluran Beras Zakat bagi Kaum Dhuafa',
+        category: 'Zakat Fitrah & Pangan',
+        image: `${S3_BASE}/bahan-konten/beras-zakat-fitrah-mustahik.webp`,
+        status: 'Penyaluran Resmi',
+        caption: 'Penyaluran paket beras zakat fitrah dan pangan pokok kepada mustahik di sekitar kawasan Sukasirna Jonggol.'
       },
       {
         id: 'zak-2',
-        title: 'Santri Menghafal & Mengkaji Al-Quran',
-        category: 'Fi Sabilillah',
-        image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/muhammad-syamil-ghazwan-juara-1-tahfidz-5-juz.webp`,
-        status: 'Prestasi Santri',
-        caption: 'Santri binaan menunjukkan kesungguhan dalam menuntaskan hafalan Quran dan prestasi keagamaan.'
+        title: 'Amanah Penyerahan Zakat Tepat Sasaran',
+        category: 'Amanah Syariah',
+        image: `${S3_BASE}/bahan-konten/tangan-beras-zakat-pangan.webp`,
+        status: 'Kepatuhan Syariat',
+        caption: 'Penunaian kewajiban zakat disalurkan dengan santun dan menjaga martabat mustahik sesuai QS At-Taubah: 60.'
       },
       {
         id: 'zak-3',
-        title: 'Santri Tekun Mencatat Pelajaran',
-        category: 'Aktivitas Belajar',
-        image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-mencatat-dan-berdiskusi.webp`,
-        status: 'KBM Aktif',
-        caption: 'Suasana belajar mandiri santri dalam mendalami kurikulum keilmuan dan adab.'
+        title: 'Beasiswa Pendidikan Asnaf Fi Sabilillah',
+        category: 'Pendidikan Mustahik',
+        image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kbm-santri-ikhwan-di-aula.webp`,
+        status: 'KBM Berjalan',
+        caption: 'Santri mukim dari keluarga prasejahtera mendapatkan beasiswa penuh untuk menuntut ilmu agama dan vokasi.'
       },
       {
         id: 'zak-4',
-        title: 'Santriwati Fokus Menyimak Kajian',
-        category: 'Pendidikan Karakter',
-        image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-bertiga-mencatat-di-aula.webp`,
-        status: 'KBM Aktif',
-        caption: 'Pembinaan santriwati mukim dalam suasana belajar yang tertib dan bersahaja.'
+        title: 'Pembinaan Akhlaq & Adab Santri Binaan',
+        category: 'Bimbingan Asatidz',
+        image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp`,
+        status: 'Pendampingan Rutin',
+        caption: 'Pendampingan langsung oleh asatidz pembina bagi santri penerima manfaat agar tumbuh berdaya dan beradab.'
       }
     ],
     

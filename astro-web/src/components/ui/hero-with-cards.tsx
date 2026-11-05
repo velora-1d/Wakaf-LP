@@ -39,7 +39,7 @@ const CARDS = [
     z: 20,
   },
   {
-    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kebun-melon-dalam-greenhouse.webp",
+    src: "/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-perkebunan.webp",
     alt: "Agro-Technopark",
     title: "Agro-Technopark",
     rotate: 18,
