@@ -979,7 +979,7 @@ export const programsData: Record<string, ProgramData> = {
     title: 'Zakat yang Disalurkan Sesuai Ketentuan Syariah',
     heroSubtitle: 'Salurkan zakat melalui program yang memperhatikan ketentuan syariat dan kelayakan penerima manfaat 8 asnaf.',
     categoryBadge: 'ZAKAT MAAL & FITRAH',
-    heroBgImage: '/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kbm-santri-ikhwan-di-aula.webp',
+    heroBgImage: '/bahan-konten/beras-zakat-fitrah-mustahik.webp',
     
     pricingHeading: 'Layanan Penyaluran Zakat Terverifikasi',
     pricingSubheading: 'Tunaikan kewajiban zakat 2,5% secara amanah, tepat hisab, dan disalurkan kepada asnaf yang berhak menerima.',
@@ -1059,7 +1059,7 @@ export const programsData: Record<string, ProgramData> = {
     deepDiveLead: 'Zakat dikelola dengan memperhatikan ketentuan syariah, ketepatan sasaran, dan pencatatan penyaluran agar amanah para muzakki dapat dipertanggungjawabkan.',
     deepDiveStory1: 'Verifikasi kelayakan dilakukan secara cermat agar dana zakat benar-benar diterima oleh asnaf yang berhak, terutama santri penuntut ilmu agama dan vokasi yang memenuhi kriteria fi sabilillah, serta warga prasejahtera di sekitar pesantren.',
     deepDiveStory2: '',
-    deepDiveBannerImage: '/bahan-konten/kegiatan-dan-prestasi-santri/salman-aufa-juara-2-tahfidz-10-juz.webp',
+    deepDiveBannerImage: '/bahan-konten/tangan-beras-zakat-pangan.webp',
     valueBoxes: [
       {
         icon: 'check-circle',
