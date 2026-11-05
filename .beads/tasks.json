@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "BLOSSOM-CAROUSEL-INTEG-01", "name": "Instalasi @blossom-carousel/web, Komponen Reusable BlossomCarousel.astro, & Integrasi Carousel Kabar Terverifikasi Build", "status": "closed" },
     { "id": "PLAN-REVISI-KONTEN-MASTER-GVF", "name": "Implementasi & Penyelarasan Revisi Master Konten Website GVF (YPCI, 4 Pilar ZISWAF, Beranda, Tentang Kami, Kemitraan, Kontak & Foto Riil Lapangan)", "status": "closed" },
     { "id": "GENERATE-MASTER-DOCX-WITH-EMBEDDED-IMAGES", "name": "Pembuatan 1 File Master Dokumen Word (.docx) Inventarisasi Konten & Visual GVF Terpadu dengan 42 Thumbnail Foto Asli Tersemat Langsung di Tabel", "status": "closed" },
     { "id": "GENERATE-2-DOCX-CONTENT-INVENTORY", "name": "Pembuatan 2 Dokumen Word (.docx) Inventarisasi Konten, Narasi & Aset Gambar GVF untuk Diskusi & Pengisian Tim Terverifikasi", "status": "closed" },

@@ -15,6 +15,7 @@
     "@astrojs/react": "^7.1.0",
     "@astrojs/vercel": "^11.0.16",
     "@aws-sdk/client-s3": "^3.1153.0",
+    "@blossom-carousel/web": "^1.6.0",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.4.1",
     "bcryptjs": "^3.0.3",

@@ -23,6 +23,9 @@ importers:
       '@aws-sdk/client-s3':
         specifier: ^3.1153.0
         version: 3.1153.0
+      '@blossom-carousel/web':
+        specifier: ^1.6.0
+        version: 1.6.0
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))
@@ -320,6 +323,9 @@ packages:
   '@babel/types@7.29.8':
     resolution: {integrity: sha512-Vj1jF3cPfxg7OAfoI7QnVKLoILlm2JF9pnVHrX8qx7AHMiYWT+NDAA7jChlNgRS4WTLc/fD1lXLmPixluj+3Gg==}
     engines: {node: '>=6.9.0'}
+
+  '@blossom-carousel/web@1.6.0':
+    resolution: {integrity: sha512-34Tf0LOgmHpIpaju1bxxbyo8y1Jsg+4AQoQyuzZTQ8iuBMr37tJfVIeTgeLq7krXiP1AKtmgN1WV/yoUttR3bQ==}
 
   '@bruits/satteri-darwin-arm64@0.10.5':
     resolution: {integrity: sha512-27KTVl4TJkVahMy/ohyA7qd4938G5UNneFUz/PsScYfpIhj0IVAS23mpcJXdPF44sa6nva198lmV/cKIb2YPyA==}
@@ -3789,6 +3795,8 @@ snapshots:
     dependencies:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
+
+  '@blossom-carousel/web@1.6.0': {}
 
   '@bruits/satteri-darwin-arm64@0.10.5':
     optional: true

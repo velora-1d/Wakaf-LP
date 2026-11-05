@@ -1,0 +1,140 @@
+---
+// src/components/ui/BlossomCarousel.astro
+// Reusable Native Scroll-First Carousel powered by @blossom-carousel/web
+export interface Props {
+  id?: string;
+  className?: string;
+  showControls?: boolean;
+  showDots?: boolean;
+  repeat?: boolean;
+  columns?: string; // e.g. "320px", "380px", "100%"
+}
+
+const {
+  id = `carousel-${Math.random().toString(36).substring(2, 9)}`,
+  className = '',
+  showControls = true,
+  showDots = true,
+  repeat = false,
+  columns = '360px',
+} = Astro.props;
+---
+
+<div class={`blossom-wrapper ${className}`}>
+  <blossom-carousel id={id} class="blossom-scroller" repeat={repeat ? '' : undefined} style={`--slide-width: ${columns};`}>
+    <slot />
+  </blossom-carousel>
+
+  {(showControls || showDots) && (
+    <div class="blossom-nav-bar">
+      {showControls && (
+        <blossom-prev for={id} class="blossom-nav-btn blossom-btn-prev" aria-label="Slide sebelumnya">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </blossom-prev>
+      )}
+
+      {showDots && (
+        <blossom-dots for={id} class="blossom-dots-container"></blossom-dots>
+      )}
+
+      {showControls && (
+        <blossom-next for={id} class="blossom-nav-btn blossom-btn-next" aria-label="Slide berikutnya">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </blossom-next>
+      )}
+    </div>
+  )}
+</div>
+
+<script>
+  import '@blossom-carousel/web';
+</script>
+
+<style>
+  @import '@blossom-carousel/web/style.css';
+
+  .blossom-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .blossom-scroller {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: var(--slide-width, 360px);
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: inline mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .blossom-scroller::-webkit-scrollbar {
+    display: none;
+  }
+
+  :global([data-blossom-slide]) {
+    scroll-snap-align: start;
+    min-width: 0;
+  }
+
+  .blossom-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .blossom-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .blossom-nav-btn:hover:not([disabled]) {
+    background-color: #0969da;
+    border-color: #0969da;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(9, 105, 218, 0.25);
+  }
+
+  .blossom-nav-btn[disabled] {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .blossom-dots-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    --blossom-dot-size: 8px;
+    --blossom-dot-active-size: 24px;
+    --blossom-dot-color: #cbd5e1;
+    --blossom-dot-active-color: #0969da;
+  }
+
+  @media (max-width: 640px) {
+    .blossom-scroller {
+      grid-auto-columns: 85vw;
+      gap: 1rem;
+    }
+  }
+</style>

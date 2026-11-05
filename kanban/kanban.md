@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] BLOSSOM-CAROUSEL-INTEG-01: Instalasi @blossom-carousel/web, Komponen Reusable BlossomCarousel.astro, & Integrasi Carousel Kabar Terverifikasi Build 100%
 - [x] PLAN-REVISI-KONTEN-MASTER-GVF: Implementasi & Penyelarasan Revisi Master Konten Website GVF (YPCI, 4 Pilar ZISWAF, Beranda, Tentang Kami, Kemitraan, Kontak & Foto Riil Lapangan) Terverifikasi Build 100%
 - [x] GENERATE-MASTER-DOCX-WITH-EMBEDDED-IMAGES: Pembuatan 1 File Master Dokumen Word (.docx) Inventarisasi Konten & Visual GVF Terpadu dengan 42 Thumbnail Foto Asli Tersemat Langsung di Tabel Terverifikasi Empiris
 - [x] GENERATE-2-DOCX-CONTENT-INVENTORY: Pembuatan 2 Dokumen Word (.docx) Inventarisasi Konten, Narasi & Aset Gambar GVF untuk Diskusi & Pengisian Tim Terverifikasi
