@@ -10,3 +10,4 @@ declare namespace astroHTML.JSX {
     'blossom-dot': any;
   }
 }
+

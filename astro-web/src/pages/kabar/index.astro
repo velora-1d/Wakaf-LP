@@ -3,6 +3,7 @@
 export const prerender = false;
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlossomCarousel from '../../components/ui/BlossomCarousel.astro';
 import { getActiveNewsArticles } from '../../lib/db';
 import { getBreadcrumbSchema } from '../../lib/seo-schema';
 
@@ -99,40 +100,42 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
             <p class="empty-desc">Warta dan catatan literasi baru akan segera hadir.</p>
           </div>
         ) : (
-          <div class="archive-grid" id="kabar-grid">
-            {articles.map((article) => (
-              <article class="archive-card" data-category={article.category}>
-                <div class="card-thumb-wrap">
-                  <img
-                    src={article.coverImage || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp'}
-                    alt={article.title}
-                    class="card-thumb-img"
-                    loading="lazy"
-                  />
-                  <span class="card-cat-badge">{article.category}</span>
-                </div>
-                <div class="card-body">
-                  <div class="card-meta">
-                    <span class="meta-date">{formatDate(article.publishedAt)}</span>
-                    <span class="meta-dot">&bull;</span>
-                    <span class="meta-author">Oleh <strong class="author-bold">{article.author || 'Tim GVF'}</strong></span>
+          <div id="kabar-grid">
+            <BlossomCarousel id="kabar-archive-carousel" columns="380px" showControls={true} showDots={true}>
+              {articles.map((article) => (
+                <article class="archive-card" data-category={article.category} data-blossom-slide>
+                  <div class="card-thumb-wrap">
+                    <img
+                      src={article.coverImage || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp'}
+                      alt={article.title}
+                      class="card-thumb-img"
+                      loading="lazy"
+                    />
+                    <span class="card-cat-badge">{article.category}</span>
                   </div>
-                  <h2 class="card-title">
-                    <a href={`/kabar/${article.slug}`} class="card-title-link">
-                      {article.title}
+                  <div class="card-body">
+                    <div class="card-meta">
+                      <span class="meta-date">{formatDate(article.publishedAt)}</span>
+                      <span class="meta-dot">&bull;</span>
+                      <span class="meta-author">Oleh <strong class="author-bold">{article.author || 'Tim GVF'}</strong></span>
+                    </div>
+                    <h2 class="card-title">
+                      <a href={`/kabar/${article.slug}`} class="card-title-link">
+                        {article.title}
+                      </a>
+                    </h2>
+                    <p class="card-summary">{article.summary}</p>
+                    <a href={`/kabar/${article.slug}`} class="card-action-link">
+                      <span>Baca Selengkapnya</span>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
                     </a>
-                  </h2>
-                  <p class="card-summary">{article.summary}</p>
-                  <a href={`/kabar/${article.slug}`} class="card-action-link">
-                    <span>Baca Selengkapnya</span>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                  </a>
-                </div>
-              </article>
-            ))}
+                  </div>
+                </article>
+              ))}
+            </BlossomCarousel>
           </div>
         )}
       </div>
@@ -376,6 +379,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
     display: flex;
     flex-direction: column;
+    height: 100%;
     transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
