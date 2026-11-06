@@ -12,6 +12,7 @@ build/
 .cache/
 .astro/
 .vercel/
+.wrangler/
 
 # Environment variables
 .env

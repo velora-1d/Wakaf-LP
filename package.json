@@ -9,6 +9,8 @@
     "build": "pnpm --filter astro-web build",
     "build:lp": "pnpm --filter landing-page build",
     "build:web": "pnpm --filter astro-web build",
+    "build:cf": "CLOUDFLARE=true pnpm --filter astro-web build",
+    "deploy:cf": "CLOUDFLARE=true pnpm --filter astro-web build && pnpm --filter astro-web exec wrangler deploy",
     "preview:lp": "pnpm --filter landing-page preview",
     "preview:web": "pnpm --filter astro-web preview"
   }
