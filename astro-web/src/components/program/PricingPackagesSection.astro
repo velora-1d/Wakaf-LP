@@ -50,7 +50,7 @@ function formatRelativeDate(date: Date | string): string {
     <div class="pricing-header-wrap">
       <div class="pricing-badge-pill">
         <span class="dot-green"></span>
-        <span class="badge-text">{program.slug === 'infaq' ? 'PILIHAN PAKET INFAQ' : 'PAKET PILIHAN PROGRAM'}</span>
+        <span class="badge-text">{program.categoryBadge || 'PAKET PILIHAN PROGRAM'}</span>
       </div>
       <h2 class="pricing-main-heading">
         {pricingHeading}

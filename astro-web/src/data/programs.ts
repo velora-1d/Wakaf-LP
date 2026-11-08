@@ -140,117 +140,118 @@ const S3_BASE = 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast
 export const programsData: Record<string, ProgramData> = {
   wakaf: {
     slug: 'wakaf',
-    title: 'Wakaf untuk Aset dan Manfaat Berkelanjutan',
-    heroSubtitle: 'Dukung pengembangan aset dan sarana yang dapat memberikan manfaat jangka panjang bagi ekosistem Skill Village di Jonggol.',
-    categoryBadge: 'WAKAF PRODUKTIF & SARANA IBADAH',
+    title: 'Wakaf: Mengelola Aset, Menghadirkan Manfaat Jangka Panjang',
+    heroSubtitle: 'Wakaf merupakan bentuk ibadah dengan menyerahkan sebagian harta untuk dimanfaatkan sesuai tujuan wakaf. Melalui pengelolaan yang produktif dan bertanggung jawab, wakaf dapat menjadi instrumen pengembangan aset yang manfaatnya terus dihadirkan dari waktu ke waktu.',
+    categoryBadge: 'WAKAF PRODUKTIF & PENGEMBANGAN ASET',
     heroBgImage: '/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-dan-pemukiman.webp',
     
-    pricingHeading: 'Pilihan Program Wakaf Berkelanjutan',
-    pricingSubheading: 'Tunaikan wakaf berdasarkan peruntukan yang tersedia: sarana ibadah dan wakaf produktif untuk menopang kemandirian umat.',
+    pricingHeading: 'Instrumen Pengelolaan Program Wakaf',
+    pricingSubheading: 'Tunaikan wakaf berdasarkan 4 pilar peruntukan: wakaf uang, wakaf melalui uang (masjid), wakaf tanah/bangunan, dan wakaf produktif terpadu.',
     packages: [
       {
-        id: 'wakaf-masjid-khairu-ummah',
-        title: 'Wakaf Sarana Ibadah (Masjid)',
-        subtitle: 'Masjid Khairu Ummah Sugro',
+        id: 'wakaf-melalui-uang-masjid',
+        title: 'Wakaf Melalui Uang (Sarana Ibadah)',
+        subtitle: 'Pembangunan Masjid Khairu Ummah Sugro',
         pricePrefix: 'Rp ',
         priceAmount: '300.000',
         priceUnit: '',
-        priceDesc: 'Per paket pembangunan masjid',
-        estimation: 'Alokasi: Konstruksi fisik, mezanin & atap permanen',
+        priceDesc: 'Per paket pembangunan fasilitas ibadah',
+        estimation: 'Alokasi: Konstruksi fisik, mezanin & atap permanen masjid',
         isPopular: true,
         deliverables: [
-          { bold: 'Pusat Ibadah Berkelanjutan', text: 'Menampung shalat berjamaah dan pembinaan harian santri serta warga sekitar' },
-          { bold: 'Penyelesaian Atap Permanen', text: 'Pembangunan atap permanen menggantikan naungan atap sementara' },
+          { bold: 'Pusat Ibadah Berkelanjutan', text: 'Menampung shalat berjamaah dan pembinaan harian santri serta masyarakat' },
+          { bold: 'Penyelesaian Atap Permanen', text: 'Pembangunan atap permanen menggantikan naungan atap konstruksi sementara' },
           { bold: 'Mezanin Halaqah Quran', text: 'Lantai mezanin khusus untuk ruang halaqah tahfidz dan tadarus santri' },
-          { bold: 'Sirkulasi Udara Tropis', text: 'Desain ramah lingkungan dengan bukaan ventilasi alami yang hemat energi' },
-          { bold: 'Laporan Progres Berkala', text: 'Dokumentasi foto dan video perkembangan tahapan fisik lapangan' }
+          { bold: 'Ventilasi Alami Tropis', text: 'Desain ramah lingkungan hemat energi dengan sirkulasi udara optimal' },
+          { bold: 'Laporan Progres Berkala', text: 'Dokumentasi berkala tahapan konstruksi fisik di lapangan Sukasirna' }
         ],
         ctaText: 'Tunaikan Wakaf Masjid'
       },
       {
-        id: 'wakaf-pembebasan-lahan',
-        title: 'Wakaf Lahan Produktif',
-        subtitle: 'Kawasan Ekosistem Jonggol',
+        id: 'wakaf-tanah-bangunan',
+        title: 'Wakaf Tanah dan Bangunan',
+        subtitle: 'Aset Lahan Kawasan Ekosistem Jonggol',
         pricePrefix: 'Rp ',
         priceAmount: '150.000',
         priceUnit: '',
         priceDesc: 'Per meter persegi (m²)',
-        estimation: 'Alokasi: Pembebasan tanah kawasan terpadu 3 hektare',
+        estimation: 'Alokasi: Pembebasan tanah tapak kawasan terpadu ±3 hektare',
         isPopular: false,
         deliverables: [
-          { bold: 'Tapak Ekosistem Abadi', text: 'Lahan terpadu di Desa Sukasirna, Jonggol, Kabupaten Bogor' },
-          { bold: 'Integrasi Kawasan', text: 'Menjadi tapak sarana pendidikan vokasi, masjid, dan kebun produktif' },
-          { bold: 'Prinsip Wakaf Mengikat', text: 'Aset pokok wakaf terjaga keutuhannya dan tidak dapat diperjualbelikan' },
+          { bold: 'Aset Abadi Tak Bergerak', text: 'Tanah kawasan terpadu di Desa Sukasirna, Jonggol, Kabupaten Bogor' },
+          { bold: 'Integrasi Fasilitas', text: 'Menjadi tapak sarana pendidikan vokasi, masjid, dan unit produktif' },
+          { bold: 'Prinsip Wakaf Mengikat', text: 'Aset pokok wakaf dijaga keutuhannya dan tidak dapat diperjualbelikan' },
           { bold: 'Pahala Jariyah Mengalir', text: 'Kebaikan abadi yang terus memberi manfaat melintasi zaman' }
         ],
-        ctaText: 'Tunaikan Wakaf Lahan'
+        ctaText: 'Tunaikan Wakaf Tanah'
       },
       {
-        id: 'wakaf-sumur-sanitasi',
-        title: 'Wakaf Sumur Bor & Air Bersih',
-        subtitle: 'Sanitasi Sehat Kawasan',
+        id: 'wakaf-produktif-agro',
+        title: 'Wakaf Produktif Kawasan',
+        subtitle: 'Pertanian, Greenhouse & Peternakan',
         pricePrefix: 'Rp ',
         priceAmount: '500.000',
         priceUnit: '',
-        priceDesc: 'Per unit sarana partisipasi',
-        estimation: 'Alokasi: Pengeboran sumur, tandon & instalasi pipa',
+        priceDesc: 'Per unit modal produktif',
+        estimation: 'Alokasi: Sarana greenhouse, peternakan & unit usaha mandiri',
         isPopular: false,
         deliverables: [
-          { bold: 'Pengeboran Sumber Air', text: 'Penyediaan instalasi air bersih mandiri untuk masjid dan asrama' },
-          { bold: 'Tempat Wudhu & Sanitasi', text: 'Sarana wudhu yang higienis, bersih, dan nyaman bagi santri' },
-          { bold: 'Kemandirian Air Bersih', text: 'Menjamin ketersediaan pasokan air harian untuk seluruh kawasan' }
+          { bold: 'Pertanian Terpadu', text: 'Greenhouse budidaya melon, sayuran, dan tanaman bernilai ekonomi tinggi' },
+          { bold: 'Peternakan Berkelanjutan', text: 'Unit peternakan ayam petelur untuk pemenuhan gizi dan pendapatan kawasan' },
+          { bold: 'Pengolahan Hasil Produksi', text: 'Peralatan pascapanen untuk mendukung kemandirian operasional pesantren' },
+          { bold: 'Kemandirian Ekonomi', text: 'Hasil usaha produktif disalurkan kembali untuk kemaslahatan program santri' }
         ],
-        ctaText: 'Tunaikan Wakaf Sumur'
+        ctaText: 'Tunaikan Wakaf Produktif'
       }
     ],
     addonTitle: 'Pilihan Partisipasi Wakaf Lainnya',
     addonItems: [
       {
-        name: 'Wakaf Uang Bebas',
-        desc: 'Wakaf uang sukarela untuk kebutuhan mendesak sarana abadi kawasan',
+        name: 'Wakaf Uang (Tunai)',
+        desc: 'Wakaf uang yang diserahkan melalui nazhir untuk dikelola secara produktif sesuai syariat',
         price: 'Nominal Bebas',
         availability: 'Tersedia via Transfer / QRIS'
       },
       {
-        name: 'Wakaf Pohon Produktif',
-        desc: 'Bibit buah dan tanaman produktif penopang keasrian kawasan',
-        price: 'Rp 100.000',
-        availability: 'Tersedia untuk program agro'
+        name: 'Wakaf Sumur Bor & Sanitasi',
+        desc: 'Penyediaan instalasi air bersih mandiri untuk wudhu masjid dan asrama santri',
+        price: 'Rp 500.000',
+        availability: 'Tersedia untuk sarana air bersih'
       },
       {
-        name: 'Wakaf Instalasi Wudhu',
-        desc: 'Penyediaan kran wudhu kuningan dan saluran pembuangan higienis',
-        price: 'Rp 250.000',
-        availability: 'Tersedia untuk masjid'
+        name: 'Wakaf Pohon Produktif',
+        desc: 'Bibit buah dan tanaman keras produktif penopang keasrian kawasan',
+        price: 'Rp 100.000',
+        availability: 'Tersedia untuk program agro'
       }
     ],
     
-    deepDiveBadge: 'URGENSI & PERUNTUKAN',
-    deepDiveTitle: 'Wakaf untuk Aset dan Manfaat Berkelanjutan',
-    deepDiveLead: 'Global Village Fund mengelola wakaf produktif dan sarana ibadah di bawah naungan Yayasan Permata Cendekia Indonesia (YPCI). Wakaf diarahkan untuk mendukung aset fisik yang manfaatnya dapat digunakan secara berkelanjutan bagi santri dan masyarakat.',
-    deepDiveStory1: 'Pengelolaan dan peruntukan wakaf dijelaskan secara terbuka sesuai akad yang disepakati. Dari penyelesaian sarana ibadah Masjid Khairu Ummah Sugro hingga pembebasan lahan kawasan terpadu di Sukasirna Jonggol, setiap kontribusi dijaga keutuhannya.',
+    deepDiveBadge: 'URGENSI & PERUNTUKAN WAKAF',
+    deepDiveTitle: 'Mengelola Aset, Menghadirkan Manfaat Jangka Panjang',
+    deepDiveLead: 'Global Village Fund mengembangkan pengelolaan wakaf untuk mendukung pembangunan aset dan program produktif yang memberikan manfaat berkelanjutan. Melalui pengembangan sarana ibadah, pendidikan, hunian, dan unit usaha produktif, wakaf menjadi bagian dari upaya membangun ekosistem yang mandiri dan produktif.',
+    deepDiveStory1: 'Pengelolaan wakaf di bawah payung Yayasan Permata Cendekia Indonesia (YPCI) memadukan 4 instrumen utama: Wakaf Uang (pokok dijaga, hasil dimanfaatkan), Wakaf Melalui Uang (pembangunan sarana fisik tertentu), Wakaf Tanah & Bangunan (aset tidak bergerak), dan Wakaf Produktif (pertanian terpadu, greenhouse, peternakan, serta unit usaha mandiri).',
     deepDiveStory2: '',
     deepDiveBannerImage: '/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp',
     valueBoxes: [
       {
         icon: 'infinity',
-        title: 'Prinsip Aset Abadi',
+        title: 'Prinsip Pokok Terjaga',
         description: 'Pokok aset wakaf dijaga keutuhannya, tidak dapat diperjualbelikan, dihibahkan, maupun diwariskan.'
       },
       {
         icon: 'shield-check',
-        title: 'Akad Sesuai Syariat',
-        description: 'Dikelola secara amanah di bawah pengawasan syariah yayasan sesuai tuntunan fiqih muamalah.'
+        title: 'Kepatuhan Syariah Penuh',
+        description: 'Dikelola secara amanah oleh nazhir di bawah pengawasan syariah yayasan sesuai ketentuan perwakafan.'
       },
       {
         icon: 'file-text',
-        title: 'Manfaat Nyata Terukur',
-        description: 'Manfaat sarana langsung dirasakan santri dalam menuntut ilmu dan beribadah setiap hari.'
+        title: 'Pengembangan Produktif',
+        description: 'Menghasilkan manfaat sosial dan ekonomi jangka panjang untuk kemandirian ekosistem pesantren.'
       },
       {
         icon: 'eye',
-        title: 'Transparansi Penyaluran',
-        description: 'Pembaruan progres fisik dan dokumentasi lapangan disajikan secara berkala kepada pewakif.'
+        title: 'Transparansi & Akuntabilitas',
+        description: 'Pembaruan progres fisik dan laporan kemanfaatan disajikan secara berkala dan terbuka kepada pewakif.'
       }
     ],
     deepDiveTwinImages: [
@@ -452,95 +453,96 @@ export const programsData: Record<string, ProgramData> = {
 
   infaq: {
     slug: 'infaq',
-    title: 'Infak untuk Pendidikan dan Fasilitas',
-    heroSubtitle: 'Dukung kebutuhan sarana pendidikan, fasilitas hunian, dan pengembangan kompetensi santri Skill Village.',
-    categoryBadge: 'INFAK SARANA PENDIDIKAN',
+    title: 'Infak: Menguatkan Program, Mendukung Pengembangan',
+    heroSubtitle: 'Infak merupakan kontribusi sukarela yang memberikan ruang bagi setiap orang untuk mengambil bagian dalam berbagai upaya kebaikan. Dana infak dikelola untuk mendukung kebutuhan pembangunan, operasional, pendidikan, serta pengembangan sarana dan program pemberdayaan.',
+    categoryBadge: 'INFAK PROGRAM & PEMBANGUNAN',
     heroBgImage: '/bahan-konten/fasilitas-dan-infrastruktur/tampak-gedung-dan-halaman-asrama.webp',
     
-    pricingHeading: 'Pilihan Program Infak Sarana & Pendidikan',
-    pricingSubheading: 'Tampilkan kebutuhan infak yang sedang dibuka: perlengkapan belajar, material pembangunan kelas, dan fasilitas asrama santri.',
+    pricingHeading: 'Pilihan Pos Infak Berkelanjutan',
+    pricingSubheading: 'Salurkan infak Anda untuk 4 pos utama: Kebutuhan Pembangunan & Infrastruktur, Kebutuhan Operasional, Pendidikan & Pembinaan, serta Pemberdayaan & Kemandirian.',
     packages: [
       {
-        id: 'infaq-perlengkapan-belajar',
-        title: 'Perlengkapan Belajar Santri',
-        subtitle: 'Meja & Sarana Belajar Kelas',
-        pricePrefix: 'Rp ',
-        priceAmount: '150.000',
-        priceUnit: '',
-        priceDesc: 'Per paket perlengkapan',
-        estimation: 'Alokasi: Meja belajar lipat kayu, rak buku, whiteboard',
-        isPopular: false,
-        deliverables: [
-          { bold: 'Meja Belajar Santri', text: 'Meja lipat ergonomis untuk kegiatan belajar dan mencatat kajian di aula' },
-          { bold: 'Whiteboard & ATK Kelas', text: 'Penyediaan papan tulis dan perlengkapan mengajar asatidz' },
-          { bold: 'Kenyamanan KBM', text: 'Mendukung santri menyimak materi dengan posisi duduk yang nyaman' },
-          { bold: 'Laporan Penyaluran', text: 'Dokumentasi foto serah terima sarana belajar di lokasi kelas' }
-        ],
-        ctaText: 'Salurkan Infak Belajar'
-      },
-      {
-        id: 'infaq-material-ruang-kelas',
-        title: 'Material Ruang Belajar',
-        subtitle: 'Pembangunan Kelas Lantai 2',
+        id: 'infaq-pembangunan-infrastruktur',
+        title: 'A. Pembangunan & Infrastruktur',
+        subtitle: 'Konstruksi & Material Bangunan',
         pricePrefix: 'Rp ',
         priceAmount: '100.000',
         priceUnit: '',
-        priceDesc: 'Per sak semen & bata hebel',
-        estimation: 'Alokasi: Plester dinding, hebel, pasir cor lantai 2',
+        priceDesc: 'Per paket partisipasi konstruksi',
+        estimation: 'Alokasi: Semen, hebel, besi, baja ringan, atap & sanitasi',
         isPopular: true,
         deliverables: [
-          { bold: 'Semen & Bata Ringan Hebel', text: 'Pengadaan material SNI untuk sekat dinding ruang kelas lantai dua' },
-          { bold: 'Penyelesaian Tangga Akses', text: 'Penyelesaian tangga cor semen agar akses antar-lantai aman' },
-          { bold: 'Cat Dinding & Plester', text: 'Plesteran rapi dan pengecatan ruang belajar santri' },
-          { bold: 'Laporan Belanja Terbuka', text: 'Pencatatan nota material bahan bangunan proyek yang dapat diverifikasi' }
+          { bold: 'Material Konstruksi Lengkap', text: 'Semen, pasir split, besi beton, baja ringan, bata hebel, keramik, atap & plafon' },
+          { bold: 'Kusen, Pintu & Jendela', text: 'Pengadaan kusen aluminium, kaca, dan pintu ruang kelas serta asrama santri' },
+          { bold: 'Instalasi Listrik & Air', text: 'Pemasangan instalasi listrik penerangan, air bersih, dan sanitasi sehat' },
+          { bold: 'Pengembangan Fasilitas', text: 'Mencakup masjid, asrama, ruang kelas, dapur, sanitasi, dan sarana penunjang' },
+          { bold: 'Laporan Belanja Terbuka', text: 'Pencatatan nota material dan dokumentasi progres fisik lapangan' }
         ],
-        ctaText: 'Salurkan Infak Material'
+        ctaText: 'Salurkan Infak Pembangunan'
       },
       {
-        id: 'infaq-fasilitas-hunian-asrama',
-        title: 'Fasilitas Hunian Asrama',
-        subtitle: 'Ranjang Susun & Kasur Santri',
+        id: 'infaq-kebutuhan-operasional',
+        title: 'B. Kebutuhan Operasional',
+        subtitle: 'Pemeliharaan & Utilitas Pesantren',
         pricePrefix: 'Rp ',
-        priceAmount: '350.000',
+        priceAmount: '150.000',
         priceUnit: '',
-        priceDesc: 'Per paket hunian santri',
-        estimation: 'Alokasi: Ranjang susun besi kokoh & kasur busa higienis',
+        priceDesc: 'Per paket operasional',
+        estimation: 'Alokasi: Pangan pokok, listrik, air, gas & pemeliharaan',
         isPopular: false,
         deliverables: [
-          { bold: 'Ranjang Susun Kokoh', text: 'Rangka ranjang besi bertingkat aman untuk kamar santri' },
-          { bold: 'Kasur Busa Higienis', text: 'Alas tidur bersih untuk istirahat malam santri yang berkualitas' },
-          { bold: 'Lemari Loker Santri', text: 'Tempat penyimpanan pakaian dan kitab santri agar tertata rapi' },
-          { bold: 'Suasana Kamar Sehat', text: 'Menciptakan lingkungan hunian asrama yang tertib dan nyaman' }
+          { bold: 'Bahan Pangan Pokok', text: 'Pemenuhan kebutuhan beras, bahan dapur umum, dan konsumsi harian santri' },
+          { bold: 'Utilitas Air, Listrik & Gas', text: 'Membantu biaya rekening listrik penerangan, air bersih, dan bahan bakar dapur' },
+          { bold: 'Kebersihan & Perawatan', text: 'Perlengkapan sanitasi, kebersihan, dan pemeliharaan fasilitas pesantren' },
+          { bold: 'Kelancaran Aktivitas', text: 'Menjaga rutinitas belajar dan ibadah santri berjalan tertib tanpa kendala' }
         ],
-        ctaText: 'Salurkan Infak Asrama'
+        ctaText: 'Salurkan Infak Operasional'
+      },
+      {
+        id: 'infaq-pendidikan-pembinaan',
+        title: 'C. Pendidikan & Pembinaan',
+        subtitle: 'Sarana Belajar & Vokasi Santri',
+        pricePrefix: 'Rp ',
+        priceAmount: '200.000',
+        priceUnit: '',
+        priceDesc: 'Per paket sarana belajar',
+        estimation: 'Alokasi: Buku, ATK, komputer, alat praktik vokasi & media',
+        isPopular: false,
+        deliverables: [
+          { bold: 'Buku & Perlengkapan Belajar', text: 'Kitab pegangan, modul kejuruan, dan alat tulis penunjang belajar santri' },
+          { bold: 'Komputer & Alat Praktik', text: 'Perangkat komputer dan peralatan praktik kejuruan vokasi teknologi' },
+          { bold: 'Media Pembelajaran & Bahasa', text: 'Papan tulis whiteboard, media audio-visual, dan materi penguatan bahasa' },
+          { bold: 'Sarana Pembinaan Karakter', text: 'Peralatan kegiatan ekstrakurikuler, olahraga, dan pembinaan adab santri' }
+        ],
+        ctaText: 'Salurkan Infak Pendidikan'
       }
     ],
-    addonTitle: 'Pilihan Partisipasi Sarana Tambahan',
+    addonTitle: 'D. Infak Pemberdayaan & Kemandirian Usaha',
     addonItems: [
       {
-        name: 'Infak Paket Semen SNI',
-        desc: 'Pengadaan 1 sak semen standar industri untuk pekerjaan plester',
-        price: 'Rp 65.000',
-        availability: 'Tersedia untuk proyek kelas & asrama'
+        name: 'Peralatan Pertanian & Greenhouse',
+        desc: 'Sarana greenhouse budidaya melon, fertigasi, dan bibit tanaman produktif',
+        price: 'Rp 250.000',
+        availability: 'Tersedia untuk unit agro'
       },
       {
-        name: 'Infak Modul Belajar & Kitab',
-        desc: 'Pengadaan kitab pegangan santri dan modul kejuruan vokasi',
-        price: 'Rp 100.000',
-        availability: 'Tersedia untuk santri mukim'
+        name: 'Peralatan Peternakan Ayam Petelur',
+        desc: 'Kandang modern, pakan berkualitas, dan sarana kesehatan unggas petelur',
+        price: 'Rp 200.000',
+        availability: 'Tersedia untuk peternakan'
       },
       {
-        name: 'Infak Lampu Hemat Energi',
-        desc: 'Lampu LED penerangan ruang kelas dan lorong asrama',
-        price: 'Rp 50.000',
-        availability: 'Tersedia untuk kebutuhan kelistrikan'
+        name: 'Mesin & Alat Pengolahan Pangan',
+        desc: 'Peralatan pengolahan pascapanen pangan dan mesin produksi unit usaha',
+        price: 'Rp 300.000',
+        availability: 'Tersedia untuk vokasi usaha'
       }
     ],
     
-    deepDiveBadge: 'FUNGSI & KEBUTUHAN',
-    deepDiveTitle: 'Mengapa Fasilitas Belajar yang Layak Sangat Penting',
-    deepDiveLead: 'Fasilitas yang aman dan layak membantu menciptakan lingkungan belajar dan hunian yang nyaman, menenangkan santri dalam mendalami ilmu agama maupun keterampilan vokasi.',
-    deepDiveStory1: 'Kondisi fisik gedung yang aman, pencahayaan cukup, dan ruang tidur sehat memberikan ketenangan bagi para santri yang tinggal jauh dari orang tua untuk fokus belajar dan membina karakter mandiri.',
+    deepDiveBadge: 'FUNGSI & 4 PILAR INFAK',
+    deepDiveTitle: 'Menguatkan Program, Mendukung Pengembangan',
+    deepDiveLead: 'Infak merupakan kontribusi sukarela yang memberikan ruang bagi setiap orang untuk mengambil bagian dalam berbagai upaya kebaikan. Dana infak dikelola untuk mendukung kebutuhan pembangunan, operasional, pendidikan, serta pengembangan sarana dan program pemberdayaan.',
+    deepDiveStory1: 'Melalui 4 pilar infak (Pembangunan & Infrastruktur, Kebutuhan Operasional, Pendidikan & Pembinaan, serta Pemberdayaan & Kemandirian), setiap rupiah yang Anda titipkan menjadi energi nyata yang menggerakkan roda peradaban di Jonggol.',
     deepDiveStory2: '',
     deepDiveBannerImage: '/bahan-konten/masjid-dan-kelas/pondasi-kelas-lt2.jpeg',
     valueBoxes: [
@@ -569,12 +571,12 @@ export const programsData: Record<string, ProgramData> = {
       '/bahan-konten/masjid-dan-kelas/tangga-kelas-ke-lt2.jpeg',
       '/bahan-konten/asrama-putra-baru/pembangunan-asrama-ikhwan-baru.jpeg'
     ],
-    deepDiveSubblock1Title: 'Penyelesaian Ruang Kelas Lantai 2',
-    deepDiveSubblock1Desc1: 'Pekerjaan konstruksi ruang kelas lantai dua mencakup plester dinding bata hebel, pemasangan jendela ventilasi, dan pengamanan tangga akses santri.',
-    deepDiveSubblock1Desc2: 'Ruang kelas ini disiapkan untuk menampung kegiatan pembelajaran teori vokasi teknologi, kurikulum adab, dan kajian keislaman santri mukim.',
-    deepDiveSubblock2Title: 'Fasilitas Asrama Hunian Santri',
-    deepDiveSubblock2Desc1: 'Gedung asrama santri baru terus disempurnakan agar mampu menyediakan kamar yang sehat dengan sirkulasi udara optimal dan pencahayaan memadai.',
-    deepDiveSubblock2Desc2: 'Dukungan infak Anda memastikan tersedianya ranjang susun kokoh dan perlengkapan kamar yang layak bagi para penuntut ilmu.',
+    deepDiveSubblock1Title: 'A. Kebutuhan Pembangunan dan Infrastruktur',
+    deepDiveSubblock1Desc1: 'Mendukung pemenuhan berbagai kebutuhan konstruksi, material, dan perlengkapan untuk pembangunan, renovasi, serta pengembangan fasilitas: semen, pasir, split, besi beton, baja ringan, bata ringan, keramik, plafon, pintu, jendela, instalasi listrik, air, dan sanitasi.',
+    deepDiveSubblock1Desc2: 'Kebutuhan ini mencakup pembangunan dan pengembangan berbagai fasilitas, seperti masjid, asrama, ruang kelas, dapur, sanitasi, serta sarana penunjang lainnya.',
+    deepDiveSubblock2Title: 'B, C & D. Operasional, Pendidikan & Kemandirian',
+    deepDiveSubblock2Desc1: 'Memenuhi kebutuhan operasional harian (bahan pangan pokok, dapur, air, listrik, gas, kebersihan, pemeliharaan) serta kebutuhan pendidikan (buku, ATK, komputer, alat praktik vokasi, perlengkapan bahasa).',
+    deepDiveSubblock2Desc2: 'Diarahkan pula untuk pengembangan sarana produksi, unit usaha, dan fasilitas produktif (peralatan pertanian, greenhouse, peternakan, mesin pengolahan pangan, perangkat teknologi) yang menunjang kemandirian.',
     portfolioShowcaseItems: [
       { tag: 'KELAS', name: 'Tangga Akses Lantai 2', category: 'Tahap Struktur', image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/tangga-kelas-ke-lt2.jpeg` },
       { tag: 'ASRAMA', name: 'Gedung Asrama Putra Baru', category: 'Pembangunan Fisik', image: `${S3_BASE}/bahan-konten/asrama-putra-baru/pembangunan-asrama-ikhwan-baru.jpeg` },
@@ -719,127 +721,130 @@ export const programsData: Record<string, ProgramData> = {
 
   sedekah: {
     slug: 'sedekah',
-    title: 'Sedekah untuk Kebutuhan Pangan dan Operasional',
-    heroSubtitle: 'Dukung pemenuhan kebutuhan pangan harian, gizi santri, dan operasional lingkungan pesantren.',
-    categoryBadge: 'SEDEKAH PANGAN & OPERASIONAL',
+    title: 'Sedekah: Berbagi dengan Cara, Menghadirkan Manfaat',
+    heroSubtitle: 'Sedekah merupakan bentuk kepedulian yang dapat diwujudkan melalui berbagai bentuk pemberian. Tidak terbatas pada uang, sedekah juga dapat berupa barang, pangan, ilmu, keterampilan, maupun tenaga yang memberikan manfaat.',
+    categoryBadge: 'SEDEKAH PANGAN, BARANG & JASA',
     heroBgImage: '/bahan-konten/masjid-dan-kelas/sayuran-kangkung.jpeg',
     
-    pricingHeading: 'Pilihan Program Sedekah Pangan & Kehidupan',
-    pricingSubheading: 'Tampilkan kebutuhan yang sedang dibuka: dukungan makan harian, bahan pangan pokok beras, dan kebutuhan operasional pesantren.',
+    pricingHeading: 'Pilihan Pos Sedekah Berkelanjutan',
+    pricingSubheading: 'Salurkan sedekah untuk 4 ragam kepedulian: Pangan & Konsumsi, Fasilitas & Perlengkapan, Pendidikan & Kegiatan, serta Keahlian, Jasa & Tenaga.',
     packages: [
       {
-        id: 'sedekah-makan-santri',
-        title: 'Sedekah Porsi Makan Santri',
-        subtitle: 'Menu Bergizi Seimbang',
+        id: 'sedekah-pangan-konsumsi',
+        title: 'A. Pangan & Konsumsi Harian',
+        subtitle: 'Beras, Lauk & Nutrisi Santri',
         pricePrefix: 'Rp ',
         priceAmount: '25.000',
         priceUnit: '',
-        priceDesc: 'Per porsi makan lengkap',
-        estimation: 'Alokasi: Nasi, protein ayam/ikan/telur, sayur kebun, buah',
+        priceDesc: 'Per porsi makan lengkap bernutrisi',
+        estimation: 'Alokasi: Beras, minyak, telur, daging/ikan, sayur & susu',
         isPopular: true,
         deliverables: [
-          { bold: 'Menu Gizi Seimbang', text: 'Nasi pulen, lauk berprotein halal, sayuran segar, dan buah pendamping' },
-          { bold: 'Olahan Dapur Bersih', text: 'Dimasak setiap hari di dapur umum asrama oleh juru masak pesantren' },
-          { bold: 'Stamina Belajar', text: 'Menjaga kebugaran santri saat beraktivitas dari shubuh hingga malam hari' },
-          { bold: 'Dokumentasi Harian', text: 'Penyajian makanan dan suasana makan bersama santri yang tertib' }
+          { bold: 'Pangan Pokok Seimbang', text: 'Beras pulen, minyak goreng, telur, daging, ikan, sayuran, dan buah segar' },
+          { bold: 'Dapur Mandiri Higienis', text: 'Dimasak setiap hari di dapur umum asrama oleh juru masak pesantren' },
+          { bold: 'Paket Kebutuhan Pangan', text: 'Penyediaan stok sembako aman untuk lumbung pangan santri mukim' },
+          { bold: 'Stamina Belajar & Ibadah', text: 'Menjaga kesehatan dan kebugaran santri dari shubuh hingga malam' },
+          { bold: 'Dokumentasi Makan Harian', text: 'Pencatatan nota belanja dan foto suasana makan bersama santri' }
         ],
-        ctaText: 'Sedekah Makan Santri'
+        ctaText: 'Sedekah Pangan Santri'
       },
       {
-        id: 'sedekah-beras-dapur',
-        title: 'Sedekah Beras Lumbung Dapur',
-        subtitle: 'Ketahanan Beras Asrama',
+        id: 'sedekah-fasilitas-perlengkapan',
+        title: 'B. Fasilitas & Perlengkapan',
+        subtitle: 'Kenyamanan Hunian & Ibadah',
         pricePrefix: 'Rp ',
         priceAmount: '150.000',
         priceUnit: '',
-        priceDesc: 'Per karung 10 kg',
-        estimation: 'Alokasi: Pasokan beras putih berkualitas untuk dapur umum',
+        priceDesc: 'Per paket perlengkapan',
+        estimation: 'Alokasi: Kasur, meja, kursi, alat dapur, perlengkapan asrama',
         isPopular: false,
         deliverables: [
-          { bold: 'Beras Kualitas Baik', text: 'Pengadaan beras putih higienis dan pulen untuk kebutuhan makan santri' },
-          { bold: 'Ketahanan Stok Pangan', text: 'Menjaga persediaan beras di gudang pangan asrama tetap aman' },
-          { bold: 'Penyaluran Langsung', text: 'Dihidangkan langsung sebagai makanan pokok harian ratusan santri' }
+          { bold: 'Tempat Tidur & Lemari', text: 'Kasur busa higienis, ranjang bertingkat, dan lemari loker pakaian santri' },
+          { bold: 'Meja, Kursi & Kipas Angin', text: 'Mendukung kenyamanan ruang halaqah belajar dan sirkulasi kamar' },
+          { bold: 'Peralatan Dapur & Sanitasi', text: 'Perlengkapan masak dapur umum dan sarana pembersihan asrama' },
+          { bold: 'Perlengkapan Masjid', text: 'Karpet, pengeras suara audio multimedia, dan sajadah shalat berjamaah' }
         ],
-        ctaText: 'Sedekah Beras Dapur'
+        ctaText: 'Sedekah Fasilitas'
       },
       {
-        id: 'sedekah-operasional-asrama',
-        title: 'Sedekah Operasional & Utilitas',
-        subtitle: 'Kelancaran Harian Pesantren',
+        id: 'sedekah-pendidikan-kegiatan',
+        title: 'C. Pendidikan & Kegiatan',
+        subtitle: 'Dukungan Pembinaan & Vokasi',
         pricePrefix: 'Rp ',
-        priceAmount: '300.000',
+        priceAmount: '200.000',
         priceUnit: '',
-        priceDesc: 'Per paket operasional',
-        estimation: 'Alokasi: Token listrik, gas dapur, air minum galon sehat',
+        priceDesc: 'Per paket sarana kegiatan',
+        estimation: 'Alokasi: Buku, alat olahraga, komputer & peraga',
         isPopular: false,
         deliverables: [
-          { bold: 'Listrik & Penerangan', text: 'Mendukung penerangan ruang asrama, kamar mandi, kelas, dan masjid' },
-          { bold: 'Gas Memasak Dapur', text: 'Bahan bakar gas elpiji untuk memasak hidangan harian santri' },
-          { bold: 'Air Minum Higienis', text: 'Penyediaan air minum galon bersih dan teruji laboratorium' }
+          { bold: 'Buku & Alat Tulis', text: 'Pengadaan mushaf Al-Quran, kitab, buku referensi, dan alat tulis' },
+          { bold: 'Perlengkapan Olahraga', text: 'Sarana futsal, panahan, bulu tangkis, dan pembinaan jasmani' },
+          { bold: 'Alat Praktik Keterampilan', text: 'Perangkat komputer, alat peraga visual, dan media pembelajaran santri' },
+          { bold: 'Kegiatan Keagamaan', text: 'Perlengkapan daurah, safari dakwah, dan agenda pembinaan karakter' }
         ],
-        ctaText: 'Sedekah Operasional'
+        ctaText: 'Sedekah Pendidikan'
       }
     ],
-    addonTitle: 'Pilihan Partisipasi Pangan Lainnya',
+    addonTitle: 'D. Sedekah Keahlian, Jasa & Tenaga',
     addonItems: [
       {
-        name: 'Sedekah Telur Ayam (1 Rak)',
-        desc: 'Pengadaan telur ayam segar untuk pemenuhan protein santri',
-        price: 'Rp 60.000',
-        availability: 'Tersedia untuk dapur asrama'
+        name: 'Relawan Tenaga Pembangunan',
+        desc: 'Kontribusi tenaga dan gotong royong langsung dalam pekerjaan fisik sarana pesantren',
+        price: 'Tenaga / Sukarela',
+        availability: 'Koordinasi Lapangan Jonggol'
       },
       {
-        name: 'Sedekah Minyak Goreng & Bumbu',
-        desc: 'Minyak goreng kemasan dan bumbu dapur untuk mengolah makanan',
-        price: 'Rp 50.000',
-        availability: 'Tersedia untuk dapur asrama'
+        name: 'Keahlian Teknologi & Pelatihan',
+        desc: 'Memberikan workshop, mentoring vokasi, coding, desain, atau kejuruan untuk santri',
+        price: 'Keahlian / Sesi',
+        availability: 'Jadwal Kuliah Tamu'
       },
       {
-        name: 'Sedekah Buah Segar Santri',
-        desc: 'Penyediaan buah pisang, jeruk, atau semangka pendamping makan siang',
-        price: 'Rp 75.000',
-        availability: 'Tersedia setiap pekan'
+        name: 'Konsultasi Teknis & Profesional',
+        desc: 'Pendampingan profesional di bidang teknik sipil, arsitektur, pertanian, atau hukum',
+        price: 'Jasa Profesional',
+        availability: 'Via Daring / Tatap Muka'
       }
     ],
     
-    deepDiveBadge: 'PEMENUHAN KEBUTUHAN PANGAN',
-    deepDiveTitle: 'Peran Sedekah dalam Menopang Keseharian Santri',
-    deepDiveLead: 'Dukungan pangan membantu memenuhi kebutuhan harian santri sehingga lingkungan pesantren dapat menjalankan kegiatan belajar, pembinaan adab, dan ibadah dengan tenang.',
-    deepDiveStory1: 'Setiap butir nasi dan lauk sehat yang disajikan menjadi sumber tenaga bagi para santri yang menuntut ilmu di Jonggol. Dukungan sedekah rutin memastikan asupan gizi mereka terpenuhi secara layak dan berkesinambungan.',
+    deepDiveBadge: 'RAGAM BENTUK SEDEKAH',
+    deepDiveTitle: 'Berbagi dengan Cara, Menghadirkan Manfaat',
+    deepDiveLead: 'Sedekah merupakan bentuk kepedulian yang dapat diwujudkan melalui berbagai bentuk pemberian. Tidak terbatas pada uang, sedekah juga dapat berupa barang, pangan, ilmu, keterampilan, maupun tenaga yang memberikan manfaat.',
+    deepDiveStory1: 'Setiap butir beras, perlengkapan kamar, bantuan mengajar, maupun keringat para relawan yang tercurah menjadi saksi kebaikan nyata yang memperkuat kehidupan para penuntut ilmu di Sukasirna Jonggol.',
     deepDiveStory2: '',
     deepDiveBannerImage: '/bahan-konten/masjid-dan-kelas/kandang-ayam-petelur.jpeg',
     valueBoxes: [
       {
         icon: 'heart',
-        title: 'Gizi Terpenuhi',
+        title: 'Pangan Terpenuhi',
         description: 'Menu seimbang dengan protein, sayuran segar, dan karbohidrat yang mencukupi kebutuhan santri.'
       },
       {
         icon: 'utensils',
-        title: 'Dapur Mandiri',
-        description: 'Dikelola langsung oleh tim dapur asrama dengan standar kebersihan yang senantiasa dijaga.'
+        title: 'Fasilitas Layak',
+        description: 'Perlengkapan asrama, masjid, dan sarana ibadah yang bersih dan terawat dengan tertib.'
       },
       {
         icon: 'sun',
-        title: 'Kemandirian Kebun',
-        description: 'Dipadukan dengan hasil panen sayur kangkung dan kebun hortikultura pesantren.'
+        title: 'Keahlian Berdaya',
+        description: 'Ruang berbagi ilmu, keterampilan teknologi, dan pendampingan vokasi bagi santri masa depan.'
       },
       {
         icon: 'file-text',
         title: 'Pencatatan Rapi',
-        description: 'Laporan belanja logistik dapur dicatat dan dipertanggungjawabkan secara transparan.'
+        description: 'Laporan penerimaan barang dan penyaluran dicatat serta dipertanggungjawabkan secara transparan.'
       }
     ],
     deepDiveTwinImages: [
       '/bahan-konten/masjid-dan-kelas/sayuran-kangkung.jpeg',
       '/bahan-konten/masjid-dan-kelas/lahan-kebun.jpeg'
     ],
-    deepDiveSubblock1Title: 'Hasil Kebun untuk Konsumsi Asrama',
-    deepDiveSubblock1Desc1: 'Di samping pengadaan bahan pangan dari pasar, pesantren mengembangkan kebun sayuran kangkung dan hortikultura yang hasilnya dimanfaatkan langsung untuk melengkapi menu dapur santri.',
-    deepDiveSubblock1Desc2: 'Inisiatif ini melatih santri memahami proses bercocok tanam sekaligus memperkuat ketahanan pangan mandiri lingkungan pesantren.',
-    deepDiveSubblock2Title: 'Kebersamaan & Adab Makan Santri',
-    deepDiveSubblock2Desc1: 'Waktu makan bersama di selasar asrama dijalankan dengan membiasakan adab Islam: membaca basmalah, makan dengan tangan kanan, dan menjaga kebersihan tempat.',
-    deepDiveSubblock2Desc2: 'Keceriaan santri saat menyantap hidangan sehat menjadi cerminan nyata dari amanah sedekah yang Anda titipkan.',
+    deepDiveSubblock1Title: 'A & B. Sedekah Pangan, Fasilitas dan Perlengkapan',
+    deepDiveSubblock1Desc1: 'Membantu konsumsi pangan harian (beras, minyak goreng, telur, daging, ikan, sayuran, susu, air minum) serta perlengkapan fasilitas (kasur, lemari, meja kursi, kipas angin, peralatan dapur, perlengkapan masjid dan asrama).',
+    deepDiveSubblock1Desc2: 'Bantuan berupa barang langsung dapat dikonfirmasi terlebih dahulu ke layanan WhatsApp Customer Service GVF untuk kesesuaian spesifikasi dan waktu pengiriman ke Jonggol.',
+    deepDiveSubblock2Title: 'C & D. Sedekah Pendidikan, Keahlian, Jasa dan Tenaga',
+    deepDiveSubblock2Desc1: 'Mendukung pengadaan buku, perlengkapan olahraga, perangkat komputer, alat peraga, dan sarana kegiatan santri.',
+    deepDiveSubblock2Desc2: 'Membuka ruang seluas-luasnya bagi donatur yang ingin menyedekahkan waktu, keahlian teknologi, pelatihan vokasi, jasa perbaikan fasilitas, maupun tenaga pembangunan di lokasi pesantren.',
     portfolioShowcaseItems: [
       { tag: 'KEBUN', name: 'Panen Sayur Kangkung', category: 'Pangan Mandiri', image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/sayuran-kangkung.jpeg` },
       { tag: 'LAHAN', name: 'Lahan Kebun Pertanian', category: 'Ketahanan Pangan', image: `${S3_BASE}/bahan-konten/masjid-dan-kelas/lahan-kebun.jpeg` },
@@ -976,88 +981,95 @@ export const programsData: Record<string, ProgramData> = {
 
   zakat: {
     slug: 'zakat',
-    title: 'Zakat yang Disalurkan Sesuai Ketentuan Syariah',
-    heroSubtitle: 'Salurkan zakat melalui program yang memperhatikan ketentuan syariat dan kelayakan penerima manfaat 8 asnaf.',
-    categoryBadge: 'ZAKAT MAAL & FITRAH',
+    title: 'Zakat: Menunaikan Kewajiban, Menyalurkan Amanah',
+    heroSubtitle: 'Zakat merupakan kewajiban yang memiliki ketentuan khusus dalam syariat Islam. Pengelolaannya memperhatikan jenis zakat, perhitungan, serta golongan penerima yang berhak (asnaf). Melalui pengelolaan yang amanah dan penyaluran yang tepat sasaran, zakat diharapkan dapat membantu memenuhi kebutuhan mustahik serta mendukung peningkatan kesejahteraan mereka.',
+    categoryBadge: 'ZAKAT SYARIAT & 8 ASNAF',
     heroBgImage: '/bahan-konten/beras-zakat-fitrah-mustahik.webp',
     
-    pricingHeading: 'Layanan Penyaluran Zakat Terverifikasi',
-    pricingSubheading: 'Tunaikan kewajiban zakat 2,5% secara amanah, tepat hisab, dan disalurkan kepada asnaf yang berhak menerima.',
+    pricingHeading: 'Jenis Zakat & Ketentuan Syariat',
+    pricingSubheading: 'Tunaikan kewajiban zakat sesuai ketentuan: 1. Zakat Fitrah, 2. Zakat Maal, dan 3. Zakat Penghasilan dengan hisab dan nisab yang terverifikasi.',
     packages: [
       {
-        id: 'zakat-penghasilan-profesi',
-        title: 'Zakat Penghasilan / Profesi',
-        subtitle: 'Karyawan, Profesional & Praktisi',
-        pricePrefix: '',
-        priceAmount: '2,5%',
+        id: 'zakat-fitrah-ramadan',
+        title: '1. Zakat Fitrah',
+        subtitle: 'Kewajiban Ramadhan Menjelang Idulfitri',
+        pricePrefix: 'Rp ',
+        priceAmount: '45.000',
         priceUnit: '',
-        priceDesc: 'Dari penghasilan bersih bulanan',
-        estimation: 'Nisab: Setara 524 kg beras (~Rp 7.500.000/bln)',
+        priceDesc: 'Per jiwa (setara 3,5 liter / 2,5 kg beras)',
+        estimation: 'Penyaluran sebelum shalat Idulfitri kepada fakir miskin',
         isPopular: true,
         deliverables: [
-          { bold: 'Kadar Zakat 2,5%', text: 'Kewajiban zakat dari perolehan penghasilan halal bulanan' },
-          { bold: 'Asnaf Fi Sabilillah', text: 'Bantuan biaya pendidikan & pembinaan santri dhuafa berprestasi' },
-          { bold: 'Tepat Waktu Penunaian', text: 'Ditunaikan rutin setiap bulan saat menerima gaji atau penghasilan' },
-          { bold: 'Tanda Terima Resmi', text: 'Mendapatkan bukti konfirmasi setor zakat resmi dari yayasan' }
+          { bold: 'Kewajiban Setiap Muslim', text: 'Wajib ditunaikan oleh setiap muslim yang memenuhi ketentuan sebelum salat Idulfitri' },
+          { bold: 'Penyaluran Beras Layak', text: 'Dikonversikan dalam bentuk beras berkualitas baik bagi keluarga fakir miskin sekitar' },
+          { bold: 'Tepat Sasaran Asnaf', text: 'Menjangkau mustahik pra-sejahtera dan dhuafa di wilayah Sukasirna Jonggol' },
+          { bold: 'Tanda Terima Syariah', text: 'Pencatatan ijab qobul dan bukti tanda terima zakat resmi dari yayasan' }
         ],
-        ctaText: 'Tunaikan Zakat Profesi'
+        ctaText: 'Tunaikan Zakat Fitrah'
       },
       {
         id: 'zakat-maal-harta',
-        title: 'Zakat Maal (Tabungan & Emas)',
-        subtitle: 'Simpanan Kas, Deposito & Logam Mulia',
+        title: '2. Zakat Maal',
+        subtitle: 'Tabungan, Deposito, Emas & Aset Niaga',
         pricePrefix: '',
         priceAmount: '2,5%',
         priceUnit: '',
-        priceDesc: 'Dari total saldo mengendap setelah haul 1 tahun',
-        estimation: 'Nisab: 85 Gram Emas Murni',
+        priceDesc: 'Dari saldo harta simpanan yang mencapai haul 1 tahun',
+        estimation: 'Nisab: Setara 85 Gram Emas Murni',
         isPopular: false,
         deliverables: [
-          { bold: 'Kadar Zakat 2,5%', text: 'Dihitung dari total nilai saldo simpanan setelah mencapai haul 1 tahun' },
-          { bold: 'Standar Nisab Emas', text: 'Mencapai batas nisab setara 85 gram emas murni' },
-          { bold: 'Penyaluran Mustahik', text: 'Diberikan kepada fakir miskin dan santri dhuafa yang telah diverifikasi' },
-          { bold: 'Akad & Doa Zakat', text: 'Ijab qobul penunaian zakat dan doa keberkahan harta' }
+          { bold: 'Syarat Nisab & Haul', text: 'Zakat atas harta yang telah memenuhi persyaratan nisab (85g emas) dan haul (1 tahun)' },
+          { bold: 'Kadar Zakat 2,5%', text: 'Kewajiban pembersihan harta simpanan sesuai tuntunan syariat Islam' },
+          { bold: 'Dukungan Kesejahteraan', text: 'Disalurkan untuk memenuhi kebutuhan mustahik serta peningkatan taraf hidup mereka' },
+          { bold: 'Laporan Penyaluran Rapi', text: 'Pertanggungjawaban pembukuan yang diawasi dewan pengawas syariah' }
         ],
         ctaText: 'Tunaikan Zakat Maal'
       },
       {
-        id: 'zakat-fitrah-fidyah',
-        title: 'Zakat Fitrah & Fidyah',
-        subtitle: 'Kewajiban Ramadhan & Santunan Pangan',
-        pricePrefix: 'Rp ',
-        priceAmount: '45.000',
+        id: 'zakat-penghasilan-profesi',
+        title: '3. Zakat Penghasilan',
+        subtitle: 'Gaji, Honorarium & Pendapatan Profesi',
+        pricePrefix: '',
+        priceAmount: '2,5%',
         priceUnit: '',
-        priceDesc: 'Per jiwa (setara 3,5 liter beras)',
-        estimation: 'Penyaluran menjelang Idul Fitri bagi fakir miskin sekitar',
+        priceDesc: 'Dari penghasilan bersih yang diterima',
+        estimation: 'Nisab: Setara 524 kg beras (~Rp 7.500.000/bln)',
         isPopular: false,
         deliverables: [
-          { bold: 'Beras Layak Konsumsi', text: 'Dikonversikan dalam bentuk beras berkualitas baik untuk keluarga dhuafa' },
-          { bold: 'Warga Sekitar Jonggol', text: 'Menjangkau keluarga mustahik pra-sejahtera di desa sekitar pesantren' },
-          { bold: 'Penyaluran Tepat Waktu', text: 'Disalurkan sebelum pelaksanaan shalat Idul Fitri sesuai sunnah' }
+          { bold: 'Penghasilan Halal', text: 'Zakat atas penghasilan atau pendapatan halal yang telah memenuhi ketentuan zakat' },
+          { bold: 'Asnaf Fi Sabilillah', text: 'Bantuan biaya pendidikan & pembinaan beasiswa santri dhuafa berprestasi' },
+          { bold: 'Rutin Setiap Bulan', text: 'Dapat ditunaikan berkala setiap menerima gaji bulanan atau imbalan jasa' },
+          { bold: 'Doa Keberkahan', text: 'Didoakan oleh asatidz dan para santri penuntut ilmu di Jonggol' }
         ],
-        ctaText: 'Tunaikan Zakat Fitrah'
+        ctaText: 'Tunaikan Zakat Penghasilan'
       }
     ],
-    addonTitle: 'Layanan Konsultasi Zakat',
+    addonTitle: 'Layanan Konsultasi & Penyaluran 8 Asnaf',
     addonItems: [
       {
         name: 'Simulasi Hisab Nisab Zakat',
-        desc: 'Konsultasi gratis penghitungan zakat maal, tabungan, dan emas',
+        desc: 'Konsultasi gratis penghitungan zakat maal, tabungan emas, dan profesi',
         price: 'Konsultasi Layanan',
         availability: 'Via WhatsApp Resmi'
       },
       {
-        name: 'Fidyah Puasa',
-        desc: 'Penyaluran makanan siap santap bagi kaum fakir miskin (per hari)',
+        name: 'Fidyah Puasa Harian',
+        desc: 'Penyaluran paket makanan bernutrisi bagi kaum fakir miskin (per hari fidyah)',
         price: 'Rp 30.000',
         availability: 'Tersedia sepanjang tahun'
+      },
+      {
+        name: 'Kafarat & Santunan Mustahik',
+        desc: 'Penyaluran kewajiban kafarat sesuai ketentuan syariat kepada mustahik yang membutuhkan',
+        price: 'Sesuai Ketentuan',
+        availability: 'Konsultasi Khusus'
       }
     ],
     
-    deepDiveBadge: 'PRINSIP SYARIAH & ASNAF',
-    deepDiveTitle: 'Komitmen Penyaluran Zakat yang Tepat Sasaran',
-    deepDiveLead: 'Zakat dikelola dengan memperhatikan ketentuan syariah, ketepatan sasaran, dan pencatatan penyaluran agar amanah para muzakki dapat dipertanggungjawabkan.',
-    deepDiveStory1: 'Verifikasi kelayakan dilakukan secara cermat agar dana zakat benar-benar diterima oleh asnaf yang berhak, terutama santri penuntut ilmu agama dan vokasi yang memenuhi kriteria fi sabilillah, serta warga prasejahtera di sekitar pesantren.',
+    deepDiveBadge: 'PENYALURAN 8 ASNAF SYARIAT',
+    deepDiveTitle: 'Menunaikan Kewajiban, Menyalurkan Amanah',
+    deepDiveLead: 'Zakat merupakan kewajiban yang memiliki ketentuan khusus dalam syariat Islam. Pengelolaannya memperhatikan jenis zakat, perhitungan, serta golongan penerima yang berhak (asnaf). Melalui pengelolaan yang amanah dan penyaluran yang tepat sasaran, zakat diharapkan dapat membantu memenuhi kebutuhan mustahik serta mendukung peningkatan kesejahteraan mereka.',
+    deepDiveStory1: 'Dana zakat disalurkan kepada delapan golongan penerima (asnaf) sesuai ketentuan syariat: 1. Fakir, 2. Miskin, 3. Amil, 4. Mualaf, 5. Riqab, 6. Gharimin, 7. Fisabilillah, dan 8. Ibnu Sabil. Penyaluran dilakukan dengan memperhatikan ketentuan syariat, kelayakan penerima, dan peruntukan dana zakat.',
     deepDiveStory2: '',
     deepDiveBannerImage: '/bahan-konten/tangan-beras-zakat-pangan.webp',
     valueBoxes: [
@@ -1086,12 +1098,12 @@ export const programsData: Record<string, ProgramData> = {
       '/bahan-konten/beras-zakat-fitrah-mustahik.webp',
       '/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kbm-santri-ikhwan-di-aula.webp'
     ],
-    deepDiveSubblock1Title: 'Beasiswa Pendidikan Santri Fi Sabilillah',
-    deepDiveSubblock1Desc1: 'Zakat diarahkan untuk membebaskan biaya pendidikan, penyediaan kitab kajian, dan pemenuhan kebutuhan dasar santri dhuafa berprestasi.',
-    deepDiveSubblock1Desc2: 'Langkah ini membuka peluang bagi anak-anak berpotensi dari berbagai daerah untuk menuntut ilmu agama dan kejuruan secara utuh.',
-    deepDiveSubblock2Title: 'Pemberdayaan Masyarakat Sekitar',
-    deepDiveSubblock2Desc1: 'Di samping beasiswa santri, penyaluran zakat menjangkau warga dhuafa sekitar Sukasirna Jonggol melalui program bantuan pangan dan santunan.',
-    deepDiveSubblock2Desc2: 'Kehadiran pesantren menjadi bagian yang menguatkan kerukunan dan kepedulian sosial dengan lingkungan sekitar.',
+    deepDiveSubblock1Title: 'A. Tiga Ragam Jenis Zakat',
+    deepDiveSubblock1Desc1: '1. Zakat Fitrah: Zakat yang wajib ditunaikan oleh setiap muslim yang memenuhi ketentuan, pada bulan Ramadan sebelum pelaksanaan salat Idulfitri. 2. Zakat Maal: Zakat atas harta yang telah memenuhi persyaratan nisab dan haul sesuai ketentuan syariat. 3. Zakat Penghasilan: Zakat atas penghasilan atau pendapatan yang telah memenuhi ketentuan zakat.',
+    deepDiveSubblock1Desc2: 'Ketiga instrumen ini dikelola secara terpisah dengan akuntabilitas tinggi agar setiap rupiah kewajiban tertunai secara sah.',
+    deepDiveSubblock2Title: 'B. Penyaluran Kepada Delapan Golongan (Asnaf)',
+    deepDiveSubblock2Desc1: 'Dana zakat disalurkan kepada delapan golongan penerima (asnaf) sesuai ketentuan syariat: Fakir, Miskin, Amil, Mualaf, Riqab, Gharimin, Fisabilillah (dukungan pendidikan santri dhuafa berprestasi), dan Ibnu Sabil.',
+    deepDiveSubblock2Desc2: 'Penyaluran dilakukan dengan memperhatikan ketentuan syariat, kelayakan penerima, dan peruntukan dana zakat untuk mendukung kesejahteraan mereka.',
     portfolioShowcaseItems: [
       { tag: 'PANGAN ASNAF', name: 'Penyaluran Beras Pokok', category: 'Zakat Fitrah & Maal', image: `${S3_BASE}/bahan-konten/beras-zakat-fitrah-mustahik.webp` },
       { tag: 'BEASISWA', name: 'Santri Dhuafa Fi Sabilillah', category: 'Pendidikan Mustahik', image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kbm-santri-ikhwan-di-aula.webp` },

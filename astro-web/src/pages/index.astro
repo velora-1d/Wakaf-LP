@@ -12,6 +12,7 @@ import WorkflowSection from '../components/home/WorkflowSection.astro';
 import ShowcaseSection from '../components/home/ShowcaseSection.astro';
 import LeadershipSection from '../components/home/LeadershipSection.astro';
 import VideoSection from '../components/home/VideoSection.astro';
+import GoodsDonationSection from '../components/home/GoodsDonationSection.astro';
 import NewsSection from '../components/home/NewsSection.astro';
 import FinalCtaSection from '../components/home/FinalCtaSection.astro';
 import { getActivePageSections } from '../lib/db';
@@ -40,6 +41,7 @@ const isEnabled = (key: string) => {
   {isEnabled('showcase_gallery') && <ShowcaseSection />}
   {isEnabled('leadership') && <LeadershipSection />}
   {isEnabled('video_documentary') && <VideoSection />}
+  <GoodsDonationSection />
   {isEnabled('news_section') && <NewsSection />}
   {isEnabled('final_cta') && <FinalCtaSection />}
 </BaseLayout>

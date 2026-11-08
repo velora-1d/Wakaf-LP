@@ -1,21 +1,18 @@
-import postgres from 'postgres';
+import { neon } from '@neondatabase/serverless';
 import { programsData } from '../../data/programs';
+
+const DEFAULT_NEON_DATABASE_URL =
+  'postgresql://gvf_owner:npg_1m5lHgGejuAt@ep-flat-bread-aoom3zoi-pooler.c-2.ap-southeast-1.aws.neon.tech/gvf?channel_binding=require&sslmode=require';
 
 const connectionString = 
   process.env.DATABASE_URL || 
   process.env.PG_DATABASE_URL || 
-  'postgresql://DB-PGbase:OjRqOooKEny2kXMSSqIk@100.77.202.57:5433/gvf?application_name=pgbase&sslmode=disable';
+  DEFAULT_NEON_DATABASE_URL;
 
-const useSsl = connectionString.includes('sslmode=require') || connectionString.includes('neon.tech');
-
-const sql = postgres(connectionString, {
-  max: 1,
-  connect_timeout: 15,
-  ssl: useSsl ? 'require' : false,
-});
+const sql = neon(connectionString);
 
 async function syncPackages() {
-  console.log('[SYNC-PACKAGES] Memulai sinkronisasi paket dinamis ke database PostgreSQL...');
+  console.log('[SYNC-PACKAGES] Memulai sinkronisasi paket dinamis ke database Neon PostgreSQL...');
 
   const slugs = ['wakaf', 'infaq', 'sedekah', 'zakat'];
 
@@ -51,8 +48,7 @@ async function syncPackages() {
     `;
   }
 
-  console.log('[SYNC-PACKAGES] Sukses! Seluruh paket dan poin deliverables untuk 4 program telah tersimpan di PostgreSQL.');
-  await sql.end();
+  console.log('[SYNC-PACKAGES] Sukses! Seluruh paket dan poin deliverables untuk 4 program telah tersimpan di Neon PostgreSQL.');
 }
 
 syncPackages().catch((err) => {
