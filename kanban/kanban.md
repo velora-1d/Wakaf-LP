@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] HERO-SLIDER-S3-ALIGN-01: Perbaikan Path URL 4 Hero Slides Beranda & Audit Aset Gambar S3 Neon Bucket gvf-website Terverifikasi HTTP 200 & Deploy Cloudflare Pages
 - [x] CF-PAGES-DEPLOY-WORKER-TEARDOWN-01: Eksekusi Deployment Cloudflare Pages wakaf-astro, Konfigurasi Environment Neon DB, Pengujian Endpoint Live, dan Teardown Cloudflare Worker Lama
 - [x] CF-PAGES-NEON-DB-01: Migrasi Driver Neon Serverless HTTP untuk Cloudflare Pages & Workers, Eliminasi Fallback Socket Tailscale, serta Pembuatan Konfigurasi Deploy Pages Terverifikasi Build 100%
 - [x] PROGRAM-VISUAL-AUDIT-DEEP-CLEAN-01: Audit Visual Mendalam Seluruh Gambar Halaman Program (/program/wakaf, /program/infaq, /program/sedekah, /program/zakat), Eliminasi 3D Render & Hebel Semen Mentah, Standarisasi Zakat ke Beras & Mustahik Dhuafa, Serta Perbaikan Fallback Gambar Rusak Terverifikasi Build 100%

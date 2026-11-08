@@ -12,7 +12,7 @@ const heroSlides = [
     title: 'Membangun Kebaikan,<br />Memperkuat Peradaban.',
     lead: 'Global Village Fund menghubungkan kepedulian dan potensi filantropi untuk mendukung pengembangan ekosistem Skill Village yang berdaya dan berkelanjutan.',
     taglineEn: 'FOSTERING PESANTREN ECOSYSTEMS FOR SELF-RELIANCE AND SOCIAL IMPACT',
-    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-dan-pemukiman.webp',
+    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lahan-dan-pemukiman.webp',
     buttons: [
       { text: 'Jelajahi Program', href: '#program-kebaikan', variant: 'primary' },
       { text: 'Berkontribusi Sekarang', href: '/program/wakaf', variant: 'outline' }
@@ -50,7 +50,7 @@ const heroSlides = [
     badge: 'KAMPANYE KHUSUS SARANA IBADAH',
     title: 'Menguatkan Sarana Ibadah,<br />Menumbuhkan Manfaat Abadi.',
     lead: 'Di bawah naungan atap sementara, santri terus melantunkan ayat suci. Bersama wujudkan penyelesaian Masjid Khairu Ummah sebagai pusat ibadah dan pembinaan.',
-    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/media-lp/masjid-tampak-dalam-konstruksi.webp',
+    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/masjid-tampak-dalam-konstruksi.webp',
     buttons: [
       { text: 'Dukung Pembangunan', href: '/program/wakaf', variant: 'primary' }
     ]
@@ -66,7 +66,8 @@ const heroSlides = [
           src={slide.image}
           alt={slide.label}
           class="hero-bg-img"
-          loading={i === 0 ? 'eager' : 'lazy'}
+          loading="eager"
+          decoding="async"
         />
         <div class="hero-bg-overlay"></div>
       </div>

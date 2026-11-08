@@ -135,7 +135,7 @@ export interface ProgramData {
   ctaBannerText: string;
 }
 
-const S3_BASE = '';
+const S3_BASE = 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets';
 
 export const programsData: Record<string, ProgramData> = {
   wakaf: {

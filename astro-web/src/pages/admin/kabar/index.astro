@@ -397,7 +397,7 @@ const draftCount = allArticles.filter(a => !a.isPublished).length;
             <!-- Preview Box jika ada gambar -->
             <div class="upload-preview-wrap" id="uploadPreviewWrap">
               <img
-                src="/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp"
+                src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp"
                 alt="Pratinjau Gambar"
                 id="modalImagePreview"
                 class="modal-preview-img"
@@ -440,7 +440,7 @@ const draftCount = allArticles.filter(a => !a.isPublished).length;
             <input
               type="text"
               id="inputCoverImage"
-              value="/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp"
+              value="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp"
               class="form-input font-mono input-url-subtle"
               placeholder="URL Gambar MinIO S3"
               required
@@ -617,8 +617,8 @@ const draftCount = allArticles.filter(a => !a.isPublished).length;
         month: 'long',
         year: 'numeric'
       }).format(new Date());
-      if (inputCoverImage) inputCoverImage.value = '/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp';
-      if (modalImagePreview) modalImagePreview.src = '/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp';
+      if (inputCoverImage) inputCoverImage.value = 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp';
+      if (modalImagePreview) modalImagePreview.src = 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp';
       if (inputSummary) inputSummary.value = '';
       if (inputContent) inputContent.value = '';
       if (inputIsPublished) inputIsPublished.checked = true;
@@ -661,7 +661,7 @@ const draftCount = allArticles.filter(a => !a.isPublished).length;
           if (inputAuthor) inputAuthor.value = article.author || 'Tim GVF';
           if (inputPublishedAt) inputPublishedAt.value = article.publishedAt || '';
           if (inputCoverImage) inputCoverImage.value = article.coverImage || '';
-          if (modalImagePreview) modalImagePreview.src = article.coverImage || '/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp';
+          if (modalImagePreview) modalImagePreview.src = article.coverImage || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp';
           if (inputSummary) inputSummary.value = article.summary || '';
           if (inputContent) inputContent.value = article.content || '';
           if (inputIsPublished) inputIsPublished.checked = Boolean(article.isPublished);
@@ -790,7 +790,7 @@ const draftCount = allArticles.filter(a => !a.isPublished).length;
         const slug = inputSlug?.value?.trim();
         const author = inputAuthor?.value?.trim() || 'Tim GVF';
         const publishedAt = inputPublishedAt?.value?.trim();
-        const coverImage = inputCoverImage?.value?.trim() || '/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp';
+        const coverImage = inputCoverImage?.value?.trim() || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp';
         const summary = inputSummary?.value?.trim();
         const content = inputContent?.value?.trim();
         const isPublished = inputIsPublished?.checked ?? true;
