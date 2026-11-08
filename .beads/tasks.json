@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "CF-PAGES-NEON-DB-01", "name": "Migrasi Driver Neon Serverless HTTP untuk Cloudflare Pages & Workers, Eliminasi Fallback Socket Tailscale, serta Pembuatan Konfigurasi Deploy Pages Terverifikasi Build 100%", "status": "closed" },
     { "id": "PROGRAM-VISUAL-AUDIT-DEEP-CLEAN-01", "name": "Audit Visual Mendalam Seluruh Gambar Halaman Program (/program/wakaf, /program/infaq, /program/sedekah, /program/zakat), Eliminasi 3D Render & Hebel Semen Mentah, Standarisasi Zakat ke Beras & Mustahik Dhuafa, Serta Perbaikan Fallback Gambar Rusak", "status": "closed" },
     { "id": "KABAR-DETAIL-SLOP-FIX-01", "name": "Eliminasi Garis Vertikal Slop pada Lead Artikel & Pemolesan Tipografi Editorial Halaman Detail Warta (/kabar/[slug])", "status": "closed" },
     { "id": "BLOSSOM-CAROUSEL-INTEG-01", "name": "Instalasi @blossom-carousel/web, Komponen Reusable BlossomCarousel.astro, & Integrasi Carousel Kabar Terverifikasi Build", "status": "closed" },
