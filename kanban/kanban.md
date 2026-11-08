@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] CF-PAGES-DEPLOY-WORKER-TEARDOWN-01: Eksekusi Deployment Cloudflare Pages wakaf-astro, Konfigurasi Environment Neon DB, Pengujian Endpoint Live, dan Teardown Cloudflare Worker Lama
 - [x] CF-PAGES-NEON-DB-01: Migrasi Driver Neon Serverless HTTP untuk Cloudflare Pages & Workers, Eliminasi Fallback Socket Tailscale, serta Pembuatan Konfigurasi Deploy Pages Terverifikasi Build 100%
 - [x] PROGRAM-VISUAL-AUDIT-DEEP-CLEAN-01: Audit Visual Mendalam Seluruh Gambar Halaman Program (/program/wakaf, /program/infaq, /program/sedekah, /program/zakat), Eliminasi 3D Render & Hebel Semen Mentah, Standarisasi Zakat ke Beras & Mustahik Dhuafa, Serta Perbaikan Fallback Gambar Rusak Terverifikasi Build 100%
 - [x] VISUAL-AUDIT-IMAGE-MAPPING-01: Audit Mendalam & Pemetaan 109 Aset Gambar Bahan-Konten ke Seluruh Halaman & Section (Home, Tentang Kami, Program Wakaf-Infaq-Sedekah-Zakat, Kemitraan, Kontak, Kabar & Warta) dengan 4 Slide Hero Home Terkunci 100% Terverifikasi Build 0 Error
