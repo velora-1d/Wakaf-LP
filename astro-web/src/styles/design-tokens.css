@@ -5,7 +5,7 @@
    semantic color roles, motion tokens, easing library.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 /* Brand color scales */
 :root {
@@ -70,9 +70,10 @@
   --color-warning:         hsl(38, 92%, 50%);
   --color-error:           hsl(0, 72%, 51%);
 
-  /* Typography scale */
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Golos Text', 'Plus Jakarta Sans', sans-serif;
+  /* Typography scale — Golos Text sebagai Display & Body Utama Standar Resmi GVF/ISAVO */
+  --font-sans: 'Golos Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Golos Text', system-ui, sans-serif;
+  --font-heading: 'Golos Text', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
 
   /* Size scale */
@@ -241,6 +242,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
+  font-family: var(--font-sans);
 }
 
 /* Container system */

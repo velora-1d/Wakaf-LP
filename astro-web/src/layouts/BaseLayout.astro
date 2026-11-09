@@ -89,9 +89,10 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   <link rel="icon" type="image/webp" href="/favicon.webp" />
   <link rel="apple-touch-icon" href="/favicon.webp" />
 
-  <!-- Fonts Preconnect -->
+  <!-- Fonts Preconnect & Official Golos Text -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 </head>
 <body>
   <Navbar />
@@ -299,6 +300,11 @@ const allSchemas = [...baseSchemas, ...customSchemas];
 </html>
 
 <style is:global>
+  /* Official Typography: Golos Text across all pages & body text */
+  html, body {
+    font-family: 'Golos Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
   /* ==========================================================================
      GVF Professional Animation System
      GSAP ScrollTrigger handles all reveal animations.

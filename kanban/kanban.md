@@ -9,6 +9,7 @@
 - [/] ALL-PAGES-REAL-IMAGES-ZERO-DUP-01: Master Plan & Implementasi Pemetaan Foto Riil Lapangan (Zero-Repetition / Tanpa Duplikasi) di Seluruh Halaman Website GVF (Home, 4 Program, Tentang Kami, Kemitraan, Kontak) Bebas dari Folder design-masjid (Verifikasi Build & Empiris Live 8 Halaman)
 
 ## Done
+- [x] HOME-FONT-GOLOS-ALIGN-01: Penyelarasan Tipografi Halaman Beranda dengan Halaman Lain Menggunakan Font Resmi Golos Text Penuh (BaseLayout, Design Tokens, Hero, Showcase & Leadership)
 - [x] HIDE-LEADERSHIP-DB-01: Nonaktifkan Seksi Struktur Kepengurusan (Dewan Pembina, Pengawas & Pengelola GVF) di Seluruh Halaman via Database Neon PostgreSQL
 - [x] PURGE-NON-NEON-01: Pembersihan Total Database & Storage Non-Neon di astro-web (Hanya Sisakan Neon Serverless PostgreSQL & Neon S3 Storage Bucket gvf-website) Terverifikasi Build
 - [x] ASSETS-CLEAN-KEBAB-CASE-01: Refactor Pembersihan Symlink Duplikat & Rename Permanen Folder/File Bahan Konten ke Standar Kebab-Case Terverifikasi Build 100% & HTTP 200
