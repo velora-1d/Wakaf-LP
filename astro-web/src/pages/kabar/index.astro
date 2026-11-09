@@ -536,7 +536,26 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
 
   @media (max-width: 640px) {
     .archive-header-hero {
-      padding: 80px 0 36px 0;
+      padding: 60px 16px 28px 16px;
+    }
+
+    .archive-filter-row {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 4px 16px 8px 16px;
+      margin: 0 -16px;
+    }
+
+    .archive-filter-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-pill {
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     .archive-grid {

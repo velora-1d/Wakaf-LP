@@ -1006,6 +1006,234 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     transform: translateY(-1px);
     box-shadow: 0 6px 18px rgba(9, 105, 218, 0.3);
   }
+
+  /* Mobile Responsive Enhancements */
+  @media (max-width: 768px) {
+    .donatur-hero-banner {
+      padding: 100px 18px 40px;
+    }
+
+    .banner-title {
+      font-size: 24px;
+    }
+
+    .banner-subtitle {
+      font-size: 13.5px;
+      margin-bottom: 16px;
+    }
+
+    .donatur-content-section {
+      padding: 24px 16px 60px;
+    }
+
+    .controls-card {
+      padding: 16px;
+      gap: 12px;
+    }
+
+    /* Program Tabs Horizontal Swipe */
+    .program-tabs-wrap {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+      margin: 0 -4px;
+    }
+
+    .program-tabs-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-pill {
+      flex-shrink: 0;
+      padding: 8px 14px;
+      font-size: 12.5px;
+    }
+
+    .toolbar-bottom-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      padding-top: 12px;
+    }
+
+    .search-input-wrap {
+      max-width: 100%;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .filter-count-badge {
+      width: 100%;
+      justify-content: center;
+      padding: 8px;
+      font-size: 12px;
+    }
+
+    /* Transform Table into Clean Touch-Friendly Vertical Cards */
+    .donatur-table-wrap {
+      overflow-x: visible;
+      padding: 12px;
+    }
+
+    .donatur-full-table {
+      min-width: 0;
+      width: 100%;
+      display: block;
+    }
+
+    .donatur-full-table thead {
+      display: none;
+    }
+
+    .donatur-full-table tbody {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .donor-data-row {
+      display: grid !important;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px 10px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+      align-items: center;
+    }
+
+    .donor-data-row[style*="display: none"] {
+      display: none !important;
+    }
+
+    .donatur-full-table td {
+      padding: 0;
+      border: none;
+    }
+
+    .donatur-full-table td.col-no {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: flex-start;
+      margin-top: 2px;
+      text-align: left;
+    }
+
+    .no-cell {
+      background: #eff6ff;
+      color: #0969da;
+      border: 1px solid #dbeafe;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .donatur-full-table td.col-donor {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .donor-full-name {
+      font-size: 13.5px;
+    }
+
+    .donatur-full-table td.col-prog {
+      grid-column: 3;
+      grid-row: 1;
+      text-align: right;
+      align-self: flex-start;
+    }
+
+    .prog-tag {
+      font-size: 10.5px;
+      padding: 2px 8px;
+    }
+
+    .donatur-full-table td.col-intent {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      border-top: 1px solid #f8fafc;
+      padding-top: 8px;
+    }
+
+    .intent-block {
+      max-width: 100%;
+    }
+
+    .donatur-full-table td.col-amount {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8fafc;
+      border: 1px solid #f1f5f9;
+      border-radius: 8px;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .donatur-full-table td.col-amount::before {
+      content: "Nominal Donasi";
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .nominal-text {
+      font-size: 14px;
+    }
+
+    .donatur-full-table td.col-status {
+      grid-column: 1 / -1;
+      grid-row: 4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      padding-top: 2px;
+    }
+
+    .donatur-full-table td.col-status::before {
+      content: "Status Amil";
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Pagination Mobile */
+    .pagination-footer {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .pagination-nav {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .page-nav-btn {
+      flex: 1;
+      padding: 0 10px;
+      font-size: 12px;
+    }
+
+    .page-numbers-wrap {
+      display: none;
+    }
+  }
 </style>
 
 <script>

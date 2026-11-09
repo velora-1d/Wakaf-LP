@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "MOBILE-FRIENDLY-ALL-PAGES-MENU-SECTIONS-01", "name": "Audit & Implementasi Standarisasi Mobile-Friendly Komprehensif pada Seluruh Menu, Drawer Navigasi, Seksi, Halaman Publik Donatur, Program, dan Beranda", "status": "closed" },
     { "id": "PUBLIC-DONOR-PAGE-AND-ADMIN-INTEG-01", "name": "Pembuatan Halaman Khusus Publik Donatur (/donatur) Lengkap dengan Filter Program, Pencarian Real-Time, Pagination Interaktif, Kolom No Angka Murni, Serta Integrasi Langsung dengan Dashboard Admin CMS (/admin/donatur)", "status": "closed" },
     { "id": "REDESIGN-DONOR-TABLE-GRID-2-COL-01", "name": "Redesain UI Tabel Donatur Landing Page Program Menjadi Format Ringkas 8 Baris Terkini dengan Kolom No Murni Angka, Tanpa Avatar Inisial Bulat, dan Tombol Akses Cepat ke Halaman Publik Donatur", "status": "closed" },
     { "id": "REDESIGN-DONOR-GRID-2-COL-01", "name": "Redesain UI Feed Donatur Menjadi Grid 2 Kolom Berpenomoran Resmi Tanpa Avatar Inisial Bulat Serta Fitur Live Search & Load More", "status": "closed" },
