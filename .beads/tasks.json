@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "REDESIGN-DONOR-GRID-2-COL-01", "name": "Redesain UI Feed Donatur Menjadi Grid 2 Kolom Berpenomoran Resmi Tanpa Avatar Inisial Bulat Serta Fitur Live Search & Load More", "status": "closed" },
     { "id": "MIGRATE-DONORS-PGBASE-TO-NEON-01", "name": "Migrasi & Sinkronisasi 65 Data Donatur dan 61 Transaksi Donasi Riil dari PGbase ke Neon PostgreSQL dengan Reset Identity Aman", "status": "closed" },
     { "id": "ELIMINATE-NESTED-CARDS-GOODS-DONATION-01", "name": "Eliminasi Anti-Pattern UI AI-Slop Nested Card (Kotak di dalam Kotak) pada GoodsDonationSection.astro, contact.astro, WakafLandSliderSection.astro, & SedekahChipsSection.astro Menjadi Clean Architectural Hairline Rows Berstandar Taste-Skill & Impeccable", "status": "closed" },
     { "id": "NAVBAR-MENU-ORDER-ALIGN-01", "name": "Penyelarasan Urutan Menu Navigasi (Beranda, Tentang Kami, Program, Kemitraan, Kabar, Kontak) dan Standarisasi Bahasa Indonesia di Navbar Desktop & Mobile Drawer", "status": "closed" },
