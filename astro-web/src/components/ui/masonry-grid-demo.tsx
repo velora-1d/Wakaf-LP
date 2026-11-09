@@ -55,18 +55,18 @@ export const defaultShowcaseItems: MasonryItem[] = [
   },
   {
     id: 9,
-    src: '/gambar design/skywalk learning room.jpg',
-    alt: 'Visualisasi 3D Skywalk Learning Room',
+    src: `${S3_BASE}/media-lp/lorong-asrama-bata-merah.webp`,
+    alt: 'Lorong Asrama Bata Merah Kawasan Pesantren Sukasirna',
   },
   {
     id: 10,
-    src: '/gambar design/panel surya.jpg',
-    alt: 'Rancangan Instalasi Panel Surya Kawasan Pesantren',
+    src: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/ustadz-menulis-materi-di-whiteboard.webp`,
+    alt: 'Kegiatan Pembelajaran dan Pengajaran Ustadz di Kelas',
   },
   {
     id: 11,
-    src: '/gambar design/interior masjid.jpg',
-    alt: 'Visualisasi Interior Utama Masjid Khairu Ummah',
+    src: `${S3_BASE}/bahan-konten/masjid-dan-kelas/masjid-tampak-dalam-2.jpeg`,
+    alt: 'Ruang Sholat Utama Masjid Khairu Ummah Sugro',
   },
   {
     id: 12,

@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "MASONRY-PURGE-RENDERING-01", "name": "Penggantian 3 Aset Rendering ke Foto Riil Lapangan 100% Unik (Zero Duplicate Across All Pages) di MasonryGrid Showcase", "status": "closed" },
     { "id": "MASONRY-GRID-PURE-PHOTO-CENTER-01", "name": "Integrasi Murni Foto MasonryGrid (Tanpa Teks Tambahan Sesuai Prompt Asli), Centering Simetris Container 1280px, & Proteksi Scroll Header", "status": "closed" },
     { "id": "VIDEO-SECTION-INLINE-AESTHETIC-01", "name": "Redesain UI Play Button Estetik Berlapis & Video YouTube In-Place Section Presisi di VideoSection.astro", "status": "closed" },
     { "id": "MASONRY-GRID-CLEAN-UI-01", "name": "Integrasi Komponen MasonryGrid 3D Tilt React Sesuai Prompt dengan Desain Kartu Rapi (Foto Jernih, Footer Keterangan Terpisah Bersih, Tanpa Overlap Berantakan, Terverifikasi Build 100%)", "status": "closed" },
