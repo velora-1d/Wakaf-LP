@@ -31,6 +31,9 @@ importers:
       '@blossom-carousel/web':
         specifier: ^1.6.0
         version: 1.6.1
+      '@neondatabase/serverless':
+        specifier: ^1.2.0
+        version: 1.2.0
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))
@@ -45,7 +48,7 @@ importers:
         version: 2.1.1
       drizzle-orm:
         specifier: ^0.45.4
-        version: 0.45.4(postgres@3.4.9)
+        version: 0.45.4(@neondatabase/serverless@1.2.0)(postgres@3.4.9)
       framer-motion:
         specifier: ^14.4.0
         version: 14.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -1332,6 +1335,10 @@ packages:
     peerDependencies:
       '@emnapi/core': ^1.7.1 || ^2.0.0-alpha.4
       '@emnapi/runtime': ^1.7.1 || ^2.0.0-alpha.4
+
+  '@neondatabase/serverless@1.2.0':
+    resolution: {integrity: sha512-tnaqgixUengZQNd9ZrS3ytQfamJzLKY8QxgqWQTNHHtB+KrFQWk77JTbbpg4RD+J3qE4eO2lVytvGDX5Kj6FdQ==}
+    engines: {node: '>=19.0.0'}
 
   '@nodable/entities@3.1.0':
     resolution: {integrity: sha512-LsS/DjHr+uDM647Gru/cA8+J3a3HfhttwCKLyuoyN7yXTFCxKBtSgMQBvrW9yNPa2/zDRUNuGPaH5QUFoa4arQ==}
@@ -4885,6 +4892,8 @@ snapshots:
       '@emnapi/runtime': 1.11.3
       '@tybys/wasm-util': 0.10.4
 
+  '@neondatabase/serverless@1.2.0': {}
+
   '@nodable/entities@3.1.0': {}
 
   '@oslojs/encoding@1.1.0': {}
@@ -5691,8 +5700,9 @@ snapshots:
       esbuild: 0.25.12
       tsx: 4.23.15
 
-  drizzle-orm@0.45.4(postgres@3.4.9):
+  drizzle-orm@0.45.4(@neondatabase/serverless@1.2.0)(postgres@3.4.9):
     optionalDependencies:
+      '@neondatabase/serverless': 1.2.0
       postgres: 3.4.9
 
   dset@3.1.4: {}
