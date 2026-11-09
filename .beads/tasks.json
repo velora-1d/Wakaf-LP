@@ -101,6 +101,7 @@
     { "id": "SEO-SCHEMA-JSONLD-01", "name": "Utility Generator Schema.org & Integrasi JSON-LD (Organization, WebSite, FAQPage, DonateAction, BreadcrumbList, NewsArticle)", "status": "closed" },
     { "id": "SEO-GEO-LLMSTXT-01", "name": "Generative Engine Optimization (GEO/AEO) via llms.txt & llms-full.txt", "status": "closed" },
     { "id": "SEO-IMG-VERIFY-01", "name": "Image SEO (Alt, Loading Lazy, Decoding Async) & Uji Validasi Build Empiris (TypeScript Check & Astro Build)", "status": "closed" },
-    { "id": "NAVBAR-CONTRAST-01", "name": "Perbaikan Kontras & Visibilitas Navbar pada Halaman Berlatar Terang (/kabar dan /kabar/[slug]) dengan Architectural Dark Banner Standar ISAVO", "status": "closed" }
+    { "id": "NAVBAR-CONTRAST-01", "name": "Perbaikan Kontras & Visibilitas Navbar pada Halaman Berlatar Terang (/kabar dan /kabar/[slug]) dengan Architectural Dark Banner Standar ISAVO", "status": "closed" },
+    { "id": "ASSETS-CLEAN-KEBAB-CASE-01", "name": "Pembersihan Symlink Duplikat & Rename Permanen Folder/File Bahan Konten ke Kebab-Case", "status": "closed" }
   ]
 }

@@ -8,6 +8,8 @@
 ## In Review / Test
 
 ## Done
+- [x] PURGE-NON-NEON-01: Pembersihan Total Database & Storage Non-Neon di astro-web (Hanya Sisakan Neon Serverless PostgreSQL & Neon S3 Storage Bucket gvf-website) Terverifikasi Build
+- [x] ASSETS-CLEAN-KEBAB-CASE-01: Refactor Pembersihan Symlink Duplikat & Rename Permanen Folder/File Bahan Konten ke Standar Kebab-Case Terverifikasi Build 100% & HTTP 200
 - [x] GVF-CONTENT-REVISION-IMPLEMENT-01: Implementasi Komprehensif Revisi Narasi & Konten Website GVF Sesuai Dokumen Revisi (Hero Slide 1, Intro 4 Pilar, Rincian 4 Pilar Infak/Sedekah/Zakat/Wakaf A-D, Komponen Donasi Barang WhatsApp, Nilai Ekosistem Skill Village & Footer) Terverifikasi Empiris & Live Deploy Cloudflare Pages
 - [x] HERO-SLIDER-S3-ALIGN-01: Perbaikan Path URL 4 Hero Slides Beranda & Audit Aset Gambar S3 Neon Bucket gvf-website Terverifikasi HTTP 200 & Deploy Cloudflare Pages
 - [x] CF-PAGES-DEPLOY-WORKER-TEARDOWN-01: Eksekusi Deployment Cloudflare Pages wakaf-astro, Konfigurasi Environment Neon DB, Pengujian Endpoint Live, dan Teardown Cloudflare Worker Lama
