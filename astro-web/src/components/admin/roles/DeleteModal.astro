@@ -1,0 +1,45 @@
+---
+// src/components/admin/roles/DeleteModal.astro
+---
+
+<!-- MODAL KONFIRMASI HAPUS USER -->
+<div id="deleteUserModal" class="fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-xs flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+  <div class="w-full max-w-sm bg-white rounded-xl shadow-2xl border border-slate-200 p-5 space-y-4 transform scale-95 transition-transform duration-200" id="deleteUserModalBox">
+    <div class="flex items-center gap-3">
+      <span class="w-10 h-10 rounded-full bg-red-50 border border-red-200 text-red-600 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 6h18"/>
+          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+          <line x1="10" y1="11" x2="10" y2="17"/>
+          <line x1="14" y1="11" x2="14" y2="17"/>
+        </svg>
+      </span>
+      <div>
+        <h3 class="text-sm font-bold text-slate-900 m-0">Hapus Akun Pengguna?</h3>
+        <p class="text-xs text-slate-500 m-0 mt-0.5">Tindakan ini tidak dapat dibatalkan.</p>
+      </div>
+    </div>
+
+    <p class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-200 m-0 leading-relaxed">
+      Akun <strong id="deleteUserDisplay" class="font-mono text-slate-900"></strong> akan dihapus permanen dari basis data admin GVF.
+    </p>
+
+    <div class="flex items-center justify-end gap-2 pt-1">
+      <button
+        type="button"
+        id="btnCancelDeleteUserModal"
+        class="h-8 px-3 rounded-md border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+      >
+        Batal
+      </button>
+      <button
+        type="button"
+        id="btnExecuteDeleteUserModal"
+        class="h-8 px-3.5 rounded-md bg-red-600 hover:bg-red-700 text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer inline-flex items-center gap-1.5"
+      >
+        <span>Ya, Hapus</span>
+      </button>
+    </div>
+  </div>
+</div>

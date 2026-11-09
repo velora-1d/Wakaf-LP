@@ -1,0 +1,232 @@
+---
+// src/components/admin/kabar/ArticleModal.astro
+---
+
+<!-- Modal Formulir Tambah / Edit Artikel (Drawer Slide-Over Samping Kanan 70%) -->
+<div
+  id="articleFormModal"
+  class="modal-backdrop drawer-mode"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="formModalTitle"
+>
+  <div class="modal-card drawer-sheet" id="formModalBox">
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <div class="modal-header-info">
+        <div class="modal-icon-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
+            <path d="M18 14h-8"></path>
+            <path d="M15 18h-5"></path>
+            <path d="M10 6h8v4h-8V6Z"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 id="formModalTitle" class="modal-title">Tulis Artikel Baru</h3>
+          <p id="formModalSubtitle" class="modal-subtitle">Lengkapi formulir di bawah ini untuk menerbitkan warta baru</p>
+        </div>
+      </div>
+
+      <button type="button" id="closeFormModalBtn" class="modal-close-btn" aria-label="Tutup modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      <input type="hidden" id="inputArticleId" value="" />
+
+      <!-- Judul -->
+      <div class="form-group">
+        <label for="inputTitle" class="form-label">
+          Judul Artikel <span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="inputTitle"
+          placeholder="Contoh: Peresmian Gedung Vokasi Santri Jonggol"
+          class="form-input"
+          required
+        />
+      </div>
+
+      <!-- Kategori & Slug -->
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="inputCategory" class="form-label">
+            Kategori Artikel <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="inputCategory"
+            list="categoryOptions"
+            placeholder="Pilih atau ketik kategori"
+            class="form-input"
+            required
+          />
+          <datalist id="categoryOptions">
+            <option value="LITERASI WAKAF"></option>
+            <option value="PROGRESS MASJID"></option>
+            <option value="TECHNOPARK"></option>
+            <option value="WAKAF DIGITAL"></option>
+            <option value="KEMITRAAN"></option>
+            <option value="PENDIDIKAN"></option>
+            <option value="KEMANUSIAAN"></option>
+          </datalist>
+        </div>
+
+        <div class="form-group">
+          <label for="inputSlug" class="form-label">
+            Slug URL <span class="optional">(Otomatis dibuat dari judul)</span>
+          </label>
+          <input
+            type="text"
+            id="inputSlug"
+            placeholder="peresmian-gedung-vokasi"
+            class="form-input font-mono"
+          />
+        </div>
+      </div>
+
+      <!-- Penulis & Tanggal -->
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="inputAuthor" class="form-label">
+            Nama Penulis / Amil
+          </label>
+          <input
+            type="text"
+            id="inputAuthor"
+            placeholder="Contoh: Tim GVF"
+            value="Tim GVF"
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="inputPublishedAt" class="form-label">
+            Tanggal Terbit Teks
+          </label>
+          <input
+            type="text"
+            id="inputPublishedAt"
+            placeholder="Contoh: 18 Juli 2026"
+            class="form-input"
+          />
+        </div>
+      </div>
+
+      <!-- Integrasi Unggah Gambar MinIO S3 -->
+      <div class="form-group">
+        <label class="form-label">
+          Gambar Sampul Artikel <span class="required">*</span>
+        </label>
+
+        <div class="upload-dropzone" id="modalUploadDropzone">
+          <!-- Preview Box jika ada gambar -->
+          <div class="upload-preview-wrap" id="uploadPreviewWrap">
+            <img
+              src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp"
+              alt="Pratinjau Gambar"
+              id="modalImagePreview"
+              class="modal-preview-img"
+            />
+            <div class="preview-overlay">
+              <button type="button" id="btnTriggerModalFile" class="btn-change-image-preview">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Unggah Gambar Baru (MinIO)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Upload Progress Status -->
+          <div id="modalUploadProgress" class="upload-progress-box" style="display: none;">
+            <div class="spinner-icon"></div>
+            <span>Sedang mengunggah berkas ke MinIO S3...</span>
+          </div>
+
+          <!-- Upload Info Tag -->
+          <div class="upload-minio-badge" id="uploadMinioBadge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Neon S3 Storage (gvf-website) Aktif</span>
+          </div>
+
+          <!-- Hidden File Input for Modal -->
+          <input
+            type="file"
+            id="modalFileInput"
+            accept="image/jpeg,image/png,image/webp,image/gif"
+            style="display: none;"
+          />
+
+          <!-- Hidden input URL yang menyimpan hasil URL MinIO -->
+          <input
+            type="text"
+            id="inputCoverImage"
+            value="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp"
+            class="form-input font-mono input-url-subtle"
+            placeholder="URL Gambar MinIO S3"
+            required
+          />
+        </div>
+      </div>
+
+      <!-- Ringkasan -->
+      <div class="form-group">
+        <label for="inputSummary" class="form-label">
+          Ringkasan Berita (Cuplikan Kartu) <span class="required">*</span>
+        </label>
+        <textarea
+          id="inputSummary"
+          rows="2"
+          placeholder="Tulis ringkasan padat 1-2 kalimat untuk ditampilkan di kartu beranda..."
+          class="form-textarea"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Isi Narasi -->
+      <div class="form-group">
+        <label for="inputContent" class="form-label">
+          Isi Narasi Artikel Lengkap <span class="required">*</span>
+        </label>
+        <textarea
+          id="inputContent"
+          rows="6"
+          placeholder="Tuliskan isi berita lengkap di sini. Gunakan baris baru antar paragraf..."
+          class="form-textarea leading-relaxed"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Checkbox Publikasi -->
+      <div class="publish-checkbox-row">
+        <label class="checkbox-container">
+          <input type="checkbox" id="inputIsPublished" checked />
+          <span class="checkbox-custom"></span>
+          <span class="checkbox-label-text">Langsung publikasikan artikel ini ke web publik</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+      <button type="button" id="cancelFormModalBtn" class="btn-cancel">
+        Batal
+      </button>
+      <button type="button" id="submitArticleFormBtn" class="btn-save-primary">
+        <span id="submitBtnText">Simpan Artikel</span>
+      </button>
+    </div>
+  </div>
+</div>

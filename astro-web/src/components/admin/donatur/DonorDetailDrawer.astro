@@ -1,0 +1,431 @@
+---
+// src/components/admin/donatur/DonorDetailDrawer.astro
+interface LabelItem {
+  id: number;
+  nama: string;
+  warna: string;
+  deskripsi?: string | null;
+}
+
+interface Props {
+  allLabels: LabelItem[];
+  labelColorMap: Record<string, { bg: string; text: string; border: string }>;
+}
+
+const { allLabels = [], labelColorMap = {} } = Astro.props;
+---
+
+<!-- SLIDE-OVER DRAWER KANAN (70% VIEWPORT WIDTH) -->
+<div id="drawerBackdrop" class="fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-xs flex justify-end opacity-0 pointer-events-none transition-opacity duration-300">
+  <div id="drawerBox" class="w-full sm:w-[70vw] sm:max-w-[70vw] h-full bg-white flex flex-col shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 ease-out overflow-hidden">
+    <!-- Drawer Header -->
+    <div class="h-16 px-6 border-b border-slate-200 flex items-center justify-between bg-white shrink-0">
+      <div>
+        <div class="flex items-center gap-2 mb-0.5">
+          <span class="inline-flex px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-[#0969da] border border-blue-200 uppercase">
+            Formulir Amil
+          </span>
+          <span class="text-xs text-slate-400 font-mono">Slide-Over 70%</span>
+        </div>
+        <h2 id="drawerTitleText" class="text-base font-bold text-slate-900 m-0">Catat Donasi &amp; Profil Donatur Baru</h2>
+      </div>
+      <button type="button" id="btnCloseDrawer" class="w-8 h-8 rounded-md flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer" aria-label="Tutup Drawer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Drawer Body (Scrollable) -->
+    <div class="flex-1 overflow-y-auto p-6 bg-slate-50/50 space-y-5">
+      <form id="donationEntryForm" class="space-y-5">
+        <input type="hidden" id="inputDonationId" value="" />
+        <!-- Section 1: Profil Donatur -->
+        <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-2xs space-y-4">
+          <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100">
+            <span class="w-6 h-6 rounded-full bg-[#0969da] text-white text-xs font-bold flex items-center justify-center">1</span>
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Profil Donatur (Wakif / Muhsinin)</h3>
+              <p class="text-[11px] text-slate-400 m-0">Tersinkronisasi otomatis dengan nomor WhatsApp donatur.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputNamaLengkap">
+                Nama Lengkap <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="inputNamaLengkap"
+                required
+                placeholder="Contoh: H. Bambang Sulistyo"
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputNamaTampilan">
+                Nama Tampilan / Publikasi
+              </label>
+              <input
+                type="text"
+                id="inputNamaTampilan"
+                placeholder="Contoh: Hamba Allah / Keluarga H. Bambang"
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputNoWhatsapp">
+                Nomor WhatsApp <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="tel"
+                id="inputNoWhatsapp"
+                required
+                placeholder="Contoh: 081234567890"
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              />
+              <span class="text-[10px] text-slate-400 mt-1 block">Untuk kwitansi otomatis via WhatsApp</span>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputTipeDonatur">
+                Tipe Donatur
+              </label>
+              <select id="inputTipeDonatur" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                <option value="individu">Individu / Perorangan</option>
+                <option value="korporasi">Perusahaan / CSR</option>
+                <option value="komunitas">Komunitas / Majelis</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputEmail">
+                Email (Opsional)
+              </label>
+              <input
+                type="email"
+                id="inputEmail"
+                placeholder="donatur@email.com"
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputKotaDomisili">
+                Kota Domisili (Opsional)
+              </label>
+              <input
+                type="text"
+                id="inputKotaDomisili"
+                placeholder="Contoh: Jakarta Selatan"
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              />
+            </div>
+
+            <!-- Label Donatur (Multi-select Badges) -->
+            <div class="col-span-1 md:col-span-2">
+              <label class="block text-xs font-medium text-slate-700 mb-1.5">
+                Label / Tag Donatur
+              </label>
+              <div id="drawerLabelsContainer" class="flex flex-wrap gap-2 p-3 rounded-lg border border-slate-200 bg-slate-50/60">
+                {allLabels.length === 0 ? (
+                  <span class="text-xs text-slate-400 italic">Belum ada label tersedia.</span>
+                ) : (
+                  allLabels.map((lbl) => {
+                    const col = labelColorMap[lbl.warna] || labelColorMap.blue;
+                    return (
+                      <label class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-700 hover:border-[#0969da] cursor-pointer transition-colors shadow-2xs">
+                        <input
+                          type="checkbox"
+                          class="drawer-label-cb rounded border-slate-300 text-[#0969da] focus:ring-1 focus:ring-[#0969da] cursor-pointer"
+                          value={String(lbl.id)}
+                        />
+                        <span class={`w-2 h-2 rounded-full ${col.bg.replace('-50', '-500')}`}></span>
+                        <span>{lbl.nama}</span>
+                      </label>
+                    );
+                  })
+                )}
+              </div>
+              <span class="text-[10px] text-slate-400 mt-1 block">Tandai label untuk mempermudah kategorisasi &amp; follow-up donatur.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Program & Akad Syariah -->
+        <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-2xs space-y-4">
+          <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100">
+            <span class="w-6 h-6 rounded-full bg-[#0969da] text-white text-xs font-bold flex items-center justify-center">2</span>
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Rincian Transaksi, Program &amp; Akad</h3>
+              <p class="text-[11px] text-slate-400 m-0">Kode transaksi, tanggal, alokasi program dan kejelasan niat donasi.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputKodeTransaksi">
+                Kode Transaksi (Opsional)
+              </label>
+              <input
+                type="text"
+                id="inputKodeTransaksi"
+                placeholder="Otomatis jika kosong (GVF-...)"
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs font-mono text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              />
+              <span class="text-[10px] text-slate-400 mt-1 block">Bisa diisi manual nomor kwitansi / invoice</span>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputTanggalTransaksi">
+                Tanggal Transaksi <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="date"
+                id="inputTanggalTransaksi"
+                required
+                value={new Date().toISOString().split('T')[0]}
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer"
+              />
+              <span class="text-[10px] text-slate-400 mt-1 block">Default otomatis tanggal hari ini</span>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputProgramTujuan">
+                Program Pilihan <span class="text-red-500">*</span>
+              </label>
+              <select id="inputProgramTujuan" required class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                <option value="wakaf">Wakaf (Wakaf Produktif &amp; Lahan)</option>
+                <option value="infaq">Infaq (Infaq Pembangunan Fisik)</option>
+                <option value="sedekah">Shodaqoh (Sedekah Nutrisi &amp; Pangan)</option>
+                <option value="zakat">Zakat (Zakat Maal &amp; Fitrah)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputAkadPeruntukan">
+                Akad Peruntukan
+              </label>
+              <select id="inputAkadPeruntukan" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                <option value="Wakaf Muabbad (Abadi)">Wakaf Muabbad (Abadi Pokok Utuh)</option>
+                <option value="Infaq Pembangunan Fisik">Infaq Pembangunan Fisik</option>
+                <option value="Sedekah Nutrisi & Pangan">Sedekah Nutrisi &amp; Pangan Santri</option>
+                <option value="Zakat Maal 8 Asnaf">Zakat Maal (8 Golongan Asnaf)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputNominal">
+                Nominal Pokok Donasi (Rp) <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="number"
+                id="inputNominal"
+                required
+                min="1000"
+                step="1000"
+                placeholder="Contoh: 1000000"
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs font-mono font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputKodeUnik">
+                Kode Unik (Rp)
+              </label>
+              <input
+                type="number"
+                id="inputKodeUnik"
+                min="0"
+                max="999"
+                value="0"
+                placeholder="0"
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs font-mono text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              />
+              <span class="text-[10px] text-slate-400 mt-1 block">3 digit acak untuk verifikasi bank</span>
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputAtasNamaNiat">
+                Atas Nama Niat (Khusus Hadiah Pahala / Alm.)
+              </label>
+              <input
+                type="text"
+                id="inputAtasNamaNiat"
+                placeholder="Contoh: Alm. H. Abdullah bin Hasan"
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputDoaDonatur">
+                Doa &amp; Harapan Donatur
+              </label>
+              <textarea
+                id="inputDoaDonatur"
+                rows="2"
+                placeholder="Tuliskan permohonan doa atau niat donatur..."
+                class="w-full rounded-md border border-slate-200 bg-white p-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Saluran Perolehan (Leads) -->
+        <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-2xs space-y-4">
+          <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100">
+            <span class="w-6 h-6 rounded-full bg-[#0969da] text-white text-xs font-bold flex items-center justify-center">3</span>
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Saluran Perolehan (Leads Tracking)</h3>
+              <p class="text-[11px] text-slate-400 m-0">Lacak saluran marketing &amp; sumber akuisisi donatur.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputSumberLeads">
+                Sumber Kanal Leads <span class="text-red-500">*</span>
+              </label>
+              <select id="inputSumberLeads" required class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                <option value="meta_ads">Meta Ads (Facebook / Instagram Ads)</option>
+                <option value="tiktok_ads">TikTok Ads &amp; Video</option>
+                <option value="google_seo">Google Search / Organik</option>
+                <option value="safari_dakwah">Safari Dakwah &amp; Majelis</option>
+                <option value="brosur_event">Brosur Cetak / Event Pameran</option>
+                <option value="relasi_langsung">Relasi Langsung Pengurus / Founder</option>
+                <option value="walk_in">Walk-in / Kunjungan Kawasan</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputCampaignUtm">
+                Kode Kampanye / UTM Tag (Opsional)
+              </label>
+              <input
+                type="text"
+                id="inputCampaignUtm"
+                placeholder="Contoh: fb-wakaf-alpukat-okt26"
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Pembayaran & Bukti MinIO S3 -->
+        <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-2xs space-y-4">
+          <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100">
+            <span class="w-6 h-6 rounded-full bg-[#0969da] text-white text-xs font-bold flex items-center justify-center">4</span>
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Pembayaran &amp; Bukti Transfer (MinIO S3)</h3>
+              <p class="text-[11px] text-slate-400 m-0">Unggah bukti mutasi bank terintegrasi ke cloud storage yayasan.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputMetodePembayaran">
+                Metode Pembayaran
+              </label>
+              <select id="inputMetodePembayaran" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                <option value="BSI Transfer">Bank Syariah Indonesia (BSI)</option>
+                <option value="Muamalat">Bank Muamalat</option>
+                <option value="BCA">Bank BCA</option>
+                <option value="Bank Mandiri">Bank Mandiri</option>
+                <option value="QRIS Skillage">QRIS Skillage Mart / GVF</option>
+                <option value="Tunai Amil">Tunai Langsung ke Amil</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputStatusPembayaran">
+                Status Pembayaran Awal
+              </label>
+              <select id="inputStatusPembayaran" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
+                <option value="lunas">Lunas (Langsung Diverifikasi)</option>
+                <option value="menunggu_verifikasi">Menunggu Verifikasi Mutasi</option>
+                <option value="dibatalkan">Dibatalkan</option>
+              </select>
+            </div>
+
+            <!-- Dropzone Bukti S3 -->
+            <div class="md:col-span-2">
+              <label class="block text-xs font-medium text-slate-700 mb-1">Unggah Bukti Transfer / Slip Mutasi (MinIO S3)</label>
+              <div id="dropzoneContainer" class="border-2 border-dashed border-slate-200 hover:border-[#0969da] rounded-lg p-5 text-center bg-slate-50/50 hover:bg-blue-50/20 transition-colors cursor-pointer">
+                <input type="file" id="proofFileInput" accept="image/jpeg,image/png,image/webp,application/pdf" class="hidden" />
+                
+                <div id="dropzoneEmptyView" class="flex flex-col items-center justify-center gap-1.5 py-2">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  <p class="text-xs text-slate-600 m-0">
+                    <span class="font-semibold text-[#0969da]">Klik untuk memilih</span> atau tarik berkas ke sini
+                  </p>
+                  <p class="text-[10px] text-slate-400 m-0">JPG, PNG, WEBP, atau PDF (Maksimal 15 MB)</p>
+                </div>
+
+                <div id="dropzoneUploadingView" class="hidden flex-col items-center justify-center gap-2 py-3">
+                  <div class="w-6 h-6 border-2 border-blue-200 border-t-[#0969da] rounded-full animate-spin"></div>
+                  <span class="text-xs font-medium text-slate-700">Mengunggah berkas ke MinIO S3...</span>
+                </div>
+
+                <div id="dropzonePreviewView" class="hidden items-center gap-3 bg-white border border-slate-200 rounded-md p-2.5 text-left">
+                  <img id="uploadedProofPreview" src="" alt="Pratinjau" class="w-14 h-14 object-cover rounded border border-slate-100" />
+                  <div class="flex-1 min-w-0">
+                    <span id="uploadedFileName" class="text-xs font-semibold text-slate-900 block truncate">slip.jpg</span>
+                    <span class="text-[10px] font-medium text-emerald-600 flex items-center gap-1 mt-0.5">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                      Tersimpan di Neon S3 bucket gvf-website
+                    </span>
+                    <button type="button" id="btnRemoveProof" class="text-[11px] text-red-600 hover:underline mt-1 font-medium cursor-pointer">
+                      Hapus Berkas
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <input type="hidden" id="inputBuktiTransferUrl" value="" />
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="block text-xs font-medium text-slate-700 mb-1" for="inputCatatanTransaksi">
+                Catatan Internal Amil (Opsional)
+              </label>
+              <input
+                type="text"
+                id="inputCatatanTransaksi"
+                placeholder="Contoh: Pengecekan via mutasi rekening koran BSI"
+                class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="h-16 px-6 border-t border-slate-200 flex items-center justify-end gap-2.5 bg-white shrink-0">
+      <button
+        type="button"
+        id="btnCancelDrawer"
+        class="h-9 px-4 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
+      >
+        Batal
+      </button>
+      <button
+        type="button"
+        id="btnSubmitDonation"
+        class="h-9 px-4 rounded-md bg-[#0969da] text-white text-xs font-semibold hover:bg-[#0752a8] shadow-xs flex items-center gap-2 transition-colors cursor-pointer"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span id="btnSubmitText">Simpan Data Donasi</span>
+      </button>
+    </div>
+  </div>
+</div>

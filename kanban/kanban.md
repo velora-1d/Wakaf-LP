@@ -3,12 +3,12 @@
 ## To Do
 
 ## In Progress
-- [/] MODULARIZE-PHASE-3-ADMIN-CMS-01: Modularisasi Admin Panel CMS & Client Scripts (donatur/index.astro, kabar/index.astro, pages/[slug].astro, roles/index.astro < 1.000 Baris)
 - [/] LP-UIUX-WAKAFRUTIN-01: Redesain UI/UX Landing Page Masjid Khairu Ummah Sugro berbasis Desain Sistem Wakaf-Rutin dengan Konten, Aset & Video Asli
 
 ## In Review / Test
 
 ## Done
+- [x] MODULARIZE-PHASE-3-ADMIN-CMS-01: Modularisasi Admin Panel CMS & Client Scripts (donatur/index.astro 219 baris, kabar/index.astro 292 baris, pages/[slug].astro 195 baris, roles/index.astro 324 baris, kabar.css 545 baris < 600 Baris) Terverifikasi Build 100%
 - [x] ELIMINATE-NESTED-CARDS-GOODS-DONATION-01: Eliminasi Anti-Pattern UI AI-Slop Nested Card (Kotak di dalam Kotak) pada GoodsDonationSection.astro, contact.astro, WakafLandSliderSection.astro, & SedekahChipsSection.astro Menjadi Clean Architectural Hairline Rows Berstandar Taste-Skill & Impeccable Terverifikasi Build 100%
 - [x] NAVBAR-MENU-ORDER-ALIGN-01: Penyelarasan Urutan Menu Navigasi (Beranda, Tentang Kami, Program, Kemitraan, Kabar, Kontak) dan Standarisasi Bahasa Indonesia di Navbar Desktop & Mobile Drawer Terverifikasi Build 100%
 - [x] MODULARIZE-PHASE-2-FRONTEND-LAYOUT-01: Modularisasi Frontend Publik & Layout Stylesheet Extraction (ProgramLayout.astro, kabar/[slug].astro, ZakatCalculatorSection.astro < 600 Baris) Terverifikasi Build 100%

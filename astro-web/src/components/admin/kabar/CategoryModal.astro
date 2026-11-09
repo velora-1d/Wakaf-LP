@@ -1,0 +1,75 @@
+---
+// src/components/admin/kabar/CategoryModal.astro
+interface Props {
+  categories?: string[];
+}
+
+const defaultCategories = [
+  'LITERASI WAKAF',
+  'PROGRESS MASJID',
+  'TECHNOPARK',
+  'WAKAF DIGITAL',
+  'KEMITRAAN',
+  'PENDIDIKAN',
+  'KEMANUSIAAN'
+];
+
+const { categories = defaultCategories } = Astro.props;
+---
+
+<!-- Modal Pengelolaan & Referensi Kategori Warta -->
+<div
+  id="categoryModal"
+  class="modal-backdrop"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="categoryModalTitle"
+>
+  <div class="modal-card" style="max-width: 520px;">
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <div class="modal-header-info">
+        <div class="modal-icon-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 id="categoryModalTitle" class="modal-title">Kategori Warta &amp; Literasi</h3>
+          <p class="modal-subtitle">Daftar kategori standar yang digunakan untuk mengelompokkan artikel publikasi</p>
+        </div>
+      </div>
+
+      <button type="button" id="closeCategoryModalBtn" class="modal-close-btn" aria-label="Tutup modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      <div class="category-list-wrapper">
+        <p class="text-xs text-slate-500 mb-3">
+          Kategori aktif di sistem GVF:
+        </p>
+        <div class="flex flex-wrap gap-2">
+          {categories.map((cat) => (
+            <span class="cat-pill" style="font-size: 11px; padding: 4px 10px;">
+              {cat}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+      <button type="button" id="dismissCategoryModalBtn" class="btn-cancel">
+        Tutup
+      </button>
+    </div>
+  </div>
+</div>

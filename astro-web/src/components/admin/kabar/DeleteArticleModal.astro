@@ -1,0 +1,33 @@
+---
+// src/components/admin/kabar/DeleteArticleModal.astro
+---
+
+<!-- Modal Konfirmasi Hapus Artikel -->
+<div
+  id="deleteConfirmModal"
+  class="modal-backdrop"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="modal-card modal-delete-card">
+    <div class="delete-icon-wrap">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18"></path>
+        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+      </svg>
+    </div>
+    <h3 class="delete-title">Hapus Artikel Ini?</h3>
+    <p class="delete-desc">
+      Artikel <strong id="deleteArticleTitleDisplay" class="text-slate-900"></strong> akan dihapus permanen dari sistem.
+    </p>
+    <div class="delete-actions">
+      <button type="button" id="cancelDeleteBtn" class="btn-cancel">
+        Batal
+      </button>
+      <button type="button" id="confirmDeleteBtn" class="btn-danger-confirm">
+        Ya, Hapus Permanen
+      </button>
+    </div>
+  </div>
+</div>

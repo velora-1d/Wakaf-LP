@@ -1,0 +1,136 @@
+---
+// src/components/admin/donatur/LabelManagementModal.astro
+// Modal CRUD Label Donatur GVF
+
+interface LabelItem {
+  id: number;
+  nama: string;
+  warna: string;
+  deskripsi?: string | null;
+}
+
+interface Props {
+  allLabels: LabelItem[];
+}
+
+const { allLabels = [] } = Astro.props;
+---
+
+<!-- Modal Kelola Label Donatur (CRUD Label) -->
+<div id="labelsCrudModal" data-initial-labels={JSON.stringify(allLabels)} class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs hidden items-center justify-center p-4">
+  <div class="bg-white rounded-xl border border-slate-200 max-w-2xl w-full p-6 shadow-2xl flex flex-col space-y-4 max-h-[90vh] overflow-hidden">
+    <!-- Modal Header -->
+    <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-lg bg-blue-50 text-[#0969da] flex items-center justify-center shrink-0 border border-blue-200">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+            <path d="M7 7h.01"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-slate-900 m-0">Kelola Label Donatur</h3>
+          <p class="text-xs text-slate-500 mt-0.5 mb-0">Tambah, ubah, atau hapus kategori label donatur.</p>
+        </div>
+      </div>
+      <button type="button" id="btnCloseLabelsModal" class="w-8 h-8 rounded-md flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer" aria-label="Tutup Modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body (Form + Tabel Label) -->
+    <div class="flex-1 overflow-y-auto space-y-4 pr-1">
+      <!-- Form Input Label Baru / Edit -->
+      <div class="p-4 rounded-lg border border-slate-200 bg-slate-50/70 space-y-3">
+        <div class="flex items-center justify-between">
+          <span id="labelFormTitle" class="text-xs font-bold uppercase tracking-wider text-slate-700">Tambah Label Baru</span>
+          <button type="button" id="btnCancelEditLabel" class="hidden text-xs text-[#0969da] font-medium hover:underline cursor-pointer">Batal Edit</button>
+        </div>
+        <input type="hidden" id="inputLabelId" value="" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-slate-700 mb-1" for="inputLabelNama">
+              Nama Label <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="inputLabelNama"
+              placeholder="Contoh: Donatur Rutin / VIP"
+              class="h-8 w-full rounded-md border border-slate-200 bg-white px-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#0969da]"
+            />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-700 mb-1" for="selectLabelWarna">
+              Warna Tampilan Badge
+            </label>
+            <select id="selectLabelWarna" class="h-8 w-full rounded-md border border-slate-200 bg-white px-2.5 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-[#0969da] cursor-pointer">
+              <option value="blue">Biru (Royal Blue)</option>
+              <option value="emerald">Hijau (Emerald)</option>
+              <option value="amber">Kuning Emas (Amber)</option>
+              <option value="rose">Merah (Rose)</option>
+              <option value="cyan">Cyan (Sky)</option>
+              <option value="slate">Abu-abu (Slate)</option>
+              <option value="indigo">Indigo</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-slate-700 mb-1" for="inputLabelDeskripsi">
+            Deskripsi / Keterangan (Opsional)
+          </label>
+          <input
+            type="text"
+            id="inputLabelDeskripsi"
+            placeholder="Catatan tujuan atau kriteria label ini..."
+            class="h-8 w-full rounded-md border border-slate-200 bg-white px-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#0969da]"
+          />
+        </div>
+        <div class="flex justify-end pt-1">
+          <button
+            type="button"
+            id="btnSaveLabel"
+            class="h-8 px-4 rounded-md bg-[#0969da] text-white text-xs font-semibold hover:bg-[#0752a8] transition-colors cursor-pointer shadow-2xs"
+          >
+            Simpan Label
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabel / Daftar Label Aktif -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-700">Daftar Label (<span id="labelsTotalCount">{allLabels.length}</span>)</span>
+        </div>
+        <div class="rounded-lg border border-slate-200 overflow-hidden">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 font-semibold">
+              <tr>
+                <th class="px-3 py-2">Badge &amp; Nama</th>
+                <th class="px-3 py-2">Keterangan</th>
+                <th class="px-3 py-2 text-center">Donatur</th>
+                <th class="px-3 py-2 text-right">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="labelsTableBody" class="divide-y divide-slate-100 bg-white">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="pt-3 border-t border-slate-100 flex items-center justify-end">
+      <button
+        type="button"
+        id="btnCloseLabelsModalFooter"
+        class="h-8 px-4 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
+      >
+        Tutup
+      </button>
+    </div>
+  </div>
+</div>
