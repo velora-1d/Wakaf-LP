@@ -1,7 +1,7 @@
 # Rencana & Analisis Pemetaan Seeding Data Donatur Masjid Khairu Ummah
 
 ## 1. Ikhtisar Data Sumber
-- **Sumber File**: `Rekap Donasi Masjid Khairu Ummah.md`
+- **Sumber File**: `docs/rekap-donasi-masjid-khairu-ummah.md`
 - **Total Baris Data**: 57 transaksi donasi
 - **Total Realisasi Dana**: Rp 55.927.000
 - **Total Target Penggalangan**: Rp 1.310.753.350 (4,27% tercapai)
