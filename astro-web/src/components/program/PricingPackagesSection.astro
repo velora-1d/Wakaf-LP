@@ -2,7 +2,7 @@
 // src/components/program/PricingPackagesSection.astro
 // Komponen Pilihan Paket Program GVF & Live Donatur Feed Terintegrasi DB PostgreSQL
 // Menggunakan Vanilla Scoped CSS murni untuk menjamin render 100% akurat dan responsif
-import type { ProgramData } from '../../data/programs';
+import type { ProgramData, PricingPackage, DeliverableItem } from '../../data/programs';
 import { getVerifiedDonationsByProgram, getProgramPackages } from '../../lib/db';
 
 interface Props {
@@ -57,7 +57,7 @@ function formatRelativeDate(date: Date | string): string {
     </div>
 
     <div class="pricing-cards-grid">
-      {packages.map((pkg) => (
+      {packages.map((pkg: PricingPackage) => (
         <div class={`pkg-card ${pkg.isPopular ? 'is-popular' : ''}`}>
           {pkg.isPopular && (
             <div class="rekomendasi-tag">
@@ -86,7 +86,7 @@ function formatRelativeDate(date: Date | string): string {
             </div>
 
             <ul class="card-deliverables-list">
-              {pkg.deliverables.map((item) => (
+              {pkg.deliverables.map((item: DeliverableItem) => (
                 <li class="deliverable-item">
                   <span class="check-icon-wrap">
                     <svg viewBox="0 0 20 20" fill="currentColor">
