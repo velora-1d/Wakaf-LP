@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "FOOTER-BG-ARCH-RED-BRICK-01", "name": "Pembaruan Background Footer dengan Foto Riil Arsitektur Gedung Bata Merah Atap Segitiga Sukasirna Jonggol (Focal Point 35% & Darkening Gradient)", "status": "closed" },
     { "id": "MASONRY-PURGE-RENDERING-01", "name": "Penggantian 3 Aset Rendering ke Foto Riil Lapangan 100% Unik (Zero Duplicate Across All Pages) di MasonryGrid Showcase", "status": "closed" },
     { "id": "MASONRY-GRID-PURE-PHOTO-CENTER-01", "name": "Integrasi Murni Foto MasonryGrid (Tanpa Teks Tambahan Sesuai Prompt Asli), Centering Simetris Container 1280px, & Proteksi Scroll Header", "status": "closed" },
     { "id": "VIDEO-SECTION-INLINE-AESTHETIC-01", "name": "Redesain UI Play Button Estetik Berlapis & Video YouTube In-Place Section Presisi di VideoSection.astro", "status": "closed" },
