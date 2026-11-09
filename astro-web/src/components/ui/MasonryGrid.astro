@@ -1,0 +1,11 @@
+---
+// src/components/ui/MasonryGrid.astro
+// Astro wrapper untuk komponen MasonryGrid React dengan efek hover 3D spring
+import ReactMasonryGridDemo, { type MasonryDemoProps } from './masonry-grid-demo';
+
+export interface Props extends MasonryDemoProps {}
+
+const props = Astro.props;
+---
+
+<ReactMasonryGridDemo client:visible {...props} />
