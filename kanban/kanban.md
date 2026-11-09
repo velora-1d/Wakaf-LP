@@ -6,9 +6,10 @@
 - [/] LP-UIUX-WAKAFRUTIN-01: Redesain UI/UX Landing Page Masjid Khairu Ummah Sugro berbasis Desain Sistem Wakaf-Rutin dengan Konten, Aset & Video Asli
 
 ## In Review / Test
-- [/] MASONRY-GRID-CLEAN-UI-01: Integrasi Komponen MasonryGrid 3D Tilt React Sesuai Prompt dengan Desain Kartu Rapi (Foto Jernih, Footer Keterangan Terpisah Bersih, Tanpa Overlap Berantakan, Terverifikasi Build 100%)
 
 ## Done
+- [x] VIDEO-SECTION-INLINE-AESTHETIC-01: Redesain UI Play Button Estetik Berlapis (Frosted Glass Aura, Dual Pulse Ripple, ISAVO Blue Core) & Video YouTube In-Place Section Presisi (Inline Frame 16:9, Smooth Fade, Glass Close Control) di VideoSection.astro Terverifikasi Build 100%
+- [x] MASONRY-GRID-PURE-PHOTO-CENTER-01: Integrasi Murni Foto MasonryGrid (Tanpa Teks Tambahan Sesuai Prompt Asli), Centering Simetris Container 1280px, & Proteksi Scroll Header Terverifikasi Build 100%
 - [x] MASONRY-GRID-CLEAN-UI-01: Integrasi Komponen MasonryGrid 3D Tilt React Sesuai Prompt dengan Desain Kartu Rapi (Foto Jernih, Footer Keterangan Terpisah Bersih, Tanpa Overlap Berantakan, Terverifikasi Build 100%)
 - [x] RESTORE-ELASTIC-GALLERY-01: Restorasi Galeri Beranda ke Komponen Resmi ElasticGallery (Horizontal Expandable Accordion ISAVO) Menggantikan Tata Letak Masonry yang Berantakan Terverifikasi Build 100%
 - [x] MASONRY-GRID-VISIBILITY-FIX-01: Perbaikan Masalah Blank Putih MasonryGrid (Eliminasi useInView Opacity 0 Framer Motion yang Terhambat Lenis Scroll, Transisi ke Hydration client:load & Fallback Solid)
