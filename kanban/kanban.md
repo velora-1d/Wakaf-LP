@@ -1,7 +1,6 @@
 # Kanban Board: Pen.dev Alignment (Per Section)
 
 ## To Do
-- [ ] MODULARIZE-PHASE-2-FRONTEND-LAYOUT-01: Modularisasi Frontend Publik & Layout Stylesheet Extraction (ProgramLayout.astro, kabar/[slug].astro, ZakatCalculatorSection.astro < 1.000 Baris)
 - [ ] MODULARIZE-PHASE-3-ADMIN-CMS-01: Modularisasi Admin Panel CMS & Client Scripts (donatur/index.astro, kabar/index.astro, pages/[slug].astro, roles/index.astro < 1.000 Baris)
 
 ## In Progress
@@ -10,6 +9,7 @@
 ## In Review / Test
 
 ## Done
+- [x] MODULARIZE-PHASE-2-FRONTEND-LAYOUT-01: Modularisasi Frontend Publik & Layout Stylesheet Extraction (ProgramLayout.astro, kabar/[slug].astro, ZakatCalculatorSection.astro < 600 Baris) Terverifikasi Build 100%
 - [x] MODULARIZE-PHASE-1-DATA-DB-01: Modularisasi & Pemecahan File Data programs.ts dan Database lib/db/index.ts (Maksimal < 1.000 Baris Tanpa Breaking Changes) Terverifikasi Build 100%
 - [x] PURGE-ALL-ISAVO-REFERENCES-01: Pembersihan Total Seluruh Referensi, Nama Class CSS, Komentar, dan Properti 'isavo' Menjadi 'gvf' di Seluruh Kode Sumber astro-web (0 Match Ditemukan & Lulus Build 100%)
 - [x] TEXT-JUSTIFY-SECTIONS-01: Penyelarasan Text-Align Justify pada Seluruh Paragraf, Lead Text, Deskripsi Program & Konten Editorial di Semua Seksi Website Terverifikasi Build 100%

@@ -1,0 +1,6 @@
+/* =========================================================================
+   KABAR DETAIL MASTER STYLESHEET
+   Modularized Architecture (< 650 lines each)
+   ========================================================================= */
+@import './kabar/layout.css';
+@import './kabar/components.css';
