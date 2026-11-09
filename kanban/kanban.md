@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] HIDE-LEADERSHIP-DB-01: Nonaktifkan Seksi Struktur Kepengurusan (Dewan Pembina, Pengawas & Pengelola GVF) di Seluruh Halaman via Database Neon PostgreSQL
 - [x] PURGE-NON-NEON-01: Pembersihan Total Database & Storage Non-Neon di astro-web (Hanya Sisakan Neon Serverless PostgreSQL & Neon S3 Storage Bucket gvf-website) Terverifikasi Build
 - [x] ASSETS-CLEAN-KEBAB-CASE-01: Refactor Pembersihan Symlink Duplikat & Rename Permanen Folder/File Bahan Konten ke Standar Kebab-Case Terverifikasi Build 100% & HTTP 200
 - [x] GVF-CONTENT-REVISION-IMPLEMENT-01: Implementasi Komprehensif Revisi Narasi & Konten Website GVF Sesuai Dokumen Revisi (Hero Slide 1, Intro 4 Pilar, Rincian 4 Pilar Infak/Sedekah/Zakat/Wakaf A-D, Komponen Donasi Barang WhatsApp, Nilai Ekosistem Skill Village & Footer) Terverifikasi Empiris & Live Deploy Cloudflare Pages

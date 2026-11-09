@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "HIDE-LEADERSHIP-DB-01", "name": "Nonaktifkan Seksi Struktur Kepengurusan (Dewan Pembina, Pengawas & Pengelola GVF) di Seluruh Halaman via Database Neon PostgreSQL", "status": "closed" },
     { "id": "PURGE-NON-NEON-01", "name": "Pembersihan Total Database & Storage Non-Neon di astro-web (Hanya Sisakan Neon Serverless PostgreSQL & Neon S3 Storage Bucket gvf-website)", "status": "closed" },
     { "id": "GVF-CONTENT-REVISION-IMPLEMENT-01", "name": "Implementasi Komprehensif Revisi Narasi & Konten Website GVF Sesuai Dokumen Revisi (Hero Slide 1, Intro 4 Pilar, Rincian 4 Pilar Infak/Sedekah/Zakat/Wakaf A-D, Komponen Donasi Barang WhatsApp, Nilai Ekosistem Skill Village & Footer)", "status": "closed" },
     { "id": "HERO-SLIDER-S3-ALIGN-01", "name": "Perbaikan Path URL 4 Hero Slides Beranda & Audit Aset Gambar S3 Neon Bucket gvf-website Terverifikasi HTTP 200 & Deploy Cloudflare Pages", "status": "closed" },
