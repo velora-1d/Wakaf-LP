@@ -1,7 +1,7 @@
 ---
 // src/components/home/HeroSection.astro
 // Hero Slider 4 Slide Sesuai Urutan Program: Shodaqoh, Infaq, Zakat, Wakaf
-// Desain sinematik ala ISAVO dengan kepatuhan prinsip typeui-fundamentals
+// Desain sinematik GVF dengan kepatuhan prinsip typeui-fundamentals
 
 const heroSlides = [
   {
@@ -58,7 +58,7 @@ const heroSlides = [
 ];
 ---
 
-<section class="isavo-hero" id="hero-carousel" aria-roledescription="carousel" aria-label="Global Village Fund Hero">
+<section class="gvf-hero" id="hero-carousel" aria-roledescription="carousel" aria-label="Global Village Fund Hero">
   <div class="hero-bgs-container" aria-hidden="true">
     {heroSlides.map((slide, i) => (
       <div class={`hero-bg-item ${i === 0 ? 'is-active' : ''}`} data-bg-index={i}>
@@ -74,7 +74,7 @@ const heroSlides = [
     ))}
   </div>
 
-  <div class="isavo-hero-container">
+  <div class="gvf-hero-container">
     <div class="hero-slides-deck">
       {heroSlides.map((slide, i) => (
         <div
@@ -89,20 +89,20 @@ const heroSlides = [
           </div>
 
           {i === 0 ? (
-            <h1 class="isavo-hero-title" set:html={slide.title} />
+            <h1 class="gvf-hero-title" set:html={slide.title} />
           ) : (
-            <h2 class="isavo-hero-title" set:html={slide.title} />
+            <h2 class="gvf-hero-title" set:html={slide.title} />
           )}
 
-          <div class="isavo-hero-sub">
+          <div class="gvf-hero-sub">
             <p>{slide.lead}</p>
           </div>
 
-          <div class="isavo-hero-cta-wrap">
+          <div class="gvf-hero-cta-wrap">
             {slide.buttons.map((btn) => (
               <a
                 href={btn.href}
-                class={btn.variant === 'primary' ? 'isavo-btn-primary-pill' : 'isavo-btn-outline-pill uiverse-ripple-btn uiverse-ripple-btn-dark'}
+                class={btn.variant === 'primary' ? 'gvf-btn-primary-pill' : 'gvf-btn-outline-pill uiverse-ripple-btn uiverse-ripple-btn-dark'}
               >
                 <span>{btn.text}</span>
               </a>
@@ -175,7 +175,7 @@ const heroSlides = [
 </section>
 
 <style>
-  .isavo-hero {
+  .gvf-hero {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -250,7 +250,7 @@ const heroSlides = [
   }
 
   /* typeui principle: 1280px standard container */
-  .isavo-hero-container {
+  .gvf-hero-container {
     position: relative;
     z-index: 10;
     width: 100%;
@@ -311,7 +311,7 @@ const heroSlides = [
   }
 
   /* Pen.dev 72px Display Title */
-  .isavo-hero-title {
+  .gvf-hero-title {
     font-size: clamp(2.4rem, 4.8vw, 4.2rem);
     font-weight: 700;
     line-height: 1.15;
@@ -322,18 +322,21 @@ const heroSlides = [
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }
 
-  .isavo-hero-sub {
+  .gvf-hero-sub {
     max-width: 720px;
     margin-bottom: 24px;
   }
 
-  .isavo-hero-sub p {
+  .gvf-hero-sub p {
     font-size: 1.0625rem;
     line-height: 1.68;
     color: #e2e8f0;
     font-weight: 400;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
     margin-bottom: 10px;
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
   }
 
   .hero-tagline-en {
@@ -371,14 +374,14 @@ const heroSlides = [
   }
 
   /* Buttons Row (Matching box height: 50px) */
-  .isavo-hero-cta-wrap {
+  .gvf-hero-cta-wrap {
     display: flex;
     align-items: center;
     gap: 16px;
     flex-wrap: wrap;
   }
 
-  .isavo-btn-primary-pill {
+  .gvf-btn-primary-pill {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -399,13 +402,13 @@ const heroSlides = [
     transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .isavo-btn-primary-pill:hover {
+  .gvf-btn-primary-pill:hover {
     background: #0752a8;
     transform: translateY(-2px);
     box-shadow: none;
   }
 
-  .isavo-btn-primary-pill:active {
+  .gvf-btn-primary-pill:active {
     transform: translateY(0) scale(0.98);
   }
 
@@ -415,7 +418,7 @@ const heroSlides = [
     color: #ffffff;
   }
 
-  .isavo-btn-outline-pill {
+  .gvf-btn-outline-pill {
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -438,7 +441,7 @@ const heroSlides = [
     transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, color 0.4s ease;
   }
 
-  .isavo-btn-outline-pill::before {
+  .gvf-btn-outline-pill::before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -451,27 +454,27 @@ const heroSlides = [
     transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .isavo-btn-outline-pill:hover {
+  .gvf-btn-outline-pill:hover {
     color: #ffffff;
     border-color: #0969da;
     transform: translateY(-2px);
   }
 
-  .isavo-btn-outline-pill:hover::before {
+  .gvf-btn-outline-pill:hover::before {
     top: -40px;
     left: -40px;
   }
 
-  .isavo-btn-outline-pill:active {
+  .gvf-btn-outline-pill:active {
     transform: translateY(0) scale(0.98);
   }
 
-  .isavo-btn-outline-pill:active::before {
+  .gvf-btn-outline-pill:active::before {
     background: #0752a8;
   }
 
-  .isavo-btn-outline-pill > span,
-  .isavo-btn-outline-pill > svg {
+  .gvf-btn-outline-pill > span,
+  .gvf-btn-outline-pill > svg {
     position: relative;
     z-index: 1;
   }
@@ -559,10 +562,10 @@ const heroSlides = [
   }
 
   @media (max-width: 900px) {
-    .isavo-hero-container {
+    .gvf-hero-container {
       padding: 0 20px;
     }
-    .isavo-hero {
+    .gvf-hero {
       padding-top: 110px;
       padding-bottom: 60px;
     }

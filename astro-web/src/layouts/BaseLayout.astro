@@ -359,6 +359,119 @@ const allSchemas = [...baseSchemas, ...customSchemas];
     outline-offset: 3px;
     border-radius: 4px;
   }
+
+  /* ── Global text-align: justify untuk body text, deskripsi & lead paragraf ──
+     Berlaku pada teks narasi/deskriptif multi-baris di seluruh seksi website.
+     Menghadirkan kerapian ritme visual editorial arsitektural standar ISAVO.
+  ─────────────────────────────────────────────────────────────────── */
+  p.isavo-lead-intro,
+  p.isavo-about-desc,
+  p.isavo-lead-desc,
+  p.pen-section-desc,
+  p.pen-pillar-desc,
+  p.goods-lead-desc,
+  p.goods-card-summary,
+  p.news-card-desc,
+  p.isavo-interactive-sub,
+  p.pen-timeline-desc,
+  p.pen-workflow-lead,
+  p.pen-wf-desc,
+  p.pen-partner-lead,
+  p.pen-partner-desc,
+  p.pen-benefit-desc,
+  p.pen-contact-lead,
+  p.pen-intro-quote,
+  p.pen-intro-lead,
+  p.program-lead-p,
+  p.article-p,
+  p.value-box-desc,
+  p.process-step-desc,
+  p.faq-answer-p,
+  p.sidebar-summary,
+  p.prose-paragraph,
+  .isavo-hero-sub p,
+  .gvf-hero-sub p,
+  .card-desc,
+  .card-body p,
+  .deliverable-text,
+  .goods-examples-list li span:last-child,
+  .article-content p,
+  .program-deep-dive p,
+  .prose p {
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
+    hyphens: auto;
+  }
+
+  /* Proteksi & prioritas elemen yang berorientasi tengah/judul/badge/tombol */
+  .text-center,
+  .text-center p,
+  .gallery-header,
+  .gallery-subtitle,
+  .video-content-container,
+  .video-title,
+  .video-subtitle,
+  .pen-final-cta-content,
+  .pen-cta-desc,
+  .pricing-header-wrap,
+  .pricing-sub-heading,
+  .pen-section-subtitle-center,
+  .footer-slogan,
+  .footer-address-text,
+  .rekomendasi-tag,
+  .badge-text,
+  .hero-badge-pill,
+  button,
+  .btn,
+  .isavo-btn-primary-pill,
+  .isavo-btn-outline-pill,
+  .pen-cta-btn {
+    text-align: center !important;
+    text-align-last: center !important;
+  }
+
+  /* Responsif: matikan justify pada layar sempit/mobile agar tidak renggang */
+  @media (max-width: 640px) {
+    p.isavo-lead-intro,
+    p.isavo-about-desc,
+    p.isavo-lead-desc,
+    p.pen-section-desc,
+    p.pen-pillar-desc,
+    p.goods-lead-desc,
+    p.goods-card-summary,
+    p.news-card-desc,
+    p.isavo-interactive-sub,
+    p.pen-timeline-desc,
+    p.pen-workflow-lead,
+    p.pen-wf-desc,
+    p.pen-partner-lead,
+    p.pen-partner-desc,
+    p.pen-benefit-desc,
+    p.pen-contact-lead,
+    p.pen-intro-quote,
+    p.pen-intro-lead,
+    p.program-lead-p,
+    p.article-p,
+    p.value-box-desc,
+    p.process-step-desc,
+    p.faq-answer-p,
+    p.sidebar-summary,
+    p.prose-paragraph,
+    .isavo-hero-sub p,
+    .gvf-hero-sub p,
+    .card-desc,
+    .card-body p,
+    .deliverable-text,
+    .goods-examples-list li span:last-child,
+    .article-content p,
+    .program-deep-dive p,
+    .prose p {
+      text-align: left !important;
+      text-align-last: left !important;
+      hyphens: none;
+    }
+  }
 </style>
 
 <style>

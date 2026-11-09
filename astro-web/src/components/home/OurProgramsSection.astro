@@ -1,6 +1,6 @@
 ---
 // src/components/home/OurProgramsSection.astro
-// Exact ISAVO "Layanan Kami" 4-Card Architecture Section (Screenshot 2 isavo.co.id)
+// GVF "Layanan Kami" 4-Card Architecture Section
 // White rounded cards (radius 24px), gold/brass architectural geometric icons, subtle wireframe background
 const programs = [
   {
@@ -54,8 +54,8 @@ const programs = [
 ];
 ---
 
-<section class="isavo-services-section" id="program-kebaikan">
-  <div class="isavo-blueprint-shape" aria-hidden="true">
+<section class="gvf-services-section" id="program-kebaikan">
+  <div class="gvf-blueprint-shape" aria-hidden="true">
     <svg viewBox="0 0 1440 400" fill="none" stroke="rgba(15, 23, 42, 0.03)" stroke-width="1">
       <path d="M0 350 L400 100 L750 250 L1100 80 L1440 300" />
       <path d="M100 380 L500 130 L850 280 L1200 110" />
@@ -66,21 +66,21 @@ const programs = [
     </svg>
   </div>
 
-  <div class="isavo-services-container">
-    <div class="isavo-section-heading-wrap">
+  <div class="gvf-services-container">
+    <div class="gvf-section-heading-wrap">
       <div class="heading-right-col">
-        <h2 class="isavo-main-title">
+        <h2 class="gvf-main-title">
           Satu Wadah, Empat Pilar Kebaikan
         </h2>
-        <p class="isavo-lead-desc">
+        <p class="gvf-lead-desc">
           Global Village Fund menghadirkan layanan filantropi terpadu dari hulu ke hilir melalui empat instrumen utama: infak, sedekah, zakat, dan wakaf. Setiap instrumen memiliki karakter, peruntukan, serta mekanisme pengelolaan yang berbeda, tetapi saling melengkapi dalam mendukung berbagai kebutuhan dan pengembangan program.
         </p>
       </div>
     </div>
 
-    <div class="isavo-cards-grid">
+    <div class="gvf-cards-grid">
       {programs.map((prog) => (
-        <a href={prog.link} class="isavo-service-card" id={`card-${prog.id}`}>
+        <a href={prog.link} class="gvf-service-card" id={`card-${prog.id}`}>
           <div class="card-top-row">
             <div>
               <span class="card-num-indicator">{prog.number}</span>
@@ -98,14 +98,14 @@ const programs = [
 </section>
 
 <style>
-  .isavo-services-section {
+  .gvf-services-section {
     position: relative;
     padding: 100px 0;
     background-color: #f6f6f3;
     overflow: hidden;
   }
 
-  .isavo-blueprint-shape {
+  .gvf-blueprint-shape {
     position: absolute;
     top: 0;
     left: 0;
@@ -115,7 +115,7 @@ const programs = [
     z-index: 1;
   }
 
-  .isavo-services-container {
+  .gvf-services-container {
     position: relative;
     z-index: 2;
     max-width: 1400px;
@@ -124,7 +124,7 @@ const programs = [
   }
 
   /* HEADER SECTION SPLIT 2-KOLOM */
-  .isavo-section-heading-wrap {
+  .gvf-section-heading-wrap {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -133,7 +133,7 @@ const programs = [
   }
 
   @media (max-width: 900px) {
-    .isavo-section-heading-wrap {
+    .gvf-section-heading-wrap {
       flex-direction: column;
       gap: 20px;
       margin-bottom: 40px;
@@ -188,7 +188,7 @@ const programs = [
     max-width: 900px;
   }
 
-  .isavo-main-title {
+  .gvf-main-title {
     font-family: 'Golos Text', system-ui, sans-serif;
     font-size: clamp(2rem, 3.2vw, 48px);
     font-weight: 700;
@@ -198,37 +198,40 @@ const programs = [
     margin: 0 0 16px 0;
   }
 
-  .isavo-lead-desc {
+  .gvf-lead-desc {
     font-family: 'Golos Text', system-ui, sans-serif;
     font-size: 16px;
     line-height: 27px;
     color: #62625b;
     margin: 0;
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
   }
 
   /* 4 WHITE ROUNDED CARDS GRID ALA PEN.DEV */
-  .isavo-cards-grid {
+  .gvf-cards-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
   }
 
   @media (max-width: 1200px) {
-    .isavo-cards-grid {
+    .gvf-cards-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 24px;
     }
   }
 
   @media (max-width: 640px) {
-    .isavo-cards-grid {
+    .gvf-cards-grid {
       grid-template-columns: 1fr;
       gap: 20px;
     }
   }
 
   /* KARTU PUTIH PEN.DEV (RADIUS 16PX, SHADOW HALUS) */
-  .isavo-service-card {
+  .gvf-service-card {
     background: #ffffff;
     border-radius: 16px;
     padding: 36px;
@@ -243,13 +246,13 @@ const programs = [
     transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .isavo-service-card:hover {
+  .gvf-service-card:hover {
     transform: translateY(-4px);
     box-shadow: 0px 12px 32px rgba(9, 105, 218, 0.08);
     border-color: rgba(9, 105, 218, 0.15);
   }
 
-  .isavo-service-card:active {
+  .gvf-service-card:active {
     transform: translateY(0) scale(0.99);
   }
 
@@ -297,5 +300,8 @@ const programs = [
     line-height: 24px;
     color: #62625b;
     margin: 10px 0 0 0;
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
   }
 </style>

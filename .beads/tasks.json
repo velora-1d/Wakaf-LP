@@ -118,6 +118,7 @@
     { "id": "HOME-FONT-GOLOS-ALIGN-01", "name": "Penyelarasan Tipografi Halaman Beranda dengan Halaman Lain Menggunakan Font Resmi Golos Text Penuh", "status": "closed" },
     { "id": "HOME-FONT-WEIGHT-LOCAL-01", "name": "Penyelarasan Font Weight Heading Beranda (400 ke 600/700 Tebal) & Font Lokal Woff2 Golos Text", "status": "closed" },
     { "id": "MASONRY-GRID-VISIBILITY-FIX-01", "name": "Perbaikan Blank Putih MasonryGrid Eliminasi useInView Opacity 0 Framer Motion", "status": "closed" },
-    { "id": "RESTORE-ELASTIC-GALLERY-01", "name": "Restorasi Galeri Beranda ke Komponen Resmi ElasticGallery Horizontal Accordion ISAVO", "status": "closed" }
+    { "id": "RESTORE-ELASTIC-GALLERY-01", "name": "Restorasi Galeri Beranda ke Komponen Resmi ElasticGallery Horizontal Accordion ISAVO", "status": "closed" },
+    { "id": "TEXT-JUSTIFY-SECTIONS-01", "name": "Penyelarasan Text-Align Justify pada Seluruh Paragraf, Lead Text, Deskripsi Program & Konten Editorial di Semua Seksi Website", "status": "closed" }
   ]
 }
