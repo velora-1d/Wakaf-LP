@@ -9,6 +9,7 @@
 ## In Review / Test
 
 ## Done
+- [x] ELIMINATE-NESTED-CARDS-GOODS-DONATION-01: Eliminasi Anti-Pattern UI AI-Slop Nested Card (Kotak di dalam Kotak) pada GoodsDonationSection.astro, contact.astro, WakafLandSliderSection.astro, & SedekahChipsSection.astro Menjadi Clean Architectural Hairline Rows Berstandar Taste-Skill & Impeccable Terverifikasi Build 100%
 - [x] NAVBAR-MENU-ORDER-ALIGN-01: Penyelarasan Urutan Menu Navigasi (Beranda, Tentang Kami, Program, Kemitraan, Kabar, Kontak) dan Standarisasi Bahasa Indonesia di Navbar Desktop & Mobile Drawer Terverifikasi Build 100%
 - [x] MODULARIZE-PHASE-2-FRONTEND-LAYOUT-01: Modularisasi Frontend Publik & Layout Stylesheet Extraction (ProgramLayout.astro, kabar/[slug].astro, ZakatCalculatorSection.astro < 600 Baris) Terverifikasi Build 100%
 - [x] MODULARIZE-PHASE-1-DATA-DB-01: Modularisasi & Pemecahan File Data programs.ts dan Database lib/db/index.ts (Maksimal < 1.000 Baris Tanpa Breaking Changes) Terverifikasi Build 100%
