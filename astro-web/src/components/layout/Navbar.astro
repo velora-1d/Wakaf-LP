@@ -26,7 +26,14 @@ const currentPath = Astro.url.pathname;
           <a
             href="/"
             class={`gvf-nav-link ${currentPath === "/" ? "active" : ""}`}
-            >Home</a
+            >Beranda</a
+          >
+        </li>
+        <li>
+          <a
+            href="/tentang-kami"
+            class={`gvf-nav-link ${currentPath === "/tentang-kami" ? "active" : ""}`}
+            >Tentang Kami</a
           >
         </li>
         <li class="gvf-has-dropdown">
@@ -64,13 +71,6 @@ const currentPath = Astro.url.pathname;
             href="/kabar"
             class={`gvf-nav-link ${currentPath.startsWith("/kabar") ? "active" : ""}`}
             >Kabar</a
-          >
-        </li>
-        <li>
-          <a
-            href="/tentang-kami"
-            class={`gvf-nav-link ${currentPath === "/tentang-kami" ? "active" : ""}`}
-            >Tentang Kami</a
           >
         </li>
         <li>
@@ -165,14 +165,14 @@ const currentPath = Astro.url.pathname;
         >
       </div>
       <nav class="gvf-drawer-nav">
-        <a href="/">Home</a>
+        <a href="/">Beranda</a>
+        <a href="/tentang-kami">Tentang Kami</a>
         <a href="/program/infaq">Infak</a>
         <a href="/program/sedekah">Sedekah</a>
         <a href="/program/zakat">Zakat</a>
         <a href="/program/wakaf">Wakaf</a>
         <a href="/kemitraan">Kemitraan</a>
         <a href="/kabar">Kabar &amp; Warta</a>
-        <a href="/tentang-kami">Tentang Kami</a>
         <a href="/contact">Kontak</a>
       </nav>
       <div class="gvf-drawer-bottom">
