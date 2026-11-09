@@ -98,7 +98,7 @@ Program ini membuktikan bahwa pesantren masa kini mampu menjadi inkubator techno
 Berkat kontribusi para wakif melalui platform digital GVF, puluhan workstation komputer berspesifikasi tinggi kini telah tersedia di studio workshop santri. Fasilitas ini digunakan setiap hari untuk pembelajaran desain arsitektur 3D, animasi dakwah, dan keterampilan rekayasa perangkat lunak.
 
 Penyaluran wakaf tunai yang tepat guna ini menjadi saksi nyata bagaimana dana filantropi Islam dapat menjadi akselerator pemerataan kualitas pendidikan digital bagi anak-anak dhuafa berprestasi.`,
-        cover_image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/design-masjid/learning-studio-workshop.jpg',
+        cover_image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/asrama-putra-baru/dalam-asrama-ikhwan-baru.jpeg',
         author: 'Tim Digital GVF',
         published_at: '28 Juni 2026',
       },

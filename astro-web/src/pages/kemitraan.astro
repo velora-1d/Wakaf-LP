@@ -22,6 +22,59 @@ const breadcrumbs = [
   { name: 'Kemitraan', url: '/kemitraan' },
 ];
 const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
+
+const kemitraanGalleryItems = [
+  {
+    id: "01",
+    title: "Kemitraan Vokasi & Keterampilan Santri",
+    category: "Vokasi Mandiri",
+    statusBadge: "Kemitraan Aktif",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-pose-ceria-di-paten-jonggol-3.webp",
+    alt: "Kemitraan Pembinaan Keterampilan Santriwati di Jonggol",
+    link: "/contact",
+    description: "Kolaborasi pengembangan keterampilan hidup dan pembinaan adab santri bersama mitra.",
+  },
+  {
+    id: "02",
+    title: "Pemberdayaan Santriwati Berkarakter",
+    category: "Pendidikan Holistik",
+    statusBadge: "Kolaborasi CSR",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/tiga-santriwati-pose-banner-paten-jonggol-2.webp",
+    alt: "Tiga Santriwati Menunjukkan Karakter Mandiri Kolaborasi Mitra",
+    link: "/contact",
+    description: "Sinergi berkelanjutan untuk mendukung sarana belajar dan asrama santriwati berprestasi.",
+  },
+  {
+    id: "03",
+    title: "Syiar Musabaqah Al-Quran Pesantren",
+    category: "Syiar Dakwah",
+    statusBadge: "Panggung Syiar",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/panggung-musabaqah-tilawatil-quran-jonggol.webp",
+    alt: "Panggung Syiar Musabaqah Tilawatil Quran",
+    link: "/program/zakat",
+    description: "Dukungan kemitraan pada kegiatan syiar dakwah dan kompetisi keagamaan santri di wilayah Jonggol.",
+  },
+  {
+    id: "04",
+    title: "Prestasi Gemilang Santri Binaan",
+    category: "Beasiswa Mitra",
+    statusBadge: "Juara Musabaqah",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/muhammad-syamil-ghazwan-juara-1-mtq-malam.webp",
+    alt: "Muhammad Syamil Ghazwan Juara 1 MTQ Malam Hari",
+    link: "/program/zakat",
+    description: "Apresiasi beasiswa kemitraan bagi santri penghafal Al-Quran yang berprestasi mengharumkan lembaga.",
+  },
+  {
+    id: "05",
+    title: "Orientasi Generasi Pembelajar",
+    category: "Pendidikan Masa Depan",
+    statusBadge: "Regenerasi Santri",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-pose-di-depan-banner-mpls.webp",
+    alt: "Santriwati Baru Memulai Pembinaan Karakter Pesantren",
+    link: "/program/infaq",
+    description: "Penerimaan santri baru dari kalangan dhuafa untuk memperoleh akses pendidikan berkualitas.",
+  },
+];
 ---
 
 <BaseLayout
@@ -59,7 +112,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
       </div>
 
       <div class="w-full">
-        <ElasticGallery defaultActiveId="01" />
+        <ElasticGallery defaultActiveId="01" items={kemitraanGalleryItems} />
       </div>
     </div>
   </section>
@@ -178,7 +231,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
   .pen-banner-bg {
     position: absolute;
     inset: 0;
-    background-image: url('https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lapangan-dan-lahan-tani.webp');
+    background-image: url('https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp');
     background-size: cover;
     background-position: center;
     opacity: 0.3;

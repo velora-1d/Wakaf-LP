@@ -22,6 +22,59 @@ const breadcrumbs = [
   { name: 'Tentang Kami', url: '/tentang-kami' },
 ];
 const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
+
+const tentangGalleryItems = [
+  {
+    id: "01",
+    title: "Kemandirian Santriwati di Jonggol",
+    category: "Pemberdayaan Santri",
+    statusBadge: "Santri Berdaya",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-pose-ceria-di-paten-jonggol-1.webp",
+    alt: "Kemandirian Santriwati di Jonggol",
+    link: "/program/sedekah",
+    description: "Santriwati aktif dalam pembinaan adab, sains, dan keterampilan hidup mandiri di Jonggol.",
+  },
+  {
+    id: "02",
+    title: "Majelis Bimbingan Asatidz",
+    category: "Bimbingan Adab",
+    statusBadge: "Kajian Rutin",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/ustadz-ceramah-dengan-mikrofon.webp",
+    alt: "Bimbingan Asatidz Mengisi Tausiyah Adab Santri",
+    link: "/program/infaq",
+    description: "Penyampaian ilmu syariah dan tausiyah akhlaq secara langsung dan berkala oleh asatidz pembina.",
+  },
+  {
+    id: "03",
+    title: "Prestasi Musabaqah Santri",
+    category: "Syiar Dakwah",
+    statusBadge: "Juara MTQ",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/dua-santri-juara-2-mtq-jonggol-piala.webp",
+    alt: "Santri Berprestasi Meraih Juara Musabaqah MTQ",
+    link: "/program/zakat",
+    description: "Capaian prestasi santri dhuafa binaan beasiswa zakat dalam ajang musabaqah tilawah.",
+  },
+  {
+    id: "04",
+    title: "Pendidikan Adab & Karakter FAST",
+    category: "Kurikulum Holistik",
+    statusBadge: "KBM Interaktif",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/ustadz-mengajar-santri-aula.webp",
+    alt: "Asatidz Mengajar Santri di Aula Terbuka",
+    link: "/program/infaq",
+    description: "Interaksi bimbingan asatidz membekali santri adab islami dan etika pergaulan yang luhur.",
+  },
+  {
+    id: "05",
+    title: "Kreativitas & Kebersamaan Santriwati",
+    category: "Kemandirian Santri",
+    statusBadge: "Santriwati FAST",
+    src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/tiga-santriwati-pose-banner-paten-jonggol-1.webp",
+    alt: "Tiga Santriwati Menunjukkan Karakter Mandiri",
+    link: "/program/wakaf",
+    description: "Semangat gotong royong dan kekompakan santriwati dalam keseharian asrama Jonggol.",
+  },
+];
 ---
 
 <BaseLayout
@@ -64,7 +117,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
             </div>
             <div class="pen-intro-sub-img">
               <img
-                src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-menulis-di-buku-catatan.webp"
+                src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-fokus-mencatat-pelajaran.webp"
                 alt="Santri Tekun Mencatat Materi Pelajaran"
                 class="pen-img-cover"
                 loading="lazy"
@@ -76,7 +129,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
         <div class="pen-intro-right">
           <div class="pen-intro-main-img">
             <img
-              src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/tampak-luar-gedung-pesantren-portrait.webp"
+              src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/tampak-depan-asrama-putra.jpeg"
               alt="Gedung Pesantren Jonggol Tampak Luar"
               class="pen-img-cover"
               loading="lazy"
@@ -111,7 +164,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
           <div class="pen-timeline-item">
             <div class="pen-timeline-img-box">
               <img
-                src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lahan-dan-pemukiman.webp"
+                src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/bagian-atas-masjid.jpeg"
                 alt="Inisiasi Gagasan 2021"
                 class="pen-img-cover"
                 loading="lazy"
@@ -127,7 +180,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
           <div class="pen-timeline-item">
             <div class="pen-timeline-img-box">
               <img
-                src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/atap-rangka-baja-aula.webp"
+                src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/asrama-putri-yang-belum-jadi.jpeg"
                 alt="Pembebasan Lahan dan Konstruksi Aula 2023"
                 class="pen-img-cover"
                 loading="lazy"
@@ -143,7 +196,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
           <div class="pen-timeline-item">
             <div class="pen-timeline-img-box">
               <img
-                src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/asrama-putra-baru/pembangunan-asrama-ikhwan-baru.jpeg"
+                src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/green-house-yang-belum-jadi.jpeg"
                 alt="Pembangunan Gedung Asrama dan Sarana Ibadah 2025"
                 class="pen-img-cover"
                 loading="lazy"
@@ -159,7 +212,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
           <div class="pen-timeline-item">
             <div class="pen-timeline-img-box">
               <img
-                src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lahan-perkebunan.webp"
+                src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/dinding-hebel-ventilasi-roster-1.webp"
                 alt="Pengembangan Pertanian Terpadu 2026"
                 class="pen-img-cover"
                 loading="lazy"
@@ -200,7 +253,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
         <div class="pen-workflow-card">
           <div class="pen-wf-img-box">
             <img
-              src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-berkacamata-fokus-menyimak.webp"
+              src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-menyimak-pengajian.webp"
               alt="Memahami Kebutuhan"
               class="pen-img-cover"
               loading="lazy"
@@ -217,7 +270,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
         <div class="pen-workflow-card">
           <div class="pen-wf-img-box">
             <img
-              src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-menulis-tugas-pensil.webp"
+              src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/ustadz-menerangkan-di-depan-santri-ikhwan.webp"
               alt="Menghubungkan Kepedulian"
               class="pen-img-cover"
               loading="lazy"
@@ -234,7 +287,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
         <div class="pen-workflow-card">
           <div class="pen-wf-img-box">
             <img
-              src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/asrama-putra-baru/dalam-asrama-ikhwan-baru.jpeg"
+              src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/pondasi-kelas-lt2.jpeg"
               alt="Mewujudkan Pengembangan"
               class="pen-img-cover"
               loading="lazy"
@@ -296,7 +349,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
       </div>
 
       <div class="w-full">
-        <ElasticGallery defaultActiveId="01" />
+        <ElasticGallery defaultActiveId="01" items={tentangGalleryItems} />
       </div>
     </div>
   </section>
@@ -340,7 +393,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
   .pen-banner-bg {
     position: absolute;
     inset: 0;
-    background-image: url('https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lapangan-dan-lahan-tani.webp');
+    background-image: url('https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/konstruksi-atap-aula-paranet.webp');
     background-size: cover;
     background-position: center;
     opacity: 0.35;
@@ -525,7 +578,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
   .pen-video-bg {
     position: absolute;
     inset: 0;
-    background-image: url('https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-pembangunan-gedung-asrama.webp');
+    background-image: url('https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/dinding-hebel-ventilasi-roster-2.webp');
     background-size: cover;
     background-position: center;
     z-index: 0;
