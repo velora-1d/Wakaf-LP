@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] RESTORE-ELASTIC-GALLERY-01: Restorasi Galeri Beranda ke Komponen Resmi ElasticGallery (Horizontal Expandable Accordion ISAVO) Menggantikan Tata Letak Masonry yang Berantakan Terverifikasi Build 100%
 - [x] MASONRY-GRID-VISIBILITY-FIX-01: Perbaikan Masalah Blank Putih MasonryGrid (Eliminasi useInView Opacity 0 Framer Motion yang Terhambat Lenis Scroll, Transisi ke Hydration client:load & Fallback Solid)
 - [x] MASONRY-GRID-REPLACE-ACCORDION-01: Penggantian Galeri Akordeon Vertikal (ElasticGallery) dengan Komponen React MasonryGrid (3D Tilt & Framer Motion) di Halaman Beranda (ShowcaseSection), Tentang Kami, dan Kemitraan Terverifikasi Build 100% & Empiris
 - [x] ALL-PAGES-REAL-IMAGES-ZERO-DUP-01: Master Plan & Implementasi Pemetaan Foto Riil Lapangan (Zero-Repetition / Tanpa Duplikasi) di Seluruh Halaman Website GVF (Home, 4 Program, Tentang Kami, Kemitraan, Kontak) Bebas dari Folder design-masjid (Verifikasi Build & Empiris Live 8 Halaman)

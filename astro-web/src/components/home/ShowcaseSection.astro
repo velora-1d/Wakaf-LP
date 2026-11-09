@@ -1,8 +1,7 @@
 ---
 // src/components/home/ShowcaseSection.astro
-// Seksi Galeri Dokumentasi Kawasan GVF Sukasirna Jonggol dengan Komponen MasonryGrid 3D Tilt
-import MasonryGrid from '../ui/MasonryGrid.astro';
-import { defaultShowcaseItems } from '../ui/masonry-grid-demo';
+// Exact ISAVO "Gallery" Section: Giant Background Watermark + Horizontal Elastic Accordion
+import ElasticGallery from '../ui/ElasticGallery.astro';
 ---
 
 <section class="isavo-gallery-section" id="galeri">
@@ -22,8 +21,8 @@ import { defaultShowcaseItems } from '../ui/masonry-grid-demo';
     </p>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <MasonryGrid items={defaultShowcaseItems} />
+  <div class="max-w-6xl mx-auto px-4" style="max-width: 1152px; margin: 0 auto; width: 100%;">
+    <ElasticGallery defaultActiveId="01" />
   </div>
 </section>
 
