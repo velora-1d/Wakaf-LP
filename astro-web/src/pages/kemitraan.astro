@@ -5,7 +5,7 @@ export const prerender = false;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CollaborateSection from '../components/home/CollaborateSection.astro';
-import ElasticGallery from '../components/ui/ElasticGallery.astro';
+import MasonryGrid from '../components/ui/MasonryGrid.astro';
 import { getActivePageSections } from '../lib/db';
 import { getBreadcrumbSchema } from '../lib/seo-schema';
 
@@ -111,8 +111,8 @@ const kemitraanGalleryItems = [
         </p>
       </div>
 
-      <div class="w-full">
-        <ElasticGallery defaultActiveId="01" items={kemitraanGalleryItems} />
+      <div class="w-full mt-6">
+        <MasonryGrid items={kemitraanGalleryItems} columns="columns-1 sm:columns-2 lg:columns-3" />
       </div>
     </div>
   </section>

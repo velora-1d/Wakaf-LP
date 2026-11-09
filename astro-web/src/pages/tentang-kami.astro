@@ -4,7 +4,7 @@
 export const prerender = false;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ElasticGallery from '../components/ui/ElasticGallery.astro';
+import MasonryGrid from '../components/ui/MasonryGrid.astro';
 import LeadershipSection from '../components/home/LeadershipSection.astro';
 import { getActivePageSections } from '../lib/db';
 import { getBreadcrumbSchema } from '../lib/seo-schema';
@@ -348,8 +348,8 @@ const tentangGalleryItems = [
         </div>
       </div>
 
-      <div class="w-full">
-        <ElasticGallery defaultActiveId="01" items={tentangGalleryItems} />
+      <div class="w-full mt-6">
+        <MasonryGrid items={tentangGalleryItems} columns="columns-1 sm:columns-2 lg:columns-3" />
       </div>
     </div>
   </section>

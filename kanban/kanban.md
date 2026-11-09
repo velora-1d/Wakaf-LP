@@ -3,13 +3,14 @@
 ## To Do
 
 ## In Progress
-- [/] MASONRY-GRID-REPLACE-ACCORDION-01: Penggantian Galeri Akordeon Vertikal (ElasticGallery) dengan Komponen React MasonryGrid (3D Tilt & Framer Motion) di Halaman Beranda (ShowcaseSection), Tentang Kami, dan Kemitraan
 - [/] LP-UIUX-WAKAFRUTIN-01: Redesain UI/UX Landing Page Masjid Khairu Ummah Sugro berbasis Desain Sistem Wakaf-Rutin dengan Konten, Aset & Video Asli
 
 ## In Review / Test
-- [/] ALL-PAGES-REAL-IMAGES-ZERO-DUP-01: Master Plan & Implementasi Pemetaan Foto Riil Lapangan (Zero-Repetition / Tanpa Duplikasi) di Seluruh Halaman Website GVF (Home, 4 Program, Tentang Kami, Kemitraan, Kontak) Bebas dari Folder design-masjid (Verifikasi Build & Empiris Live 8 Halaman)
 
 ## Done
+- [x] MASONRY-GRID-REPLACE-ACCORDION-01: Penggantian Galeri Akordeon Vertikal (ElasticGallery) dengan Komponen React MasonryGrid (3D Tilt & Framer Motion) di Halaman Beranda (ShowcaseSection), Tentang Kami, dan Kemitraan Terverifikasi Build 100% & Empiris
+- [x] ALL-PAGES-REAL-IMAGES-ZERO-DUP-01: Master Plan & Implementasi Pemetaan Foto Riil Lapangan (Zero-Repetition / Tanpa Duplikasi) di Seluruh Halaman Website GVF (Home, 4 Program, Tentang Kami, Kemitraan, Kontak) Bebas dari Folder design-masjid (Verifikasi Build & Empiris Live 8 Halaman)
+- [x] HOME-FONT-WEIGHT-LOCAL-01: Penyelarasan Font Weight Heading Beranda (400 ke 600/700 Tebal seperti Tentang Kami) & Font Lokal Woff2 Golos Text Anti-Gagal
 - [x] HOME-FONT-WEIGHT-LOCAL-01: Penyelarasan Font Weight Heading Beranda (400 ke 600/700 Tebal seperti Tentang Kami) & Font Lokal Woff2 Golos Text Anti-Gagal
 - [x] HOME-FONT-GOLOS-ALIGN-01: Penyelarasan Tipografi Halaman Beranda dengan Halaman Lain Menggunakan Font Resmi Golos Text Penuh (BaseLayout, Design Tokens, Hero, Showcase & Leadership)
 - [x] HIDE-LEADERSHIP-DB-01: Nonaktifkan Seksi Struktur Kepengurusan (Dewan Pembina, Pengawas & Pengelola GVF) di Seluruh Halaman via Database Neon PostgreSQL
