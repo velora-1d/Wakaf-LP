@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "MASONRY-GRID-CLEAN-UI-01", "name": "Integrasi Komponen MasonryGrid 3D Tilt React Sesuai Prompt dengan Desain Kartu Rapi (Foto Jernih, Footer Keterangan Terpisah Bersih, Tanpa Overlap Berantakan, Terverifikasi Build 100%)", "status": "closed" },
     { "id": "MASONRY-GRID-REPLACE-ACCORDION-01", "name": "Penggantian Galeri Akordeon Vertikal (ElasticGallery) dengan Komponen React MasonryGrid (3D Tilt & Framer Motion) di Halaman Beranda (ShowcaseSection), Tentang Kami, dan Kemitraan", "status": "closed" },
     { "id": "ALL-PAGES-REAL-IMAGES-ZERO-DUP-01", "name": "Master Plan & Implementasi Pemetaan Foto Riil Lapangan (Zero-Repetition / Tanpa Duplikasi) di Seluruh Halaman Website GVF (Home, 4 Program, Tentang Kami, Kemitraan, Kontak) Bebas dari Folder design-masjid", "status": "closed" },
     { "id": "HIDE-LEADERSHIP-DB-01", "name": "Nonaktifkan Seksi Struktur Kepengurusan (Dewan Pembina, Pengawas & Pengelola GVF) di Seluruh Halaman via Database Neon PostgreSQL", "status": "closed" },

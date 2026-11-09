@@ -1,7 +1,7 @@
 ---
 // src/components/home/ShowcaseSection.astro
-// Exact ISAVO "Gallery" Section: Giant Background Watermark + Horizontal Elastic Accordion
-import ElasticGallery from '../ui/ElasticGallery.astro';
+// Showcase Dokumentasi & Masterplan Kawasan menggunakan MasonryGrid 3D Tilt interaktif
+import MasonryGrid from '../ui/MasonryGrid.astro';
 ---
 
 <section class="isavo-gallery-section" id="galeri">
@@ -21,8 +21,8 @@ import ElasticGallery from '../ui/ElasticGallery.astro';
     </p>
   </div>
 
-  <div class="max-w-6xl mx-auto px-4" style="max-width: 1152px; margin: 0 auto; width: 100%;">
-    <ElasticGallery defaultActiveId="01" />
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <MasonryGrid />
   </div>
 </section>
 

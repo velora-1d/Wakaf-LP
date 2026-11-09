@@ -14,7 +14,7 @@ export interface MasonryItem {
 
 const S3_BASE = 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets';
 
-// 8 Foto Riil Faktual Kawasan GVF Sukasirna Jonggol (100% Unik & Bebas Duplikasi)
+// Koleksi Foto Faktual & Masterplan Kawasan Sukasirna Jonggol (100% Unik & Terverifikasi)
 export const defaultShowcaseItems: MasonryItem[] = [
   {
     id: '01',
@@ -88,6 +88,42 @@ export const defaultShowcaseItems: MasonryItem[] = [
     alt: 'Progres Pembangunan Lantai 2 Masjid Khairu Ummah',
     description: 'Ikhtiar penyelesaian mezanin dan lantai atas untuk daya tampung jamaah yang lebih luas.',
   },
+  {
+    id: '09',
+    title: 'Skywalk Learning Room Sukasirna',
+    category: 'Masterplan Kawasan',
+    statusBadge: 'Desain 3D',
+    src: '/gambar design/skywalk learning room.jpg',
+    alt: 'Visualisasi 3D Skywalk Learning Room',
+    description: 'Ruang kelas masa depan terhubung lanskap alam perbukitan untuk kegiatan belajar kolaboratif.',
+  },
+  {
+    id: '10',
+    title: 'Kemandirian Energi Mandiri Panel Surya',
+    category: 'Eco-Pesantren',
+    statusBadge: 'Teknologi Hijau',
+    src: '/gambar design/panel surya.jpg',
+    alt: 'Rancangan Instalasi Panel Surya Kawasan Pesantren',
+    description: 'Pemanfaatan energi baru terbarukan ramah lingkungan untuk operasional mandiri santri.',
+  },
+  {
+    id: '11',
+    title: 'Interior Utama Masjid Khairu Ummah',
+    category: 'Pusat Ibadah',
+    statusBadge: 'Desain Arsitektural',
+    src: '/gambar design/interior masjid.jpg',
+    alt: 'Visualisasi Interior Utama Masjid Khairu Ummah',
+    description: 'Tata ruang sholat yang lapang dan sejuk dengan pencahayaan alami yang menenangkan.',
+  },
+  {
+    id: '12',
+    title: 'Kegiatan Belajar Kurikulum FAST',
+    category: 'Pendidikan Vokasi',
+    statusBadge: 'Akademik Santri',
+    src: '/gambar-bahan/kbm kelas 1.jpeg',
+    alt: 'Kegiatan Belajar Mengajar Santri di Kelas',
+    description: 'Kurikulum vokasi terpadu melatih keahlian teknologi dan kemandirian wirausaha.',
+  },
 ];
 
 export interface MasonryDemoProps {
@@ -130,7 +166,8 @@ export const MasonryGridDemo: React.FC<MasonryDemoProps> = ({
         gap={gap}
         renderItem={(item) => {
           const cardContent = (
-            <div className="group relative overflow-hidden rounded-2xl bg-white border border-slate-200/90 shadow-[0_4px_16px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_rgba(9,105,218,0.12)] transition-all duration-300 ease-out cursor-pointer">
+            <div className="group overflow-hidden rounded-2xl bg-white border border-slate-200/80 shadow-[0_4px_16px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_rgba(9,105,218,0.12)] hover:border-blue-200 transition-all duration-300 ease-out flex flex-col cursor-pointer">
+              {/* Image Frame */}
               <div className="relative w-full overflow-hidden bg-slate-100">
                 <img
                   src={item.src}
@@ -140,41 +177,41 @@ export const MasonryGridDemo: React.FC<MasonryDemoProps> = ({
                   decoding="async"
                 />
 
-                {/* Subtle dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent pointer-events-none transition-opacity duration-300" />
-
-                {/* Top Badge Pill */}
+                {/* Category / Status Pill Badge */}
                 {(item.statusBadge || item.category) && (
-                  <div className="absolute top-3 left-3 z-10">
-                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/95 text-slate-800 shadow-sm border border-slate-200/60 backdrop-blur-md">
+                  <div className="absolute top-3 left-3 z-10 pointer-events-none">
+                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/95 text-slate-800 shadow-sm border border-slate-200/80 backdrop-blur-md">
                       {item.statusBadge || item.category}
                     </span>
                   </div>
                 )}
+              </div>
 
-                {/* Bottom Content Area */}
-                <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 z-10 flex flex-col justify-end">
-                  {item.category && (
-                    <span className="text-[11px] font-semibold text-blue-300 uppercase tracking-wider mb-1">
-                      {item.category}
-                    </span>
-                  )}
-                  <h3 className="text-white text-base sm:text-lg font-bold leading-snug tracking-tight font-['Golos_Text',sans-serif]">
-                    {item.title}
-                  </h3>
-                  {item.description && (
-                    <p className="text-slate-300 text-xs mt-1.5 leading-relaxed line-clamp-2 opacity-90 group-hover:opacity-100 transition-opacity">
-                      {item.description}
-                    </p>
-                  )}
-                </div>
+              {/* Clean Footer Caption (Never Obstructs The Image) */}
+              <div className="p-4 bg-white flex flex-col justify-between flex-grow border-t border-slate-100">
+                {item.category && (
+                  <span className="text-[11px] font-bold text-[#0969da] uppercase tracking-wider mb-1 font-['Golos_Text',sans-serif]">
+                    {item.category}
+                  </span>
+                )}
+                <h3 className="text-slate-900 font-bold text-sm sm:text-base leading-snug font-['Golos_Text',sans-serif] group-hover:text-[#0969da] transition-colors">
+                  {item.title}
+                </h3>
+                {item.description && (
+                  <p className="text-slate-500 text-xs mt-1.5 leading-relaxed line-clamp-2 font-['Golos_Text',sans-serif]">
+                    {item.description}
+                  </p>
+                )}
               </div>
             </div>
           );
 
           if (item.link) {
             return (
-              <a href={item.link} className="block no-underline focus:outline-none focus:ring-2 focus:ring-[#0969da] rounded-2xl">
+              <a
+                href={item.link}
+                className="block no-underline focus:outline-none focus:ring-2 focus:ring-[#0969da] rounded-2xl"
+              >
                 {cardContent}
               </a>
             );

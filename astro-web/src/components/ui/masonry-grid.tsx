@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
   motion,
-  useInView,
   useMotionValue,
   useTransform,
   useSpring,
@@ -21,7 +20,7 @@ export interface MasonryGridProps<T> {
 }
 
 // Self-contained GridItem component to handle 3D tilt and spring animations
-const GridItem = ({ children }: { children: React.ReactNode }) => {
+export const GridItem = ({ children }: { children: React.ReactNode }) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   // Motion values to track mouse position
@@ -68,7 +67,7 @@ const GridItem = ({ children }: { children: React.ReactNode }) => {
         transformStyle: 'preserve-3d',
         perspective: '1000px',
       }}
-      className="relative"
+      className="relative will-change-transform"
     >
       <motion.div
         style={{
@@ -76,7 +75,7 @@ const GridItem = ({ children }: { children: React.ReactNode }) => {
           rotateY,
           transformStyle: 'preserve-3d',
         }}
-        whileTap={{ scale: 0.95 }}
+        whileTap={{ scale: 0.98 }}
         className="w-full h-full"
       >
         {children}
@@ -111,3 +110,4 @@ export const MasonryGrid = <T,>({
 };
 
 export default MasonryGrid;
+
