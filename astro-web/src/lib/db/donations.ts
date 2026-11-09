@@ -109,6 +109,33 @@ export async function getVerifiedDonationsByProgram(
 }
 
 /**
+ * Mengambil seluruh donasi terverifikasi (lunas) lintas semua program untuk Halaman Detail Donatur Publik
+ */
+export async function getAllVerifiedDonations(
+  limitCount = 500
+): Promise<VerifiedPublicDonation[]> {
+  try {
+    const all = await getAllDonationsWithDonors();
+    const lunasList = all.filter((d) => d.statusPembayaran === 'lunas');
+
+    return lunasList.slice(0, limitCount).map((d) => ({
+      id: d.id,
+      kodeTransaksi: d.kodeTransaksi,
+      nominalTotal: d.nominalTotal,
+      namaDonatur: d.donor?.namaTampilan || d.donor?.namaLengkap || 'Hamba Allah',
+      atasNamaNiat: d.atasNamaNiat,
+      doaDonatur: d.doaDonatur,
+      metodePembayaran: d.metodePembayaran,
+      createdAt: d.createdAt,
+      programTujuan: d.programTujuan,
+    }));
+  } catch (error) {
+    console.error('[DB] Error fetching all verified donations:', error);
+    return [];
+  }
+}
+
+/**
  * Mengambil konfigurasi paket dinamis dari tabel page_sections jika diatur di CMS admin
  */
 export async function getProgramPackages(pageSlug: string) {

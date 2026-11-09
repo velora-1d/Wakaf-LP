@@ -8,6 +8,8 @@
 ## In Review / Test
 
 ## Done
+- [x] PUBLIC-DONOR-PAGE-AND-ADMIN-INTEG-01: Pembuatan Halaman Khusus Publik Donatur (/donatur) Lengkap dengan Filter Program, Pencarian Real-Time, Pagination Interaktif, Kolom No Angka Murni, Serta Integrasi Langsung dengan Dashboard Admin CMS (/admin/donatur) Terverifikasi Build 100%
+- [x] REDESIGN-DONOR-TABLE-GRID-2-COL-01: Redesain UI Tabel Donatur Landing Page Program Menjadi Format Ringkas 8 Baris Terkini dengan Kolom No Murni Angka, Tanpa Avatar Inisial Bulat, dan Tombol Akses Cepat ke Halaman Publik Donatur Terverifikasi Build 100%
 - [x] REDESIGN-DONOR-GRID-2-COL-01: Redesain UI Feed Donatur Menjadi Grid 2 Kolom Berpenomoran Resmi Tanpa Avatar Inisial Bulat Serta Fitur Live Search & Load More (Terverifikasi Empiris & Lulus Build 100%)
 - [x] MIGRATE-DONORS-PGBASE-TO-NEON-01: Migrasi & Sinkronisasi 65 Data Donatur dan 61 Transaksi Donasi Riil dari PGbase ke Neon PostgreSQL dengan Reset Identity Aman (Terverifikasi Empiris 65 Donatur, 61 Donasi & Lulus Build 100%)
 - [x] MODULARIZE-PHASE-3-ADMIN-CMS-01: Modularisasi Admin Panel CMS & Client Scripts (donatur/index.astro 219 baris, kabar/index.astro 292 baris, pages/[slug].astro 195 baris, roles/index.astro 324 baris, kabar.css 545 baris < 600 Baris) Terverifikasi Build 100%

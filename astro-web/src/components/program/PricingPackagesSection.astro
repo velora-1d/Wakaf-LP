@@ -21,6 +21,15 @@ const packages = (dbPackageData?.packages && dbPackageData.packages.length > 0) 
 const verifiedDonations = await getVerifiedDonationsByProgram(program.slug, 100);
 const totalTerhimpun = verifiedDonations.reduce((acc, cur) => acc + (cur.nominalTotal || 0), 0);
 
+// Penomoran resmi murni angka tanpa simbol pagar
+const numberedDonations = verifiedDonations.map((item, idx) => ({
+  ...item,
+  no: idx + 1,
+}));
+
+// Preview ringkas 8 donatur teratas di landing page program agar halaman tidak scroll panjang
+const previewDonations = numberedDonations.slice(0, 8);
+
 function formatRupiah(amount: number): string {
   return new Intl.NumberFormat('id-ID', {
     style: 'currency',
@@ -179,99 +188,94 @@ function formatRelativeDate(date: Date | string): string {
 
       <!-- Donors Search Toolbar & Counter -->
       <div class="donor-toolbar">
-        <div class="donor-search-wrap">
-          <svg class="search-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input
-            type="text"
-            id="donorSearchField"
-            class="donor-search-input"
-            placeholder="Cari nama donatur, atas nama niat, atau doa..."
-            autocomplete="off"
-          />
+        <div class="donor-counter-badge">
+          <span class="count-total">{verifiedDonations.length}</span>
+          <span>Transaksi Lunas Terverifikasi</span>
         </div>
 
-        <div class="donor-counter-badge">
-          <span id="donorDisplayCount">{verifiedDonations.length > 12 ? '12' : verifiedDonations.length}</span>
-          <span class="count-divider">dari</span>
-          <span class="count-total">{verifiedDonations.length}</span>
-          <span>Transaksi</span>
-        </div>
+        <a href={`/donatur?program=${program.slug}`} class="btn-goto-all-donors">
+          <span>Lihat Semua Donatur ({verifiedDonations.length} Transaksi)</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
       </div>
 
-      <!-- Donors Feed (Grid 2 Kolom Berpenomoran Resmi) -->
-      <div class="donor-feed-container">
-        {verifiedDonations.length > 0 ? (
-          <div class="donor-feed-wrapper">
-            <div class="donor-grid-layout" id="donorGridLayout">
-              {verifiedDonations.map((item, index) => {
-                const numStr = String(index + 1).padStart(2, '0');
-                const searchKey = `${item.namaDonatur || ''} ${item.atasNamaNiat || ''} ${item.doaDonatur || ''}`.toLowerCase();
-                return (
-                  <div
-                    class="donor-grid-card"
-                    data-search={searchKey}
-                    data-index={index}
-                  >
-                    <div class="donor-card-top">
-                      <div class="donor-id-group">
-                        <span class="donor-num-badge">#{numStr}</span>
-                        <div class="donor-identity">
-                          <span class="donor-person-name">{item.namaDonatur || 'Hamba Allah'}</span>
-                          <span class="donor-time-ago">{formatRelativeDate(item.createdAt)}</span>
+      <!-- Donors Unified Table -->
+      {verifiedDonations.length > 0 ? (
+        <div class="donatur-tables-container">
+          <div class="donatur-table-column">
+            <div class="donatur-table-scroll">
+              <table class="donatur-table">
+                <thead>
+                  <tr>
+                    <th class="col-no">No</th>
+                    <th class="col-donor">Muhsinin / Donatur</th>
+                    <th class="col-intent">Niat &amp; Doa Kebaikan</th>
+                    <th class="col-amount">Nominal Donasi</th>
+                    <th class="col-status">Status Amil</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {previewDonations.map((item) => (
+                    <tr class="donor-row">
+                      <td class="col-no">
+                        <span class="no-val">{item.no}</span>
+                      </td>
+                      <td class="col-donor">
+                        <div class="donor-info">
+                          <span class="donor-name">{item.namaDonatur || 'Hamba Allah'}</span>
+                          <span class="donor-date">{formatRelativeDate(item.createdAt)}</span>
                         </div>
-                      </div>
-
-                      <div class="donor-amount-group">
-                        <span class="donor-nominal-val font-mono">{formatRupiah(item.nominalTotal)}</span>
-                        <span class="donor-verified-chip">
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      </td>
+                      <td class="col-intent">
+                        <div class="intent-wrapper">
+                          {item.atasNamaNiat && (
+                            <span class="atas-nama-tag">
+                              Atas Nama: <strong>{item.atasNamaNiat}</strong>
+                            </span>
+                          )}
+                          {item.doaDonatur ? (
+                            <p class="donor-prayer">&ldquo;{item.doaDonatur}&rdquo;</p>
+                          ) : (
+                            <p class="donor-prayer-empty">Semoga menjadi amal shodaqoh jariyah yang kekal dan membawa keberkahan keluarga.</p>
+                          )}
+                        </div>
+                      </td>
+                      <td class="col-amount">
+                        <span class="amount-val font-mono">{formatRupiah(item.nominalTotal)}</span>
+                        {item.metodePembayaran && (
+                          <span class="payment-method-badge">{item.metodePembayaran}</span>
+                        )}
+                      </td>
+                      <td class="col-status">
+                        <span class="status-verified-badge">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <polyline points="20 6 9 17 4 12"></polyline>
                           </svg>
-                          <span>Lunas</span>
+                          <span>Lunas Terverifikasi</span>
                         </span>
-                      </div>
-                    </div>
-
-                    <div class="donor-card-body">
-                      {item.atasNamaNiat && (
-                        <div class="donor-intent-line">
-                          <span class="intent-lbl">Atas Nama:</span>
-                          <strong class="intent-val">{item.atasNamaNiat}</strong>
-                        </div>
-                      )}
-                      {item.doaDonatur ? (
-                        <p class="donor-prayer-quote">&ldquo;{item.doaDonatur}&rdquo;</p>
-                      ) : (
-                        <p class="donor-prayer-default">Semoga menjadi amal shodaqoh jariyah yang kekal dan membawa keberkahan keluarga.</p>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
 
-            <!-- Load More & Toggle All Controls -->
-            {verifiedDonations.length > 12 && (
-              <div class="donor-pagination-wrap" id="donorPaginationWrap">
-                <button type="button" class="btn-load-more-donors" id="btnLoadMoreDonors">
-                  <span>Tampilkan Lebih Banyak (+12)</span>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </button>
-                <button type="button" class="btn-show-all-donors" id="btnShowAllDonors">
-                  <span>Lihat Seluruh {verifiedDonations.length} Donatur</span>
-                </button>
-              </div>
-            )}
-
-            <div class="donor-search-empty-state" id="donorSearchEmpty" style="display: none;">
-              <p>Tidak ditemukan donatur yang cocok dengan kata kunci pencarian.</p>
+            <!-- Table Bottom Bar -->
+            <div class="table-bottom-bar">
+              <span class="table-bottom-hint">Menampilkan {previewDonations.length} dari {verifiedDonations.length} transaksi terkini</span>
+              <a href={`/donatur?program=${program.slug}`} class="btn-more-donors-link">
+                <span>Buka Seluruh Daftar Donatur ({verifiedDonations.length})</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
             </div>
           </div>
+        </div>
         ) : (
           <div class="donatur-empty-state">
             <div class="empty-icon-wrap">
@@ -296,7 +300,6 @@ function formatRelativeDate(date: Date | string): string {
             </a>
           </div>
         )}
-      </div>
     </div>
   </div>
 </section>
@@ -782,222 +785,270 @@ function formatRelativeDate(date: Date | string): string {
     color: #0f172a;
   }
 
-  /* Donors 2-Column Grid Layout */
-  .donor-feed-wrapper {
+  /* Donors Unified Table Layout */
+  .donatur-tables-container {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
-  .donor-grid-layout {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  @media (max-width: 768px) {
-    .donor-grid-layout {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-  }
-
-  .donor-grid-card {
+  .donatur-table-column {
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 14px;
-    padding: 18px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    transition: transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 160ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 160ms ease;
-  }
-
-  .donor-grid-card:hover {
-    border-color: #cbd5e1;
-    box-shadow: 0 8px 24px rgba(9, 105, 218, 0.06);
-    transform: translateY(-2px);
-  }
-
-  .donor-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .donor-id-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .donor-num-badge {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 11.5px;
-    font-weight: 700;
-    color: #0969da;
-    background: #eff6ff;
-    border: 1px solid #dbeafe;
-    padding: 3px 8px;
-    border-radius: 6px;
-    flex-shrink: 0;
-  }
-
-  .donor-identity {
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
     display: flex;
     flex-direction: column;
   }
 
-  .donor-person-name {
+  .donatur-table-scroll {
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .donatur-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
     font-family: 'Golos Text', system-ui, sans-serif;
-    font-size: 14.5px;
+    font-size: 13px;
+    min-width: 520px;
+  }
+
+  .donatur-table thead tr {
+    background: #0f172a;
+    color: #ffffff;
+  }
+
+  .donatur-table th {
+    padding: 12px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #f1f5f9;
+    white-space: nowrap;
+    border: none;
+  }
+
+  .donatur-table th.col-no {
+    width: 44px;
+    text-align: center;
+  }
+
+  .donatur-table th.col-donor {
+    min-width: 130px;
+  }
+
+  .donatur-table th.col-intent {
+    min-width: 170px;
+  }
+
+  .donatur-table th.col-amount {
+    text-align: right;
+    min-width: 110px;
+  }
+
+  .donatur-table th.col-status {
+    text-align: center;
+    width: 110px;
+  }
+
+  .donatur-table tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.12s ease;
+  }
+
+  .donatur-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .donatur-table tbody tr:hover {
+    background-color: #f8fafc;
+  }
+
+  .donatur-table td {
+    padding: 12px 14px;
+    vertical-align: middle;
+  }
+
+  .donatur-table td.col-no {
+    text-align: center;
+  }
+
+  .no-val {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    display: inline-block;
+  }
+
+  .donatur-table td.col-donor {
+    vertical-align: middle;
+  }
+
+  .donor-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .donor-name {
+    font-size: 13px;
     font-weight: 600;
     color: #0f172a;
     line-height: 1.3;
   }
 
-  .donor-time-ago {
-    font-family: 'Golos Text', system-ui, sans-serif;
-    font-size: 11.5px;
+  .donor-date {
+    font-size: 11px;
     color: #94a3b8;
-    margin-top: 2px;
   }
 
-  .donor-amount-group {
+  .donatur-table td.col-intent {
+    vertical-align: middle;
+  }
+
+  .intent-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-    flex-shrink: 0;
+    gap: 3px;
+    max-width: 230px;
   }
 
-  .donor-nominal-val {
-    font-size: 15px;
-    font-weight: 700;
-    color: #0969da;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    letter-spacing: -0.01em;
-  }
-
-  .donor-verified-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 2px 8px;
-    background: #ecfdf5;
-    color: #047857;
-    border: 1px solid #a7f3d0;
-    border-radius: 9999px;
-    font-size: 10.5px;
-    font-weight: 600;
-    font-family: 'Golos Text', system-ui, sans-serif;
-  }
-
-  .donor-card-body {
-    padding-top: 10px;
-    border-top: 1px solid #f8fafc;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .donor-intent-line {
-    font-size: 12px;
+  .atas-nama-tag {
+    font-size: 11px;
     color: #64748b;
-    font-family: 'Golos Text', system-ui, sans-serif;
+    line-height: 1.3;
   }
 
-  .intent-lbl {
-    color: #94a3b8;
-    margin-right: 4px;
-  }
-
-  .intent-val {
+  .atas-nama-tag strong {
     color: #0f172a;
     font-weight: 600;
   }
 
-  .donor-prayer-quote {
+  .donor-prayer {
     margin: 0;
-    font-family: 'Golos Text', system-ui, sans-serif;
-    font-size: 12.5px;
+    font-size: 11.5px;
     font-style: italic;
     color: #475569;
-    line-height: 1.5;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
-  .donor-prayer-default {
+  .donor-prayer-empty {
     margin: 0;
-    font-family: 'Golos Text', system-ui, sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-style: italic;
     color: #94a3b8;
-    line-height: 1.4;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
-  /* Load More & Pagination Controls */
-  .donor-pagination-wrap {
-    display: flex;
-    justify-content: center;
+  .donatur-table td.col-amount {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .amount-val {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0969da;
+    display: block;
+    letter-spacing: -0.01em;
+  }
+
+  .payment-method-badge {
+    display: block;
+    font-size: 10px;
+    color: #94a3b8;
+    margin-top: 2px;
+  }
+
+  .donatur-table td.col-status {
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .status-verified-badge {
+    display: inline-flex;
     align-items: center;
-    gap: 12px;
-    margin-top: 28px;
-    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    padding: 3px 8px;
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+    border-radius: 9999px;
+    font-size: 10px;
+    font-weight: 600;
   }
 
-  .btn-load-more-donors {
+  .status-verified-badge svg {
+    flex-shrink: 0;
+  }
+
+  .btn-goto-all-donors {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 11px 22px;
+    padding: 8px 16px;
     background: #0969da;
-    color: #ffffff;
+    color: #ffffff !important;
+    border-radius: 8px;
     font-family: 'Golos Text', system-ui, sans-serif;
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 600;
-    border-radius: 9999px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(9, 105, 218, 0.2);
+    text-decoration: none;
     transition: background-color 0.15s ease, transform 0.15s ease;
   }
 
-  .btn-load-more-donors:hover {
+  .btn-goto-all-donors:hover {
     background: #0752a8;
     transform: translateY(-1px);
   }
 
-  .btn-show-all-donors {
-    display: inline-flex;
+  .table-bottom-bar {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background: #ffffff;
-    color: #334155;
-    font-family: 'Golos Text', system-ui, sans-serif;
-    font-size: 13.5px;
-    font-weight: 600;
-    border-radius: 9999px;
-    border: 1px solid #cbd5e1;
-    cursor: pointer;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
-  }
-
-  .btn-show-all-donors:hover {
+    padding: 14px 20px;
     background: #f8fafc;
-    border-color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
-  .donor-search-empty-state {
-    padding: 32px 16px;
-    text-align: center;
+  .table-bottom-hint {
+    font-size: 12.5px;
     color: #64748b;
     font-family: 'Golos Text', system-ui, sans-serif;
-    font-size: 14px;
-    background: #ffffff;
-    border: 1px dashed #cbd5e1;
-    border-radius: 12px;
-    margin-top: 8px;
+  }
+
+  .btn-more-donors-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #0969da !important;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Golos Text', system-ui, sans-serif;
+    text-decoration: none;
+    transition: color 0.15s ease, gap 0.15s ease;
+  }
+
+  .btn-more-donors-link:hover {
+    color: #0752a8 !important;
+    gap: 8px;
   }
 
   /* Empty State */
@@ -1061,86 +1112,3 @@ function formatRelativeDate(date: Date | string): string {
   }
 
 </style>
-
-<script>
-  function setupDonorGridFeed() {
-    const searchInput = document.getElementById('donorSearchField') as HTMLInputElement | null;
-    const gridLayout = document.getElementById('donorGridLayout');
-    const paginationWrap = document.getElementById('donorPaginationWrap');
-    const btnLoadMore = document.getElementById('btnLoadMoreDonors');
-    const btnShowAll = document.getElementById('btnShowAllDonors');
-    const countDisplay = document.getElementById('donorDisplayCount');
-    const emptyState = document.getElementById('donorSearchEmpty');
-
-    if (!gridLayout) return;
-
-    const cards = Array.from(gridLayout.querySelectorAll<HTMLElement>('.donor-grid-card'));
-    const total = cards.length;
-    let visibleLimit = 12;
-
-    function renderVisibility() {
-      const query = (searchInput?.value || '').trim().toLowerCase();
-      let matchCount = 0;
-
-      cards.forEach((card, idx) => {
-        const searchData = card.getAttribute('data-search') || '';
-        const matchesSearch = !query || searchData.includes(query);
-
-        if (matchesSearch) {
-          matchCount++;
-          if (query) {
-            // Jika sedang mencari, tampilkan semua yang cocok
-            card.style.display = 'flex';
-          } else {
-            // Mode normal: patuhi batas limit
-            card.style.display = idx < visibleLimit ? 'flex' : 'none';
-          }
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      if (countDisplay) {
-        countDisplay.textContent = query ? String(matchCount) : String(Math.min(visibleLimit, total));
-      }
-
-      if (paginationWrap) {
-        if (query || visibleLimit >= total) {
-          paginationWrap.style.display = 'none';
-        } else {
-          paginationWrap.style.display = 'flex';
-        }
-      }
-
-      if (emptyState) {
-        emptyState.style.display = matchCount === 0 ? 'block' : 'none';
-      }
-    }
-
-    renderVisibility();
-
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        renderVisibility();
-      });
-    }
-
-    if (btnLoadMore) {
-      btnLoadMore.addEventListener('click', () => {
-        visibleLimit += 12;
-        renderVisibility();
-      });
-    }
-
-    if (btnShowAll) {
-      btnShowAll.addEventListener('click', () => {
-        visibleLimit = total;
-        renderVisibility();
-      });
-    }
-  }
-
-  // Jalankan saat load awal & saat transisi navigasi halaman
-  setupDonorGridFeed();
-  document.addEventListener('astro:page-load', setupDonorGridFeed);
-</script>
