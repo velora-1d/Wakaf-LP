@@ -1,8 +1,12 @@
 import postgres from 'postgres';
 
+const DEFAULT_NEON_DATABASE_URL =
+  'postgresql://gvf_owner:npg_1m5lHgGejuAt@ep-flat-bread-aoom3zoi-pooler.c-2.ap-southeast-1.aws.neon.tech/gvf?channel_binding=require&sslmode=require';
+
 const connectionString =
   process.env.DATABASE_URL ||
-  'postgresql://DB-PGbase:OjRqOooKEny2kXMSSqIk@100.77.202.57:5433/gvf?application_name=pgbase&sslmode=disable';
+  process.env.PG_DATABASE_URL ||
+  DEFAULT_NEON_DATABASE_URL;
 
 const sql = postgres(connectionString);
 
