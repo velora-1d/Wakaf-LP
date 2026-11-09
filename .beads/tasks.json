@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "REMOVE-ALL-SECTION-DIVIDER-LINES-01", "name": "Penghapusan Seluruh Garis Pembatas Horizontal Seksi (Full-Width Border Lines & List Dividers) di Semua Halaman (Beranda, Program, Tentang Kami, Kemitraan)", "status": "closed" },
     { "id": "REMOVE-ALL-SECTION-PILL-BADGES-01", "name": "Penghapusan Seluruh UI Pill Badge Section (Dot Halo & Pen Badge Pill) di Seluruh Halaman (Beranda, Tentang Kami, Kemitraan, Kontak, Kabar, & Program)", "status": "closed" },
     { "id": "ABOUT-SPLIT-CLEAN-BACKDROP-01", "name": "Penyelarasan Visual AboutSplitSection: Eliminasi Background Hebel Semen Kasar ke Deep Navy Mesh Arsitektural & Foto Duta Santri Berprestasi 100% Unik", "status": "closed" },
     { "id": "FOOTER-BG-ARCH-RED-BRICK-01", "name": "Pembaruan Background Footer dengan Foto Riil Arsitektur Gedung Bata Merah Atap Segitiga Sukasirna Jonggol (Focal Point 35% & Darkening Gradient)", "status": "closed" },
