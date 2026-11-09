@@ -294,8 +294,8 @@
   /* 2-Column Split */
   .gvf-interactive-split {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 48px;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 40px;
     align-items: center;
   }
 
@@ -387,7 +387,8 @@
   .gvf-item-left {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
+    min-width: 0;
   }
 
   .gvf-item-num {
@@ -395,16 +396,20 @@
     font-weight: 700;
     color: #62625b;
     font-family: 'Golos Text', system-ui, sans-serif;
+    flex-shrink: 0;
     transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .gvf-item-title {
-    font-size: clamp(1.4rem, 2.2vw, 36px);
+    font-size: clamp(1.05rem, 1.75vw, 28px);
     font-weight: 600;
     line-height: 1.25;
     letter-spacing: -0.015em;
     color: #000000;
     font-family: 'Golos Text', system-ui, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
@@ -450,6 +455,20 @@
     }
     .gvf-preview-card {
       height: 380px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .gvf-item-title {
+      font-size: clamp(0.92rem, 3.8vw, 1.15rem);
+    }
+    .gvf-item-left {
+      gap: 12px;
+    }
+    .gvf-item-arrow-circle {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
     }
   }
 </style>
