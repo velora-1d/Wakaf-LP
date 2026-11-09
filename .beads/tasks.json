@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "MASONRY-GRID-REPLACE-ACCORDION-01", "name": "Penggantian Galeri Akordeon Vertikal (ElasticGallery) dengan Komponen React MasonryGrid (3D Tilt & Framer Motion) di Halaman Beranda (ShowcaseSection), Tentang Kami, dan Kemitraan", "status": "in_progress" },
     { "id": "ALL-PAGES-REAL-IMAGES-ZERO-DUP-01", "name": "Master Plan & Implementasi Pemetaan Foto Riil Lapangan (Zero-Repetition / Tanpa Duplikasi) di Seluruh Halaman Website GVF (Home, 4 Program, Tentang Kami, Kemitraan, Kontak) Bebas dari Folder design-masjid", "status": "in_review" },
     { "id": "HIDE-LEADERSHIP-DB-01", "name": "Nonaktifkan Seksi Struktur Kepengurusan (Dewan Pembina, Pengawas & Pengelola GVF) di Seluruh Halaman via Database Neon PostgreSQL", "status": "closed" },
     { "id": "PURGE-NON-NEON-01", "name": "Pembersihan Total Database & Storage Non-Neon di astro-web (Hanya Sisakan Neon Serverless PostgreSQL & Neon S3 Storage Bucket gvf-website)", "status": "closed" },
@@ -106,6 +107,7 @@
     { "id": "SEO-IMG-VERIFY-01", "name": "Image SEO (Alt, Loading Lazy, Decoding Async) & Uji Validasi Build Empiris (TypeScript Check & Astro Build)", "status": "closed" },
     { "id": "NAVBAR-CONTRAST-01", "name": "Perbaikan Kontras & Visibilitas Navbar pada Halaman Berlatar Terang (/kabar dan /kabar/[slug]) dengan Architectural Dark Banner Standar ISAVO", "status": "closed" },
     { "id": "ASSETS-CLEAN-KEBAB-CASE-01", "name": "Pembersihan Symlink Duplikat & Rename Permanen Folder/File Bahan Konten ke Kebab-Case", "status": "closed" },
-    { "id": "HOME-FONT-GOLOS-ALIGN-01", "name": "Penyelarasan Tipografi Halaman Beranda dengan Halaman Lain Menggunakan Font Resmi Golos Text Penuh", "status": "closed" }
+    { "id": "HOME-FONT-GOLOS-ALIGN-01", "name": "Penyelarasan Tipografi Halaman Beranda dengan Halaman Lain Menggunakan Font Resmi Golos Text Penuh", "status": "closed" },
+    { "id": "HOME-FONT-WEIGHT-LOCAL-01", "name": "Penyelarasan Font Weight Heading Beranda (400 ke 600/700 Tebal) & Font Lokal Woff2 Golos Text", "status": "closed" }
   ]
 }
