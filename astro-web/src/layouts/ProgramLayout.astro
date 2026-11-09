@@ -317,7 +317,7 @@ const valueBoxIcons = [
   </section>
   )}
 
-  <!-- SCRIPT INTERAKTIF: GSAP SCROLLTRIGGER ENGINE ALA ISAVO, SALIN REKENING & LIGHTBOX -->
+  <!-- SCRIPT INTERAKTIF: GSAP SCROLLTRIGGER ENGINE, SALIN REKENING & LIGHTBOX -->
   <script>
     import { gsap } from 'gsap';
     import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -326,7 +326,7 @@ const valueBoxIcons = [
       gsap.registerPlugin(ScrollTrigger);
 
       const initAnimations = () => {
-        // 1. ISAVO .slide-anim (Pricing cards & element slides)
+        // 1. GVF .slide-anim (Pricing cards & element slides)
         gsap.utils.toArray<HTMLElement>('.slide-anim').forEach((t) => {
           const s = t.dataset.direction || 'bottom';
           const o = parseInt(t.dataset.offset || '60', 10);
@@ -359,7 +359,7 @@ const valueBoxIcons = [
           );
         });
 
-        // 2. ISAVO .fade-top (Heading & titles)
+        // 2. GVF .fade-top (Heading & titles)
         gsap.utils.toArray<HTMLElement>('.fade-top').forEach((t) => {
           gsap.set(t, { opacity: 0, y: -30 });
           gsap.fromTo(
@@ -380,7 +380,7 @@ const valueBoxIcons = [
           );
         });
 
-        // 3. ISAVO .fade-wrapper (Staggered items)
+        // 3. GVF .fade-wrapper (Staggered items)
         gsap.utils.toArray<HTMLElement>('.fade-wrapper').forEach((t) => {
           const s = t.querySelectorAll(':scope > *');
           gsap.set(s, { opacity: 0, y: 30 });
@@ -423,7 +423,7 @@ const valueBoxIcons = [
         ScrollTrigger.refresh();
       };
 
-      // Double requestAnimationFrame persis seperti ISAVO bundle agar layout stabil
+      // Double requestAnimationFrame agar layout stabil
       requestAnimationFrame(() => {
         requestAnimationFrame(initAnimations);
       });
@@ -499,38 +499,38 @@ const valueBoxIcons = [
 
 <style>
   /* =========================================================================
-     DESIGN TOKENS — HARD COPY DARI ISAVO (isavo.co.id) + ADAPTASI GVF
-     Font: Golos Text — SAMA PERSIS ISAVO
+     DESIGN TOKENS — GVF
+     Font: Golos Text
      ========================================================================= */
   @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap');
 
   :root {
-    /* Font System — ISAVO asli */
+    /* Font System */
     --tl-ff-heading: 'Golos Text', system-ui, sans-serif;
     --tl-ff-body: 'Golos Text', system-ui, sans-serif;
 
-    /* Color System — adaptasi GVF (merah ISAVO → biru/emerald GVF) */
-    --tl-color-heading-primary: #191919;   /* ISAVO: #191919 */
-    --tl-color-text-body: #4d4d52;         /* ISAVO: #4d4d52 */
+    /* Color System */
+    --tl-color-heading-primary: #191919;
+    --tl-color-text-body: #4d4d52;
     --tl-color-theme-primary: #0969da;     /* Royal Blue GVF */
     --tl-color-theme-secondary: #0752a8;   /* Biru GVF Dark */
-    --tl-color-bg-1: #1c1c1d;             /* ISAVO: #1c1c1d */
-    --tl-color-border-1: #e3e3e8;         /* ISAVO: #e3e3e8 */
-    --tl-color-grey-1: #59585d;           /* ISAVO: #59585d */
-    --tl-color-grey-2: #9f9fa4;           /* ISAVO: #9f9fa4 */
+    --tl-color-bg-1: #1c1c1d;
+    --tl-color-border-1: #e3e3e8;
+    --tl-color-grey-1: #59585d;
+    --tl-color-grey-2: #9f9fa4;
 
-    /* Legacy aliases (dipertahankan untuk bagian yang belum di-refactor) */
-    --isavo-navy: #0a2540;
-    --isavo-dark: #191919;
-    --isavo-blue: #0369a1;
-    --isavo-blue-hover: #025e8d;
-    --isavo-blue-soft: #f0f7ff;
-    --isavo-blue-border: #bae6fd;
-    --isavo-emerald: #059669;
-    --isavo-emerald-soft: #ecfdf5;
-    --isavo-border: #e3e3e8;
-    --isavo-bg-light: #f4f4f4;  /* ISAVO: #f8f8f8 / warm grey */
-    --isavo-text-muted: #9f9fa4;
+    /* GVF tokens */
+    --gvf-navy: #0a2540;
+    --gvf-dark: #191919;
+    --gvf-blue: #0369a1;
+    --gvf-blue-hover: #025e8d;
+    --gvf-blue-soft: #f0f7ff;
+    --gvf-blue-border: #bae6fd;
+    --gvf-emerald: #059669;
+    --gvf-emerald-soft: #ecfdf5;
+    --gvf-border: #e3e3e8;
+    --gvf-bg-light: #f4f4f4;
+    --gvf-text-muted: #9f9fa4;
   }
 
   .accent-blue {
@@ -538,7 +538,7 @@ const valueBoxIcons = [
   }
 
   .bg-light {
-    background-color: var(--isavo-bg-light); /* #f4f4f4 warm grey ISAVO */
+    background-color: var(--gvf-bg-light);
   }
 
   .pt-100 { padding-top: 100px; }
@@ -550,9 +550,9 @@ const valueBoxIcons = [
   .max-w-800 { max-width: 800px; }
   .mx-auto { margin-left: auto; margin-right: auto; }
 
-  .isavo-container {
+  .gvf-container {
     width: 100%;
-    max-width: 1425px; /* container-2 ISAVO */
+    max-width: 1425px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 24px;
@@ -560,10 +560,10 @@ const valueBoxIcons = [
   }
 
   /* =========================================================================
-     SECTION HEADING PATTERN — HARD COPY ISAVO
+     SECTION HEADING PATTERN
      Struktur: .section-heading-wrap (row) → kiri: sub-heading | kanan: section-title
      ========================================================================= */
-  .isavo-section-heading {
+  .gvf-section-heading {
     width: 100%;
     max-width: 1192px;
     margin: 0 auto 60px;
@@ -573,24 +573,24 @@ const valueBoxIcons = [
     flex-wrap: wrap;
   }
 
-  .isavo-section-heading.centered {
+  .gvf-section-heading.centered {
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
   }
 
-  .isavo-section-heading .sub-heading-col {
+  .gvf-section-heading .sub-heading-col {
     flex: 0 0 auto;
     min-width: 180px;
   }
 
-  .isavo-section-heading .title-col {
+  .gvf-section-heading .title-col {
     flex: 1;
     min-width: 260px;
   }
 
-  /* Sub-heading pill — ISAVO style */
-  .isavo-sub-heading {
+  /* Sub-heading pill */
+  .gvf-sub-heading {
     font-family: var(--tl-ff-heading);
     color: var(--tl-color-heading-primary);
     text-transform: uppercase;
@@ -606,7 +606,7 @@ const valueBoxIcons = [
     overflow: hidden;
   }
 
-  .isavo-sub-heading::before {
+  .gvf-sub-heading::before {
     content: '';
     background-color: var(--tl-color-theme-primary);
     border-radius: 50%;
@@ -618,8 +618,8 @@ const valueBoxIcons = [
     transform: translateY(-50%);
   }
 
-  /* Main section title — ISAVO Cal Sans big */
-  .isavo-section-title {
+  /* Main section title */
+  .gvf-section-title {
     font-family: var(--tl-ff-heading);
     font-size: clamp(2.2rem, 4vw, 3.75rem);
     font-weight: 400;
@@ -631,11 +631,11 @@ const valueBoxIcons = [
     overflow: hidden;
   }
 
-  .isavo-section-title span {
+  .gvf-section-title span {
     color: var(--tl-color-theme-primary);
   }
 
-  .isavo-section-desc {
+  .gvf-section-desc {
     font-family: var(--tl-ff-body);
     font-size: 1rem;
     color: var(--tl-color-text-body);
@@ -645,8 +645,8 @@ const valueBoxIcons = [
     margin-bottom: 0;
   }
 
-  /* Pill tag legacy (tetap ada untuk bagian yang pakai) */
-  .isavo-pill-tag {
+  /* Pill tag legacy */
+  .gvf-pill-tag {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -665,7 +665,7 @@ const valueBoxIcons = [
     overflow: hidden;
   }
 
-  .isavo-pill-tag::before {
+  .gvf-pill-tag::before {
     content: '';
     background-color: var(--tl-color-theme-primary);
     border-radius: 50%;
@@ -677,12 +677,12 @@ const valueBoxIcons = [
     transform: translateY(-50%);
   }
 
-  .isavo-pill-dot { display: none; } /* Diganti ::before pseudo-element */
+  .gvf-pill-dot { display: none; } /* Diganti ::before pseudo-element */
 
   /* =========================================================================
      1. HERO HEADER & BREADCRUMB
      ========================================================================= */
-  .isavo-prog-header {
+  .gvf-prog-header {
     position: relative;
     padding: 160px 0 100px;
     background-size: cover;
@@ -692,13 +692,13 @@ const valueBoxIcons = [
     overflow: hidden;
   }
 
-  .isavo-header-overlay {
+  .gvf-header-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg, rgba(8, 15, 26, 0.78) 0%, rgba(8, 15, 26, 0.65) 50%, rgba(8, 15, 26, 0.88) 100%);
   }
 
-  .isavo-header-container {
+  .gvf-header-container {
     position: relative;
     z-index: 2;
     max-width: 1240px;
@@ -706,7 +706,7 @@ const valueBoxIcons = [
     padding: 0 24px;
   }
 
-  .isavo-header-badge {
+  .gvf-header-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -728,7 +728,7 @@ const valueBoxIcons = [
     border-radius: 50%;
   }
 
-  .isavo-header-title {
+  .gvf-header-title {
     font-size: clamp(2.4rem, 5vw, 3.6rem);
     font-weight: 800;
     line-height: 1.15;
@@ -739,7 +739,7 @@ const valueBoxIcons = [
     text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
   }
 
-  .isavo-header-subtitle {
+  .gvf-header-subtitle {
     font-size: 1.15rem;
     line-height: 1.7;
     color: #f8fafc !important;
@@ -748,7 +748,7 @@ const valueBoxIcons = [
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
   }
 
-  .isavo-header-breadcrumb {
+  .gvf-header-breadcrumb {
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -761,34 +761,34 @@ const valueBoxIcons = [
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  .isavo-header-breadcrumb a {
+  .gvf-header-breadcrumb a {
     color: #e2e8f0 !important;
     text-decoration: none;
     transition: color 0.2s;
     font-weight: 500;
   }
 
-  .isavo-header-breadcrumb a:hover {
+  .gvf-header-breadcrumb a:hover {
     color: #ffffff !important;
   }
 
-  .isavo-header-breadcrumb .sep {
+  .gvf-header-breadcrumb .sep {
     color: #94a3b8;
   }
 
-  .isavo-header-breadcrumb .current {
+  .gvf-header-breadcrumb .current {
     color: #38bdf8 !important;
     font-weight: 700;
   }
 
   /* =========================================================================
-     2. EXACT ISAVO 3-COLUMN PRICING GRID & CARD DESIGN (DARI ISAVO.CO.ID)
+     2. GVF 3-COLUMN PRICING GRID & CARD DESIGN
      ========================================================================= */
-  .isavo-pricing-section {
-    background-color: #f8f8f8; /* Warm grey ISAVO asli */
+  .gvf-pricing-section {
+    background-color: #f8f8f8;
   }
 
-  .isavo-pricing-grid-3 {
+  .gvf-pricing-grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
@@ -796,7 +796,7 @@ const valueBoxIcons = [
   }
 
   @media (max-width: 991px) {
-    .isavo-pricing-grid-3 {
+    .gvf-pricing-grid-3 {
       grid-template-columns: 1fr;
       max-width: 540px;
       margin-left: auto;
@@ -804,10 +804,10 @@ const valueBoxIcons = [
     }
   }
 
-  /* Pricing Card — HARD COPY ISAVO flat surface */
+  /* Pricing Card — GVF flat surface */
   .arch-pricing-card {
     background-color: #ffffff;
-    border: 1px solid #e3e3e8; /* ISAVO: --tl-color-border-1 */
+    border: 1px solid #e3e3e8;
     border-radius: 20px;
     flex-direction: column;
     height: 100%;
@@ -815,12 +815,12 @@ const valueBoxIcons = [
     transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
     display: flex;
     position: relative;
-    box-shadow: none; /* ISAVO: flat! box-shadow none di default */
+    box-shadow: none;
   }
 
   .arch-pricing-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* ISAVO hover shadow */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   }
 
   .arch-pricing-card.popular {
@@ -849,7 +849,7 @@ const valueBoxIcons = [
     text-align: center;
     margin-bottom: 4px;
     font-size: 26px;
-    font-weight: 400; /* Cal Sans natural weight ISAVO */
+    font-weight: 400;
     color: var(--tl-color-heading-primary);
     letter-spacing: 0;
   }
@@ -879,13 +879,13 @@ const valueBoxIcons = [
   }
 
   .arch-pricing-card .plan-price .period {
-    color: var(--isavo-text-muted);
+    color: var(--gvf-text-muted);
     font-size: 16px;
     font-weight: 400;
   }
 
   .arch-pricing-card .plan-price-desc {
-    color: var(--isavo-text-muted);
+    color: var(--gvf-text-muted);
     text-align: center;
     margin-bottom: 4px;
     font-size: 12px;
@@ -940,7 +940,7 @@ const valueBoxIcons = [
     border-bottom: none;
   }
 
-  /* Checkmark circle — ISAVO solid red → GVF solid emerald */
+  /* Checkmark circle — GVF solid emerald */
   .arch-pricing-card .plan-features li .check-icon-circle {
     color: #ffffff;
     background: var(--tl-color-theme-primary);
@@ -968,21 +968,21 @@ const valueBoxIcons = [
   }
 
   /* =========================================================================
-     BUTTON — HARD COPY ISAVO .tl-primary-btn
+     BUTTON — GVF .tl-primary-btn
      Pill transparan, icon lingkaran solid, arrow rotate -45deg→0
      ========================================================================= */
   .tl-primary-btn {
-    font-family: var(--tl-ff-heading); /* Cal Sans — sama persis ISAVO */
+    font-family: var(--tl-ff-heading);
     color: var(--tl-color-heading-primary);
     text-transform: capitalize;
     z-index: 1;
     background-color: transparent;
-    border: 1px solid #9f9fa4a3; /* ISAVO border color */
+    border: 1px solid #9f9fa4a3;
     border-radius: 100px;
     align-items: center;
-    padding: 10px 15px 10px 25px; /* ISAVO padding asli */
+    padding: 10px 15px 10px 25px;
     font-size: 16px;
-    font-weight: 400; /* Cal Sans normal weight */
+    font-weight: 400;
     line-height: 1;
     transition: all .3s ease-in-out;
     display: inline-flex;
@@ -996,7 +996,7 @@ const valueBoxIcons = [
 
   .tl-primary-btn:before {
     content: '';
-    background: var(--tl-color-theme-primary); /* GVF Emerald (ISAVO: merah) */
+    background: var(--tl-color-theme-primary);
     transform-origin: 100%;
     transition: transform .4s cubic-bezier(.4, 0, .2, 1);
     z-index: -1;
@@ -1015,14 +1015,14 @@ const valueBoxIcons = [
     transform: scaleX(1);
   }
 
-  /* Icon lingkaran solid — ISAVO: merah solid, GVF: emerald solid */
+  /* Icon lingkaran solid — GVF emerald solid */
   .tl-primary-btn .icon {
     background-color: var(--tl-color-theme-primary);
     color: #ffffff;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    width: 40px;  /* ISAVO: 40px */
+    width: 40px;
     height: 40px;
     margin-left: 10px;
     transition: all .3s ease-in-out;
@@ -1030,7 +1030,7 @@ const valueBoxIcons = [
     flex-shrink: 0;
   }
 
-  /* Arrow icon — ISAVO: rotate(-45deg) saat rest, rotate(0) saat hover */
+  /* Arrow icon — rotate(-45deg) saat rest, rotate(0) saat hover */
   .tl-primary-btn .btn-arrow-icon {
     width: 16px;
     height: 16px;
@@ -1050,14 +1050,14 @@ const valueBoxIcons = [
   /* =========================================================================
      3. DEEP DIVE (2 KOLOM STICKY SIDEBAR)
      ========================================================================= */
-  .isavo-split-layout {
+  .gvf-split-layout {
     display: grid;
     grid-template-columns: 360px 1fr;
     gap: 48px;
     align-items: start;
   }
 
-  .isavo-sticky-card {
+  .gvf-sticky-card {
     position: sticky;
     top: 100px;
     display: flex;
@@ -1070,7 +1070,7 @@ const valueBoxIcons = [
     border: 1px solid var(--tl-color-border-1);
     border-radius: 16px;
     padding: 28px;
-    box-shadow: none; /* ISAVO flat */
+    box-shadow: none;
   }
 
   .sidebar-widget:hover {
@@ -1106,15 +1106,15 @@ const valueBoxIcons = [
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 600;
-    background: var(--isavo-bg-light);
+    background: var(--gvf-bg-light);
     border: 1px solid transparent;
     transition: all 0.2s ease;
   }
 
   .prog-nav-item:hover {
-    background: var(--isavo-blue-soft);
-    border-color: var(--isavo-blue-border);
-    color: var(--isavo-blue);
+    background: var(--gvf-blue-soft);
+    border-color: var(--gvf-blue-border);
+    color: var(--gvf-blue);
     transform: translateX(4px);
   }
 
@@ -1185,7 +1185,7 @@ const valueBoxIcons = [
     color: #38bdf8;
   }
 
-  .isavo-btn-wa-widget {
+  .gvf-btn-wa-widget {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1202,13 +1202,13 @@ const valueBoxIcons = [
     transition: transform 0.2s, background-color 0.2s;
   }
 
-  .isavo-btn-wa-widget:hover {
+  .gvf-btn-wa-widget:hover {
     transform: translateY(-2px);
     background-color: #1eb954;
     box-shadow: none;
   }
 
-  .isavo-btn-wa-widget svg {
+  .gvf-btn-wa-widget svg {
     width: 16px;
     height: 16px;
   }
@@ -1315,7 +1315,7 @@ const valueBoxIcons = [
   .value-box-title {
     font-size: 1.05rem;
     font-weight: 800;
-    color: var(--isavo-navy);
+    color: var(--gvf-navy);
     margin-bottom: 8px;
   }
 
@@ -1329,7 +1329,7 @@ const valueBoxIcons = [
   /* =========================================================================
      4. GALERI DOKUMENTASI & PROGRES LAPANGAN
      ========================================================================= */
-  .isavo-gallery-grid {
+  .gvf-gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 28px;
@@ -1337,7 +1337,7 @@ const valueBoxIcons = [
 
   .gallery-card {
     background: #ffffff;
-    border: 1px solid var(--isavo-border);
+    border: 1px solid var(--gvf-border);
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
@@ -1403,7 +1403,7 @@ const valueBoxIcons = [
     height: 44px;
     border-radius: 50%;
     background: #ffffff;
-    color: var(--isavo-navy);
+    color: var(--gvf-navy);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1430,7 +1430,7 @@ const valueBoxIcons = [
     display: inline-block;
     font-size: 0.72rem;
     font-weight: 700;
-    color: var(--isavo-emerald);
+    color: var(--gvf-emerald);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 6px;
@@ -1447,27 +1447,27 @@ const valueBoxIcons = [
 
   .gallery-caption {
     font-size: 0.85rem;
-    color: var(--isavo-text-muted);
+    color: var(--gvf-text-muted);
     line-height: 1.6;
   }
 
   /* =========================================================================
      5. PROCESS ALUR 4 LANGKAH (shadcn Linear Stepper Architecture)
      ========================================================================= */
-  .isavo-process-grid {
+  .gvf-process-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 22px;
   }
 
   @media (max-width: 1024px) {
-    .isavo-process-grid {
+    .gvf-process-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 640px) {
-    .isavo-process-grid {
+    .gvf-process-grid {
       grid-template-columns: 1fr;
     }
   }
@@ -1546,7 +1546,7 @@ const valueBoxIcons = [
     text-align: justify;
   }
 
-  .isavo-leaders-grid {
+  .gvf-leaders-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
@@ -1554,7 +1554,7 @@ const valueBoxIcons = [
 
   .leader-card {
     background: #ffffff;
-    border: 1px solid var(--isavo-border);
+    border: 1px solid var(--gvf-border);
     border-radius: 20px;
     overflow: hidden;
     box-shadow: none;
@@ -1572,7 +1572,7 @@ const valueBoxIcons = [
     position: relative;
     width: 100%;
     height: 280px;
-    background: var(--isavo-navy);
+    background: var(--gvf-navy);
   }
 
   .leader-photo {
@@ -1637,7 +1637,7 @@ const valueBoxIcons = [
   .col-heading {
     font-size: 1.3rem;
     font-weight: 800;
-    color: var(--isavo-navy);
+    color: var(--gvf-navy);
     margin-bottom: 22px;
   }
 
@@ -1649,7 +1649,7 @@ const valueBoxIcons = [
 
   .legal-badge-card {
     background: #ffffff;
-    border: 1px solid var(--isavo-border);
+    border: 1px solid var(--gvf-border);
     border-radius: 16px;
     padding: 20px;
     display: flex;
@@ -1661,8 +1661,8 @@ const valueBoxIcons = [
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: var(--isavo-emerald-soft);
-    color: var(--isavo-emerald);
+    background: var(--gvf-emerald-soft);
+    color: var(--gvf-emerald);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1677,7 +1677,7 @@ const valueBoxIcons = [
   .inst-name {
     font-size: 1.05rem;
     font-weight: 800;
-    color: var(--isavo-navy);
+    color: var(--gvf-navy);
     margin-bottom: 4px;
   }
 
@@ -1828,15 +1828,14 @@ const valueBoxIcons = [
   }
 
   /* =========================================================================
-  /* =========================================================================
-     FAQ — EXACT 1:1 ISAVO ACCORDION STYLE
+     FAQ — GVF ACCORDION STYLE
      Horizontal header split, minimal border lines, clean +/- indicators
      ========================================================================= */
-  .isavo-faq-section {
+  .gvf-faq-section {
     background-color: #f8fafc;
   }
 
-  .isavo-faq-header-row {
+  .gvf-faq-header-row {
     display: grid;
     grid-template-columns: 200px 1fr;
     gap: 40px;
@@ -1845,7 +1844,7 @@ const valueBoxIcons = [
   }
 
   @media (max-width: 991px) {
-    .isavo-faq-header-row {
+    .gvf-faq-header-row {
       grid-template-columns: 1fr;
       gap: 20px;
       margin-bottom: 30px;
@@ -1856,7 +1855,7 @@ const valueBoxIcons = [
     padding-top: 8px;
   }
 
-  .isavo-faq-title {
+  .gvf-faq-title {
     font-family: var(--tl-ff-body);
     font-size: clamp(2rem, 3.8vw, 3.2rem);
     font-weight: 800;
@@ -1866,12 +1865,12 @@ const valueBoxIcons = [
     margin: 0 0 16px;
   }
 
-  .isavo-faq-title span {
+  .gvf-faq-title span {
     color: #0052cc;
     display: block;
   }
 
-  .isavo-faq-desc {
+  .gvf-faq-desc {
     font-size: 1.05rem;
     color: #64748b;
     margin: 0;
@@ -1880,21 +1879,21 @@ const valueBoxIcons = [
   }
 
   /* Accordion wrap */
-  .isavo-faq-accordion {
+  .gvf-faq-accordion {
     width: 100%;
     margin-top: 30px;
   }
 
-  .isavo-accordion-item {
+  .gvf-accordion-item {
     background: transparent;
     transition: all 0.2s ease;
   }
 
-  .isavo-accordion-item:first-child {
+  .gvf-accordion-item:first-child {
     border-top: none;
   }
 
-  .isavo-accordion-summary {
+  .gvf-accordion-summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1905,11 +1904,11 @@ const valueBoxIcons = [
     gap: 24px;
   }
 
-  .isavo-accordion-summary::-webkit-details-marker {
+  .gvf-accordion-summary::-webkit-details-marker {
     display: none;
   }
 
-  .isavo-accordion-question {
+  .gvf-accordion-question {
     font-family: var(--tl-ff-body);
     font-size: 1.15rem;
     font-weight: 700;
@@ -1919,11 +1918,11 @@ const valueBoxIcons = [
     transition: color 0.2s ease;
   }
 
-  .isavo-accordion-item[open] .isavo-accordion-question {
+  .gvf-accordion-item[open] .gvf-accordion-question {
     color: #0052cc;
   }
 
-  .isavo-accordion-toggle {
+  .gvf-accordion-toggle {
     font-family: monospace, sans-serif;
     font-size: 1.6rem;
     font-weight: 400;
@@ -1947,15 +1946,15 @@ const valueBoxIcons = [
     display: block;
   }
 
-  .isavo-accordion-item[open] .toggle-icon-plus {
+  .gvf-accordion-item[open] .toggle-icon-plus {
     display: none;
   }
 
-  .isavo-accordion-item[open] .toggle-icon-minus {
+  .gvf-accordion-item[open] .toggle-icon-minus {
     display: block;
   }
 
-  .isavo-accordion-body {
+  .gvf-accordion-body {
     padding: 0 0 28px;
     font-size: 0.98rem;
     line-height: 1.75;
@@ -1963,13 +1962,13 @@ const valueBoxIcons = [
     max-width: 900px;
   }
 
-  .isavo-accordion-body p {
+  .gvf-accordion-body p {
     margin: 0;
     text-align: justify;
   }
 
   /* Bottom Consultation Banner */
-  .isavo-bottom-banner {
+  .gvf-bottom-banner {
     background: #111827;
     border-radius: 20px;
     padding: 50px 40px;
@@ -2000,11 +1999,11 @@ const valueBoxIcons = [
     margin: 0;
   }
 
-  .isavo-banner-btn {
+  .gvf-banner-btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: var(--isavo-blue);
+    background: var(--gvf-blue);
     color: #ffffff;
     padding: 16px 28px;
     border-radius: 9999px;
@@ -2016,13 +2015,13 @@ const valueBoxIcons = [
     transition: all 0.25s ease;
   }
 
-  .isavo-banner-btn:hover {
+  .gvf-banner-btn:hover {
     background: #0043a8;
     transform: translateY(-2px);
     box-shadow: none;
   }
 
-  .isavo-banner-btn svg {
+  .gvf-banner-btn svg {
     width: 18px;
     height: 18px;
   }
@@ -2030,7 +2029,7 @@ const valueBoxIcons = [
   /* =========================================================================
      LIGHTBOX MODAL
      ========================================================================= */
-  .isavo-lightbox-modal {
+  .gvf-lightbox-modal {
     position: fixed;
     inset: 0;
     z-index: 9999;
@@ -2042,7 +2041,7 @@ const valueBoxIcons = [
     transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
-  .isavo-lightbox-modal.is-open {
+  .gvf-lightbox-modal.is-open {
     opacity: 1;
     visibility: visible;
   }
@@ -2119,13 +2118,13 @@ const valueBoxIcons = [
   .lightbox-title {
     font-size: 1.25rem;
     font-weight: 800;
-    color: var(--isavo-navy);
+    color: var(--gvf-navy);
     margin-bottom: 6px;
   }
 
   .lightbox-caption {
     font-size: 0.9rem;
-    color: var(--isavo-text-muted);
+    color: var(--gvf-text-muted);
     margin: 0;
   }
 
@@ -2133,12 +2132,12 @@ const valueBoxIcons = [
      RESPONSIVE BREAKPOINTS
      ========================================================================= */
   @media (max-width: 991px) {
-    .isavo-split-layout {
+    .gvf-split-layout {
       grid-template-columns: 1fr;
       gap: 40px;
     }
 
-    .isavo-sticky-card {
+    .gvf-sticky-card {
       position: static;
     }
 
@@ -2156,10 +2155,10 @@ const valueBoxIcons = [
   @media (max-width: 768px) {
     .pt-100 { padding-top: 60px; }
     .pb-100 { padding-bottom: 60px; }
-    .isavo-prog-header { padding: 130px 0 70px; }
-    .isavo-gallery-grid { grid-template-columns: 1fr; }
-    .isavo-pricing-grid { grid-template-columns: 1fr; }
-    .isavo-bottom-banner { padding: 36px 24px; }
+    .gvf-prog-header { padding: 130px 0 70px; }
+    .gvf-gallery-grid { grid-template-columns: 1fr; }
+    .gvf-pricing-grid { grid-template-columns: 1fr; }
+    .gvf-bottom-banner { padding: 36px 24px; }
     .account-num-row { flex-direction: column; gap: 10px; align-items: flex-start; }
     .btn-copy-acc { width: 100%; justify-content: center; }
   }

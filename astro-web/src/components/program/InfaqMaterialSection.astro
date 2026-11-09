@@ -1,7 +1,7 @@
 ---
 // src/components/program/InfaqMaterialSection.astro
 // Gotong Royong Material Fisik Pembangunan Kampus Jonggol
-// 100% ISAVO Feature Section Style (Pola "Siapa Kami" - Foto Besar di Kiri + List Editorial 01-04 di Kanan)
+// GVF Feature Section Style (Pola "Siapa Kami" - Foto Besar di Kiri + List Editorial 01-04 di Kanan)
 // ZERO Card Grid, ZERO Kotak Kasir, Murni Tipografi Arsitektural Mewah
 import type { ProgramData } from '../../data/programs';
 
@@ -64,22 +64,22 @@ const materials = [
 ];
 ---
 
-<section class="isavo-feature-material-section" id="gotong-royong-material">
-  <div class="isavo-container">
-    <!-- Header Split 2-Kolom Baku ISAVO -->
-    <div class="isavo-section-header">
+<section class="gvf-feature-material-section" id="gotong-royong-material">
+  <div class="gvf-container">
+    <!-- Header Split 2-Kolom Baku -->
+    <div class="gvf-section-header">
       <div class="header-right-col">
-        <h2 class="isavo-main-title">
+        <h2 class="gvf-main-title">
           Wujudkan Bangunan Fisik Lewat <span class="title-accent">Material Nyata</span>
         </h2>
-        <p class="isavo-main-desc">
+        <p class="gvf-main-desc">
           Bukan sekadar angka di atas kertas. Setiap rupiah infaq Anda dikonversikan langsung menjadi sak semen, pasir cor, dan bata roster yang terpasang nyata di kawasan Sukasirna, Jonggol, Kabupaten Bogor.
         </p>
       </div>
     </div>
 
-    <!-- Pola Asli ISAVO: Foto Arsitektur Besar di Kiri + List Editorial 01-04 di Kanan -->
-    <div class="isavo-feature-grid">
+    <!-- Foto Arsitektur Besar di Kiri + List Editorial 01-04 di Kanan -->
+    <div class="gvf-feature-grid">
       <!-- SISI KIRI: Foto Dokumentasi Lapangan Skala Penuh + Dark Card Caption di Sudut Bawah -->
       <div class="feature-photo-side">
         <div class="photo-container">
@@ -92,7 +92,7 @@ const materials = [
           />
           <div class="photo-gradient-overlay"></div>
           
-          <!-- Floating Dark Card Caption (Gaya Autentik ISAVO pada Foto "Siapa Kami") -->
+          <!-- Floating Dark Card Caption -->
           <div class="photo-dark-caption">
             <span class="caption-kicker">REALISASI FISIK LAPANGAN</span>
             <h4 class="caption-title" id="displayCaptionTitle">{materials[0].captionTitle}</h4>
@@ -159,7 +159,7 @@ const materials = [
             <input
               type="range"
               id="inputMaterialSlider"
-              class="isavo-range-slider"
+              class="gvf-range-slider"
               min="1"
               max="50"
               step="1"
@@ -230,23 +230,23 @@ const materials = [
 
 <style>
   /* =========================================================================
-     100% ISAVO FEATURE SECTION ("SIAPA KAMI") ARCHITECTURAL STYLING
+     GVF FEATURE SECTION ARCHITECTURAL STYLING
      ZERO Card Grid, ZERO Boks Kasir, Flat Editorial Tipografi
      ========================================================================= */
-  .isavo-feature-material-section {
+  .gvf-feature-material-section {
     background-color: #f7f7f8;
     padding: 110px 0 130px 0;
     color: #191919;
   }
 
-  .isavo-container {
+  .gvf-container {
     max-width: 1320px;
     margin: 0 auto;
     padding: 0 2rem;
   }
 
-  /* HEADER SPLIT ISAVO */
-  .isavo-section-header {
+  /* HEADER SPLIT */
+  .gvf-section-header {
     display: grid;
     grid-template-columns: 260px 1fr;
     gap: 3.5rem;
@@ -255,14 +255,14 @@ const materials = [
   }
 
   @media (max-width: 991px) {
-    .isavo-section-header {
+    .gvf-section-header {
       grid-template-columns: 1fr;
       gap: 1.5rem;
       margin-bottom: 2.5rem;
     }
   }
 
-  .isavo-tag-pill {
+  .gvf-tag-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -272,14 +272,14 @@ const materials = [
     border-radius: 9999px;
   }
 
-  .isavo-tag-dot {
+  .gvf-tag-dot {
     width: 6px;
     height: 6px;
     background-color: #0969da;
     border-radius: 50%;
   }
 
-  .isavo-tag-text {
+  .gvf-tag-text {
     font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -288,7 +288,7 @@ const materials = [
     font-family: 'Golos Text', sans-serif;
   }
 
-  .isavo-main-title {
+  .gvf-main-title {
     font-size: clamp(2.2rem, 3.8vw, 3.3rem);
     font-weight: 800;
     line-height: 1.15;
@@ -302,7 +302,7 @@ const materials = [
     color: #0969da;
   }
 
-  .isavo-main-desc {
+  .gvf-main-desc {
     font-size: 1.05rem;
     line-height: 1.7;
     color: #475569;
@@ -310,8 +310,8 @@ const materials = [
     max-width: 820px;
   }
 
-  /* 2-COLUMN FEATURE LAYOUT (KIRI FOTO BESAR, KANAN LIST EDITORIAL) */
-  .isavo-feature-grid {
+  /* 2-COLUMN FEATURE LAYOUT */
+  .gvf-feature-grid {
     display: grid;
     grid-template-columns: 1fr 1.15fr;
     gap: 4rem;
@@ -319,7 +319,7 @@ const materials = [
   }
 
   @media (max-width: 1024px) {
-    .isavo-feature-grid {
+    .gvf-feature-grid {
       grid-template-columns: 1fr;
       gap: 3rem;
     }
@@ -582,7 +582,7 @@ const materials = [
     gap: 0.4rem;
   }
 
-  .isavo-range-slider {
+  .gvf-range-slider {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
@@ -593,7 +593,7 @@ const materials = [
     cursor: pointer;
   }
 
-  .isavo-range-slider::-webkit-slider-thumb {
+  .gvf-range-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 22px;
@@ -606,7 +606,7 @@ const materials = [
     transition: transform 0.15s ease;
   }
 
-  .isavo-range-slider::-webkit-slider-thumb:hover {
+  .gvf-range-slider::-webkit-slider-thumb:hover {
     transform: scale(1.15);
   }
 

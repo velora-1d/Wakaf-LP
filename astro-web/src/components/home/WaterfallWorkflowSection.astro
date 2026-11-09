@@ -1,11 +1,11 @@
 ---
 // src/components/home/WaterfallWorkflowSection.astro
-// Exact ISAVO "Cara Kami Bekerja" Descending 4-Card Waterfall Process (Screenshot 3)
+// Descending 4-Card Waterfall Process
 ---
 
-<section class="isavo-workflow-section" id="alur-proses">
-  <!-- Subtle Blueprint Wireframe Architectural Watermark Background ala ISAVO -->
-  <div class="isavo-blueprint-bg" aria-hidden="true">
+<section class="gvf-workflow-section" id="alur-proses">
+  <!-- Subtle Blueprint Wireframe Architectural Watermark Background -->
+  <div class="gvf-blueprint-bg" aria-hidden="true">
     <svg viewBox="0 0 1200 600" fill="none" stroke="rgba(15, 23, 42, 0.035)" stroke-width="1.2">
       <path d="M50 550 L350 150 L550 250 L850 50 L1150 450" />
       <path d="M100 550 L400 150 L600 250 L900 50" />
@@ -19,126 +19,121 @@
     </svg>
   </div>
 
-  <div class="isavo-workflow-container">
+  <div class="gvf-workflow-container">
     <!-- Top Header -->
-    <div class="isavo-workflow-header reveal-on-scroll">
-      <div class="isavo-pill-tag">
-        <span class="isavo-pill-dot"></span>
-        <span class="isavo-pill-text">CARA KAMI BEKERJA</span>
-      </div>
-
-      <h2 class="isavo-workflow-title">
-        Proses <span class="isavo-accent-blue">4 Langkah</span> Realisasi<br />
+    <div class="gvf-workflow-header reveal-on-scroll">
+      <h2 class="gvf-workflow-title">
+        Proses <span class="gvf-accent-blue">4 Langkah</span> Realisasi<br />
         Amanah Wakaf Anda
       </h2>
 
-      <p class="isavo-workflow-sub">
+      <p class="gvf-workflow-sub">
         Setiap tahapan dirancang terstruktur, transparan, dan dapat dipantau langsung — dari konsultasi awal hingga terbitnya sertifikat wakaf resmi dan kemanfaatan abadi.
       </p>
     </div>
 
-    <!-- 4 Descending Waterfall Cards Grid ala ISAVO Screenshot 3 -->
-    <div class="isavo-waterfall-grid">
+    <!-- 4 Descending Waterfall Cards Grid -->
+    <div class="gvf-waterfall-grid">
       <!-- Card 01 (Step 1: Top aligned, offset 0) -->
-      <div class="isavo-step-card isavo-card-step-1 reveal-on-scroll delay-100">
+      <div class="gvf-step-card gvf-card-step-1 reveal-on-scroll delay-100">
         <!-- Top Image with 18px radius -->
-        <div class="isavo-step-thumb">
+        <div class="gvf-step-thumb">
           <img
             src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/dua-santri-ikhwan-berdiskusi-meja-lipat.webp"
             alt="Survey & Konsultasi Niat"
-            class="isavo-thumb-img"
+            class="gvf-thumb-img"
             loading="lazy"
           />
         </div>
 
         <!-- Card Content -->
-        <div class="isavo-step-content">
-          <h3 class="isavo-step-title">
-            <span class="isavo-num-highlight">01.</span> Survey &amp; Konsultasi
+        <div class="gvf-step-content">
+          <h3 class="gvf-step-title">
+            <span class="gvf-num-highlight">01.</span> Survey &amp; Konsultasi
           </h3>
-          <p class="isavo-step-desc">
+          <p class="gvf-step-desc">
             Kami memetakan kebutuhan, preferensi akad wakaf, dan target porsi Anda, dilanjutkan dengan pengukuran presisi di lokasi tapak Jonggol. Data eksisting ini menjadi fondasi awal agar perencanaan sangat akurat dan terarah.
           </p>
         </div>
 
-        <!-- Giant Faint Watermark Number at Bottom Right ala ISAVO -->
-        <div class="isavo-card-watermark" aria-hidden="true">01</div>
+        <!-- Giant Faint Watermark Number at Bottom Right -->
+        <div class="gvf-card-watermark" aria-hidden="true">01</div>
       </div>
 
       <!-- Card 02 (Step 2: Offset down 48px) -->
-      <div class="isavo-step-card isavo-card-step-2 reveal-on-scroll delay-200">
-        <div class="isavo-step-thumb">
+      <div class="gvf-step-card gvf-card-step-2 reveal-on-scroll delay-200">
+        <div class="gvf-step-thumb">
           <img
             src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-menulis-di-buku-catatan.webp"
             alt="Desain & Rencana Anggaran"
-            class="isavo-thumb-img"
+            class="gvf-thumb-img"
             loading="lazy"
           />
         </div>
 
-        <div class="isavo-step-content">
-          <h3 class="isavo-step-title">
-            <span class="isavo-num-highlight">02.</span> Desain &amp; Anggaran
+        <div class="gvf-step-content">
+          <h3 class="gvf-step-title">
+            <span class="gvf-num-highlight">02.</span> Desain &amp; Anggaran
           </h3>
-          <p class="isavo-step-desc">
+          <p class="gvf-step-desc">
             Kami menyajikan visualisasi 3D arsitektur, gambar DED (Detail Engineering Design) lengkap, timeline pembangunan fisik, dan estimasi anggaran transparan — tanpa biaya tersembunyi.
           </p>
         </div>
 
-        <div class="isavo-card-watermark" aria-hidden="true">02</div>
+        <div class="gvf-card-watermark" aria-hidden="true">02</div>
       </div>
 
       <!-- Card 03 (Step 3: Offset down 96px) -->
-      <div class="isavo-step-card isavo-card-step-3 reveal-on-scroll delay-300">
-        <div class="isavo-step-thumb">
+      <div class="gvf-step-card gvf-card-step-3 reveal-on-scroll delay-300">
+        <div class="gvf-step-thumb">
           <img
             src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/tampak-gedung-dan-halaman-asrama.webp"
             alt="Eksekusi & Pelaporan Progres"
-            class="isavo-thumb-img"
+            class="gvf-thumb-img"
             loading="lazy"
           />
         </div>
 
-        <div class="isavo-step-content">
-          <h3 class="isavo-step-title">
-            <span class="isavo-num-highlight">03.</span> Eksekusi &amp; Pelaporan
+        <div class="gvf-step-content">
+          <h3 class="gvf-step-title">
+            <span class="gvf-num-highlight">03.</span> Eksekusi &amp; Pelaporan
           </h3>
-          <p class="isavo-step-desc">
+          <p class="gvf-step-desc">
             Konstruksi dimulai setelah Anda menyetujui akad. Tim kami mengelola seluruh pekerjaan di lapangan dengan pengawasan kualitas ketat dan laporan progres visual berkala untuk para muhsinin.
           </p>
         </div>
 
-        <div class="isavo-card-watermark" aria-hidden="true">03</div>
+        <div class="gvf-card-watermark" aria-hidden="true">03</div>
       </div>
 
       <!-- Card 04 (Step 4: Offset down 144px) -->
-      <div class="isavo-step-card isavo-card-step-4 reveal-on-scroll delay-400">
-        <div class="isavo-step-thumb">
+      <div class="gvf-step-card gvf-card-step-4 reveal-on-scroll delay-400">
+        <div class="gvf-step-thumb">
           <img
             src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/sholat-berjamaah-santri-seragam-hitam.webp"
             alt="Serah Terima & Manfaat Abadi"
-            class="isavo-thumb-img"
+            class="gvf-thumb-img"
             loading="lazy"
           />
         </div>
 
-        <div class="isavo-step-content">
-          <h3 class="isavo-step-title">
-            <span class="isavo-num-highlight">04.</span> Serah Terima &amp; Garansi
+        <div class="gvf-step-content">
+          <h3 class="gvf-step-title">
+            <span class="gvf-num-highlight">04.</span> Serah Terima &amp; Garansi
           </h3>
-          <p class="isavo-step-desc">
+          <p class="gvf-step-desc">
             Setelah inspeksi akhir dan persetujuan pengawas syariah, fasilitas diserahterimakan untuk operasional ibadah dan santri, disertai Sertifikat Ikrar Wakaf resmi untuk ketenangan jangka panjang.
           </p>
         </div>
 
-        <div class="isavo-card-watermark" aria-hidden="true">04</div>
+        <div class="gvf-card-watermark" aria-hidden="true">04</div>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .isavo-workflow-section {
+  .gvf-workflow-section {
     position: relative;
     background-color: #f7f8fa;
     padding-top: 70px;
@@ -146,7 +141,7 @@
     overflow: hidden;
   }
 
-  .isavo-blueprint-bg {
+  .gvf-blueprint-bg {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -156,7 +151,7 @@
     opacity: 0.8;
   }
 
-  .isavo-workflow-container {
+  .gvf-workflow-container {
     position: relative;
     z-index: 2;
     width: 100%;
@@ -165,41 +160,13 @@
     padding: 0 2rem;
   }
 
-  .isavo-workflow-header {
+  .gvf-workflow-header {
     text-align: center;
     max-width: 720px;
     margin: 0 auto 3rem;
   }
 
-  .isavo-pill-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background-color: #ffffff;
-    border: 1px solid rgba(15, 23, 42, 0.1);
-    padding: 0.35rem 0.95rem;
-    border-radius: 9999px;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-  }
-
-  .isavo-pill-dot {
-    width: 6px;
-    height: 6px;
-    background-color: #0969da;
-    border-radius: 50%;
-  }
-
-  .isavo-pill-text {
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    color: #0f172a;
-    text-transform: uppercase;
-    font-family: 'Golos Text', sans-serif;
-  }
-
-  .isavo-workflow-title {
+  .gvf-workflow-title {
     font-size: clamp(2.3rem, 4.2vw, 3.75rem);
     font-weight: 800;
     line-height: 1.15;
@@ -209,11 +176,11 @@
     margin-bottom: 1rem;
   }
 
-  .isavo-accent-blue {
+  .gvf-accent-blue {
     color: #0969da;
   }
 
-  .isavo-workflow-sub {
+  .gvf-workflow-sub {
     font-size: 1.05rem;
     color: #64748b;
     line-height: 1.7;
@@ -221,14 +188,14 @@
   }
 
   /* 4 Descending Waterfall Cards Grid */
-  .isavo-waterfall-grid {
+  .gvf-waterfall-grid {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
     gap: 1.5rem !important;
     align-items: flex-start !important;
   }
 
-  .isavo-step-card {
+  .gvf-step-card {
     position: relative;
     background-color: #ffffff;
     border: 1px solid rgba(15, 23, 42, 0.07);
@@ -241,27 +208,27 @@
     transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  /* Descending Staircase Offsets on Desktop ala Screenshot 3 */
+  /* Descending Staircase Offsets on Desktop */
   @media (min-width: 1025px) {
-    .isavo-card-step-1 {
+    .gvf-card-step-1 {
       margin-top: 0px !important;
     }
-    .isavo-card-step-2 {
+    .gvf-card-step-2 {
       margin-top: 48px !important;
     }
-    .isavo-card-step-3 {
+    .gvf-card-step-3 {
       margin-top: 96px !important;
     }
-    .isavo-card-step-4 {
+    .gvf-card-step-4 {
       margin-top: 144px !important;
     }
   }
 
-  .isavo-step-card:hover {
+  .gvf-step-card:hover {
     transform: translateY(-6px);
   }
 
-  .isavo-step-thumb {
+  .gvf-step-thumb {
     width: 100%;
     height: 220px;
     border-radius: 0;
@@ -270,7 +237,7 @@
     background-color: #0f172a;
   }
 
-  .isavo-thumb-img {
+  .gvf-thumb-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -278,11 +245,11 @@
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  .isavo-step-card:hover .isavo-thumb-img {
+  .gvf-step-card:hover .gvf-thumb-img {
     transform: scale(1.08);
   }
 
-  .isavo-step-content {
+  .gvf-step-content {
     position: relative;
     z-index: 2;
     display: flex;
@@ -290,7 +257,7 @@
     padding: 1rem 1.1rem 1.4rem;
   }
 
-  .isavo-step-title {
+  .gvf-step-title {
     font-size: 1.15rem;
     font-weight: 700;
     color: #0f172a;
@@ -300,19 +267,19 @@
     line-height: 1.3;
   }
 
-  .isavo-num-highlight {
+  .gvf-num-highlight {
     color: #0969da;
     font-weight: 800;
   }
 
-  .isavo-step-desc {
+  .gvf-step-desc {
     font-size: 0.88rem;
     line-height: 1.55;
     color: #64748b;
     margin: 0;
   }
 
-  .isavo-card-watermark {
+  .gvf-card-watermark {
     position: absolute;
     bottom: -8px;
     right: 8px;
@@ -327,24 +294,24 @@
   }
 
   @media (max-width: 1024px) {
-    .isavo-waterfall-grid {
+    .gvf-waterfall-grid {
       grid-template-columns: repeat(2, 1fr) !important;
       gap: 2rem !important;
     }
-    .isavo-step-card {
+    .gvf-step-card {
       margin-top: 0 !important;
     }
-    .isavo-workflow-container {
+    .gvf-workflow-container {
       padding: 0 1.5rem;
     }
-    .isavo-workflow-section {
+    .gvf-workflow-section {
       padding-top: 70px;
       padding-bottom: 100px;
     }
   }
 
   @media (max-width: 640px) {
-    .isavo-waterfall-grid {
+    .gvf-waterfall-grid {
       grid-template-columns: 1fr !important;
     }
   }

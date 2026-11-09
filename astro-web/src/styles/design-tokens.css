@@ -80,7 +80,7 @@
   --color-warning:         hsl(38, 92%, 50%);
   --color-error:           hsl(0, 72%, 51%);
 
-  /* Typography scale — Golos Text sebagai Display & Body Utama Standar Resmi GVF/ISAVO */
+  /* Typography scale — Golos Text sebagai Display & Body Utama Standar Resmi GVF */
   --font-sans: 'Golos Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Golos Text', system-ui, sans-serif;
   --font-heading: 'Golos Text', system-ui, sans-serif;

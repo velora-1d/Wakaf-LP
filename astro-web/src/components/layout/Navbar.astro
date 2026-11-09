@@ -1,43 +1,42 @@
 ---
 // src/components/layout/Navbar.astro
-// Exact ISAVO Header: Boxed Logo [GVF], Transparent overlay at top, Sticky animated on scroll (#121417), Phone Handset, Pill CTA, 4-Dots Circle Trigger
+// GVF Header: Boxed Logo [GVF], Transparent overlay at top, Sticky animated on scroll (#121417), Phone Handset, Pill CTA, 4-Dots Circle Trigger
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="isavo-header" id="main-header">
-  <div class="isavo-header-inner">
-    <!-- Brand Boxed Logo ala ISAVO [ISAVO] -->
+<header class="gvf-header" id="main-header">
+  <div class="gvf-header-inner">
+    <!-- Brand Boxed Logo -->
     <a
       href="/"
-      class="isavo-boxed-logo"
+      class="gvf-boxed-logo"
       aria-label="Global Village Fund Beranda"
     >
       <img
         src="/logo-gvf-3d.png"
         alt="Global Village Fund"
-        class="isavo-logo-img"
+        class="gvf-logo-img"
       />
     </a>
 
     <!-- Desktop Navigation Menu -->
-    <!-- Desktop Navigation Menu -->
-    <nav class="isavo-nav-desktop" aria-label="Navigasi Utama">
-      <ul class="isavo-nav-list">
+    <nav class="gvf-nav-desktop" aria-label="Navigasi Utama">
+      <ul class="gvf-nav-list">
         <li>
           <a
             href="/"
-            class={`isavo-nav-link ${currentPath === "/" ? "active" : ""}`}
+            class={`gvf-nav-link ${currentPath === "/" ? "active" : ""}`}
             >Home</a
           >
         </li>
-        <li class="isavo-has-dropdown">
+        <li class="gvf-has-dropdown">
           <a
             href="/#program-kebaikan"
-            class={`isavo-nav-link ${currentPath.startsWith("/program") ? "active" : ""}`}
+            class={`gvf-nav-link ${currentPath.startsWith("/program") ? "active" : ""}`}
           >
             <span>Program</span>
             <svg
-              class="isavo-chevron"
+              class="gvf-chevron"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -46,7 +45,7 @@ const currentPath = Astro.url.pathname;
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </a>
-          <ul class="isavo-dropdown-menu">
+          <ul class="gvf-dropdown-menu">
             <li><a href="/program/infaq">Infak</a></li>
             <li><a href="/program/sedekah">Sedekah</a></li>
             <li><a href="/program/zakat">Zakat</a></li>
@@ -56,36 +55,36 @@ const currentPath = Astro.url.pathname;
         <li>
           <a
             href="/kemitraan"
-            class={`isavo-nav-link ${currentPath === "/kemitraan" ? "active" : ""}`}
+            class={`gvf-nav-link ${currentPath === "/kemitraan" ? "active" : ""}`}
             >Kemitraan</a
           >
         </li>
         <li>
           <a
             href="/kabar"
-            class={`isavo-nav-link ${currentPath.startsWith("/kabar") ? "active" : ""}`}
+            class={`gvf-nav-link ${currentPath.startsWith("/kabar") ? "active" : ""}`}
             >Kabar</a
           >
         </li>
         <li>
           <a
             href="/tentang-kami"
-            class={`isavo-nav-link ${currentPath === "/tentang-kami" ? "active" : ""}`}
+            class={`gvf-nav-link ${currentPath === "/tentang-kami" ? "active" : ""}`}
             >Tentang Kami</a
           >
         </li>
         <li>
           <a
             href="/contact"
-            class={`isavo-nav-link ${currentPath === "/contact" ? "active" : ""}`}
+            class={`gvf-nav-link ${currentPath === "/contact" ? "active" : ""}`}
             >Kontak</a
           >
         </li>
       </ul>
     </nav>
 
-    <div class="isavo-header-right">
-      <a href="tel:+6287865994786" class="isavo-phone-widget">
+    <div class="gvf-header-right">
+      <a href="tel:+6287865994786" class="gvf-phone-widget">
         <svg
           class="phone-handset-icon"
           viewBox="0 0 24 24"
@@ -105,7 +104,7 @@ const currentPath = Astro.url.pathname;
 
       <a
         href={currentPath === "/" ? "#program-kebaikan" : "/program/wakaf"}
-        class="isavo-header-pill-btn"
+        class="gvf-header-pill-btn"
         aria-label="Salurkan Donasi"
       >
         <svg class="pill-calc-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -118,7 +117,7 @@ const currentPath = Astro.url.pathname;
 
       <a
         href={currentPath === "/" ? "#program-kebaikan" : "/#program-kebaikan"}
-        class="isavo-circle-dots-btn"
+        class="gvf-circle-dots-btn"
         aria-label="Lihat Program Kebaikan"
       >
         <span class="dot"></span>
@@ -129,11 +128,11 @@ const currentPath = Astro.url.pathname;
 
       <button
         type="button"
-        class="isavo-mobile-toggle"
-        id="isavo-toggle"
+        class="gvf-mobile-toggle"
+        id="gvf-toggle"
         aria-label="Buka Menu Navigasi"
         aria-expanded="false"
-        aria-controls="isavo-drawer"
+        aria-controls="gvf-drawer"
       >
         <span></span>
         <span></span>
@@ -143,29 +142,29 @@ const currentPath = Astro.url.pathname;
   </div>
 
   <div
-    class="isavo-drawer"
-    id="isavo-drawer"
+    class="gvf-drawer"
+    id="gvf-drawer"
     role="dialog"
     aria-modal="true"
     aria-label="Menu Navigasi Mobile"
   >
-    <div class="isavo-drawer-panel">
-      <div class="isavo-drawer-top">
-        <div class="isavo-boxed-logo">
+    <div class="gvf-drawer-panel">
+      <div class="gvf-drawer-top">
+        <div class="gvf-boxed-logo">
           <img
             src="/logo-gvf-3d.png"
             alt="Global Village Fund"
-            class="isavo-logo-img"
+            class="gvf-logo-img"
           />
         </div>
         <button
           type="button"
-          class="isavo-drawer-close"
-          id="isavo-close"
+          class="gvf-drawer-close"
+          id="gvf-close"
           aria-label="Tutup Menu Navigasi">&times;</button
         >
       </div>
-      <nav class="isavo-drawer-nav">
+      <nav class="gvf-drawer-nav">
         <a href="/">Home</a>
         <a href="/program/infaq">Infak</a>
         <a href="/program/sedekah">Sedekah</a>
@@ -176,10 +175,10 @@ const currentPath = Astro.url.pathname;
         <a href="/tentang-kami">Tentang Kami</a>
         <a href="/contact">Kontak</a>
       </nav>
-      <div class="isavo-drawer-bottom">
+      <div class="gvf-drawer-bottom">
         <a
           href={currentPath === "/" ? "#program-kebaikan" : "/program/wakaf"}
-          class="isavo-header-pill-btn"
+          class="gvf-header-pill-btn"
           style="width: 100%; justify-content: center;"
         >
           Salurkan Donasi
@@ -200,7 +199,7 @@ const currentPath = Astro.url.pathname;
     }
   }
 
-  .isavo-header {
+  .gvf-header {
     position: absolute;
     top: 0;
     left: 0;
@@ -212,17 +211,17 @@ const currentPath = Astro.url.pathname;
       box-shadow 0.3s ease;
   }
 
-  .isavo-header.fixed {
+  .gvf-header.fixed {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: #121417; /* Solid sleek charcoal black persis screenshot ISAVO */
+    background: #121417; /* Solid sleek charcoal black */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     animation: menuSticky 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .isavo-header-inner {
+  .gvf-header-inner {
     width: 100%;
     max-width: 100%;
     margin: 0;
@@ -232,14 +231,14 @@ const currentPath = Astro.url.pathname;
     justify-content: space-between;
   }
 
-  .isavo-header.fixed .isavo-header-inner {
+  .gvf-header.fixed .gvf-header-inner {
     max-width: 100%;
     margin: 0;
     padding: 14px 24px;
   }
 
-  /* 1. Boxed Logo ala ISAVO [ISAVO] */
-  .isavo-boxed-logo {
+  /* 1. Boxed Logo */
+  .gvf-boxed-logo {
     border: 2px solid #ffffff;
     border-radius: 8px;
     padding: 4px 10px;
@@ -250,18 +249,18 @@ const currentPath = Astro.url.pathname;
     transition: all 0.25s ease;
   }
 
-  .isavo-header-inner .isavo-boxed-logo {
+  .gvf-header-inner .gvf-boxed-logo {
     margin-left: 160px;
   }
 
-  .isavo-logo-img {
+  .gvf-logo-img {
     height: 50px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
   }
 
-  .isavo-boxed-logo span {
+  .gvf-boxed-logo span {
     font-family: "Golos Text", "Plus Jakarta Sans", sans-serif;
     font-size: 20px;
     font-weight: 800;
@@ -270,17 +269,17 @@ const currentPath = Astro.url.pathname;
     line-height: 1;
   }
 
-  .isavo-boxed-logo:hover {
+  .gvf-boxed-logo:hover {
     background-color: rgba(255, 255, 255, 0.15);
   }
 
   /* 2. Desktop Nav */
-  .isavo-nav-desktop {
+  .gvf-nav-desktop {
     display: flex;
     align-items: center;
   }
 
-  .isavo-nav-list {
+  .gvf-nav-list {
     display: flex;
     align-items: center;
     gap: 26px;
@@ -289,7 +288,7 @@ const currentPath = Astro.url.pathname;
     padding: 0;
   }
 
-  .isavo-nav-link {
+  .gvf-nav-link {
     display: inline-flex;
     align-items: center;
     gap: 4px;
@@ -301,28 +300,28 @@ const currentPath = Astro.url.pathname;
     transition: color 0.2s ease;
   }
 
-  .isavo-nav-link:hover,
-  .isavo-nav-link.active {
+  .gvf-nav-link:hover,
+  .gvf-nav-link.active {
     color: #38bdf8; /* Aksen biru langit arsitektural GVF */
   }
 
-  .isavo-chevron {
+  .gvf-chevron {
     width: 11px;
     height: 11px;
     margin-left: 2px;
     transition: transform 0.2s ease;
   }
 
-  .isavo-has-dropdown {
+  .gvf-has-dropdown {
     position: relative;
   }
 
-  .isavo-has-dropdown:hover .isavo-chevron {
+  .gvf-has-dropdown:hover .gvf-chevron {
     transform: rotate(180deg);
   }
 
   /* Dropdown Menu White Card */
-  .isavo-dropdown-menu {
+  .gvf-dropdown-menu {
     position: absolute;
     top: calc(100% + 14px);
     left: 0;
@@ -341,13 +340,13 @@ const currentPath = Astro.url.pathname;
     z-index: 1000;
   }
 
-  .isavo-has-dropdown:hover .isavo-dropdown-menu {
+  .gvf-has-dropdown:hover .gvf-dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: rotateX(0deg) translateY(0);
   }
 
-  .isavo-dropdown-menu li a {
+  .gvf-dropdown-menu li a {
     color: #0f172a;
     padding: 9px 22px;
     font-family: "Golos Text", "Plus Jakarta Sans", sans-serif;
@@ -360,13 +359,13 @@ const currentPath = Astro.url.pathname;
       background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .isavo-dropdown-menu li a:hover {
+  .gvf-dropdown-menu li a:hover {
     color: #0969da;
     background: #eff6ff;
   }
 
   /* 3. Right Header Actions */
-  .isavo-header-right {
+  .gvf-header-right {
     display: flex;
     align-items: center;
     gap: 22px;
@@ -374,7 +373,7 @@ const currentPath = Astro.url.pathname;
   }
 
   /* Call Us Phone Widget (Icon Handset Polos + Teks 2 Baris) */
-  .isavo-phone-widget {
+  .gvf-phone-widget {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -415,7 +414,7 @@ const currentPath = Astro.url.pathname;
   }
 
   /* 4. Pill Button CTA ("Salurkan Donasi" Royal Blue Signature Pen.dev GVF) */
-  .isavo-header-pill-btn {
+  .gvf-header-pill-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -435,13 +434,13 @@ const currentPath = Astro.url.pathname;
     box-shadow: 0 4px 16px rgba(9, 105, 218, 0.35);
   }
 
-  .isavo-header-pill-btn:hover {
+  .gvf-header-pill-btn:hover {
     background: #0752a8;
     transform: translateY(-2px);
     box-shadow: 0 6px 22px rgba(9, 105, 218, 0.5);
   }
 
-  .isavo-header-pill-btn:active {
+  .gvf-header-pill-btn:active {
     transform: scale(0.97);
   }
 
@@ -455,8 +454,8 @@ const currentPath = Astro.url.pathname;
     height: 13px;
   }
 
-  /* 5. Circle Button dengan 4 ROUND DOTS (2x2 Grid) ala ISAVO */
-  .isavo-circle-dots-btn {
+  /* 5. Circle Button dengan 4 ROUND DOTS (2x2 Grid) */
+  .gvf-circle-dots-btn {
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -476,7 +475,7 @@ const currentPath = Astro.url.pathname;
     flex-shrink: 0;
   }
 
-  .isavo-circle-dots-btn .dot {
+  .gvf-circle-dots-btn .dot {
     width: 4px;
     height: 4px;
     border-radius: 50%;
@@ -485,18 +484,18 @@ const currentPath = Astro.url.pathname;
     transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  .isavo-circle-dots-btn:hover {
+  .gvf-circle-dots-btn:hover {
     background-color: #0969da;
     border-color: #0969da;
     transform: rotate(90deg);
   }
 
-  .isavo-circle-dots-btn:active {
+  .gvf-circle-dots-btn:active {
     transform: rotate(90deg) scale(0.94);
   }
 
   /* Mobile Hamburger Toggle */
-  .isavo-mobile-toggle {
+  .gvf-mobile-toggle {
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -510,7 +509,7 @@ const currentPath = Astro.url.pathname;
     cursor: pointer;
   }
 
-  .isavo-mobile-toggle span {
+  .gvf-mobile-toggle span {
     display: block;
     width: 100%;
     height: 2px;
@@ -520,7 +519,7 @@ const currentPath = Astro.url.pathname;
   }
 
   /* Mobile Drawer */
-  .isavo-drawer {
+  .gvf-drawer {
     display: none;
     position: fixed;
     inset: 0;
@@ -531,12 +530,12 @@ const currentPath = Astro.url.pathname;
     transition: opacity 0.3s ease;
   }
 
-  .isavo-drawer.open {
+  .gvf-drawer.open {
     opacity: 1;
     pointer-events: auto;
   }
 
-  .isavo-drawer-panel {
+  .gvf-drawer-panel {
     position: absolute;
     top: 0;
     right: 0;
@@ -551,18 +550,18 @@ const currentPath = Astro.url.pathname;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .isavo-drawer.open .isavo-drawer-panel {
+  .gvf-drawer.open .gvf-drawer-panel {
     transform: translateX(0);
   }
 
-  .isavo-drawer-top {
+  .gvf-drawer-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
   }
 
-  .isavo-drawer-close {
+  .gvf-drawer-close {
     background: none;
     border: none;
     color: #ffffff;
@@ -576,14 +575,14 @@ const currentPath = Astro.url.pathname;
     justify-content: center;
   }
 
-  .isavo-drawer-nav {
+  .gvf-drawer-nav {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     flex: 1;
   }
 
-  .isavo-drawer-nav a {
+  .gvf-drawer-nav a {
     color: #ffffff;
     text-decoration: none;
     font-size: 1.1rem;
@@ -594,38 +593,38 @@ const currentPath = Astro.url.pathname;
     transition: color 0.2s ease;
   }
 
-  .isavo-drawer-nav a:hover {
+  .gvf-drawer-nav a:hover {
     color: #38bdf8;
   }
 
-  .isavo-drawer-bottom {
+  .gvf-drawer-bottom {
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   @media (max-width: 1100px) {
-    .isavo-nav-desktop,
-    .isavo-phone-widget {
+    .gvf-nav-desktop,
+    .gvf-phone-widget {
       display: none;
     }
-    .isavo-mobile-toggle,
-    .isavo-drawer {
+    .gvf-mobile-toggle,
+    .gvf-drawer {
       display: flex;
     }
-    .isavo-header-inner {
+    .gvf-header-inner {
       padding: 14px 20px;
     }
-    .isavo-header-inner .isavo-boxed-logo {
+    .gvf-header-inner .gvf-boxed-logo {
       margin-left: 10px;
     }
-    .isavo-header-right {
+    .gvf-header-right {
       margin-right: 10px;
     }
   }
 </style>
 
 <script>
-  // Dynamic Scroll Listener for Sticky State (Identik ISAVO .primary-header.fixed)
+  // Dynamic Scroll Listener for Sticky State
   const header = document.getElementById("main-header");
 
   const onScroll = () => {
@@ -640,9 +639,9 @@ const currentPath = Astro.url.pathname;
   onScroll();
 
   // Mobile Drawer Toggle
-  const toggle = document.getElementById("isavo-toggle");
-  const close = document.getElementById("isavo-close");
-  const drawer = document.getElementById("isavo-drawer");
+  const toggle = document.getElementById("gvf-toggle");
+  const close = document.getElementById("gvf-close");
+  const drawer = document.getElementById("gvf-drawer");
 
   function openDrawer() {
     drawer?.classList.add("open");

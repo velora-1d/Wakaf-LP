@@ -197,20 +197,20 @@ const HeroSectionwithCards: React.FC = () => {
                   e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
                   e.currentTarget.style.borderColor = "#ffffff";
                   e.currentTarget.style.transform = "translateY(-2px)";
-                  const circle = e.currentTarget.querySelector(".isavo-circle") as HTMLElement;
+                  const circle = e.currentTarget.querySelector(".gvf-circle") as HTMLElement;
                   if (circle) circle.style.transform = "rotate(45deg)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = "rgba(15, 23, 42, 0.55)";
                   e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.35)";
                   e.currentTarget.style.transform = "translateY(0)";
-                  const circle = e.currentTarget.querySelector(".isavo-circle") as HTMLElement;
+                  const circle = e.currentTarget.querySelector(".gvf-circle") as HTMLElement;
                   if (circle) circle.style.transform = "rotate(0deg)";
                 }}
               >
                 <span>Lihat Program</span>
                 <span
-                  className="isavo-circle"
+                  className="gvf-circle"
                   style={{
                     width: "38px",
                     height: "38px",
