@@ -108,6 +108,7 @@
     { "id": "NAVBAR-CONTRAST-01", "name": "Perbaikan Kontras & Visibilitas Navbar pada Halaman Berlatar Terang (/kabar dan /kabar/[slug]) dengan Architectural Dark Banner Standar ISAVO", "status": "closed" },
     { "id": "ASSETS-CLEAN-KEBAB-CASE-01", "name": "Pembersihan Symlink Duplikat & Rename Permanen Folder/File Bahan Konten ke Kebab-Case", "status": "closed" },
     { "id": "HOME-FONT-GOLOS-ALIGN-01", "name": "Penyelarasan Tipografi Halaman Beranda dengan Halaman Lain Menggunakan Font Resmi Golos Text Penuh", "status": "closed" },
-    { "id": "HOME-FONT-WEIGHT-LOCAL-01", "name": "Penyelarasan Font Weight Heading Beranda (400 ke 600/700 Tebal) & Font Lokal Woff2 Golos Text", "status": "closed" }
+    { "id": "HOME-FONT-WEIGHT-LOCAL-01", "name": "Penyelarasan Font Weight Heading Beranda (400 ke 600/700 Tebal) & Font Lokal Woff2 Golos Text", "status": "closed" },
+    { "id": "MASONRY-GRID-VISIBILITY-FIX-01", "name": "Perbaikan Blank Putih MasonryGrid Eliminasi useInView Opacity 0 Framer Motion", "status": "closed" }
   ]
 }

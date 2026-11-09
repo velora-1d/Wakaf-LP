@@ -89,55 +89,24 @@ export const MasonryGrid = <T,>({
   items,
   renderItem,
   className,
-  gap = '1rem',
-  staggerDelay = 0.05,
+  gap = '1.25rem',
 }: MasonryGridProps<T>) => {
-  const containerRef = React.useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: staggerDelay,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: 'easeOut',
-      },
-    },
-  };
-
   return (
-    <motion.div
-      ref={containerRef}
+    <div
       className={cn('w-full', className)}
       style={{ columnGap: gap }}
-      initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
-      variants={containerVariants}
       role="list"
     >
       {items.map((item, index) => (
-        <motion.div
+        <div
           key={index}
-          className="mb-4 break-inside-avoid"
-          variants={itemVariants}
+          className="mb-5 break-inside-avoid"
           role="listitem"
         >
           <GridItem>{renderItem(item, index)}</GridItem>
-        </motion.div>
+        </div>
       ))}
-    </motion.div>
+    </div>
   );
 };
 
