@@ -131,6 +131,7 @@
     { "id": "MODULARIZE-PHASE-1-DATA-DB-01", "name": "Modularisasi & Pemecahan File Data programs.ts dan Database lib/db/index.ts (Maksimal < 1.000 Baris Tanpa Breaking Changes)", "status": "closed" },
     { "id": "MODULARIZE-PHASE-2-FRONTEND-LAYOUT-01", "name": "Modularisasi Frontend Publik & Layout Stylesheet Extraction (ProgramLayout.astro, kabar/[slug].astro, ZakatCalculatorSection.astro < 1.000 Baris)", "status": "closed" },
     { "id": "MODULARIZE-PHASE-3-ADMIN-CMS-01", "name": "Modularisasi Admin Panel CMS & Client Scripts (donatur/index.astro, kabar/index.astro, pages/[slug].astro, roles/index.astro < 1.000 Baris)", "status": "closed" },
-    { "id": "FORMAT-ZAKAT-CLEAN-COPY-01", "name": "Penyempurnaan Format & Tipografi Narasi Zakat (Fitrah, Maal, Penghasilan) Tanpa Penomoran Kaku pada Program Data & Dokumentasi GVF", "status": "closed" }
+    { "id": "FORMAT-ZAKAT-CLEAN-COPY-01", "name": "Penyempurnaan Format & Tipografi Narasi Zakat (Fitrah, Maal, Penghasilan) Tanpa Penomoran Kaku pada Program Data & Dokumentasi GVF", "status": "closed" },
+    { "id": "FORMAT-ALL-PROGRAMS-CLEAN-COPY-01", "name": "Standardisasi Penulisan Tipografi Narasi & Paket Seluruh Program (Infak, Sedekah, Wakaf) Tanpa Prefiks Huruf & Angka Kaku", "status": "closed" }
   ]
 }

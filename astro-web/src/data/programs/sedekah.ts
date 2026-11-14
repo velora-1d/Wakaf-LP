@@ -9,11 +9,11 @@ export const sedekahProgram: ProgramData = {
   heroBgImage: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kajian-santri-aula.webp`,
   
   pricingHeading: 'Pilihan Pos Sedekah Berkelanjutan',
-  pricingSubheading: 'Salurkan sedekah untuk 4 ragam kepedulian: Pangan & Konsumsi, Fasilitas & Perlengkapan, Pendidikan & Kegiatan, serta Keahlian, Jasa & Tenaga.',
+  pricingSubheading: 'Salurkan sedekah melalui ragam kepedulian: Pangan & Konsumsi, Fasilitas & Perlengkapan, Pendidikan & Kegiatan, serta Keahlian, Jasa & Tenaga.',
   packages: [
     {
       id: 'sedekah-pangan-konsumsi',
-      title: 'A. Pangan & Konsumsi Harian',
+      title: 'Pangan & Konsumsi Harian',
       subtitle: 'Beras, Lauk & Nutrisi Santri',
       pricePrefix: 'Rp ',
       priceAmount: '25.000',
@@ -32,7 +32,7 @@ export const sedekahProgram: ProgramData = {
     },
     {
       id: 'sedekah-fasilitas-perlengkapan',
-      title: 'B. Fasilitas & Perlengkapan',
+      title: 'Fasilitas & Perlengkapan',
       subtitle: 'Kenyamanan Hunian & Ibadah',
       pricePrefix: 'Rp ',
       priceAmount: '150.000',
@@ -50,7 +50,7 @@ export const sedekahProgram: ProgramData = {
     },
     {
       id: 'sedekah-pendidikan-kegiatan',
-      title: 'C. Pendidikan & Kegiatan',
+      title: 'Pendidikan & Kegiatan',
       subtitle: 'Dukungan Pembinaan & Vokasi',
       pricePrefix: 'Rp ',
       priceAmount: '200.000',
@@ -67,7 +67,7 @@ export const sedekahProgram: ProgramData = {
       ctaText: 'Sedekah Pendidikan'
     }
   ],
-  addonTitle: 'D. Sedekah Keahlian, Jasa & Tenaga',
+  addonTitle: 'Sedekah Keahlian, Jasa & Tenaga',
   addonItems: [
     {
       name: 'Relawan Tenaga Pembangunan',
@@ -121,10 +121,10 @@ export const sedekahProgram: ProgramData = {
     `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-menulis-di-buku-catatan.webp`,
     `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-tersenyum-di-kamar-asrama.webp`
   ],
-  deepDiveSubblock1Title: 'A & B. Sedekah Pangan, Fasilitas dan Perlengkapan',
+  deepDiveSubblock1Title: 'Sedekah Pangan, Fasilitas dan Perlengkapan',
   deepDiveSubblock1Desc1: 'Membantu konsumsi pangan harian (beras, minyak goreng, telur, daging, ikan, sayuran, susu, air minum) serta perlengkapan fasilitas (kasur, lemari, meja kursi, kipas angin, peralatan dapur, perlengkapan masjid dan asrama).',
   deepDiveSubblock1Desc2: 'Bantuan berupa barang langsung dapat dikonfirmasi terlebih dahulu ke layanan WhatsApp Customer Service GVF untuk kesesuaian spesifikasi dan waktu pengiriman ke Jonggol.',
-  deepDiveSubblock2Title: 'C & D. Sedekah Pendidikan, Keahlian, Jasa dan Tenaga',
+  deepDiveSubblock2Title: 'Sedekah Pendidikan, Keahlian, Jasa dan Tenaga',
   deepDiveSubblock2Desc1: 'Mendukung pengadaan buku, perlengkapan olahraga, perangkat komputer, alat peraga, dan sarana kegiatan santri.',
   deepDiveSubblock2Desc2: 'Membuka ruang seluas-luasnya bagi donatur yang ingin menyedekahkan waktu, keahlian teknologi, pelatihan vokasi, jasa perbaikan fasilitas, maupun tenaga pembangunan di lokasi pesantren.',
   portfolioShowcaseItems: [

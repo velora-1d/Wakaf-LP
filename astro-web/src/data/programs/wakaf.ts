@@ -9,7 +9,7 @@ export const wakafProgram: ProgramData = {
   heroBgImage: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-perkebunan.webp`,
   
   pricingHeading: 'Instrumen Pengelolaan Program Wakaf',
-  pricingSubheading: 'Tunaikan wakaf berdasarkan 4 pilar peruntukan: wakaf uang, wakaf melalui uang (masjid), wakaf tanah/bangunan, dan wakaf produktif terpadu.',
+  pricingSubheading: 'Tunaikan wakaf berdasarkan ragam instrumen peruntukan: wakaf uang, wakaf melalui uang (sarana ibadah), wakaf tanah dan bangunan, serta wakaf produktif kawasan.',
   packages: [
     {
       id: 'wakaf-melalui-uang-masjid',
@@ -92,7 +92,7 @@ export const wakafProgram: ProgramData = {
   deepDiveBadge: 'URGENSI & PERUNTUKAN WAKAF',
   deepDiveTitle: 'Mengelola Aset, Menghadirkan Manfaat Jangka Panjang',
   deepDiveLead: 'Global Village Fund mengembangkan pengelolaan wakaf untuk mendukung pembangunan aset dan program produktif yang memberikan manfaat berkelanjutan. Melalui pengembangan sarana ibadah, pendidikan, hunian, dan unit usaha produktif, wakaf menjadi bagian dari upaya membangun ekosistem yang mandiri dan produktif.',
-  deepDiveStory1: 'Pengelolaan wakaf di bawah payung Yayasan Permata Cendekia Indonesia (YPCI) memadukan 4 instrumen utama: Wakaf Uang (pokok dijaga, hasil dimanfaatkan), Wakaf Melalui Uang (pembangunan sarana fisik tertentu), Wakaf Tanah & Bangunan (aset tidak bergerak), dan Wakaf Produktif (pertanian terpadu, greenhouse, peternakan, serta unit usaha mandiri).',
+  deepDiveStory1: 'Pengelolaan wakaf di bawah payung Yayasan Permata Cendekia Indonesia (YPCI) memadukan ragam instrumen utama: Wakaf Uang (pokok dijaga, hasil dimanfaatkan), Wakaf Melalui Uang (pembangunan sarana fisik), Wakaf Tanah dan Bangunan (aset abadi tidak bergerak), serta Wakaf Produktif (pertanian terpadu, greenhouse, peternakan, dan unit usaha mandiri).',
   deepDiveStory2: '',
   deepDiveBannerImage: `${S3_BASE}/bahan-konten/asrama-putra-baru/tampak-samping-asrama-ikhwan-baru.jpeg`,
   valueBoxes: [

@@ -29,11 +29,11 @@ Global Village Fund menghadirkan layanan filantropi terpadu dari hulu ke hilir m
 
 ---
 
-### 01. INFAK
+### INFAK
 **Menguatkan Program, Mendukung Pengembangan**
 Infak merupakan kontribusi sukarela yang memberikan ruang bagi setiap orang untuk mengambil bagian dalam berbagai upaya kebaikan. Dana infak dikelola untuk mendukung kebutuhan pembangunan, operasional, pendidikan, serta pengembangan sarana dan program pemberdayaan.
 
-#### A. Infak: Kebutuhan Pembangunan dan Infrastruktur
+#### Kebutuhan Pembangunan dan Infrastruktur
 Infak yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan konstruksi, material, dan perlengkapan untuk pembangunan, renovasi, serta pengembangan fasilitas, antara lain:
 - Semen
 - Pasir dan split
@@ -50,7 +50,7 @@ Infak yang disalurkan dapat mendukung pemenuhan berbagai kebutuhan konstruksi, m
 
 *Kebutuhan ini mencakup pembangunan dan pengembangan berbagai fasilitas, seperti masjid, asrama, ruang kelas, dapur, sanitasi, serta sarana penunjang lainnya.*
 
-#### B. Infak: Kebutuhan Operasional
+#### Kebutuhan Operasional
 Infak yang disalurkan dapat membantu memenuhi kebutuhan operasional dan pemeliharaan fasilitas agar berbagai aktivitas dapat berjalan dengan baik, antara lain:
 - Bahan pangan pokok
 - Kebutuhan dapur
@@ -61,7 +61,7 @@ Infak yang disalurkan dapat membantu memenuhi kebutuhan operasional dan pemeliha
 - Kebutuhan operasional harian
 - Perlengkapan penunjang lainnya
 
-#### C. Infak: Pendidikan dan Pembinaan
+#### Pendidikan dan Pembinaan
 Infak dapat mendukung pemenuhan kebutuhan pendidikan, pembinaan karakter, pengembangan kompetensi, dan peningkatan kapasitas, antara lain:
 - Buku dan bahan bacaan
 - Alat tulis dan perlengkapan belajar
@@ -72,7 +72,7 @@ Infak dapat mendukung pemenuhan kebutuhan pendidikan, pembinaan karakter, pengem
 - Sarana kegiatan dan pembinaan
 - Perangkat penunjang pendidikan lainnya
 
-#### D. Infak: Pemberdayaan dan Kemandirian
+#### Pemberdayaan dan Kemandirian
 Infak juga diarahkan untuk mendukung pengembangan sarana produksi, unit usaha, serta fasilitas produktif yang menunjang kemandirian, antara lain:
 - Peralatan pertanian
 - Sarana greenhouse
@@ -85,11 +85,11 @@ Infak juga diarahkan untuk mendukung pengembangan sarana produksi, unit usaha, s
 
 ---
 
-### 02. SEDEKAH
+### SEDEKAH
 **Berbagi dengan Cara, Menghadirkan Manfaat**
 Sedekah merupakan bentuk kepedulian yang dapat diwujudkan melalui berbagai bentuk pemberian. Tidak terbatas pada uang, sedekah juga dapat berupa barang, pangan, ilmu, keterampilan, maupun tenaga yang memberikan manfaat.
 
-#### A. Sedekah: Pangan dan Kebutuhan Konsumsi
+#### Pangan dan Kebutuhan Konsumsi
 Sedekah yang disalurkan dapat membantu memenuhi kebutuhan konsumsi dan ketersediaan pangan sehari-hari, antara lain:
 - Beras
 - Minyak goreng
@@ -102,7 +102,7 @@ Sedekah yang disalurkan dapat membantu memenuhi kebutuhan konsumsi dan ketersedi
 - Air minum
 - Paket kebutuhan pangan
 
-#### B. Sedekah: Fasilitas dan Perlengkapan
+#### Fasilitas dan Perlengkapan
 Sedekah berupa barang dapat mendukung kelengkapan fasilitas, kenyamanan, serta berbagai kebutuhan penunjang aktivitas, antara lain:
 - Tempat tidur dan kasur
 - Lemari pakaian
@@ -116,7 +116,7 @@ Sedekah berupa barang dapat mendukung kelengkapan fasilitas, kenyamanan, serta b
 - Perangkat audio dan multimedia
 - Peralatan dan perlengkapan lainnya
 
-#### C. Sedekah: Pendidikan dan Kegiatan
+#### Pendidikan dan Kegiatan
 Sedekah dapat diberikan untuk mendukung berbagai kebutuhan pendidikan, pembinaan, kegiatan keagamaan, dan pengembangan keterampilan, antara lain:
 - Buku dan alat tulis
 - Perlengkapan olahraga
@@ -127,7 +127,7 @@ Sedekah dapat diberikan untuk mendukung berbagai kebutuhan pendidikan, pembinaan
 - Media pembelajaran
 - Perlengkapan kegiatan santri
 
-#### D. Sedekah: Keahlian, Jasa, dan Tenaga
+#### Keahlian, Jasa, dan Tenaga
 Sedekah juga dapat diwujudkan melalui kontribusi nonmateri berupa waktu, keahlian, dan tenaga untuk mendukung pengembangan fasilitas maupun kapasitas sumber daya manusia, antara lain:
 - Tenaga pembangunan
 - Jasa perbaikan fasilitas
@@ -140,44 +140,44 @@ Sedekah juga dapat diwujudkan melalui kontribusi nonmateri berupa waktu, keahlia
 
 ---
 
-### 03. ZAKAT
+### ZAKAT
 **Menunaikan Kewajiban, Menyalurkan Amanah**
 Zakat merupakan kewajiban yang memiliki ketentuan khusus dalam syariat Islam. Pengelolaannya memperhatikan jenis zakat, perhitungan, serta golongan penerima yang berhak (asnaf). Melalui pengelolaan yang amanah dan penyaluran yang tepat sasaran, zakat diharapkan dapat membantu memenuhi kebutuhan mustahik serta mendukung peningkatan kesejahteraan mereka.
 
-#### A. Jenis Zakat
+#### Ragam Instrumen Zakat
 - **Zakat Fitrah**: Zakat yang wajib ditunaikan oleh setiap muslim yang memenuhi ketentuan, pada bulan Ramadan sebelum pelaksanaan salat Idulfitri.
 - **Zakat Maal**: Zakat atas harta yang telah memenuhi persyaratan nisab dan haul sesuai ketentuan syariat.
 - **Zakat Penghasilan**: Zakat atas penghasilan atau pendapatan yang telah memenuhi ketentuan zakat.
 
-#### B. Penyaluran Zakat
+#### Penyaluran Delapan Asnaf
 Dana zakat disalurkan kepada delapan golongan penerima (asnaf) sesuai ketentuan syariat, yaitu:
-1. Fakir
-2. Miskin
-3. Amil
-4. Mualaf
-5. Riqab
-6. Gharimin
-7. Fisabilillah
-8. Ibnu Sabil
+- Fakir
+- Miskin
+- Amil
+- Mualaf
+- Riqab
+- Gharimin
+- Fisabilillah
+- Ibnu Sabil
 
 *Penyaluran dilakukan dengan memperhatikan ketentuan syariat, kelayakan penerima, dan peruntukan dana zakat.*
 
 ---
 
-### 04. WAKAF
+### WAKAF
 **Mengelola Aset, Menghadirkan Manfaat Jangka Panjang**
 Wakaf merupakan bentuk ibadah dengan menyerahkan sebagian harta untuk dimanfaatkan sesuai tujuan wakaf. Melalui pengelolaan yang produktif dan bertanggung jawab, wakaf dapat menjadi instrumen pengembangan aset yang manfaatnya terus dihadirkan dari waktu ke waktu.
 
-#### A. Wakaf Uang
+#### Wakaf Uang
 Wakaf dalam bentuk uang yang diserahkan melalui nazhir untuk dikelola sesuai ketentuan perwakafan. Pokok wakaf dijaga, sedangkan hasil pengelolaannya dimanfaatkan sesuai ikrar wakaf.
 
-#### B. Wakaf Melalui Uang
+#### Wakaf Melalui Uang
 Kontribusi uang yang secara khusus diperuntukkan bagi pengadaan atau pembangunan aset wakaf tertentu sesuai peruntukan yang telah ditetapkan.
 
-#### C. Wakaf Tanah dan Bangunan
+#### Wakaf Tanah dan Bangunan
 Wakaf berupa aset tidak bergerak, seperti tanah dan bangunan, untuk dimanfaatkan sesuai tujuan dan ikrar wakaf.
 
-#### D. Wakaf Produktif
+#### Wakaf Produktif
 Pengembangan dan pengelolaan aset wakaf agar dapat menghasilkan manfaat ekonomi maupun sosial dalam jangka panjang, antara lain melalui:
 - Pertanian terpadu
 - Greenhouse dan budidaya tanaman

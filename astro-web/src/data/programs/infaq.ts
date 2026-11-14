@@ -9,11 +9,11 @@ export const infaqProgram: ProgramData = {
   heroBgImage: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/tampak-luar-gedung-pesantren-portrait.webp`,
   
   pricingHeading: 'Pilihan Pos Infak Berkelanjutan',
-  pricingSubheading: 'Salurkan infak Anda untuk 4 pos utama: Kebutuhan Pembangunan & Infrastruktur, Kebutuhan Operasional, Pendidikan & Pembinaan, serta Pemberdayaan & Kemandirian.',
+  pricingSubheading: 'Salurkan infak Anda untuk mendukung pos Pembangunan & Infrastruktur, Kebutuhan Operasional, Pendidikan & Pembinaan, serta Pemberdayaan & Kemandirian.',
   packages: [
     {
       id: 'infaq-pembangunan-infrastruktur',
-      title: 'A. Pembangunan & Infrastruktur',
+      title: 'Pembangunan & Infrastruktur',
       subtitle: 'Konstruksi & Material Bangunan',
       pricePrefix: 'Rp ',
       priceAmount: '100.000',
@@ -32,7 +32,7 @@ export const infaqProgram: ProgramData = {
     },
     {
       id: 'infaq-kebutuhan-operasional',
-      title: 'B. Kebutuhan Operasional',
+      title: 'Kebutuhan Operasional',
       subtitle: 'Pemeliharaan & Utilitas Pesantren',
       pricePrefix: 'Rp ',
       priceAmount: '150.000',
@@ -50,7 +50,7 @@ export const infaqProgram: ProgramData = {
     },
     {
       id: 'infaq-pendidikan-pembinaan',
-      title: 'C. Pendidikan & Pembinaan',
+      title: 'Pendidikan & Pembinaan',
       subtitle: 'Sarana Belajar & Vokasi Santri',
       pricePrefix: 'Rp ',
       priceAmount: '200.000',
@@ -67,7 +67,7 @@ export const infaqProgram: ProgramData = {
       ctaText: 'Salurkan Infak Pendidikan'
     }
   ],
-  addonTitle: 'D. Infak Pemberdayaan & Kemandirian Usaha',
+  addonTitle: 'Infak Pemberdayaan & Kemandirian Usaha',
   addonItems: [
     {
       name: 'Peralatan Pertanian & Greenhouse',
@@ -89,10 +89,10 @@ export const infaqProgram: ProgramData = {
     }
   ],
   
-  deepDiveBadge: 'FUNGSI & 4 PILAR INFAK',
+  deepDiveBadge: 'FUNGSI & PILAR INFAK',
   deepDiveTitle: 'Menguatkan Program, Mendukung Pengembangan',
   deepDiveLead: 'Infak merupakan kontribusi sukarela yang memberikan ruang bagi setiap orang untuk mengambil bagian dalam berbagai upaya kebaikan. Dana infak dikelola untuk mendukung kebutuhan pembangunan, operasional, pendidikan, serta pengembangan sarana dan program pemberdayaan.',
-  deepDiveStory1: 'Melalui 4 pilar infak (Pembangunan & Infrastruktur, Kebutuhan Operasional, Pendidikan & Pembinaan, serta Pemberdayaan & Kemandirian), setiap rupiah yang Anda titipkan menjadi energi nyata yang menggerakkan roda peradaban di Jonggol.',
+  deepDiveStory1: 'Melalui ragam pos infak terarah: Pembangunan & Infrastruktur, Kebutuhan Operasional, Pendidikan & Pembinaan, serta Pemberdayaan & Kemandirian, setiap rupiah yang Anda titipkan menjadi energi nyata yang menggerakkan roda peradaban di Jonggol.',
   deepDiveStory2: '',
   deepDiveBannerImage: `${S3_BASE}/bahan-konten/asrama-putra-baru/tampak-samping-asrama-ikhwan-baru-2.jpeg`,
   valueBoxes: [
@@ -121,10 +121,10 @@ export const infaqProgram: ProgramData = {
     `${S3_BASE}/bahan-konten/masjid-dan-kelas/lorong-kelas.jpeg`,
     `${S3_BASE}/bahan-konten/masjid-dan-kelas/bangunan-kelas-bagian-atas.jpeg`
   ],
-  deepDiveSubblock1Title: 'A. Kebutuhan Pembangunan dan Infrastruktur',
+  deepDiveSubblock1Title: 'Kebutuhan Pembangunan dan Infrastruktur',
   deepDiveSubblock1Desc1: 'Mendukung pemenuhan berbagai kebutuhan konstruksi, material, dan perlengkapan untuk pembangunan, renovasi, serta pengembangan fasilitas: semen, pasir, split, besi beton, baja ringan, bata ringan, keramik, plafon, pintu, jendela, instalasi listrik, air, dan sanitasi.',
   deepDiveSubblock1Desc2: 'Kebutuhan ini mencakup pembangunan dan pengembangan berbagai fasilitas, seperti masjid, asrama, ruang kelas, dapur, sanitasi, serta sarana penunjang lainnya.',
-  deepDiveSubblock2Title: 'B, C & D. Operasional, Pendidikan & Kemandirian',
+  deepDiveSubblock2Title: 'Operasional, Pendidikan & Kemandirian Usaha',
   deepDiveSubblock2Desc1: 'Memenuhi kebutuhan operasional harian (bahan pangan pokok, dapur, air, listrik, gas, kebersihan, pemeliharaan) serta kebutuhan pendidikan (buku, ATK, komputer, alat praktik vokasi, perlengkapan bahasa).',
   deepDiveSubblock2Desc2: 'Diarahkan pula untuk pengembangan sarana produksi, unit usaha, dan fasilitas produktif (peralatan pertanian, greenhouse, peternakan, mesin pengolahan pangan, perangkat teknologi) yang menunjang kemandirian.',
   portfolioShowcaseItems: [
