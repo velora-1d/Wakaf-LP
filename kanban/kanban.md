@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] PURGE-NESTED-CARD-GUARANTEES-GRID-01: Eliminasi Anti-Pattern Kotak di dalam Kotak (Nested Card) pada .pen-guarantees-grid di Seluruh Halaman Program Terverifikasi Build 100%
 - [x] UPDATE-HOME-YOUTUBE-VIDEO-01: Pembaruan Link & ID Video YouTube Dokumentasi Beranda dengan Video Resmi Terbaru (UDuRQb4ABBs) Terverifikasi Build 100%
 - [x] REFINE-DELIVERABLES-LAYOUT-NO-DASH-01: Perapihan Tata Letak Deliverables Kartu Paket (Eliminasi Total Tanda Pisah Strip/Dash '—', Pemisahan Judul & Deskripsi Berjenjang Rapi, dan Penghapusan Justify Renggang Menjadi Left-Align Rapi) Terverifikasi Build 100%
 - [x] PURGE-404-PORTFOLIO-BUTTON-01: Eliminasi Tombol 404 'Lihat Lebih Banyak' pada ProgramLayout dan Penyelarasan Link Dokumentasi Kawasan ke /tentang-kami Terverifikasi Build 100%

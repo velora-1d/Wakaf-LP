@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "PURGE-NESTED-CARD-GUARANTEES-GRID-01", "name": "Eliminasi Anti-Pattern Kotak di dalam Kotak (Nested Card) pada .pen-guarantees-grid di Seluruh Halaman Program", "status": "closed" },
     { "id": "UPDATE-HOME-YOUTUBE-VIDEO-01", "name": "Pembaruan Link & ID Video YouTube Dokumentasi Beranda dengan Video Resmi Terbaru (UDuRQb4ABBs)", "status": "closed" },
     { "id": "REFINE-DELIVERABLES-LAYOUT-NO-DASH-01", "name": "Perapihan Tata Letak Deliverables Kartu Paket (Eliminasi Tanda Pisah Strip/Dash '—', Pemisahan Judul & Deskripsi Berjenjang, dan Penghapusan Justify Renggang Menjadi Left-Align Rapi)", "status": "closed" },
     { "id": "PURGE-404-PORTFOLIO-BUTTON-01", "name": "Eliminasi Tombol 404 'Lihat Lebih Banyak' pada ProgramLayout dan Penyelarasan Link Dokumentasi Kawasan ke /tentang-kami", "status": "closed" },

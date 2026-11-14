@@ -541,12 +541,12 @@
 .pen-guarantees-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px 28px;
-  margin-top: 32px;
-  padding: 28px 32px;
-  background: #fbfbfb;
-  border: 1px solid #e3e3e8;
-  border-radius: 20px;
+  gap: 18px 28px;
+  margin-top: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
 }
 .pen-guarantee-item {
   display: flex;
@@ -682,7 +682,9 @@ details[open] summary span:last-child {
   }
   .pen-guarantees-grid {
     grid-template-columns: 1fr;
-    padding: 20px;
+    padding: 0;
+    gap: 16px;
+    margin-top: 28px;
   }
   .pen-showcase-img-box {
     height: 260px;
