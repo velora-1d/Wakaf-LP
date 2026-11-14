@@ -98,13 +98,14 @@ function formatRelativeDate(date: Date | string): string {
             <ul class="card-deliverables-list">
               {pkg.deliverables.map((item: DeliverableItem) => (
                 <li class="deliverable-item">
-                  <span class="check-icon-wrap">
+                  <span class="check-icon-wrap" aria-hidden="true">
                     <svg viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                     </svg>
                   </span>
-                  <div class="deliverable-text">
-                    <strong>{item.bold} — </strong>{item.text}
+                  <div class="deliverable-content">
+                    <span class="deliverable-title">{item.bold}</span>
+                    {item.text && <span class="deliverable-desc">{item.text}</span>}
                   </div>
                 </li>
               ))}
@@ -480,20 +481,16 @@ function formatRelativeDate(date: Date | string): string {
     padding: 0;
     display: flex;
     flex-direction: column;
+    gap: 14px;
   }
 
   .deliverable-item {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    padding: 10px 0;
-    font-family: 'Golos Text', sans-serif;
-    font-size: 13px;
-    color: #4d4d52;
-    line-height: 1.5;
-    text-align: justify;
-    text-justify: inter-word;
-    text-align-last: left;
+    padding: 0;
+    font-family: 'Golos Text', system-ui, sans-serif;
+    text-align: left !important;
   }
 
   .deliverable-item:last-child {
@@ -502,29 +499,43 @@ function formatRelativeDate(date: Date | string): string {
 
   .check-icon-wrap {
     color: #0969da;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: 1px;
   }
 
   .check-icon-wrap svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     display: block;
   }
 
-  .deliverable-text {
+  .deliverable-content {
     flex: 1;
-    text-align: justify;
-    text-justify: inter-word;
-    text-align-last: left;
-    hyphens: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: left !important;
   }
 
-  .deliverable-text strong {
-    color: #191919;
-    font-weight: 600;
+  .deliverable-title {
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.4;
+    text-align: left !important;
+    letter-spacing: -0.01em;
+  }
+
+  .deliverable-desc {
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: #64748b;
+    line-height: 1.55;
+    text-align: left !important;
   }
 
   .card-cta-wrap {

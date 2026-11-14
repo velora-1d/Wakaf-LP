@@ -3,11 +3,13 @@
 ## To Do
 
 ## In Progress
+- [/] UPDATE-HOME-YOUTUBE-VIDEO-01: Pembaruan Link & ID Video YouTube Dokumentasi Beranda dengan Video Resmi Terbaru (UDuRQb4ABBs)
 - [/] LP-UIUX-WAKAFRUTIN-01: Redesain UI/UX Landing Page Masjid Khairu Ummah Sugro berbasis Desain Sistem Wakaf-Rutin dengan Konten, Aset & Video Asli
 
 ## In Review / Test
 
 ## Done
+- [x] REFINE-DELIVERABLES-LAYOUT-NO-DASH-01: Perapihan Tata Letak Deliverables Kartu Paket (Eliminasi Total Tanda Pisah Strip/Dash '—', Pemisahan Judul & Deskripsi Berjenjang Rapi, dan Penghapusan Justify Renggang Menjadi Left-Align Rapi) Terverifikasi Build 100%
 - [x] PURGE-404-PORTFOLIO-BUTTON-01: Eliminasi Tombol 404 'Lihat Lebih Banyak' pada ProgramLayout dan Penyelarasan Link Dokumentasi Kawasan ke /tentang-kami Terverifikasi Build 100%
 - [x] PURGE-ABC-NUMBER-PREFIXES-ALL-PROGRAMS-01: Eliminasi Total Awalan Huruf (A, B, C) dan Angka (1, 2, 3) pada Judul Paket Semua Program (Sedekah, Infaq, Zakat, Wakaf) di Database PostgreSQL & Sanitasi Komponen UI Terverifikasi Build 100%
 - [x] UPDATE-SEDEKAH-CONTENT-COPY-01: Pembaruan Total Narasi, Paket & Rincian Deliverables Program Sedekah Sesuai Dokumen Revisi Resmi (Pangan, Fasilitas, Pendidikan, Keahlian & Jasa) Tanpa Mengubah Database Donatur Terverifikasi Build 100%

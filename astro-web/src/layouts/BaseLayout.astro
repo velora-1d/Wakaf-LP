@@ -457,8 +457,6 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   .gvf-hero-sub p,
   .card-desc,
   .card-body p,
-  .deliverable-text,
-  .deliverable-item,
   .strip-content p,
   .arch-pricing-card .plan-features li,
   .goods-spec-items,
@@ -469,6 +467,17 @@ const allSchemas = [...baseSchemas, ...customSchemas];
     text-justify: inter-word;
     text-align-last: left;
     hyphens: auto;
+  }
+
+  /* ── Deliverables / Item Alokasi: Wajib rata kiri rapi tanpa efek renggang justify ── */
+  .deliverable-content,
+  .deliverable-title,
+  .deliverable-desc,
+  .deliverable-item,
+  .deliverable-text {
+    text-align: left !important;
+    text-justify: auto !important;
+    text-align-last: left !important;
   }
 
   /* ── Subtitle / Intro tengah multi-baris yang rapi rata kanan-kiri dengan baris akhir tengah ── */

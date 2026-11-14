@@ -1,6 +1,8 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "UPDATE-HOME-YOUTUBE-VIDEO-01", "name": "Pembaruan Link & ID Video YouTube Dokumentasi Beranda dengan Video Resmi Terbaru (UDuRQb4ABBs)", "status": "in_progress" },
+    { "id": "REFINE-DELIVERABLES-LAYOUT-NO-DASH-01", "name": "Perapihan Tata Letak Deliverables Kartu Paket (Eliminasi Tanda Pisah Strip/Dash '—', Pemisahan Judul & Deskripsi Berjenjang, dan Penghapusan Justify Renggang Menjadi Left-Align Rapi)", "status": "closed" },
     { "id": "PURGE-404-PORTFOLIO-BUTTON-01", "name": "Eliminasi Tombol 404 'Lihat Lebih Banyak' pada ProgramLayout dan Penyelarasan Link Dokumentasi Kawasan ke /tentang-kami", "status": "closed" },
     { "id": "PURGE-ABC-NUMBER-PREFIXES-ALL-PROGRAMS-01", "name": "Eliminasi Total Awalan Huruf (A, B, C) dan Angka (1, 2, 3) pada Judul Paket Semua Program (Sedekah, Infaq, Zakat, Wakaf) di Database PostgreSQL & Sanitasi Komponen UI", "status": "closed" },
     { "id": "UPDATE-SEDEKAH-CONTENT-COPY-01", "name": "Pbaruan Total Narasi, Paket & Rincian Deliverables Program Sedekah Sesuai Dokumen Revisi Resmi (Pangan, Fasilitas, Pendidikan, Keahlian & Jasa) Tanpa Mengubah Database Donatur", "status": "closed" },
