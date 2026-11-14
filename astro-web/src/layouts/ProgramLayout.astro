@@ -59,18 +59,28 @@ const valueBoxIcons = [
   `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
   `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`
 ];
+
+// Resolusi Konten Dinamis Halaman Program dari Database Neon
+const progHeroContent = sectionMap.get('prog_hero')?.content;
+const progHeroBgImage = progHeroContent?.imageUrl || program.heroBgImage;
+const progHeroTitle = progHeroContent?.heading || progHeroContent?.title || program.title;
+
+const progDetailsContent = sectionMap.get('prog_details')?.content;
+const progDetailsImage = progDetailsContent?.imageUrl || program.heroImage || program.deepDiveBannerImage || "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp";
+const progDetailsTitle = progDetailsContent?.heading || progDetailsContent?.title || program.deepDiveTitle;
+const progDetailsLead = progDetailsContent?.storyLead || progDetailsContent?.desc || progDetailsContent?.paragraph1 || program.deepDiveLead;
 ---
 
 <BaseLayout
   title={`${program.title} • Global Village Fund`}
   description={program.heroSubtitle}
-  ogImage={program.heroBgImage}
+  ogImage={progHeroBgImage}
   schema={programSchemas}
 >
   {isEnabled('prog_hero') && (
   <section
     class="pen-prog-header relative overflow-hidden bg-cover bg-center flex flex-col justify-center items-center"
-    style={`background-image: url('${program.heroBgImage}'); background-color: #191919; min-height: 385px; padding-top: 140px; padding-bottom: 100px;`}
+    style={`background-image: url('${progHeroBgImage}'); background-color: #191919; min-height: 385px; padding-top: 140px; padding-bottom: 100px;`}
   >
     <div class="absolute inset-0 bg-[#061829] opacity-75 z-0"></div>
     <div class="relative z-10 max-w-[1795px] mx-auto px-4 w-full flex flex-col items-center justify-center text-center">
@@ -78,7 +88,7 @@ const valueBoxIcons = [
         class="pen-hero-title"
         style="color: #ffffff !important; font-family: 'Golos Text', system-ui, sans-serif !important; font-size: clamp(32px, 4.5vw, 64px) !important; font-weight: 500 !important; line-height: 1.2 !important; margin: 0 0 16px 0 !important; text-align: center !important;"
       >
-        {program.title}
+        {progHeroTitle}
       </h1>
       <div
         class="pen-hero-breadcrumb flex items-center justify-center"
@@ -153,8 +163,8 @@ const valueBoxIcons = [
           <!-- Main Hero Image -->
           <div class="pen-deepdive-hero-img-wrap">
             <img
-              src={program.heroImage || program.deepDiveBannerImage || "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp"}
-              alt={program.deepDiveTitle}
+              src={progDetailsImage}
+              alt={progDetailsTitle}
               class="pen-deepdive-hero-img"
               loading="lazy"
             />
@@ -163,10 +173,10 @@ const valueBoxIcons = [
           <!-- Deep Dive Lead Text -->
           <div class="pen-deepdive-lead-block">
             <h2 class="pen-deepdive-lead-title">
-              {program.deepDiveTitle}
+              {progDetailsTitle}
             </h2>
             <p class="pen-deepdive-para">
-              {program.deepDiveLead}
+              {progDetailsLead}
             </p>
             <p class="pen-deepdive-para">
               {program.deepDiveStory1}

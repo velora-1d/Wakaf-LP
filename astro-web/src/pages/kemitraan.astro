@@ -75,6 +75,12 @@ const kemitraanGalleryItems = [
     description: "Penerimaan santri baru dari kalangan dhuafa untuk memperoleh akses pendidikan berkualitas.",
   },
 ];
+
+// Resolusi Konten Dinamis Halaman Kemitraan
+const partnerHeroContent = sectionMap.get('partner_hero')?.content;
+const partnerHeroTitle = partnerHeroContent?.heading || partnerHeroContent?.title || "Berkolaborasi untuk Menguatkan Ekosistem";
+const partnerHeroSubtitle = partnerHeroContent?.subheading || partnerHeroContent?.subtitle || partnerHeroContent?.desc || "GVF membuka ruang kolaborasi dengan individu, komunitas, lembaga filantropi, dunia usaha, dan institusi pendidikan untuk mendukung pengembangan ekosistem Skill Village di Jonggol.";
+const partnerHeroBgImage = partnerHeroContent?.imageUrl || "";
 ---
 
 <BaseLayout
@@ -84,12 +90,12 @@ const kemitraanGalleryItems = [
 >
   {isEnabled('partner_hero') && (
   <section class="pen-partner-banner">
-    <div class="pen-banner-bg"></div>
+    <div class="pen-banner-bg" style={partnerHeroBgImage ? `background-image: url('${partnerHeroBgImage}')` : undefined}></div>
     <div class="pen-banner-overlay"></div>
     <div class="pen-banner-container">
-      <h1 class="pen-banner-title">Berkolaborasi untuk Menguatkan Ekosistem</h1>
+      <h1 class="pen-banner-title">{partnerHeroTitle}</h1>
       <p class="pen-banner-lead">
-        GVF membuka ruang kolaborasi dengan individu, komunitas, lembaga filantropi, dunia usaha, dan institusi pendidikan untuk mendukung pengembangan ekosistem Skill Village di Jonggol.
+        {partnerHeroSubtitle}
       </p>
     </div>
   </section>

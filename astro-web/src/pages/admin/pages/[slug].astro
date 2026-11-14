@@ -165,6 +165,24 @@ const publicPageUrl = getPublicUrl(slug);
                         Deskripsi: {subheadingPreview}
                       </p>
                     )}
+                    {(section.content as any)?.imageUrl && (
+                      <div class="mt-2.5 flex items-center gap-3 p-2 bg-slate-50 border border-slate-200 rounded-xl">
+                        <div class="w-12 h-12 rounded-lg bg-slate-200 overflow-hidden shrink-0 border border-slate-300">
+                          <img
+                            src={(section.content as any).imageUrl}
+                            alt={section.title}
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div class="min-w-0 flex-1">
+                          <span class="text-[10px] font-bold text-[#0969da] uppercase tracking-wider block">Foto / Media Terpasang (Neon S3)</span>
+                          <p class="text-[11px] font-mono text-slate-600 truncate mt-0.5">
+                            {(section.content as any).imageUrl}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

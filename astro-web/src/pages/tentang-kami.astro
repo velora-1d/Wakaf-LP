@@ -85,6 +85,17 @@ const tentangGalleryItems = [
     description: "Ruang sholat utama masjid sebagai episentrum ibadah berjamaah, kajian subuh, dan majelis dzikir santri.",
   },
 ];
+
+// Resolusi Konten Dinamis Halaman Tentang Kami
+const aboutHeroContent = sectionMap.get('about_hero')?.content;
+const aboutHeroTitle = aboutHeroContent?.heading || aboutHeroContent?.title || "Tentang Kami";
+const aboutHeroSubtitle = aboutHeroContent?.subheading || aboutHeroContent?.subtitle || aboutHeroContent?.desc || "Mengenal Global Village Fund dan ikhtiar filantropi yang menghubungkan kepedulian dengan pengembangan ekosistem Skill Village.";
+const aboutHeroBgImage = aboutHeroContent?.imageUrl || "";
+
+const aboutStatsContent = sectionMap.get('about_stats')?.content;
+const aboutStatsTitle = aboutStatsContent?.heading || aboutStatsContent?.title || "Mengenal Global Village Fund";
+const aboutStatsLead = aboutStatsContent?.paragraph1 || aboutStatsContent?.desc || "Global Village Fund (GVF) merupakan inisiatif filantropi Islam di bawah <strong>Yayasan Permata Cendekia Indonesia (YPCI)</strong> yang mengintegrasikan pengelolaan zakat, infak, sedekah, dan wakaf untuk mendukung pengembangan ekosistem pesantren. Melalui penghimpunan dan pengelolaan dana filantropi secara amanah, GVF menghubungkan kepedulian para donatur dengan berbagai kebutuhan dan program, meliputi pendidikan, pembinaan karakter, pengembangan kompetensi vokasi, pertanian produktif, fasilitas ibadah, serta penguatan sarana penunjang lainnya. Melalui kolaborasi dan pengelolaan yang bertanggung jawab, GVF berupaya menghadirkan manfaat nyata sekaligus memperkuat fondasi kemandirian ekosistem secara berkelanjutan.";
+const aboutStatsImage = aboutStatsContent?.imageUrl || "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/tampak-depan-asrama-putra.jpeg";
 ---
 
 <BaseLayout
@@ -94,12 +105,12 @@ const tentangGalleryItems = [
 >
   {isEnabled('about_hero') && (
   <section class="pen-about-banner">
-    <div class="pen-banner-bg"></div>
+    <div class="pen-banner-bg" style={aboutHeroBgImage ? `background-image: url('${aboutHeroBgImage}')` : undefined}></div>
     <div class="pen-banner-overlay"></div>
     <div class="pen-banner-container">
-      <h1 class="pen-banner-title">Tentang Kami</h1>
+      <h1 class="pen-banner-title">{aboutHeroTitle}</h1>
       <p class="pen-banner-lead">
-        Mengenal Global Village Fund dan ikhtiar filantropi yang menghubungkan kepedulian dengan pengembangan ekosistem Skill Village.
+        {aboutHeroSubtitle}
       </p>
     </div>
   </section>
@@ -111,20 +122,18 @@ const tentangGalleryItems = [
       <div class="pen-intro-grid">
         <div class="pen-intro-left">
           <h2 class="pen-intro-title">
-            Mengenal Global Village Fund
+            {aboutStatsTitle}
           </h2>
           <p class="pen-intro-quote">
             Menghubungkan potensi filantropi dengan pengembangan ekosistem pendidikan, pemberdayaan, dan kemandirian untuk menghadirkan manfaat yang berkelanjutan.
           </p>
-          <p class="pen-intro-lead">
-            Global Village Fund (GVF) merupakan inisiatif filantropi Islam di bawah <strong>Yayasan Permata Cendekia Indonesia (YPCI)</strong> yang mengintegrasikan pengelolaan zakat, infak, sedekah, dan wakaf untuk mendukung pengembangan ekosistem pesantren. Melalui penghimpunan dan pengelolaan dana filantropi secara amanah, GVF menghubungkan kepedulian para donatur dengan berbagai kebutuhan dan program, meliputi pendidikan, pembinaan karakter, pengembangan kompetensi vokasi, pertanian produktif, fasilitas ibadah, serta penguatan sarana penunjang lainnya. Melalui kolaborasi dan pengelolaan yang bertanggung jawab, GVF berupaya menghadirkan manfaat nyata sekaligus memperkuat fondasi kemandirian ekosistem secara berkelanjutan.
-          </p>
+          <p class="pen-intro-lead" set:html={aboutStatsLead} />
         </div>
 
         <div class="pen-intro-right">
           <div class="pen-intro-main-img">
             <img
-              src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/tampak-depan-asrama-putra.jpeg"
+              src={aboutStatsImage}
               alt="Gedung Pesantren Jonggol Tampak Luar"
               class="pen-img-cover"
               loading="lazy"

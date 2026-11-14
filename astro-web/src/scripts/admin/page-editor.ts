@@ -71,7 +71,7 @@ export function initSectionEditor() {
   const vfSecondaryCtaUrl = document.getElementById('vfSecondaryCtaUrl') as HTMLInputElement;
   const vfImageUrl = document.getElementById('vfImageUrl') as HTMLInputElement;
 
-  // MinIO S3 Upload & Preview Controls
+  // Neon S3 Upload & Preview Controls
   const vfFileInput = document.getElementById('vfFileInput') as HTMLInputElement;
   const vfUploadBtn = document.getElementById('vfUploadBtn') as HTMLButtonElement;
   const vfUploadBtnText = document.getElementById('vfUploadBtnText');
@@ -184,14 +184,14 @@ export function initSectionEditor() {
         if (vfImageUrl) vfImageUrl.value = data.url;
         syncVisualToJson();
         updateMediaPreview(data.url);
-        (window as any).showToast('Berkas berhasil diunggah ke MinIO S3.');
+        (window as any).showToast('Berkas berhasil diunggah ke Neon S3.');
       } else {
-        (window as any).showToast(data.error || 'Gagal mengunggah berkas ke MinIO.', true);
+        (window as any).showToast(data.error || 'Gagal mengunggah berkas ke Neon S3.', true);
       }
     } catch (err: any) {
       (window as any).showToast('Terjadi kesalahan jaringan saat mengunggah.', true);
     } finally {
-      if (vfUploadBtnText) vfUploadBtnText.textContent = 'Unggah ke MinIO S3';
+      if (vfUploadBtnText) vfUploadBtnText.textContent = 'Unggah ke Neon S3';
       if (vfUploadBtn) vfUploadBtn.disabled = false;
       if (vfUploadStatus) vfUploadStatus.classList.add('hidden');
       target.value = '';
@@ -758,7 +758,7 @@ export function initSectionEditor() {
     formData.append('file', file);
 
     try {
-      (window as any).showToast('Mengunggah foto slide ke MinIO S3...');
+      (window as any).showToast('Mengunggah foto slide ke Neon S3...');
       const res = await fetch('/api/admin/sections/upload', {
         method: 'POST',
         body: formData,
@@ -769,7 +769,7 @@ export function initSectionEditor() {
           currentHeroSlides[targetSlideImageIndex].image = data.url;
           renderHeroSlidesEditor(currentHeroSlides);
           syncVisualToJson();
-          (window as any).showToast('Foto slide berhasil diunggah ke MinIO S3.');
+          (window as any).showToast('Foto slide berhasil diunggah ke Neon S3.');
         }
       } else {
         (window as any).showToast(data.error || 'Gagal mengunggah foto slide.', true);

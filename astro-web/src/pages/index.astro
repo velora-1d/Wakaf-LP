@@ -35,7 +35,7 @@ const isEnabled = (key: string) => {
 >
   {isEnabled('hero') && <HeroSection content={sectionMap.get('hero')?.content} />}
   {isEnabled('programs_preview') && <OurProgramsSection />}
-  {isEnabled('about_split') && <AboutSplitSection />}
+  {isEnabled('about_split') && <AboutSplitSection content={sectionMap.get('about_split')?.content} />}
   {isEnabled('interactive_services') && <InteractiveServicesSection />}
   {isEnabled('workflow') && <WorkflowSection />}
   {isEnabled('showcase_gallery') && <ShowcaseSection />}

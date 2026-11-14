@@ -1,6 +1,21 @@
 ---
 // src/components/home/AboutSplitSection.astro
-// GVF Split Section
+// GVF Split Section Dinamis dengan Fallback Aman
+interface Props {
+  content?: Record<string, any>;
+}
+
+const { content } = Astro.props;
+
+const DEFAULT_IMAGE = "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp";
+const imageUrl = content?.imageUrl || content?.mediaUrl || DEFAULT_IMAGE;
+
+const title = content?.heading || content?.title || "Satu Wadah, Empat Pilar Penggerak Kebaikan.";
+const leadIntro = content?.subheading || "Layanan filantropi terpadu dari hulu ke hilir yang mengintegrasikan zakat, infak, sedekah, dan wakaf dalam satu ekosistem. Menghubungkan kepedulian dengan berbagai program kebaikan, pemberdayaan, serta pembangunan berkelanjutan.";
+const paragraph1 = content?.paragraph1 || content?.desc || content?.description || "Global Village Fund (GVF) merupakan inisiatif filantropi Islam di bawah Yayasan Permata Cendekia Indonesia (YPCI) yang mengintegrasikan pengelolaan zakat, infak, sedekah, dan wakaf untuk mendukung pengembangan ekosistem pesantren. Melalui penghimpunan dan pengelolaan dana filantropi secara amanah, GVF menghubungkan kepedulian para donatur dengan berbagai kebutuhan dan program, meliputi pendidikan, pembinaan karakter, pengembangan kompetensi vokasi, pertanian produktif, fasilitas ibadah, serta penguatan sarana penunjang lainnya. Melalui kolaborasi dan pengelolaan yang bertanggung jawab, GVF berupaya menghadirkan manfaat nyata sekaligus memperkuat fondasi kemandirian ekosistem secara berkelanjutan.";
+const paragraph2 = content?.paragraph2 || "";
+const ctaText = content?.ctaText || content?.primaryCtaText || "Mengenal Profil GVF";
+const ctaUrl = content?.ctaUrl || content?.primaryCtaUrl || "/tentang-kami";
 ---
 
 <section class="gvf-about-section" id="tentang-kami">
@@ -10,11 +25,11 @@
   <div class="gvf-about-container">
     <div class="gvf-about-left">
       <h2 class="gvf-about-title">
-        Satu Wadah, Empat Pilar Penggerak Kebaikan.
+        {title}
       </h2>
 
       <p class="gvf-lead-intro">
-        Layanan filantropi terpadu dari hulu ke hilir yang mengintegrasikan zakat, infak, sedekah, dan wakaf dalam satu ekosistem. Menghubungkan kepedulian dengan berbagai program kebaikan, pemberdayaan, serta pembangunan berkelanjutan.
+        {leadIntro}
       </p>
 
       <div class="gvf-checklist-grid">
@@ -74,12 +89,18 @@
       </div>
 
       <p class="gvf-about-desc">
-        Global Village Fund (GVF) merupakan inisiatif filantropi Islam di bawah Yayasan Permata Cendekia Indonesia (YPCI) yang mengintegrasikan pengelolaan zakat, infak, sedekah, dan wakaf untuk mendukung pengembangan ekosistem pesantren. Melalui penghimpunan dan pengelolaan dana filantropi secara amanah, GVF menghubungkan kepedulian para donatur dengan berbagai kebutuhan dan program, meliputi pendidikan, pembinaan karakter, pengembangan kompetensi vokasi, pertanian produktif, fasilitas ibadah, serta penguatan sarana penunjang lainnya. Melalui kolaborasi dan pengelolaan yang bertanggung jawab, GVF berupaya menghadirkan manfaat nyata sekaligus memperkuat fondasi kemandirian ekosistem secara berkelanjutan.
+        {paragraph1}
       </p>
 
+      {paragraph2 && (
+        <p class="gvf-about-desc" style="margin-top: 16px;">
+          {paragraph2}
+        </p>
+      )}
+
       <div class="gvf-about-btn-wrap">
-        <a href="/tentang-kami" class="gvf-about-pill-btn uiverse-ripple-btn uiverse-ripple-btn-dark">
-          <span>Mengenal Profil GVF</span>
+        <a href={ctaUrl} class="gvf-about-pill-btn uiverse-ripple-btn uiverse-ripple-btn-dark">
+          <span>{ctaText}</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
@@ -91,7 +112,7 @@
     <div class="gvf-about-right">
       <div class="gvf-portrait-frame">
         <img
-          src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp"
+          src={imageUrl}
           alt="Ustadz Pembina dan Duta Santri Berprestasi Binaan Global Village Fund Sukasirna"
           class="gvf-portrait-img"
           loading="lazy"

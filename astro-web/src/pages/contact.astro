@@ -20,6 +20,12 @@ const breadcrumbs = [
   { name: 'Kontak Kami', url: '/contact' },
 ];
 const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
+
+// Resolusi Konten Dinamis Halaman Kontak
+const contactHeroContent = sectionMap.get('contact_hero')?.content;
+const contactHeroTitle = contactHeroContent?.heading || contactHeroContent?.title || "Layanan Donatur & Kontak";
+const contactHeroSubtitle = contactHeroContent?.subheading || contactHeroContent?.subtitle || contactHeroContent?.desc || "Hubungi tim Global Village Fund untuk memperoleh informasi mengenai program, zakat, infak, sedekah, wakaf, dan peluang kolaborasi.";
+const contactHeroBgImage = contactHeroContent?.imageUrl || "";
 ---
 
 <BaseLayout
@@ -29,12 +35,12 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
 >
   {isEnabled('contact_hero') && (
   <section class="pen-contact-banner">
-    <div class="pen-banner-bg"></div>
+    <div class="pen-banner-bg" style={contactHeroBgImage ? `background-image: url('${contactHeroBgImage}')` : undefined}></div>
     <div class="pen-banner-overlay"></div>
     <div class="pen-banner-container">
-      <h1 class="pen-banner-title">Layanan Donatur &amp; Kontak</h1>
+      <h1 class="pen-banner-title">{contactHeroTitle}</h1>
       <p class="pen-banner-lead">
-        Hubungi tim Global Village Fund untuk memperoleh informasi mengenai program, zakat, infak, sedekah, wakaf, dan peluang kolaborasi.
+        {contactHeroSubtitle}
       </p>
     </div>
   </section>
