@@ -385,6 +385,22 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   p.pen-contact-lead,
   p.pen-intro-quote,
   p.pen-intro-lead,
+  p.pen-banner-lead,
+  p.pen-gallery-sub,
+  p.pen-facility-sub,
+  p.pen-form-sub,
+  p.donor-prayer-quote,
+  p.donor-prayer-empty,
+  p.cta-banner-desc,
+  p.cta-widget-desc,
+  p.callout-desc,
+  p.related-excerpt-text,
+  p.card-summary,
+  p.news-lead-dek,
+  p.archive-subtitle,
+  p.banner-subtitle,
+  p.opt-desc,
+  p.land-desc,
   p.program-lead-p,
   p.article-p,
   p.value-box-desc,
@@ -396,6 +412,9 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   .card-desc,
   .card-body p,
   .deliverable-text,
+  .deliverable-item,
+  .strip-content p,
+  .arch-pricing-card .plan-features li,
   .goods-spec-items,
   .article-content p,
   .program-deep-dive p,
@@ -403,6 +422,31 @@ const allSchemas = [...baseSchemas, ...customSchemas];
     text-align: justify;
     text-justify: inter-word;
     text-align-last: left;
+    hyphens: auto;
+  }
+
+  /* ── Subtitle / Intro tengah multi-baris yang rapi rata kanan-kiri dengan baris akhir tengah ── */
+  p.pricing-sub-heading,
+  .pricing-sub-heading,
+  p.sedekah-desc,
+  .sedekah-desc,
+  p.wakaf-desc,
+  .wakaf-desc,
+  p.calc-desc,
+  .calc-desc,
+  p.donatur-section-subtitle,
+  .donatur-section-subtitle,
+  p.pen-section-subtitle-center,
+  .pen-section-subtitle-center,
+  p.pen-banner-lead,
+  .pen-banner-lead,
+  p.archive-subtitle,
+  .archive-subtitle,
+  p.banner-subtitle,
+  .banner-subtitle {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    text-align-last: center !important;
     hyphens: auto;
   }
 
@@ -417,8 +461,6 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   .pen-final-cta-content,
   .pen-cta-desc,
   .pricing-header-wrap,
-  .pricing-sub-heading,
-  .pen-section-subtitle-center,
   .footer-slogan,
   .footer-address-text,
   .rekomendasi-tag,

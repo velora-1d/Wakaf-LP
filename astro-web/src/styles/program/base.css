@@ -434,6 +434,10 @@
   font-family: var(--tl-ff-body);
   line-height: 1.5;
   display: flex;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
 }
 
 .arch-pricing-card .plan-features li:last-child {

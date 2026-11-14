@@ -224,6 +224,10 @@
   color: #475569;
   font-weight: 400;
   margin: 0 0 28px 0;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
 }
 
 /* Byline & Share Bar */

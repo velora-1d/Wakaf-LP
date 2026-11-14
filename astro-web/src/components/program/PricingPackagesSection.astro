@@ -514,6 +514,9 @@ function formatRelativeDate(date: Date | string): string {
     font-size: 13px;
     color: #4d4d52;
     line-height: 1.5;
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
   }
 
   .deliverable-item:last-child {
@@ -532,6 +535,14 @@ function formatRelativeDate(date: Date | string): string {
     width: 16px;
     height: 16px;
     display: block;
+  }
+
+  .deliverable-text {
+    flex: 1;
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
+    hyphens: auto;
   }
 
   .deliverable-text strong {
