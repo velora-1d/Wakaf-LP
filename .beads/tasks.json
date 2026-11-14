@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "UPDATE-SEDEKAH-CONTENT-COPY-01", "name": "Pbaruan Total Narasi, Paket & Rincian Deliverables Program Sedekah Sesuai Dokumen Revisi Resmi (Pangan, Fasilitas, Pendidikan, Keahlian & Jasa) Tanpa Mengubah Database Donatur", "status": "closed" },
     { "id": "CUSTOM-AESTHETIC-SCROLLBAR-01", "name": "Implementasi Custom UI Scrollbar Estetik & Modern Global (Slim Floating Pill, Brand Blue Hover, Eliminasi Tombol Panah Kaku & Dukungan Cross-Browser)", "status": "closed" },
     { "id": "TENTANG-KAMI-EKOSISTEM-4-REAL-PHOTOS-01", "name": "Penerapan 4 Foto Riil Autentik Unggahan Pengguna pada Seksi Ekosistem 'Satu Kepedulian Menghidupkan Banyak Kebermanfaatan' Halaman Tentang Kami (Pendidikan, Keagamaan, Hunian, Kemandirian & Ketahanan Pangan)", "status": "closed" },
     { "id": "ABOUT-INTRO-CLEAN-ALIGN-01", "name": "Refactor Seksi Mengenal GVF (Tentang Kami): Eliminasi Kotak 3 Hektare, Penyatuan Alur Narasi Kolom Kiri & Showcase Visual Gedung Megah Kolom Kanan", "status": "closed" },

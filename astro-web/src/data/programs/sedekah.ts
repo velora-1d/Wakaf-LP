@@ -9,81 +9,81 @@ export const sedekahProgram: ProgramData = {
   heroBgImage: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kajian-santri-aula.webp`,
   
   pricingHeading: 'Pilihan Pos Sedekah Berkelanjutan',
-  pricingSubheading: 'Salurkan sedekah melalui ragam kepedulian: Pangan & Konsumsi, Fasilitas & Perlengkapan, Pendidikan & Kegiatan, serta Keahlian, Jasa & Tenaga.',
+  pricingSubheading: 'Salurkan sedekah melalui ragam kepedulian: Pangan dan Kebutuhan Konsumsi, Fasilitas dan Perlengkapan, Pendidikan dan Kegiatan, serta Keahlian, Jasa, dan Tenaga.',
   packages: [
     {
       id: 'sedekah-pangan-konsumsi',
-      title: 'Pangan & Konsumsi Harian',
-      subtitle: 'Beras, Lauk & Nutrisi Santri',
+      title: 'Pangan dan Kebutuhan Konsumsi',
+      subtitle: 'Beras, Makanan Siap Saji & Nutrisi Santri',
       pricePrefix: 'Rp ',
       priceAmount: '25.000',
       priceUnit: '',
       priceDesc: 'Per porsi makan lengkap bernutrisi',
-      estimation: 'Alokasi: Beras, minyak, telur, daging/ikan, sayur & susu',
+      estimation: 'Alokasi: Beras, minyak, telur, daging/ikan, sayur, susu & air minum',
       isPopular: false,
       deliverables: [
-        { bold: 'Pangan Pokok Seimbang', text: 'Beras pulen, minyak goreng, telur, daging, ikan, sayuran, dan buah segar' },
-        { bold: 'Dapur Mandiri Higienis', text: 'Dimasak setiap hari di dapur umum asrama oleh juru masak pesantren' },
-        { bold: 'Paket Kebutuhan Pangan', text: 'Penyediaan stok sembako aman untuk lumbung pangan santri mukim' },
-        { bold: 'Stamina Belajar & Ibadah', text: 'Menjaga kesehatan dan kebugaran santri dari shubuh hingga malam' },
-        { bold: 'Dokumentasi Makan Harian', text: 'Pencatatan nota belanja dan foto suasana makan bersama santri' }
+        { bold: 'Bahan Pangan Pokok', text: 'Beras, minyak goreng, telur, daging dan ikan, sayuran dan buah-buahan, susu, serta bahan makanan pokok lainnya' },
+        { bold: 'Makanan Siap Saji & Air Minum', text: 'Penyediaan sajian makanan siap saji sehat dan pasokan air minum bersih bagi santri' },
+        { bold: 'Paket Kebutuhan Pangan', text: 'Pengadaan paket sembako berkala untuk menjamin ketersediaan pangan sehari-hari asrama' },
+        { bold: 'Dapur Mandiri Higienis', text: 'Dimasak setiap hari di dapur umum asrama oleh juru masak pesantren secara bersih dan tertib' },
+        { bold: 'Dokumentasi Konsumsi Harian', text: 'Pencatatan nota belanja logistik dan dokumentasi suasana makan bersama santri' }
       ],
       ctaText: 'Sedekah Pangan Santri'
     },
     {
       id: 'sedekah-fasilitas-perlengkapan',
-      title: 'Fasilitas & Perlengkapan',
-      subtitle: 'Kenyamanan Hunian & Ibadah',
+      title: 'Fasilitas dan Perlengkapan',
+      subtitle: 'Kenyamanan Hunian, Asrama & Ibadah',
       pricePrefix: 'Rp ',
       priceAmount: '150.000',
       priceUnit: '',
       priceDesc: 'Per paket perlengkapan',
-      estimation: 'Alokasi: Kasur, meja, kursi, alat dapur, perlengkapan asrama',
+      estimation: 'Alokasi: Kasur, lemari, meja kursi, kipas, alat dapur & audio',
       isPopular: false,
       deliverables: [
-        { bold: 'Tempat Tidur & Lemari', text: 'Kasur busa higienis, ranjang bertingkat, dan lemari loker pakaian santri' },
-        { bold: 'Meja, Kursi & Kipas Angin', text: 'Mendukung kenyamanan ruang halaqah belajar dan sirkulasi kamar' },
-        { bold: 'Peralatan Dapur & Sanitasi', text: 'Perlengkapan masak dapur umum dan sarana pembersihan asrama' },
-        { bold: 'Perlengkapan Masjid', text: 'Karpet, pengeras suara audio multimedia, dan sajadah shalat berjamaah' }
+        { bold: 'Hunian & Kamar Asrama', text: 'Tempat tidur dan kasur, lemari pakaian, meja dan kursi, serta kipas angin kamar santri' },
+        { bold: 'Peralatan Dapur & Kebersihan', text: 'Peralatan dapur umum, peralatan kebersihan, dan perlengkapan sanitasi higienis' },
+        { bold: 'Perlengkapan Masjid & Ibadah', text: 'Karpet sajadah masjid, perlengkapan shalat berjamaah, serta perangkat audio dan multimedia' },
+        { bold: 'Kenyamanan Aktivitas Harian', text: 'Mendukung kelengkapan fasilitas penunjang kenyamanan dan aktivitas harian santri' }
       ],
       ctaText: 'Sedekah Fasilitas'
     },
     {
       id: 'sedekah-pendidikan-kegiatan',
-      title: 'Pendidikan & Kegiatan',
-      subtitle: 'Dukungan Pembinaan & Vokasi',
+      title: 'Pendidikan dan Kegiatan',
+      subtitle: 'Sarana Belajar, Pembinaan & Vokasi',
       pricePrefix: 'Rp ',
       priceAmount: '200.000',
       priceUnit: '',
       priceDesc: 'Per paket sarana kegiatan',
-      estimation: 'Alokasi: Buku, alat olahraga, komputer & peraga',
+      estimation: 'Alokasi: Buku, ATK, komputer, alat praktik, peraga & olahraga',
       isPopular: false,
       deliverables: [
-        { bold: 'Buku & Alat Tulis', text: 'Pengadaan mushaf Al-Quran, kitab, buku referensi, dan alat tulis' },
-        { bold: 'Perlengkapan Olahraga', text: 'Sarana futsal, panahan, bulu tangkis, dan pembinaan jasmani' },
-        { bold: 'Alat Praktik Keterampilan', text: 'Perangkat komputer, alat peraga visual, dan media pembelajaran santri' },
-        { bold: 'Kegiatan Keagamaan', text: 'Perlengkapan daurah, safari dakwah, dan agenda pembinaan karakter' }
+        { bold: 'Buku & Alat Tulis', text: 'Pengadaan mushaf Al-Quran, kitab, buku referensi belajar, dan perlengkapan alat tulis santri' },
+        { bold: 'Alat Praktik & Komputer', text: 'Perangkat komputer, alat praktik keterampilan vokasi, dan media pembelajaran audio-visual' },
+        { bold: 'Alat Peraga & Edukasi', text: 'Alat peraga visual, papan tulis, media pembelajaran, dan perlengkapan kegiatan santri' },
+        { bold: 'Olahraga & Kegiatan Keagamaan', text: 'Perlengkapan olahraga pembinaan jasmani dan sarana pendukung kegiatan keagamaan santri' }
       ],
       ctaText: 'Sedekah Pendidikan'
     }
   ],
-  addonTitle: 'Sedekah Keahlian, Jasa & Tenaga',
+  addonTitle: 'Sedekah Keahlian, Jasa, dan Tenaga',
   addonItems: [
     {
-      name: 'Relawan Tenaga Pembangunan',
-      desc: 'Kontribusi tenaga dan gotong royong langsung dalam pekerjaan fisik sarana pesantren',
+      name: 'Tenaga Pembangunan & Perbaikan',
+      desc: 'Kontribusi tenaga pembangunan dan jasa perbaikan fasilitas di lokasi pesantren Jonggol',
       price: 'Tenaga / Sukarela',
       availability: 'Koordinasi Lapangan Jonggol'
     },
     {
       name: 'Keahlian Teknologi & Pelatihan',
-      desc: 'Memberikan workshop, mentoring vokasi, coding, desain, atau kejuruan untuk santri',
-      price: 'Keahlian / Sesi',
+      desc: 'Pelatihan keterampilan vokasi, keahlian teknologi, coding, desain, serta pengajaran dan pembinaan santri',
+      price: 'Keahlian / Workshop',
       availability: 'Jadwal Kuliah Tamu'
     },
     {
-      name: 'Konsultasi Teknis & Profesional',
-      desc: 'Pendampingan profesional di bidang teknik sipil, arsitektur, pertanian, atau hukum',
+      name: 'Pendampingan & Konsultasi Teknis',
+      desc: 'Pendampingan profesional, jasa desain dan komunikasi, serta konsultasi teknis arsitektur, hukum, dan tata kelola',
       price: 'Jasa Profesional',
       availability: 'Via Daring / Tatap Muka'
     }
@@ -92,7 +92,7 @@ export const sedekahProgram: ProgramData = {
   deepDiveBadge: 'RAGAM BENTUK SEDEKAH',
   deepDiveTitle: 'Berbagi dengan Cara, Menghadirkan Manfaat',
   deepDiveLead: 'Sedekah merupakan bentuk kepedulian yang dapat diwujudkan melalui berbagai bentuk pemberian. Tidak terbatas pada uang, sedekah juga dapat berupa barang, pangan, ilmu, keterampilan, maupun tenaga yang memberikan manfaat.',
-  deepDiveStory1: 'Setiap butir beras, perlengkapan kamar, bantuan mengajar, maupun keringat para relawan yang tercurah menjadi saksi kebaikan nyata yang memperkuat kehidupan para penuntut ilmu di Sukasirna Jonggol.',
+  deepDiveStory1: 'Setiap butir beras, perlengkapan kamar, bantuan mengajar, maupun waktu dan keahlian yang disumbangkan menjadi energi nyata yang menguatkan kehidupan para penuntut ilmu di Sukasirna Jonggol.',
   deepDiveStory2: '',
   deepDiveBannerImage: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ramai-menyimak-ustadz-mengajar.webp`,
   valueBoxes: [
@@ -121,12 +121,12 @@ export const sedekahProgram: ProgramData = {
     `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-menulis-di-buku-catatan.webp`,
     `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-tersenyum-di-kamar-asrama.webp`
   ],
-  deepDiveSubblock1Title: 'Sedekah Pangan, Fasilitas dan Perlengkapan',
-  deepDiveSubblock1Desc1: 'Membantu konsumsi pangan harian (beras, minyak goreng, telur, daging, ikan, sayuran, susu, air minum) serta perlengkapan fasilitas (kasur, lemari, meja kursi, kipas angin, peralatan dapur, perlengkapan masjid dan asrama).',
-  deepDiveSubblock1Desc2: 'Bantuan berupa barang langsung dapat dikonfirmasi terlebih dahulu ke layanan WhatsApp Customer Service GVF untuk kesesuaian spesifikasi dan waktu pengiriman ke Jonggol.',
-  deepDiveSubblock2Title: 'Sedekah Pendidikan, Keahlian, Jasa dan Tenaga',
-  deepDiveSubblock2Desc1: 'Mendukung pengadaan buku, perlengkapan olahraga, perangkat komputer, alat peraga, dan sarana kegiatan santri.',
-  deepDiveSubblock2Desc2: 'Membuka ruang seluas-luasnya bagi donatur yang ingin menyedekahkan waktu, keahlian teknologi, pelatihan vokasi, jasa perbaikan fasilitas, maupun tenaga pembangunan di lokasi pesantren.',
+  deepDiveSubblock1Title: 'Pangan dan Kebutuhan Konsumsi',
+  deepDiveSubblock1Desc1: 'Sedekah yang disalurkan dapat membantu memenuhi kebutuhan konsumsi dan ketersediaan pangan sehari-hari, antara lain: beras, minyak goreng, telur, daging dan ikan, sayuran dan buah-buahan, susu, bahan makanan pokok lainnya, makanan siap saji, air minum, serta paket kebutuhan pangan.',
+  deepDiveSubblock1Desc2: 'Sedekah pangan langsung dialokasikan untuk logistik dapur umum asrama agar asupan nutrisi santri mukim terjaga sehat dan tercukupi setiap hari.',
+  deepDiveSubblock2Title: 'Fasilitas, Perlengkapan, Pendidikan & Tenaga',
+  deepDiveSubblock2Desc1: 'Sedekah barang mendukung kelengkapan fasilitas (tempat tidur dan kasur, lemari pakaian, meja dan kursi, kipas angin, peralatan dapur, perlengkapan masjid, perlengkapan asrama, peralatan kebersihan, perlengkapan sanitasi, perangkat audio dan multimedia) serta kebutuhan pendidikan (buku dan alat tulis, perlengkapan olahraga, alat praktik keterampilan, perangkat komputer, alat peraga, perlengkapan kegiatan keagamaan, media pembelajaran, perlengkapan kegiatan santri).',
+  deepDiveSubblock2Desc2: 'Sedekah juga dapat diwujudkan melalui kontribusi nonmateri berupa waktu, keahlian, dan tenaga untuk mendukung pengembangan fasilitas maupun kapasitas santri: tenaga pembangunan, jasa perbaikan fasilitas, keahlian teknologi, pelatihan keterampilan, pendampingan profesional, pengajaran dan pembinaan, jasa desain dan komunikasi, serta konsultasi teknis.',
   portfolioShowcaseItems: [
     { tag: 'KOLABORASI SANTRI', name: 'Diskusi & Kerja Kelompok', category: 'Pendidikan Adab', image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/dua-santri-ikhwan-berdiskusi-meja-lipat.webp` },
     { tag: 'DISIPLIN KAJIAN', name: 'Santri Mencatat Pelajaran', category: 'Pembinaan Santri', image: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-bersarung-mencatat-pelajaran.webp` },
