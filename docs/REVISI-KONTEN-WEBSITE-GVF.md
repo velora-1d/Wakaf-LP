@@ -145,9 +145,9 @@ Sedekah juga dapat diwujudkan melalui kontribusi nonmateri berupa waktu, keahlia
 Zakat merupakan kewajiban yang memiliki ketentuan khusus dalam syariat Islam. Pengelolaannya memperhatikan jenis zakat, perhitungan, serta golongan penerima yang berhak (asnaf). Melalui pengelolaan yang amanah dan penyaluran yang tepat sasaran, zakat diharapkan dapat membantu memenuhi kebutuhan mustahik serta mendukung peningkatan kesejahteraan mereka.
 
 #### A. Jenis Zakat
-1. **Zakat Fitrah**: Zakat yang wajib ditunaikan oleh setiap muslim yang memenuhi ketentuan, pada bulan Ramadan sebelum pelaksanaan salat Idulfitri.
-2. **Zakat Maal**: Zakat atas harta yang telah memenuhi persyaratan nisab dan haul sesuai ketentuan syariat.
-3. **Zakat Penghasilan**: Zakat atas penghasilan atau pendapatan yang telah memenuhi ketentuan zakat.
+- **Zakat Fitrah**: Zakat yang wajib ditunaikan oleh setiap muslim yang memenuhi ketentuan, pada bulan Ramadan sebelum pelaksanaan salat Idulfitri.
+- **Zakat Maal**: Zakat atas harta yang telah memenuhi persyaratan nisab dan haul sesuai ketentuan syariat.
+- **Zakat Penghasilan**: Zakat atas penghasilan atau pendapatan yang telah memenuhi ketentuan zakat.
 
 #### B. Penyaluran Zakat
 Dana zakat disalurkan kepada delapan golongan penerima (asnaf) sesuai ketentuan syariat, yaitu:

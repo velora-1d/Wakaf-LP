@@ -9,11 +9,11 @@ export const zakatProgram: ProgramData = {
   heroBgImage: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/sholat-berjamaah-santri-shaf-portrait.webp`,
   
   pricingHeading: 'Jenis Zakat & Ketentuan Syariat',
-  pricingSubheading: 'Tunaikan kewajiban zakat sesuai ketentuan: 1. Zakat Fitrah, 2. Zakat Maal, dan 3. Zakat Penghasilan dengan hisab dan nisab yang terverifikasi.',
+  pricingSubheading: 'Tunaikan kewajiban zakat sesuai syariat melalui instrumen Zakat Fitrah, Zakat Maal, dan Zakat Penghasilan dengan hisab serta nisab yang terverifikasi.',
   packages: [
     {
       id: 'zakat-fitrah-ramadan',
-      title: '1. Zakat Fitrah',
+      title: 'Zakat Fitrah',
       subtitle: 'Kewajiban Ramadhan Menjelang Idulfitri',
       pricePrefix: 'Rp ',
       priceAmount: '45.000',
@@ -31,7 +31,7 @@ export const zakatProgram: ProgramData = {
     },
     {
       id: 'zakat-maal-harta',
-      title: '2. Zakat Maal',
+      title: 'Zakat Maal',
       subtitle: 'Tabungan, Deposito, Emas & Aset Niaga',
       pricePrefix: '',
       priceAmount: '2,5%',
@@ -49,7 +49,7 @@ export const zakatProgram: ProgramData = {
     },
     {
       id: 'zakat-penghasilan-profesi',
-      title: '3. Zakat Penghasilan',
+      title: 'Zakat Penghasilan',
       subtitle: 'Gaji, Honorarium & Pendapatan Profesi',
       pricePrefix: '',
       priceAmount: '2,5%',
@@ -91,7 +91,7 @@ export const zakatProgram: ProgramData = {
   deepDiveBadge: 'PENYALURAN 8 ASNAF SYARIAT',
   deepDiveTitle: 'Menunaikan Kewajiban, Menyalurkan Amanah',
   deepDiveLead: 'Zakat merupakan kewajiban yang memiliki ketentuan khusus dalam syariat Islam. Pengelolaannya memperhatikan jenis zakat, perhitungan, serta golongan penerima yang berhak (asnaf). Melalui pengelolaan yang amanah dan penyaluran yang tepat sasaran, zakat diharapkan dapat membantu memenuhi kebutuhan mustahik serta mendukung peningkatan kesejahteraan mereka.',
-  deepDiveStory1: 'Dana zakat disalurkan kepada delapan golongan penerima (asnaf) sesuai ketentuan syariat: 1. Fakir, 2. Miskin, 3. Amil, 4. Mualaf, 5. Riqab, 6. Gharimin, 7. Fisabilillah, dan 8. Ibnu Sabil. Penyaluran dilakukan dengan memperhatikan ketentuan syariat, kelayakan penerima, dan peruntukan dana zakat.',
+  deepDiveStory1: 'Dana zakat disalurkan kepada delapan golongan penerima (asnaf) sesuai ketentuan syariat: fakir, miskin, amil, mualaf, riqab, gharimin, fisabilillah, dan ibnu sabil. Penyaluran dilakukan dengan memperhatikan kaidah syariat, kelayakan penerima, dan peruntukan dana zakat.',
   deepDiveStory2: '',
   deepDiveBannerImage: `${S3_BASE}/bahan-konten/tangan-beras-zakat-pangan.webp`,
   valueBoxes: [
@@ -120,10 +120,10 @@ export const zakatProgram: ProgramData = {
     `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-berprestasi-juara-lomba-mtq.webp`,
     `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ikhwan-mencatat-dan-berdiskusi.webp`
   ],
-  deepDiveSubblock1Title: 'A. Tiga Ragam Jenis Zakat',
-  deepDiveSubblock1Desc1: '1. Zakat Fitrah: Zakat yang wajib ditunaikan oleh setiap muslim yang memenuhi ketentuan, pada bulan Ramadan sebelum pelaksanaan salat Idulfitri. 2. Zakat Maal: Zakat atas harta yang telah memenuhi persyaratan nisab dan haul sesuai ketentuan syariat. 3. Zakat Penghasilan: Zakat atas penghasilan atau pendapatan yang telah memenuhi ketentuan zakat.',
-  deepDiveSubblock1Desc2: 'Ketiga instrumen ini dikelola secara terpisah dengan akuntabilitas tinggi agar setiap rupiah kewajiban tertunai secara sah.',
-  deepDiveSubblock2Title: 'B. Penyaluran Kepada Delapan Golongan (Asnaf)',
+  deepDiveSubblock1Title: 'Tiga Ragam Instrumen Zakat',
+  deepDiveSubblock1Desc1: 'Pengelolaan zakat mencakup Zakat Fitrah untuk penyucian jiwa jelang Idulfitri, Zakat Maal atas kepemilikan harta simpanan yang telah mencapai nisab dan haul, serta Zakat Penghasilan atas pendapatan profesi rutin yang telah memenuhi kriteria wajib zakat.',
+  deepDiveSubblock1Desc2: 'Setiap instrumen dikelola secara terpisah dengan akuntabilitas tinggi dan tata kelola transparan agar kewajiban syariat tertunaikan secara sah.',
+  deepDiveSubblock2Title: 'Penyaluran Kepada Delapan Golongan Asnaf',
   deepDiveSubblock2Desc1: 'Dana zakat disalurkan kepada delapan golongan penerima (asnaf) sesuai ketentuan syariat: Fakir, Miskin, Amil, Mualaf, Riqab, Gharimin, Fisabilillah (dukungan pendidikan santri dhuafa berprestasi), dan Ibnu Sabil.',
   deepDiveSubblock2Desc2: 'Penyaluran dilakukan dengan memperhatikan ketentuan syariat, kelayakan penerima, dan peruntukan dana zakat untuk mendukung kesejahteraan mereka.',
   portfolioShowcaseItems: [
