@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] UPDATE-ABOUT-SPLIT-GROUP-PHOTO-01: Pembaruan Foto Riil Lengkap Ustadz & Duta Santri (7 Orang) pada Seksi AboutSplitSection (Satu Wadah, Empat Pilar Penggerak Kebaikan) di Beranda Sesuai Unggahan Pengguna (Terverifikasi S3 HTTP 200 & Lulus Build 100%)
 - [x] ADMIN-HERO-4-SLIDES-EDITOR-01: Implementasi Pengelolaan 4 Slide Hero Carousel di Dashboard Admin CMS (/admin/pages/home), Sinkronisasi Database Neon PostgreSQL, dan Integrasi Komponen HeroSection Dinamis Terverifikasi Live Production HTTP 200 OK
 - [x] DEPLOY-CLOUDFLARE-PAGES-02: Eksekusi Deployment Cloudflare Pages wakaf-astro (Perapihan Deliverables Tanpa Strip, Foto Riil Tentang Kami, Scrollbar Estetik & Eliminasi Prefiks ABCD) Terverifikasi Live Production HTTP 200 OK
 - [x] PURGE-NESTED-CARD-GUARANTEES-GRID-01: Eliminasi Anti-Pattern Kotak di dalam Kotak (Nested Card) pada .pen-guarantees-grid di Seluruh Halaman Program Terverifikasi Build 100%

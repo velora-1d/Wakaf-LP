@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "UPDATE-ABOUT-SPLIT-GROUP-PHOTO-01", "name": "Pembaruan Foto Riil Lengkap Ustadz & Duta Santri (7 Orang) pada Seksi AboutSplitSection (Satu Wadah, Empat Pilar Penggerak Kebaikan) di Beranda Sesuai Unggahan Pengguna", "status": "closed" },
     { "id": "ADMIN-HERO-4-SLIDES-EDITOR-01", "name": "Implementasi Pengelolaan 4 Slide Hero Carousel di Dashboard Admin CMS (/admin/pages/home), Sinkronisasi Database Neon PostgreSQL, dan Integrasi Komponen HeroSection Dinamis", "status": "closed" },
     { "id": "DEPLOY-CLOUDFLARE-PAGES-02", "name": "Eksekusi Deployment Cloudflare Pages wakaf-astro (Perapihan Deliverables Tanpa Strip, Foto Riil Tentang Kami, Scrollbar Estetik & Eliminasi Prefiks ABCD)", "status": "closed" },
     { "id": "PURGE-NESTED-CARD-GUARANTEES-GRID-01", "name": "Eliminasi Anti-Pattern Kotak di dalam Kotak (Nested Card) pada .pen-guarantees-grid di Seluruh Halaman Program", "status": "closed" },
