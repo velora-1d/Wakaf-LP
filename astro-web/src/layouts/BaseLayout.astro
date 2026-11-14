@@ -317,6 +317,52 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   }
 
   /* ==========================================================================
+     GVF Aesthetic Custom UI Scrollbar (Cross-Browser Standard & WebKit)
+     Slim floating pill, clean transparent track, and GVF Royal Blue hover accent.
+     ========================================================================== */
+
+  /* Modern Standard (Firefox) */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+
+  /* WebKit (Chrome, Edge, Safari, Opera, Brave, Vivaldi) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: background-color 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #0969da;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Hilangkan tombol panah kaku default browser */
+  ::-webkit-scrollbar-button {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  /* ==========================================================================
      GVF Professional Animation System
      GSAP ScrollTrigger handles all reveal animations.
      CSS hanya set initial state agar tidak terjadi flash-of-content.

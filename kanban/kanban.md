@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] CUSTOM-AESTHETIC-SCROLLBAR-01: Implementasi Custom UI Scrollbar Estetik & Modern Global (Slim Floating Pill 8px, GVF Royal Blue Hover #0969da, Eliminasi Total Tombol Panah Kaku & Dukungan Cross-Browser WebKit/Firefox) Terverifikasi Build 100%
 - [x] TENTANG-KAMI-EKOSISTEM-4-REAL-PHOTOS-01: Penerapan 4 Foto Riil Autentik Unggahan Pengguna pada Seksi Ekosistem 'Satu Kepedulian Menghidupkan Banyak Kebermanfaatan' Halaman Tentang Kami (Pendidikan, Keagamaan, Hunian, Kemandirian Pangan) Terverifikasi S3 HTTP 200 & Lulus Build 100%
 - [x] ABOUT-INTRO-CLEAN-ALIGN-01: Refactor Seksi Mengenal GVF (Tentang Kami): Eliminasi Total Kotak 3 Hektare, Penyatuan Alur Narasi Kolom Kiri & Showcase Visual Gedung Megah Kolom Kanan (Terverifikasi Lulus Build 100% & Empiris)
 - [x] TENTANG-KAMI-EKOSISTEM-REDESIGN-01: Redesain Seksi Pengembangan Ekosistem Halaman Tentang Kami Menjadi 5 Pilar Keberlanjutan Sesuai Referensi & Integrasi Penuh S3 (Terverifikasi Empiris HTTP 200 & Lulus Build 100%)
