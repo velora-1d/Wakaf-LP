@@ -122,6 +122,13 @@ async function main() {
     const tipeDonatur = item.tipe || 'individu';
     const isMaterial = item.keterangan.toLowerCase().includes('semen');
     const metodePembayaran = isMaterial ? 'Konversi Material (Semen)' : 'BSI Transfer';
+    const programTujuan = isMaterial ? 'infaq' : 'sedekah';
+    const akadPeruntukan = isMaterial
+      ? 'Infaq Material Konstruksi (Semen)'
+      : 'Sedekah Pembangunan Masjid Khairu Ummah';
+    const doaDonatur = isMaterial
+      ? 'Semoga menjadi amal jariyah infaq konstruksi yang kekal dan membawa keberkahan keluarga.'
+      : 'Semoga menjadi amal shodaqoh jariyah yang kekal dan membawa keberkahan keluarga.';
     const catatan = item.keterangan !== '-' ? item.keterangan : null;
 
     // 1. Find or create donor
@@ -166,13 +173,13 @@ async function main() {
         UPDATE donations
         SET
           donor_id = ${donorId},
-          program_tujuan = 'sedekah',
+          program_tujuan = ${programTujuan},
           nominal = ${item.nominal},
           kode_unik = 0,
           nominal_total = ${item.nominal},
-          akad_peruntukan = 'Sedekah Pembangunan Masjid Khairu Ummah',
+          akad_peruntukan = ${akadPeruntukan},
           atas_nama_niat = ${item.nama},
-          doa_donatur = 'Semoga menjadi amal shodaqoh jariyah yang kekal dan membawa keberkahan keluarga.',
+          doa_donatur = ${doaDonatur},
           metode_pembayaran = ${metodePembayaran},
           status_pembayaran = 'lunas',
           verified_by = 'Admin GVF',
@@ -182,7 +189,7 @@ async function main() {
           created_at = ${createdAt}
         WHERE id = ${existingDonation[0].id};
       `;
-      console.log(`[UPDATE] ${kodeTransaksi} - ${item.nama}: Rp ${item.nominal.toLocaleString('id-ID')}`);
+      console.log(`[UPDATE] ${kodeTransaksi} - ${item.nama}: Rp ${item.nominal.toLocaleString('id-ID')} (${programTujuan})`);
     } else {
       await sql`
         INSERT INTO donations (
@@ -190,15 +197,15 @@ async function main() {
           akad_peruntukan, atas_nama_niat, doa_donatur, metode_pembayaran, status_pembayaran,
           verified_by, verified_at, sumber_leads, catatan_transaksi, created_at
         ) VALUES (
-          ${kodeTransaksi}, ${donorId}, 'sedekah', ${item.nominal}, 0, ${item.nominal},
-          'Sedekah Pembangunan Masjid Khairu Ummah', ${item.nama},
-          'Semoga menjadi amal shodaqoh jariyah yang kekal dan membawa keberkahan keluarga.',
+          ${kodeTransaksi}, ${donorId}, ${programTujuan}, ${item.nominal}, 0, ${item.nominal},
+          ${akadPeruntukan}, ${item.nama},
+          ${doaDonatur},
           ${metodePembayaran}, 'lunas', 'Admin GVF', ${createdAt},
           'relasi_langsung', ${catatan}, ${createdAt}
         );
       `;
       totalInserted++;
-      console.log(`[INSERT] ${kodeTransaksi} - ${item.nama}: Rp ${item.nominal.toLocaleString('id-ID')}`);
+      console.log(`[INSERT] ${kodeTransaksi} - ${item.nama}: Rp ${item.nominal.toLocaleString('id-ID')} (${programTujuan})`);
     }
 
     // 3. Recalculate donor's total and frequency
