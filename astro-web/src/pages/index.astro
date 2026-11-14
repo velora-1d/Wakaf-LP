@@ -33,7 +33,7 @@ const isEnabled = (key: string) => {
   title="Global Village Fund • Wakaf Produktif & Pendidikan Berkelanjutan"
   description="Kawasan Wakaf Terpadu seluas ±3 hektare di Jonggol Bogor. Memadukan Garden Mosque Khairu Ummah, SMK Skill Village Islamic School, dan Agro-Technopark."
 >
-  {isEnabled('hero') && <HeroSection />}
+  {isEnabled('hero') && <HeroSection content={sectionMap.get('hero')?.content} />}
   {isEnabled('programs_preview') && <OurProgramsSection />}
   {isEnabled('about_split') && <AboutSplitSection />}
   {isEnabled('interactive_services') && <InteractiveServicesSection />}

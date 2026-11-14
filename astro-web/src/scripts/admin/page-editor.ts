@@ -59,6 +59,7 @@ export function initSectionEditor() {
   const modalSubtitle = document.getElementById('modalSubtitle');
 
   // Visual Form Inputs
+  const vfGeneralSectionFields = document.getElementById('vfGeneralSectionFields');
   const vfHeading = document.getElementById('vfHeading') as HTMLInputElement;
   const vfBadge = document.getElementById('vfBadge') as HTMLInputElement;
   const vfSubheading = document.getElementById('vfSubheading') as HTMLInputElement;
@@ -266,6 +267,19 @@ export function initSectionEditor() {
       currentContentObj.packages = currentPackages;
     }
 
+    if (currentSectionKey === 'hero' && Array.isArray(currentHeroSlides) && currentHeroSlides.length > 0) {
+      currentContentObj.slides = currentHeroSlides;
+      currentContentObj.heading = currentHeroSlides[0]?.title?.replace(/<br\s*\/?>/gi, ' ') || '';
+      currentContentObj.subheading = currentHeroSlides[0]?.lead || '';
+      currentContentObj.badge = currentHeroSlides[0]?.badge || '';
+      if (currentHeroSlides[0]?.buttons?.[0]?.text) {
+        currentContentObj.primaryCtaText = currentHeroSlides[0].buttons[0].text;
+      }
+      if (currentHeroSlides[0]?.buttons?.[0]?.href) {
+        currentContentObj.primaryCtaUrl = currentHeroSlides[0].buttons[0].href;
+      }
+    }
+
     if (editJsonContent) {
       editJsonContent.value = JSON.stringify(currentContentObj, null, 2);
     }
@@ -277,6 +291,14 @@ export function initSectionEditor() {
   const btnAddPackage = document.getElementById('btnAddPackage');
   let currentSectionKey = '';
   let currentPackages: any[] = [];
+
+  // Visual Hero Multi-Slide Management (hero)
+  const vfHeroSlidesSection = document.getElementById('vfHeroSlidesSection');
+  const heroSlidesListContainer = document.getElementById('heroSlidesListContainer');
+  const btnAddHeroSlide = document.getElementById('btnAddHeroSlide');
+  const vfSlideFileInput = document.getElementById('vfSlideFileInput') as HTMLInputElement;
+  let currentHeroSlides: any[] = [];
+  let targetSlideImageIndex: number = -1;
 
   function renderPackagesEditor(packages: any[]) {
     currentPackages = Array.isArray(packages) ? JSON.parse(JSON.stringify(packages)) : [];
@@ -497,6 +519,288 @@ export function initSectionEditor() {
     syncVisualToJson();
   });
 
+  // -------------------------------------------------------------------------
+  // Visual Hero 4-Slide Management (hero carousel)
+  // -------------------------------------------------------------------------
+  function renderHeroSlidesEditor(slides: any[]) {
+    currentHeroSlides = Array.isArray(slides) ? JSON.parse(JSON.stringify(slides)) : [];
+    if (!heroSlidesListContainer) return;
+
+    if (currentHeroSlides.length === 0) {
+      heroSlidesListContainer.innerHTML = `
+        <div class="text-center py-6 text-slate-400 text-xs bg-white rounded-xl border border-dashed border-slate-300">
+          Belum ada slide hero. Klik tombol "+ Tambah Slide" di atas untuk menambahkan.
+        </div>
+      `;
+      return;
+    }
+
+    heroSlidesListContainer.innerHTML = currentHeroSlides.map((slide: any, sIdx: number) => {
+      const buttons = Array.isArray(slide.buttons) ? slide.buttons : [];
+      const btn1Text = buttons[0]?.text || '';
+      const btn1Href = buttons[0]?.href || '';
+      const btn2Text = buttons[1]?.text || '';
+      const btn2Href = buttons[1]?.href || '';
+
+      return `
+        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs space-y-3 relative" data-slide-idx="${sIdx}">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-blue-50 text-[#0969da] font-bold text-xs flex items-center justify-center border border-blue-200">${sIdx + 1}</span>
+              <span class="text-xs font-bold text-slate-900">${slide.label || 'Slide ' + (sIdx + 1)}</span>
+              <span class="text-[10px] font-mono text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">ID: ${slide.id || 'slide-' + (sIdx + 1)}</span>
+            </div>
+            ${currentHeroSlides.length > 1 ? `
+              <button type="button" class="btn-delete-slide text-slate-400 hover:text-rose-600 p-1 rounded transition-colors cursor-pointer" data-slide-idx="${sIdx}" title="Hapus Slide">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+              </button>
+            ` : ''}
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Nama / Label Tab</label>
+              <input type="text" class="input-slide-label w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-lg px-2.5 py-1.5 text-xs text-slate-900 outline-none" value="${slide.label || ''}" placeholder="Contoh: Wakaf Berkelanjutan" data-slide-idx="${sIdx}" />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Badge / Tagline Atas</label>
+              <input type="text" class="input-slide-badge w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-lg px-2.5 py-1.5 text-xs text-slate-900 outline-none" value="${slide.badge || ''}" placeholder="Contoh: Wakaf yang Menghadirkan Manfaat..." data-slide-idx="${sIdx}" />
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Sub-Badge English (Pill Tagline)</label>
+              <input type="text" class="input-slide-tagline-en w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-lg px-2.5 py-1.5 text-xs text-slate-900 outline-none font-mono" value="${slide.taglineEn || ''}" placeholder="BUILDING ASSETS, FOSTERING INDEPENDENCE, CONNECTING IMPACT" data-slide-idx="${sIdx}" />
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Judul Utama Slide (&lt;br /&gt; didukung)</label>
+              <textarea rows="2" class="input-slide-title w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-lg px-2.5 py-1.5 text-xs text-slate-900 outline-none" placeholder="Tuliskan judul besar slide..." data-slide-idx="${sIdx}">${slide.title || ''}</textarea>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Deskripsi / Narasi Lead Slide</label>
+              <textarea rows="3" class="input-slide-lead w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-lg px-2.5 py-1.5 text-xs text-slate-900 outline-none leading-relaxed" placeholder="Tuliskan narasi penjelasan slide..." data-slide-idx="${sIdx}">${slide.lead || ''}</textarea>
+            </div>
+
+            <div class="sm:col-span-2 space-y-2">
+              <div class="flex items-center justify-between">
+                <label class="block text-[11px] font-semibold text-slate-700">Foto Latar Belakang Slide</label>
+                <button type="button" class="btn-upload-slide-img inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-[#0969da] bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors cursor-pointer" data-slide-idx="${sIdx}">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
+                  <span>Unggah Foto S3</span>
+                </button>
+              </div>
+              <div class="flex items-center gap-2">
+                <input type="text" class="input-slide-image flex-1 bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-lg px-2.5 py-1.5 text-xs text-slate-900 outline-none font-mono" value="${slide.image || ''}" placeholder="URL foto S3 atau /images/..." data-slide-idx="${sIdx}" />
+                ${slide.image ? `
+                  <div class="w-10 h-10 rounded-md bg-slate-100 overflow-hidden shrink-0 border border-slate-200">
+                    <img src="${slide.image}" class="w-full h-full object-cover" alt="Preview" />
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Tombol 1: Teks</label>
+              <input type="text" class="input-slide-btn1-text w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-lg px-2.5 py-1.5 text-xs text-slate-900 outline-none" value="${btn1Text}" placeholder="Misal: Jelajahi Program" data-slide-idx="${sIdx}" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Tombol 1: Link URL</label>
+              <input type="text" class="input-slide-btn1-href w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-lg px-2.5 py-1.5 text-xs text-slate-900 outline-none font-mono" value="${btn1Href}" placeholder="Misal: #program-kebaikan" data-slide-idx="${sIdx}" />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Tombol 2: Teks (Opsional)</label>
+              <input type="text" class="input-slide-btn2-text w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-lg px-2.5 py-1.5 text-xs text-slate-900 outline-none" value="${btn2Text}" placeholder="Misal: Tunaikan Wakaf" data-slide-idx="${sIdx}" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Tombol 2: Link URL</label>
+              <input type="text" class="input-slide-btn2-href w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-lg px-2.5 py-1.5 text-xs text-slate-900 outline-none font-mono" value="${btn2Href}" placeholder="Misal: /program/wakaf" data-slide-idx="${sIdx}" />
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Attach event listeners for each slide inputs
+    heroSlidesListContainer.querySelectorAll('.input-slide-label').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const sIdx = Number((e.target as HTMLElement).dataset.slideIdx);
+        if (currentHeroSlides[sIdx]) currentHeroSlides[sIdx].label = (e.target as HTMLInputElement).value;
+        syncVisualToJson();
+      });
+    });
+
+    heroSlidesListContainer.querySelectorAll('.input-slide-badge').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const sIdx = Number((e.target as HTMLElement).dataset.slideIdx);
+        if (currentHeroSlides[sIdx]) currentHeroSlides[sIdx].badge = (e.target as HTMLInputElement).value;
+        syncVisualToJson();
+      });
+    });
+
+    heroSlidesListContainer.querySelectorAll('.input-slide-tagline-en').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const sIdx = Number((e.target as HTMLElement).dataset.slideIdx);
+        if (currentHeroSlides[sIdx]) currentHeroSlides[sIdx].taglineEn = (e.target as HTMLInputElement).value;
+        syncVisualToJson();
+      });
+    });
+
+    heroSlidesListContainer.querySelectorAll('.input-slide-title').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const sIdx = Number((e.target as HTMLElement).dataset.slideIdx);
+        if (currentHeroSlides[sIdx]) currentHeroSlides[sIdx].title = (e.target as HTMLTextAreaElement).value;
+        syncVisualToJson();
+      });
+    });
+
+    heroSlidesListContainer.querySelectorAll('.input-slide-lead').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const sIdx = Number((e.target as HTMLElement).dataset.slideIdx);
+        if (currentHeroSlides[sIdx]) currentHeroSlides[sIdx].lead = (e.target as HTMLTextAreaElement).value;
+        syncVisualToJson();
+      });
+    });
+
+    heroSlidesListContainer.querySelectorAll('.input-slide-image').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const sIdx = Number((e.target as HTMLElement).dataset.slideIdx);
+        if (currentHeroSlides[sIdx]) currentHeroSlides[sIdx].image = (e.target as HTMLInputElement).value;
+        syncVisualToJson();
+      });
+    });
+
+    heroSlidesListContainer.querySelectorAll('.input-slide-btn1-text').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const sIdx = Number((e.target as HTMLElement).dataset.slideIdx);
+        if (currentHeroSlides[sIdx]) {
+          if (!Array.isArray(currentHeroSlides[sIdx].buttons)) currentHeroSlides[sIdx].buttons = [];
+          if (!currentHeroSlides[sIdx].buttons[0]) currentHeroSlides[sIdx].buttons[0] = { variant: 'primary' };
+          currentHeroSlides[sIdx].buttons[0].text = (e.target as HTMLInputElement).value;
+          syncVisualToJson();
+        }
+      });
+    });
+
+    heroSlidesListContainer.querySelectorAll('.input-slide-btn1-href').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const sIdx = Number((e.target as HTMLElement).dataset.slideIdx);
+        if (currentHeroSlides[sIdx]) {
+          if (!Array.isArray(currentHeroSlides[sIdx].buttons)) currentHeroSlides[sIdx].buttons = [];
+          if (!currentHeroSlides[sIdx].buttons[0]) currentHeroSlides[sIdx].buttons[0] = { variant: 'primary' };
+          currentHeroSlides[sIdx].buttons[0].href = (e.target as HTMLInputElement).value;
+          syncVisualToJson();
+        }
+      });
+    });
+
+    heroSlidesListContainer.querySelectorAll('.input-slide-btn2-text').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const sIdx = Number((e.target as HTMLElement).dataset.slideIdx);
+        if (currentHeroSlides[sIdx]) {
+          if (!Array.isArray(currentHeroSlides[sIdx].buttons)) currentHeroSlides[sIdx].buttons = [];
+          if (!currentHeroSlides[sIdx].buttons[1]) currentHeroSlides[sIdx].buttons[1] = { variant: 'outline' };
+          currentHeroSlides[sIdx].buttons[1].text = (e.target as HTMLInputElement).value;
+          syncVisualToJson();
+        }
+      });
+    });
+
+    heroSlidesListContainer.querySelectorAll('.input-slide-btn2-href').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const sIdx = Number((e.target as HTMLElement).dataset.slideIdx);
+        if (currentHeroSlides[sIdx]) {
+          if (!Array.isArray(currentHeroSlides[sIdx].buttons)) currentHeroSlides[sIdx].buttons = [];
+          if (!currentHeroSlides[sIdx].buttons[1]) currentHeroSlides[sIdx].buttons[1] = { variant: 'outline' };
+          currentHeroSlides[sIdx].buttons[1].href = (e.target as HTMLInputElement).value;
+          syncVisualToJson();
+        }
+      });
+    });
+
+    // Upload S3 per slide
+    heroSlidesListContainer.querySelectorAll('.btn-upload-slide-img').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const sIdx = Number((e.currentTarget as HTMLElement).dataset.slideIdx);
+        targetSlideImageIndex = sIdx;
+        vfSlideFileInput?.click();
+      });
+    });
+
+    // Delete slide
+    heroSlidesListContainer.querySelectorAll('.btn-delete-slide').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const sIdx = Number((e.currentTarget as HTMLElement).dataset.slideIdx);
+        if (confirm(`Yakin ingin menghapus Slide ${sIdx + 1}?`)) {
+          currentHeroSlides.splice(sIdx, 1);
+          renderHeroSlidesEditor(currentHeroSlides);
+          syncVisualToJson();
+        }
+      });
+    });
+  }
+
+  // Handle slide-specific S3 file upload
+  vfSlideFileInput?.addEventListener('change', async (e) => {
+    const target = e.target as HTMLInputElement;
+    const file = target.files?.[0];
+    if (!file || targetSlideImageIndex < 0) return;
+
+    if (file.size > 25 * 1024 * 1024) {
+      (window as any).showToast('Ukuran berkas melebihi 25 MB.', true);
+      target.value = '';
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      (window as any).showToast('Mengunggah foto slide ke MinIO S3...');
+      const res = await fetch('/api/admin/sections/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success && data.url) {
+        if (currentHeroSlides[targetSlideImageIndex]) {
+          currentHeroSlides[targetSlideImageIndex].image = data.url;
+          renderHeroSlidesEditor(currentHeroSlides);
+          syncVisualToJson();
+          (window as any).showToast('Foto slide berhasil diunggah ke MinIO S3.');
+        }
+      } else {
+        (window as any).showToast(data.error || 'Gagal mengunggah foto slide.', true);
+      }
+    } catch {
+      (window as any).showToast('Terjadi kesalahan jaringan saat mengunggah foto slide.', true);
+    } finally {
+      target.value = '';
+    }
+  });
+
+  btnAddHeroSlide?.addEventListener('click', () => {
+    const nextIdx = currentHeroSlides.length + 1;
+    const newSlide = {
+      id: 'slide-' + nextIdx,
+      index: String(nextIdx).padStart(2, '0'),
+      label: 'Slide Baru ' + nextIdx,
+      badge: 'PROGRAM KEBAIKAN GVF',
+      taglineEn: 'EMPOWERING COMMUNITIES FOR SOCIAL IMPACT',
+      title: 'Judul Slide Baru,<br />Membangun Manfaat Nyata.',
+      lead: 'Tuliskan deskripsi narasi lengkap slide ini...',
+      image: '',
+      buttons: [
+        { text: 'Lihat Program', href: '#program-kebaikan', variant: 'primary' }
+      ]
+    };
+    currentHeroSlides.push(newSlide);
+    renderHeroSlidesEditor(currentHeroSlides);
+    syncVisualToJson();
+  });
+
   // Attach sync listener to all visual inputs
   [vfHeading, vfBadge, vfSubheading, vfDesc, vfParagraph2, vfPrimaryCtaText, vfPrimaryCtaUrl, vfSecondaryCtaText, vfSecondaryCtaUrl, vfImageUrl].forEach((input) => {
     input?.addEventListener('input', syncVisualToJson);
@@ -521,6 +825,9 @@ export function initSectionEditor() {
       }
       if (currentSectionKey === 'prog_pricing' && Array.isArray(currentContentObj.packages)) {
         renderPackagesEditor(currentContentObj.packages);
+      }
+      if (currentSectionKey === 'hero' && Array.isArray(currentContentObj.slides)) {
+        renderHeroSlidesEditor(currentContentObj.slides);
       }
       if (jsonError) {
         jsonError.textContent = '';
@@ -603,11 +910,20 @@ export function initSectionEditor() {
         updateMediaPreview(vfImageUrl.value);
       }
 
-      // Show/Hide Packages Editor based on sectionKey
-      if (key === 'prog_pricing') {
+      // Show/Hide Packages & Hero Slides Editor based on sectionKey
+      if (key === 'hero') {
+        vfGeneralSectionFields?.classList.add('hidden');
+        vfPackagesSection?.classList.add('hidden');
+        vfHeroSlidesSection?.classList.remove('hidden');
+        renderHeroSlidesEditor(currentContentObj.slides || []);
+      } else if (key === 'prog_pricing') {
+        vfGeneralSectionFields?.classList.remove('hidden');
+        vfHeroSlidesSection?.classList.add('hidden');
         vfPackagesSection?.classList.remove('hidden');
         renderPackagesEditor(currentContentObj.packages || []);
       } else {
+        vfGeneralSectionFields?.classList.remove('hidden');
+        vfHeroSlidesSection?.classList.add('hidden');
         vfPackagesSection?.classList.add('hidden');
       }
 

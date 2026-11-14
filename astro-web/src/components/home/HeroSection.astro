@@ -3,7 +3,13 @@
 // Hero Slider 4 Slide Sesuai Urutan Program: Shodaqoh, Infaq, Zakat, Wakaf
 // Desain sinematik GVF dengan kepatuhan prinsip typeui-fundamentals
 
-const heroSlides = [
+interface Props {
+  content?: Record<string, any>;
+}
+
+const { content } = Astro.props;
+
+const defaultHeroSlides = [
   {
     id: 'slide-1',
     index: '01',
@@ -24,6 +30,7 @@ const heroSlides = [
     index: '02',
     label: 'Menghubungkan Kebaikan',
     badge: 'KOLABORASI PROGRAM KEBAIKAN',
+    taglineEn: 'CONNECTING GOODNESS, DELIVERING BENEFITS',
     title: 'Menghubungkan Kebaikan,<br />Menghadirkan Kebermanfaatan.',
     lead: 'Mengintegrasikan kepedulian para muhsinin melalui kolaborasi nyata untuk mendukung majelis ilmu dan bimbingan langsung para asatidz.',
     image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/kajian-santri-ikhwan-ustadz-whiteboard.webp',
@@ -36,6 +43,7 @@ const heroSlides = [
     index: '03',
     label: 'Dari Kepedulian Menuju Kemandirian',
     badge: 'PENDIDIKAN & PEMBINAAN KARAKTER',
+    taglineEn: 'FROM EMPATHY TO INDEPENDENCE',
     title: 'Dari Kepedulian,<br />Menuju Kemandirian.',
     lead: 'Mengembangkan ekosistem pendidikan, adab, pembinaan karakter, dan keterampilan santri untuk mencetak generasi Qurani yang tangguh dan mandiri.',
     image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/halaqah-santri-melingkar.webp',
@@ -48,6 +56,7 @@ const heroSlides = [
     index: '04',
     label: 'Menguatkan Sarana Ibadah',
     badge: 'KAMPANYE KHUSUS SARANA IBADAH',
+    taglineEn: 'STRENGTHENING WORSHIP INFRASTRUCTURE',
     title: 'Menguatkan Sarana Ibadah,<br />Menumbuhkan Manfaat Abadi.',
     lead: 'Di bawah naungan atap sementara, santri terus melantunkan ayat suci. Bersama wujudkan penyelesaian Masjid Khairu Ummah sebagai pusat ibadah dan pembinaan.',
     image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/masjid-tampak-dalam-konstruksi.webp',
@@ -56,6 +65,10 @@ const heroSlides = [
     ]
   }
 ];
+
+const heroSlides = Array.isArray(content?.slides) && content.slides.length > 0
+  ? content.slides
+  : defaultHeroSlides;
 ---
 
 <section class="gvf-hero" id="hero-carousel" aria-roledescription="carousel" aria-label="Global Village Fund Hero">
