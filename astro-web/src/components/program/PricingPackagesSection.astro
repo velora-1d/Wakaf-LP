@@ -15,7 +15,14 @@ const { program } = Astro.props;
 const dbPackageData = await getProgramPackages(program.slug);
 const pricingHeading = dbPackageData?.heading || program.pricingHeading;
 const pricingSubheading = dbPackageData?.subheading || program.pricingSubheading;
-const packages = (dbPackageData?.packages && dbPackageData.packages.length > 0) ? dbPackageData.packages : program.packages;
+const rawPackages = (dbPackageData?.packages && dbPackageData.packages.length > 0) ? dbPackageData.packages : program.packages;
+
+// Sanitasi judul paket: eliminasi total prefiks A., B., C. maupun angka 1., 2., 3.
+const packages = rawPackages.map((pkg: PricingPackage) => ({
+  ...pkg,
+  title: (pkg.title || '').replace(/^[A-Za-z0-9]\.\s*/, '').trim(),
+  isPopular: false,
+}));
 
 // Ambil riwayat donatur terverifikasi (lunas) real-time untuk program ini (hingga 100 donatur)
 const verifiedDonations = await getVerifiedDonationsByProgram(program.slug, 100);

@@ -1,6 +1,8 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "PURGE-404-PORTFOLIO-BUTTON-01", "name": "Eliminasi Tombol 404 'Lihat Lebih Banyak' pada ProgramLayout dan Penyelarasan Link Dokumentasi Kawasan ke /tentang-kami", "status": "in_progress" },
+    { "id": "PURGE-ABC-NUMBER-PREFIXES-ALL-PROGRAMS-01", "name": "Eliminasi Total Awalan Huruf (A, B, C) dan Angka (1, 2, 3) pada Judul Paket Semua Program (Sedekah, Infaq, Zakat, Wakaf) di Database PostgreSQL & Sanitasi Komponen UI", "status": "closed" },
     { "id": "UPDATE-SEDEKAH-CONTENT-COPY-01", "name": "Pbaruan Total Narasi, Paket & Rincian Deliverables Program Sedekah Sesuai Dokumen Revisi Resmi (Pangan, Fasilitas, Pendidikan, Keahlian & Jasa) Tanpa Mengubah Database Donatur", "status": "closed" },
     { "id": "CUSTOM-AESTHETIC-SCROLLBAR-01", "name": "Implementasi Custom UI Scrollbar Estetik & Modern Global (Slim Floating Pill, Brand Blue Hover, Eliminasi Tombol Panah Kaku & Dukungan Cross-Browser)", "status": "closed" },
     { "id": "TENTANG-KAMI-EKOSISTEM-4-REAL-PHOTOS-01", "name": "Penerapan 4 Foto Riil Autentik Unggahan Pengguna pada Seksi Ekosistem 'Satu Kepedulian Menghidupkan Banyak Kebermanfaatan' Halaman Tentang Kami (Pendidikan, Keagamaan, Hunian, Kemandirian & Ketahanan Pangan)", "status": "closed" },
