@@ -3,12 +3,12 @@
 ## To Do
 
 ## In Progress
-- [/] PURGE-404-PORTFOLIO-BUTTON-01: Eliminasi Tombol 404 'Lihat Lebih Banyak' pada ProgramLayout dan Penyelarasan Link Dokumentasi Kawasan ke /tentang-kami
 - [/] LP-UIUX-WAKAFRUTIN-01: Redesain UI/UX Landing Page Masjid Khairu Ummah Sugro berbasis Desain Sistem Wakaf-Rutin dengan Konten, Aset & Video Asli
 
 ## In Review / Test
 
 ## Done
+- [x] PURGE-404-PORTFOLIO-BUTTON-01: Eliminasi Tombol 404 'Lihat Lebih Banyak' pada ProgramLayout dan Penyelarasan Link Dokumentasi Kawasan ke /tentang-kami Terverifikasi Build 100%
 - [x] PURGE-ABC-NUMBER-PREFIXES-ALL-PROGRAMS-01: Eliminasi Total Awalan Huruf (A, B, C) dan Angka (1, 2, 3) pada Judul Paket Semua Program (Sedekah, Infaq, Zakat, Wakaf) di Database PostgreSQL & Sanitasi Komponen UI Terverifikasi Build 100%
 - [x] UPDATE-SEDEKAH-CONTENT-COPY-01: Pembaruan Total Narasi, Paket & Rincian Deliverables Program Sedekah Sesuai Dokumen Revisi Resmi (Pangan, Fasilitas, Pendidikan, Keahlian & Jasa) Tanpa Mengubah Database Donatur Terverifikasi Build 100%
 - [x] CUSTOM-AESTHETIC-SCROLLBAR-01: Implementasi Custom UI Scrollbar Estetik & Modern Global (Slim Floating Pill 8px, GVF Royal Blue Hover #0969da, Eliminasi Total Tombol Panah Kaku & Dukungan Cross-Browser WebKit/Firefox) Terverifikasi Build 100%
