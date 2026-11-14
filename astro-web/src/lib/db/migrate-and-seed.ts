@@ -270,6 +270,7 @@ async function main() {
     console.log('[DB-INIT] Home sections seeded.');
 
     // 5. Default Sections for Program Pages (Wakaf, Infaq, Sedekah, Zakat)
+    // 4 Section resmi sesuai halaman publik: prog_hero, prog_pricing, prog_details, prog_faq
     const programSlugs = ['wakaf', 'infaq', 'sedekah', 'zakat'] as const;
     for (const slug of programSlugs) {
       const progSections = [
@@ -296,19 +297,9 @@ async function main() {
         },
         {
           page_slug: slug,
-          section_key: 'prog_addons',
-          title: `Layanan Pelengkap & Operasional`,
-          sort_order: 3,
-          content: {
-            title: 'Layanan Tambahan Pendukung Program',
-            desc: 'Dukungan pelaporan personal, plakat wakaf, dan sertifikat digital berkode verifikasi QR.'
-          }
-        },
-        {
-          page_slug: slug,
           section_key: 'prog_details',
-          title: `Deep-Dive Penjelasan Program 2-Kolom`,
-          sort_order: 4,
+          title: `Detail & Dokumentasi Program ${slug.toUpperCase()}`,
+          sort_order: 3,
           content: {
             badge: 'TATA KELOLA SYARIAH',
             title: `Implementasi Nyata Program ${slug.toUpperCase()}`,
@@ -318,8 +309,8 @@ async function main() {
         {
           page_slug: slug,
           section_key: 'prog_faq',
-          title: `FAQ Accordion Pertanyaan Sering Diajukan`,
-          sort_order: 5,
+          title: `FAQ Tanya Jawab ${slug.toUpperCase()}`,
+          sort_order: 4,
           content: {
             heading: `Pertanyaan Seputar ${slug.toUpperCase()}`,
             subheading: `Semua jawaban atas keraguan dan ketentuan fiqih terkait ${slug}.`
@@ -336,7 +327,7 @@ async function main() {
         `;
       }
     }
-    console.log('[DB-INIT] Program sections seeded for wakaf, infaq, sedekah, zakat.');
+    console.log('[DB-INIT] Program sections seeded for wakaf, infaq, sedekah, zakat (4 sections synchronized).');
 
     // 6. Default Sections for Static Pages: Tentang Kami, Kemitraan, Contact
     const otherPages = [

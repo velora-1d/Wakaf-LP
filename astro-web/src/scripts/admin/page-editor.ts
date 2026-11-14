@@ -267,6 +267,17 @@ export function initSectionEditor() {
       currentContentObj.packages = currentPackages;
     }
 
+    if (currentSectionKey === 'prog_details') {
+      currentContentObj.twinImages = currentTwinImages;
+      currentContentObj.portfolioShowcaseItems = currentShowcaseItems;
+      currentContentObj.valueBoxes = currentValueBoxes;
+      currentContentObj.guarantees = currentGuarantees;
+    }
+
+    if (currentSectionKey === 'prog_faq') {
+      currentContentObj.faqs = currentFaqs;
+    }
+
     if (currentSectionKey === 'hero' && Array.isArray(currentHeroSlides) && currentHeroSlides.length > 0) {
       currentContentObj.slides = currentHeroSlides;
       currentContentObj.heading = currentHeroSlides[0]?.title?.replace(/<br\s*\/?>/gi, ' ') || '';
@@ -801,6 +812,298 @@ export function initSectionEditor() {
     syncVisualToJson();
   });
 
+  // Visual Program Details & Showcase Management (prog_details)
+  const vfProgramDetailsSection = document.getElementById('vfProgramDetailsSection');
+  const vfTwinImg1 = document.getElementById('vfTwinImg1') as HTMLInputElement;
+  const vfTwinImg2 = document.getElementById('vfTwinImg2') as HTMLInputElement;
+  const vfTwinImg1Preview = document.getElementById('vfTwinImg1Preview') as HTMLImageElement;
+  const vfTwinImg2Preview = document.getElementById('vfTwinImg2Preview') as HTMLImageElement;
+  const showcaseListContainer = document.getElementById('showcaseListContainer');
+  const valueBoxesListContainer = document.getElementById('valueBoxesListContainer');
+  const guaranteesListContainer = document.getElementById('guaranteesListContainer');
+  const btnAddGuarantee = document.getElementById('btnAddGuarantee');
+
+  // Visual FAQ Management (prog_faq)
+  const vfFaqSection = document.getElementById('vfFaqSection');
+  const faqListContainer = document.getElementById('faqListContainer');
+  const btnAddFaq = document.getElementById('btnAddFaq');
+
+  // Generic Sub-file Input for uploads (Twin images & Showcase cards)
+  const vfGenericSubFileInput = document.getElementById('vfGenericSubFileInput') as HTMLInputElement;
+  let targetSubUpload: { type: 'twin' | 'showcase'; index: number } | null = null;
+
+  let currentTwinImages: string[] = [];
+  let currentShowcaseItems: any[] = [];
+  let currentValueBoxes: any[] = [];
+  let currentGuarantees: string[] = [];
+  let currentFaqs: any[] = [];
+
+  function updateTwinPreview(index: number, url: string) {
+    const previewEl = index === 0 ? vfTwinImg1Preview : vfTwinImg2Preview;
+    if (previewEl) {
+      if (url && url.trim()) {
+        previewEl.src = url.trim();
+        previewEl.classList.remove('hidden');
+      } else {
+        previewEl.src = '';
+        previewEl.classList.add('hidden');
+      }
+    }
+  }
+
+  function renderProgramDetailsEditor(content: any) {
+    currentTwinImages = Array.isArray(content.twinImages) ? JSON.parse(JSON.stringify(content.twinImages)) : ['', ''];
+    while (currentTwinImages.length < 2) currentTwinImages.push('');
+    currentShowcaseItems = Array.isArray(content.portfolioShowcaseItems) ? JSON.parse(JSON.stringify(content.portfolioShowcaseItems)) : [];
+    currentValueBoxes = Array.isArray(content.valueBoxes) ? JSON.parse(JSON.stringify(content.valueBoxes)) : [];
+    currentGuarantees = Array.isArray(content.guarantees) ? JSON.parse(JSON.stringify(content.guarantees)) : [];
+
+    // Twin Images inputs
+    if (vfTwinImg1) {
+      vfTwinImg1.value = currentTwinImages[0] || '';
+      updateTwinPreview(0, vfTwinImg1.value);
+    }
+    if (vfTwinImg2) {
+      vfTwinImg2.value = currentTwinImages[1] || '';
+      updateTwinPreview(1, vfTwinImg2.value);
+    }
+
+    // Showcase Cards
+    if (showcaseListContainer) {
+      showcaseListContainer.innerHTML = currentShowcaseItems.map((item: any, idx: number) => `
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-2.5 relative" data-showcase-idx="${idx}">
+          <div class="flex items-center justify-between pb-1.5 border-b border-slate-200">
+            <span class="text-[11px] font-bold text-[#0969da] uppercase tracking-wider">Kartu ${idx + 1}</span>
+            <button type="button" class="btn-upload-showcase text-[11px] px-2 py-0.5 bg-white border border-slate-200 hover:border-[#0969da] text-[#0969da] rounded font-medium cursor-pointer" data-showcase-idx="${idx}">
+              Ganti Foto
+            </button>
+          </div>
+          <div class="flex gap-2.5 items-center">
+            <div class="w-14 h-14 rounded-lg bg-slate-200 border border-slate-300 overflow-hidden shrink-0">
+              <img src="${item.image || ''}" alt="${item.name || ''}" class="w-full h-full object-cover ${item.image ? '' : 'hidden'}" id="showcase-img-preview-${idx}" />
+            </div>
+            <div class="min-w-0 flex-1 space-y-1.5">
+              <input type="text" class="showcase-field-tag w-full bg-white border border-slate-200 rounded px-2 py-1 text-[11px] font-semibold text-blue-700 uppercase focus:border-[#0969da] outline-none" value="${item.tag || ''}" placeholder="Tag/Badge (cth: ARSITEKTUR)" data-showcase-idx="${idx}" />
+              <input type="text" class="showcase-field-name w-full bg-white border border-slate-200 rounded px-2 py-1 text-xs font-bold text-slate-800 focus:border-[#0969da] outline-none" value="${item.name || ''}" placeholder="Judul Foto" data-showcase-idx="${idx}" />
+              <input type="text" class="showcase-field-cat w-full bg-white border border-slate-200 rounded px-2 py-1 text-[11px] text-slate-600 focus:border-[#0969da] outline-none" value="${item.category || ''}" placeholder="Kategori" data-showcase-idx="${idx}" />
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Value Boxes
+    if (valueBoxesListContainer) {
+      valueBoxesListContainer.innerHTML = currentValueBoxes.map((vb: any, idx: number) => `
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-1.5" data-vb-idx="${idx}">
+          <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Nilai #${idx + 1}</span>
+          <input type="text" class="vb-field-title w-full bg-white border border-slate-200 rounded px-2 py-1 text-xs font-semibold text-slate-900 focus:border-[#0969da] outline-none" value="${vb.title || ''}" placeholder="Judul Nilai" data-vb-idx="${idx}" />
+          <textarea rows="2" class="vb-field-desc w-full bg-white border border-slate-200 rounded px-2 py-1 text-xs text-slate-600 focus:border-[#0969da] outline-none leading-relaxed" placeholder="Deskripsi Nilai" data-vb-idx="${idx}">${vb.description || ''}</textarea>
+        </div>
+      `).join('');
+    }
+
+    // Guarantees
+    if (guaranteesListContainer) {
+      guaranteesListContainer.innerHTML = currentGuarantees.map((g: string, idx: number) => `
+        <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg p-2" data-g-idx="${idx}">
+          <span class="w-5 h-5 rounded-full bg-blue-50 text-[#0969da] flex items-center justify-center shrink-0">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <input type="text" class="g-field-text flex-1 bg-white border border-slate-200 rounded px-2 py-1 text-xs text-slate-800 focus:border-[#0969da] outline-none" value="${g}" data-g-idx="${idx}" />
+          <button type="button" class="btn-delete-g text-slate-400 hover:text-rose-600 p-1 cursor-pointer" data-g-idx="${idx}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+      `).join('');
+    }
+  }
+
+  function renderFaqEditor(faqs: any[]) {
+    currentFaqs = Array.isArray(faqs) ? JSON.parse(JSON.stringify(faqs)) : [];
+    if (!faqListContainer) return;
+
+    if (currentFaqs.length === 0) {
+      faqListContainer.innerHTML = `
+        <div class="text-center py-6 text-slate-400 text-xs bg-white rounded-xl border border-dashed border-slate-300">
+          Belum ada pertanyaan FAQ. Klik "+ Tambah Pertanyaan" untuk menambahkan.
+        </div>
+      `;
+      return;
+    }
+
+    faqListContainer.innerHTML = currentFaqs.map((faq: any, idx: number) => `
+      <div class="bg-white rounded-xl border border-slate-200 p-3.5 shadow-2xs space-y-2.5 relative" data-faq-idx="${idx}">
+        <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-md bg-blue-50 text-[#0969da] font-mono font-bold text-xs flex items-center justify-center border border-blue-200">${idx + 1}</span>
+            <span class="text-xs font-bold text-slate-800">Pertanyaan FAQ</span>
+          </div>
+          <button type="button" class="btn-delete-faq text-slate-400 hover:text-rose-600 p-1 transition-colors cursor-pointer" data-faq-idx="${idx}" title="Hapus Pertanyaan">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+          </button>
+        </div>
+        <div class="space-y-2">
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-700 mb-1">Pertanyaan (Question)</label>
+            <input type="text" class="faq-field-q w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 font-semibold focus:bg-white focus:border-[#0969da] outline-none" value="${faq.question || ''}" data-faq-idx="${idx}" placeholder="Tuliskan pertanyaan donatur..." />
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-700 mb-1">Jawaban (Answer)</label>
+            <textarea rows="3" class="faq-field-a w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 leading-relaxed focus:bg-white focus:border-[#0969da] outline-none" data-faq-idx="${idx}" placeholder="Tuliskan jawaban penjelasan resmi...">${faq.answer || ''}</textarea>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Event Listeners for Twin Images & Sub-uploads
+  vfTwinImg1?.addEventListener('input', () => {
+    currentTwinImages[0] = vfTwinImg1.value;
+    updateTwinPreview(0, vfTwinImg1.value);
+    syncVisualToJson();
+  });
+
+  vfTwinImg2?.addEventListener('input', () => {
+    currentTwinImages[1] = vfTwinImg2.value;
+    updateTwinPreview(1, vfTwinImg2.value);
+    syncVisualToJson();
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const btnUploadTwin = target.closest('.btn-upload-twin') as HTMLElement;
+    if (btnUploadTwin) {
+      const idx = parseInt(btnUploadTwin.dataset.twinIdx || '0', 10);
+      targetSubUpload = { type: 'twin', index: idx };
+      vfGenericSubFileInput?.click();
+      return;
+    }
+
+    const btnUploadShowcase = target.closest('.btn-upload-showcase') as HTMLElement;
+    if (btnUploadShowcase) {
+      const idx = parseInt(btnUploadShowcase.dataset.showcaseIdx || '0', 10);
+      targetSubUpload = { type: 'showcase', index: idx };
+      vfGenericSubFileInput?.click();
+      return;
+    }
+
+    const btnDelG = target.closest('.btn-delete-g') as HTMLElement;
+    if (btnDelG) {
+      const idx = parseInt(btnDelG.dataset.gIdx || '0', 10);
+      currentGuarantees.splice(idx, 1);
+      renderProgramDetailsEditor(currentContentObj);
+      syncVisualToJson();
+      return;
+    }
+
+    const btnDelFaq = target.closest('.btn-delete-faq') as HTMLElement;
+    if (btnDelFaq) {
+      const idx = parseInt(btnDelFaq.dataset.faqIdx || '0', 10);
+      currentFaqs.splice(idx, 1);
+      renderFaqEditor(currentFaqs);
+      syncVisualToJson();
+      return;
+    }
+  });
+
+  btnAddGuarantee?.addEventListener('click', () => {
+    currentGuarantees.push('Poin jaminan transparansi baru');
+    renderProgramDetailsEditor(currentContentObj);
+    syncVisualToJson();
+  });
+
+  btnAddFaq?.addEventListener('click', () => {
+    currentFaqs.push({ question: 'Pertanyaan baru seputar program?', answer: 'Tuliskan jawaban penjelasan resmi di sini.' });
+    renderFaqEditor(currentFaqs);
+    syncVisualToJson();
+  });
+
+  // Generic Sub-file Input change (Neon S3 Upload)
+  vfGenericSubFileInput?.addEventListener('change', async (e) => {
+    const target = e.target as HTMLInputElement;
+    const file = target.files?.[0];
+    if (!file || !targetSubUpload) return;
+
+    if (file.size > 25 * 1024 * 1024) {
+      (window as any).showToast('Ukuran berkas melebihi 25 MB.', true);
+      target.value = '';
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      (window as any).showToast('Mengunggah gambar ke Neon S3...');
+      const res = await fetch('/api/admin/sections/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success && data.url) {
+        if (targetSubUpload.type === 'twin') {
+          currentTwinImages[targetSubUpload.index] = data.url;
+          if (targetSubUpload.index === 0 && vfTwinImg1) vfTwinImg1.value = data.url;
+          if (targetSubUpload.index === 1 && vfTwinImg2) vfTwinImg2.value = data.url;
+          updateTwinPreview(targetSubUpload.index, data.url);
+        } else if (targetSubUpload.type === 'showcase') {
+          if (currentShowcaseItems[targetSubUpload.index]) {
+            currentShowcaseItems[targetSubUpload.index].image = data.url;
+            renderProgramDetailsEditor(currentContentObj);
+          }
+        }
+        syncVisualToJson();
+        (window as any).showToast('Foto berhasil diunggah ke Neon S3.');
+      } else {
+        (window as any).showToast(data.error || 'Gagal mengunggah foto.', true);
+      }
+    } catch {
+      (window as any).showToast('Terjadi kesalahan jaringan saat mengunggah foto.', true);
+    } finally {
+      target.value = '';
+      targetSubUpload = null;
+    }
+  });
+
+  // Input delegation for showcase, value boxes, guarantees, and FAQs
+  document.addEventListener('input', (e) => {
+    const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+    if (target.classList.contains('showcase-field-tag')) {
+      const idx = parseInt(target.dataset.showcaseIdx || '0', 10);
+      if (currentShowcaseItems[idx]) currentShowcaseItems[idx].tag = target.value;
+      syncVisualToJson();
+    } else if (target.classList.contains('showcase-field-name')) {
+      const idx = parseInt(target.dataset.showcaseIdx || '0', 10);
+      if (currentShowcaseItems[idx]) currentShowcaseItems[idx].name = target.value;
+      syncVisualToJson();
+    } else if (target.classList.contains('showcase-field-cat')) {
+      const idx = parseInt(target.dataset.showcaseIdx || '0', 10);
+      if (currentShowcaseItems[idx]) currentShowcaseItems[idx].category = target.value;
+      syncVisualToJson();
+    } else if (target.classList.contains('vb-field-title')) {
+      const idx = parseInt(target.dataset.vbIdx || '0', 10);
+      if (currentValueBoxes[idx]) currentValueBoxes[idx].title = target.value;
+      syncVisualToJson();
+    } else if (target.classList.contains('vb-field-desc')) {
+      const idx = parseInt(target.dataset.vbIdx || '0', 10);
+      if (currentValueBoxes[idx]) currentValueBoxes[idx].description = target.value;
+      syncVisualToJson();
+    } else if (target.classList.contains('g-field-text')) {
+      const idx = parseInt(target.dataset.gIdx || '0', 10);
+      currentGuarantees[idx] = target.value;
+      syncVisualToJson();
+    } else if (target.classList.contains('faq-field-q')) {
+      const idx = parseInt(target.dataset.faqIdx || '0', 10);
+      if (currentFaqs[idx]) currentFaqs[idx].question = target.value;
+      syncVisualToJson();
+    } else if (target.classList.contains('faq-field-a')) {
+      const idx = parseInt(target.dataset.faqIdx || '0', 10);
+      if (currentFaqs[idx]) currentFaqs[idx].answer = target.value;
+      syncVisualToJson();
+    }
+  });
+
   // Attach sync listener to all visual inputs
   [vfHeading, vfBadge, vfSubheading, vfDesc, vfParagraph2, vfPrimaryCtaText, vfPrimaryCtaUrl, vfSecondaryCtaText, vfSecondaryCtaUrl, vfImageUrl].forEach((input) => {
     input?.addEventListener('input', syncVisualToJson);
@@ -825,6 +1128,12 @@ export function initSectionEditor() {
       }
       if (currentSectionKey === 'prog_pricing' && Array.isArray(currentContentObj.packages)) {
         renderPackagesEditor(currentContentObj.packages);
+      }
+      if (currentSectionKey === 'prog_details') {
+        renderProgramDetailsEditor(currentContentObj);
+      }
+      if (currentSectionKey === 'prog_faq' && Array.isArray(currentContentObj.faqs)) {
+        renderFaqEditor(currentContentObj.faqs);
       }
       if (currentSectionKey === 'hero' && Array.isArray(currentContentObj.slides)) {
         renderHeroSlidesEditor(currentContentObj.slides);
@@ -910,21 +1219,41 @@ export function initSectionEditor() {
         updateMediaPreview(vfImageUrl.value);
       }
 
-      // Show/Hide Packages & Hero Slides Editor based on sectionKey
+      // Show/Hide Packages, Hero Slides, Program Details, & FAQ Editor based on sectionKey
       if (key === 'hero') {
         vfGeneralSectionFields?.classList.add('hidden');
         vfPackagesSection?.classList.add('hidden');
+        vfProgramDetailsSection?.classList.add('hidden');
+        vfFaqSection?.classList.add('hidden');
         vfHeroSlidesSection?.classList.remove('hidden');
         renderHeroSlidesEditor(currentContentObj.slides || []);
       } else if (key === 'prog_pricing') {
         vfGeneralSectionFields?.classList.remove('hidden');
         vfHeroSlidesSection?.classList.add('hidden');
+        vfProgramDetailsSection?.classList.add('hidden');
+        vfFaqSection?.classList.add('hidden');
         vfPackagesSection?.classList.remove('hidden');
         renderPackagesEditor(currentContentObj.packages || []);
+      } else if (key === 'prog_details') {
+        vfGeneralSectionFields?.classList.remove('hidden');
+        vfHeroSlidesSection?.classList.add('hidden');
+        vfPackagesSection?.classList.add('hidden');
+        vfFaqSection?.classList.add('hidden');
+        vfProgramDetailsSection?.classList.remove('hidden');
+        renderProgramDetailsEditor(currentContentObj);
+      } else if (key === 'prog_faq') {
+        vfGeneralSectionFields?.classList.remove('hidden');
+        vfHeroSlidesSection?.classList.add('hidden');
+        vfPackagesSection?.classList.add('hidden');
+        vfProgramDetailsSection?.classList.add('hidden');
+        vfFaqSection?.classList.remove('hidden');
+        renderFaqEditor(currentContentObj.faqs || []);
       } else {
         vfGeneralSectionFields?.classList.remove('hidden');
         vfHeroSlidesSection?.classList.add('hidden');
         vfPackagesSection?.classList.add('hidden');
+        vfProgramDetailsSection?.classList.add('hidden');
+        vfFaqSection?.classList.add('hidden');
       }
 
       // Populate JSON textarea

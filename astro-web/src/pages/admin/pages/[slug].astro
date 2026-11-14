@@ -148,6 +148,70 @@ const publicPageUrl = getPublicUrl(slug);
                       ))}
                     </div>
                   </div>
+                ) : section.sectionKey === 'prog_pricing' && Array.isArray((section.content as any)?.packages) ? (
+                  <div class="mt-2.5 space-y-2 bg-blue-50/50 border border-blue-200/60 rounded-xl p-3">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[11px] font-bold text-[#0969da] uppercase tracking-wider font-mono">
+                        Pilihan Paket: {((section.content as any).packages as any[]).length} Paket Terdaftar
+                      </span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {((section.content as any).packages as any[]).map((pkg: any, pIdx: number) => (
+                        <div class="flex items-center gap-2 text-xs text-slate-700 bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 shadow-2xs">
+                          <span class="w-5 h-5 rounded-md bg-blue-50 text-[#0969da] font-mono font-bold text-[11px] flex items-center justify-center shrink-0 border border-blue-200">
+                            {pIdx + 1}
+                          </span>
+                          <div class="min-w-0 flex-1 truncate">
+                            <span class="font-semibold text-slate-800">{pkg.title}</span>
+                            <span class="text-[11px] text-slate-500 font-mono ml-1">({pkg.pricePrefix || ''}{pkg.priceAmount})</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : section.sectionKey === 'prog_details' ? (
+                  <div class="mt-2.5 space-y-2 bg-slate-50 border border-slate-200/80 rounded-xl p-3">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wider font-mono">
+                        Dokumentasi: {Array.isArray((section.content as any)?.portfolioShowcaseItems) ? (section.content as any).portfolioShowcaseItems.length : 4} Showcase &bull; 2 Twin Images
+                      </span>
+                    </div>
+                    {headingPreview && (
+                      <p class="text-xs font-semibold text-slate-800 line-clamp-1">
+                        {headingPreview}
+                      </p>
+                    )}
+                    {(section.content as any)?.imageUrl && (
+                      <div class="flex items-center gap-2.5 p-1.5 bg-white border border-slate-200 rounded-lg">
+                        <div class="w-10 h-10 rounded bg-slate-100 overflow-hidden shrink-0 border border-slate-200">
+                          <img src={(section.content as any).imageUrl} alt="Banner" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="min-w-0 flex-1">
+                          <span class="text-[10px] font-semibold text-[#0969da] block">Foto Banner Deep-Dive (Neon S3)</span>
+                          <p class="text-[10px] font-mono text-slate-500 truncate mt-0.5">{(section.content as any).imageUrl}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : section.sectionKey === 'prog_faq' && Array.isArray((section.content as any)?.faqs) ? (
+                  <div class="mt-2.5 space-y-2 bg-slate-50 border border-slate-200/80 rounded-xl p-3">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[11px] font-bold text-[#0969da] uppercase tracking-wider font-mono">
+                        Tanya Jawab: {((section.content as any).faqs as any[]).length} Butir Pertanyaan
+                      </span>
+                    </div>
+                    <div class="space-y-1.5">
+                      {((section.content as any).faqs as any[]).slice(0, 2).map((faq: any, fIdx: number) => (
+                        <div class="text-xs text-slate-700 bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 shadow-2xs truncate">
+                          <span class="font-bold text-slate-900 mr-1.5">Q{fIdx + 1}:</span>
+                          <span>{faq.question}</span>
+                        </div>
+                      ))}
+                      {((section.content as any).faqs as any[]).length > 2 && (
+                        <p class="text-[10px] text-slate-500 italic text-right">+ {((section.content as any).faqs as any[]).length - 2} pertanyaan lainnya</p>
+                      )}
+                    </div>
+                  </div>
                 ) : (
                   <div>
                     {badgePreview && (

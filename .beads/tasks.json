@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "ADMIN-PROGRAM-SECTIONS-ALIGN-01", "name": "Sinkronisasi Jumlah Section & Fitur Editor Dinamis Halaman Program (Wakaf, Infaq, Sedekah, Zakat) di Dashboard Admin CMS (/admin/pages/[slug]) Sesuai Halaman Publik", "status": "closed" },
     { "id": "DYNAMIC-ALL-PAGES-IMAGES-ADMIN-CMS-01", "name": "Dinamisasi Seluruh Gambar di Semua Halaman (Beranda, Tentang Kami, Kemitraan, Kontak, Program) Terhubung Database Neon PostgreSQL & Pengunggahan Neon S3 via Dashboard Admin CMS", "status": "closed" },
     { "id": "UPDATE-ABOUT-SPLIT-GROUP-PHOTO-01", "name": "Pembaruan Foto Riil Lengkap Ustadz & Duta Santri (7 Orang) pada Seksi AboutSplitSection (Satu Wadah, Empat Pilar Penggerak Kebaikan) di Beranda Sesuai Unggahan Pengguna", "status": "closed" },
     { "id": "ADMIN-HERO-4-SLIDES-EDITOR-01", "name": "Implementasi Pengelolaan 4 Slide Hero Carousel di Dashboard Admin CMS (/admin/pages/home), Sinkronisasi Database Neon PostgreSQL, dan Integrasi Komponen HeroSection Dinamis", "status": "closed" },

@@ -69,6 +69,22 @@ const progDetailsContent = sectionMap.get('prog_details')?.content;
 const progDetailsImage = progDetailsContent?.imageUrl || program.heroImage || program.deepDiveBannerImage || "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp";
 const progDetailsTitle = progDetailsContent?.heading || progDetailsContent?.title || program.deepDiveTitle;
 const progDetailsLead = progDetailsContent?.storyLead || progDetailsContent?.desc || progDetailsContent?.paragraph1 || program.deepDiveLead;
+const progDetailsStory1 = progDetailsContent?.story1 || progDetailsContent?.paragraph2 || program.deepDiveStory1;
+const progDetailsStory2 = progDetailsContent?.story2 || program.deepDiveStory2;
+const progValueBoxes = (Array.isArray(progDetailsContent?.valueBoxes) && progDetailsContent.valueBoxes.length > 0) ? progDetailsContent.valueBoxes : program.valueBoxes;
+const progTwinImages = (Array.isArray(progDetailsContent?.twinImages) && progDetailsContent.twinImages.length >= 2) ? progDetailsContent.twinImages : program.deepDiveTwinImages;
+const progSubblock1Title = progDetailsContent?.subblock1Title || program.deepDiveSubblock1Title || (program.slug === 'infaq' ? 'Konsep Green Building Ramah Lingkungan' : 'Integrasi Pesantren & Agro-Technopark');
+const progSubblock1Desc1 = progDetailsContent?.subblock1Desc1 || program.deepDiveSubblock1Desc1;
+const progSubblock1Desc2 = progDetailsContent?.subblock1Desc2 || program.deepDiveSubblock1Desc2;
+const progSubblock2Title = progDetailsContent?.subblock2Title || program.deepDiveSubblock2Title || (program.slug === 'infaq' ? 'Dokumentasi Fisik Lapangan' : 'Dokumentasi Kawasan Wakaf Jonggol');
+const progSubblock2Desc1 = progDetailsContent?.subblock2Desc1 || program.deepDiveSubblock2Desc1;
+const progSubblock2Desc2 = progDetailsContent?.subblock2Desc2 || program.deepDiveSubblock2Desc2;
+const progShowcaseItems = (Array.isArray(progDetailsContent?.portfolioShowcaseItems) && progDetailsContent.portfolioShowcaseItems.length > 0) ? progDetailsContent.portfolioShowcaseItems : program.portfolioShowcaseItems;
+const progGuarantees = (Array.isArray(progDetailsContent?.guarantees) && progDetailsContent.guarantees.length > 0) ? progDetailsContent.guarantees : program.guarantees;
+
+const progFaqContent = sectionMap.get('prog_faq')?.content;
+const progFaqTitle = progFaqContent?.heading || progFaqContent?.title || program.faqTitle;
+const progFaqs = (Array.isArray(progFaqContent?.faqs) && progFaqContent.faqs.length > 0) ? progFaqContent.faqs : program.faqs;
 ---
 
 <BaseLayout
@@ -179,16 +195,16 @@ const progDetailsLead = progDetailsContent?.storyLead || progDetailsContent?.des
               {progDetailsLead}
             </p>
             <p class="pen-deepdive-para">
-              {program.deepDiveStory1}
+              {progDetailsStory1}
             </p>
             <p class="pen-deepdive-para">
-              {program.deepDiveStory2}
+              {progDetailsStory2}
             </p>
           </div>
 
           <!-- 4 Value Box Icon Grid ala Pen.dev -->
           <div class="pen-value-grid">
-            {program.valueBoxes.map((vb, idx) => (
+            {progValueBoxes.map((vb: any, idx: number) => (
               <div class="pen-value-item">
                 <div class="pen-value-icon">
                   <Fragment set:html={valueBoxIcons[idx % valueBoxIcons.length]} />
@@ -204,13 +220,13 @@ const progDetailsLead = progDetailsContent?.storyLead || progDetailsContent?.des
           <!-- 2 Side-by-side Images (Pen.dev) -->
           <div class="pen-twins-img-grid">
             <img
-              src={program.deepDiveTwinImages ? program.deepDiveTwinImages[0] : "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/halaqah-santri-melingkar.webp"}
+              src={progTwinImages ? progTwinImages[0] : "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/halaqah-santri-melingkar.webp"}
               alt="Dokumentasi Fasilitas Jonggol 1"
               class="pen-twin-img"
               loading="lazy"
             />
             <img
-              src={program.deepDiveTwinImages ? program.deepDiveTwinImages[1] : "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lahan-dan-pemukiman.webp"}
+              src={progTwinImages ? progTwinImages[1] : "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lahan-dan-pemukiman.webp"}
               alt="Dokumentasi Fasilitas Jonggol 2"
               class="pen-twin-img"
               loading="lazy"
@@ -220,36 +236,31 @@ const progDetailsLead = progDetailsContent?.storyLead || progDetailsContent?.des
           <!-- Deep-dive Sub-block 1 (Pen.dev Exact) -->
           <div class="pen-deepdive-subblock">
             <h3 class="pen-subblock-title">
-              {program.deepDiveSubblock1Title || (program.slug === 'infaq' ? 'Konsep Green Building Ramah Lingkungan' : 'Integrasi Pesantren & Agro-Technopark')}
+              {progSubblock1Title}
             </h3>
             <p class="pen-deepdive-para">
-              {program.deepDiveSubblock1Desc1 || 'Masjid Khairu Ummah Sugro dirancang dengan arsitektur tropis ramah lingkungan yang memanfaatkan pencahayaan alami dan ventilasi silang, mengurangi konsumsi listrik dan menghadirkan suasana khusyuk bagi para jamaah.'}
+              {progSubblock1Desc1 || 'Masjid Khairu Ummah Sugro dirancang dengan arsitektur tropis ramah lingkungan yang memanfaatkan pencahayaan alami dan ventilasi silang, mengurangi konsumsi listrik dan menghadirkan suasana khusyuk bagi para jamaah.'}
             </p>
             <p class="pen-deepdive-para">
-              {program.deepDiveSubblock1Desc2 || 'Dilengkapi area mezzanine dua lantai untuk menampung kegiatan ibadah berjamaah, halaqah Quran, serta ruang belajar santri yang terintegrasi dengan keasrian alam sekitar Sukasirna Jonggol.'}
+              {progSubblock1Desc2 || 'Dilengkapi area mezzanine dua lantai untuk menampung kegiatan ibadah berjamaah, halaqah Quran, serta ruang belajar santri yang terintegrasi dengan keasrian alam sekitar Sukasirna Jonggol.'}
             </p>
           </div>
 
           <!-- Deep-dive Sub-block 2 (Pen.dev Exact) -->
           <div class="pen-deepdive-subblock">
             <h3 class="pen-subblock-title">
-              {program.deepDiveSubblock2Title || (program.slug === 'infaq' ? 'Dokumentasi Fisik Lapangan' : 'Dokumentasi Kawasan Wakaf Jonggol')}
+              {progSubblock2Title}
             </h3>
             <p class="pen-deepdive-para">
-              {program.deepDiveSubblock2Desc1 || 'Dokumentasi progres pembangunan riil Masjid Khairu Ummah Sugro di Sukasirna Jonggol — dari pemancangan tiang, pengecoran lantai, pemasangan dinding bata ringan, hingga instalasi sanitasi.'}
+              {progSubblock2Desc1 || 'Dokumentasi progres pembangunan riil di Sukasirna Jonggol — dari pemancangan tiang, pengecoran lantai, pemasangan dinding bata ringan, hingga instalasi sanitasi.'}
             </p>
             <p class="pen-deepdive-para">
-              {program.deepDiveSubblock2Desc2 || 'Setiap kemajuan di lapangan adalah buah dari gotong royong dan ketulusan para muhsinin yang menyalurkan donasi dan infaq terbaiknya.'}
+              {progSubblock2Desc2 || 'Setiap kemajuan di lapangan adalah buah dari gotong royong dan ketulusan para muhsinin yang menyalurkan donasi terbaiknya.'}
             </p>
 
             <!-- 4 Portfolio Showcase Cards Grid (Pen.dev Exact) -->
             <div class="pen-portfolio-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 30px 0;">
-              {(program.portfolioShowcaseItems || [
-                { tag: 'ARSITEKTUR', name: 'Ruang Utama Shalat & Wudhu', category: 'Arsitektur', image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp' },
-                { tag: 'PENDIDIKAN', name: 'KBM Santri di Kelas', category: 'Pendidikan Vokasi', image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/suasana-kbm-santri-ikhwan-di-aula.webp' },
-                { tag: 'SARANA IBADAH', name: 'Pelataran Depan Masjid', category: 'Fasilitas Ibadah', image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp' },
-                { tag: 'INFRASTRUKTUR', name: 'Gedung Asrama Santri', category: 'Infrastruktur Kawasan', image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-pembangunan-gedung-asrama.webp' },
-              ]).map((item) => (
+              {progShowcaseItems.map((item: any) => (
                 <div class="pen-showcase-card">
                   <div class="pen-showcase-img-box">
                     <img src={item.image} alt={item.name} class="pen-showcase-img" loading="lazy" />
@@ -266,16 +277,7 @@ const progDetailsLead = progDetailsContent?.storyLead || progDetailsContent?.des
 
             <!-- 8 Guarantees & Transparansi Badges Grid (Pen.dev Style) -->
             <div class="pen-guarantees-grid">
-              {(program.guarantees || [
-                'Material bersertifikasi standar SNI',
-                'Kwitansi & tanda terima resmi GVF',
-                'Laporan progres fisik berkala',
-                'Dokumentasi foto penyaluran di lokasi',
-                'Pengawasan kualitas & mutu bangunan',
-                'RAB terperinci dan terbuka',
-                'Akad donasi transparan & terpercaya',
-                'Kunjungan langsung ke lokasi Jonggol'
-              ]).map((g) => (
+              {progGuarantees.map((g: string) => (
                 <div class="pen-guarantee-item">
                   <span class="pen-guarantee-check">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -299,12 +301,12 @@ const progDetailsLead = progDetailsContent?.storyLead || progDetailsContent?.des
           <span style="font-family: 'Golos Text', system-ui, sans-serif; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; color: #191919;">FAQ</span>
         </div>
         <h2 style="font-family: 'Golos Text', system-ui, sans-serif; font-size: clamp(28px, 4vw, 48px); color: #0f172a; margin: 0; font-weight: 500; line-height: 1.2;">
-          {program.faqTitle}
+          {progFaqTitle}
         </h2>
       </div>
 
       <div style="max-width: 100%; margin: 0 auto; display: flex; flex-direction: column;">
-        {program.faqs.map((faq, idx) => (
+        {progFaqs.map((faq: any, idx: number) => (
           <details style="border-top: none; padding: 0;" open={idx === 0}>
             <summary style="list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 22px 0; cursor: pointer; font-family: 'Golos Text', system-ui, sans-serif; font-size: 22px; color: #191919; transition: color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);" onmouseover="this.style.color='#0969da'" onmouseout="this.style.color='#191919'">
               <span style="padding-right: 20px;">{faq.question}</span>
