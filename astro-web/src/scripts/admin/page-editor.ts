@@ -77,6 +77,7 @@ export function initSectionEditor() {
   const vfUploadBtnText = document.getElementById('vfUploadBtnText');
   const vfUploadStatus = document.getElementById('vfUploadStatus');
   const vfClearImageBtn = document.getElementById('vfClearImageBtn') as HTMLButtonElement;
+  const vfCardClearBtn = document.getElementById('vfCardClearBtn') as HTMLButtonElement;
   const vfImagePreviewWrapper = document.getElementById('vfImagePreviewWrapper');
   const vfImagePreview = document.getElementById('vfImagePreview') as HTMLImageElement;
   const vfVideoPreview = document.getElementById('vfVideoPreview') as HTMLVideoElement;
@@ -136,6 +137,13 @@ export function initSectionEditor() {
     if (vfImageUrl) vfImageUrl.value = '';
     syncVisualToJson();
     updateMediaPreview('');
+  });
+
+  vfCardClearBtn?.addEventListener('click', () => {
+    if (vfImageUrl) vfImageUrl.value = '';
+    syncVisualToJson();
+    updateMediaPreview('');
+    (window as any).showToast('Media berhasil dihapus.');
   });
 
   vfUploadBtn?.addEventListener('click', () => {
@@ -596,19 +604,33 @@ export function initSectionEditor() {
 
             <div class="sm:col-span-2 space-y-2">
               <div class="flex items-center justify-between">
-                <label class="block text-[11px] font-semibold text-slate-700">Foto Latar Belakang Slide</label>
-                <button type="button" class="btn-upload-slide-img inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-[#0969da] bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors cursor-pointer" data-slide-idx="${sIdx}">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
-                  <span>Unggah Foto S3</span>
-                </button>
+                <div>
+                  <label class="block text-[11px] font-semibold text-slate-700">Foto Latar Belakang Slide</label>
+                  <span class="text-[10px] text-slate-400 font-mono">Format 16:9 / Landscape</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <button type="button" class="btn-upload-slide-img inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-[#0969da] bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors cursor-pointer" data-slide-idx="${sIdx}">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
+                    <span>${slide.image ? 'Ganti Foto S3' : 'Unggah Foto S3'}</span>
+                  </button>
+                  <button type="button" class="btn-clear-slide-img inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-lg transition-colors cursor-pointer ${slide.image ? '' : 'hidden'}" data-slide-idx="${sIdx}">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                    <span>Hapus Foto</span>
+                  </button>
+                </div>
+              </div>
+              <div class="w-full aspect-video max-h-48 rounded-lg bg-slate-900/5 border border-slate-200 overflow-hidden flex items-center justify-center relative">
+                ${slide.image ? `
+                  <img src="${slide.image}" class="w-full h-full object-contain" alt="Pratinjau Slide ${sIdx + 1}" />
+                ` : `
+                  <div class="text-xs text-slate-400 flex flex-col items-center justify-center gap-1 p-4">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                    <span>Belum ada foto latar slide</span>
+                  </div>
+                `}
               </div>
               <div class="flex items-center gap-2">
                 <input type="text" class="input-slide-image flex-1 bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] rounded-lg px-2.5 py-1.5 text-xs text-slate-900 outline-none font-mono" value="${slide.image || ''}" placeholder="URL foto S3 atau /images/..." data-slide-idx="${sIdx}" />
-                ${slide.image ? `
-                  <div class="w-10 h-10 rounded-md bg-slate-100 overflow-hidden shrink-0 border border-slate-200">
-                    <img src="${slide.image}" class="w-full h-full object-cover" alt="Preview" />
-                  </div>
-                ` : ''}
               </div>
             </div>
 
@@ -740,6 +762,19 @@ export function initSectionEditor() {
       });
     });
 
+    // Clear / Hapus foto slide
+    heroSlidesListContainer.querySelectorAll('.btn-clear-slide-img').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const sIdx = Number((e.currentTarget as HTMLElement).dataset.slideIdx);
+        if (currentHeroSlides[sIdx]) {
+          currentHeroSlides[sIdx].image = '';
+          renderHeroSlidesEditor(currentHeroSlides);
+          syncVisualToJson();
+          (window as any).showToast(`Foto Slide ${sIdx + 1} berhasil dihapus.`);
+        }
+      });
+    });
+
     // Delete slide
     heroSlidesListContainer.querySelectorAll('.btn-delete-slide').forEach((btn) => {
       btn.addEventListener('click', (e) => {
@@ -840,13 +875,16 @@ export function initSectionEditor() {
 
   function updateTwinPreview(index: number, url: string) {
     const previewEl = index === 0 ? vfTwinImg1Preview : vfTwinImg2Preview;
+    const emptyEl = document.getElementById(index === 0 ? 'vfTwinImg1Empty' : 'vfTwinImg2Empty');
     if (previewEl) {
       if (url && url.trim()) {
         previewEl.src = url.trim();
         previewEl.classList.remove('hidden');
+        emptyEl?.classList.add('hidden');
       } else {
         previewEl.src = '';
         previewEl.classList.add('hidden');
+        emptyEl?.classList.remove('hidden');
       }
     }
   }
@@ -873,14 +911,20 @@ export function initSectionEditor() {
       showcaseListContainer.innerHTML = currentShowcaseItems.map((item: any, idx: number) => `
         <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-2.5 relative" data-showcase-idx="${idx}">
           <div class="flex items-center justify-between pb-1.5 border-b border-slate-200">
-            <span class="text-[11px] font-bold text-[#0969da] uppercase tracking-wider">Kartu ${idx + 1}</span>
-            <button type="button" class="btn-upload-showcase text-[11px] px-2 py-0.5 bg-white border border-slate-200 hover:border-[#0969da] text-[#0969da] rounded font-medium cursor-pointer" data-showcase-idx="${idx}">
-              Ganti Foto
-            </button>
+            <span class="text-[11px] font-bold text-[#0969da] uppercase tracking-wider">Kartu ${idx + 1} (Rasio 4:3)</span>
+            <div class="flex items-center gap-1.5">
+              <button type="button" class="btn-upload-showcase text-[11px] px-2 py-0.5 bg-white border border-slate-200 hover:border-[#0969da] text-[#0969da] rounded font-medium cursor-pointer" data-showcase-idx="${idx}">
+                Ganti Foto
+              </button>
+              <button type="button" class="btn-delete-showcase-img text-[11px] px-2 py-0.5 bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-600 rounded font-medium cursor-pointer ${item.image ? '' : 'hidden'}" data-showcase-idx="${idx}">
+                Hapus
+              </button>
+            </div>
           </div>
-          <div class="flex gap-2.5 items-center">
-            <div class="w-14 h-14 rounded-lg bg-slate-200 border border-slate-300 overflow-hidden shrink-0">
-              <img src="${item.image || ''}" alt="${item.name || ''}" class="w-full h-full object-cover ${item.image ? '' : 'hidden'}" id="showcase-img-preview-${idx}" />
+          <div class="flex gap-3 items-center">
+            <div class="w-28 aspect-[4/3] rounded-lg bg-slate-900/5 border border-slate-300 overflow-hidden shrink-0 flex items-center justify-center relative">
+              <img src="${item.image || ''}" alt="${item.name || ''}" class="w-full h-full object-contain ${item.image ? '' : 'hidden'}" id="showcase-img-preview-${idx}" />
+              <div class="text-[10px] text-slate-400 text-center p-1 leading-tight ${item.image ? 'hidden' : ''}">Belum ada foto</div>
             </div>
             <div class="min-w-0 flex-1 space-y-1.5">
               <input type="text" class="showcase-field-tag w-full bg-white border border-slate-200 rounded px-2 py-1 text-[11px] font-semibold text-blue-700 uppercase focus:border-[#0969da] outline-none" value="${item.tag || ''}" placeholder="Tag/Badge (cth: ARSITEKTUR)" data-showcase-idx="${idx}" />
@@ -980,11 +1024,35 @@ export function initSectionEditor() {
       return;
     }
 
+    const btnDeleteTwin = target.closest('.btn-delete-twin') as HTMLElement;
+    if (btnDeleteTwin) {
+      const idx = parseInt(btnDeleteTwin.dataset.twinIdx || '0', 10);
+      currentTwinImages[idx] = '';
+      if (idx === 0 && vfTwinImg1) vfTwinImg1.value = '';
+      if (idx === 1 && vfTwinImg2) vfTwinImg2.value = '';
+      updateTwinPreview(idx, '');
+      syncVisualToJson();
+      (window as any).showToast(`Foto twin ${idx + 1} berhasil dihapus.`);
+      return;
+    }
+
     const btnUploadShowcase = target.closest('.btn-upload-showcase') as HTMLElement;
     if (btnUploadShowcase) {
       const idx = parseInt(btnUploadShowcase.dataset.showcaseIdx || '0', 10);
       targetSubUpload = { type: 'showcase', index: idx };
       vfGenericSubFileInput?.click();
+      return;
+    }
+
+    const btnDeleteShowcaseImg = target.closest('.btn-delete-showcase-img') as HTMLElement;
+    if (btnDeleteShowcaseImg) {
+      const idx = parseInt(btnDeleteShowcaseImg.dataset.showcaseIdx || '0', 10);
+      if (currentShowcaseItems[idx]) {
+        currentShowcaseItems[idx].image = '';
+        renderProgramDetailsEditor(currentContentObj);
+        syncVisualToJson();
+        (window as any).showToast(`Foto kartu ${idx + 1} berhasil dihapus.`);
+      }
       return;
     }
 

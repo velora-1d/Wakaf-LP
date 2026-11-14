@@ -27,9 +27,29 @@ export function setupKabarManager() {
 
   // Upload & MinIO Elements
   const modalImagePreview = document.getElementById('modalImagePreview') as HTMLImageElement | null;
+  const modalImageEmptyState = document.getElementById('modalImageEmptyState');
   const btnTriggerModalFile = document.getElementById('btnTriggerModalFile');
+  const btnTriggerModalFileSec = document.getElementById('btnTriggerModalFileSec');
+  const btnRemoveModalImage = document.getElementById('btnRemoveModalImage');
+  const btnRemoveModalImageSec = document.getElementById('btnRemoveModalImageSec');
   const modalFileInput = document.getElementById('modalFileInput') as HTMLInputElement | null;
   const modalUploadProgress = document.getElementById('modalUploadProgress');
+
+  function updateKabarImagePreview(url: string) {
+    if (url && url.trim()) {
+      if (modalImagePreview) {
+        modalImagePreview.src = url.trim();
+        modalImagePreview.classList.remove('hidden');
+      }
+      modalImageEmptyState?.classList.add('hidden');
+    } else {
+      if (modalImagePreview) {
+        modalImagePreview.src = '';
+        modalImagePreview.classList.add('hidden');
+      }
+      modalImageEmptyState?.classList.remove('hidden');
+    }
+  }
 
   // Quick Change Card Image
   const cardQuickFileInput = document.getElementById('cardQuickFileInput') as HTMLInputElement | null;
@@ -83,7 +103,7 @@ export function setupKabarManager() {
       year: 'numeric'
     }).format(new Date());
     if (inputCoverImage) inputCoverImage.value = 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp';
-    if (modalImagePreview) modalImagePreview.src = 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp';
+    updateKabarImagePreview(inputCoverImage ? inputCoverImage.value : '');
     if (inputSummary) inputSummary.value = '';
     if (inputContent) inputContent.value = '';
     if (inputIsPublished) inputIsPublished.checked = true;
@@ -126,7 +146,7 @@ export function setupKabarManager() {
         if (inputAuthor) inputAuthor.value = article.author || 'Tim GVF';
         if (inputPublishedAt) inputPublishedAt.value = article.publishedAt || '';
         if (inputCoverImage) inputCoverImage.value = article.coverImage || '';
-        if (modalImagePreview) modalImagePreview.src = article.coverImage || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp';
+        updateKabarImagePreview(article.coverImage || '');
         if (inputSummary) inputSummary.value = article.summary || '';
         if (inputContent) inputContent.value = article.content || '';
         if (inputIsPublished) inputIsPublished.checked = Boolean(article.isPublished);
@@ -138,10 +158,26 @@ export function setupKabarManager() {
     });
   });
 
-  // MinIO File Upload Handler (Modal)
-  if (btnTriggerModalFile && modalFileInput) {
-    btnTriggerModalFile.addEventListener('click', () => {
+  // MinIO File Upload & Remove Handler (Modal)
+  if (modalFileInput) {
+    btnTriggerModalFile?.addEventListener('click', () => {
       modalFileInput.click();
+    });
+    btnTriggerModalFileSec?.addEventListener('click', () => {
+      modalFileInput.click();
+    });
+
+    const handleRemoveKabarImage = () => {
+      if (inputCoverImage) inputCoverImage.value = '';
+      updateKabarImagePreview('');
+      showToast('Gambar sampul artikel berhasil dihapus.');
+    };
+
+    btnRemoveModalImage?.addEventListener('click', handleRemoveKabarImage);
+    btnRemoveModalImageSec?.addEventListener('click', handleRemoveKabarImage);
+
+    inputCoverImage?.addEventListener('input', () => {
+      updateKabarImagePreview(inputCoverImage.value);
     });
 
     modalFileInput.addEventListener('change', async () => {
@@ -163,7 +199,7 @@ export function setupKabarManager() {
         const data = await res.json();
         if (res.ok && data.success && data.url) {
           if (inputCoverImage) inputCoverImage.value = data.url;
-          if (modalImagePreview) modalImagePreview.src = data.url;
+          updateKabarImagePreview(data.url);
           showToast('Gambar berhasil diunggah ke MinIO S3!');
         } else {
           showToast(data.message || 'Gagal mengunggah gambar.', true);

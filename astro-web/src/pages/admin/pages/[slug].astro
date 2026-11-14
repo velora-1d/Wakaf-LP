@@ -183,8 +183,8 @@ const publicPageUrl = getPublicUrl(slug);
                     )}
                     {(section.content as any)?.imageUrl && (
                       <div class="flex items-center gap-2.5 p-1.5 bg-white border border-slate-200 rounded-lg">
-                        <div class="w-10 h-10 rounded bg-slate-100 overflow-hidden shrink-0 border border-slate-200">
-                          <img src={(section.content as any).imageUrl} alt="Banner" class="w-full h-full object-cover" loading="lazy" />
+                        <div class="w-20 aspect-video rounded-lg bg-slate-100 overflow-hidden shrink-0 border border-slate-200 flex items-center justify-center">
+                          <img src={(section.content as any).imageUrl} alt="Banner" class="w-full h-full object-contain" loading="lazy" />
                         </div>
                         <div class="min-w-0 flex-1">
                           <span class="text-[10px] font-semibold text-[#0969da] block">Foto Banner Deep-Dive (Neon S3)</span>
@@ -231,11 +231,11 @@ const publicPageUrl = getPublicUrl(slug);
                     )}
                     {(section.content as any)?.imageUrl && (
                       <div class="mt-2.5 flex items-center gap-3 p-2 bg-slate-50 border border-slate-200 rounded-xl">
-                        <div class="w-12 h-12 rounded-lg bg-slate-200 overflow-hidden shrink-0 border border-slate-300">
+                        <div class="w-24 aspect-video rounded-lg bg-slate-200 overflow-hidden shrink-0 border border-slate-300 flex items-center justify-center">
                           <img
                             src={(section.content as any).imageUrl}
                             alt={section.title}
-                            class="w-full h-full object-cover"
+                            class="w-full h-full object-contain"
                             loading="lazy"
                           />
                         </div>

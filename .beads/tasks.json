@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "ADMIN-IMAGE-ASPECT-RATIO-UPDATE-DELETE-01", "name": "Standardisasi Rasio Gambar Proporsional Serta Fitur Update & Hapus Gambar pada Seluruh Area Unggah Media Admin CMS (Section General, Hero Carousel, Twin Images, Showcase Cards & Kabar)", "status": "closed" },
     { "id": "ADMIN-PROGRAM-SECTIONS-ALIGN-01", "name": "Sinkronisasi Jumlah Section & Fitur Editor Dinamis Halaman Program (Wakaf, Infaq, Sedekah, Zakat) di Dashboard Admin CMS (/admin/pages/[slug]) Sesuai Halaman Publik", "status": "closed" },
     { "id": "DYNAMIC-ALL-PAGES-IMAGES-ADMIN-CMS-01", "name": "Dinamisasi Seluruh Gambar di Semua Halaman (Beranda, Tentang Kami, Kemitraan, Kontak, Program) Terhubung Database Neon PostgreSQL & Pengunggahan Neon S3 via Dashboard Admin CMS", "status": "closed" },
     { "id": "UPDATE-ABOUT-SPLIT-GROUP-PHOTO-01", "name": "Pembaruan Foto Riil Lengkap Ustadz & Duta Santri (7 Orang) pada Seksi AboutSplitSection (Satu Wadah, Empat Pilar Penggerak Kebaikan) di Beranda Sesuai Unggahan Pengguna", "status": "closed" },
