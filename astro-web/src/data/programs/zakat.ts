@@ -20,7 +20,7 @@ export const zakatProgram: ProgramData = {
       priceUnit: '',
       priceDesc: 'Per jiwa (setara 3,5 liter / 2,5 kg beras)',
       estimation: 'Penyaluran sebelum shalat Idulfitri kepada fakir miskin',
-      isPopular: true,
+      isPopular: false,
       deliverables: [
         { bold: 'Kewajiban Setiap Muslim', text: 'Wajib ditunaikan oleh setiap muslim yang memenuhi ketentuan sebelum salat Idulfitri' },
         { bold: 'Penyaluran Beras Layak', text: 'Dikonversikan dalam bentuk beras berkualitas baik bagi keluarga fakir miskin sekitar' },

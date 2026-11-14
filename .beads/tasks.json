@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "TENTANG-KAMI-EKOSISTEM-REDESIGN-01", "name": "Redesain Seksi Pengembangan Ekosistem Halaman Tentang Kami Menjadi 5 Pilar Keberlanjutan Sesuai Referensi & Integrasi Penuh S3", "status": "open" },
     { "id": "MOBILE-FRIENDLY-ALL-PAGES-MENU-SECTIONS-01", "name": "Audit & Implementasi Standarisasi Mobile-Friendly Komprehensif pada Seluruh Menu, Drawer Navigasi, Seksi, Halaman Publik Donatur, Program, dan Beranda", "status": "closed" },
     { "id": "PUBLIC-DONOR-PAGE-AND-ADMIN-INTEG-01", "name": "Pembuatan Halaman Khusus Publik Donatur (/donatur) Lengkap dengan Filter Program, Pencarian Real-Time, Pagination Interaktif, Kolom No Angka Murni, Serta Integrasi Langsung dengan Dashboard Admin CMS (/admin/donatur)", "status": "closed" },
     { "id": "REDESIGN-DONOR-TABLE-GRID-2-COL-01", "name": "Redesain UI Tabel Donatur Landing Page Program Menjadi Format Ringkas 8 Baris Terkini dengan Kolom No Murni Angka, Tanpa Avatar Inisial Bulat, dan Tombol Akses Cepat ke Halaman Publik Donatur", "status": "closed" },
@@ -134,6 +135,7 @@
     { "id": "FORMAT-ZAKAT-CLEAN-COPY-01", "name": "Penyempurnaan Format & Tipografi Narasi Zakat (Fitrah, Maal, Penghasilan) Tanpa Penomoran Kaku pada Program Data & Dokumentasi GVF", "status": "closed" },
     { "id": "FORMAT-ALL-PROGRAMS-CLEAN-COPY-01", "name": "Standardisasi Penulisan Tipografi Narasi & Paket Seluruh Program (Infak, Sedekah, Wakaf) Tanpa Prefiks Huruf & Angka Kaku", "status": "closed" },
     { "id": "TEXT-JUSTIFY-COMPREHENSIVE-ALIGN-01", "name": "Penyelarasan Global Text-Align Justify untuk Seluruh Paragraf, Deliverables, Lead Text & Intro Program di Semua Halaman Website", "status": "closed" },
-    { "id": "MIGRATE-GOODS-DONATION-TO-INFAQ-01", "name": "Migrasi & Penyelarasan Donasi Natura Barang (Semen) ke Kategori Program Infaq pada Database Neon PostgreSQL & Frontend Live Feed", "status": "closed" }
+    { "id": "MIGRATE-GOODS-DONATION-TO-INFAQ-01", "name": "Migrasi & Penyelarasan Donasi Natura Barang (Semen) ke Kategori Program Infaq pada Database Neon PostgreSQL & Frontend Live Feed", "status": "closed" },
+    { "id": "PURGE-REKOMENDASI-PROGRAM-BADGES-01", "name": "Eliminasi Menyeluruh Badge Gimmick 'Rekomendasi Program' & Border Tebal Populer pada Kartu Paket Program (Infaq, Sedekah, Wakaf, Zakat) Sesuai Standar Anti-Slop", "status": "closed" }
   ]
 }

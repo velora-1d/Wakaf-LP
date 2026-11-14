@@ -20,7 +20,7 @@ export const infaqProgram: ProgramData = {
       priceUnit: '',
       priceDesc: 'Per paket partisipasi konstruksi',
       estimation: 'Alokasi: Semen, hebel, besi, baja ringan, atap & sanitasi',
-      isPopular: true,
+      isPopular: false,
       deliverables: [
         { bold: 'Material Konstruksi Lengkap', text: 'Semen, pasir split, besi beton, baja ringan, bata hebel, keramik, atap & plafon' },
         { bold: 'Kusen, Pintu & Jendela', text: 'Pengadaan kusen aluminium, kaca, dan pintu ruang kelas serta asrama santri' },

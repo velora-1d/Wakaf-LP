@@ -323,27 +323,6 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
-.arch-pricing-card.popular {
-  border: 2px solid var(--tl-color-theme-primary);
-}
-
-.arch-pricing-card .pricing-badge {
-  background: var(--tl-color-theme-primary);
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  border-radius: 9999px;
-  padding: 4px 16px;
-  font-size: 11px;
-  font-weight: 700;
-  font-family: var(--tl-ff-heading);
-  position: absolute;
-  top: -13px;
-  right: 50%;
-  transform: translateX(50%);
-  white-space: nowrap;
-}
-
 .arch-pricing-card .plan-title {
   font-family: var(--tl-ff-heading);
   text-align: center;

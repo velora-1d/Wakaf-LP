@@ -20,7 +20,7 @@ export const wakafProgram: ProgramData = {
       priceUnit: '',
       priceDesc: 'Per paket pembangunan fasilitas ibadah',
       estimation: 'Alokasi: Konstruksi fisik, mezanin & atap permanen masjid',
-      isPopular: true,
+      isPopular: false,
       deliverables: [
         { bold: 'Pusat Ibadah Berkelanjutan', text: 'Menampung shalat berjamaah dan pembinaan harian santri serta masyarakat' },
         { bold: 'Penyelesaian Atap Permanen', text: 'Pembangunan atap permanen menggantikan naungan atap konstruksi sementara' },

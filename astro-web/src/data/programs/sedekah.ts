@@ -20,7 +20,7 @@ export const sedekahProgram: ProgramData = {
       priceUnit: '',
       priceDesc: 'Per porsi makan lengkap bernutrisi',
       estimation: 'Alokasi: Beras, minyak, telur, daging/ikan, sayur & susu',
-      isPopular: true,
+      isPopular: false,
       deliverables: [
         { bold: 'Pangan Pokok Seimbang', text: 'Beras pulen, minyak goreng, telur, daging, ikan, sayuran, dan buah segar' },
         { bold: 'Dapur Mandiri Higienis', text: 'Dimasak setiap hari di dapur umum asrama oleh juru masak pesantren' },
