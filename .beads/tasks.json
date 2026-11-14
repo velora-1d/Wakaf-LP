@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "ABOUT-INTRO-CLEAN-ALIGN-01", "name": "Refactor Seksi Mengenal GVF (Tentang Kami): Eliminasi Kotak 3 Hektare, Penyatuan Alur Narasi Kolom Kiri & Showcase Visual Gedung Megah Kolom Kanan", "status": "closed" },
     { "id": "TENTANG-KAMI-EKOSISTEM-REDESIGN-01", "name": "Redesain Seksi Pengembangan Ekosistem Halaman Tentang Kami Menjadi 5 Pilar Keberlanjutan Sesuai Referensi & Integrasi Penuh S3", "status": "closed" },
     { "id": "MOBILE-FRIENDLY-ALL-PAGES-MENU-SECTIONS-01", "name": "Audit & Implementasi Standarisasi Mobile-Friendly Komprehensif pada Seluruh Menu, Drawer Navigasi, Seksi, Halaman Publik Donatur, Program, dan Beranda", "status": "closed" },
     { "id": "PUBLIC-DONOR-PAGE-AND-ADMIN-INTEG-01", "name": "Pembuatan Halaman Khusus Publik Donatur (/donatur) Lengkap dengan Filter Program, Pencarian Real-Time, Pagination Interaktif, Kolom No Angka Murni, Serta Integrasi Langsung dengan Dashboard Admin CMS (/admin/donatur)", "status": "closed" },
