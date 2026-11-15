@@ -1,6 +1,7 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "PUSH-MAIN-AND-DEPLOY-CF-02", "name": "Push Perubahan Dinamisasi Kabar GVF ke Remote Main & Eksekusi Deployment Cloudflare Pages Production (wakaf-astro)", "status": "in_progress" },
     { "id": "DYNAMIC-NEWS-SECTION-ADMIN-01", "name": "Dinamisasi Teks & Gambar Seksi Kabar GVF (NewsSection) Terhubung Dashboard Admin (/admin/pages/home & /admin/kabar) Serta Verifikasi Build 100%", "status": "closed" },
     { "id": "PUSH-MAIN-AND-DEPLOY-CF-01", "name": "Push Perubahan ke Remote Main & Eksekusi Deployment Cloudflare Pages Production (wakaf-astro)", "status": "closed" },
     { "id": "UPDATE-ALL-PHONE-TO-2326-01", "name": "Penyelarasan Total Nomor Kontak Telepon & WhatsApp Bawaan ISAVO (0878-6599-4786) Menjadi Nomor Resmi Admin GVF (0812-2683-2326 / 6281226832326) di Seluruh Komponen Website", "status": "closed" },

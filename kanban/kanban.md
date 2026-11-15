@@ -3,6 +3,7 @@
 ## To Do
 
 ## In Progress
+- [/] PUSH-MAIN-AND-DEPLOY-CF-02: Push Perubahan Dinamisasi Kabar GVF ke Remote Main & Eksekusi Deployment Cloudflare Pages Production (wakaf-astro)
 - [/] LP-UIUX-WAKAFRUTIN-01: Redesain UI/UX Landing Page Masjid Khairu Ummah Sugro berbasis Desain Sistem Wakaf-Rutin dengan Konten, Aset & Video Asli
 
 ## In Review / Test
