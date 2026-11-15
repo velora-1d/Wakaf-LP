@@ -3,12 +3,12 @@
 ## To Do
 
 ## In Progress
-- [/] PUSH-MAIN-AND-DEPLOY-CF-02: Push Perubahan Dinamisasi Kabar GVF ke Remote Main & Eksekusi Deployment Cloudflare Pages Production (wakaf-astro)
 - [/] LP-UIUX-WAKAFRUTIN-01: Redesain UI/UX Landing Page Masjid Khairu Ummah Sugro berbasis Desain Sistem Wakaf-Rutin dengan Konten, Aset & Video Asli
 
 ## In Review / Test
 
 ## Done
+- [x] PUSH-MAIN-AND-DEPLOY-CF-02: Push Perubahan Dinamisasi Kabar GVF ke Remote Main & Eksekusi Deployment Cloudflare Pages Production (wakaf-astro) Terverifikasi Live HTTP 200 OK
 - [x] DYNAMIC-NEWS-SECTION-ADMIN-01: Dinamisasi Teks & Gambar Seksi Kabar GVF (NewsSection) Terhubung Dashboard Admin (/admin/pages/home & /admin/kabar) Serta Verifikasi Build 100%
 - [x] PUSH-MAIN-AND-DEPLOY-CF-01: Push Perubahan ke Remote Main & Eksekusi Deployment Cloudflare Pages Production (wakaf-astro) Terverifikasi Live HTTP 200 OK
 - [x] UPDATE-ALL-PHONE-TO-2326-01: Penyelarasan Total Nomor Kontak Telepon & WhatsApp Bawaan ISAVO (0878-6599-4786) Menjadi Nomor Resmi Admin GVF (0812-2683-2326 / 6281226832326) di Seluruh Komponen Website Terverifikasi Lulus Build 100%
