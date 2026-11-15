@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] DYNAMIC-NEWS-SECTION-ADMIN-01: Dinamisasi Teks & Gambar Seksi Kabar GVF (NewsSection) Terhubung Dashboard Admin (/admin/pages/home & /admin/kabar) Serta Verifikasi Build 100%
 - [x] PUSH-MAIN-AND-DEPLOY-CF-01: Push Perubahan ke Remote Main & Eksekusi Deployment Cloudflare Pages Production (wakaf-astro) Terverifikasi Live HTTP 200 OK
 - [x] UPDATE-ALL-PHONE-TO-2326-01: Penyelarasan Total Nomor Kontak Telepon & WhatsApp Bawaan ISAVO (0878-6599-4786) Menjadi Nomor Resmi Admin GVF (0812-2683-2326 / 6281226832326) di Seluruh Komponen Website Terverifikasi Lulus Build 100%
 - [x] ADMIN-IMAGE-ASPECT-RATIO-UPDATE-DELETE-01: Standardisasi Rasio Gambar Proporsional Serta Fitur Update & Hapus Gambar pada Seluruh Area Unggah Media Admin CMS (Section General Media 16:9, Hero Carousel Slides 16:9, Twin Images 4:3, Showcase Cards 4:3, Pratinjau Kartu Section Pages, dan Modal Berita/Kabar S3 dengan Tombol Ganti & Hapus Foto Terverifikasi Lulus Build 100%)

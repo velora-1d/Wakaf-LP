@@ -235,12 +235,12 @@ async function main() {
       {
         page_slug: 'home',
         section_key: 'news_section',
-        title: 'Kabar & Warta GVF',
+        title: 'Kabar & Catatan Edukasi Kebermanfaatan',
         sort_order: 9,
         content: {
-          badge: 'WARTA & DOKUMENTASI TERKINI',
-          heading: 'Kabar Kebaikan & Perkembangan Proyek',
-          subheading: 'Informasi transparan mengenai peresmian program, kegiatan relawan, dan laporan berkala yayasan.'
+          badge: 'WARTA & EDUKASI KEBERMANFAATAN',
+          heading: 'Kabar Global Skill Village Fund &\nCatatan Edukasi Kebermanfaatan',
+          subheading: 'Informasi terkini progres pembangunan kawasan, aktivitas santri vokasi, dan catatan fiqih wakaf produktif di Jonggol.'
         }
       },
       {

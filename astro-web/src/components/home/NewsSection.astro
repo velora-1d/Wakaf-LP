@@ -3,6 +3,12 @@
 import { getActiveNewsArticles } from '../../lib/db';
 import BlossomCarousel from '../ui/BlossomCarousel.astro';
 
+interface Props {
+  content?: Record<string, any>;
+}
+
+const { content } = Astro.props;
+
 const dbArticles = await getActiveNewsArticles(6);
 
 // Fallback data jika database belum memiliki artikel aktif
@@ -74,17 +80,26 @@ const formatDate = (dateInput: Date | string | null) => {
     year: 'numeric'
   }).format(dateInput);
 };
+
+const rawHeading = content?.heading || content?.title || 'Kabar Global Skill Village Fund & Catatan Edukasi Kebermanfaatan';
+const formattedHeading = rawHeading.includes('<br')
+  ? rawHeading
+  : rawHeading.replace(/\n/g, '<br />').replace(/ & /g, ' &amp;<br />');
+
+const subtitle =
+  content?.subheading ||
+  content?.description ||
+  'Informasi terkini progres pembangunan kawasan, aktivitas santri vokasi, dan catatan fiqih wakaf produktif di Jonggol.';
 ---
 
 <section class="pen-news-section reveal-on-scroll" id="kabar-gvf">
   <div class="pen-news-container">
     <div class="pen-news-header">
       <h2 class="pen-news-title">
-        Kabar Global Skill Village Fund &amp;<br />
-        Catatan Edukasi Kebermanfaatan
+        <Fragment set:html={formattedHeading} />
       </h2>
       <p class="pen-news-subtitle">
-        Informasi terkini progres pembangunan kawasan, aktivitas santri vokasi, dan catatan fiqih wakaf produktif di Jonggol.
+        {subtitle}
       </p>
     </div>
 

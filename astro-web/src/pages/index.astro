@@ -42,6 +42,6 @@ const isEnabled = (key: string) => {
   {isEnabled('leadership') && <LeadershipSection />}
   {isEnabled('video_documentary') && <VideoSection />}
   <GoodsDonationSection />
-  {isEnabled('news_section') && <NewsSection />}
+  {isEnabled('news_section') && <NewsSection content={sectionMap.get('news_section')?.content} />}
   {isEnabled('final_cta') && <FinalCtaSection />}
 </BaseLayout>
