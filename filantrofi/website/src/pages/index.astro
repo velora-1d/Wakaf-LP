@@ -1,0 +1,346 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/navigation/Navbar.astro';
+import MobileBottomNav from '../components/navigation/MobileBottomNav.astro';
+import CampaignCard from '../components/campaign/CampaignCard.astro';
+
+const featuredCampaigns = [
+  {
+    title: 'Wakaf Pembangunan Masjid & Pusat Pendidikan Khairu Ummah Sugro',
+    category: 'Wakaf',
+    institution: 'Global Village Fund (GVF)',
+    imageUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format&fit=crop&q=80',
+    collectedAmount: 1420000000,
+    targetAmount: 2500000000,
+    daysRemaining: 45,
+    slug: 'wakaf-masjid-khairu-ummah',
+  },
+  {
+    title: 'Infaq Sarana Asrama & Fasilitas Mandiri Santri Penghafal Quran',
+    category: 'Infaq',
+    institution: 'Global Village Fund (GVF)',
+    imageUrl: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&auto=format&fit=crop&q=80',
+    collectedAmount: 312500000,
+    targetAmount: 500000000,
+    daysRemaining: 18,
+    slug: 'infaq-asrama-santri',
+  },
+  {
+    title: 'Sedekah Paket Pangan Beras Nutrisi Santri Dhuafa Sukasirna Jonggol',
+    category: 'Sedekah',
+    institution: 'Global Village Fund (GVF)',
+    imageUrl: 'https://images.unsplash.com/photo-1584744982491-665216d95f8b?w=800&auto=format&fit=crop&q=80',
+    collectedAmount: 98000000,
+    targetAmount: 120000000,
+    daysRemaining: 12,
+    slug: 'sedekah-pangan-beras',
+  },
+];
+---
+
+<Layout title="Filantrofi - Platform Kebaikan & Wakaf Terpercaya">
+  <Navbar />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content">
+          <span class="hero-eyebrow">EKOSISTEM FILANTROPI MODERN</span>
+          <h1 class="hero-heading">
+            Menyalurkan Kebaikan, <br />
+            Menumbuhkan Kebermanfaatan Abadi
+          </h1>
+          <p class="hero-description">
+            Platform penggalangan dana dan wakaf produktif yang transparan, terpercaya,
+            serta terhubung langsung dengan laporan penyaluran riil di lapangan.
+          </p>
+          <div class="hero-actions">
+            <a href="#program" class="btn-primary-large">Pilih Program Kebaikan</a>
+            <a href="#kabar" class="btn-secondary-large">Lihat Laporan Penyaluran</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Strip -->
+    <section class="metrics-strip">
+      <div class="metrics-container">
+        <div class="metric-item">
+          <span class="metric-num">100%</span>
+          <span class="metric-label">Amanah & Transparan</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-item">
+          <span class="metric-num">Rp 1,83 M+</span>
+          <span class="metric-label">Dana Kebaikan Terkumpul</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-item">
+          <span class="metric-num">1.910+</span>
+          <span class="metric-label">Donatur Bergabung</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-item">
+          <span class="metric-num">4 Pilar</span>
+          <span class="metric-label">Wakaf, Infaq, Sedekah & Zakat</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Campaign Grid Section -->
+    <section id="program" class="campaign-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div>
+            <span class="section-eyebrow">PROGRAM TERVERIFIKASI</span>
+            <h2 class="section-title">Pilih Program Kebaikan Anda</h2>
+          </div>
+          <p class="section-desc">
+            Seluruh program telah melalui verifikasi legalitas, tim survei lapangan, dan
+            pengawasan berkala.
+          </p>
+        </div>
+
+        <div class="campaign-grid">
+          {featuredCampaigns.map((camp) => <CampaignCard {...camp} />)}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="brand-name">FILANTROFI</span>
+        <p class="brand-desc">
+          Ekosistem filantropi dan wakaf produktif dengan transparansi terintegrasi.
+        </p>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2026 Filantrofi Ecosystem. Seluruh hak cipta dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <MobileBottomNav currentPath="/" />
+</Layout>
+
+<style>
+  .hero-section {
+    background: #0f172a;
+    color: #ffffff;
+    padding: 80px 24px 72px;
+  }
+
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-content {
+    max-width: 760px;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    color: #38bdf8;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .hero-heading {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+  }
+
+  .hero-description {
+    font-size: 17px;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary-large {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 28px;
+    border-radius: 8px;
+    background: #0969da;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.15s ease;
+  }
+
+  .btn-primary-large:hover {
+    background: #0752a8;
+  }
+
+  .btn-secondary-large {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 28px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.15s ease;
+  }
+
+  .btn-secondary-large:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .metrics-strip {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .metrics-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .metric-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .metric-label {
+    font-size: 12px;
+    color: #64748b;
+  }
+
+  .metric-divider {
+    width: 1px;
+    height: 36px;
+    background: #e2e8f0;
+  }
+
+  .campaign-section {
+    padding: 64px 24px 80px;
+  }
+
+  .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0969da;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: #64748b;
+    max-width: 600px;
+  }
+
+  .campaign-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .site-footer {
+    background: #0f172a;
+    color: #94a3b8;
+    padding: 48px 24px 32px;
+    border-top: 1px solid #1e293b;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .brand-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+  }
+
+  .brand-desc {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 4px;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  @media (max-width: 992px) {
+    .campaign-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .metrics-container {
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .metric-divider {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .campaign-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-heading {
+      font-size: 32px;
+    }
+  }
+</style>

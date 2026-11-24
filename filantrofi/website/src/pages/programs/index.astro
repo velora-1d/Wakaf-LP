@@ -1,0 +1,666 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/navigation/Navbar.astro';
+import MobileBottomNav from '../../components/navigation/MobileBottomNav.astro';
+import CategoryChips from '../../components/navigation/CategoryChips.astro';
+import HeroBanner from '../../components/campaign/HeroBanner.astro';
+import CampaignCard from '../../components/campaign/CampaignCard.astro';
+import CampaignGrid from '../../components/campaign/CampaignGrid.astro';
+
+// Program Data Catalog
+const programs = [
+  {
+    title: 'Wakaf Pembangunan Masjid & Pusat Pendidikan Khairu Ummah Sugro',
+    category: 'Wakaf',
+    categoryId: 'wakaf',
+    institution: 'Global Village Fund (GVF)',
+    imageUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format&fit=crop&q=80',
+    collectedAmount: 1420000000,
+    targetAmount: 2500000000,
+    daysRemaining: 45,
+    donorCount: 1250,
+    slug: 'wakaf-masjid-khairu-ummah',
+    featured: true,
+    description: 'Pembangunan masjid peradaban dan pusat pembinaan santri penghafal Al-Quran seluas 1.200 m2 di kawasan Jonggol, Jawa Barat.',
+  },
+  {
+    title: 'Wakaf Sumur Bor & Instalasi Air Bersih Santri Sukasirna',
+    category: 'Wakaf',
+    categoryId: 'wakaf',
+    institution: 'Global Village Fund (GVF)',
+    imageUrl: 'https://images.unsplash.com/photo-1574482620826-40685ca5ebd2?w=800&auto=format&fit=crop&q=80',
+    collectedAmount: 85000000,
+    targetAmount: 120000000,
+    daysRemaining: 30,
+    donorCount: 310,
+    slug: 'wakaf-sumur-sukasirna',
+    featured: false,
+    description: 'Penyediaan air bersih mandiri untuk kebutuhan harian 180 santri dan warga sekitar pesantren yang rawan kekeringan saat kemarau.',
+  },
+  {
+    title: 'Infaq Sarana Asrama & Fasilitas Mandiri Santri Penghafal Quran',
+    category: 'Infaq',
+    categoryId: 'infaq',
+    institution: 'Global Village Fund (GVF)',
+    imageUrl: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&auto=format&fit=crop&q=80',
+    collectedAmount: 312500000,
+    targetAmount: 500000000,
+    daysRemaining: 18,
+    donorCount: 540,
+    slug: 'infaq-asrama-santri',
+    featured: false,
+    description: 'Pengadaan ranjang bertingkat, lemari pakaian santri, dan sanitasi asrama yang higienis demi kenyamanan belajar santri.',
+  },
+  {
+    title: 'Sedekah Paket Pangan Beras Nutrisi Santri Dhuafa Sukasirna Jonggol',
+    category: 'Sedekah',
+    categoryId: 'sedekah',
+    institution: 'Global Village Fund (GVF)',
+    imageUrl: 'https://images.unsplash.com/photo-1584744982491-665216d95f8b?w=800&auto=format&fit=crop&q=80',
+    collectedAmount: 98000000,
+    targetAmount: 120000000,
+    daysRemaining: 12,
+    donorCount: 412,
+    slug: 'sedekah-pangan-beras',
+    featured: false,
+    description: 'Distribusi beras kualitas unggul dan lauk pauk bergizi tinggi untuk kebutuhan makan harian para penuntut ilmu.',
+  },
+  {
+    title: 'Zakat Maal Pemberdayaan Pendidikan Santri & Yatim Berprestasi',
+    category: 'Zakat',
+    categoryId: 'zakat',
+    institution: 'Global Village Fund (GVF)',
+    imageUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&auto=format&fit=crop&q=80',
+    collectedAmount: 210000000,
+    targetAmount: 300000000,
+    daysRemaining: 25,
+    donorCount: 189,
+    slug: 'zakat-maal-beasiswa',
+    featured: false,
+    description: 'Penyaluran zakat produktif untuk biaya SPP, kitab kajian, seragam, dan uang saku santri yatim berprestasi.',
+  },
+  {
+    title: 'Program Kemanusiaan Tanggap Darurat Bencana & Ambulans Gratis Dhuafa',
+    category: 'Kemanusiaan',
+    categoryId: 'kemanusiaan',
+    institution: 'Global Village Fund (GVF)',
+    imageUrl: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&auto=format&fit=crop&q=80',
+    collectedAmount: 145000000,
+    targetAmount: 200000000,
+    daysRemaining: 40,
+    donorCount: 275,
+    slug: 'kemanusiaan-ambulans-dhuafa',
+    featured: false,
+    description: 'Operasional armada ambulans siaga 24 jam dan bantuan tanggap darurat evakuasi warga pra-sejahtera di pelosok.',
+  },
+];
+
+const featuredProgram = programs[0];
+---
+
+<Layout
+  title="Katalog Program Kebaikan & Wakaf Terpercaya - Filantrofi"
+  description="Jelajahi program wakaf produktif, infaq, sedekah, zakat, dan kemanusiaan terverifikasi dengan laporan real-time."
+>
+  <Navbar activePath="/programs" />
+
+  <main class="page-container">
+    <div class="content-wrapper">
+      <!-- Page Header -->
+      <section class="catalog-header">
+        <div class="header-breadcrumb">
+          <a href="/" class="crumb-link">Beranda</a>
+          <span class="crumb-sep">/</span>
+          <span class="crumb-current">Program Kebaikan</span>
+        </div>
+
+        <div class="header-main-row">
+          <div>
+            <h1 class="catalog-title">Program Kebaikan & Wakaf Terverifikasi</h1>
+            <p class="catalog-subtitle">
+              Pilih program amanah yang ingin Anda dukung. Seluruh penyaluran dipantau
+              secara transparan dengan audit berkala.
+            </p>
+          </div>
+        </div>
+
+        <!-- Catalog Search Bar -->
+        <div class="catalog-search-row">
+          <div class="search-input-box">
+            <svg
+              class="search-lens-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+            <input
+              type="text"
+              id="program-search-input"
+              placeholder="Ketik nama program, wakaf masjid, bantuan pangan, atau kota..."
+              aria-label="Cari program"
+            />
+            <button type="button" id="clear-search-btn" class="clear-btn" aria-label="Hapus pencarian" style="display: none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Category Chips -->
+        <div class="chips-row">
+          <CategoryChips selectedCategory="all" baseUrl="/programs" />
+        </div>
+      </section>
+
+      <!-- Featured Program Banner -->
+      <section class="featured-section" id="featured-banner-section">
+        <HeroBanner
+          title={featuredProgram.title}
+          description={featuredProgram.description}
+          badge="PROGRAM PILIHAN UTAMA"
+          category={featuredProgram.category}
+          institution={featuredProgram.institution}
+          imageUrl={featuredProgram.imageUrl}
+          collectedAmount={featuredProgram.collectedAmount}
+          targetAmount={featuredProgram.targetAmount}
+          daysRemaining={featuredProgram.daysRemaining}
+          donorCount={featuredProgram.donorCount}
+          slug={featuredProgram.slug}
+        />
+      </section>
+
+      <!-- Catalog List Section -->
+      <section class="catalog-list-section">
+        <div class="list-summary-bar">
+          <div class="summary-count">
+            <span class="count-number" id="visible-count">{programs.length}</span>
+            <span class="count-label">Program Terverifikasi Tersedia</span>
+          </div>
+          <div class="trust-badge">
+            <svg
+              class="shield-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <span>100% Diawasi Legalitas & Syariat</span>
+          </div>
+        </div>
+
+        <!-- Program Grid -->
+        <CampaignGrid columns={3} gap="24" class="program-cards-grid">
+          {
+            programs.map((prog) => (
+              <div
+                class="program-card-item"
+                data-category={prog.categoryId}
+                data-title={prog.title.toLowerCase()}
+                data-institution={prog.institution.toLowerCase()}
+              >
+                <CampaignCard
+                  title={prog.title}
+                  category={prog.category}
+                  institution={prog.institution}
+                  imageUrl={prog.imageUrl}
+                  collectedAmount={prog.collectedAmount}
+                  targetAmount={prog.targetAmount}
+                  daysRemaining={prog.daysRemaining}
+                  donorCount={prog.donorCount}
+                  slug={prog.slug}
+                />
+              </div>
+            ))
+          }
+        </CampaignGrid>
+
+        <!-- Empty Search State -->
+        <div id="no-results-state" class="empty-state" style="display: none;">
+          <div class="empty-icon-wrap">
+            <svg
+              class="empty-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              <line x1="8" y1="11" x2="14" y2="11" />
+            </svg>
+          </div>
+          <h3 class="empty-title">Program Tidak Ditemukan</h3>
+          <p class="empty-desc">
+            Coba gunakan kata kunci lain atau pilih kategori 'Semua Program' untuk melihat seluruh daftar.
+          </p>
+          <button type="button" id="reset-filter-btn" class="btn-reset">
+            Reset Pencarian
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Mobile Bottom Nav -->
+  <MobileBottomNav currentPath="/programs" />
+</Layout>
+
+<script>
+  // Client-Side Search and Category Filtering Logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('program-search-input') as HTMLInputElement | null;
+    const clearBtn = document.getElementById('clear-search-btn');
+    const resetBtn = document.getElementById('reset-filter-btn');
+    const items = document.querySelectorAll('.program-card-item');
+    const visibleCountEl = document.getElementById('visible-count');
+    const noResultsState = document.getElementById('no-results-state');
+    const featuredSection = document.getElementById('featured-banner-section');
+    const chipLinks = document.querySelectorAll('.category-chip');
+
+    // Read URL params if any
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialCategory = urlParams.get('category') || 'all';
+    const initialQuery = urlParams.get('q') || '';
+
+    if (searchInput && initialQuery) {
+      searchInput.value = initialQuery;
+      if (clearBtn) clearBtn.style.display = 'flex';
+    }
+
+    let activeCategory = initialCategory.toLowerCase();
+    let searchQuery = initialQuery.toLowerCase();
+
+    function updateActiveChips() {
+      chipLinks.forEach((chip) => {
+        const href = chip.getAttribute('href') || '';
+        const isAll = activeCategory === 'all' && (href === '/programs' || href.endsWith('/programs'));
+        const isMatch = href.includes(`category=${activeCategory}`);
+        if (isAll || isMatch) {
+          chip.classList.add('active');
+          chip.setAttribute('aria-selected', 'true');
+        } else {
+          chip.classList.remove('active');
+          chip.setAttribute('aria-selected', 'false');
+        }
+      });
+    }
+
+    function applyFilter() {
+      let matchCount = 0;
+
+      items.forEach((item) => {
+        const itemCategory = (item.getAttribute('data-category') || '').toLowerCase();
+        const itemTitle = (item.getAttribute('data-title') || '').toLowerCase();
+        const itemInst = (item.getAttribute('data-institution') || '').toLowerCase();
+
+        const categoryMatch = activeCategory === 'all' || itemCategory === activeCategory;
+        const searchMatch = !searchQuery || itemTitle.includes(searchQuery) || itemInst.includes(searchQuery);
+
+        if (categoryMatch && searchMatch) {
+          (item as HTMLElement).style.display = 'block';
+          matchCount++;
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+
+      if (visibleCountEl) {
+        visibleCountEl.textContent = matchCount.toString();
+      }
+
+      if (noResultsState) {
+        noResultsState.style.display = matchCount === 0 ? 'flex' : 'none';
+      }
+
+      // Hide hero banner if searching or filtering specific category to give room to list
+      if (featuredSection) {
+        if (activeCategory !== 'all' || searchQuery.length > 0) {
+          featuredSection.style.display = 'none';
+        } else {
+          featuredSection.style.display = 'block';
+        }
+      }
+    }
+
+    // Intercept chip click for instantaneous filter without full reload
+    chipLinks.forEach((chip) => {
+      chip.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = chip.getAttribute('href') || '';
+        const url = new URL(href, window.location.origin);
+        const cat = url.searchParams.get('category') || 'all';
+        activeCategory = cat.toLowerCase();
+
+        // Update browser URL silently
+        const newUrl = cat === 'all' ? '/programs' : `/programs?category=${cat}`;
+        window.history.pushState({}, '', newUrl);
+
+        updateActiveChips();
+        applyFilter();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = (e.target as HTMLInputElement).value.trim().toLowerCase();
+        if (clearBtn) {
+          clearBtn.style.display = searchQuery.length > 0 ? 'flex' : 'none';
+        }
+        applyFilter();
+      });
+    }
+
+    if (clearBtn && searchInput) {
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearBtn.style.display = 'none';
+        searchInput.focus();
+        applyFilter();
+      });
+    }
+
+    if (resetBtn && searchInput) {
+      resetBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        activeCategory = 'all';
+        if (clearBtn) clearBtn.style.display = 'none';
+        window.history.pushState({}, '', '/programs');
+        updateActiveChips();
+        applyFilter();
+      });
+    }
+
+    // Initial run
+    updateActiveChips();
+    applyFilter();
+  });
+</script>
+
+<style>
+  .page-container {
+    background-color: #f8fafc;
+    min-height: 100vh;
+    padding: 32px 20px 80px;
+  }
+
+  .content-wrapper {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  /* Header Section */
+  .catalog-header {
+    margin-bottom: 32px;
+  }
+
+  .header-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 12px;
+  }
+
+  .crumb-link {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .crumb-link:hover {
+    color: #0969da;
+  }
+
+  .crumb-sep {
+    color: #cbd5e1;
+  }
+
+  .crumb-current {
+    color: #0f172a;
+    font-weight: 600;
+  }
+
+  .catalog-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+
+  .catalog-subtitle {
+    font-size: 15px;
+    color: #64748b;
+    max-width: 680px;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+
+  /* Catalog Search Row */
+  .catalog-search-row {
+    margin-bottom: 20px;
+  }
+
+  .search-input-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 680px;
+  }
+
+  .search-lens-icon {
+    position: absolute;
+    left: 16px;
+    width: 20px;
+    height: 20px;
+    color: #94a3b8;
+    pointer-events: none;
+  }
+
+  .search-input-box input {
+    width: 100%;
+    height: 48px;
+    padding: 0 44px 0 48px;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: #0f172a;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    transition: all 0.15s ease;
+  }
+
+  .search-input-box input:focus {
+    border-color: #0969da;
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.12);
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 12px;
+    width: 26px;
+    height: 26px;
+    border-radius: 9999px;
+    background: #f1f5f9;
+    border: none;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .clear-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+
+  .chips-row {
+    margin-bottom: 12px;
+  }
+
+  /* Featured Section */
+  .featured-section {
+    margin-bottom: 36px;
+  }
+
+  /* List Section */
+  .catalog-list-section {
+    margin-top: 16px;
+  }
+
+  .list-summary-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .summary-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #475569;
+  }
+
+  .count-number {
+    font-weight: 800;
+    color: #0969da;
+    font-size: 16px;
+  }
+
+  .count-label {
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0969da;
+    background: #f0f7ff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #d0e4ff;
+  }
+
+  .shield-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Empty state */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 16px;
+    margin-top: 20px;
+  }
+
+  .empty-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 9999px;
+    background: #f1f5f9;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .empty-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .empty-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+
+  .empty-desc {
+    font-size: 14px;
+    color: #64748b;
+    max-width: 420px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .btn-reset {
+    padding: 10px 20px;
+    background: #0969da;
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .btn-reset:hover {
+    background: #0752a8;
+  }
+
+  @media (max-width: 767px) {
+    .page-container {
+      padding: 20px 14px 96px; /* extra bottom padding for mobile bottom bar */
+    }
+
+    .catalog-title {
+      font-size: 22px;
+    }
+
+    .catalog-subtitle {
+      font-size: 13.5px;
+    }
+
+    .list-summary-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 12px 14px;
+    }
+  }
+</style>

@@ -1,0 +1,469 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  badge?: string;
+  category?: string;
+  institution?: string;
+  imageUrl: string;
+  collectedAmount: number;
+  targetAmount: number;
+  daysRemaining: number;
+  donorCount?: number;
+  slug: string;
+}
+
+const {
+  title,
+  description,
+  badge = 'PROGRAM UNGGULAN',
+  category = 'Wakaf Produktif',
+  institution = 'Global Village Fund (GVF)',
+  imageUrl,
+  collectedAmount,
+  targetAmount,
+  daysRemaining,
+  donorCount = 428,
+  slug,
+} = Astro.props;
+
+const percentage = Math.min(Math.round((collectedAmount / targetAmount) * 100), 100);
+
+const formatRupiah = (val: number) => {
+  return 'Rp ' + val.toLocaleString('id-ID');
+};
+---
+
+<section class="hero-banner" aria-label="Program Unggulan">
+  <div class="banner-card">
+    <div class="banner-grid">
+      <!-- Media Col -->
+      <div class="banner-media-wrap">
+        <img src={imageUrl} alt={title} class="banner-media-img" loading="eager" />
+        <div class="media-overlay"></div>
+        <div class="media-badges">
+          <span class="badge-tag primary">{badge}</span>
+          <span class="badge-tag dark">{category}</span>
+        </div>
+      </div>
+
+      <!-- Content Col -->
+      <div class="banner-content">
+        <div class="partner-meta">
+          <svg
+            class="verified-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+          <span class="institution-name">{institution}</span>
+          <span class="dot-separator">&bull;</span>
+          <span class="status-verified">Terverifikasi Resmi</span>
+        </div>
+
+        <h2 class="banner-title">
+          <a href={`/program/${slug}`}>{title}</a>
+        </h2>
+
+        <p class="banner-desc">{description}</p>
+
+        <!-- Progress Metrics -->
+        <div class="progress-section">
+          <div class="progress-stats-top">
+            <div class="stat-group">
+              <span class="stat-caption">Terkumpul</span>
+              <span class="stat-amount">{formatRupiah(collectedAmount)}</span>
+            </div>
+            <div class="percentage-pill">
+              <span>{percentage}%</span>
+            </div>
+          </div>
+
+          <div class="progress-track" role="progressbar" aria-valuenow={percentage} aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar-fill" style={`width: ${percentage}%`}></div>
+          </div>
+
+          <div class="progress-stats-bottom">
+            <div class="bottom-metric">
+              <span class="meta-label">Target Dana</span>
+              <span class="meta-value">{formatRupiah(targetAmount)}</span>
+            </div>
+            <div class="bottom-metric">
+              <span class="meta-label">Donatur</span>
+              <span class="meta-value">{donorCount.toLocaleString('id-ID')} Orang</span>
+            </div>
+            <div class="bottom-metric align-end">
+              <span class="meta-label">Sisa Waktu</span>
+              <span class="meta-value highlight-days">{daysRemaining} Hari</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner Actions -->
+        <div class="banner-actions">
+          <a href={`/program/${slug}#donasi`} class="btn-donate-banner">
+            <span>Salurkan Donasi</span>
+            <svg
+              class="action-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+          <a href={`/program/${slug}`} class="btn-detail-banner">
+            Detail Program
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-banner {
+    width: 100%;
+    margin-bottom: 32px;
+  }
+
+  .banner-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .banner-card:hover {
+    box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.08);
+  }
+
+  .banner-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1.3fr;
+    min-height: 420px;
+  }
+
+  .banner-media-wrap {
+    position: relative;
+    background: #0f172a;
+    overflow: hidden;
+  }
+
+  .banner-media-img {
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .banner-card:hover .banner-media-img {
+    transform: scale(1.02);
+  }
+
+  .media-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 0.1) 0%,
+      rgba(15, 23, 42, 0.5) 100%
+    );
+  }
+
+  .media-badges {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .badge-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+
+  .badge-tag.primary {
+    background: #0969da;
+    color: #ffffff;
+  }
+
+  .badge-tag.dark {
+    background: rgba(15, 23, 42, 0.75);
+    color: #f8fafc;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .banner-content {
+    padding: 32px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .partner-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 12.5px;
+    color: #64748b;
+  }
+
+  .verified-icon {
+    width: 16px;
+    height: 16px;
+    color: #0969da;
+    flex-shrink: 0;
+  }
+
+  .institution-name {
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .dot-separator {
+    color: #cbd5e1;
+  }
+
+  .status-verified {
+    color: #0969da;
+    font-weight: 500;
+  }
+
+  .banner-title {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.35;
+    color: #0f172a;
+    letter-spacing: -0.3px;
+    margin-bottom: 12px;
+  }
+
+  .banner-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .banner-title a:hover {
+    color: #0969da;
+  }
+
+  .banner-desc {
+    font-size: 14.5px;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .progress-section {
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+
+  .progress-stats-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .stat-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-caption {
+    font-size: 11.5px;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .stat-amount {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0969da;
+    letter-spacing: -0.2px;
+  }
+
+  .percentage-pill {
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 9999px;
+  }
+
+  .progress-track {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: #0969da;
+    border-radius: 9999px;
+    transition: width 0.3s ease;
+  }
+
+  .progress-stats-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid #edf2f7;
+  }
+
+  .bottom-metric {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bottom-metric.align-end {
+    align-items: flex-end;
+  }
+
+  .meta-label {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-bottom: 2px;
+  }
+
+  .meta-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .highlight-days {
+    color: #0969da;
+    font-weight: 700;
+  }
+
+  .banner-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .btn-donate-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #0969da;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+  }
+
+  .btn-donate-banner:hover {
+    background: #0752a8;
+  }
+
+  .btn-donate-banner:active {
+    transform: scale(0.98);
+  }
+
+  .action-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .btn-detail-banner {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 20px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .btn-detail-banner:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+    color: #0f172a;
+  }
+
+  @media (max-width: 900px) {
+    .banner-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .banner-media-img {
+      min-height: 240px;
+      max-height: 300px;
+    }
+
+    .banner-content {
+      padding: 24px;
+    }
+
+    .banner-title {
+      font-size: 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .banner-content {
+      padding: 20px 16px;
+    }
+
+    .banner-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .btn-donate-banner,
+    .btn-detail-banner {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

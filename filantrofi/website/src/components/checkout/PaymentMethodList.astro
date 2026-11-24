@@ -1,0 +1,376 @@
+---
+interface PaymentMethod {
+  id: string;
+  category: 'qris' | 'va' | 'manual';
+  name: string;
+  provider: string;
+  badge?: string;
+  instructions: string;
+}
+
+const paymentMethods: PaymentMethod[] = [
+  // QRIS
+  {
+    id: 'qris',
+    category: 'qris',
+    name: 'QRIS Real-Time',
+    provider: 'BCA, GoPay, OVO, ShopeePay, Dana, LinkAja',
+    badge: 'Proses Otomatis',
+    instructions: 'Scan kode QR menggunakan aplikasi e-wallet atau mobile banking apa pun.'
+  },
+  // Virtual Accounts
+  {
+    id: 'va-bca',
+    category: 'va',
+    name: 'BCA Virtual Account',
+    provider: 'Bank Central Asia',
+    badge: 'Verifikasi Instan',
+    instructions: 'Bayar via BCA Mobile, KlikBCA, atau ATM BCA 24 jam.'
+  },
+  {
+    id: 'va-mandiri',
+    category: 'va',
+    name: 'Mandiri Virtual Account',
+    provider: 'Bank Mandiri (Livin)',
+    badge: 'Verifikasi Instan',
+    instructions: 'Bayar via Livin by Mandiri atau ATM Mandiri.'
+  },
+  {
+    id: 'va-bri',
+    category: 'va',
+    name: 'BRI Virtual Account (BRIVA)',
+    provider: 'Bank Rakyat Indonesia',
+    badge: 'Verifikasi Instan',
+    instructions: 'Bayar via BRImo atau ATM BRI.'
+  },
+  {
+    id: 'va-bni',
+    category: 'va',
+    name: 'BNI Virtual Account',
+    provider: 'Bank Negara Indonesia',
+    badge: 'Verifikasi Instan',
+    instructions: 'Bayar via BNI Mobile Banking atau ATM BNI.'
+  },
+  {
+    id: 'va-bsi',
+    category: 'va',
+    name: 'BSI Virtual Account',
+    provider: 'Bank Syariah Indonesia',
+    badge: 'Syariah Otomatis',
+    instructions: 'Bayar via BSI Mobile atau ATM BSI.'
+  },
+  // Transfer Manual
+  {
+    id: 'manual-bca',
+    category: 'manual',
+    name: 'Transfer Bank Manual (Kode Unik 3 Digit)',
+    provider: 'Bank Central Asia / Mandiri / BSI',
+    badge: 'Pengecekan Manual',
+    instructions: 'Transfer tepat hingga 3 digit terakhir untuk verifikasi otomatis sistem.'
+  }
+];
+---
+
+<div class="payment-methods-card">
+  <div class="card-header">
+    <div class="step-badge">3</div>
+    <div class="step-heading">
+      <h3 class="step-title">Pilih Metode Pembayaran</h3>
+      <p class="step-desc">Tersedia ragam kanal pembayaran resmi dengan sertifikasi keamanan transaksi perbankan.</p>
+    </div>
+  </div>
+
+  <div class="methods-group-container">
+    <!-- Section 1: QRIS -->
+    <div class="category-block">
+      <span class="group-title">QRIS & Dompet Digital</span>
+      <div class="options-list">
+        {paymentMethods.filter(m => m.category === 'qris').map((m) => (
+          <label class="method-option selected" for={`method-${m.id}`}>
+            <input type="radio" id={`method-${m.id}`} name="payment_method" value={m.id} checked />
+            <div class="option-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </div>
+            <div class="option-details">
+              <div class="title-row">
+                <span class="method-name">{m.name}</span>
+                {m.badge && <span class="method-badge">{m.badge}</span>}
+              </div>
+              <span class="method-sub">{m.provider}</span>
+            </div>
+            <div class="radio-indicator"></div>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- Section 2: Virtual Account -->
+    <div class="category-block">
+      <span class="group-title">Virtual Account (Verifikasi Otomatis)</span>
+      <div class="options-list">
+        {paymentMethods.filter(m => m.category === 'va').map((m) => (
+          <label class="method-option" for={`method-${m.id}`}>
+            <input type="radio" id={`method-${m.id}`} name="payment_method" value={m.id} />
+            <div class="option-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>
+            </div>
+            <div class="option-details">
+              <div class="title-row">
+                <span class="method-name">{m.name}</span>
+                {m.badge && <span class="method-badge">{m.badge}</span>}
+              </div>
+              <span class="method-sub">{m.provider}</span>
+            </div>
+            <div class="radio-indicator"></div>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- Section 3: Transfer Manual -->
+    <div class="category-block">
+      <span class="group-title">Transfer Rekening Manual</span>
+      <div class="options-list">
+        {paymentMethods.filter(m => m.category === 'manual').map((m) => (
+          <label class="method-option" for={`method-${m.id}`}>
+            <input type="radio" id={`method-${m.id}`} name="payment_method" value={m.id} />
+            <div class="option-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 9V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
+                <rect x="9" y="9" width="13" height="10" rx="2"></rect>
+              </svg>
+            </div>
+            <div class="option-details">
+              <div class="title-row">
+                <span class="method-name">{m.name}</span>
+                {m.badge && <span class="method-badge subtle">{m.badge}</span>}
+              </div>
+              <span class="method-sub">{m.provider}</span>
+            </div>
+            <div class="radio-indicator"></div>
+          </label>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const options = document.querySelectorAll<HTMLLabelElement>('.method-option');
+  const radios = document.querySelectorAll<HTMLInputElement>('input[name="payment_method"]');
+
+  radios.forEach((radio) => {
+    radio.addEventListener('change', () => {
+      options.forEach((opt) => opt.classList.remove('selected'));
+      const parent = radio.closest('.method-option');
+      if (parent) {
+        parent.classList.add('selected');
+      }
+
+      window.dispatchEvent(
+        new CustomEvent('payment-method-change', {
+          detail: { method: radio.value }
+        })
+      );
+    });
+  });
+</script>
+
+<style>
+  .payment-methods-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card-header {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .step-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #0969da;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  .methods-group-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .category-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .group-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .method-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .method-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .method-option:hover {
+    border-color: #cbd5e1;
+    background: #ffffff;
+  }
+
+  .method-option.selected {
+    background: #eff6ff;
+    border-color: #0969da;
+    box-shadow: 0 0 0 1px #0969da;
+  }
+
+  .option-icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #0969da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .method-option.selected .option-icon-box {
+    background: #dbeafe;
+    border-color: #bfdbfe;
+  }
+
+  .option-details {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .method-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .method-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  .method-badge.subtle {
+    background: #f1f5f9;
+    color: #64748b;
+  }
+
+  .method-sub {
+    font-size: 12px;
+    color: #64748b;
+  }
+
+  .radio-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #cbd5e1;
+    background: #ffffff;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+
+  .method-option.selected .radio-indicator {
+    border-color: #0969da;
+    background: #0969da;
+  }
+
+  .method-option.selected .radio-indicator::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ffffff;
+    top: 5px;
+    left: 5px;
+  }
+</style>

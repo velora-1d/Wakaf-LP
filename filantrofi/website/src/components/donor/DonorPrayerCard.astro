@@ -1,0 +1,201 @@
+---
+import type { DonorPrayer } from '../../data/campaigns';
+
+interface Props {
+  prayer: DonorPrayer;
+}
+
+const { prayer } = Astro.props;
+
+const formatRupiah = (val: number) => {
+  return 'Rp ' + val.toLocaleString('id-ID');
+};
+---
+
+<article class="donor-prayer-card" data-card-id={prayer.id}>
+  <div class="card-header">
+    <div class="avatar-ring">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+    </div>
+
+    <div class="donor-meta">
+      <div class="name-row">
+        <span class="donor-name">{prayer.isAnonymous ? 'Hamba Allah' : prayer.name}</span>
+        <span class="donation-amount">{formatRupiah(prayer.amount)}</span>
+      </div>
+      <div class="time-row">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        <span>{prayer.timeAgo}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <blockquote class="prayer-text">
+      "{prayer.prayer}"
+    </blockquote>
+  </div>
+
+  <div class="card-footer">
+    <button
+      type="button"
+      class="btn-aamiin"
+      data-count={prayer.aamiinCount}
+      aria-pressed="false"
+      aria-label="Ucapkan Aamiin untuk doa ini"
+    >
+      <span class="icon-wrap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 11v 8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3"></path>
+        </svg>
+      </span>
+      <span class="btn-text">Aamiin</span>
+      <span class="counter-badge">{prayer.aamiinCount}</span>
+    </button>
+  </div>
+</article>
+
+<style>
+  .donor-prayer-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .donor-prayer-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .avatar-ring {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .donor-meta {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .donor-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .donation-amount {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0969da;
+    flex-shrink: 0;
+  }
+
+  .time-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #64748b;
+  }
+
+  .card-body {
+    padding-left: 48px;
+  }
+
+  .prayer-text {
+    font-size: 13.5px;
+    color: #334155;
+    line-height: 1.5;
+    font-style: normal;
+    background: #f8fafc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border-left: 3px solid #0969da;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 4px;
+  }
+
+  .btn-aamiin {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-aamiin:hover {
+    border-color: #0969da;
+    color: #0969da;
+    background: #f0f7ff;
+  }
+
+  .btn-aamiin.voted {
+    background: #0969da;
+    border-color: #0969da;
+    color: #ffffff;
+  }
+
+  .counter-badge {
+    background: #f1f5f9;
+    color: #334155;
+    padding: 1px 6px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    transition: all 0.15s ease;
+  }
+
+  .btn-aamiin.voted .counter-badge {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+  }
+</style>

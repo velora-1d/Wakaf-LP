@@ -1,0 +1,761 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { orderId: 'FLN-829103' } },
+    { params: { orderId: 'FLN-DEMO' } },
+    { params: { orderId: 'FLN-SAMPLE' } },
+  ];
+}
+
+const { orderId } = Astro.params;
+---
+
+<Layout title={`Instruksi Pembayaran ${orderId} - Filantrofi`}>
+  <Navbar />
+
+  <main class="payment-main">
+    <div class="payment-container">
+      <!-- Status Banner -->
+      <div class="status-banner">
+        <div class="status-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div class="status-info">
+          <h1 class="status-title">Menunggu Pembayaran</h1>
+          <p class="status-sub">Selesaikan transaksi sebelum batas waktu berakhir agar donasi tercatat otomatis.</p>
+        </div>
+        <div class="timer-badge">
+          <span class="timer-label">Sisa Waktu</span>
+          <span id="countdownTimer" class="timer-clock">23:59:59</span>
+        </div>
+      </div>
+
+      <!-- Transaction Card Grid -->
+      <div class="payment-grid">
+        <!-- Main Instructions Column -->
+        <div class="instructions-col">
+          <!-- Total Payment Card -->
+          <div class="card-total-box">
+            <div class="total-header">
+              <span class="header-label">Jumlah yang Harus Dibayar</span>
+              <span class="header-order">ID: <strong id="displayOrderId">{orderId}</strong></span>
+            </div>
+
+            <div class="amount-display-row">
+              <div class="nominal-group">
+                <span id="displayTotalAmount" class="nominal-value">Rp 50.000</span>
+                <span class="amount-tag">Tepat hingga 3 digit terakhir</span>
+              </div>
+              <button type="button" id="copyAmountBtn" class="btn-copy">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span class="btn-copy-text">Salin Jumlah</span>
+              </button>
+            </div>
+
+            <div class="warning-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <span>Pastikan nominal yang ditransfer sesuai hingga angka terakhir untuk verifikasi instan tanpa konfirmasi manual.</span>
+            </div>
+          </div>
+
+          <!-- Payment Destination Details -->
+          <div class="card-dest-box">
+            <h2 id="methodTitle" class="dest-title">Detail Pembayaran</h2>
+
+            <!-- QRIS View -->
+            <div id="qrisContainer" class="qris-view">
+              <div class="qr-frame">
+                <!-- Clean SVG QR Placeholder -->
+                <svg class="qr-svg-mock" width="180" height="180" viewBox="0 0 100 100" fill="#0f172a">
+                  <rect width="100" height="100" fill="#ffffff" />
+                  <!-- Corner 1 -->
+                  <rect x="5" y="5" width="30" height="30" fill="#0f172a" />
+                  <rect x="10" y="10" width="20" height="20" fill="#ffffff" />
+                  <rect x="15" y="15" width="10" height="10" fill="#0f172a" />
+                  <!-- Corner 2 -->
+                  <rect x="65" y="5" width="30" height="30" fill="#0f172a" />
+                  <rect x="70" y="10" width="20" height="20" fill="#ffffff" />
+                  <rect x="75" y="15" width="10" height="10" fill="#0f172a" />
+                  <!-- Corner 3 -->
+                  <rect x="5" y="65" width="30" height="30" fill="#0f172a" />
+                  <rect x="10" y="70" width="20" height="20" fill="#ffffff" />
+                  <rect x="15" y="75" width="10" height="10" fill="#0f172a" />
+                  <!-- Pattern dots -->
+                  <rect x="42" y="10" width="10" height="10" fill="#0f172a" />
+                  <rect x="42" y="30" width="15" height="10" fill="#0f172a" />
+                  <rect x="25" y="42" width="10" height="15" fill="#0f172a" />
+                  <rect x="50" y="50" width="15" height="15" fill="#0f172a" />
+                  <rect x="70" y="42" width="20" height="10" fill="#0f172a" />
+                  <rect x="42" y="75" width="15" height="15" fill="#0f172a" />
+                  <rect x="75" y="70" width="15" height="10" fill="#0f172a" />
+                </svg>
+              </div>
+              <div class="qr-info">
+                <span class="qr-inst">NMID: ID1020039182901</span>
+                <span class="qr-merchant">Yayasan Global Village Fund (Wakaf)</span>
+                <p class="qr-desc">Scan kode QR di atas menggunakan GoPay, OVO, ShopeePay, BCA Mobile, atau aplikasi pembayaran apa pun yang berlogo QRIS.</p>
+              </div>
+            </div>
+
+            <!-- Virtual Account / Bank Transfer View -->
+            <div id="vaContainer" class="va-view" style="display: none;">
+              <div class="dest-field-row">
+                <div class="field-info">
+                  <span class="field-title">Nama Bank / Kanal</span>
+                  <span id="displayBankName" class="field-val">Bank Central Asia (BCA)</span>
+                </div>
+              </div>
+
+              <div class="dest-field-row highlight-row">
+                <div class="field-info">
+                  <span class="field-title">Nomor Virtual Account / Rekening</span>
+                  <span id="displayVaNumber" class="field-val va-code">8214 0812 3456 7890</span>
+                </div>
+                <button type="button" id="copyVaBtn" class="btn-copy">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span class="btn-copy-text">Salin Nomor</span>
+                </button>
+              </div>
+
+              <div class="dest-field-row">
+                <div class="field-info">
+                  <span class="field-title">Nama Pemilik Rekening</span>
+                  <span class="field-val">Yayasan Global Village Fund</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step by Step Guide Accordion -->
+          <div class="card-guide-box">
+            <h3 class="guide-title">Petunjuk Cara Pembayaran</h3>
+
+            <div class="guide-steps-list">
+              <div class="step-guide-item">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                  <strong>Buka Aplikasi Pembayaran</strong>
+                  <p>Buka aplikasi Mobile Banking atau e-Wallet yang Anda gunakan.</p>
+                </div>
+              </div>
+
+              <div class="step-guide-item">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                  <strong>Pilih Menu Transfer / Bayar</strong>
+                  <p>Pilih menu Virtual Account, Transfer Bank, atau Scan QRIS sesuai metode yang dipilih di atas.</p>
+                </div>
+              </div>
+
+              <div class="step-guide-item">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                  <strong>Input Nomor & Pastikan Nominal Tepat</strong>
+                  <p>Salin nomor VA / Rekening dan masukkan nominal tepat hingga digit terakhir agar sistem dapat mendeteksi secara otomatis.</p>
+                </div>
+              </div>
+
+              <div class="step-guide-item">
+                <div class="step-num">4</div>
+                <div class="step-text">
+                  <strong>Selesaikan Transaksi & Simpan Resi</strong>
+                  <p>Setelah pembayaran sukses, sistem kami akan memperbarui status kampanye dan mengirimkan kwitansi digital via WhatsApp.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Actions Column -->
+        <div class="actions-col">
+          <div class="action-card">
+            <h3 class="action-title">Bantuan & Konfirmasi</h3>
+            <p class="action-desc">Sudah mentransfer dana atau membutuhkan bantuan verifikasi manual?</p>
+
+            <div class="action-buttons-group">
+              <a
+                id="btnWaConfirm"
+                href="https://wa.me/6281234567890?text=Halo%20Admin%20Filantrofi,%20saya%20sudah%20melakukan%20pembayaran%20donasi"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-action-primary"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                </svg>
+                <span>Konfirmasi via WhatsApp</span>
+              </a>
+
+              <a href="/" class="btn-action-secondary">
+                <span>Kembali ke Beranda</span>
+              </a>
+            </div>
+
+            <div class="security-guarantee">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span>Verifikasi otomatis oleh sistem pembayaran mitra perbankan.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Countdown Timer (24 Hours)
+  let duration = 24 * 60 * 60 - 15;
+  const timerEl = document.getElementById('countdownTimer');
+
+  function updateTimer() {
+    if (duration <= 0) {
+      if (timerEl) timerEl.textContent = '00:00:00 (Kedaluwarsa)';
+      return;
+    }
+    const hours = Math.floor(duration / 3600);
+    const minutes = Math.floor((duration % 3600) / 60);
+    const seconds = duration % 60;
+
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    if (timerEl) {
+      timerEl.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    }
+    duration--;
+  }
+
+  setInterval(updateTimer, 1000);
+  updateTimer();
+
+  // Parse URL search params to populate dynamic transaction values
+  const urlParams = new URLSearchParams(window.location.search);
+  const totalParam = urlParams.get('total');
+  const methodParam = urlParams.get('method') || 'qris';
+  const nameParam = urlParams.get('name') || 'Donatur';
+
+  if (totalParam) {
+    const totalNum = parseInt(totalParam, 10);
+    const displayTotalEl = document.getElementById('displayTotalAmount');
+    if (displayTotalEl && !isNaN(totalNum)) {
+      displayTotalEl.textContent = 'Rp ' + totalNum.toLocaleString('id-ID');
+    }
+  }
+
+  // Handle payment method display
+  const qrisContainer = document.getElementById('qrisContainer');
+  const vaContainer = document.getElementById('vaContainer');
+  const displayBankName = document.getElementById('displayBankName');
+  const displayVaNumber = document.getElementById('displayVaNumber');
+  const methodTitle = document.getElementById('methodTitle');
+
+  if (methodParam.startsWith('va-')) {
+    if (qrisContainer) qrisContainer.style.display = 'none';
+    if (vaContainer) vaContainer.style.display = 'flex';
+    if (methodTitle) methodTitle.textContent = 'Nomor Rekening Virtual Account';
+
+    const bankMap: Record<string, { bank: string; va: string }> = {
+      'va-bca': { bank: 'BCA Virtual Account', va: '8214 0812 3456 7890' },
+      'va-mandiri': { bank: 'Mandiri Virtual Account (Livin)', va: '8910 2039 4810 2938' },
+      'va-bri': { bank: 'BRI Virtual Account (BRIVA)', va: '1029 3847 5610 2938' },
+      'va-bni': { bank: 'BNI Virtual Account', va: '9880 1928 3746 5102' },
+      'va-bsi': { bank: 'BSI Virtual Account', va: '7102 9384 7561 0293' },
+    };
+
+    const target = bankMap[methodParam] || bankMap['va-bca'];
+    if (displayBankName) displayBankName.textContent = target.bank;
+    if (displayVaNumber) displayVaNumber.textContent = target.va;
+  } else if (methodParam.startsWith('manual')) {
+    if (qrisContainer) qrisContainer.style.display = 'none';
+    if (vaContainer) vaContainer.style.display = 'flex';
+    if (methodTitle) methodTitle.textContent = 'Rekening Transfer Manual';
+    if (displayBankName) displayBankName.textContent = 'Bank Syariah Indonesia (BSI)';
+    if (displayVaNumber) displayVaNumber.textContent = '712 3456 789';
+  } else {
+    // Default QRIS
+    if (qrisContainer) qrisContainer.style.display = 'flex';
+    if (vaContainer) vaContainer.style.display = 'none';
+    if (methodTitle) methodTitle.textContent = 'Scan QRIS Real-Time';
+  }
+
+  // Copy helpers
+  function setupCopyButton(btnId: string, getValue: () => string) {
+    const btn = document.getElementById(btnId);
+    btn?.addEventListener('click', async () => {
+      const text = getValue();
+      try {
+        await navigator.clipboard.writeText(text);
+        const textSpan = btn.querySelector('.btn-copy-text');
+        if (textSpan) {
+          const original = textSpan.textContent;
+          textSpan.textContent = 'Tersalin!';
+          setTimeout(() => {
+            textSpan.textContent = original;
+          }, 2000);
+        }
+      } catch (err) {
+        alert('Tersalin: ' + text);
+      }
+    });
+  }
+
+  setupCopyButton('copyAmountBtn', () => {
+    const el = document.getElementById('displayTotalAmount');
+    return el ? el.textContent?.replace(/\D/g, '') || '' : '';
+  });
+
+  setupCopyButton('copyVaBtn', () => {
+    const el = document.getElementById('displayVaNumber');
+    return el ? el.textContent?.replace(/\s/g, '') || '' : '';
+  });
+</script>
+
+<style>
+  .payment-main {
+    min-height: 100vh;
+    background: #f8fafc;
+    padding-top: 32px;
+    padding-bottom: 80px;
+  }
+
+  .payment-container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Status Banner */
+  .status-banner {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .status-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #0969da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .status-info {
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .status-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+
+  .status-sub {
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  .timer-badge {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 8px 16px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .timer-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 600;
+  }
+
+  .timer-clock {
+    font-size: 18px;
+    font-weight: 800;
+    color: #dc2626;
+    letter-spacing: 0.5px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Payment Grid */
+  .payment-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  @media (min-width: 860px) {
+    .payment-grid {
+      grid-template-columns: 1fr 340px;
+    }
+  }
+
+  .instructions-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Total Box */
+  .card-total-box {
+    background: #ffffff;
+    border: 1.5px solid #0969da;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .total-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  .amount-display-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .nominal-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nominal-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0969da;
+    letter-spacing: -0.5px;
+  }
+
+  .amount-tag {
+    font-size: 12px;
+    color: #64748b;
+  }
+
+  .btn-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-copy:hover {
+    background: #eff6ff;
+    border-color: #0969da;
+    color: #0969da;
+  }
+
+  .warning-box {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12.5px;
+    color: #991b1b;
+    line-height: 1.45;
+  }
+
+  .warning-box svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Destination Box */
+  .card-dest-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .dest-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  /* QRIS */
+  .qris-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    padding: 12px 0;
+  }
+
+  .qr-frame {
+    background: #ffffff;
+    padding: 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .qr-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 440px;
+  }
+
+  .qr-inst {
+    font-size: 12px;
+    color: #64748b;
+    font-family: monospace;
+  }
+
+  .qr-merchant {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .qr-desc {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+  }
+
+  /* VA */
+  .va-view {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dest-field-row {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dest-field-row.highlight-row {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+  }
+
+  .field-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .field-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 600;
+  }
+
+  .field-val {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .field-val.va-code {
+    font-size: 18px;
+    font-family: monospace;
+    color: #0969da;
+    letter-spacing: 1px;
+  }
+
+  /* Step by Step Guide */
+  .card-guide-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .guide-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .guide-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .step-guide-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #e0f2fe;
+    color: #0969da;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-text strong {
+    display: block;
+    font-size: 13.5px;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+
+  .step-text p {
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.45;
+  }
+
+  /* Sidebar Actions */
+  .action-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: sticky;
+    top: 96px;
+  }
+
+  .action-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .action-desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.4;
+  }
+
+  .action-buttons-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-action-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #0969da;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 18px;
+    border-radius: 8px;
+    transition: background 0.15s ease;
+  }
+
+  .btn-action-primary:hover {
+    background: #0752a8;
+  }
+
+  .btn-action-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+  }
+
+  .btn-action-secondary:hover {
+    background: #eff6ff;
+    border-color: #0969da;
+    color: #0969da;
+  }
+
+  .security-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    color: #64748b;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+  }
+</style>

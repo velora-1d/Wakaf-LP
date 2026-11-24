@@ -1,0 +1,276 @@
+---
+interface Props {
+  defaultNominal?: number;
+}
+
+const { defaultNominal = 50000 } = Astro.props;
+
+const presetOptions = [
+  { label: 'Rp 10.000', value: 10000 },
+  { label: 'Rp 25.000', value: 25000 },
+  { label: 'Rp 50.000', value: 50000 },
+  { label: 'Rp 100.000', value: 100000 },
+  { label: 'Rp 250.000', value: 250000 },
+  { label: 'Rp 500.000', value: 500000 },
+];
+---
+
+<div class="nominal-selector-card">
+  <div class="selector-header">
+    <div class="step-badge">1</div>
+    <div class="step-heading">
+      <h3 class="step-title">Pilih Nominal Wakaf / Donasi</h3>
+      <p class="step-desc">Pilih paket nominal siap saji atau masukkan angka donasi sesuai keikhlasan hati.</p>
+    </div>
+  </div>
+
+  <!-- Preset Chips Grid -->
+  <div class="chips-grid">
+    {presetOptions.map((opt) => (
+      <button
+        type="button"
+        class={`chip-btn ${opt.value === defaultNominal ? 'selected' : ''}`}
+        data-value={opt.value}
+      >
+        <span class="chip-val">{opt.label}</span>
+      </button>
+    ))}
+  </div>
+
+  <!-- Custom Input Section -->
+  <div class="custom-nominal-wrap">
+    <label for="customNominalInput" class="custom-label">
+      Atau Masukkan Nominal Lainnya
+    </label>
+    <div class="input-currency-wrapper">
+      <span class="currency-prefix">Rp</span>
+      <input
+        type="text"
+        id="customNominalInput"
+        class="custom-input"
+        placeholder="Contoh: 150.000"
+        value={defaultNominal.toLocaleString('id-ID')}
+        inputmode="numeric"
+      />
+    </div>
+    <div class="input-hint">
+      <span>Minimal donasi sebesar Rp 10.000</span>
+      <span id="nominalAlert" class="nominal-error">Minimal nominal adalah Rp 10.000</span>
+    </div>
+  </div>
+
+  <!-- Hidden form input for current value -->
+  <input type="hidden" name="nominal" id="finalNominalInput" value={defaultNominal} />
+</div>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip-btn');
+  const customInput = document.getElementById('customNominalInput') as HTMLInputElement | null;
+  const finalInput = document.getElementById('finalNominalInput') as HTMLInputElement | null;
+  const errorAlert = document.getElementById('nominalAlert');
+
+  function updateNominal(rawNumber: number, updateCustomField = true) {
+    if (finalInput) {
+      finalInput.value = rawNumber.toString();
+      // Dispatch custom event for checkout summary synchronization
+      window.dispatchEvent(new CustomEvent('nominal-change', { detail: { amount: rawNumber } }));
+    }
+
+    if (errorAlert) {
+      if (rawNumber < 10000) {
+        errorAlert.classList.add('visible');
+      } else {
+        errorAlert.classList.remove('visible');
+      }
+    }
+
+    if (updateCustomField && customInput) {
+      customInput.value = rawNumber > 0 ? rawNumber.toLocaleString('id-ID') : '';
+    }
+
+    // Update chip active status
+    chips.forEach((c) => {
+      const val = parseInt(c.getAttribute('data-value') || '0', 10);
+      if (val === rawNumber) {
+        c.classList.add('selected');
+      } else {
+        c.classList.remove('selected');
+      }
+    });
+  }
+
+  // Chip click handlers
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const val = parseInt(chip.getAttribute('data-value') || '0', 10);
+      updateNominal(val, true);
+    });
+  });
+
+  // Custom input formatting
+  customInput?.addEventListener('input', () => {
+    // Strip non digits
+    const cleaned = customInput.value.replace(/\D/g, '');
+    const num = cleaned ? parseInt(cleaned, 10) : 0;
+
+    customInput.value = num > 0 ? num.toLocaleString('id-ID') : '';
+    updateNominal(num, false);
+  });
+</script>
+
+<style>
+  .nominal-selector-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .selector-header {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .step-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #0969da;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  .chips-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  @media (min-width: 600px) {
+    .chips-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .chip-btn {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 14px 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s ease;
+  }
+
+  .chip-btn:hover {
+    border-color: #0969da;
+    background: #eff6ff;
+  }
+
+  .chip-btn.selected {
+    background: #eff6ff;
+    border-color: #0969da;
+    box-shadow: 0 0 0 1px #0969da;
+  }
+
+  .chip-val {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    display: block;
+  }
+
+  .chip-btn.selected .chip-val {
+    color: #0969da;
+  }
+
+  .custom-nominal-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .custom-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .input-currency-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .currency-prefix {
+    position: absolute;
+    left: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #64748b;
+    pointer-events: none;
+  }
+
+  .custom-input {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    color: #0f172a;
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .custom-input:focus {
+    border-color: #0969da;
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.12);
+  }
+
+  .input-hint {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #64748b;
+  }
+
+  .nominal-error {
+    color: #dc2626;
+    display: none;
+  }
+
+  .nominal-error.visible {
+    display: inline;
+  }
+</style>

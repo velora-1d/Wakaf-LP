@@ -1,0 +1,428 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import NominalSelector from '../../components/checkout/NominalSelector.astro';
+import DonorForm from '../../components/checkout/DonorForm.astro';
+import PaymentMethodList from '../../components/checkout/PaymentMethodList.astro';
+import { campaigns, type Campaign } from '../../data/campaigns';
+
+export function getStaticPaths() {
+  return campaigns.map((campaign) => ({
+    params: { slug: campaign.slug },
+    props: { campaign },
+  }));
+}
+
+interface Props {
+  campaign: Campaign;
+}
+
+const { campaign } = Astro.props;
+---
+
+<Layout title={`Checkout Donasi: ${campaign.title} - Filantrofi`}>
+  <Navbar />
+
+  <main class="checkout-main">
+    <div class="checkout-container">
+      <!-- Checkout Navigation Header -->
+      <div class="checkout-breadcrumb">
+        <a href={`/program/${campaign.slug}`} class="back-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+          <span>Kembali ke Detail Program</span>
+        </a>
+      </div>
+
+      <!-- Compact Program Preview Card -->
+      <div class="program-summary-banner">
+        <img src={campaign.imageUrl} alt={campaign.title} class="program-thumb" />
+        <div class="program-info">
+          <span class="program-cat">{campaign.category}</span>
+          <h1 class="program-title">{campaign.title}</h1>
+          <span class="program-inst">{campaign.institution}</span>
+        </div>
+      </div>
+
+      <!-- Main Checkout Form & Summary Grid -->
+      <form id="checkoutForm" class="checkout-grid" method="GET">
+        <!-- Input Steps Column -->
+        <div class="steps-column">
+          <NominalSelector defaultNominal={50000} />
+          <DonorForm />
+          <PaymentMethodList />
+        </div>
+
+        <!-- Sticky Order Summary Column -->
+        <div class="summary-column">
+          <div class="summary-card">
+            <h2 class="summary-title">Ringkasan Wakaf / Donasi</h2>
+
+            <div class="summary-details">
+              <div class="summary-row">
+                <span class="row-label">Nominal Donasi</span>
+                <span id="summaryNominal" class="row-val">Rp 50.000</span>
+              </div>
+
+              <div class="summary-row" id="uniqueCodeRow" style="display: none;">
+                <span class="row-label">Kode Unik Verifikasi</span>
+                <span id="summaryUniqueCode" class="row-val">Rp 0</span>
+              </div>
+
+              <div class="summary-row">
+                <span class="row-label">Biaya Administrasi</span>
+                <span class="row-val free-badge">Rp 0 (Bebas Biaya)</span>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="summary-total-row">
+                <span class="total-label">Total Pembayaran</span>
+                <span id="summaryTotal" class="total-amount">Rp 50.000</span>
+              </div>
+            </div>
+
+            <div class="trust-pill-box">
+              <div class="pill-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>100% Tersalurkan Sesuai Syariah</span>
+              </div>
+              <div class="pill-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Kwitansi Donasi Sah Dikirim Otomatis</span>
+              </div>
+            </div>
+
+            <button type="submit" id="btnSubmitCheckout" class="btn-proceed-pay">
+              <span>Lanjut ke Pembayaran</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  let currentNominal = 50000;
+  let currentMethod = 'qris';
+  let uniqueCode = 0;
+
+  const summaryNominal = document.getElementById('summaryNominal');
+  const summaryTotal = document.getElementById('summaryTotal');
+  const summaryUniqueCode = document.getElementById('summaryUniqueCode');
+  const uniqueCodeRow = document.getElementById('uniqueCodeRow');
+  const form = document.getElementById('checkoutForm') as HTMLFormElement | null;
+
+  function formatRupiah(val: number) {
+    return 'Rp ' + val.toLocaleString('id-ID');
+  }
+
+  function recalculate() {
+    if (currentMethod.startsWith('manual')) {
+      if (uniqueCode === 0) {
+        uniqueCode = Math.floor(100 + Math.random() * 899);
+      }
+      if (uniqueCodeRow && summaryUniqueCode) {
+        uniqueCodeRow.style.display = 'flex';
+        summaryUniqueCode.textContent = formatRupiah(uniqueCode);
+      }
+    } else {
+      uniqueCode = 0;
+      if (uniqueCodeRow) {
+        uniqueCodeRow.style.display = 'none';
+      }
+    }
+
+    const total = currentNominal + uniqueCode;
+    if (summaryNominal) summaryNominal.textContent = formatRupiah(currentNominal);
+    if (summaryTotal) summaryTotal.textContent = formatRupiah(total);
+  }
+
+  // Listen to custom events from child components
+  window.addEventListener('nominal-change', ((e: CustomEvent) => {
+    currentNominal = e.detail.amount;
+    recalculate();
+  }) as EventListener);
+
+  window.addEventListener('payment-method-change', ((e: CustomEvent) => {
+    currentMethod = e.detail.method;
+    recalculate();
+  }) as EventListener);
+
+  // Form Submission -> Redirect to payment page
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (currentNominal < 10000) {
+      alert('Mohon pilih atau masukkan nominal donasi minimal Rp 10.000');
+      return;
+    }
+
+    const donorNameInput = document.getElementById('donorNameInput') as HTMLInputElement | null;
+    const donorPhoneInput = document.getElementById('donorPhoneInput') as HTMLInputElement | null;
+    const isAnonymous = (document.getElementById('anonymousToggle') as HTMLInputElement | null)?.checked;
+
+    if (!donorNameInput?.value && !isAnonymous) {
+      alert('Mohon lengkapi nama Anda atau pilih opsi sembunyikan nama');
+      donorNameInput?.focus();
+      return;
+    }
+
+    if (!donorPhoneInput?.value || donorPhoneInput.value.length < 8) {
+      alert('Mohon masukkan nomor WhatsApp yang aktif');
+      donorPhoneInput?.focus();
+      return;
+    }
+
+    // Generate Order ID
+    const randomSuffix = Math.floor(100000 + Math.random() * 900000);
+    const orderId = `FLN-${randomSuffix}`;
+
+    // Construct query parameters
+    const total = currentNominal + uniqueCode;
+    const params = new URLSearchParams({
+      slug: window.location.pathname.split('/').pop() || '',
+      nominal: currentNominal.toString(),
+      total: total.toString(),
+      uniqueCode: uniqueCode.toString(),
+      method: currentMethod,
+      name: isAnonymous ? 'Hamba Allah' : (donorNameInput?.value || 'Donatur'),
+      phone: donorPhoneInput?.value || '',
+    });
+
+    window.location.href = `/payment/${orderId}?${params.toString()}`;
+  });
+</script>
+
+<style>
+  .checkout-main {
+    min-height: 100vh;
+    background: #f8fafc;
+    padding-top: 24px;
+    padding-bottom: 80px;
+  }
+
+  .checkout-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .checkout-breadcrumb {
+    margin-bottom: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    transition: color 0.15s ease;
+  }
+
+  .back-link:hover {
+    color: #0969da;
+  }
+
+  .program-summary-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+
+  .program-thumb {
+    width: 80px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .program-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .program-cat {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #0969da;
+  }
+
+  .program-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .program-inst {
+    font-size: 12px;
+    color: #64748b;
+  }
+
+  /* Checkout Grid */
+  .checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .checkout-grid {
+      grid-template-columns: 1fr 380px;
+      gap: 36px;
+    }
+  }
+
+  .steps-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Summary Card */
+  .summary-card {
+    position: sticky;
+    top: 96px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  .summary-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #0f172a;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .row-label {
+    color: #64748b;
+  }
+
+  .row-val {
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .free-badge {
+    color: #16a34a;
+    font-size: 13px;
+  }
+
+  .divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 4px 0;
+  }
+
+  .summary-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 4px;
+  }
+
+  .total-label {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .total-amount {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0969da;
+    letter-spacing: -0.5px;
+  }
+
+  .trust-pill-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pill-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #334155;
+    font-weight: 500;
+  }
+
+  .pill-item svg {
+    color: #0969da;
+    flex-shrink: 0;
+  }
+
+  .btn-proceed-pay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #0969da;
+    color: #ffffff;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .btn-proceed-pay:hover {
+    background: #0752a8;
+    transform: translateY(-1px);
+  }
+</style>

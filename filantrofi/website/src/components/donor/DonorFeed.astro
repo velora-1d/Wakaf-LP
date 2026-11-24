@@ -1,0 +1,234 @@
+---
+import type { DonorPrayer } from '../../data/campaigns';
+import DonorPrayerCard from './DonorPrayerCard.astro';
+
+interface Props {
+  prayers: DonorPrayer[];
+  totalDonors?: number;
+}
+
+const { prayers, totalDonors = 1840 } = Astro.props;
+---
+
+<div class="donor-feed-section">
+  <div class="feed-header">
+    <div class="header-left">
+      <h3 class="feed-title">Doa & Dukungan Donatur</h3>
+      <span class="feed-count">{totalDonors.toLocaleString('id-ID')} Donasi Tersalurkan</span>
+    </div>
+
+    <div class="feed-filter">
+      <span class="filter-label">Urutkan:</span>
+      <select id="sortPrayerSelect" class="filter-select">
+        <option value="recent">Terbaru</option>
+        <option value="popular">Doa Terbanyak Diamini</option>
+        <option value="amount">Nominal Terbesar</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="prayerCardList" class="prayer-cards-list">
+    {prayers.map((prayer) => (
+      <DonorPrayerCard prayer={prayer} />
+    ))}
+  </div>
+
+  <div class="feed-action-bar">
+    <button type="button" id="loadMorePrayersBtn" class="btn-load-more">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+      <span>Muat Lebih Banyak Doa</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  // Delegated handler for Aamiin button
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest('.btn-aamiin') as HTMLButtonElement | null;
+    if (!target) return;
+
+    const isVoted = target.classList.contains('voted');
+    const badge = target.querySelector('.counter-badge');
+    let count = parseInt(target.getAttribute('data-count') || '0', 10);
+
+    if (!isVoted) {
+      count += 1;
+      target.classList.add('voted');
+      target.setAttribute('aria-pressed', 'true');
+    } else {
+      count = Math.max(0, count - 1);
+      target.classList.remove('voted');
+      target.setAttribute('aria-pressed', 'false');
+    }
+
+    target.setAttribute('data-count', count.toString());
+    if (badge) {
+      badge.textContent = count.toString();
+    }
+  });
+
+  // Mock Load More
+  const loadMoreBtn = document.getElementById('loadMorePrayersBtn');
+  const cardList = document.getElementById('prayerCardList');
+
+  const additionalPrayers = [
+    {
+      id: 'mock-6',
+      name: 'Rahmat Hidayat',
+      amount: 500000,
+      timeAgo: '12 jam yang lalu',
+      prayer: 'Bismillah, semoga berkah untuk pembangunan sarana santri penghafal Quran.',
+      aamiinCount: 19
+    },
+    {
+      id: 'mock-7',
+      name: 'Hamba Allah',
+      amount: 250000,
+      timeAgo: '1 hari yang lalu',
+      prayer: 'Semoga Allah mengampuni dosa-dosa kami dan kedua orang tua kami.',
+      aamiinCount: 45
+    }
+  ];
+
+  let loaded = false;
+
+  loadMoreBtn?.addEventListener('click', () => {
+    if (loaded) {
+      loadMoreBtn.textContent = 'Semua Doa Telah Ditampilkan';
+      loadMoreBtn.setAttribute('disabled', 'true');
+      return;
+    }
+
+    additionalPrayers.forEach((p) => {
+      const card = document.createElement('article');
+      card.className = 'donor-prayer-card';
+      card.setAttribute('data-card-id', p.id);
+      card.innerHTML = `
+        <div class="card-header" style="display:flex;align-items:center;gap:12px;">
+          <div class="avatar-ring" style="width:36px;height:36px;border-radius:50%;background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="donor-meta" style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;">
+            <div class="name-row" style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+              <span class="donor-name" style="font-size:14px;font-weight:700;color:#0f172a;">${p.name}</span>
+              <span class="donation-amount" style="font-size:13px;font-weight:700;color:#0969da;">Rp ${p.amount.toLocaleString('id-ID')}</span>
+            </div>
+            <div class="time-row" style="display:flex;align-items:center;gap:4px;font-size:12px;color:#64748b;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>${p.timeAgo}</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body" style="padding-left:48px;margin-top:10px;">
+          <blockquote class="prayer-text" style="font-size:13.5px;color:#334155;line-height:1.5;font-style:normal;background:#f8fafc;padding:10px 14px;border-radius:8px;border-left:3px solid #0969da;">
+            "${p.prayer}"
+          </blockquote>
+        </div>
+        <div class="card-footer" style="display:flex;justify-content:flex-end;padding-top:4px;">
+          <button type="button" class="btn-aamiin" data-count="${p.aamiinCount}" aria-pressed="false" style="display:inline-flex;align-items:center;gap:6px;background:#ffffff;border:1px solid #cbd5e1;color:#475569;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;">
+            <span>Aamiin</span>
+            <span class="counter-badge" style="background:#f1f5f9;color:#334155;padding:1px 6px;border-radius:999px;font-size:11px;font-weight:700;">${p.aamiinCount}</span>
+          </button>
+        </div>
+      `;
+      cardList?.appendChild(card);
+    });
+
+    loaded = true;
+    if (loadMoreBtn) {
+      loadMoreBtn.innerHTML = '<span>Semua Doa Telah Ditampilkan</span>';
+      loadMoreBtn.setAttribute('disabled', 'true');
+      loadMoreBtn.style.opacity = '0.6';
+      loadMoreBtn.style.cursor = 'default';
+    }
+  });
+</script>
+
+<style>
+  .donor-feed-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .feed-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .feed-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+
+  .feed-count {
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  .feed-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .filter-label {
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  .filter-select {
+    padding: 6px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+    color: #0f172a;
+    background: #ffffff;
+  }
+
+  .prayer-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .feed-action-bar {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+  }
+
+  .btn-load-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #0969da;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-load-more:hover:not(:disabled) {
+    background: #eff6ff;
+    border-color: #0969da;
+  }
+</style>

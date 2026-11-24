@@ -1,0 +1,71 @@
+---
+interface Props {
+  columns?: 2 | 3 | 4;
+  gap?: '16' | '20' | '24' | '32';
+  class?: string;
+}
+
+const { columns = 3, gap = '24', class: extraClass = '' } = Astro.props;
+
+const colClass = `cols-${columns}`;
+const gapClass = `gap-${gap}`;
+---
+
+<div class={`campaign-grid-wrapper ${colClass} ${gapClass} ${extraClass}`}>
+  <slot />
+</div>
+
+<style>
+  .campaign-grid-wrapper {
+    display: grid;
+    width: 100%;
+  }
+
+  /* Default 3 Columns */
+  .cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* Gap variations */
+  .gap-16 {
+    gap: 16px;
+  }
+
+  .gap-20 {
+    gap: 20px;
+  }
+
+  .gap-24 {
+    gap: 24px;
+  }
+
+  .gap-32 {
+    gap: 32px;
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 1080px) {
+    .cols-3,
+    .cols-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .cols-2,
+    .cols-3,
+    .cols-4 {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>

@@ -1,0 +1,319 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<div class={`donor-form-card ${className}`}>
+  <div class="form-header">
+    <div class="step-badge">2</div>
+    <div class="step-heading">
+      <h3 class="step-title">Informasi Donatur & Niat Doa</h3>
+      <p class="step-desc">Kwitansi wakaf digital dan laporan pertanggungjawaban akan dikirimkan via WhatsApp.</p>
+    </div>
+  </div>
+
+  <div class="form-body">
+    <!-- Anonymous Switch -->
+    <div class="anonymous-toggle-wrap">
+      <label class="toggle-control" for="anonymousToggle">
+        <input type="checkbox" id="anonymousToggle" name="is_anonymous" />
+        <span class="toggle-slider"></span>
+        <span class="toggle-text">Sembunyikan nama saya (Tampil sebagai Hamba Allah)</span>
+      </label>
+    </div>
+
+    <!-- Donor Name Input -->
+    <div class="field-group" id="nameFieldGroup">
+      <label for="donorNameInput" class="field-label">
+        Nama Lengkap <span class="req">*</span>
+      </label>
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="donorNameInput"
+          name="donor_name"
+          class="text-input"
+          placeholder="Contoh: Muhammad Ilham"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- WhatsApp Number Input -->
+    <div class="field-group">
+      <label for="donorPhoneInput" class="field-label">
+        Nomor WhatsApp Aktif <span class="req">*</span>
+      </label>
+      <div class="input-wrap">
+        <div class="phone-prefix">+62</div>
+        <input
+          type="tel"
+          id="donorPhoneInput"
+          name="donor_phone"
+          class="text-input phone-input"
+          placeholder="81234567890"
+          required
+          inputmode="numeric"
+        />
+      </div>
+      <span class="field-note">Bukti tanda terima sah dan laporan foto penyaluran akan dikirim ke nomor ini.</span>
+    </div>
+
+    <!-- Email Input (Optional) -->
+    <div class="field-group">
+      <label for="donorEmailInput" class="field-label">
+        Alamat Email <span class="opt">(Opsional)</span>
+      </label>
+      <div class="input-wrap">
+        <input
+          type="email"
+          id="donorEmailInput"
+          name="donor_email"
+          class="text-input"
+          placeholder="nama@email.com"
+        />
+      </div>
+    </div>
+
+    <!-- Prayer / Wishes Textarea -->
+    <div class="field-group">
+      <label for="donorPrayerInput" class="field-label">
+        Tuliskan Doa & Harapan Kebaikan <span class="opt">(Opsional)</span>
+      </label>
+      <div class="input-wrap">
+        <textarea
+          id="donorPrayerInput"
+          name="donor_prayer"
+          class="text-textarea"
+          rows="3"
+          placeholder="Tuliskan permohonan hajat atau doa tulus agar diaminkan oleh para santri dan relawan..."
+        ></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('anonymousToggle') as HTMLInputElement | null;
+  const nameInput = document.getElementById('donorNameInput') as HTMLInputElement | null;
+  const nameGroup = document.getElementById('nameFieldGroup');
+
+  toggle?.addEventListener('change', () => {
+    if (toggle.checked) {
+      if (nameInput) {
+        nameInput.dataset.previousValue = nameInput.value;
+        nameInput.value = 'Hamba Allah';
+        nameInput.setAttribute('readonly', 'true');
+        nameInput.classList.add('readonly-state');
+      }
+    } else {
+      if (nameInput) {
+        nameInput.value = nameInput.dataset.previousValue || '';
+        nameInput.removeAttribute('readonly');
+        nameInput.classList.remove('readonly-state');
+      }
+    }
+  });
+</script>
+
+<style>
+  .donor-form-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-header {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .step-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #0969da;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  .form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .anonymous-toggle-wrap {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .toggle-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .toggle-control input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .toggle-slider {
+    position: relative;
+    width: 38px;
+    height: 22px;
+    background-color: #cbd5e1;
+    border-radius: 999px;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .toggle-slider::before {
+    content: '';
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+  }
+
+  .toggle-control input:checked + .toggle-slider {
+    background-color: #0969da;
+  }
+
+  .toggle-control input:checked + .toggle-slider::before {
+    transform: translateX(16px);
+  }
+
+  .toggle-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .req {
+    color: #dc2626;
+  }
+
+  .opt {
+    font-weight: 400;
+    color: #94a3b8;
+  }
+
+  .input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .phone-prefix {
+    position: absolute;
+    left: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    pointer-events: none;
+    padding-right: 6px;
+    border-right: 1px solid #cbd5e1;
+  }
+
+  .text-input {
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #0f172a;
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .text-input.phone-input {
+    padding-left: 56px;
+  }
+
+  .text-input:focus, .text-textarea:focus {
+    border-color: #0969da;
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.12);
+  }
+
+  .text-input.readonly-state {
+    background: #f1f5f9;
+    color: #64748b;
+    cursor: not-allowed;
+  }
+
+  .text-textarea {
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #0f172a;
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .field-note {
+    font-size: 12px;
+    color: #64748b;
+  }
+</style>

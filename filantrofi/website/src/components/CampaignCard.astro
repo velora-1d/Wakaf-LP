@@ -1,0 +1,10 @@
+---
+import CampaignCardComponent from './campaign/CampaignCard.astro';
+import type { ComponentProps } from 'astro/types';
+
+type Props = ComponentProps<typeof CampaignCardComponent>;
+
+const props = Astro.props as Props;
+---
+
+<CampaignCardComponent {...props} />

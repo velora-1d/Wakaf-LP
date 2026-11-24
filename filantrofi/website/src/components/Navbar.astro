@@ -1,0 +1,10 @@
+---
+import NavbarComponent from './navigation/Navbar.astro';
+import type { ComponentProps } from 'astro/types';
+
+type Props = ComponentProps<typeof NavbarComponent>;
+
+const props = Astro.props as Props;
+---
+
+<NavbarComponent {...props} />

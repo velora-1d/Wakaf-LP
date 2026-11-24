@@ -1,0 +1,593 @@
+---
+interface Props {
+  title: string;
+  category: string;
+  institution: string;
+  verified?: boolean;
+  imageUrl: string;
+  galleryImages?: string[];
+  collectedAmount: number;
+  targetAmount: number;
+  donorCount: number;
+  daysRemaining: number;
+  location: string;
+  slug: string;
+}
+
+const {
+  title,
+  category,
+  institution,
+  verified = true,
+  imageUrl,
+  galleryImages = [],
+  collectedAmount,
+  targetAmount,
+  donorCount,
+  daysRemaining,
+  location,
+  slug,
+} = Astro.props;
+
+const percentage = Math.min(Math.round((collectedAmount / targetAmount) * 100), 100);
+
+const formatRupiah = (val: number) => {
+  return 'Rp ' + val.toLocaleString('id-ID');
+};
+---
+
+<header class="campaign-header">
+  <div class="header-container">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="/" class="crumb-link">Beranda</a>
+      <span class="crumb-sep">/</span>
+      <a href="/#program" class="crumb-link">Program</a>
+      <span class="crumb-sep">/</span>
+      <span class="crumb-current">{category}</span>
+    </nav>
+
+    <div class="header-grid">
+      <!-- Media Column -->
+      <div class="media-col">
+        <div class="main-media-frame">
+          <img id="mainMediaImg" src={imageUrl} alt={title} class="main-media-img" />
+          <div class="media-badge">
+            <span class="category-tag">{category}</span>
+          </div>
+        </div>
+
+        {galleryImages.length > 1 && (
+          <div class="gallery-thumbnails">
+            {galleryImages.map((img, idx) => (
+              <button
+                type="button"
+                class={`thumb-btn ${idx === 0 ? 'active' : ''}`}
+                data-src={img}
+                aria-label={`Lihat gambar ${idx + 1}`}
+              >
+                <img src={img} alt={`${title} preview ${idx + 1}`} loading="lazy" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Overview Column -->
+      <div class="overview-col">
+        <div class="institution-strip">
+          <div class="inst-avatar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div class="inst-info">
+            <span class="inst-name">{institution}</span>
+            {verified && (
+              <span class="verified-pill" title="Lembaga Mitra Terverifikasi Resmi BWI/Kemenag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                Terverifikasi
+              </span>
+            )}
+          </div>
+          <div class="location-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>{location}</span>
+          </div>
+        </div>
+
+        <h1 class="campaign-title">{title}</h1>
+
+        <!-- Funding Progress Card -->
+        <div class="progress-box">
+          <div class="amount-row">
+            <div class="collected-block">
+              <span class="label">Dana Terkumpul</span>
+              <div class="amount-number">{formatRupiah(collectedAmount)}</div>
+            </div>
+            <div class="percentage-badge">
+              <span class="pct-num">{percentage}%</span>
+            </div>
+          </div>
+
+          <div class="bar-container">
+            <div class="bar-fill" style={`width: ${percentage}%`}></div>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat-cell">
+              <span class="stat-subtitle">Target Donasi</span>
+              <span class="stat-highlight">{formatRupiah(targetAmount)}</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-cell">
+              <span class="stat-subtitle">Donatur</span>
+              <span class="stat-highlight">{donorCount.toLocaleString('id-ID')} orang</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-cell">
+              <span class="stat-subtitle">Sisa Waktu</span>
+              <span class="stat-highlight">{daysRemaining} hari lagi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Row -->
+        <div class="cta-row">
+          <a href={`/checkout/${slug}`} class="btn-donate-now">
+            <span>Wakaf Sekarang</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+
+          <button id="shareBtn" type="button" class="btn-share" data-slug={slug} data-title={title}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span>Bagikan</span>
+          </button>
+        </div>
+
+        <!-- Share Feedback Toast -->
+        <div id="shareToast" class="share-toast" role="alert" aria-live="polite">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Tautan berhasil disalin ke papan klip</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Thumbnail switcher
+  const thumbBtns = document.querySelectorAll<HTMLButtonElement>('.thumb-btn');
+  const mainImg = document.getElementById('mainMediaImg') as HTMLImageElement | null;
+
+  thumbBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const src = btn.getAttribute('data-src');
+      if (src && mainImg) {
+        mainImg.src = src;
+        thumbBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+    });
+  });
+
+  // Web Share or Clipboard Copy
+  const shareBtn = document.getElementById('shareBtn');
+  const shareToast = document.getElementById('shareToast');
+
+  shareBtn?.addEventListener('click', async () => {
+    const title = shareBtn.getAttribute('data-title') || document.title;
+    const url = window.location.href;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: title,
+          text: `Mari bersama mendukung program: ${title}`,
+          url: url,
+        });
+        return;
+      } catch (err) {
+        // Fallback to clipboard
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(url);
+      if (shareToast) {
+        shareToast.classList.add('visible');
+        setTimeout(() => {
+          shareToast.classList.remove('visible');
+        }, 3000);
+      }
+    } catch (e) {
+      alert('Tautan kampanye: ' + url);
+    }
+  });
+</script>
+
+<style>
+  .campaign-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding-top: 24px;
+    padding-bottom: 40px;
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 24px;
+  }
+
+  .crumb-link {
+    color: #64748b;
+    transition: color 0.15s ease;
+  }
+
+  .crumb-link:hover {
+    color: #0969da;
+  }
+
+  .crumb-sep {
+    color: #cbd5e1;
+  }
+
+  .crumb-current {
+    color: #0f172a;
+    font-weight: 500;
+  }
+
+  .header-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  @media (min-width: 992px) {
+    .header-grid {
+      grid-template-columns: 1.15fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+  }
+
+  /* Media Column */
+  .media-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .main-media-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #0f172a;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+  }
+
+  .main-media-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .media-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+  }
+
+  .category-tag {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .gallery-thumbnails {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .thumb-btn {
+    flex: 0 0 84px;
+    height: 56px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #e2e8f0;
+    background: #f1f5f9;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .thumb-btn:hover {
+    border-color: #0969da;
+  }
+
+  .thumb-btn.active {
+    border-color: #0969da;
+    box-shadow: 0 0 0 2px rgba(9, 105, 218, 0.2);
+  }
+
+  .thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Overview Column */
+  .overview-col {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .institution-strip {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .inst-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #e0f2fe;
+    color: #0969da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .inst-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .inst-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  .verified-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #eff6ff;
+    color: #0969da;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid #bfdbfe;
+  }
+
+  .location-tag {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #64748b;
+    margin-left: auto;
+  }
+
+  .campaign-title {
+    font-size: 24px;
+    line-height: 1.35;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .campaign-title {
+      font-size: 28px;
+    }
+  }
+
+  /* Progress Box */
+  .progress-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .amount-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 12px;
+  }
+
+  .collected-block .label {
+    display: block;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 4px;
+  }
+
+  .collected-block .amount-number {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0969da;
+    letter-spacing: -0.5px;
+  }
+
+  .percentage-badge {
+    background: #dbeafe;
+    color: #0752a8;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .bar-container {
+    width: 100%;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: #0969da;
+    border-radius: 999px;
+    transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .stats-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .stat-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat-subtitle {
+    font-size: 11px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stat-highlight {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 28px;
+    background: #e2e8f0;
+  }
+
+  /* CTA Row */
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .btn-donate-now {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #0969da;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 24px;
+    border-radius: 10px;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .btn-donate-now:hover {
+    background: #0752a8;
+    transform: translateY(-1px);
+  }
+
+  .btn-share {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #ffffff;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-share:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+  }
+
+  .share-toast {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    background: #0f172a;
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+    transition: all 0.2s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .share-toast.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+</style>

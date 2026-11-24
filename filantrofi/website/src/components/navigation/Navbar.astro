@@ -1,0 +1,321 @@
+---
+interface Props {
+  activePath?: string;
+}
+
+const { activePath = '/' } = Astro.props;
+
+const navLinks = [
+  { label: 'Beranda', href: '/' },
+  { label: 'Program', href: '/programs' },
+  { label: 'Kabar', href: '/#kabar' },
+  { label: 'Tentang Kami', href: '/#tentang' },
+];
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="brand-logo" aria-label="Beranda Filantrofi">
+      <div class="logo-mark">
+        <svg
+          class="logo-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+          <path d="M2 17l10 5 10-5"></path>
+          <path d="M2 12l10 5 10-5"></path>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="brand-name">FILANTROFI</span>
+        <span class="brand-sub">Platform Kebaikan & Wakaf</span>
+      </div>
+    </a>
+
+    <!-- Search Input Bar (Desktop & Tablet) -->
+    <div class="search-bar-wrap">
+      <form action="/programs" method="GET" class="search-form">
+        <svg
+          class="search-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input
+          type="search"
+          name="q"
+          placeholder="Cari program wakaf, masjid, infaq..."
+          class="search-input"
+          autocomplete="off"
+        />
+      </form>
+    </div>
+
+    <!-- Navigation Links (Desktop) -->
+    <nav class="nav-links" aria-label="Navigasi Utama">
+      {
+        navLinks.map((link) => {
+          const isActive = activePath === link.href || (link.href !== '/' && activePath.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              class={`nav-item ${isActive ? 'active' : ''}`}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-action">
+      <a href="/programs" class="btn-primary">
+        <span>Donasi Sekarang</span>
+        <svg
+          class="arrow-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+  }
+
+  .header-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    background: #0969da;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(9, 105, 218, 0.25);
+  }
+
+  .logo-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+  }
+
+  .brand-sub {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .search-bar-wrap {
+    flex: 1;
+    max-width: 380px;
+    display: block;
+  }
+
+  .search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    width: 17px;
+    height: 17px;
+    color: #94a3b8;
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    height: 42px;
+    padding: 0 16px 0 42px;
+    font-family: inherit;
+    font-size: 13.5px;
+    color: #0f172a;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.15s ease;
+  }
+
+  .search-input::placeholder {
+    color: #94a3b8;
+  }
+
+  .search-input:focus {
+    background: #ffffff;
+    border-color: #0969da;
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.12);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-item {
+    font-size: 14px;
+    font-weight: 500;
+    color: #475569;
+    padding: 6px 0;
+    position: relative;
+    transition: color 0.15s ease;
+  }
+
+  .nav-item:hover {
+    color: #0969da;
+  }
+
+  .nav-item.active {
+    color: #0969da;
+    font-weight: 600;
+  }
+
+  .nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #0969da;
+    border-radius: 2px;
+  }
+
+  .header-action {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: #0969da;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+  }
+
+  .btn-primary:hover {
+    background: #0752a8;
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .arrow-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  @media (max-width: 1024px) {
+    .search-bar-wrap {
+      max-width: 260px;
+    }
+
+    .nav-links {
+      gap: 18px;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .nav-links {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .header-inner {
+      height: 64px;
+      padding: 0 16px;
+    }
+
+    .search-bar-wrap {
+      display: none;
+    }
+
+    .brand-sub {
+      display: none;
+    }
+
+    .btn-primary {
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+  }
+</style>

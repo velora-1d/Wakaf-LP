@@ -1,0 +1,225 @@
+---
+interface CategoryItem {
+  id: string;
+  label: string;
+  icon?: string;
+}
+
+interface Props {
+  selectedCategory?: string;
+  baseUrl?: string;
+}
+
+const { selectedCategory = 'all', baseUrl = '/programs' } = Astro.props;
+
+const categories: CategoryItem[] = [
+  { id: 'all', label: 'Semua Program' },
+  { id: 'wakaf', label: 'Wakaf' },
+  { id: 'infaq', label: 'Infaq' },
+  { id: 'sedekah', label: 'Sedekah' },
+  { id: 'zakat', label: 'Zakat' },
+  { id: 'kemanusiaan', label: 'Kemanusiaan' },
+];
+---
+
+<div class="category-chips-wrapper">
+  <div class="chips-container" role="tablist" aria-label="Filter Kategori Program">
+    {
+      categories.map((cat) => {
+        const isActive =
+          selectedCategory.toLowerCase() === cat.id.toLowerCase() ||
+          (cat.id === 'all' && (!selectedCategory || selectedCategory === 'all'));
+
+        const targetUrl =
+          cat.id === 'all' ? baseUrl : `${baseUrl}?category=${cat.id}`;
+
+        return (
+          <a
+            href={targetUrl}
+            class={`category-chip ${isActive ? 'active' : ''}`}
+            role="tab"
+            aria-selected={isActive}
+          >
+            {cat.id === 'all' && (
+              <svg
+                class="chip-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="m4.93 4.93 4.24 4.24" />
+                <path d="m14.83 9.17 4.24-4.24" />
+                <path d="m14.83 14.83 4.24 4.24" />
+                <path d="m9.17 14.83-4.24 4.24" />
+              </svg>
+            )}
+
+            {cat.id === 'wakaf' && (
+              <svg
+                class="chip-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            )}
+
+            {cat.id === 'infaq' && (
+              <svg
+                class="chip-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="8" />
+                <line x1="12" y1="8" x2="12" y2="16" />
+                <line x1="8" y1="12" x2="16" y2="12" />
+              </svg>
+            )}
+
+            {cat.id === 'sedekah' && (
+              <svg
+                class="chip-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+              </svg>
+            )}
+
+            {cat.id === 'zakat' && (
+              <svg
+                class="chip-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 2v20" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            )}
+
+            {cat.id === 'kemanusiaan' && (
+              <svg
+                class="chip-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            )}
+
+            <span class="chip-label">{cat.label}</span>
+          </a>
+        );
+      })
+    }
+  </div>
+</div>
+
+<style>
+  .category-chips-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 8px 0;
+  }
+
+  .chips-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .chips-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    color: #475569;
+    font-size: 13.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .category-chip:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
+  }
+
+  .chip-icon {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    flex-shrink: 0;
+  }
+
+  .chip-label {
+    line-height: 1;
+  }
+
+  .category-chip.active {
+    background: #0969da;
+    border-color: #0969da;
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(9, 105, 218, 0.22);
+  }
+
+  .category-chip.active .chip-icon {
+    stroke: #ffffff;
+  }
+
+  .category-chip:active {
+    transform: scale(0.97);
+  }
+</style>
