@@ -8,6 +8,12 @@
 ## In Review / Test
 
 ## Done
+- [x] RESOLVE-PORT-CONFLICT-FILANTROFI-PORT-3000-01: Penyelesaian Bentrok Port Dev Server: Menghentikan PID 40796 & Menjalankan Filantrofi Web di Port Terisolasi 3000 (Terverifikasi HTTP 200 OK Seluruh Rute)
+- [x] VERIFY-DB-AND-RUN-DEV-SERVERS-01: Verifikasi Migrasi Neon PostgreSQL (7/7 E2E Pass) & Menjalankan Dev Server Lokal Filantrofi (Port 4322) serta GVF (Port 4321) Terverifikasi HTTP 200 OK
+- [x] EXEC-FILANTROFI-WEB-SUBAGENTS-01: Eksekusi Pembangunan Komponen & Halaman Filantrofi Web (Astro) Melalui Parallel Subagents (Navigasi, Mobile Bottom Nav, Detail Multi-Tab, Doa 'Aamiin', dan Alur Checkout) Terverifikasi Build 11 Halaman Statis 100% & Anti-Slop
+- [x] PLAN-REVERSE-WEB-DESIGN-MENU-FLOW-01: Penyusunan Master Plan Lengkap Reverse Engineering Web amalsholeh.com (Design System, Menu & Navigasi, Alur Donasi, Doa 'Aamiin', dan Blueprint Astro) Terverifikasi Dokumen 100%
+- [x] ALIGN-FILANTROFI-WEBSITE-MOBILE-STRUCTURE-01: Penataan Struktur Folder Utama filantrofi dengan Subfolder website (Astro) dan mobile (React Native) Terverifikasi Struktur & File 100%
+- [x] SETUP-FILANTROFI-REVERSE-RN-01: Inisialisasi Folder filantrofi untuk Reverse Engineering Analisis Referensi amalsholeh.com & Pondasi Mobile React Native Terverifikasi Struktur & File 100%
 - [x] PUSH-MAIN-AND-DEPLOY-CF-02: Push Perubahan Dinamisasi Kabar GVF ke Remote Main & Eksekusi Deployment Cloudflare Pages Production (wakaf-astro) Terverifikasi Live HTTP 200 OK
 - [x] DYNAMIC-NEWS-SECTION-ADMIN-01: Dinamisasi Teks & Gambar Seksi Kabar GVF (NewsSection) Terhubung Dashboard Admin (/admin/pages/home & /admin/kabar) Serta Verifikasi Build 100%
 - [x] PUSH-MAIN-AND-DEPLOY-CF-01: Push Perubahan ke Remote Main & Eksekusi Deployment Cloudflare Pages Production (wakaf-astro) Terverifikasi Live HTTP 200 OK

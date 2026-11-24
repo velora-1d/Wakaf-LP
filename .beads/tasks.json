@@ -1,6 +1,12 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "RESOLVE-PORT-CONFLICT-FILANTROFI-PORT-3000-01", "name": "Penyelesaian Bentrok Port Dev Server: Menghentikan PID 40796 & Menjalankan Filantrofi Web di Port Terisolasi 3000", "status": "closed" },
+    { "id": "VERIFY-DB-AND-RUN-DEV-SERVERS-01", "name": "Verifikasi Migrasi Neon PostgreSQL (7/7 E2E Pass) & Menjalankan Dev Server Lokal Filantrofi (Port 4322) serta GVF (Port 4321)", "status": "closed" },
+    { "id": "EXEC-FILANTROFI-WEB-SUBAGENTS-01", "name": "Eksekusi Pembangunan Komponen & Halaman Filantrofi Web (Astro) Melalui Parallel Subagents (Navigasi, Mobile Bottom Nav, Detail Multi-Tab, Doa 'Aamiin', dan Alur Checkout)", "status": "closed" },
+    { "id": "PLAN-REVERSE-WEB-DESIGN-MENU-FLOW-01", "name": "Penyusunan Master Plan Lengkap Reverse Engineering Web amalsholeh.com (Design System, Menu & Navigasi, Alur Donasi, Doa 'Aamiin', dan Blueprint Astro)", "status": "closed" },
+    { "id": "ALIGN-FILANTROFI-WEBSITE-MOBILE-STRUCTURE-01", "name": "Penataan Struktur Folder Utama filantrofi dengan Subfolder website (Astro) dan mobile (React Native)", "status": "closed" },
+    { "id": "SETUP-FILANTROFI-REVERSE-RN-01", "name": "Inisialisasi Folder filantrofi untuk Reverse Engineering Analisis Referensi amalsholeh.com & Pondasi Mobile React Native", "status": "closed" },
     { "id": "PUSH-MAIN-AND-DEPLOY-CF-02", "name": "Push Perubahan Dinamisasi Kabar GVF ke Remote Main & Eksekusi Deployment Cloudflare Pages Production (wakaf-astro)", "status": "closed" },
     { "id": "DYNAMIC-NEWS-SECTION-ADMIN-01", "name": "Dinamisasi Teks & Gambar Seksi Kabar GVF (NewsSection) Terhubung Dashboard Admin (/admin/pages/home & /admin/kabar) Serta Verifikasi Build 100%", "status": "closed" },
     { "id": "PUSH-MAIN-AND-DEPLOY-CF-01", "name": "Push Perubahan ke Remote Main & Eksekusi Deployment Cloudflare Pages Production (wakaf-astro)", "status": "closed" },
