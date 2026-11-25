@@ -324,6 +324,7 @@ export function setupKabarManager() {
       const payload: any = {
         title,
         category,
+        contentType: 'kabar',
         slug,
         author,
         publishedAt,
@@ -454,10 +455,259 @@ export function setupKabarManager() {
     });
   }
 
+  // --- TAB SWITCHING & TRANSPARENCY REPORTS (PDF) ---
+  const tabBtnKabar = document.getElementById('tabBtnKabar');
+  const tabBtnLaporan = document.getElementById('tabBtnLaporan');
+  const tabContentKabar = document.getElementById('tabContentKabar');
+  const tabContentLaporan = document.getElementById('tabContentLaporan');
+
+  function setActiveAdminTab(isLaporan: boolean) {
+    if (isLaporan) {
+      tabBtnLaporan?.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+      tabBtnLaporan?.classList.remove('border-transparent', 'text-slate-500');
+      tabBtnKabar?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+      tabBtnKabar?.classList.add('border-transparent', 'text-slate-500');
+      tabContentLaporan?.classList.remove('hidden');
+      tabContentKabar?.classList.add('hidden');
+    } else {
+      tabBtnKabar?.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+      tabBtnKabar?.classList.remove('border-transparent', 'text-slate-500');
+      tabBtnLaporan?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+      tabBtnLaporan?.classList.add('border-transparent', 'text-slate-500');
+      tabContentKabar?.classList.remove('hidden');
+      tabContentLaporan?.classList.add('hidden');
+    }
+  }
+
+  tabBtnKabar?.addEventListener('click', () => setActiveAdminTab(false));
+  tabBtnLaporan?.addEventListener('click', () => setActiveAdminTab(true));
+
+  const reportModal = document.getElementById('reportFormModal');
+  const reportModalTitle = document.getElementById('reportModalTitle');
+  const submitReportBtn = document.getElementById('submitReportFormBtn') as HTMLButtonElement | null;
+  const submitReportBtnText = document.getElementById('submitReportBtnText');
+  const btnOpenCreateReport = document.getElementById('btnOpenCreateReport');
+  const closeReportModalBtn = document.getElementById('closeReportModalBtn');
+  const cancelReportModalBtn = document.getElementById('cancelReportModalBtn');
+
+  const rInputId = document.getElementById('reportInputId') as HTMLInputElement | null;
+  const rInputSize = document.getElementById('reportInputFileSize') as HTMLInputElement | null;
+  const rInputTitle = document.getElementById('reportInputTitle') as HTMLInputElement | null;
+  const rInputPeriod = document.getElementById('reportInputPeriod') as HTMLInputElement | null;
+  const rInputScope = document.getElementById('reportInputScope') as HTMLSelectElement | null;
+  const rInputPublishedAt = document.getElementById('reportInputPublishedAt') as HTMLInputElement | null;
+  const rInputFileUrl = document.getElementById('reportInputFileUrl') as HTMLInputElement | null;
+  const rInputSummary = document.getElementById('reportInputSummary') as HTMLTextAreaElement | null;
+  const rInputIsPublished = document.getElementById('reportInputIsPublished') as HTMLInputElement | null;
+
+  const rPdfInput = document.getElementById('reportPdfFileInput') as HTMLInputElement | null;
+  const rUploadBtn = document.getElementById('btnTriggerReportPdfUpload') as HTMLButtonElement | null;
+  const rUploadStatus = document.getElementById('reportUploadStatus');
+
+  const openReportModal = () => reportModal?.classList.add('active');
+  const closeReportModal = () => reportModal?.classList.remove('active');
+
+  btnOpenCreateReport?.addEventListener('click', () => {
+    if (reportModalTitle) reportModalTitle.textContent = 'Unggah Dokumen Laporan Berkala';
+    if (submitReportBtnText) submitReportBtnText.textContent = 'Simpan Laporan';
+    if (rInputId) rInputId.value = '';
+    if (rInputSize) rInputSize.value = '0';
+    if (rInputTitle) rInputTitle.value = '';
+    if (rInputPeriod) rInputPeriod.value = '';
+    if (rInputScope) rInputScope.value = 'all';
+    if (rInputPublishedAt) {
+      rInputPublishedAt.value = new Intl.DateTimeFormat('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      }).format(new Date());
+    }
+    if (rInputFileUrl) rInputFileUrl.value = '';
+    if (rInputSummary) rInputSummary.value = '';
+    if (rInputIsPublished) rInputIsPublished.checked = true;
+    openReportModal();
+  });
+
+  closeReportModalBtn?.addEventListener('click', closeReportModal);
+  cancelReportModalBtn?.addEventListener('click', closeReportModal);
+  reportModal?.addEventListener('click', (e) => {
+    if (e.target === reportModal) closeReportModal();
+  });
+
+  document.querySelectorAll('.edit-report-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const jsonStr = (e.currentTarget as HTMLElement).getAttribute('data-report-json');
+      if (!jsonStr) return;
+      try {
+        const rep = JSON.parse(jsonStr);
+        if (reportModalTitle) reportModalTitle.textContent = `Edit Laporan #${rep.id}`;
+        if (submitReportBtnText) submitReportBtnText.textContent = 'Simpan Perubahan';
+        if (rInputId) rInputId.value = String(rep.id);
+        if (rInputSize) rInputSize.value = String(rep.fileSize || 0);
+        if (rInputTitle) rInputTitle.value = rep.title || '';
+        if (rInputPeriod) rInputPeriod.value = rep.periodLabel || '';
+        if (rInputScope) rInputScope.value = rep.programScope || 'all';
+        if (rInputPublishedAt) rInputPublishedAt.value = rep.publishedAt || '';
+        if (rInputFileUrl) rInputFileUrl.value = rep.fileUrl || '';
+        if (rInputSummary) rInputSummary.value = rep.summary || '';
+        if (rInputIsPublished) rInputIsPublished.checked = Boolean(rep.isPublished);
+        openReportModal();
+      } catch (err) {
+        console.error('Error parsing report JSON:', err);
+      }
+    });
+  });
+
+  rUploadBtn?.addEventListener('click', () => rPdfInput?.click());
+  rPdfInput?.addEventListener('change', async () => {
+    const file = rPdfInput.files?.[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('folder', 'laporan');
+    if (rUploadBtn) {
+      rUploadBtn.disabled = true;
+      rUploadBtn.textContent = 'Mengunggah...';
+    }
+    if (rUploadStatus) {
+      rUploadStatus.textContent = `Mengunggah ${file.name}...`;
+      rUploadStatus.classList.remove('hidden');
+    }
+    try {
+      const res = await fetch('/api/admin/reports/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (res.ok && data.success && data.url) {
+        if (rInputFileUrl) rInputFileUrl.value = data.url;
+        if (rInputSize) rInputSize.value = String(data.fileSize || file.size || 0);
+        showToast('Dokumen PDF laporan berhasil diunggah ke S3!');
+      } else {
+        showToast(data.message || 'Gagal mengunggah PDF.', true);
+      }
+    } catch {
+      showToast('Koneksi terputus saat mengunggah PDF.', true);
+    } finally {
+      if (rUploadBtn) {
+        rUploadBtn.disabled = false;
+        rUploadBtn.textContent = 'Unggah PDF (S3)';
+      }
+      if (rUploadStatus) rUploadStatus.classList.add('hidden');
+      rPdfInput.value = '';
+    }
+  });
+
+  submitReportBtn?.addEventListener('click', async () => {
+    const idVal = rInputId?.value ? parseInt(rInputId.value, 10) : null;
+    const title = rInputTitle?.value?.trim();
+    const periodLabel = rInputPeriod?.value?.trim();
+    const fileUrl = rInputFileUrl?.value?.trim();
+    const summary = rInputSummary?.value?.trim();
+
+    if (!title || !periodLabel || !fileUrl || !summary) {
+      showToast('Judul, periode, tautan PDF, dan ringkasan laporan wajib diisi.', true);
+      return;
+    }
+
+    submitReportBtn.disabled = true;
+    if (submitReportBtnText) submitReportBtnText.textContent = 'Menyimpan...';
+
+    const endpoint = idVal ? '/api/admin/reports/update' : '/api/admin/reports/create';
+    const payload: any = {
+      title,
+      periodLabel,
+      programScope: rInputScope?.value || 'all',
+      publishedAt: rInputPublishedAt?.value?.trim() || '',
+      fileUrl,
+      fileSize: Number(rInputSize?.value || 0),
+      summary,
+      isPublished: rInputIsPublished?.checked ?? true,
+    };
+    if (idVal) payload.id = idVal;
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        showToast('Dokumen laporan berhasil disimpan!');
+        closeReportModal();
+        setTimeout(() => {
+          window.location.href = '/admin/kabar?tab=laporan';
+        }, 500);
+      } else {
+        showToast(data.error || 'Gagal menyimpan laporan.', true);
+      }
+    } catch {
+      showToast('Gagal menghubungi server.', true);
+    } finally {
+      submitReportBtn.disabled = false;
+      if (submitReportBtnText) submitReportBtnText.textContent = idVal ? 'Simpan Perubahan' : 'Simpan Laporan';
+    }
+  });
+
+  document.querySelectorAll<HTMLInputElement>('.report-toggle-checkbox').forEach((chk) => {
+    chk.addEventListener('change', async (e) => {
+      const target = e.currentTarget as HTMLInputElement;
+      const repId = parseInt(target.getAttribute('data-report-id') || '0', 10);
+      const newState = target.checked;
+      const badge = document.getElementById(`report-status-badge-${repId}`);
+      const txt = document.getElementById(`report-status-text-${repId}`);
+      try {
+        const res = await fetch('/api/admin/reports/toggle', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: repId, isPublished: newState }),
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          if (badge && txt) {
+            badge.className = `status-pill ${newState ? 'published' : 'draft'}`;
+            txt.textContent = newState ? 'Terbit' : 'Draf';
+          }
+          showToast(`Laporan #${repId} kini ${newState ? 'Terbit' : 'Draf'}.`);
+        } else {
+          target.checked = !newState;
+          showToast(data.error || 'Gagal mengubah status laporan.', true);
+        }
+      } catch {
+        target.checked = !newState;
+        showToast('Koneksi terputus saat mengubah status.', true);
+      }
+    });
+  });
+
+  document.querySelectorAll('.delete-report-btn').forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      const el = e.currentTarget as HTMLElement;
+      const repId = parseInt(el.getAttribute('data-report-id') || '0', 10);
+      const repTitle = el.getAttribute('data-report-title') || '';
+      if (!repId || !window.confirm(`Hapus dokumen laporan "${repTitle}" secara permanen?`)) return;
+      try {
+        const res = await fetch('/api/admin/reports/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: repId }),
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          document.getElementById(`report-card-${repId}`)?.remove();
+          showToast('Dokumen laporan berhasil dihapus.');
+        } else {
+          showToast(data.error || 'Gagal menghapus laporan.', true);
+        }
+      } catch {
+        showToast('Gagal menghubungi server saat menghapus laporan.', true);
+      }
+    });
+  });
+
   // Keyboard accessibility: ESC key to close modals
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeModal();
+      closeReportModal();
       if (deleteModal) {
         deleteModal.classList.remove('active');
         targetDeleteArticleId = null;

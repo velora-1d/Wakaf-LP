@@ -1,0 +1,140 @@
+---
+// src/components/admin/kabar/ReportModal.astro
+---
+
+<div
+  id="reportFormModal"
+  class="modal-backdrop drawer-mode"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="reportModalTitle"
+>
+  <div class="modal-card drawer-sheet" id="reportFormModalBox">
+    <div class="modal-header">
+      <div class="modal-header-info">
+        <div class="modal-icon-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+        </div>
+        <div>
+          <h3 id="reportModalTitle" class="modal-title">Unggah Dokumen Laporan Berkala</h3>
+          <p id="reportModalSubtitle" class="modal-subtitle">Laporan transparansi penyaluran dana &amp; progres pembangunan (PDF)</p>
+        </div>
+      </div>
+
+      <button type="button" id="closeReportModalBtn" class="modal-close-btn" aria-label="Tutup modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <input type="hidden" id="reportInputId" value="" />
+      <input type="hidden" id="reportInputFileSize" value="0" />
+
+      <div class="form-group">
+        <label for="reportInputTitle" class="form-label">
+          Judul Dokumen Laporan <span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="reportInputTitle"
+          placeholder="Contoh: Laporan Keuangan & Progres Masjid Kuartal IV 2026"
+          class="form-input"
+          required
+        />
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="reportInputPeriod" class="form-label">
+            Periode Laporan <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="reportInputPeriod"
+            placeholder="Contoh: November 2026 / Q4 2026"
+            class="form-input"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="reportInputScope" class="form-label">Cakupan Program</label>
+          <select id="reportInputScope" class="form-input">
+            <option value="all">Seluruh Program GVF</option>
+            <option value="pembangunan_masjid">Pembangunan Masjid</option>
+            <option value="gota_ssm">Program GOTA SSM</option>
+            <option value="infaq">Infak (Material Masjid)</option>
+            <option value="sedekah">Sedekah (Dukungan GOTA SSM)</option>
+            <option value="wakaf">Wakaf (Objek &amp; Peruntukan)</option>
+            <option value="zakat">Zakat (Kampanye Ramadan &amp; Idulfitri)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reportInputPublishedAt" class="form-label">Tanggal Terbit</label>
+        <input type="text" id="reportInputPublishedAt" placeholder="Contoh: 24 November 2026" class="form-input" />
+      </div>
+
+      <div class="form-group">
+        <label for="reportInputFileUrl" class="form-label">
+          Berkas PDF Laporan / Tautan Dokumen <span class="required">*</span>
+        </label>
+        <div class="flex items-center gap-2">
+          <input
+            type="text"
+            id="reportInputFileUrl"
+            placeholder="Unggah dokumen PDF atau tempel tautan"
+            class="form-input flex-1"
+            required
+          />
+          <input type="file" id="reportPdfFileInput" accept="application/pdf,.pdf" style="display: none;" />
+          <button
+            type="button"
+            id="btnTriggerReportPdfUpload"
+            class="px-3.5 py-2 text-xs font-semibold text-white bg-[#0969da] hover:bg-[#0752a8] rounded-lg cursor-pointer shrink-0"
+          >
+            Pilih &amp; Unggah PDF
+          </button>
+        </div>
+        <p id="reportUploadStatus" class="text-xs text-slate-500 mt-1 hidden"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="reportInputSummary" class="form-label">
+          Ringkasan Isi Laporan <span class="required">*</span>
+        </label>
+        <textarea
+          id="reportInputSummary"
+          rows="4"
+          placeholder="Ringkasan realisasi penerimaan, belanja material, dan capaian penyaluran..."
+          class="form-textarea leading-relaxed"
+          required
+        ></textarea>
+      </div>
+
+      <div class="publish-checkbox-row">
+        <label class="checkbox-container">
+          <input type="checkbox" id="reportInputIsPublished" checked />
+          <span class="checkbox-custom"></span>
+          <span class="checkbox-label-text">Tampilkan dokumen laporan ini di halaman Laporan publik</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" id="cancelReportModalBtn" class="btn-cancel">Batal</button>
+      <button type="button" id="submitReportFormBtn" class="btn-save-primary">
+        <span id="submitReportBtnText">Simpan Laporan</span>
+      </button>
+    </div>
+  </div>
+</div>

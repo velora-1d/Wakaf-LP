@@ -4,15 +4,27 @@ export const prerender = false;
 
 import AdminLayout from '../../../layouts/AdminLayout.astro';
 import ArticleModal from '../../../components/admin/kabar/ArticleModal.astro';
+import ReportModal from '../../../components/admin/kabar/ReportModal.astro';
 import DeleteArticleModal from '../../../components/admin/kabar/DeleteArticleModal.astro';
 import CategoryModal from '../../../components/admin/kabar/CategoryModal.astro';
-import { getAllNewsArticles } from '../../../lib/db';
+import { getAllNewsArticles, getAllTransparencyReports } from '../../../lib/db';
 import '../../../styles/admin/kabar.css';
 
-const rawArticles = await getAllNewsArticles();
+const rawArticles = await getAllNewsArticles('kabar');
+const allReports = await getAllTransparencyReports();
 
-// Normalisasi data untuk tampilan
-const allArticles = rawArticles.map(a => ({
+function safeDateDisplay(val: string | null | undefined): string {
+  if (!val) return 'Belum Ditentukan';
+  const d = new Date(val);
+  if (isNaN(d.getTime())) return val;
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(d);
+}
+
+const allArticles = rawArticles.map((a) => ({
   id: a.id,
   title: a.title,
   slug: a.slug,
@@ -21,47 +33,65 @@ const allArticles = rawArticles.map(a => ({
   content: a.content,
   author: a.author,
   coverImage: a.coverImage,
-  publishedAt: a.publishedAt ? new Intl.DateTimeFormat('id-ID', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  }).format(new Date(a.publishedAt)) : 'Belum Ditentukan',
+  publishedAt: safeDateDisplay(a.publishedAt),
   isPublished: a.isPublished,
   createdAt: a.createdAt,
 }));
 
+const activeTabParam = Astro.url.searchParams.get('tab');
+const isLaporanTab = activeTabParam === 'laporan';
+
 const totalCount = allArticles.length;
-const publishedCount = allArticles.filter(a => a.isPublished).length;
-const draftCount = allArticles.filter(a => !a.isPublished).length;
+const publishedCount = allArticles.filter((a) => a.isPublished).length;
+const totalReportsCount = allReports.length;
+
+const scopeLabels: Record<string, string> = {
+  all: 'Seluruh Program GVF',
+  pembangunan_masjid: 'Pembangunan Masjid',
+  gota_ssm: 'GOTA SSM',
+  infaq: 'Infak (Material Masjid)',
+  sedekah: 'Sedekah (GOTA SSM)',
+  wakaf: 'Wakaf',
+  zakat: 'Zakat (Ramadan)',
+};
 ---
 
-<AdminLayout title="Kelola Kabar & Warta" activeSlug="kabar">
+<AdminLayout title="Kelola Kabar & Laporan" activeSlug="kabar">
   <div class="kabar-admin-page">
     <!-- Header Section -->
     <div class="kabar-top-header">
       <div class="header-titles">
         <div class="header-badge-row">
-          <span class="badge-blue-pill">Pusat Redaksi &amp; Warta</span>
+          <span class="badge-blue-pill">Pusat Redaksi &amp; Transparansi</span>
           <span class="badge-dot-sep">&bull;</span>
           <span class="badge-green-pill">MinIO S3 Terintegrasi</span>
         </div>
-        <h1 class="header-main-title">Kabar &amp; Literasi Terkini GVF</h1>
+        <h1 class="header-main-title">Kabar &amp; Laporan Transparansi GVF</h1>
         <p class="header-desc">
-          Kelola publikasi artikel, warta progres kawasan, dan literasi syariah dengan integrasi penyimpanan berkas MinIO S3.
+          Kelola artikel kabar progres lapangan serta dokumen laporan transparansi berkala (PDF) yang terhubung ke halaman /kabar.
         </p>
       </div>
 
-      <div class="header-actions">
-        <button
-          type="button"
-          id="btnOpenCreateArticle"
-          class="btn-create-article"
-        >
+      <div class="header-actions flex items-center gap-2.5 flex-wrap">
+        <button type="button" id="btnOpenCreateArticle" class="btn-create-article">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
-          <span>Tulis Artikel Baru</span>
+          <span>Tulis Kabar Baru</span>
+        </button>
+
+        <button
+          type="button"
+          id="btnOpenCreateReport"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold cursor-pointer transition-colors"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          <span>Unggah Laporan PDF</span>
         </button>
       </div>
     </div>
@@ -70,7 +100,7 @@ const draftCount = allArticles.filter(a => !a.isPublished).length;
     <div class="metrics-grid">
       <div class="metric-card">
         <div class="metric-card-top">
-          <span class="metric-label">TOTAL ARTIKEL</span>
+          <span class="metric-label">TOTAL ARTIKEL KABAR</span>
           <div class="metric-icon-wrap text-blue">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
@@ -79,12 +109,12 @@ const draftCount = allArticles.filter(a => !a.isPublished).length;
           </div>
         </div>
         <div class="metric-value">{totalCount}</div>
-        <p class="metric-hint">Koleksi berita &amp; literasi di database</p>
+        <p class="metric-hint">Berita kegiatan &amp; progres lapangan</p>
       </div>
 
       <div class="metric-card">
         <div class="metric-card-top">
-          <span class="metric-label">ARTIKEL TERBIT</span>
+          <span class="metric-label">KABAR TERBIT</span>
           <div class="metric-icon-wrap text-emerald">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -93,196 +123,270 @@ const draftCount = allArticles.filter(a => !a.isPublished).length;
           </div>
         </div>
         <div class="metric-value text-emerald">{publishedCount}</div>
-        <p class="metric-hint">Tampil aktif di web publik</p>
+        <p class="metric-hint">Tampil aktif di Tab Kabar publik</p>
       </div>
 
       <div class="metric-card">
         <div class="metric-card-top">
-          <span class="metric-label">ARTIKEL DRAF</span>
-          <div class="metric-icon-wrap text-amber">
+          <span class="metric-label">DOKUMEN LAPORAN PDF</span>
+          <div class="metric-icon-wrap text-blue">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
             </svg>
           </div>
         </div>
-        <div class="metric-value text-amber">{draftCount}</div>
-        <p class="metric-hint">Disimpan aman belum terbit</p>
+        <div class="metric-value">{totalReportsCount}</div>
+        <p class="metric-hint">Laporan transparansi berkala</p>
       </div>
     </div>
 
-    <!-- Daftar Artikel -->
-    <div class="articles-section">
-      <div class="section-header-row">
-        <div>
-          <h2 class="section-title">Daftar Publikasi Artikel</h2>
-          <p class="section-subtitle">
-            Klik tombol Edit untuk mengubah narasi, atau klik ikon Kamera untuk mengganti gambar via MinIO S3 secara instan.
-          </p>
-        </div>
-        <a href="/kabar" target="_blank" class="link-preview-public">
-          <span>Lihat Tampilan Publik</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
-        </a>
-      </div>
+    <!-- Switcher 2 Tab: Artikel Kabar vs Dokumen Laporan PDF -->
+    <div class="flex items-center gap-2 border-b border-slate-200 mb-5">
+      <button
+        type="button"
+        id="tabBtnKabar"
+        class={`px-4 py-2.5 text-xs font-semibold rounded-t-lg border-b-2 transition-colors cursor-pointer ${
+          !isLaporanTab
+            ? 'border-[#0969da] text-[#0969da] bg-blue-50/50'
+            : 'border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+        }`}
+      >
+        Artikel Kabar &amp; Progres ({totalCount})
+      </button>
 
-      {allArticles.length === 0 ? (
-        <div class="empty-state-box">
-          <p>Belum ada artikel warta yang tersimpan.</p>
-        </div>
-      ) : (
-        <div class="articles-grid" id="articlesListContainer">
-          {allArticles.map((article) => {
-            const articleJson = JSON.stringify(article);
-            return (
-              <div
-                class="admin-article-card"
-                id={`article-card-${article.id}`}
-                data-article-id={article.id}
-              >
-                <!-- Header Kartu -->
-                <div class="card-top-bar">
-                  <div class="card-category-date">
-                    <span class="cat-pill">{article.category}</span>
-                    <span class="date-text">{article.publishedAt}</span>
-                  </div>
+      <button
+        type="button"
+        id="tabBtnLaporan"
+        class={`px-4 py-2.5 text-xs font-semibold rounded-t-lg border-b-2 transition-colors cursor-pointer ${
+          isLaporanTab
+            ? 'border-[#0969da] text-[#0969da] bg-blue-50/50'
+            : 'border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+        }`}
+      >
+        Dokumen Laporan Berkala PDF ({totalReportsCount})
+      </button>
+    </div>
 
-                  <span
-                    id={`status-badge-${article.id}`}
-                    class={`status-pill ${article.isPublished ? 'published' : 'draft'}`}
-                  >
-                    <span class="status-dot"></span>
-                    <span id={`status-text-${article.id}`}>
-                      {article.isPublished ? 'Terbit' : 'Draf'}
+    <!-- TAB 1: ARTIKEL KABAR -->
+    <div id="tabContentKabar" class={isLaporanTab ? 'hidden' : ''}>
+      <div class="articles-section">
+        <div class="section-header-row">
+          <div>
+            <h2 class="section-title">Daftar Publikasi Kabar &amp; Progres</h2>
+            <p class="section-subtitle">
+              Klik Edit untuk mengubah narasi, atau ikon Kamera untuk mengganti foto via MinIO S3 secara instan.
+            </p>
+          </div>
+          <a href="/kabar" target="_blank" class="link-preview-public">
+            <span>Lihat Tampilan Publik</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        </div>
+
+        {allArticles.length === 0 ? (
+          <div class="empty-state-box">
+            <p>Belum ada artikel kabar yang tersimpan.</p>
+          </div>
+        ) : (
+          <div class="articles-grid" id="articlesListContainer">
+            {allArticles.map((article) => {
+              const articleJson = JSON.stringify(article);
+              return (
+                <div class="admin-article-card" id={`article-card-${article.id}`} data-article-id={article.id}>
+                  <div class="card-top-bar">
+                    <div class="card-category-date">
+                      <span class="cat-pill">{article.category}</span>
+                      <span class="date-text">{article.publishedAt}</span>
+                    </div>
+                    <span id={`status-badge-${article.id}`} class={`status-pill ${article.isPublished ? 'published' : 'draft'}`}>
+                      <span class="status-dot"></span>
+                      <span id={`status-text-${article.id}`}>{article.isPublished ? 'Terbit' : 'Draf'}</span>
                     </span>
-                  </span>
-                </div>
-
-                <!-- Konten Kartu: Gambar & Teks Seimbang -->
-                <div class="card-main-content">
-                  <!-- Thumbnail Gambar dengan Tombol Cepat Ubah Gambar -->
-                  <div class="thumb-container">
-                    <img
-                      src={article.coverImage}
-                      alt={article.title}
-                      id={`card-img-${article.id}`}
-                      class="thumb-image"
-                      loading="lazy"
-                    />
-                    <button
-                      type="button"
-                      class="btn-quick-change-img"
-                      title="Ganti Gambar via MinIO S3"
-                      data-article-id={article.id}
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                        <circle cx="12" cy="13" r="4"></circle>
-                      </svg>
-                      <span>Ubah Gambar</span>
-                    </button>
                   </div>
 
-                  <!-- Teks Artikel -->
-                  <div class="card-text-col">
-                    <h3 class="card-article-title" id={`title-display-${article.id}`}>
-                      {article.title}
-                    </h3>
-                    <p class="card-article-summary">
-                      {article.summary}
-                    </p>
-                    <div class="card-meta-bottom">
-                      <span class="meta-author">Penulis: <strong>{article.author || 'Tim GVF'}</strong></span>
-                      <a href={`/kabar/${article.slug}`} target="_blank" class="meta-slug-link" title="Buka Pratinjau Halaman">
-                        <span>/kabar/{article.slug}</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                          <polyline points="15 3 21 3 21 9"></polyline>
-                          <line x1="10" y1="14" x2="21" y2="3"></line>
+                  <div class="card-main-content">
+                    <div class="thumb-container">
+                      <img src={article.coverImage} alt={article.title} id={`card-img-${article.id}`} class="thumb-image" loading="lazy" />
+                      <button type="button" class="btn-quick-change-img" title="Ganti Gambar via MinIO S3" data-article-id={article.id}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                          <circle cx="12" cy="13" r="4"></circle>
                         </svg>
-                      </a>
+                        <span>Ubah Gambar</span>
+                      </button>
+                    </div>
+
+                    <div class="card-text-col">
+                      <h3 class="card-article-title" id={`title-display-${article.id}`}>{article.title}</h3>
+                      <p class="card-article-summary">{article.summary}</p>
+                      <div class="card-meta-bottom">
+                        <span class="meta-author">Penulis: <strong>{article.author || 'Tim GVF'}</strong></span>
+                        <a href={`/kabar/${article.slug}`} target="_blank" class="meta-slug-link" title="Buka Pratinjau Halaman">
+                          <span>/kabar/{article.slug}</span>
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card-footer-actions">
+                    <div class="toggle-group">
+                      <label for={`toggle-news-${article.id}`} class="toggle-label">Tayang</label>
+                      <label class="switch-container">
+                        <input
+                          type="checkbox"
+                          id={`toggle-news-${article.id}`}
+                          class="news-toggle-checkbox"
+                          data-article-id={article.id}
+                          checked={article.isPublished}
+                        />
+                        <span class="switch-slider"></span>
+                      </label>
+                    </div>
+
+                    <div class="action-btn-group">
+                      <button type="button" class="btn-action btn-edit edit-article-btn" data-article-json={articleJson}>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 20h9"></path>
+                          <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+                        </svg>
+                        <span>Edit</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        class="btn-action btn-delete delete-article-btn"
+                        data-article-id={article.id}
+                        data-article-title={article.title}
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M3 6h18"></path>
+                          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                        </svg>
+                        <span>Hapus</span>
+                      </button>
                     </div>
                   </div>
                 </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
 
-                <!-- Footer Aksi -->
-                <div class="card-footer-actions">
-                  <!-- Toggle Tayang -->
-                  <div class="toggle-group">
-                    <label for={`toggle-news-${article.id}`} class="toggle-label">
-                      Tayang
-                    </label>
-                    <label class="switch-container">
-                      <input
-                        type="checkbox"
-                        id={`toggle-news-${article.id}`}
-                        class="news-toggle-checkbox"
-                        data-article-id={article.id}
-                        checked={article.isPublished}
-                      />
-                      <span class="switch-slider"></span>
-                    </label>
+    <!-- TAB 2: DOKUMEN LAPORAN BERKALA PDF -->
+    <div id="tabContentLaporan" class={isLaporanTab ? '' : 'hidden'}>
+      <div class="articles-section">
+        <div class="section-header-row">
+          <div>
+            <h2 class="section-title">Dokumen Laporan Transparansi Berkala (PDF)</h2>
+            <p class="section-subtitle">
+              Dokumen laporan yang diterbitkan tampil pada Tab "Laporan &amp; Transparansi" di halaman /kabar.
+            </p>
+          </div>
+          <a href="/kabar?tab=laporan" target="_blank" class="link-preview-public">
+            <span>Lihat Tab Laporan Publik</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        </div>
+
+        {allReports.length === 0 ? (
+          <div class="empty-state-box">
+            <p>Belum ada dokumen laporan berkala yang tersimpan.</p>
+          </div>
+        ) : (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {allReports.map((rep) => {
+              const repJson = JSON.stringify(rep);
+              const sizeKb = rep.fileSize && rep.fileSize > 0 ? `${Math.max(1, Math.round(rep.fileSize / 1024))} KB` : 'Tautan';
+              return (
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between space-y-4" id={`report-card-${rep.id}`}>
+                  <div class="space-y-2.5">
+                    <div class="flex items-center justify-between gap-2">
+                      <div class="flex items-center gap-2 flex-wrap">
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-[#0969da] border border-blue-200">
+                          {rep.periodLabel}
+                        </span>
+                        <span class="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                          {scopeLabels[rep.programScope] || rep.programScope}
+                        </span>
+                      </div>
+                      <span id={`report-status-badge-${rep.id}`} class={`status-pill ${rep.isPublished ? 'published' : 'draft'}`}>
+                        <span class="status-dot"></span>
+                        <span id={`report-status-text-${rep.id}`}>{rep.isPublished ? 'Terbit' : 'Draf'}</span>
+                      </span>
+                    </div>
+
+                    <h3 class="text-base font-bold text-slate-900 m-0">{rep.title}</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed m-0">{rep.summary}</p>
+                    <div class="flex items-center justify-between text-[11px] text-slate-500 pt-1">
+                      <span>Terbit: <strong>{rep.publishedAt}</strong> &bull; {sizeKb}</span>
+                      <a href={rep.fileUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-[#0969da] hover:underline">
+                        Buka Dokumen &rarr;
+                      </a>
+                    </div>
                   </div>
 
-                  <!-- Tombol Aksi Kanan -->
-                  <div class="action-btn-group">
-                    <button
-                      type="button"
-                      class="btn-action btn-edit edit-article-btn"
-                      data-article-json={articleJson}
-                    >
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 20h9"></path>
-                        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
-                      </svg>
-                      <span>Edit</span>
-                    </button>
+                  <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                    <div class="toggle-group">
+                      <label for={`toggle-rep-${rep.id}`} class="toggle-label">Tayang</label>
+                      <label class="switch-container">
+                        <input
+                          type="checkbox"
+                          id={`toggle-rep-${rep.id}`}
+                          class="report-toggle-checkbox"
+                          data-report-id={rep.id}
+                          checked={rep.isPublished}
+                        />
+                        <span class="switch-slider"></span>
+                      </label>
+                    </div>
 
-                    <button
-                      type="button"
-                      class="btn-action btn-delete delete-article-btn"
-                      data-article-id={article.id}
-                      data-article-title={article.title}
-                    >
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 6h18"></path>
-                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                      </svg>
-                      <span>Hapus</span>
-                    </button>
+                    <div class="action-btn-group">
+                      <button type="button" class="btn-action btn-edit edit-report-btn" data-report-json={repJson}>
+                        <span>Edit</span>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn-action btn-delete delete-report-btn"
+                        data-report-id={rep.id}
+                        data-report-title={rep.title}
+                      >
+                        <span>Hapus</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   </div>
 
-  <!-- Hidden File Input untuk Quick Change Image pada Kartu -->
-  <input
-    type="file"
-    id="cardQuickFileInput"
-    accept="image/jpeg,image/png,image/webp,image/gif"
-    style="display: none;"
-  />
+  <input type="file" id="cardQuickFileInput" accept="image/jpeg,image/png,image/webp,image/gif" style="display: none;" />
 
-  <!-- Modal Formulir Tambah / Edit Artikel -->
   <ArticleModal />
-
-  <!-- Modal Konfirmasi Hapus Artikel -->
+  <ReportModal />
   <DeleteArticleModal />
-
-  <!-- Modal Referensi Kategori -->
   <CategoryModal />
 
-  <!-- Toast Notifikasi Global -->
   <div id="kabarToast" class="admin-toast">
     <div class="toast-dot"></div>
     <span id="kabarToastMessage">Pesan sistem</span>
