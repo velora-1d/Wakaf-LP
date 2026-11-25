@@ -1,6 +1,10 @@
 ---
 // src/components/home/StatsSection.astro
 // Metrik Counter Prestasi 4 Kolom GVF
+import { getVerifiedDonationSum } from '../../lib/db';
+
+const { totalNominal, totalTransaksi } = await getVerifiedDonationSum();
+const formattedNominal = `Rp ${totalNominal.toLocaleString('id-ID')}`;
 ---
 
 <section class="gvf-stats-section" id="transparansi">
@@ -8,9 +12,9 @@
     <div class="gvf-stats-grid">
       <!-- Stat 1 -->
       <div class="gvf-stat-card reveal-on-scroll delay-100">
-        <div class="gvf-stat-number">Rp 46,8 Jt+</div>
+        <div class="gvf-stat-number">{formattedNominal}</div>
         <div class="gvf-stat-label">Dana Terhimpun</div>
-        <div class="gvf-stat-sub">Dari total kebutuhan Rp 1,21 Miliar pembangunan masjid</div>
+        <div class="gvf-stat-sub">Akumulasi real-time dari {totalTransaksi} transaksi lunas terverifikasi</div>
       </div>
 
       <!-- Stat 2 -->

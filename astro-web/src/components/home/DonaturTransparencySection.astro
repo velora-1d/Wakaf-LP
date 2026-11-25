@@ -1,14 +1,27 @@
 ---
 // src/components/home/DonaturTransparencySection.astro
 // Transparansi Realisasi Anggaran & Daftar Donatur Terverifikasi
-import donaturData from '../../data/donatur.json';
+import { getVerifiedDonationSum, getAllVerifiedDonations } from '../../lib/db';
 
-const totalTerkumpul = donaturData.reduce((acc, curr) => acc + curr.nominal, 0);
+const [summary, liveDonations] = await Promise.all([
+  getVerifiedDonationSum(),
+  getAllVerifiedDonations(200),
+]);
+
+const totalTerkumpul = summary.totalNominal;
+const totalTransaksi = summary.totalTransaksi;
 const totalAnggaran = 1215753350; // Sesuai data transparansi proyek
-const realisasiPersen = ((totalTerkumpul / totalAnggaran) * 100).toFixed(2); // 3.85%
+const realisasiPersenNum = Math.min(100, totalAnggaran > 0 ? (totalTerkumpul / totalAnggaran) * 100 : 0);
+const realisasiPersen = realisasiPersenNum.toFixed(2);
 
 const formatRupiah = (val: number) => {
   return 'Rp ' + val.toLocaleString('id-ID');
+};
+
+const formatDateSafe = (val: Date | string) => {
+  const d = new Date(val);
+  if (isNaN(d.getTime())) return 'Tercatat';
+  return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
 };
 ---
 
@@ -18,10 +31,6 @@ const formatRupiah = (val: number) => {
     <div class="gvf-budget-card">
       <!-- Status & Spec Header -->
       <div class="gvf-budget-top">
-        <div class="gvf-status-pill">
-          <span class="gvf-status-dot"></span>
-          <span>STATUS: TERHENTI KETERBATASAN DANA</span>
-        </div>
         <div class="gvf-spec-text">
           <span>Spesifikasi: <strong>20 × 30 Meter</strong></span>
         </div>
@@ -39,7 +48,7 @@ const formatRupiah = (val: number) => {
         <div class="gvf-metric-card gvf-metric-collected">
           <span class="gvf-metric-label">DANA TERHIMPUN</span>
           <div class="gvf-metric-val">{formatRupiah(totalTerkumpul)}</div>
-          <span class="gvf-metric-badge">Tercatat {donaturData.length} Transaksi Donasi</span>
+          <span class="gvf-metric-badge">Tercatat {totalTransaksi} Transaksi Lunas</span>
         </div>
 
         <!-- Card 2: Total Anggaran -->
@@ -60,7 +69,7 @@ const formatRupiah = (val: number) => {
           <span>100% Target</span>
         </div>
         <div class="gvf-progress-track">
-          <div class="gvf-progress-fill" style={`transform: scaleX(${realisasiPersen / 100});`}></div>
+          <div class="gvf-progress-fill" style={`transform: scaleX(${realisasiPersenNum / 100});`}></div>
         </div>
         <div class="gvf-progress-info">
           <span>Realisasi Saat Ini: <strong>{realisasiPersen}%</strong></span>
@@ -102,20 +111,16 @@ const formatRupiah = (val: number) => {
               </tr>
             </thead>
             <tbody id="donorTableBody">
-              {donaturData.map((d, index) => (
+              {liveDonations.map((d, index) => (
                 <tr class="gvf-donor-row" data-index={index}>
-                  <td class="gvf-col-no">{d.no}</td>
+                  <td class="gvf-col-no">{index + 1}</td>
                   <td class="gvf-col-name">
-                    <strong>{d.nama}</strong>
+                    <strong>{d.namaDonatur || 'Hamba Allah'}</strong>
                   </td>
-                  <td class="gvf-col-nominal">{formatRupiah(d.nominal)}</td>
-                  <td class="gvf-col-date">{d.tanggal !== '-' ? d.tanggal : 'Tercatat'}</td>
+                  <td class="gvf-col-nominal">{formatRupiah(d.nominalTotal)}</td>
+                  <td class="gvf-col-date">{formatDateSafe(d.createdAt)}</td>
                   <td class="gvf-col-desc">
-                    {d.keterangan !== '-' ? (
-                      <span class="gvf-badge-desc">{d.keterangan}</span>
-                    ) : (
-                      <span class="gvf-text-faint">Wakaf Pembangunan</span>
-                    )}
+                    <span class="gvf-badge-desc">{d.atasNamaNiat || d.programTujuan || 'Donasi Terverifikasi'}</span>
                   </td>
                 </tr>
               ))}
@@ -125,8 +130,8 @@ const formatRupiah = (val: number) => {
 
         <!-- Toggle View More Button -->
         <div class="gvf-table-footer">
-          <button type="button" id="toggleMoreDonorsBtn" class="gvf-toggle-btn">
-            <span id="toggleBtnText">Tampilkan Seluruh 36 Donatur</span>
+          <button type="button" id="toggleMoreDonorsBtn" class="gvf-toggle-btn" data-total={liveDonations.length}>
+            <span id="toggleBtnText">Tampilkan Seluruh {liveDonations.length} Donatur</span>
             <svg id="toggleBtnIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
@@ -144,6 +149,7 @@ const formatRupiah = (val: number) => {
   const toggleText = document.getElementById('toggleBtnText');
   const toggleIcon = document.getElementById('toggleBtnIcon');
   const rows = document.querySelectorAll('.gvf-donor-row') as NodeListOf<HTMLTableRowElement>;
+  const totalVisibleRows = Number(toggleBtn?.getAttribute('data-total') || rows.length);
 
   let isExpanded = false;
   const INITIAL_VISIBLE_COUNT = 10;
@@ -168,7 +174,7 @@ const formatRupiah = (val: number) => {
     });
 
     if (toggleBtn) {
-      if (query.length > 0) {
+      if (query.length > 0 || totalVisibleRows <= INITIAL_VISIBLE_COUNT) {
         toggleBtn.style.display = 'none';
       } else {
         toggleBtn.style.display = 'inline-flex';
@@ -183,7 +189,7 @@ const formatRupiah = (val: number) => {
     toggleBtn.addEventListener('click', () => {
       isExpanded = !isExpanded;
       if (toggleText) {
-        toggleText.textContent = isExpanded ? 'Tampilkan 10 Teratas' : 'Tampilkan Seluruh 36 Donatur';
+        toggleText.textContent = isExpanded ? 'Tampilkan 10 Teratas' : `Tampilkan Seluruh ${totalVisibleRows} Donatur`;
       }
       if (toggleIcon) {
         toggleIcon.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
@@ -342,18 +348,13 @@ const formatRupiah = (val: number) => {
   }
 
   .gvf-metric-badge {
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     color: #065f46;
-    background-color: #d1fae5;
-    padding: 4px 10px;
-    border-radius: 6px;
     display: inline-block;
-    align-self: flex-start;
     font-weight: 600;
   }
 
   .gvf-badge-muted {
-    background-color: #e2e8f0;
     color: #475569;
   }
 
