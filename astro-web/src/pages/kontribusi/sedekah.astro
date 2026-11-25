@@ -1,0 +1,11 @@
+---
+// src/pages/kontribusi/sedekah.astro
+export const prerender = false;
+
+import ProgramLayout from '../../layouts/ProgramLayout.astro';
+import { programsData } from '../../data/programs';
+
+const program = programsData.sedekah;
+---
+
+<ProgramLayout program={program} />
