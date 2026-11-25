@@ -1,5 +1,134 @@
 ---
 // src/pages/program/index.astro
-// Redirect otomatis ke program utama (/program/wakaf)
-return Astro.redirect('/program/wakaf');
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getActivePageSections, getVerifiedDonationSum } from '../../lib/db';
+import { getBreadcrumbSchema } from '../../lib/seo-schema';
+import '../../styles/program/program-pages.css';
+
+const [masjidSections, gotaSections, masjidSummary] = await Promise.all([
+  getActivePageSections('pembangunan-masjid'),
+  getActivePageSections('gota-ssm'),
+  getVerifiedDonationSum(['pembangunan-masjid', 'infaq', 'wakaf']),
+]);
+
+const masjidMap = new Map(masjidSections.map((s) => [s.sectionKey, s.content as any]));
+const gotaMap = new Map(gotaSections.map((s) => [s.sectionKey, s.content as any]));
+
+const masjidProgress = masjidMap.get('masjid_progress') || {};
+const masjidTarget =
+  Number(masjidProgress.targetAmount) ||
+  Number(String(masjidProgress.targetLabel || '').replace(/[^\d]/g, '')) ||
+  1310753350;
+const masjidRawPercent = masjidTarget > 0 ? (masjidSummary.totalNominal / masjidTarget) * 100 : 0;
+const masjidPercentLabel =
+  masjidRawPercent > 0 && masjidRawPercent < 1
+    ? masjidRawPercent.toFixed(2)
+    : Math.round(Math.min(100, masjidRawPercent)).toString();
+const masjidCollectedLabel = `Rp ${masjidSummary.totalNominal.toLocaleString('id-ID')}`;
+const masjidHero = masjidMap.get('masjid_hero') || {};
+const gotaHero = gotaMap.get('gota_hero') || {};
+
+const programHubHeroImage =
+  'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/tampak-luar-gedung-pesantren-landscape.webp';
+
+const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
+const pageSchema = getBreadcrumbSchema(
+  [
+    { name: 'Beranda', url: '/' },
+    { name: 'Program Unggulan', url: '/program' },
+  ],
+  siteUrl
+);
 ---
+
+<BaseLayout
+  title="Program Unggulan • Global Village Fund"
+  description="Dua program unggulan Global Village Fund: Pembangunan Masjid Khairu Ummah Sugro dan GOTA SSM (Gerakan Orang Tua Asuh Santri Skill Village)."
+  ogImage={programHubHeroImage}
+  schema={pageSchema}
+>
+  <section class="prog-hero">
+    <div
+      class="prog-hero-bg"
+      style={`background-image: url('${programHubHeroImage}')`}
+      aria-hidden="true"
+    ></div>
+    <div class="prog-hero-scrim" aria-hidden="true"></div>
+    <div class="prog-hero-inner">
+      <h1 class="prog-hero-title">
+        Fokus Pengembangan Ekosistem &amp; Kemanfaatan Nyata
+      </h1>
+      <p class="prog-hero-lead">
+        Program prioritas Global Village Fund yang menghubungkan partisipasi Anda dengan pembangunan sarana ibadah serta pengasuhan pendidikan santri di Sukasirna, Jonggol.
+      </p>
+    </div>
+  </section>
+
+  <section class="prog-section-canvas prog-section-last">
+    <div class="prog-container">
+      <div class="prog-hub-grid">
+        <!-- Card 1: Pembangunan Masjid -->
+        <article class="prog-hub-card">
+          <div class="prog-hub-media">
+            <img
+              src={masjidHero.imageUrl || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp'}
+              alt="Pembangunan Masjid Khairu Ummah Sugro"
+              class="prog-hub-img"
+            />
+          </div>
+          <div class="prog-hub-body">
+            <span class="prog-category-label">Program 01 — Sarana Ibadah</span>
+            <h2 class="prog-card-title">Pembangunan Masjid</h2>
+            <p class="prog-card-desc">
+              {masjidHero.subheading || 'Pembangunan Masjid Khairu Ummah Sugro berarsitektur tropis untuk jamaah santri dan masyarakat sekitar. Terhubung langsung dengan kontribusi Infak & Wakaf Masjid.'}
+            </p>
+            <div class="prog-hub-metric">
+              <span>Dana terhimpun</span>
+              <strong>{masjidCollectedLabel} ({masjidPercentLabel}%)</strong>
+            </div>
+            <div class="prog-hub-actions">
+              <a href="/program/pembangunan-masjid" class="prog-btn-primary">
+                Detail Pembangunan Masjid
+              </a>
+              <a href="/kontribusi/infaq#paket-pilihan" class="prog-btn-outline-dark">
+                Kontribusi Infak
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: GOTA SSM -->
+        <article class="prog-hub-card">
+          <div class="prog-hub-media">
+            <img
+              src={gotaHero.imageUrl || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/kbm-santri-ikhwan-menulis.webp'}
+              alt="Program GOTA SSM"
+              class="prog-hub-img"
+            />
+          </div>
+          <div class="prog-hub-body">
+            <span class="prog-category-label">Program 02 — Pendidikan &amp; Gizi Santri</span>
+            <h2 class="prog-card-title">GOTA SSM</h2>
+            <p class="prog-card-desc">
+              {gotaHero.subheading || 'Gerakan Orang Tua Asuh Santri Skill Village Islamic School untuk menjamin pendidikan, pangan bergizi, asrama, dan pembinaan karakter santri dhuafa.'}
+            </p>
+            <div class="prog-hub-metric">
+              <span>Cakupan pembinaan</span>
+              <strong>Pendidikan, Asrama &amp; Nutrisi</strong>
+            </div>
+            <div class="prog-hub-actions">
+              <a href="/program/gota-ssm" class="prog-btn-primary">
+                Detail Program GOTA SSM
+              </a>
+              <a href="/kontribusi/sedekah#paket-pilihan" class="prog-btn-outline-dark">
+                Dukungan Sedekah
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

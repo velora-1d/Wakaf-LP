@@ -1,0 +1,213 @@
+---
+// src/pages/program/gota-ssm.astro
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getActivePageSections } from '../../lib/db';
+import { getBreadcrumbSchema, getFaqSchema } from '../../lib/seo-schema';
+import '../../styles/program/program-pages.css';
+
+const activeSections = await getActivePageSections('gota-ssm');
+const sectionMap = new Map(activeSections.map((s) => [s.sectionKey, s]));
+const isEnabled = (key: string) => activeSections.length === 0 || sectionMap.has(key);
+
+const hero = (sectionMap.get('gota_hero')?.content as any) || {};
+const overview = (sectionMap.get('gota_overview')?.content as any) || {};
+const schemesSec = (sectionMap.get('gota_schemes')?.content as any) || {};
+const bridge = (sectionMap.get('gota_sedekah_bridge')?.content as any) || {};
+const impact = (sectionMap.get('gota_impact')?.content as any) || {};
+const faqSec = (sectionMap.get('gota_faq')?.content as any) || {};
+
+const heroPrimaryHref = String(hero.primaryCtaUrl || '/kontribusi/sedekah#paket-pilihan').replace('#dukungan-gota-ssm', '#paket-pilihan');
+const bridgePrimaryHref = String(bridge.primaryCtaUrl || '/kontribusi/sedekah#paket-pilihan').replace('#dukungan-gota-ssm', '#paket-pilihan');
+
+const schemes = Array.isArray(schemesSec.schemes) ? schemesSec.schemes : [];
+const impactItems = Array.isArray(impact.items) ? impact.items : [];
+const faqs = Array.isArray(faqSec.faqs) ? faqSec.faqs : [];
+
+const heroBgImage =
+  hero.imageUrl ||
+  'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/kbm-santri-ikhwan-menulis.webp';
+
+const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
+const schemas = [
+  getBreadcrumbSchema(
+    [
+      { name: 'Beranda', url: '/' },
+      { name: 'Program', url: '/program' },
+      { name: 'GOTA SSM', url: '/program/gota-ssm' },
+    ],
+    siteUrl
+  ),
+  faqs.length > 0 ? getFaqSchema(faqs) : null,
+].filter(Boolean);
+---
+
+<BaseLayout
+  title="Program GOTA SSM • Global Village Fund"
+  description={hero.subheading || 'Gerakan Orang Tua Asuh Santri Skill Village Islamic School (GOTA SSM).'}
+  ogImage={hero.imageUrl}
+  schema={schemas}
+>
+  {isEnabled('gota_hero') && (
+    <section class="prog-hero">
+      <div
+        class="prog-hero-bg"
+        style={`background-image: url('${heroBgImage}')`}
+        aria-hidden="true"
+      ></div>
+      <div class="prog-hero-scrim" aria-hidden="true"></div>
+      <div class="prog-hero-inner">
+        <h1 class="prog-hero-title">
+          {hero.heading || 'GOTA SSM: Gerakan Orang Tua Asuh Santri Skill Village'}
+        </h1>
+        <p class="prog-hero-lead">
+          {hero.subheading || 'Menjamin keberlanjutan pendidikan, gizi harian, asrama, dan pembinaan karakter santri yatim dan dhuafa agar tumbuh kompeten dan mandiri.'}
+        </p>
+        <div class="prog-hero-actions">
+          <a href={heroPrimaryHref} class="prog-btn-primary">
+            {hero.primaryCtaText || 'Salurkan Sedekah GOTA SSM'}
+          </a>
+          <a href={hero.secondaryCtaUrl || '/contact'} class="prog-btn-outline-light">
+            {hero.secondaryCtaText || 'Konsultasi Orang Tua Asuh'}
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isEnabled('gota_overview') && (
+    <section class="prog-section-white">
+      <div class="prog-container">
+        <div class="prog-split-grid">
+          <div class="prog-split-copy">
+            <h2 class="prog-section-title">
+              {overview.heading || 'Membekali Santri dengan Adab, Tahfidz, dan Vokasi Industri'}
+            </h2>
+            <p>
+              {overview.paragraph1 || 'GOTA SSM mempertemukan kepedulian para muhsinin dengan kebutuhan riil santri mukim di Sukasirna, Jonggol.'}
+            </p>
+            {overview.paragraph2 && <p>{overview.paragraph2}</p>}
+          </div>
+          <div class="prog-split-media">
+            <img
+              src={overview.imageUrl || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/ustadz-menulis-materi-di-whiteboard.webp'}
+              alt={overview.heading || 'Pembinaan Santri GOTA SSM'}
+              class="prog-split-img"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isEnabled('gota_schemes') && schemes.length > 0 && (
+    <section class="prog-section-canvas">
+      <div class="prog-container">
+        <div class="prog-section-header">
+          <h2 class="prog-section-title">
+            {schemesSec.heading || 'Skema Dukungan Orang Tua Asuh GOTA SSM'}
+          </h2>
+          {schemesSec.subheading && (
+            <p class="prog-section-desc">{schemesSec.subheading}</p>
+          )}
+        </div>
+
+        <div class="prog-schemes-grid">
+          {schemes.map((sch: any, idx: number) => (
+            <div class="prog-scheme-card">
+              <span class="prog-category-label">Skema 0{idx + 1}</span>
+              <h3 class="prog-item-title">{sch.title}</h3>
+              <div class="prog-scheme-price-row">
+                <strong class="prog-scheme-amount">{sch.amount}</strong>
+                <span class="prog-scheme-period">{sch.period}</span>
+              </div>
+              <p class="prog-card-desc">{sch.desc}</p>
+              <a href="/kontribusi/sedekah#paket-pilihan" class="prog-btn-soft">
+                Salurkan Melalui Sedekah
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isEnabled('gota_sedekah_bridge') && (
+    <section class="prog-section-dark">
+      <div class="prog-container">
+        <div class="prog-bridge-row">
+          <div class="prog-bridge-copy">
+            <span class="prog-category-label">Terhubung dengan Bentuk Kontribusi Sedekah</span>
+            <h2 class="prog-section-title prog-section-title-on-dark">
+              {bridge.heading || 'Salurkan Dukungan Nyata Melalui Sedekah GOTA SSM'}
+            </h2>
+            <p class="prog-section-desc prog-section-desc-on-dark">
+              {bridge.desc || 'Pilih paket konsumsi gizi, beras logistik asrama, atau perlengkapan belajar santri melalui halaman Bentuk Kontribusi Sedekah.'}
+            </p>
+          </div>
+          <div>
+            <a href={bridgePrimaryHref} class="prog-btn-primary">
+              {bridge.primaryCtaText || 'Pilih Paket Dukungan GOTA SSM'}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isEnabled('gota_impact') && impactItems.length > 0 && (
+    <section class="prog-section-white">
+      <div class="prog-container">
+        <div class="prog-section-header">
+          <h2 class="prog-section-title">
+            {impact.heading || 'Aktivitas & Capaian Santri Binaan'}
+          </h2>
+          {impact.subheading && (
+            <p class="prog-section-desc">{impact.subheading}</p>
+          )}
+        </div>
+        <div class="prog-gallery-grid-3">
+          {impactItems.map((item: any) => (
+            <figure class="prog-figure">
+              <div class="prog-figure-media">
+                <img src={item.image} alt={item.title} class="prog-figure-img" loading="lazy" />
+              </div>
+              <figcaption class="prog-figure-caption">
+                <span class="prog-category-label">{item.category}</span>
+                <h3 class="prog-item-title">{item.title}</h3>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isEnabled('gota_faq') && faqs.length > 0 && (
+    <section class="prog-section-canvas prog-section-last">
+      <div class="prog-container-narrow">
+        <div class="prog-section-header">
+          <h2 class="prog-section-title">
+            {faqSec.heading || 'Pertanyaan Seputar Program GOTA SSM'}
+          </h2>
+        </div>
+        <div class="prog-faq-list">
+          {faqs.map((f: any, idx: number) => (
+            <details class="prog-faq-item" open={idx === 0}>
+              <summary class="prog-faq-summary">
+                <span>{f.question}</span>
+                <svg class="prog-faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </summary>
+              <p class="prog-faq-answer">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

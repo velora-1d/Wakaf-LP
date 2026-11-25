@@ -1,0 +1,244 @@
+---
+// src/pages/program/pembangunan-masjid.astro
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getActivePageSections, getVerifiedDonationSum } from '../../lib/db';
+import { getBreadcrumbSchema, getFaqSchema } from '../../lib/seo-schema';
+import '../../styles/program/program-pages.css';
+
+const [activeSections, masjidSummary] = await Promise.all([
+  getActivePageSections('pembangunan-masjid'),
+  getVerifiedDonationSum(['pembangunan-masjid', 'infaq', 'wakaf']),
+]);
+const sectionMap = new Map(activeSections.map((s) => [s.sectionKey, s]));
+const isEnabled = (key: string) => activeSections.length === 0 || sectionMap.has(key);
+
+const hero = (sectionMap.get('masjid_hero')?.content as any) || {};
+const progress = (sectionMap.get('masjid_progress')?.content as any) || {};
+const arch = (sectionMap.get('masjid_architecture')?.content as any) || {};
+const bridge = (sectionMap.get('masjid_material_bridge')?.content as any) || {};
+const gallery = (sectionMap.get('masjid_gallery')?.content as any) || {};
+const faqSec = (sectionMap.get('masjid_faq')?.content as any) || {};
+
+const targetAmount =
+  Number(progress.targetAmount) ||
+  Number(String(progress.targetLabel || '').replace(/[^\d]/g, '')) ||
+  1310753350;
+const rawPercent = targetAmount > 0 ? (masjidSummary.totalNominal / targetAmount) * 100 : 0;
+const progressPercent = Math.min(100, Math.max(0, rawPercent));
+const progressPercentLabel =
+  progressPercent > 0 && progressPercent < 1
+    ? progressPercent.toFixed(2)
+    : Math.round(progressPercent).toString();
+const collectedLabel = `Rp ${masjidSummary.totalNominal.toLocaleString('id-ID')}`;
+const targetLabel = progress.targetLabel || `Rp ${targetAmount.toLocaleString('id-ID')}`;
+const heroPrimaryHref = String(hero.primaryCtaUrl || '/kontribusi/infaq#paket-pilihan').replace('#gotong-royong-material', '#paket-pilihan');
+const bridgePrimaryHref = String(bridge.primaryCtaUrl || '/kontribusi/infaq#paket-pilihan').replace('#gotong-royong-material', '#paket-pilihan');
+
+const milestones = Array.isArray(progress.milestones) ? progress.milestones : [];
+const galleryItems = Array.isArray(gallery.items) ? gallery.items : [];
+const faqs = Array.isArray(faqSec.faqs) ? faqSec.faqs : [];
+
+const heroBgImage =
+  hero.imageUrl ||
+  'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp';
+
+const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
+const schemas = [
+  getBreadcrumbSchema(
+    [
+      { name: 'Beranda', url: '/' },
+      { name: 'Program', url: '/program' },
+      { name: 'Pembangunan Masjid', url: '/program/pembangunan-masjid' },
+    ],
+    siteUrl
+  ),
+  faqs.length > 0 ? getFaqSchema(faqs) : null,
+].filter(Boolean);
+---
+
+<BaseLayout
+  title="Program Pembangunan Masjid Khairu Ummah • Global Village Fund"
+  description={hero.subheading || 'Pembangunan Masjid Khairu Ummah Sugro sebagai pusat ibadah dan pembinaan santri di Sukasirna, Jonggol.'}
+  ogImage={hero.imageUrl}
+  schema={schemas}
+>
+  {isEnabled('masjid_hero') && (
+    <section class="prog-hero">
+      <div
+        class="prog-hero-bg"
+        style={`background-image: url('${heroBgImage}')`}
+        aria-hidden="true"
+      ></div>
+      <div class="prog-hero-scrim" aria-hidden="true"></div>
+      <div class="prog-hero-inner">
+        <h1 class="prog-hero-title">
+          {hero.heading || 'Pembangunan Masjid Khairu Ummah Sugro'}
+        </h1>
+        <p class="prog-hero-lead">
+          {hero.subheading || 'Membangun pusat ibadah, majelis dzikir, dan halaqah tahfidz Al-Quran berarsitektur tropis di kawasan Sukasirna, Jonggol.'}
+        </p>
+        <div class="prog-hero-actions">
+          <a href={heroPrimaryHref} class="prog-btn-primary">
+            {hero.primaryCtaText || 'Salurkan Infak Masjid'}
+          </a>
+          <a href={hero.secondaryCtaUrl || '/kontribusi/wakaf'} class="prog-btn-outline-light">
+            {hero.secondaryCtaText || 'Tunaikan Wakaf Masjid'}
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isEnabled('masjid_progress') && (
+    <section class="prog-section-canvas">
+      <div class="prog-container">
+        <div class="prog-progress-header">
+          <div class="prog-section-header">
+            <h2 class="prog-section-title">
+              {progress.heading || 'Perkembangan Pembangunan Saat Ini'}
+            </h2>
+            <p class="prog-section-desc">
+              {progress.subheading || 'Pantauan berkala realisasi struktur fisik dan target penyelesaian Masjid Khairu Ummah Sugro.'}
+            </p>
+          </div>
+          <div class="prog-progress-stat">
+            <div class="prog-progress-percent">{progressPercentLabel}%</div>
+            <span class="prog-progress-stat-label">Realisasi Dana Terverifikasi</span>
+          </div>
+        </div>
+
+        <div class="prog-progress-track">
+          <div
+            class="prog-progress-fill"
+            style={`width: ${progressPercent > 0 ? Math.max(progressPercent, 1.5) : 0}%`}
+          ></div>
+        </div>
+
+        <div class="prog-progress-figures">
+          <span>Dana Terhimpun: <strong>{collectedLabel}</strong> ({masjidSummary.totalTransaksi} Transaksi Lunas)</span>
+          <span>Kebutuhan Penyelesaian: <strong>{targetLabel}</strong></span>
+        </div>
+
+        {milestones.length > 0 && (
+          <div class="prog-milestone-grid">
+            {milestones.map((ms: any, idx: number) => (
+              <div class="prog-milestone-item">
+                <div class="prog-milestone-meta">
+                  <span class="prog-milestone-step">Tahap 0{idx + 1}</span>
+                  <span class="prog-milestone-status">{ms.status}</span>
+                </div>
+                <h3 class="prog-item-title">{ms.title}</h3>
+                <p class="prog-item-desc">{ms.detail}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  {isEnabled('masjid_architecture') && (
+    <section class="prog-section-white">
+      <div class="prog-container">
+        <div class="prog-split-grid">
+          <div class="prog-split-media">
+            <img
+              src={arch.imageUrl || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/masjid-tampak-dalam-2.jpeg'}
+              alt={arch.heading || 'Arsitektur Masjid Khairu Ummah'}
+              class="prog-split-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="prog-split-copy">
+            <h2 class="prog-section-title">
+              {arch.heading || 'Garden Mosque Ramah Lingkungan untuk Santri & Warga'}
+            </h2>
+            <p>
+              {arch.paragraph1 || 'Masjid Khairu Ummah Sugro dirancang dengan pendekatan green building tropis yang memaksimalkan pencahayaan alami dan ventilasi silang.'}
+            </p>
+            {arch.paragraph2 && <p>{arch.paragraph2}</p>}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isEnabled('masjid_material_bridge') && (
+    <section class="prog-section-dark">
+      <div class="prog-container">
+        <div class="prog-bridge-row">
+          <div class="prog-bridge-copy">
+            <span class="prog-category-label">Gotong royong pengadaan material</span>
+            <h2 class="prog-section-title prog-section-title-on-dark">
+              {bridge.heading || 'Ikut Membangun Lewat Katalog Material Masjid'}
+            </h2>
+            <p class="prog-section-desc prog-section-desc-on-dark">
+              {bridge.desc || 'Setiap partisipasi infak Anda terkonversi langsung menjadi kebutuhan semen SNI, pasir cor, bata roster, dan instalasi sanitasi wudhu.'}
+            </p>
+          </div>
+          <div>
+            <a href={bridgePrimaryHref} class="prog-btn-primary">
+              {bridge.primaryCtaText || 'Pilih Paket Infak Masjid'}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isEnabled('masjid_gallery') && galleryItems.length > 0 && (
+    <section class="prog-section-canvas">
+      <div class="prog-container">
+        <div class="prog-section-header">
+          <h2 class="prog-section-title">
+            {gallery.heading || 'Dokumentasi Fisik Kawasan Masjid'}
+          </h2>
+          {gallery.subheading && (
+            <p class="prog-section-desc">{gallery.subheading}</p>
+          )}
+        </div>
+        <div class="prog-gallery-grid">
+          {galleryItems.map((item: any) => (
+            <figure class="prog-figure">
+              <div class="prog-figure-media">
+                <img src={item.image} alt={item.title} class="prog-figure-img" loading="lazy" />
+              </div>
+              <figcaption class="prog-figure-caption">
+                <span class="prog-category-label">{item.category}</span>
+                <h3 class="prog-item-title">{item.title}</h3>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isEnabled('masjid_faq') && faqs.length > 0 && (
+    <section class="prog-section-white prog-section-last">
+      <div class="prog-container-narrow">
+        <div class="prog-section-header">
+          <h2 class="prog-section-title">
+            {faqSec.heading || 'Pertanyaan Seputar Pembangunan Masjid'}
+          </h2>
+        </div>
+        <div class="prog-faq-list">
+          {faqs.map((f: any, idx: number) => (
+            <details class="prog-faq-item" open={idx === 0}>
+              <summary class="prog-faq-summary">
+                <span>{f.question}</span>
+                <svg class="prog-faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </summary>
+              <p class="prog-faq-answer">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

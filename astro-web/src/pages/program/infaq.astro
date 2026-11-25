@@ -1,10 +1,4 @@
 ---
-// src/pages/program/infaq.astro
-// Halaman Program Infaq Pembangunan & Fasilitas Dakwah
-import ProgramLayout from '../../layouts/ProgramLayout.astro';
-import { programsData } from '../../data/programs';
-
-const program = programsData.infaq;
+export const prerender = false;
+return Astro.redirect('/kontribusi/infaq', 301);
 ---
-
-<ProgramLayout program={program} />

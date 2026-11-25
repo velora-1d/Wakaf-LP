@@ -1,10 +1,4 @@
 ---
-// src/pages/program/sedekah.astro
-// Halaman Program Shodaqoh & Pangan Santri
-import ProgramLayout from '../../layouts/ProgramLayout.astro';
-import { programsData } from '../../data/programs';
-
-const program = programsData.sedekah;
+export const prerender = false;
+return Astro.redirect('/kontribusi/sedekah', 301);
 ---
-
-<ProgramLayout program={program} />
