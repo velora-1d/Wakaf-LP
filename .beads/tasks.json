@@ -178,6 +178,7 @@
     { "id": "REMOVE-PROGRAM-HERO-CAPSULE-01", "name": "Hapus kapsul badge hero pada seluruh halaman Program (/program, Pembangunan Masjid, GOTA SSM)", "status": "closed" },
     { "id": "HALLMARK-AUDIT-FIX-PROGRAM-01", "name": "Refactor 3 halaman Program sesuai Hallmark Floor & Craft: CSS berbasis token, hapus nested card/eyebrow/kapsul, tambah foto banner /program & accordion arsitektural", "status": "closed" },
     { "id": "REMOVE-ALL-PUBLIC-CAPSULES-01", "name": "Hapus seluruh kapsul badge dekoratif (Hero, Beranda, Tentang Kami, Kontribusi, Donatur, Kabar, Edukasi, Kontak) di seluruh halaman publik", "status": "closed" },
-    { "id": "FIX-TS2339-CONTACT-TENTANG-01", "name": "Tambahkan tipe eksplisit HeroSectionContent pada contact.astro dan tentang-kami.astro untuk mengatasi 12 error TS2339", "status": "closed" }
+    { "id": "FIX-TS2339-CONTACT-TENTANG-01", "name": "Tambahkan tipe eksplisit HeroSectionContent pada contact.astro dan tentang-kami.astro untuk mengatasi 12 error TS2339", "status": "closed" },
+    { "id": "CREATE-KONTRIBUSI-HUB-01", "name": "Pembuatan Halaman Hub Bentuk Kontribusi (/kontribusi) dengan Urutan Infak, Sedekah, Zakat, Wakaf, dan Penutup Mari Ambil Bagian", "status": "closed" }
   ]
 }

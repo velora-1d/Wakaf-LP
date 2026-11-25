@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] CREATE-KONTRIBUSI-HUB-01: Pembuatan Halaman Hub Bentuk Kontribusi (/kontribusi) dengan Urutan Infak, Sedekah, Zakat, Wakaf, dan Penutup Mari Ambil Bagian (Terverifikasi Build 100%)
 - [x] FIX-TS2339-CONTACT-TENTANG-01: Tambahkan tipe eksplisit HeroSectionContent pada contact.astro dan tentang-kami.astro untuk mengatasi 12 error TS2339 (Terverifikasi Build & Live HTTP 200)
 - [x] REMOVE-ALL-PUBLIC-CAPSULES-01: Hapus seluruh kapsul badge dekoratif (Hero, Beranda, Tentang Kami, Kontribusi, Donatur, Kabar, Edukasi, Kontak) di seluruh halaman publik (Terverifikasi Build & Live HTTP 200)
 - [x] HALLMARK-AUDIT-FIX-PROGRAM-01: Refactor 3 halaman Program sesuai Hallmark Floor & Craft: CSS berbasis token, hapus nested card/eyebrow/kapsul, tambah foto banner /program & accordion arsitektural (Terverifikasi Floor Checks, Build & Live HTTP 200)
