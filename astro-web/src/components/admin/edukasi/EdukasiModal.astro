@@ -1,0 +1,197 @@
+---
+// src/components/admin/edukasi/EdukasiModal.astro
+---
+
+<div
+  id="edukasiFormModal"
+  class="modal-backdrop drawer-mode"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="eduFormModalTitle"
+>
+  <div class="modal-card drawer-sheet" id="eduFormModalBox">
+    <div class="modal-header">
+      <div class="modal-header-info">
+        <div class="modal-icon-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 id="eduFormModalTitle" class="modal-title">Tulis Materi Edukasi &amp; Kajian</h3>
+          <p id="eduFormModalSubtitle" class="modal-subtitle">Lengkapi formulir literasi fiqih, kajian, video, atau lampiran PDF</p>
+        </div>
+      </div>
+
+      <button type="button" id="closeEduFormModalBtn" class="modal-close-btn" aria-label="Tutup modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <input type="hidden" id="eduInputId" value="" />
+
+      <div class="form-group">
+        <label for="eduInputTitle" class="form-label">
+          Judul Edukasi / Kajian <span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="eduInputTitle"
+          placeholder="Contoh: Fiqih Wakaf Produktif untuk Pembangunan Masjid"
+          class="form-input"
+          required
+        />
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="eduInputCategory" class="form-label">
+            Kategori Kajian <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="eduInputCategory"
+            list="eduCategoryOptions"
+            placeholder="Pilih atau ketik kategori"
+            class="form-input"
+            required
+          />
+          <datalist id="eduCategoryOptions">
+            <option value="FIQIH WAKAF"></option>
+            <option value="PANDUAN ZAKAT"></option>
+            <option value="LITERASI INFAK & SEDEKAH"></option>
+            <option value="KAJIAN RAMADAN"></option>
+            <option value="KAJIAN RUTIN"></option>
+          </datalist>
+        </div>
+
+        <div class="form-group">
+          <label for="eduInputSlug" class="form-label">
+            Alamat Tautan <span class="optional">(Otomatis jika dikosongkan)</span>
+          </label>
+          <input
+            type="text"
+            id="eduInputSlug"
+            placeholder="fiqih-wakaf-produktif"
+            class="form-input"
+          />
+        </div>
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="eduInputAuthor" class="form-label">Nama Pemateri / Penulis</label>
+          <input type="text" id="eduInputAuthor" value="Dewan Pengawas Syariah GVF" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label for="eduInputPublishedAt" class="form-label">Tanggal Terbit</label>
+          <input type="text" id="eduInputPublishedAt" placeholder="Contoh: 24 November 2026" class="form-input" />
+        </div>
+      </div>
+
+      <!-- Cover Image -->
+      <div class="form-group">
+        <label class="form-label">Gambar Sampul Kajian <span class="required">*</span></label>
+        <div class="upload-dropzone">
+          <div class="upload-preview-wrap">
+            <img
+              src="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/tampak-luar-gedung-pesantren-landscape.webp"
+              alt="Pratinjau Sampul"
+              id="eduModalImagePreview"
+              class="modal-preview-img"
+            />
+            <div id="eduModalImageEmptyState" class="text-xs text-slate-400 flex flex-col items-center justify-center gap-1.5 p-4 hidden">
+              <span>Belum ada gambar sampul</span>
+            </div>
+            <div class="preview-overlay">
+              <button type="button" id="btnTriggerEduImageFile" class="btn-change-image-preview">Unggah / Ganti</button>
+              <button type="button" id="btnRemoveEduImage" class="btn-remove-image-preview">Hapus Foto</button>
+            </div>
+          </div>
+          <div id="eduImageUploadProgress" class="upload-progress-box" style="display: none;">
+            <div class="spinner-icon"></div>
+            <span>Sedang mengunggah foto...</span>
+          </div>
+          <input type="file" id="eduImageFileInput" accept="image/jpeg,image/png,image/webp,image/gif" style="display: none;" />
+          <input
+            type="text"
+            id="eduInputCoverImage"
+            value="https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/tampak-luar-gedung-pesantren-landscape.webp"
+            style="display: none;"
+          />
+        </div>
+      </div>
+
+      <!-- Video & PDF Materi Opsional -->
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="eduInputVideoUrl" class="form-label">
+            Tautan Video YouTube <span class="optional">(Opsional)</span>
+          </label>
+          <input
+            type="url"
+            id="eduInputVideoUrl"
+            placeholder="https://www.youtube.com/watch?v=..."
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="eduInputAttachmentUrl" class="form-label">
+            Materi / Modul PDF <span class="optional">(Opsional)</span>
+          </label>
+          <div class="flex items-center gap-2">
+            <input
+              type="text"
+              id="eduInputAttachmentUrl"
+              placeholder="Unggah file PDF atau tempel tautan"
+              class="form-input flex-1"
+            />
+            <input type="file" id="eduPdfFileInput" accept="application/pdf,.pdf" style="display: none;" />
+            <button
+              type="button"
+              id="btnTriggerEduPdfUpload"
+              class="px-3 py-2 text-xs font-semibold text-[#0969da] bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg cursor-pointer shrink-0"
+            >
+              Unggah PDF
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="eduInputSummary" class="form-label">
+          Ringkasan Singkat <span class="required">*</span>
+        </label>
+        <textarea id="eduInputSummary" rows="2" placeholder="Ringkasan padat 1-2 kalimat untuk kartu daftar kajian..." class="form-textarea" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="eduInputContent" class="form-label">
+          Isi Materi Kajian Lengkap <span class="required">*</span>
+        </label>
+        <textarea id="eduInputContent" rows="6" placeholder="Tuliskan materi edukasi dan kajian lengkap..." class="form-textarea leading-relaxed" required></textarea>
+      </div>
+
+      <div class="publish-checkbox-row">
+        <label class="checkbox-container">
+          <input type="checkbox" id="eduInputIsPublished" checked />
+          <span class="checkbox-custom"></span>
+          <span class="checkbox-label-text">Langsung publikasikan ke halaman Edukasi &amp; Kajian</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" id="cancelEduFormModalBtn" class="btn-cancel">Batal</button>
+      <button type="button" id="submitEduFormBtn" class="btn-save-primary">
+        <span id="submitEduBtnText">Simpan Materi</span>
+      </button>
+    </div>
+  </div>
+</div>
