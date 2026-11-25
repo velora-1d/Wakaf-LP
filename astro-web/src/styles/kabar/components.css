@@ -171,7 +171,7 @@
   justify-content: center;
   gap: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .btn-sidebar-donate:hover {
@@ -448,7 +448,7 @@
   align-items: center;
   gap: 8px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .btn-cta-white:hover {
@@ -465,7 +465,7 @@
   border-radius: 12px;
   text-decoration: none;
   text-align: center;
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .btn-cta-ghost:hover {

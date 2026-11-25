@@ -193,14 +193,9 @@
 }
 
 .cat-badge {
-  background-color: #0969da;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  padding: 5px 14px;
-  border-radius: 9999px;
-  text-transform: uppercase;
+  color: #0969da;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .header-readtime {
@@ -322,7 +317,7 @@
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .share-pill-wa {
@@ -503,7 +498,7 @@
   padding: 5px 14px;
   border-radius: 9999px;
   text-decoration: none;
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .topic-tag-pill:hover {
@@ -579,7 +574,7 @@
   padding: 9px 18px;
   border-radius: 9999px;
   text-decoration: none;
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .btn-bottom-wa:hover {
@@ -599,7 +594,7 @@
   border-radius: 9999px;
   text-decoration: none;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  transition: all 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .btn-bottom-archive:hover {

@@ -57,7 +57,7 @@
 
 .gvf-accordion-item {
   background: transparent;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .gvf-accordion-item:first-child {
@@ -183,7 +183,7 @@
   text-decoration: none;
   white-space: nowrap;
   box-shadow: none;
-  transition: all 0.25s ease;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .gvf-banner-btn:hover {
@@ -417,7 +417,7 @@
 
 .pen-value-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
   margin: 40px 0;
   padding: 36px 0 0 0;
@@ -460,7 +460,7 @@
 
 .pen-twins-img-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
   margin: 40px 0;
 }
@@ -540,7 +540,7 @@
 
 .pen-guarantees-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px 28px;
   margin-top: 36px;
   padding: 0;
@@ -584,7 +584,7 @@
   text-transform: uppercase;
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: background-color 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .pen-sidebar-cta:hover {
@@ -622,9 +622,10 @@
   height: 220px;
   width: 260px;
   border-radius: 50%;
-  top: 100%;
-  left: 100%;
-  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  top: -40px;
+  left: -40px;
+  transform: translate(100%, 100%) scale(0.2);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .pen-btn-portfolio-more:hover {
@@ -634,8 +635,7 @@
 }
 
 .pen-btn-portfolio-more:hover::before {
-  top: -40px;
-  left: -40px;
+  transform: translate(0, 0) scale(1);
 }
 
 .pen-btn-portfolio-more:active::before {

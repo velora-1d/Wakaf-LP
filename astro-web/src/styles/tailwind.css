@@ -8,7 +8,7 @@
 /* Modern Standard (Firefox) */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #cbd5e1 transparent;
+  scrollbar-color: var(--color-surface-300, #cbd5e1) transparent;
 }
 
 /* WebKit (Chrome, Edge, Safari, Opera, Brave, Vivaldi) */
@@ -22,7 +22,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
+  background-color: var(--color-surface-300, #cbd5e1);
   border-radius: 9999px;
   border: 2px solid transparent;
   background-clip: content-box;
@@ -30,7 +30,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #0969da;
+  background-color: var(--color-brand, #0969da);
   border: 2px solid transparent;
   background-clip: content-box;
 }
