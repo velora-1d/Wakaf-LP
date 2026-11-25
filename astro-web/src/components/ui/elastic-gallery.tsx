@@ -27,7 +27,7 @@ const defaultItems: ElasticItemProps[] = [
     statusBadge: "Fasilitas Aktif",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/tampak-gedung-dan-halaman-asrama.webp",
     alt: "Halaman dan Gedung Asrama Santri Skill Village Jonggol",
-    link: "/program/wakaf",
+    link: "/kontribusi/wakaf",
     description: "Kawasan terpadu hunian asrama santri yang asri dan representatif di perbukitan Sukasirna, Jonggol.",
   },
   {
@@ -37,7 +37,7 @@ const defaultItems: ElasticItemProps[] = [
     statusBadge: "Karya Santri",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-pose-karya-seni.webp",
     alt: "Karya Seni dan Kriya Kreatif Santriwati Pesantren Jonggol",
-    link: "/program/infaq",
+    link: "/kontribusi/infaq",
     description: "Pengembangan bakat seni kriya, kaligrafi, dan keterampilan vokasi santriwati berbasis kreativitas mandiri.",
   },
   {
@@ -47,7 +47,7 @@ const defaultItems: ElasticItemProps[] = [
     statusBadge: "Unit Produktif",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/greenhouse-pertanian.webp",
     alt: "Struktur Luar Greenhouse Pertanian Produktif Pesantren",
-    link: "/program/sedekah",
+    link: "/kontribusi/sedekah",
     description: "Fasilitas budidaya pertanian modern dan hidroponik untuk mendukung ketahanan pangan serta praktik agroteknologi santri.",
   },
   {
@@ -57,7 +57,7 @@ const defaultItems: ElasticItemProps[] = [
     statusBadge: "Aktivitas Harian",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/sholat-berjamaah-santri-seragam-hitam.webp",
     alt: "Sholat Berjamaah Santri Berseragam Tertib di Masjid",
-    link: "/program/zakat",
+    link: "/kontribusi/zakat",
     description: "Pembinaan ibadah yaumiyah dan disiplin sholat berjamaah tepat waktu sebagai pilar utama adab santri.",
   },
   {
@@ -67,7 +67,7 @@ const defaultItems: ElasticItemProps[] = [
     statusBadge: "Progres Fisik",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/asrama-putra-baru/tangga-asrama-ikhwan-baru.jpeg",
     alt: "Konstruksi Tangga Cor Semen Gedung Asrama Santri Baru",
-    link: "/program/wakaf",
+    link: "/kontribusi/wakaf",
     description: "Pembangunan sarana akses tangga permanen penghubung lantai hunian asrama santri di Sukasirna Jonggol.",
   },
 ];

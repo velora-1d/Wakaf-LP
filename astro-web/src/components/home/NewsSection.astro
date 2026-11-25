@@ -9,7 +9,7 @@ interface Props {
 
 const { content } = Astro.props;
 
-const dbArticles = await getActiveNewsArticles(6);
+const dbArticles = await getActiveNewsArticles(6, 'kabar');
 
 // Fallback data jika database belum memiliki artikel aktif
 const fallbackArticles = [
@@ -114,7 +114,6 @@ const subtitle =
               loading="lazy"
               decoding="async"
             />
-            <span class="news-category-badge">{article.category}</span>
           </div>
           <div class="news-card-body">
             <div class="news-meta-row">
@@ -142,9 +141,16 @@ const subtitle =
       ))}
     </BlossomCarousel>
 
-    <div class="news-footer-action">
+    <div class="news-footer-action" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;">
       <a href="/kabar" class="btn-all-kabar">
-        <span>Buka Semua Kabar &amp; Warta</span>
+        <span>Buka Kabar &amp; Laporan</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      <a href="/edukasi" class="btn-all-kabar" style="background: #ffffff; color: #0969da; border: 1px solid #bfdbfe;">
+        <span>Jelajahi Edukasi &amp; Kajian</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
