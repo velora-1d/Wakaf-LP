@@ -76,9 +76,14 @@ function formatRelativeDate(date: Date | string): string {
       </p>
     </div>
 
-    <div class="pricing-cards-grid">
+    <div class={`pricing-cards-grid ${packages.length >= 4 ? 'pricing-cards-grid-4' : ''}`}>
       {packages.map((pkg: PricingPackage) => (
         <div class="pkg-card">
+          {pkg.image && (
+            <div class="pkg-card-media">
+              <img src={pkg.image} alt={pkg.title} loading="lazy" />
+            </div>
+          )}
           <div class="card-content-top">
             <div class="card-title-group">
               <h3 class="card-title">{pkg.title}</h3>
@@ -117,14 +122,17 @@ function formatRelativeDate(date: Date | string): string {
           </div>
 
           <div class="card-cta-wrap">
-            <a
-              href={`https://wa.me/6281226832326?text=${encodeURIComponent(`Assalamualaikum Admin GVF, saya ingin menyalurkan ${program.title} untuk paket: ${pkg.title} sebesar ${pkg.pricePrefix || ''}${pkg.priceAmount}. Mohon panduan transfer dan akadnya.`)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="pkg-cta-button"
+            <button
+              type="button"
+              class="pkg-cta-button js-open-checkout"
+              data-pkg-title={pkg.title}
+              data-pkg-price={String(pkg.priceAmount || '').replace(/[^\d]/g, '') || '0'}
+              data-pkg-unit={pkg.priceUnit || ''}
+              data-program-slug={program.slug}
+              data-program-title={program.title}
             >
               {pkg.ctaText}
-            </a>
+            </button>
           </div>
         </div>
       ))}
@@ -303,12 +311,191 @@ function formatRelativeDate(date: Date | string): string {
   </div>
 </section>
 
+<!-- Modal Checkout Transfer BSI & Upload Bukti -->
+<div id="gvfCheckoutModal" class="gvf-modal-backdrop" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gvfModalTitle">
+  <div class="gvf-modal-card">
+    <div class="gvf-modal-header">
+      <div>
+        <span class="gvf-modal-eyebrow" id="gvfModalProgramLabel">Program Kontribusi</span>
+        <h3 class="gvf-modal-title" id="gvfModalTitle">Konfirmasi Transfer BSI</h3>
+      </div>
+      <button type="button" class="gvf-modal-close" id="gvfModalCloseBtn" aria-label="Tutup modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="gvf-modal-body">
+      <!-- Form View -->
+      <form id="gvfCheckoutForm" class="gvf-checkout-form" novalidate>
+        <!-- Ringkasan Paket & Jumlah -->
+        <div class="gvf-summary-box">
+          <div class="gvf-summary-top">
+            <div>
+              <span class="gvf-summary-label">Paket Dipilih</span>
+              <div class="gvf-summary-pkg" id="gvfPkgName">-</div>
+            </div>
+            <div class="gvf-qty-wrap" id="gvfQtyWrap">
+              <button type="button" class="gvf-qty-btn" id="gvfQtyMinus" aria-label="Kurangi jumlah">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14"></path></svg>
+              </button>
+              <span class="gvf-qty-val" id="gvfQtyVal">1</span>
+              <button type="button" class="gvf-qty-btn" id="gvfQtyPlus" aria-label="Tambah jumlah">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <div id="gvfCustomNominalWrap" class="gvf-field" hidden style="margin-top: 12px;">
+            <label for="gvfCustomNominal" class="gvf-label">Nominal Kontribusi (Rp)</label>
+            <input type="number" id="gvfCustomNominal" class="gvf-input" min="10000" step="1000" placeholder="Contoh: 100000" />
+          </div>
+
+          <div class="gvf-summary-total-row">
+            <span>Total Transfer</span>
+            <strong class="gvf-total-amount" id="gvfTotalDisplay">Rp 0</strong>
+          </div>
+        </div>
+
+        <!-- Step 1: Rekening Resmi BSI -->
+        <div class="gvf-bank-card">
+          <div class="gvf-bank-head">
+            <span class="gvf-bank-step">1. Transfer ke Rekening Resmi</span>
+            <span class="gvf-bank-code">Kode Bank: 451</span>
+          </div>
+          <div class="gvf-bank-name">Bank Syariah Indonesia (BSI)</div>
+          <div class="gvf-bank-acc-row">
+            <span class="gvf-bank-acc-num">7142 2637 63</span>
+            <button type="button" class="gvf-copy-btn" id="gvfCopyRekBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+              </svg>
+              <span id="gvfCopyRekText">Salin</span>
+            </button>
+          </div>
+          <div class="gvf-bank-owner">a.n. Yayasan Permata Cendekia Indonesia</div>
+        </div>
+
+        <!-- Step 2: Data Donatur & Upload Bukti -->
+        <div class="gvf-form-section-title">2. Lengkapi Data &amp; Unggah Bukti Transfer</div>
+
+        <div class="gvf-form-grid">
+          <div class="gvf-field">
+            <label for="gvfNamaLengkap" class="gvf-label">Nama Lengkap <span class="gvf-req">*</span></label>
+            <input type="text" id="gvfNamaLengkap" name="namaLengkap" class="gvf-input" placeholder="Masukkan nama lengkap Anda" required />
+          </div>
+
+          <div class="gvf-field">
+            <label for="gvfNoWhatsapp" class="gvf-label">Nomor WhatsApp <span class="gvf-req">*</span></label>
+            <input type="tel" id="gvfNoWhatsapp" name="noWhatsapp" class="gvf-input" placeholder="0812xxxxxxxx" required />
+          </div>
+        </div>
+
+        <div class="gvf-field">
+          <label for="gvfNamaTampilan" class="gvf-label">Nama Tampilan di Daftar Donatur (Opsional)</label>
+          <input type="text" id="gvfNamaTampilan" name="namaTampilan" class="gvf-input" placeholder="Kosongkan jika ingin tampil sebagai Hamba Allah" />
+        </div>
+
+        <div class="gvf-field">
+          <label for="gvfDoaDonatur" class="gvf-label">Doa atau Harapan (Opsional)</label>
+          <textarea id="gvfDoaDonatur" name="doaDonatur" class="gvf-textarea" rows="2" placeholder="Tuliskan doa atau niat kebaikan Anda..."></textarea>
+        </div>
+
+        <div class="gvf-field">
+          <label for="gvfBuktiFile" class="gvf-label">Unggah Bukti Transfer (JPG, PNG, WEBP, PDF maks. 15MB) <span class="gvf-req">*</span></label>
+          <label for="gvfBuktiFile" class="gvf-upload-dropzone" id="gvfUploadDropzone">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" x2="12" y1="3" y2="15"></line>
+            </svg>
+            <span id="gvfBuktiFileName">Pilih file bukti transfer dari perangkat Anda</span>
+          </label>
+          <input type="file" id="gvfBuktiFile" name="bukti" accept=".jpg,.jpeg,.png,.webp,.pdf,image/jpeg,image/png,image/webp,application/pdf" class="gvf-sr-only" required />
+        </div>
+
+        <div id="gvfFormError" class="gvf-error-banner" hidden role="alert"></div>
+
+        <button type="submit" class="gvf-submit-btn" id="gvfSubmitBtn">
+          Kirim Bukti &amp; Catat Kontribusi
+        </button>
+      </form>
+
+      <!-- Step 3: Success & Konfirmasi WA -->
+      <div id="gvfCheckoutSuccess" class="gvf-success-view" hidden>
+        <div class="gvf-success-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h4 class="gvf-success-title">Bukti Transfer Berhasil Diunggah</h4>
+        <p class="gvf-success-desc">
+          Kontribusi Anda telah tercatat dengan status <strong>Menunggu Verifikasi Amil</strong>. Silakan lanjutkan konfirmasi ke WhatsApp resmi kami agar segera diverifikasi.
+        </p>
+
+        <div class="gvf-receipt-box">
+          <div class="gvf-receipt-row">
+            <span>Kode Transaksi</span>
+            <strong id="gvfSuccessKode">-</strong>
+          </div>
+          <div class="gvf-receipt-row">
+            <span>Total Nominal</span>
+            <strong id="gvfSuccessNominal">-</strong>
+          </div>
+        </div>
+
+        <button type="button" id="gvfShareWaBtn" class="gvf-share-wa-btn" hidden>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line>
+            <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line>
+          </svg>
+          <span>Kirim Gambar + Teks ke WhatsApp</span>
+        </button>
+
+        <button type="button" id="gvfCopyImgBtn" class="gvf-copy-img-btn" hidden>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+          </svg>
+          <span id="gvfCopyImgText">Salin Gambar Bukti (Tempel Ctrl+V di WA)</span>
+        </button>
+
+        <a id="gvfWaConfirmBtn" href="#" target="_blank" rel="noopener noreferrer" class="gvf-wa-confirm-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+          <span>Buka WhatsApp Admin</span>
+        </a>
+
+        <p id="gvfCopyImgHint" class="gvf-copy-img-hint" hidden>
+          Gambar bukti otomatis disalin ke clipboard — di chat WhatsApp tinggal tekan <strong>Ctrl+V</strong> (atau tempel) sebelum kirim.
+        </p>
+
+        <button type="button" class="gvf-done-close-btn" id="gvfSuccessDoneBtn">
+          Tutup Jendela
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
   /* =========================================================================
      VANILLA SCOPED CSS UNTUK PAKET PRICING PEN.DEV
      ========================================================================= */
   .pen-pricing-section {
-    background-color: #f8f8f8;
+    background-color: #f4f7fb;
+    background-image:
+      radial-gradient(circle at 50% 35%, rgba(244, 247, 251, 0.45) 0%, rgba(244, 247, 251, 0.08) 80%, #f4f7fb 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72' fill='none'%3E%3Cg stroke='rgba(9,105,218,0.16)' stroke-width='1.2'%3E%3Crect x='16' y='16' width='40' height='40'/%3E%3Crect x='16' y='16' width='40' height='40' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='7'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 100% 100%, 72px 72px;
     padding: 80px 24px 100px;
     width: 100%;
     box-sizing: border-box;
@@ -373,18 +560,31 @@ function formatRelativeDate(date: Date | string): string {
     max-width: 720px;
   }
 
-  /* 3 Pricing Cards Grid */
+  /* 3 or 4 Pricing Cards Grid */
   .pricing-cards-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 32px;
     align-items: stretch;
     margin-bottom: 70px;
   }
 
+  .pricing-cards-grid.pricing-cards-grid-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  @media (max-width: 1180px) {
+    .pricing-cards-grid.pricing-cards-grid-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+
   @media (max-width: 1024px) {
-    .pricing-cards-grid {
-      grid-template-columns: 1fr;
+    .pricing-cards-grid,
+    .pricing-cards-grid.pricing-cards-grid-4 {
+      grid-template-columns: minmax(0, 1fr);
       gap: 28px;
     }
   }
@@ -413,6 +613,22 @@ function formatRelativeDate(date: Date | string): string {
     margin-bottom: 24px;
   }
 
+  .pkg-card-media {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #f1f5f9;
+  }
+
+  .pkg-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   .card-title {
     font-family: 'Golos Text', system-ui, sans-serif;
     font-size: 24px;
@@ -435,6 +651,19 @@ function formatRelativeDate(date: Date | string): string {
     color: #191919;
     margin: 0 0 4px;
     line-height: 1.1;
+  }
+
+  .pricing-cards-grid-4 .pkg-card {
+    padding: 32px 22px 28px;
+  }
+
+  .pricing-cards-grid-4 .card-title {
+    font-size: 19px;
+  }
+
+  .pricing-cards-grid-4 .card-price-val {
+    font-size: clamp(20px, 1.7vw, 24px);
+    line-height: 1.2;
   }
 
   .card-price-desc {
@@ -1258,4 +1487,881 @@ function formatRelativeDate(date: Date | string): string {
     box-shadow: 0 6px 16px rgba(9, 105, 218, 0.3);
   }
 
+  /* =========================================================================
+     MODAL CHECKOUT BSI & UPLOAD BUKTI
+     ========================================================================= */
+  .gvf-modal-backdrop[hidden] {
+    display: none;
+  }
+
+  .gvf-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    font-family: 'Golos Text', system-ui, -apple-system, sans-serif;
+  }
+
+  .gvf-modal-card {
+    background: #ffffff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 540px;
+    max-height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.25);
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+  }
+
+  .gvf-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 24px 14px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  .gvf-modal-eyebrow {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0969da;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .gvf-modal-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.25;
+  }
+
+  .gvf-modal-close {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #475569;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+  }
+
+  .gvf-modal-close:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+    border-color: #cbd5e1;
+  }
+
+  .gvf-modal-close:focus-visible,
+  .gvf-qty-btn:focus-visible,
+  .gvf-copy-btn:focus-visible,
+  .gvf-submit-btn:focus-visible,
+  .gvf-wa-confirm-btn:focus-visible,
+  .gvf-done-close-btn:focus-visible,
+  .gvf-input:focus-visible,
+  .gvf-textarea:focus-visible {
+    outline: 2px solid #0969da;
+    outline-offset: 2px;
+  }
+
+  .gvf-modal-body {
+    padding: 20px 24px 24px;
+    overflow-y: auto;
+    flex: 1 1 auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gvf-summary-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+
+  .gvf-summary-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .gvf-summary-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #64748b;
+    margin-bottom: 2px;
+  }
+
+  .gvf-summary-pkg {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .gvf-qty-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 2px;
+  }
+
+  .gvf-qty-btn {
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    color: #0f172a;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .gvf-qty-btn:hover {
+    background: #eff6ff;
+    color: #0969da;
+  }
+
+  .gvf-qty-val {
+    min-width: 24px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .gvf-summary-total-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed #cbd5e1;
+    font-size: 13px;
+    color: #475569;
+  }
+
+  .gvf-total-amount {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0969da;
+  }
+
+  .gvf-bank-card {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+  }
+
+  .gvf-bank-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .gvf-bank-step {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0752a8;
+  }
+
+  .gvf-bank-code {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0969da;
+    background: #ffffff;
+    border: 1px solid #bfdbfe;
+    padding: 2px 8px;
+    border-radius: 9999px;
+  }
+
+  .gvf-bank-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+  }
+
+  .gvf-bank-acc-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .gvf-bank-acc-num {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #0969da;
+  }
+
+  .gvf-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid #93c5fd;
+    background: #ffffff;
+    color: #0752a8;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .gvf-copy-btn:hover {
+    background: #dbeafe;
+    border-color: #0969da;
+  }
+
+  .gvf-bank-owner {
+    font-size: 12.5px;
+    color: #334155;
+    font-weight: 500;
+  }
+
+  .gvf-form-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+  }
+
+  .gvf-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 560px) {
+    .gvf-form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .gvf-field {
+    margin-bottom: 12px;
+  }
+
+  .gvf-label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 5px;
+  }
+
+  .gvf-req {
+    color: #dc2626;
+  }
+
+  .gvf-input,
+  .gvf-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #0f172a;
+    background: #ffffff;
+    min-height: 44px;
+    transition: border-color 0.15s ease;
+  }
+
+  .gvf-textarea {
+    min-height: 68px;
+    resize: vertical;
+  }
+
+  .gvf-input:focus,
+  .gvf-textarea:focus {
+    border-color: #0969da;
+    outline: none;
+  }
+
+  .gvf-upload-dropzone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 10px 14px;
+    border: 1.5px dashed #93c5fd;
+    border-radius: 10px;
+    background: #f8fafc;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .gvf-upload-dropzone:hover {
+    background: #eff6ff;
+    border-color: #0969da;
+  }
+
+  .gvf-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .gvf-error-banner {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+
+  .gvf-submit-btn {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 6px;
+    border: none;
+    border-radius: 9999px;
+    background: #0969da;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 -4px 16px rgba(255, 255, 255, 0.9), 0 6px 16px rgba(9, 105, 218, 0.24);
+    transition: background-color 0.18s ease, transform 0.15s ease;
+  }
+
+  .gvf-submit-btn:hover:not(:disabled) {
+    background: #0752a8;
+    transform: translateY(-1px);
+  }
+
+  .gvf-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  .gvf-success-view {
+    text-align: center;
+    padding: 8px 0 4px;
+  }
+
+  .gvf-success-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+
+  .gvf-success-title {
+    margin: 0 0 8px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .gvf-success-desc {
+    margin: 0 0 16px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #475569;
+  }
+
+  .gvf-receipt-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    text-align: left;
+  }
+
+  .gvf-receipt-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #475569;
+    padding: 4px 0;
+  }
+
+  .gvf-receipt-row strong {
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  .gvf-share-wa-btn[hidden],
+  .gvf-copy-img-btn[hidden],
+  .gvf-copy-img-hint[hidden] {
+    display: none;
+  }
+
+  .gvf-share-wa-btn,
+  .gvf-copy-img-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 46px;
+    border-radius: 9999px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.16s ease, border-color 0.16s ease, transform 0.15s ease;
+  }
+
+  .gvf-share-wa-btn {
+    border: none;
+    background: #0969da;
+    color: #ffffff;
+  }
+
+  .gvf-share-wa-btn:hover {
+    background: #0752a8;
+    transform: translateY(-1px);
+  }
+
+  .gvf-copy-img-btn {
+    border: 1.5px solid #0969da;
+    background: #eff6ff;
+    color: #0752a8;
+  }
+
+  .gvf-copy-img-btn:hover {
+    background: #dbeafe;
+  }
+
+  .gvf-copy-img-hint {
+    margin: -2px 0 12px;
+    font-size: 12px;
+    line-height: 1.45;
+    color: #475569;
+  }
+
+  .gvf-wa-confirm-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 48px;
+    border-radius: 9999px;
+    background: #16a34a;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: background-color 0.18s ease, transform 0.15s ease;
+  }
+
+  .gvf-wa-confirm-btn:hover {
+    background: #15803d;
+    transform: translateY(-1px);
+  }
+
+  .gvf-done-close-btn {
+    width: 100%;
+    min-height: 44px;
+    border-radius: 9999px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .gvf-done-close-btn:hover {
+    background: #f8fafc;
+  }
+
 </style>
+
+<script>
+  (() => {
+    const modal = document.getElementById('gvfCheckoutModal');
+    if (!modal) return;
+
+    const closeBtn = document.getElementById('gvfModalCloseBtn');
+    const successDoneBtn = document.getElementById('gvfSuccessDoneBtn');
+    const form = document.getElementById('gvfCheckoutForm') as HTMLFormElement | null;
+    const successView = document.getElementById('gvfCheckoutSuccess');
+    const programLabel = document.getElementById('gvfModalProgramLabel');
+    const pkgNameEl = document.getElementById('gvfPkgName');
+    const qtyWrap = document.getElementById('gvfQtyWrap');
+    const qtyMinus = document.getElementById('gvfQtyMinus');
+    const qtyPlus = document.getElementById('gvfQtyPlus');
+    const qtyValEl = document.getElementById('gvfQtyVal');
+    const customNominalWrap = document.getElementById('gvfCustomNominalWrap');
+    const customNominalInput = document.getElementById('gvfCustomNominal') as HTMLInputElement | null;
+    const totalDisplay = document.getElementById('gvfTotalDisplay');
+    const copyRekBtn = document.getElementById('gvfCopyRekBtn');
+    const copyRekText = document.getElementById('gvfCopyRekText');
+    const buktiInput = document.getElementById('gvfBuktiFile') as HTMLInputElement | null;
+    const buktiFileName = document.getElementById('gvfBuktiFileName');
+    const errorBanner = document.getElementById('gvfFormError');
+    const submitBtn = document.getElementById('gvfSubmitBtn') as HTMLButtonElement | null;
+    const successKode = document.getElementById('gvfSuccessKode');
+    const successNominal = document.getElementById('gvfSuccessNominal');
+    const waConfirmBtn = document.getElementById('gvfWaConfirmBtn') as HTMLAnchorElement | null;
+    const shareWaBtn = document.getElementById('gvfShareWaBtn') as HTMLButtonElement | null;
+    const copyImgBtn = document.getElementById('gvfCopyImgBtn') as HTMLButtonElement | null;
+    const copyImgText = document.getElementById('gvfCopyImgText');
+    const copyImgHint = document.getElementById('gvfCopyImgHint');
+
+    let currentUnitPrice = 0;
+    let currentQty = 1;
+    let currentPkgTitle = '';
+    let currentProgramTitle = '';
+    let lastUploadedFile: File | null = null;
+    let lastWaMessage = '';
+
+    const copyImageFileToClipboard = async (file: File): Promise<boolean> => {
+      if (!file.type.startsWith('image/') || typeof ClipboardItem === 'undefined' || !navigator.clipboard?.write) {
+        return false;
+      }
+      try {
+        const pngBlob = await new Promise<Blob>((resolve, reject) => {
+          const img = new Image();
+          const url = URL.createObjectURL(file);
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth || img.width;
+            canvas.height = img.naturalHeight || img.height;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) {
+              URL.revokeObjectURL(url);
+              reject(new Error('No canvas context'));
+              return;
+            }
+            ctx.drawImage(img, 0, 0);
+            URL.revokeObjectURL(url);
+            canvas.toBlob((blob) => {
+              if (blob) resolve(blob);
+              else reject(new Error('Failed to encode PNG'));
+            }, 'image/png');
+          };
+          img.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new Error('Image load error'));
+          };
+          img.src = url;
+        });
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': pngBlob })]);
+        return true;
+      } catch {
+        return false;
+      }
+    };
+
+    const formatRp = (val: number) => 'Rp ' + new Intl.NumberFormat('id-ID').format(Math.max(0, Math.round(val)));
+
+    const getEffectiveTotal = () => {
+      if (currentUnitPrice > 0) return currentUnitPrice * currentQty;
+      return Number(customNominalInput?.value) || 0;
+    };
+
+    const syncTotalDisplay = () => {
+      if (qtyValEl) qtyValEl.textContent = String(currentQty);
+      if (totalDisplay) totalDisplay.textContent = formatRp(getEffectiveTotal());
+    };
+
+    const showError = (msg: string) => {
+      if (!errorBanner) return;
+      errorBanner.textContent = msg;
+      errorBanner.hidden = false;
+    };
+
+    const clearError = () => {
+      if (!errorBanner) return;
+      errorBanner.textContent = '';
+      errorBanner.hidden = true;
+    };
+
+    const openModal = (btn: HTMLElement) => {
+      currentPkgTitle = btn.dataset.pkgTitle || 'Paket Kontribusi';
+      currentProgramTitle = btn.dataset.programTitle || 'Program Kebaikan';
+      currentUnitPrice = Number(btn.dataset.pkgPrice) || 0;
+      currentQty = 1;
+
+      if (programLabel) programLabel.textContent = currentProgramTitle;
+      if (pkgNameEl) pkgNameEl.textContent = currentPkgTitle;
+
+      if (currentUnitPrice > 0) {
+        if (qtyWrap) qtyWrap.hidden = false;
+        if (customNominalWrap) customNominalWrap.hidden = true;
+      } else {
+        if (qtyWrap) qtyWrap.hidden = true;
+        if (customNominalWrap) customNominalWrap.hidden = false;
+        if (customNominalInput) customNominalInput.value = '100000';
+      }
+
+      form?.reset();
+      if (currentUnitPrice <= 0 && customNominalInput) customNominalInput.value = '100000';
+      if (buktiFileName) buktiFileName.textContent = 'Pilih file bukti transfer dari perangkat Anda';
+      clearError();
+
+      if (form) form.hidden = false;
+      if (successView) successView.hidden = true;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Kirim Bukti & Catat Kontribusi';
+      }
+
+      syncTotalDisplay();
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      modal.hidden = true;
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('.js-open-checkout').forEach((btn) => {
+      btn.addEventListener('click', () => openModal(btn as HTMLElement));
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+    successDoneBtn?.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+
+    qtyMinus?.addEventListener('click', () => {
+      if (currentQty > 1) {
+        currentQty -= 1;
+        syncTotalDisplay();
+      }
+    });
+
+    qtyPlus?.addEventListener('click', () => {
+      currentQty += 1;
+      syncTotalDisplay();
+    });
+
+    customNominalInput?.addEventListener('input', syncTotalDisplay);
+
+    copyRekBtn?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('7142263763');
+        if (copyRekText) {
+          copyRekText.textContent = 'Tersalin!';
+          setTimeout(() => {
+            copyRekText.textContent = 'Salin';
+          }, 2000);
+        }
+      } catch {
+        // Fallback silently if clipboard unavailable
+      }
+    });
+
+    buktiInput?.addEventListener('change', () => {
+      const file = buktiInput.files?.[0];
+      if (buktiFileName) {
+        buktiFileName.textContent = file
+          ? `${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`
+          : 'Pilih file bukti transfer dari perangkat Anda';
+      }
+    });
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearError();
+
+      const namaLengkap = (document.getElementById('gvfNamaLengkap') as HTMLInputElement)?.value.trim() || '';
+      const namaTampilan = (document.getElementById('gvfNamaTampilan') as HTMLInputElement)?.value.trim() || '';
+      const noWhatsapp = (document.getElementById('gvfNoWhatsapp') as HTMLInputElement)?.value.trim() || '';
+      const doaDonatur = (document.getElementById('gvfDoaDonatur') as HTMLTextAreaElement)?.value.trim() || '';
+      const file = buktiInput?.files?.[0];
+      const totalNominal = getEffectiveTotal();
+
+      if (!namaLengkap) {
+        showError('Nama lengkap wajib diisi.');
+        return;
+      }
+      if (!noWhatsapp) {
+        showError('Nomor WhatsApp wajib diisi.');
+        return;
+      }
+      if (totalNominal <= 0) {
+        showError('Nominal kontribusi harus lebih dari 0.');
+        return;
+      }
+      if (!file) {
+        showError('Silakan unggah bukti transfer BSI terlebih dahulu.');
+        return;
+      }
+
+      const fd = new FormData();
+      fd.append('namaLengkap', namaLengkap);
+      fd.append('namaTampilan', namaTampilan);
+      fd.append('noWhatsapp', noWhatsapp);
+      fd.append('programTujuan', currentProgramTitle);
+      fd.append('paketNama', currentPkgTitle);
+      fd.append('jumlahPaket', String(currentQty));
+      fd.append('nominal', String(totalNominal));
+      fd.append('doaDonatur', doaDonatur);
+      fd.append('bukti', file);
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Mengunggah Bukti & Menyimpan...';
+      }
+
+      try {
+        const res = await fetch('/api/kontribusi/submit', {
+          method: 'POST',
+          body: fd,
+        });
+        const data = await res.json();
+
+        if (!res.ok || !data?.success) {
+          throw new Error(data?.error || 'Gagal mengirim bukti transfer.');
+        }
+
+        const kode = data.data?.kodeTransaksi || '-';
+        const nominalTotal = Number(data.data?.nominalTotal) || totalNominal;
+
+        if (successKode) successKode.textContent = kode;
+        if (successNominal) successNominal.textContent = formatRp(nominalTotal);
+
+        const waMsg = [
+          'Assalamualaikum Admin GVF,',
+          'Saya telah melakukan transfer BSI dan mengunggah bukti pembayaran melalui website.',
+          '',
+          `Kode Transaksi: ${kode}`,
+          `Program: ${currentProgramTitle}`,
+          `Paket: ${currentPkgTitle}${currentQty > 1 ? ` (${currentQty}x)` : ''}`,
+          `Nominal: ${formatRp(nominalTotal)}`,
+          `Nama Donatur: ${namaLengkap}`,
+          '',
+          'Mohon bantuannya untuk verifikasi. Terima kasih.',
+        ].join('\n');
+
+        lastUploadedFile = file;
+        lastWaMessage = waMsg;
+
+        if (waConfirmBtn) {
+          waConfirmBtn.href = `https://wa.me/6281226832326?text=${encodeURIComponent(waMsg)}`;
+        }
+
+        const isImage = file.type.startsWith('image/');
+        const canNativeShareFile = Boolean(
+          isImage && typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] }),
+        );
+
+        if (shareWaBtn) shareWaBtn.hidden = !canNativeShareFile;
+        if (copyImgBtn) copyImgBtn.hidden = !isImage;
+        if (copyImgHint) copyImgHint.hidden = !isImage;
+        if (copyImgText) copyImgText.textContent = 'Salin Gambar Bukti (Tempel Ctrl+V di WA)';
+
+        form.hidden = true;
+        if (successView) successView.hidden = false;
+      } catch (err: any) {
+        showError(err?.message || 'Terjadi kesalahan jaringan. Silakan coba lagi.');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Kirim Bukti & Catat Kontribusi';
+        }
+      }
+    });
+
+    shareWaBtn?.addEventListener('click', async () => {
+      if (!lastUploadedFile || !navigator.share) return;
+      try {
+        await navigator.share({
+          files: [lastUploadedFile],
+          text: lastWaMessage,
+        });
+      } catch {
+        // User cancelled share sheet
+      }
+    });
+
+    copyImgBtn?.addEventListener('click', async () => {
+      if (!lastUploadedFile) return;
+      const ok = await copyImageFileToClipboard(lastUploadedFile);
+      if (copyImgText) {
+        copyImgText.textContent = ok
+          ? 'Gambar Tersalin! Buka WA lalu Ctrl+V'
+          : 'Browser tidak mendukung salin gambar otomatis';
+      }
+    });
+
+    waConfirmBtn?.addEventListener('click', async () => {
+      if (!lastUploadedFile || !lastUploadedFile.type.startsWith('image/')) return;
+      const ok = await copyImageFileToClipboard(lastUploadedFile);
+      if (ok && copyImgText) {
+        copyImgText.textContent = 'Gambar Tersalin! Tinggal Ctrl+V di WA';
+      }
+    });
+  })();
+</script>
