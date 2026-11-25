@@ -1,6 +1,15 @@
 {
   "project": "Wakaf-LP",
   "tasks": [
+    { "id": "HERO-UNIFY-OVERLAY-SLIDE3-01", "name": "Penyeragaman Scrim Gelap Netral Seluruh Slide Hero Beranda & Pembaruan Teks Slide 3 GOTA SSM", "status": "closed" },
+    { "id": "ADMIN-USER-FRIENDLY-FORMS-01", "name": "Penyederhanaan Seluruh Kolom Input, Dropdown Tujuan Halaman, Accordion Kartu, dan Penghapusan Istilah Teknis di Seluruh Modal & Drawer Admin CMS", "status": "closed" },
+    { "id": "SYNC-ADMIN-FAVICON-01", "name": "Penyelarasan Favicon Dashboard Admin & Login (/favicon.webp) Sesuai Halaman Web Publik", "status": "closed" },
+    { "id": "FIX-HERO-TS7006-01", "name": "Penambahan Tipe Eksplisit HeroSlide & HeroSlideButton pada HeroSection.astro untuk Mengatasi TS7006", "status": "closed" },
+    { "id": "FIX-HERO-SLIDE-3-OVERLAY-01", "name": "Penggantian Overlay Biru Pekat Slide 3 Hero Beranda Menjadi Scrim Gelap Netral", "status": "closed" },
+    { "id": "UPDATE-HERO-SLIDE-3-GOTA-01", "name": "Pembaruan Copywriting Slide 3 Hero Beranda (GOTA SSM)", "status": "closed" },
+    { "id": "UPDATE-HERO-SLIDE-2-MASJID-01", "name": "Pembaruan Copywriting Slide 2 Hero Beranda (Pembangunan Masjid Taman Khairu Ummah Sughro)", "status": "closed" },
+    { "id": "REFINE-KONTRIBUSI-SUM-BERANDA-TENTANG-01", "name": "Pembersihan 4 Section Baru Bentuk Kontribusi, Penghitungan Real-Time SQL SUM Dana Terhimpun, dan Pembaruan Copywriting Beranda & Tentang Kami", "status": "closed" },
+    { "id": "RESTRUCTURE-7-MENU-WEB-ADMIN-01", "name": "Restrukturisasi 7 Menu Akhir Website Profil (Program Pembangunan Masjid & GOTA SSM, Bentuk Kontribusi, Edukasi & Kajian, Kabar & Laporan) dan Sinkronisasi Dashboard Admin + Neon PostgreSQL", "status": "closed" },
     { "id": "RESOLVE-PORT-CONFLICT-FILANTROFI-PORT-3000-01", "name": "Penyelesaian Bentrok Port Dev Server: Menghentikan PID 40796 & Menjalankan Filantrofi Web di Port Terisolasi 3000", "status": "closed" },
     { "id": "VERIFY-DB-AND-RUN-DEV-SERVERS-01", "name": "Verifikasi Migrasi Neon PostgreSQL (7/7 E2E Pass) & Menjalankan Dev Server Lokal Filantrofi (Port 4322) serta GVF (Port 4321)", "status": "closed" },
     { "id": "EXEC-FILANTROFI-WEB-SUBAGENTS-01", "name": "Eksekusi Pembangunan Komponen & Halaman Filantrofi Web (Astro) Melalui Parallel Subagents (Navigasi, Mobile Bottom Nav, Detail Multi-Tab, Doa 'Aamiin', dan Alur Checkout)", "status": "closed" },
@@ -161,6 +170,14 @@
     { "id": "FORMAT-ALL-PROGRAMS-CLEAN-COPY-01", "name": "Standardisasi Penulisan Tipografi Narasi & Paket Seluruh Program (Infak, Sedekah, Wakaf) Tanpa Prefiks Huruf & Angka Kaku", "status": "closed" },
     { "id": "TEXT-JUSTIFY-COMPREHENSIVE-ALIGN-01", "name": "Penyelarasan Global Text-Align Justify untuk Seluruh Paragraf, Deliverables, Lead Text & Intro Program di Semua Halaman Website", "status": "closed" },
     { "id": "MIGRATE-GOODS-DONATION-TO-INFAQ-01", "name": "Migrasi & Penyelarasan Donasi Natura Barang (Semen) ke Kategori Program Infaq pada Database Neon PostgreSQL & Frontend Live Feed", "status": "closed" },
-    { "id": "PURGE-REKOMENDASI-PROGRAM-BADGES-01", "name": "Eliminasi Menyeluruh Badge Gimmick 'Rekomendasi Program' & Border Tebal Populer pada Kartu Paket Program (Infaq, Sedekah, Wakaf, Zakat) Sesuai Standar Anti-Slop", "status": "closed" }
+    { "id": "PURGE-REKOMENDASI-PROGRAM-BADGES-01", "name": "Eliminasi Menyeluruh Badge Gimmick 'Rekomendasi Program' & Border Tebal Populer pada Kartu Paket Program (Infaq, Sedekah, Wakaf, Zakat) Sesuai Standar Anti-Slop", "status": "closed" },
+    { "id": "FIX-PAGE-BANNER-OVERLAYS-01", "name": "Perjelas foto latar & seragamkan overlay gelap netral di semua header banner halaman", "status": "closed" },
+    { "id": "FIX-TENTANG-BANNER-TITLE-1LINE-01", "name": "Jadikan judul banner halaman Tentang Kami tampil 1 baris pada desktop", "status": "closed" },
+    { "id": "UPDATE-HERO-SLIDE-4-ZAKAT-01", "name": "Pembaruan konten Slide 4 Hero Beranda (Zakat Mal & Zakat Fitrah) di frontend & Neon DB", "status": "closed" },
+    { "id": "UPDATE-MASJID-SUM-TARGET-01", "name": "Perbarui formula Dana Terhimpun Masjid (ikutkan sedekah berakad masjid) & ubah target kebutuhan ke Rp 1.310.753.350", "status": "closed" },
+    { "id": "REMOVE-PROGRAM-HERO-CAPSULE-01", "name": "Hapus kapsul badge hero pada seluruh halaman Program (/program, Pembangunan Masjid, GOTA SSM)", "status": "closed" },
+    { "id": "HALLMARK-AUDIT-FIX-PROGRAM-01", "name": "Refactor 3 halaman Program sesuai Hallmark Floor & Craft: CSS berbasis token, hapus nested card/eyebrow/kapsul, tambah foto banner /program & accordion arsitektural", "status": "closed" },
+    { "id": "REMOVE-ALL-PUBLIC-CAPSULES-01", "name": "Hapus seluruh kapsul badge dekoratif (Hero, Beranda, Tentang Kami, Kontribusi, Donatur, Kabar, Edukasi, Kontak) di seluruh halaman publik", "status": "closed" },
+    { "id": "FIX-TS2339-CONTACT-TENTANG-01", "name": "Tambahkan tipe eksplisit HeroSectionContent pada contact.astro dan tentang-kami.astro untuk mengatasi 12 error TS2339", "status": "closed" }
   ]
 }

@@ -8,6 +8,23 @@
 ## In Review / Test
 
 ## Done
+- [x] FIX-TS2339-CONTACT-TENTANG-01: Tambahkan tipe eksplisit HeroSectionContent pada contact.astro dan tentang-kami.astro untuk mengatasi 12 error TS2339 (Terverifikasi Build & Live HTTP 200)
+- [x] REMOVE-ALL-PUBLIC-CAPSULES-01: Hapus seluruh kapsul badge dekoratif (Hero, Beranda, Tentang Kami, Kontribusi, Donatur, Kabar, Edukasi, Kontak) di seluruh halaman publik (Terverifikasi Build & Live HTTP 200)
+- [x] HALLMARK-AUDIT-FIX-PROGRAM-01: Refactor 3 halaman Program sesuai Hallmark Floor & Craft: CSS berbasis token, hapus nested card/eyebrow/kapsul, tambah foto banner /program & accordion arsitektural (Terverifikasi Floor Checks, Build & Live HTTP 200)
+- [x] REMOVE-PROGRAM-HERO-CAPSULE-01: Hapus kapsul badge hero pada seluruh halaman Program (/program, Pembangunan Masjid, GOTA SSM) (Terverifikasi Build & Live HTTP 200)
+- [x] UPDATE-MASJID-SUM-TARGET-01: Perbarui formula Dana Terhimpun Masjid (ikutkan sedekah berakad masjid) & ubah target kebutuhan ke Rp 1.310.753.350 (Terverifikasi DB, Build & Live HTTP 200)
+- [x] UPDATE-HERO-SLIDE-4-ZAKAT-01: Pembaruan konten Slide 4 Hero Beranda (Zakat Mal & Zakat Fitrah) di frontend & Neon DB serta perbaikan sanitasi JSONB page_sections (Terverifikasi DB, Build & Live HTTP 200)
+- [x] FIX-TENTANG-BANNER-TITLE-1LINE-01: Jadikan judul banner halaman Tentang Kami tampil 1 baris pada desktop (Terverifikasi Build, CSS Live Dev & HTTP 200)
+- [x] FIX-PAGE-BANNER-OVERLAYS-01: Perjelas foto latar & seragamkan overlay gelap netral di semua header banner halaman (Terverifikasi Build, CSS Live Dev & HTTP 200 Seluruh Rute)
+- [x] HERO-UNIFY-OVERLAY-SLIDE3-01: Penyeragaman Scrim Gelap Netral Seluruh Slide Hero Beranda & Pembaruan Teks Slide 3 GOTA SSM (Pertahankan Foto Unggahan Admin) (Terverifikasi Build & Live HTTP 200)
+- [x] ADMIN-USER-FRIENDLY-FORMS-01: Penyederhanaan Seluruh Kolom Input, Dropdown Tujuan Halaman, Accordion Kartu, dan Penghapusan Istilah Teknis di Seluruh Modal & Drawer Admin CMS (Terverifikasi Build & Live HTTP 200)
+- [x] SYNC-ADMIN-FAVICON-01: Penyelarasan Favicon Dashboard Admin & Login (/favicon.webp) Sesuai Halaman Web Publik (Terverifikasi Build & Live HTTP 200)
+- [x] FIX-HERO-TS7006-01: Penambahan Tipe Eksplisit HeroSlide & HeroSlideButton pada HeroSection.astro untuk Mengatasi TS7006 (Terverifikasi Build & Live HTTP 200)
+- [x] FIX-HERO-SLIDE-3-OVERLAY-01: Penggantian Overlay Biru Pekat Slide 3 Hero Beranda Menjadi Scrim Gelap Netral di HeroSection.astro (Terverifikasi Build & Live HTTP 200)
+- [x] UPDATE-HERO-SLIDE-3-GOTA-01: Pembaruan Copywriting Slide 3 Hero Beranda (GOTA SSM) pada Frontend & Neon DB (Terverifikasi Build & Live HTTP 200)
+- [x] UPDATE-HERO-SLIDE-2-MASJID-01: Pembaruan Copywriting Slide 2 Hero Beranda (Pembangunan Masjid Taman Khairu Ummah Sughro) pada Frontend & Neon DB (Terverifikasi Build & Live HTTP 200)
+- [x] REFINE-KONTRIBUSI-SUM-BERANDA-TENTANG-01: Pembersihan 4 Section Baru Bentuk Kontribusi, Penghitungan Real-Time SQL SUM Dana Terhimpun, dan Pembaruan Copywriting Beranda & Tentang Kami (Terverifikasi Build, Neon DB & HTTP 200 Seluruh Rute)
+- [x] RESTRUCTURE-7-MENU-WEB-ADMIN-01: Restrukturisasi 7 Menu Akhir Website Profil (Program Pembangunan Masjid & GOTA SSM, Bentuk Kontribusi, Edukasi & Kajian, Kabar & Laporan) dan Sinkronisasi Dashboard Admin + Neon PostgreSQL (Terverifikasi Build & HTTP 200/301 Seluruh Rute)
 - [x] RESOLVE-PORT-CONFLICT-FILANTROFI-PORT-3000-01: Penyelesaian Bentrok Port Dev Server: Menghentikan PID 40796 & Menjalankan Filantrofi Web di Port Terisolasi 3000 (Terverifikasi HTTP 200 OK Seluruh Rute)
 - [x] VERIFY-DB-AND-RUN-DEV-SERVERS-01: Verifikasi Migrasi Neon PostgreSQL (7/7 E2E Pass) & Menjalankan Dev Server Lokal Filantrofi (Port 4322) serta GVF (Port 4321) Terverifikasi HTTP 200 OK
 - [x] EXEC-FILANTROFI-WEB-SUBAGENTS-01: Eksekusi Pembangunan Komponen & Halaman Filantrofi Web (Astro) Melalui Parallel Subagents (Navigasi, Mobile Bottom Nav, Detail Multi-Tab, Doa 'Aamiin', dan Alur Checkout) Terverifikasi Build 11 Halaman Statis 100% & Anti-Slop
