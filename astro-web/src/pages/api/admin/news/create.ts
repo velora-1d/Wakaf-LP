@@ -25,7 +25,19 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
   try {
     const body = await request.json();
-    const { title, category, summary, content, coverImage, author, isPublished, publishedAt } = body;
+    const {
+      title,
+      category,
+      summary,
+      content,
+      coverImage,
+      author,
+      isPublished,
+      publishedAt,
+      contentType,
+      videoUrl,
+      attachmentUrl,
+    } = body;
 
     if (!title || !category || !summary || !content) {
       return new Response(JSON.stringify({ success: false, error: 'Semua bidang wajib (judul, kategori, ringkasan, isi) harus diisi.' }), {
@@ -33,6 +45,8 @@ export const POST: APIRoute = async ({ request, cookies }) => {
         headers: { 'Content-Type': 'application/json' },
       });
     }
+
+    const normalizedType = contentType === 'edukasi' ? 'edukasi' : 'kabar';
 
     let customSlug = body.slug ? generateSlug(body.slug) : generateSlug(title);
     if (!customSlug) {
@@ -43,9 +57,12 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       slug: customSlug,
       title: title.trim(),
       category: category.trim(),
+      contentType: normalizedType,
       summary: summary.trim(),
       content: content.trim(),
       coverImage: (coverImage || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp').trim(),
+      videoUrl: videoUrl ? String(videoUrl).trim() : null,
+      attachmentUrl: attachmentUrl ? String(attachmentUrl).trim() : null,
       author: (author || 'Tim GVF').trim(),
       isPublished: isPublished !== undefined ? Boolean(isPublished) : true,
       publishedAt: publishedAt || new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),

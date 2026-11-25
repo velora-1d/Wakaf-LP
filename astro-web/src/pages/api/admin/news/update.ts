@@ -37,9 +37,17 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     const updatePayload: any = {};
     if (body.title !== undefined) updatePayload.title = String(body.title).trim();
     if (body.category !== undefined) updatePayload.category = String(body.category).trim();
+    if (body.contentType !== undefined) {
+      updatePayload.contentType = body.contentType === 'edukasi' ? 'edukasi' : 'kabar';
+    }
     if (body.summary !== undefined) updatePayload.summary = String(body.summary).trim();
     if (body.content !== undefined) updatePayload.content = String(body.content).trim();
     if (body.coverImage !== undefined) updatePayload.coverImage = String(body.coverImage).trim();
+    if (body.imageUrl !== undefined && body.coverImage === undefined) {
+      updatePayload.coverImage = String(body.imageUrl).trim();
+    }
+    if (body.videoUrl !== undefined) updatePayload.videoUrl = body.videoUrl ? String(body.videoUrl).trim() : null;
+    if (body.attachmentUrl !== undefined) updatePayload.attachmentUrl = body.attachmentUrl ? String(body.attachmentUrl).trim() : null;
     if (body.author !== undefined) updatePayload.author = String(body.author).trim();
     if (body.isPublished !== undefined) updatePayload.isPublished = Boolean(body.isPublished);
     if (body.publishedAt !== undefined) updatePayload.publishedAt = String(body.publishedAt).trim();
