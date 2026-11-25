@@ -148,6 +148,14 @@
   margin-bottom: 36px;
 }
 
+.prog-container-narrow .prog-section-header {
+  max-width: 100%;
+}
+
+.prog-container-narrow .prog-section-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+}
+
 .prog-section-title {
   margin: 0 0 10px;
   font-family: var(--prog-font);
@@ -384,107 +392,70 @@
   font-size: 0.875rem;
 }
 
-/* Masjid Progress Band (Flat Surface — Zero Nested Cards) */
-.prog-progress-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 24px;
+/* Masjid Progress Summary (Clean Architectural Band) */
+.prog-ledger-summary {
+  max-width: 780px;
 }
 
-.prog-progress-header .prog-section-header {
-  margin-bottom: 0;
+.prog-ledger-summary .prog-section-title {
+  margin-bottom: 12px;
 }
 
-.prog-progress-stat {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
+.prog-ledger-summary .prog-section-desc {
+  margin-bottom: 32px;
 }
 
-.prog-progress-percent {
-  font-size: clamp(2.25rem, 4vw, 3rem);
-  font-weight: 800;
-  line-height: 1;
-  color: var(--prog-brand);
+.prog-ledger-fund {
+  padding-top: 24px;
+  border-top: 1px solid var(--prog-border-strong);
 }
 
-.prog-progress-stat-label {
+.prog-ledger-label {
   display: block;
-  margin-top: 6px;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--prog-ink-muted);
+  margin-bottom: 6px;
+}
+
+.prog-ledger-amount {
+  font-size: clamp(1.875rem, 3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--prog-ink-heading);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 16px;
 }
 
 .prog-progress-track {
   width: 100%;
-  height: 14px;
+  height: 5px;
   background-color: var(--prog-border);
-  border-radius: var(--prog-radius-pill);
+  border-radius: 2px;
   overflow: hidden;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .prog-progress-fill {
   height: 100%;
   background-color: var(--prog-brand);
-  border-radius: var(--prog-radius-pill);
+  border-radius: 2px;
 }
 
-.prog-progress-figures {
+.prog-ledger-meta {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 12px 24px;
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  color: var(--prog-ink-body);
-  font-variant-numeric: tabular-nums;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--prog-border-strong);
-  margin-bottom: 32px;
-}
-
-.prog-progress-figures strong {
-  color: var(--prog-ink-heading);
-}
-
-/* Architectural Hairline Milestones Grid (No Box-Inside-Box) */
-.prog-milestone-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.prog-milestone-item {
-  padding-top: 16px;
-  border-top: 2px solid var(--prog-border-strong);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.prog-milestone-meta {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.prog-milestone-step {
+  gap: 8px 16px;
   font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--prog-ink-muted);
+  color: var(--prog-ink-body-muted);
   font-variant-numeric: tabular-nums;
 }
 
-.prog-milestone-status {
-  font-size: 0.875rem;
-  font-weight: 700;
+.prog-ledger-meta strong {
   color: var(--prog-brand);
-  font-variant-numeric: tabular-nums;
+  font-weight: 700;
 }
 
 .prog-item-title {
@@ -708,9 +679,6 @@
 
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
-  .prog-milestone-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 
   .prog-gallery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -749,7 +717,6 @@
 }
 
 @media (max-width: 560px) {
-  .prog-milestone-grid,
   .prog-gallery-grid,
   .prog-gallery-grid-3 {
     grid-template-columns: minmax(0, 1fr);

@@ -36,7 +36,6 @@ const targetLabel = progress.targetLabel || `Rp ${targetAmount.toLocaleString('i
 const heroPrimaryHref = String(hero.primaryCtaUrl || '/kontribusi/infaq#paket-pilihan').replace('#gotong-royong-material', '#paket-pilihan');
 const bridgePrimaryHref = String(bridge.primaryCtaUrl || '/kontribusi/infaq#paket-pilihan').replace('#gotong-royong-material', '#paket-pilihan');
 
-const milestones = Array.isArray(progress.milestones) ? progress.milestones : [];
 const galleryItems = Array.isArray(gallery.items) ? gallery.items : [];
 const faqs = Array.isArray(faqSec.faqs) ? faqSec.faqs : [];
 
@@ -59,8 +58,8 @@ const schemas = [
 ---
 
 <BaseLayout
-  title="Program Pembangunan Masjid Khairu Ummah • Global Village Fund"
-  description={hero.subheading || 'Pembangunan Masjid Khairu Ummah Sugro sebagai pusat ibadah dan pembinaan santri di Sukasirna, Jonggol.'}
+  title="Pembangunan Masjid Taman Khairu Ummah Sughro • Global Village Fund"
+  description={hero.subheading || 'Membangun Pusat Ibadah dan Interaksi dalam Ekosistem Pesantren Skill Village Islamic School.'}
   ogImage={hero.imageUrl}
   schema={schemas}
 >
@@ -74,10 +73,10 @@ const schemas = [
       <div class="prog-hero-scrim" aria-hidden="true"></div>
       <div class="prog-hero-inner">
         <h1 class="prog-hero-title">
-          {hero.heading || 'Pembangunan Masjid Khairu Ummah Sugro'}
+          {hero.heading || 'Pembangunan Masjid Taman Khairu Ummah Sughro'}
         </h1>
         <p class="prog-hero-lead">
-          {hero.subheading || 'Membangun pusat ibadah, majelis dzikir, dan halaqah tahfidz Al-Quran berarsitektur tropis di kawasan Sukasirna, Jonggol.'}
+          {hero.subheading || 'Membangun Pusat Ibadah dan Interaksi dalam Ekosistem Pesantren'}
         </p>
         <div class="prog-hero-actions">
           <a href={heroPrimaryHref} class="prog-btn-primary">
@@ -91,50 +90,48 @@ const schemas = [
     </section>
   )}
 
+  <section class="prog-section-white">
+    <div class="prog-container">
+      <div class="prog-section-header" style="max-width: 780px;">
+        <h2 class="prog-section-title">
+          Membangun Pusat Ibadah dan Interaksi dalam Ekosistem Pesantren
+        </h2>
+        <p class="prog-section-desc" style="margin-bottom: 16px;">
+          Masjid Taman Khairu Ummah Sughro merupakan salah satu bagian penting dalam pengembangan ekosistem Pesantren Skill Village Islamic School. Keberadaannya tidak hanya ditujukan sebagai tempat pelaksanaan ibadah, tetapi juga sebagai pusat interaksi, pembinaan karakter, dan pengembangan kompetensi santri.
+        </p>
+        <p class="prog-section-desc">
+          Pembangunan masjid ini dilakukan secara bertahap untuk menghadirkan fasilitas yang dapat menunjang kebutuhan ibadah dan kehidupan pesantren. Melalui program ini, Global Village Fund membuka kesempatan bagi berbagai pihak untuk turut mengambil bagian dalam mendukung proses pembangunan.
+        </p>
+      </div>
+    </div>
+  </section>
+
   {isEnabled('masjid_progress') && (
     <section class="prog-section-canvas">
       <div class="prog-container">
-        <div class="prog-progress-header">
-          <div class="prog-section-header">
-            <h2 class="prog-section-title">
-              {progress.heading || 'Perkembangan Pembangunan Saat Ini'}
-            </h2>
-            <p class="prog-section-desc">
-              {progress.subheading || 'Pantauan berkala realisasi struktur fisik dan target penyelesaian Masjid Khairu Ummah Sugro.'}
-            </p>
-          </div>
-          <div class="prog-progress-stat">
-            <div class="prog-progress-percent">{progressPercentLabel}%</div>
-            <span class="prog-progress-stat-label">Realisasi Dana Terverifikasi</span>
+        <div class="prog-ledger-summary">
+          <h2 class="prog-section-title">
+            {progress.heading || 'Perkembangan Pembangunan Saat Ini'}
+          </h2>
+          <p class="prog-section-desc">
+            {progress.subheading || 'Pantauan berkala realisasi struktur fisik dan target penyelesaian Masjid Taman Khairu Ummah Sughro.'}
+          </p>
+
+          <div class="prog-ledger-fund">
+            <span class="prog-ledger-label">Dana terhimpun</span>
+            <div class="prog-ledger-amount">{collectedLabel}</div>
+            <div class="prog-progress-track">
+              <div
+                class="prog-progress-fill"
+                style={`width: ${progressPercent > 0 ? Math.max(progressPercent, 1.5) : 0}%`}
+              ></div>
+            </div>
+            <div class="prog-ledger-meta">
+              <span><strong>{progressPercentLabel}%</strong> dari target {targetLabel}</span>
+              <span>{masjidSummary.totalTransaksi} transaksi lunas</span>
+            </div>
           </div>
         </div>
-
-        <div class="prog-progress-track">
-          <div
-            class="prog-progress-fill"
-            style={`width: ${progressPercent > 0 ? Math.max(progressPercent, 1.5) : 0}%`}
-          ></div>
-        </div>
-
-        <div class="prog-progress-figures">
-          <span>Dana Terhimpun: <strong>{collectedLabel}</strong> ({masjidSummary.totalTransaksi} Transaksi Lunas)</span>
-          <span>Kebutuhan Penyelesaian: <strong>{targetLabel}</strong></span>
-        </div>
-
-        {milestones.length > 0 && (
-          <div class="prog-milestone-grid">
-            {milestones.map((ms: any, idx: number) => (
-              <div class="prog-milestone-item">
-                <div class="prog-milestone-meta">
-                  <span class="prog-milestone-step">Tahap 0{idx + 1}</span>
-                  <span class="prog-milestone-status">{ms.status}</span>
-                </div>
-                <h3 class="prog-item-title">{ms.title}</h3>
-                <p class="prog-item-desc">{ms.detail}</p>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </section>
   )}
