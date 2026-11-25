@@ -28,10 +28,69 @@ const masjidPercentLabel =
     : Math.round(Math.min(100, masjidRawPercent)).toString();
 const masjidCollectedLabel = `Rp ${masjidSummary.totalNominal.toLocaleString('id-ID')}`;
 const masjidHero = masjidMap.get('masjid_hero') || {};
+const masjidArch = masjidMap.get('masjid_architecture') || {};
+const masjidGallery = Array.isArray(masjidMap.get('masjid_gallery')?.items)
+  ? masjidMap.get('masjid_gallery').items
+  : [];
+const masjidFaqs = Array.isArray(masjidMap.get('masjid_faq')?.faqs)
+  ? masjidMap.get('masjid_faq').faqs
+  : [];
+
 const gotaHero = gotaMap.get('gota_hero') || {};
+const gotaOverview = gotaMap.get('gota_overview') || {};
+const gotaSchemes = Array.isArray(gotaMap.get('gota_schemes')?.schemes)
+  ? gotaMap.get('gota_schemes').schemes
+  : [];
+const gotaImpact = Array.isArray(gotaMap.get('gota_impact')?.items)
+  ? gotaMap.get('gota_impact').items
+  : [];
+const gotaFaqs = Array.isArray(gotaMap.get('gota_faq')?.faqs)
+  ? gotaMap.get('gota_faq').faqs
+  : [];
+
+const fannedItems = gotaSchemes.length >= 3
+  ? gotaSchemes.slice(0, 3).map((s: any) => ({
+      title: s.title,
+      meta: [s.amount, s.period].filter(Boolean).join(' '),
+      desc: s.desc,
+    }))
+  : [
+      {
+        title: 'Sarana Ibadah & Karakter',
+        meta: 'Masjid Taman Khairu Ummah Sughro',
+        desc: 'Pembangunan masjid sebagai pusat shalat berjamaah, halaqah Al-Qur\'an, dan pembinaan karakter santri.',
+      },
+      {
+        title: 'Orang Tua Asuh (29 Santri)',
+        meta: 'Rp22.310.000 / bulan',
+        desc: 'Mendukung pembiayaan pendidikan dan kebutuhan bulanan santri kelas X (21), XI (4), dan XII (4) secara berkelanjutan.',
+      },
+      {
+        title: 'Sahabat Santri',
+        meta: 'Kontribusi fleksibel',
+        desc: 'Memberikan kontribusi sesuai kemampuan untuk membantu memenuhi kebutuhan pendidikan dan keseharian santri.',
+      },
+    ];
+
+const collagePhotos = [
+  masjidGallery[0]?.image || '/media-lp/masjid-tampak-dalam-konstruksi.webp',
+  masjidGallery[1]?.image || '/assets/ekosistem/keagamaan.webp',
+  gotaImpact[0]?.image || '/assets/ekosistem/pendidikan.webp',
+  gotaImpact[1]?.image || '/assets/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp',
+];
+
+const collageAlts = [
+  masjidGallery[0]?.title || 'Progres konstruksi Masjid Taman Khairu Ummah Sughro',
+  masjidGallery[1]?.title || 'Aktivitas ibadah dan keagamaan santri',
+  gotaImpact[0]?.title || 'Kegiatan pendidikan santri Skill Village',
+  gotaImpact[1]?.title || 'Pembinaan ustadz dan duta santri',
+];
+
+const combinedFaqs = [...masjidFaqs.slice(0, 3), ...gotaFaqs.slice(0, 3)];
 
 const programHubHeroImage =
-  'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/tampak-luar-gedung-pesantren-landscape.webp';
+  masjidHero.imageUrl ||
+  '/assets/ekosistem/keagamaan.webp';
 
 const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
 const pageSchema = getBreadcrumbSchema(
@@ -44,45 +103,55 @@ const pageSchema = getBreadcrumbSchema(
 ---
 
 <BaseLayout
-  title="Program Unggulan • Global Village Fund"
-  description="Dua program unggulan Global Village Fund: Pembangunan Masjid Khairu Ummah Sugro dan GOTA SSM (Gerakan Orang Tua Asuh Santri Skill Village)."
+  title="Program Global Village Fund • Wakaf Produktif & Pendidikan Santri"
+  description="Global Village Fund mendukung program-program yang dikembangkan berdasarkan kebutuhan ekosistem pesantren: Pembangunan Masjid Taman Khairu Ummah Sughro dan GOTA SSM."
   ogImage={programHubHeroImage}
   schema={pageSchema}
 >
-  <section class="prog-hero">
-    <div
-      class="prog-hero-bg"
-      style={`background-image: url('${programHubHeroImage}')`}
-      aria-hidden="true"
-    ></div>
-    <div class="prog-hero-scrim" aria-hidden="true"></div>
-    <div class="prog-hero-inner">
-      <h1 class="prog-hero-title">
-        Program Global Village Fund
-      </h1>
-      <p class="prog-hero-lead">
-        Global Village Fund mendukung program-program yang dikembangkan berdasarkan kebutuhan ekosistem pesantren. Melalui pengelolaan kontribusi sosial dan kolaborasi berbagai pihak, GVF berupaya menghadirkan dukungan yang terarah bagi pengembangan sarana ibadah serta keberlanjutan pendidikan santri.
-      </p>
+  <!-- 1. Split Hero -->
+  <section class="prog-v2-hero">
+    <div class="prog-container">
+      <div class="prog-v2-hero-grid">
+        <div class="prog-v2-hero-copy">
+          <h1 class="prog-v2-title">
+            Program <span class="prog-v2-accent">Global Village Fund</span>
+          </h1>
+          <p class="prog-v2-lead">
+            Global Village Fund mendukung program-program yang dikembangkan berdasarkan kebutuhan ekosistem pesantren. Melalui pengelolaan kontribusi sosial dan kolaborasi berbagai pihak, GVF berupaya menghadirkan dukungan yang terarah bagi pengembangan sarana ibadah serta keberlanjutan pendidikan santri.
+          </p>
+          <div class="prog-v2-hero-actions">
+            <a href="/program/pembangunan-masjid" class="prog-btn-primary">
+              Pembangunan Masjid
+            </a>
+            <a href="/program/gota-ssm" class="prog-btn-primary">
+              Program GOTA SSM
+            </a>
+          </div>
+        </div>
+        <div class="prog-v2-hero-media">
+          <img
+            src={programHubHeroImage}
+            alt="Kawasan Pesantren Skill Village Islamic School Global Village Fund"
+            class="prog-v2-hero-img"
+            loading="eager"
+          />
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="prog-section-canvas prog-section-last">
+  <!-- 2. Zig-Zag 2 Program Utama -->
+  <section class="prog-v2-zigzag-band">
     <div class="prog-container">
-      <div class="prog-hub-grid">
-        <!-- Card 1: Pembangunan Masjid -->
-        <article class="prog-hub-card">
-          <div class="prog-hub-media">
-            <img
-              src={masjidHero.imageUrl || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp'}
-              alt="Pembangunan Masjid Khairu Ummah Sugro"
-              class="prog-hub-img"
-            />
-          </div>
-          <div class="prog-hub-body">
-            <span class="prog-category-label">Program 01 — Sarana Ibadah</span>
-            <h2 class="prog-card-title">Pembangunan Masjid Taman Khairu Ummah Sughro</h2>
-            <p class="prog-card-desc">
-              {masjidHero.subheading || 'Membangun pusat ibadah dan interaksi dalam ekosistem Pesantren Skill Village Islamic School secara bertahap untuk menunjang ibadah, pembinaan karakter, dan pengembangan kompetensi santri.'}
+      <div class="prog-v2-zigzag-list">
+        <!-- Program 01: Pembangunan Masjid -->
+        <article class="prog-v2-zigzag-row">
+          <div class="prog-v2-zigzag-copy">
+            <h2 class="prog-section-title">
+              Pembangunan Masjid Taman Khairu Ummah Sughro
+            </h2>
+            <p class="prog-section-desc">
+              Membangun pusat ibadah dan interaksi dalam ekosistem Pesantren Skill Village Islamic School secara bertahap untuk menunjang ibadah, pembinaan karakter, dan pengembangan kompetensi santri.
             </p>
             <div class="prog-hub-metric">
               <span>Dana terhimpun</span>
@@ -97,22 +166,26 @@ const pageSchema = getBreadcrumbSchema(
               </a>
             </div>
           </div>
+          <div class="prog-v2-zigzag-media">
+            <div class="prog-v2-diag-accent" aria-hidden="true"></div>
+            <div class="prog-v2-oval-frame">
+              <img
+                src={masjidArch.imageUrl || masjidHero.imageUrl || '/media-lp/masjid-tampak-dalam-konstruksi.webp'}
+                alt="Pembangunan Masjid Taman Khairu Ummah Sughro"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </article>
 
-        <!-- Card 2: GOTA SSM -->
-        <article class="prog-hub-card">
-          <div class="prog-hub-media">
-            <img
-              src={gotaHero.imageUrl || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/kbm-santri-ikhwan-menulis.webp'}
-              alt="Program GOTA SSM"
-              class="prog-hub-img"
-            />
-          </div>
-          <div class="prog-hub-body">
-            <span class="prog-category-label">Program 02 — Pendidikan &amp; Keberlanjutan Santri</span>
-            <h2 class="prog-card-title">GOTA SSM — Gerakan Orang Tua Asuh &amp; Sahabat Santri Mandiri</h2>
-            <p class="prog-card-desc">
-              Satu Kepedulian, Satu Kesempatan untuk Melanjutkan Pendidikan. Mendukung keberlanjutan pendidikan 29 santri Pesantren Skill Village Islamic School.
+        <!-- Program 02: GOTA SSM (Reversed) -->
+        <article class="prog-v2-zigzag-row is-reversed">
+          <div class="prog-v2-zigzag-copy">
+            <h2 class="prog-section-title">
+              GOTA SSM — Gerakan Orang Tua Asuh &amp; Sahabat Santri Mandiri
+            </h2>
+            <p class="prog-section-desc">
+              Satu Kepedulian, Satu Kesempatan untuk Melanjutkan Pendidikan. Mendukung keberlanjutan pendidikan dan kebutuhan bulanan 29 santri Pesantren Skill Village Islamic School (Kelas X, XI, dan XII).
             </p>
             <div class="prog-hub-metric">
               <span>Kebutuhan bulanan</span>
@@ -127,7 +200,148 @@ const pageSchema = getBreadcrumbSchema(
               </a>
             </div>
           </div>
+          <div class="prog-v2-zigzag-media">
+            <div class="prog-v2-diag-accent" aria-hidden="true"></div>
+            <div class="prog-v2-oval-frame">
+              <img
+                src={gotaOverview.imageUrl || gotaHero.imageUrl || '/assets/ekosistem/pendidikan.webp'}
+                alt="Program GOTA SSM Santri Skill Village"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Fanned 3-Card Section -->
+  <section class="prog-v2-fanned-band">
+    <div class="prog-container">
+      <div class="prog-v2-fanned-head">
+        <h2 class="prog-section-title">
+          Fokus Kebermanfaatan <span class="prog-v2-accent-warm">Ekosistem</span>
+        </h2>
+        <p class="prog-section-desc">
+          Setiap kontribusi dikelola untuk menjawab kebutuhan nyata pesantren secara terarah dan berkelanjutan.
+        </p>
+      </div>
+
+      <div class="prog-v2-fanned-grid">
+        {fannedItems.map((item: any, idx: number) => {
+          const posClass = idx === 0 ? 'prog-v2-card-left' : idx === 1 ? 'prog-v2-card-center' : 'prog-v2-card-right';
+          return (
+            <div class={`prog-v2-card ${posClass}`}>
+              <div class="prog-v2-card-icon" aria-hidden="true">
+                {idx === 0 ? (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 21h18" />
+                    <path d="M5 21V7l7-4 7 4v14" />
+                    <path d="M9 21v-6a3 3 0 0 1 6 0v6" />
+                  </svg>
+                ) : idx === 1 ? (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                  </svg>
+                ) : (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                )}
+              </div>
+              <h3 class="prog-v2-card-title">{item.title}</h3>
+              {item.meta && <span style="font-size: 0.875rem; font-weight: 600; color: var(--prog-accent);">{item.meta}</span>}
+              <p class="prog-v2-card-desc">{item.desc}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Kolase 2x2 Foto Kegiatan -->
+  <section class="prog-v2-collage-band">
+    <div class="prog-container">
+      <div class="prog-v2-collage-grid">
+        <div class="prog-v2-collage-copy">
+          <h2 class="prog-section-title">
+            Ekosistem Pesantren <span class="prog-v2-accent">Skill Village</span>
+          </h2>
+          <p class="prog-section-desc">
+            Dari masjid sebagai pusatnya, berbagai inisiatif dikembangkan untuk mendukung kehidupan pesantren, mulai dari penyediaan sarana ibadah, pendampingan pendidikan santri, hingga pembinaan kompetensi dan karakter.
+          </p>
+          <a href="/donatur" class="prog-btn-primary">
+            Lihat Daftar Donatur
+          </a>
+        </div>
+
+        <div class="prog-v2-bento-photos">
+          <div class="prog-v2-bento-item is-rounded">
+            <img src={collagePhotos[0]} alt={collageAlts[0]} loading="lazy" />
+          </div>
+          <div class="prog-v2-bento-item is-pill">
+            <img src={collagePhotos[1]} alt={collageAlts[1]} loading="lazy" />
+          </div>
+          <div class="prog-v2-bento-item is-pill">
+            <img src={collagePhotos[2]} alt={collageAlts[2]} loading="lazy" />
+          </div>
+          <div class="prog-v2-bento-item is-rounded">
+            <img src={collagePhotos[3]} alt={collageAlts[3]} loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {combinedFaqs.length > 0 && (
+    <section class="prog-section-white">
+      <div class="prog-container-narrow">
+        <div class="prog-section-header">
+          <h2 class="prog-section-title">Pertanyaan Seputar Program GVF</h2>
+        </div>
+        <div class="prog-faq-list">
+          {combinedFaqs.map((f: any, idx: number) => (
+            <details class="prog-faq-item" open={idx === 0}>
+              <summary class="prog-faq-summary">
+                <span>{f.question}</span>
+                <svg class="prog-faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </summary>
+              <p class="prog-faq-answer">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 5. Bottom CTA Band -->
+  <section class="prog-v2-cta-band">
+    <svg class="prog-v2-cta-silhouette" viewBox="0 0 1200 180" preserveAspectRatio="none" fill="currentColor" aria-hidden="true">
+      <path d="M0 180V140h120v-40h40V75c0-22 18-40 40-40s40 18 40 40v25h40v40h140V95c0-38 42-68 80-68s80 30 80 68v45h140v-40h40V75c0-22 18-40 40-40s40 18 40 40v25h40v40h280v40H0z" />
+    </svg>
+    <div class="prog-container">
+      <div class="prog-v2-cta-inner">
+        <h2 class="prog-section-title">
+          Mari Mengambil Bagian dalam <span class="prog-v2-accent-warm">Kebaikan</span>
+        </h2>
+        <p class="prog-section-desc">
+          Bersama Global Village Fund, hadirkan sarana ibadah yang layak dan jaga kesempatan belajar bagi para santri.
+        </p>
+        <div class="prog-v2-cta-actions">
+          <a href="/kontribusi/wakaf" class="prog-btn-primary">
+            Salurkan Kontribusi
+          </a>
+          <a href="/contact" class="prog-btn-outline-light">
+            Hubungi Kami
+          </a>
+        </div>
       </div>
     </div>
   </section>

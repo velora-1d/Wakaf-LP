@@ -93,6 +93,7 @@ const progFaqs = (Array.isArray(progFaqContent?.faqs) && progFaqContent.faqs.len
   ogImage={progHeroBgImage}
   schema={programSchemas}
 >
+  <div class="pen-kontribusi-page">
   {isEnabled('prog_hero') && (
   <section
     class="pen-prog-header relative overflow-hidden bg-cover bg-center flex flex-col justify-center items-center"
@@ -106,16 +107,11 @@ const progFaqs = (Array.isArray(progFaqContent?.faqs) && progFaqContent.faqs.len
       >
         {progHeroTitle}
       </h1>
-      <div
-        class="pen-hero-breadcrumb flex items-center justify-center"
-        style="font-family: var(--font-sans); font-size: 13px; line-height: 16px; font-weight: 500;"
+      <p
+        style="max-width: 720px; margin: 0 auto 20px; color: rgba(255, 255, 255, 0.92); font-family: var(--font-sans); font-size: 16px; line-height: 1.65; text-align: center; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);"
       >
-        <a href="/" style="color: #ffffff; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#38bdf8'" onmouseout="this.style.color='#ffffff'">BERANDA</a>
-        <span style="color: #ffffff; padding: 0 8px;">-</span>
-        <span style="color: rgba(255,255,255,0.8);">BENTUK KONTRIBUSI</span>
-        <span style="color: #ffffff; padding: 0 8px;">-</span>
-        <span style="color: #0969da; font-weight: 600; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));">{program.categoryBadge}</span>
-      </div>
+        Global Village Fund membuka ruang bagi Anda untuk mengambil bagian dalam berbagai inisiatif kebaikan melalui zakat, wakaf, infak, dan sedekah. Setiap kontribusi menjadi bagian dari upaya mendukung pembangunan masjid, keberlanjutan pendidikan santri, dan pengembangan ekosistem pesantren. Pilih bentuk kontribusi yang ingin Anda tunaikan dan temukan berbagai cara untuk turut mendukung program serta kebutuhan yang dikelola oleh Global Village Fund.
+      </p>
     </div>
   </section>
   )}
@@ -295,8 +291,17 @@ const progFaqs = (Array.isArray(progFaqContent?.faqs) && progFaqContent.faqs.len
   )}
 
   {isEnabled('prog_faq') && (
-  <section class="pen-faq-section" id="faq" style="background-color: #f8f8f8; padding: 100px 24px 130px; width: 100%; box-sizing: border-box;">
-    <div style="max-width: 1425px; margin: 0 auto; width: 100%;">
+  <section class="pen-faq-section" id="faq" style="position: relative; overflow: hidden; background-color: #f6f8fb; padding: 100px 24px 130px; width: 100%; box-sizing: border-box;">
+    <svg
+      viewBox="0 0 1200 220"
+      preserveAspectRatio="none"
+      fill="rgba(9, 105, 218, 0.12)"
+      aria-hidden="true"
+      style="position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 220px; pointer-events: none; z-index: 0;"
+    >
+      <path d="M0 220V165h110v-42h44V92c0-25 20-45 45-45s45 20 45 45v31h44v42h132v-48c0-44 48-78 90-78s90 34 90 78v48h132v-42h44V92c0-25 20-45 45-45s45 20 45 45v31h44v42h290v55H0z" />
+    </svg>
+    <div style="position: relative; z-index: 1; max-width: 1425px; margin: 0 auto; width: 100%;">
       <div style="text-align: center; margin-bottom: 50px;">
         <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid #72727240; border-radius: 9999px; padding: 6px 18px; background: #ffffff; margin-bottom: 16px;">
           <span style="width: 6px; height: 6px; border-radius: 50%; background-color: #0969da;"></span>
@@ -323,6 +328,7 @@ const progFaqs = (Array.isArray(progFaqContent?.faqs) && progFaqContent.faqs.len
     </div>
   </section>
   )}
+  </div>
 
   <!-- SCRIPT INTERAKTIF: GSAP SCROLLTRIGGER ENGINE, SALIN REKENING & LIGHTBOX -->
   <script>

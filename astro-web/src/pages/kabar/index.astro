@@ -7,21 +7,35 @@ import BlossomCarousel from '../../components/ui/BlossomCarousel.astro';
 import {
   getActiveNewsArticles,
   getActiveTransparencyReports,
+  getAllVerifiedDonations,
   getCashAllocationMetrics,
   getDonationDashboardMetrics,
+  getVerifiedDonationSum,
 } from '../../lib/db';
 import { getBreadcrumbSchema } from '../../lib/seo-schema';
+import '../../styles/program/program-pages.css';
 
-const articles = await getActiveNewsArticles(50, 'kabar');
-const reports = await getActiveTransparencyReports(50);
-const cashMetrics = await getCashAllocationMetrics();
-const donationMetrics = await getDonationDashboardMetrics();
+const [articles, reports, cashMetrics, donationMetrics, recentDonations, donationSummary] = await Promise.all([
+  getActiveNewsArticles(50, 'kabar'),
+  getActiveTransparencyReports(50),
+  getCashAllocationMetrics(),
+  getDonationDashboardMetrics(),
+  getAllVerifiedDonations(24),
+  getVerifiedDonationSum(),
+]);
 
-const activeTabParam = Astro.url.searchParams.get('tab');
-const isLaporanTab = activeTabParam === 'laporan';
+const activeTabParam = (Astro.url.searchParams.get('tab') || 'kabar').toLowerCase();
+const activeTab = activeTabParam === 'laporan' || activeTabParam === 'donatur' ? activeTabParam : 'kabar';
 
 // Daftar kategori unik untuk filter
 const categories = ['Semua', ...new Set(articles.map(a => a.category))];
+
+const formatCatLabel = (cat: string) =>
+  cat
+    .toLowerCase()
+    .split(/\s+/)
+    .map((w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : ''))
+    .join(' ');
 
 const formatDate = (dateInput: Date | string | null) => {
   if (!dateInput) return 'Terkini';
@@ -68,55 +82,74 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
   schema={pageSchema}
 >
   <div class="kabar-archive-page">
-    <!-- Header Banner Standar GVF -->
-    <section class="pen-kabar-banner">
-      <div class="pen-banner-bg"></div>
-      <div class="pen-banner-overlay"></div>
-      <div class="pen-banner-container">
-        <h1 class="pen-banner-title">Kabar &amp; Laporan</h1>
-        <div class="pen-breadcrumb-wrap">
-          <a href="/" class="pen-breadcrumb-link">BERANDA</a>
-          <span class="pen-breadcrumb-sep">-</span>
-          <span class="pen-breadcrumb-current">KABAR &amp; LAPORAN</span>
-        </div>
+    <!-- Split Hero Selaras /program -->
+    <section class="prog-v2-hero">
+      <div class="prog-container">
+        <div class="prog-v2-hero-grid">
+          <div class="prog-v2-hero-copy">
+            <h1 class="prog-v2-title">
+              Kabar &amp; Laporan <span class="prog-v2-accent">Global Village Fund</span>
+            </h1>
+            <p class="prog-v2-lead">
+              Dokumentasi berkala perkembangan pembangunan kawasan, aktivitas santri Pesantren Skill Village Islamic School, laporan realisasi dana, serta daftar muhsinin terverifikasi.
+            </p>
+            <!-- 3-Tab Switcher -->
+            <div class="kabar-tab-bar" role="tablist" aria-label="Kategori Kabar dan Transparansi">
+              <button
+                type="button"
+                role="tab"
+                id="pubTabBtnKabar"
+                aria-selected={activeTab === 'kabar' ? 'true' : 'false'}
+                class={`kabar-tab-btn ${activeTab === 'kabar' ? 'is-active' : ''}`}
+              >
+                Kabar &amp; Progres ({articles.length})
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="pubTabBtnLaporan"
+                aria-selected={activeTab === 'laporan' ? 'true' : 'false'}
+                class={`kabar-tab-btn ${activeTab === 'laporan' ? 'is-active' : ''}`}
+              >
+                Laporan ({reports.length})
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="pubTabBtnDonatur"
+                aria-selected={activeTab === 'donatur' ? 'true' : 'false'}
+                class={`kabar-tab-btn ${activeTab === 'donatur' ? 'is-active' : ''}`}
+              >
+                Daftar Donatur ({donationSummary.totalTransaksi})
+              </button>
+            </div>
+          </div>
 
-        <!-- Tab Switcher Publik -->
-        <div style="margin-top: 28px; display: inline-flex; flex-wrap: wrap; gap: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); padding: 6px; border-radius: 9999px;">
-          <button
-            type="button"
-            id="pubTabBtnKabar"
-            style={`min-height: 44px; padding: 0 22px; border-radius: 9999px; border: 0; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; ${
-              !isLaporanTab ? 'background: #0969da; color: #ffffff;' : 'background: transparent; color: #cbd5e1;'
-            }`}
-          >
-            Kabar &amp; Progres ({articles.length})
-          </button>
-          <button
-            type="button"
-            id="pubTabBtnLaporan"
-            style={`min-height: 44px; padding: 0 22px; border-radius: 9999px; border: 0; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; ${
-              isLaporanTab ? 'background: #0969da; color: #ffffff;' : 'background: transparent; color: #cbd5e1;'
-            }`}
-          >
-            Laporan &amp; Transparansi ({reports.length})
-          </button>
+          <div class="prog-v2-hero-media">
+            <img
+              src="/assets/kegiatan-dan-prestasi-santri/foto-ustadz-bersama-duta-santri.webp"
+              alt="Dokumentasi Kegiatan dan Transparansi Global Village Fund"
+              class="prog-v2-hero-img"
+              loading="eager"
+            />
+          </div>
         </div>
       </div>
     </section>
 
     <!-- TAB 1: KABAR & PROGRES -->
-    <div id="pubTabContentKabar" style={isLaporanTab ? 'display: none;' : ''}>
+    <div id="pubTabContentKabar" style={activeTab === 'kabar' ? '' : 'display: none;'}>
       <!-- Filter & Subheader Section -->
       <header class="archive-header-hero">
-        <div class="archive-container">
+        <div class="prog-container">
           <h2 class="archive-sub-heading">
             Warta Pembangunan Kawasan &amp; Aktivitas Santri
           </h2>
           <p class="archive-subtitle">
-            Dokumentasi berkala perkembangan fisik Masjid Khairu Ummah Sugro, program GOTA SSM, dan penyaluran amanah donatur di Sukasirna, Jonggol.
+            Dokumentasi berkala perkembangan fisik Masjid Taman Khairu Ummah Sughro, program GOTA SSM, dan penyaluran amanah donatur di Sukasirna, Jonggol.
           </p>
 
-          <!-- Category Filter Pills -->
+          <!-- Category Filter Tabs -->
           <div class="archive-filter-row" id="kabar-filter-bar">
             {categories.map((cat, idx) => (
               <button
@@ -124,7 +157,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
                 class={`filter-pill ${idx === 0 ? 'active' : ''}`}
                 data-cat={cat}
               >
-                {cat}
+                {formatCatLabel(cat)}
               </button>
             ))}
           </div>
@@ -133,7 +166,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
 
       <!-- Articles Grid Section -->
       <section class="archive-grid-section">
-        <div class="archive-container">
+        <div class="prog-container">
           {articles.length === 0 ? (
             <div class="empty-state-box">
               <div class="empty-icon">
@@ -155,7 +188,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
                   <article class="archive-card" data-category={article.category} data-blossom-slide>
                     <div class="card-thumb-wrap">
                       <img
-                        src={article.coverImage || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp'}
+                        src={article.coverImage || '/media-lp/masjid-tampak-dalam-konstruksi.webp'}
                         alt={article.title}
                         class="card-thumb-img"
                         loading="lazy"
@@ -164,7 +197,6 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
                     <div class="card-body">
                       <div class="card-meta">
                         <span class="meta-date">{formatDate(article.publishedAt)}</span>
-                        <span class="meta-dot">&bull;</span>
                         <span class="meta-author">Oleh <strong class="author-bold">{article.author || 'Tim GVF'}</strong></span>
                       </div>
                       <h2 class="card-title">
@@ -191,52 +223,47 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     </div>
 
     <!-- TAB 2: LAPORAN & TRANSPARANSI -->
-    <div id="pubTabContentLaporan" style={isLaporanTab ? 'padding: 56px 0 0;' : 'display: none; padding: 56px 0 0;'}>
-      <div class="archive-container">
-        <!-- Ringkasan Realisasi Real-Time -->
-        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 24px; padding: 32px; margin-bottom: 36px; box-shadow: 0 6px 24px rgba(15,23,42,0.04);">
-          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px;">
+    <div id="pubTabContentLaporan" style={activeTab === 'laporan' ? 'padding: 56px 0 80px;' : 'display: none; padding: 56px 0 80px;'}>
+      <div class="prog-container">
+        <div class="kabar-report-summary">
+          <div class="kabar-report-head">
             <div>
-              <span style="font-size: 11px; font-weight: 700; color: #0969da; letter-spacing: 0.08em; text-transform: uppercase;">RINGKASAN AKUNTABILITAS REAL-TIME</span>
-              <h2 style="margin: 6px 0 4px; font-size: 26px; font-weight: 700; color: #0f172a;">Rekap Penghimpunan &amp; Alokasi Dana</h2>
-              <p style="margin: 0; font-size: 14px; color: #475569;">Data sinkron langsung dengan basis data donasi terverifikasi &amp; buku kas penyaluran GVF.</p>
+              <h2 class="prog-section-title" style="margin-bottom: 6px;">Rekap Penghimpunan &amp; Alokasi Dana</h2>
+              <p class="prog-section-desc">Data sinkron langsung dengan basis data donasi terverifikasi &amp; buku kas penyaluran GVF.</p>
             </div>
-            <a
-              href="/donatur"
-              style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 22px; border-radius: 9999px; background: #0969da; color: #ffffff; font-size: 14px; font-weight: 700; text-decoration: none;"
-            >
-              Lihat Daftar Donatur Terverifikasi &rarr;
+            <a href="/donatur" class="prog-btn-primary">
+              Lihat Daftar Donatur Lengkap
             </a>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px;">
-              <span style="font-size: 12px; font-weight: 600; color: #64748b;">Total Donasi Terverifikasi</span>
-              <div style="font-size: 22px; font-weight: 800; color: #0969da; margin-top: 6px;">{formatRupiah(donationMetrics.totalPenghimpunan)}</div>
-              <span style="font-size: 12px; color: #475569;">{donationMetrics.lunasCount} transaksi lunas ({donationMetrics.totalDonors} muhsinin)</span>
+          <div class="kabar-metrics-grid">
+            <div class="kabar-metric-box">
+              <span class="kabar-metric-label">Total Donasi Terverifikasi</span>
+              <div class="kabar-metric-val is-brand">{formatRupiah(donationMetrics.totalPenghimpunan)}</div>
+              <span class="kabar-metric-sub">{donationMetrics.lunasCount} transaksi lunas ({donationMetrics.totalDonors} muhsinin)</span>
             </div>
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px;">
-              <span style="font-size: 12px; font-weight: 600; color: #64748b;">Penerimaan Tercatat di Buku Kas</span>
-              <div style="font-size: 22px; font-weight: 800; color: #0f172a; margin-top: 6px;">{formatRupiah(cashMetrics.totalDebit)}</div>
-              <span style="font-size: 12px; color: #475569;">Total debit operasional &amp; program</span>
+            <div class="kabar-metric-box">
+              <span class="kabar-metric-label">Penerimaan Tercatat di Buku Kas</span>
+              <div class="kabar-metric-val">{formatRupiah(cashMetrics.totalDebit)}</div>
+              <span class="kabar-metric-sub">Total debit operasional &amp; program</span>
             </div>
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px;">
-              <span style="font-size: 12px; font-weight: 600; color: #64748b;">Realisasi Penyaluran &amp; Belanja</span>
-              <div style="font-size: 22px; font-weight: 800; color: #0f172a; margin-top: 6px;">{formatRupiah(cashMetrics.totalKredit)}</div>
-              <span style="font-size: 12px; color: #475569;">{cashMetrics.totalTransaksi} mutasi tercatat</span>
+            <div class="kabar-metric-box">
+              <span class="kabar-metric-label">Realisasi Penyaluran &amp; Belanja</span>
+              <div class="kabar-metric-val">{formatRupiah(cashMetrics.totalKredit)}</div>
+              <span class="kabar-metric-sub">{cashMetrics.totalTransaksi} mutasi tercatat</span>
             </div>
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px;">
-              <span style="font-size: 12px; font-weight: 600; color: #64748b;">Saldo Berjalan Kas Program</span>
-              <div style="font-size: 22px; font-weight: 800; color: #059669; margin-top: 6px;">{formatRupiah(cashMetrics.saldoAkhir)}</div>
-              <span style="font-size: 12px; color: #475569;">Siap disalurkan sesuai amanah</span>
+            <div class="kabar-metric-box">
+              <span class="kabar-metric-label">Saldo Berjalan Kas Program</span>
+              <div class="kabar-metric-val is-emerald">{formatRupiah(cashMetrics.saldoAkhir)}</div>
+              <span class="kabar-metric-sub">Siap disalurkan sesuai amanah</span>
             </div>
           </div>
         </div>
 
         <!-- Daftar Dokumen Laporan Berkala -->
         <div style="margin-bottom: 24px;">
-          <h2 style="margin: 0 0 6px; font-size: 24px; font-weight: 700; color: #0f172a;">Dokumen Laporan Berkala</h2>
-          <p style="margin: 0; font-size: 14px; color: #475569;">Unduh dokumen laporan realisasi keuangan dan progres kawasan per periode.</p>
+          <h2 class="prog-section-title" style="margin-bottom: 6px;">Dokumen Laporan Berkala</h2>
+          <p class="prog-section-desc">Unduh dokumen laporan realisasi keuangan dan progres kawasan per periode.</p>
         </div>
 
         {reports.length === 0 ? (
@@ -245,9 +272,9 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
             <p class="empty-desc">Dokumen laporan PDF berkala akan tersedia segera.</p>
           </div>
         ) : (
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+          <div class="kabar-reports-grid">
             {reports.map((rep) => (
-              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
+              <div class="kabar-report-card">
                 <div style="display: flex; flex-direction: column; gap: 10px;">
                   <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px; color: #475569;">
                     <span style="color: #0969da; font-weight: 700;">{rep.periodLabel}</span>
@@ -255,7 +282,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
                     <span style="font-weight: 600;">{scopeLabels[rep.programScope] || rep.programScope}</span>
                   </div>
                   <h3 style="margin: 0; font-size: 18px; font-weight: 700; color: #0f172a;">{rep.title}</h3>
-                  <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #475569;">{rep.summary}</p>
+                  <p class="kabar-report-summary-text">{rep.summary}</p>
                 </div>
 
                 <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid #f1f5f9;">
@@ -264,7 +291,8 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
                     href={rep.fileUrl}
                     target={rep.fileUrl.startsWith('http') ? '_blank' : undefined}
                     rel={rep.fileUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border-radius: 9999px; background: #0969da; color: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none;"
+                    class="prog-btn-primary"
+                    style="min-height: 44px; padding: 0 18px; font-size: 13px;"
                   >
                     Buka / Unduh Laporan
                   </a>
@@ -275,44 +303,128 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
         )}
       </div>
     </div>
+
+    <!-- TAB 3: DAFTAR DONATUR TERVERIFIKASI -->
+    <div id="pubTabContentDonatur" style={activeTab === 'donatur' ? 'padding: 56px 0 80px;' : 'display: none; padding: 56px 0 80px;'}>
+      <div class="prog-container">
+        <div class="kabar-report-head" style="margin-bottom: 28px;">
+          <div>
+            <h2 class="prog-section-title" style="margin-bottom: 6px;">Daftar Muhsinin &amp; Donatur Terverifikasi</h2>
+            <p class="prog-section-desc">Menampilkan 24 kontribusi terverifikasi terbaru secara real-time.</p>
+          </div>
+          <a href="/donatur" class="prog-btn-primary">
+            Lihat Semua ({donationSummary.totalTransaksi})
+          </a>
+        </div>
+
+        <div class="kabar-metrics-grid" style="margin-bottom: 32px;">
+          <div class="kabar-metric-box">
+            <span class="kabar-metric-label">Total Dana Terhimpun</span>
+            <div class="kabar-metric-val is-brand">{formatRupiah(donationSummary.totalNominal)}</div>
+          </div>
+          <div class="kabar-metric-box">
+            <span class="kabar-metric-label">Transaksi Lunas</span>
+            <div class="kabar-metric-val">{donationSummary.totalTransaksi} Transaksi</div>
+          </div>
+          <div class="kabar-metric-box">
+            <span class="kabar-metric-label">Jumlah Muhsinin</span>
+            <div class="kabar-metric-val is-emerald">{donationSummary.totalDonors} Donatur</div>
+          </div>
+        </div>
+
+        {recentDonations.length === 0 ? (
+          <div class="empty-state-box">
+            <h3 class="empty-title">Belum Ada Data Donatur</h3>
+            <p class="empty-desc">Data kontribusi terverifikasi akan tampil secara otomatis di sini.</p>
+          </div>
+        ) : (
+          <div class="kabar-donor-table-wrap">
+            <table class="kabar-donor-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Donatur</th>
+                  <th>Program</th>
+                  <th>Nominal</th>
+                  <th>Tanggal</th>
+                  <th>Doa &amp; Catatan</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recentDonations.map((d, idx) => (
+                  <tr>
+                    <td class="is-num">{idx + 1}</td>
+                    <td class="is-bold">{d.namaDonatur || 'Hamba Allah'}</td>
+                    <td><span class="kabar-donor-prog">{d.programTujuan || 'Program GVF'}</span></td>
+                    <td class="is-num is-brand">{formatRupiah(Number(d.nominalTotal || 0))}</td>
+                    <td class="is-muted">{formatDate(d.createdAt)}</td>
+                    <td class="is-muted">{d.doaDonatur || '-'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Banner CTA Penutup Selaras /program -->
+    <section class="prog-v2-cta-band">
+      <svg class="prog-v2-cta-silhouette" viewBox="0 0 1200 180" preserveAspectRatio="none" fill="currentColor" aria-hidden="true">
+        <path d="M0 180V140h120v-40h40V75c0-22 18-40 40-40s40 18 40 40v25h40v40h140V95c0-38 42-68 80-68s80 30 80 68v45h140v-40h40V75c0-22 18-40 40-40s40 18 40 40v25h40v40h280v40H0z" />
+      </svg>
+      <div class="prog-container">
+        <div class="prog-v2-cta-inner">
+          <h2 class="prog-section-title">
+            Mari Mengambil Bagian dalam <span class="prog-v2-accent-warm">Kebaikan</span>
+          </h2>
+          <p class="prog-section-desc">
+            Setiap kontribusi dicatat secara transparan dan disalurkan langsung untuk pembangunan Masjid Taman Khairu Ummah Sughro serta pendidikan santri.
+          </p>
+          <div class="prog-v2-cta-actions">
+            <a href="/kontribusi/wakaf" class="prog-btn-primary">Salurkan Kontribusi</a>
+            <a href="/program" class="prog-btn-outline-light">Lihat Program GVF</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </BaseLayout>
 
 <script>
   function setupKabarFiltersAndTabs() {
-    const pubTabKabar = document.getElementById('pubTabBtnKabar');
-    const pubTabLaporan = document.getElementById('pubTabBtnLaporan');
-    const pubContentKabar = document.getElementById('pubTabContentKabar');
-    const pubContentLaporan = document.getElementById('pubTabContentLaporan');
-
-    const switchPublicTab = (toLaporan: boolean) => {
-      if (toLaporan) {
-        if (pubTabLaporan) {
-          pubTabLaporan.style.background = '#0969da';
-          pubTabLaporan.style.color = '#ffffff';
-        }
-        if (pubTabKabar) {
-          pubTabKabar.style.background = 'transparent';
-          pubTabKabar.style.color = '#cbd5e1';
-        }
-        if (pubContentKabar) pubContentKabar.style.display = 'none';
-        if (pubContentLaporan) pubContentLaporan.style.display = 'block';
-      } else {
-        if (pubTabKabar) {
-          pubTabKabar.style.background = '#0969da';
-          pubTabKabar.style.color = '#ffffff';
-        }
-        if (pubTabLaporan) {
-          pubTabLaporan.style.background = 'transparent';
-          pubTabLaporan.style.color = '#cbd5e1';
-        }
-        if (pubContentKabar) pubContentKabar.style.display = 'block';
-        if (pubContentLaporan) pubContentLaporan.style.display = 'none';
-      }
+    const tabMap: Record<string, { btn: HTMLElement | null; content: HTMLElement | null }> = {
+      kabar: {
+        btn: document.getElementById('pubTabBtnKabar'),
+        content: document.getElementById('pubTabContentKabar'),
+      },
+      laporan: {
+        btn: document.getElementById('pubTabBtnLaporan'),
+        content: document.getElementById('pubTabContentLaporan'),
+      },
+      donatur: {
+        btn: document.getElementById('pubTabBtnDonatur'),
+        content: document.getElementById('pubTabContentDonatur'),
+      },
     };
 
-    pubTabKabar?.addEventListener('click', () => switchPublicTab(false));
-    pubTabLaporan?.addEventListener('click', () => switchPublicTab(true));
+    const switchPublicTab = (targetKey: 'kabar' | 'laporan' | 'donatur') => {
+      (Object.keys(tabMap) as Array<'kabar' | 'laporan' | 'donatur'>).forEach((key) => {
+        const entry = tabMap[key];
+        const isActive = key === targetKey;
+        if (entry.btn) {
+          entry.btn.classList.toggle('is-active', isActive);
+          entry.btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        }
+        if (entry.content) {
+          entry.content.style.display = isActive ? 'block' : 'none';
+        }
+      });
+    };
+
+    tabMap.kabar.btn?.addEventListener('click', () => switchPublicTab('kabar'));
+    tabMap.laporan.btn?.addEventListener('click', () => switchPublicTab('laporan'));
+    tabMap.donatur.btn?.addEventListener('click', () => switchPublicTab('donatur'));
 
     const filterButtons = document.querySelectorAll<HTMLButtonElement>('#kabar-filter-bar .filter-pill');
     const cards = document.querySelectorAll<HTMLElement>('#kabar-grid .archive-card');
@@ -344,10 +456,211 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
 
 <style>
   .kabar-archive-page {
-    background-color: #fbfbf9;
+    background-color: #ffffff;
     min-height: 100vh;
-    padding-bottom: 120px;
-    font-family: 'Golos Text', system-ui, sans-serif;
+    font-family: var(--font-sans);
+  }
+
+  .kabar-tab-bar {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 6px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 5px;
+    border-radius: 9999px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  }
+
+  .kabar-tab-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .kabar-tab-btn {
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 9999px;
+    border: 0;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+    cursor: pointer;
+    background: transparent;
+    color: #475569;
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @media (max-width: 640px) {
+    .kabar-tab-bar {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .kabar-tab-btn {
+      padding: 0 12px;
+      font-size: 12.5px;
+    }
+  }
+
+  .kabar-tab-btn:hover {
+    color: #0969da;
+  }
+
+  .kabar-tab-btn.is-active {
+    background: #0969da;
+    color: #ffffff;
+  }
+
+  .kabar-report-summary {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 36px;
+  }
+
+  .kabar-report-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .kabar-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .kabar-metric-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px;
+  }
+
+  .kabar-metric-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+  }
+
+  .kabar-metric-val {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-top: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .kabar-metric-val.is-brand {
+    color: #0969da;
+  }
+
+  .kabar-metric-val.is-emerald {
+    color: #059669;
+  }
+
+  .kabar-metric-sub {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #475569;
+  }
+
+  .kabar-reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .kabar-report-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .kabar-report-summary-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #475569;
+    text-align: justify;
+  }
+
+  .kabar-donor-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    background: #ffffff;
+  }
+
+  .kabar-donor-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .kabar-donor-table th {
+    padding: 14px 18px;
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+  }
+
+  .kabar-donor-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #0f172a;
+    vertical-align: top;
+  }
+
+  .kabar-donor-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .kabar-donor-table td.is-num {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .kabar-donor-table td.is-bold {
+    font-weight: 600;
+  }
+
+  .kabar-donor-table td.is-brand {
+    font-weight: 700;
+    color: #0969da;
+  }
+
+  .kabar-donor-table td.is-muted {
+    color: #475569;
+  }
+
+  .kabar-donor-prog {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    background: #eff6ff;
+    color: #0969da;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
   }
 
   .archive-container {
@@ -421,8 +734,8 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
 
   /* 2. Filter & Subheader Section */
   .archive-header-hero {
-    padding: 50px 0 30px 0;
-    text-align: center;
+    padding: 56px 0 12px 0;
+    text-align: left;
   }
 
   .archive-sub-heading {
@@ -491,53 +804,61 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     line-height: 26px;
     color: #62625b;
     max-width: 720px;
-    margin: 0 auto 36px auto;
+    margin: 0 0 28px 0;
     text-align: justify;
     text-justify: inter-word;
-    text-align-last: center;
+    text-align-last: left;
     hyphens: auto;
   }
 
-  /* Filter Pills */
+  /* Filter Underline Tabs (Single Row, Clean) */
   .archive-filter-row {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    max-width: 900px;
-    margin: 0 auto;
+    justify-content: flex-start;
+    gap: 24px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 1px solid #e2e8f0;
+    margin: 0;
+  }
+
+  .archive-filter-row::-webkit-scrollbar {
+    display: none;
   }
 
   .filter-pill {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    color: #475569;
-    font-size: 13px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #64748b;
+    font-family: var(--font-sans);
+    font-size: 14px;
     font-weight: 600;
-    padding: 8px 18px;
-    border-radius: 9999px;
+    padding: 10px 2px 12px;
+    margin-bottom: -1px;
+    border-radius: 0;
     cursor: pointer;
-    transition: all 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-height: 44px;
+    transition: border-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1), color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .filter-pill:hover {
-    border-color: #0969da;
     color: #0969da;
-    transform: translateY(-1px);
   }
 
   .filter-pill.active {
-    background: #0969da;
-    border-color: #0969da;
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(9, 105, 218, 0.25);
+    color: #0969da;
+    border-bottom-color: #0969da;
+    font-weight: 700;
   }
 
   /* Grid Layout */
   .archive-grid-section {
-    padding-top: 24px;
+    padding: 24px 0 80px;
   }
 
   .archive-grid {

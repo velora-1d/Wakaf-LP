@@ -21,6 +21,7 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: `${baseUrl}/program`, lastmod: now, changefreq: 'weekly', priority: '0.90' },
     { loc: `${baseUrl}/program/pembangunan-masjid`, lastmod: now, changefreq: 'weekly', priority: '0.95' },
     { loc: `${baseUrl}/program/gota-ssm`, lastmod: now, changefreq: 'weekly', priority: '0.95' },
+    { loc: `${baseUrl}/kontribusi`, lastmod: now, changefreq: 'weekly', priority: '0.90' },
     { loc: `${baseUrl}/kontribusi/infaq`, lastmod: now, changefreq: 'weekly', priority: '0.90' },
     { loc: `${baseUrl}/kontribusi/sedekah`, lastmod: now, changefreq: 'weekly', priority: '0.90' },
     { loc: `${baseUrl}/kontribusi/wakaf`, lastmod: now, changefreq: 'weekly', priority: '0.95' },
