@@ -51,7 +51,7 @@ const kemitraanGalleryItems = [
     statusBadge: "Panggung Syiar",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/panggung-musabaqah-tilawatil-quran-jonggol.webp",
     alt: "Panggung Syiar Musabaqah Tilawatil Quran",
-    link: "/program/zakat",
+    link: "/kontribusi/zakat",
     description: "Dukungan kemitraan pada kegiatan syiar dakwah dan kompetisi keagamaan santri di wilayah Jonggol.",
   },
   {
@@ -61,7 +61,7 @@ const kemitraanGalleryItems = [
     statusBadge: "Juara Musabaqah",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/muhammad-syamil-ghazwan-juara-1-mtq-malam.webp",
     alt: "Muhammad Syamil Ghazwan Juara 1 MTQ Malam Hari",
-    link: "/program/zakat",
+    link: "/kontribusi/zakat",
     description: "Apresiasi beasiswa kemitraan bagi santri penghafal Al-Quran yang berprestasi mengharumkan lembaga.",
   },
   {
@@ -71,7 +71,7 @@ const kemitraanGalleryItems = [
     statusBadge: "Regenerasi Santri",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/santriwati-pose-di-depan-banner-mpls.webp",
     alt: "Santriwati Baru Memulai Pembinaan Karakter Pesantren",
-    link: "/program/infaq",
+    link: "/kontribusi/infaq",
     description: "Penerimaan santri baru dari kalangan dhuafa untuk memperoleh akses pendidikan berkualitas.",
   },
 ];
@@ -221,7 +221,7 @@ const partnerHeroBgImage = partnerHeroContent?.imageUrl || "";
 <style>
   .pen-partner-banner {
     position: relative;
-    background-color: #061829;
+    background-color: #0f172a;
     padding: 140px 0 90px 0;
     overflow: hidden;
     text-align: center;
@@ -232,13 +232,14 @@ const partnerHeroBgImage = partnerHeroContent?.imageUrl || "";
     background-image: url('https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp');
     background-size: cover;
     background-position: center;
-    opacity: 0.3;
+    opacity: 1;
+    filter: brightness(0.92) contrast(1.04);
     z-index: 0;
   }
   .pen-banner-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(6, 24, 41, 0.88) 0%, rgba(6, 24, 41, 0.96) 100%);
+    background: linear-gradient(180deg, rgba(12, 14, 18, 0.58) 0%, rgba(12, 14, 18, 0.48) 50%, rgba(12, 14, 18, 0.68) 100%);
     z-index: 1;
   }
   .pen-banner-container {
@@ -255,6 +256,7 @@ const partnerHeroBgImage = partnerHeroContent?.imageUrl || "";
     font-family: 'Golos Text', system-ui, sans-serif;
     letter-spacing: -0.02em;
     margin: 0 0 1.25rem 0;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
   }
   .pen-breadcrumb-wrap {
     display: inline-flex;

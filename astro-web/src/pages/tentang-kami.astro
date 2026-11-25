@@ -31,7 +31,7 @@ const tentangGalleryItems = [
     statusBadge: "Asrama Santri",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/media-lp/lorong-asrama-bata-merah.webp",
     alt: "Lorong Gedung Asrama Bata Merah Kawasan Pesantren Sukasirna",
-    link: "/program/wakaf",
+    link: "/kontribusi/wakaf",
     description: "Karakter arsitektur bata merah ekspos pada lorong asrama santri yang asri dan sejuk di perbukitan Sukasirna.",
   },
   {
@@ -41,7 +41,7 @@ const tentangGalleryItems = [
     statusBadge: "Ketahanan Pangan",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/greenhouse-pertanian.webp",
     alt: "Greenhouse Pertanian Modern Skill Village Sukasirna",
-    link: "/program/infaq",
+    link: "/kontribusi/infaq",
     description: "Fasilitas budidaya pertanian modern dan hidroponik sebagai sarana praktik vokasi agroteknologi santri.",
   },
   {
@@ -51,7 +51,7 @@ const tentangGalleryItems = [
     statusBadge: "Juara MTQ",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/dua-santri-juara-2-mtq-jonggol-piala.webp",
     alt: "Santri Berprestasi Meraih Juara Musabaqah MTQ",
-    link: "/program/zakat",
+    link: "/kontribusi/zakat",
     description: "Capaian prestasi santri dhuafa binaan beasiswa zakat dalam ajang musabaqah tilawah Al-Quran.",
   },
   {
@@ -61,7 +61,7 @@ const tentangGalleryItems = [
     statusBadge: "KBM Interaktif",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/ustadz-menulis-materi-di-whiteboard.webp",
     alt: "Asatidz Menulis Materi dan Membimbing Santri di Kelas",
-    link: "/program/sedekah",
+    link: "/kontribusi/sedekah",
     description: "Interaksi bimbingan intensif asatidz membekali santri pemahaman fiqih, tafsir, dan adab keseharian.",
   },
   {
@@ -71,7 +71,7 @@ const tentangGalleryItems = [
     statusBadge: "Karya Mandiri",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/santriwati-pose-karya-seni.webp",
     alt: "Santriwati Menunjukkan Hasil Karya Seni dan Kaligrafi",
-    link: "/program/sedekah",
+    link: "/kontribusi/sedekah",
     description: "Karya seni, kaligrafi, dan kerajinan tangan santriwati sebagai bekal kreativitas dan kemandirian berkarya.",
   },
   {
@@ -81,21 +81,36 @@ const tentangGalleryItems = [
     statusBadge: "Pusat Ibadah",
     src: "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/masjid-tampak-dalam-2.jpeg",
     alt: "Suasana Ruang Sholat Utama Masjid Khairu Ummah Sugro",
-    link: "/program/wakaf",
+    link: "/kontribusi/wakaf",
     description: "Ruang sholat utama masjid sebagai episentrum ibadah berjamaah, kajian subuh, dan majelis dzikir santri.",
   },
 ];
 
 // Resolusi Konten Dinamis Halaman Tentang Kami
-const aboutHeroContent = sectionMap.get('about_hero')?.content;
+type HeroSectionContent = {
+  heading?: string;
+  title?: string;
+  subheading?: string;
+  subtitle?: string;
+  desc?: string;
+  imageUrl?: string;
+};
+const aboutHeroContent = sectionMap.get('about_hero')?.content as HeroSectionContent | undefined;
 const aboutHeroTitle = aboutHeroContent?.heading || aboutHeroContent?.title || "Tentang Kami";
 const aboutHeroSubtitle = aboutHeroContent?.subheading || aboutHeroContent?.subtitle || aboutHeroContent?.desc || "Mengenal Global Village Fund dan ikhtiar filantropi yang menghubungkan kepedulian dengan pengembangan ekosistem Skill Village.";
 const aboutHeroBgImage = aboutHeroContent?.imageUrl || "";
 
-const aboutStatsContent = sectionMap.get('about_stats')?.content;
-const aboutStatsTitle = aboutStatsContent?.heading || aboutStatsContent?.title || "Mengenal Global Village Fund";
-const aboutStatsLead = aboutStatsContent?.paragraph1 || aboutStatsContent?.desc || "Global Village Fund (GVF) merupakan inisiatif filantropi Islam di bawah <strong>Yayasan Permata Cendekia Indonesia (YPCI)</strong> yang mengintegrasikan pengelolaan zakat, infak, sedekah, dan wakaf untuk mendukung pengembangan ekosistem pesantren. Melalui penghimpunan dan pengelolaan dana filantropi secara amanah, GVF menghubungkan kepedulian para donatur dengan berbagai kebutuhan dan program, meliputi pendidikan, pembinaan karakter, pengembangan kompetensi vokasi, pertanian produktif, fasilitas ibadah, serta penguatan sarana penunjang lainnya. Melalui kolaborasi dan pengelolaan yang bertanggung jawab, GVF berupaya menghadirkan manfaat nyata sekaligus memperkuat fondasi kemandirian ekosistem secara berkelanjutan.";
+const aboutStatsContent = sectionMap.get('about_stats')?.content as any;
+const aboutStatsTitle = aboutStatsContent?.heading || aboutStatsContent?.title || "Global Village Fund";
+const aboutStatsPara1 = aboutStatsContent?.paragraph1 || aboutStatsContent?.desc || "Global Village Fund adalah lembaga keuangan sosial yang berada di bawah naungan Yayasan Permata Cendekia Indonesia. GVF hadir sebagai wadah pengelolaan kontribusi sosial untuk mendukung program-program yang memiliki tujuan dan manfaat nyata.";
+const aboutStatsPara2 = aboutStatsContent?.paragraph2 || "Dalam pengembangannya, GVF mengayomi pilot project ekosistem pesantren di Pesantren Skill Village Islamic School, Desa Sukasirna, Jonggol, Bogor.";
 const aboutStatsImage = aboutStatsContent?.imageUrl || "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/tampak-depan-asrama-putra.jpeg";
+
+const aboutMasjidTitle = aboutStatsContent?.masjidHeading || "Masjid Taman Khairu Ummah Sughro";
+const aboutMasjidPara1 = aboutStatsContent?.masjidParagraph1 || "Sebagai salah satu fokus pengembangan ekosistem pesantren, Masjid Taman Khairu Ummah Sughro dihadirkan bukan hanya sebagai tempat ibadah, tetapi juga sebagai pusat interaksi, pembinaan karakter, pengembangan kompetensi, dan kehidupan pesantren.";
+const aboutMasjidPara2 = aboutStatsContent?.masjidParagraph2 || "Keberadaan masjid menjadi bagian penting dalam mendukung aktivitas dan pengembangan ekosistem pesantren yang mencakup pendidikan, pembinaan karakter, serta berbagai kegiatan sosial dan kemasyarakatan pesantren.";
+const aboutMasjidPara3 = aboutStatsContent?.masjidParagraph3 || "Melalui Global Village Fund, berbagai pihak dapat mengambil bagian dalam mendukung pembangunan masjid dan pengembangan ekosistem pesantren melalui kontribusi serta kolaborasi yang terarah.";
+const aboutMasjidImage = aboutStatsContent?.masjidImageUrl || "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp";
 ---
 
 <BaseLayout
@@ -124,17 +139,17 @@ const aboutStatsImage = aboutStatsContent?.imageUrl || "https://br-billowing-mou
           <h2 class="pen-intro-title">
             {aboutStatsTitle}
           </h2>
-          <p class="pen-intro-quote">
-            Menghubungkan potensi filantropi dengan pengembangan ekosistem pendidikan, pemberdayaan, dan kemandirian untuk menghadirkan manfaat yang berkelanjutan.
-          </p>
-          <p class="pen-intro-lead" set:html={aboutStatsLead} />
+          <div class="pen-intro-paragraphs">
+            <p class="pen-intro-lead">{aboutStatsPara1}</p>
+            {aboutStatsPara2 && <p class="pen-intro-lead">{aboutStatsPara2}</p>}
+          </div>
         </div>
 
         <div class="pen-intro-right">
           <div class="pen-intro-main-img">
             <img
               src={aboutStatsImage}
-              alt="Gedung Pesantren Jonggol Tampak Luar"
+              alt="Pesantren Skill Village Islamic School Desa Sukasirna Jonggol"
               class="pen-img-cover"
               loading="lazy"
             />
@@ -144,12 +159,37 @@ const aboutStatsImage = aboutStatsContent?.imageUrl || "https://br-billowing-mou
     </div>
   </section>
 
+  <section class="pen-about-masjid">
+    <div class="pen-container">
+      <div class="pen-masjid-grid">
+        <div class="pen-masjid-media">
+          <div class="pen-intro-main-img">
+            <img
+              src={aboutMasjidImage}
+              alt="Masjid Taman Khairu Ummah Sughro di Pesantren Skill Village Islamic School"
+              class="pen-img-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div class="pen-masjid-copy">
+          <h2 class="pen-intro-title">
+            {aboutMasjidTitle}
+          </h2>
+          <div class="pen-masjid-paragraphs">
+            <p class="pen-intro-lead">{aboutMasjidPara1}</p>
+            <p class="pen-intro-lead">{aboutMasjidPara2}</p>
+            <p class="pen-intro-lead">{aboutMasjidPara3}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="pen-ecosystem-section">
     <div class="pen-container">
       <div class="pen-ecosystem-header">
-        <div class="pen-ecosystem-badge">
-          Satu Kepedulian
-        </div>
         <h2 class="pen-ecosystem-title">
           Menghidupkan Banyak Kebermanfaatan
         </h2>
@@ -407,7 +447,7 @@ const aboutStatsImage = aboutStatsContent?.imageUrl || "https://br-billowing-mou
   /* 1. Header Banner */
   .pen-about-banner {
     position: relative;
-    background-color: #061829;
+    background-color: #0f172a;
     padding: 140px 0 90px 0;
     overflow: hidden;
     text-align: center;
@@ -418,36 +458,45 @@ const aboutStatsImage = aboutStatsContent?.imageUrl || "https://br-billowing-mou
     background-image: url('https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/konstruksi-atap-aula-paranet.webp');
     background-size: cover;
     background-position: center;
-    opacity: 0.35;
+    opacity: 1;
+    filter: brightness(0.92) contrast(1.04);
     z-index: 0;
   }
   .pen-banner-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(6, 24, 41, 0.85) 0%, rgba(6, 24, 41, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(12, 14, 18, 0.58) 0%, rgba(12, 14, 18, 0.48) 50%, rgba(12, 14, 18, 0.68) 100%);
     z-index: 1;
   }
   .pen-banner-container {
     position: relative;
     z-index: 2;
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 1.5rem;
   }
   .pen-banner-title {
-    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-size: clamp(1.75rem, 3.6vw, 3.25rem);
     font-weight: 700;
+    line-height: 1.2;
     color: #ffffff;
     font-family: 'Golos Text', system-ui, sans-serif;
     letter-spacing: -0.02em;
     margin: 0 0 1.25rem 0;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+  }
+  @media (min-width: 769px) {
+    .pen-banner-title {
+      white-space: nowrap;
+    }
   }
   .pen-banner-lead {
     font-size: 1.125rem;
     line-height: 1.6;
-    color: #cbd5e1;
+    color: rgba(255, 255, 255, 0.92);
     max-width: 680px;
     margin: 0 auto;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
   }
   .pen-breadcrumb-wrap {
     display: inline-flex;
@@ -543,6 +592,22 @@ const aboutStatsImage = aboutStatsContent?.imageUrl || "https://br-billowing-mou
     color: #475569;
     text-align: justify;
     margin: 0;
+  }
+  .pen-intro-paragraphs,
+  .pen-masjid-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .pen-about-masjid {
+    background-color: #ffffff;
+    padding: 96px 0;
+  }
+  .pen-masjid-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 4rem;
+    align-items: center;
   }
   .pen-intro-main-img {
     height: 440px;
@@ -856,7 +921,8 @@ const aboutStatsImage = aboutStatsContent?.imageUrl || "https://br-billowing-mou
 
   /* Responsive Mobile */
   @media (max-width: 1024px) {
-    .pen-intro-grid {
+    .pen-intro-grid,
+    .pen-masjid-grid {
       grid-template-columns: 1fr;
     }
     .pen-ecosystem-grid,

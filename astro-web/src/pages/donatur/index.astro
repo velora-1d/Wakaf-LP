@@ -5,16 +5,19 @@
 export const prerender = false;
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getAllVerifiedDonations } from '../../lib/db';
+import { getAllVerifiedDonations, getVerifiedDonationSum } from '../../lib/db';
 import { getBreadcrumbSchema } from '../../lib/seo-schema';
 
-// Ambil seluruh transaksi donasi lunas terverifikasi langsung dari database
-const allDonations = await getAllVerifiedDonations(500);
+// Ambil riwayat donasi terverifikasi dan agregasi SQL SUM real-time tanpa batas limit baris
+const [allDonations, donationSummary] = await Promise.all([
+  getAllVerifiedDonations(500),
+  getVerifiedDonationSum(),
+]);
 
-// Hitung metrik agregat
-const totalTerhimpun = allDonations.reduce((acc, cur) => acc + (cur.nominalTotal || 0), 0);
-const totalTransaksi = allDonations.length;
-const uniqueDonorsCount = new Set(allDonations.map((d) => d.namaDonatur.toLowerCase().trim())).size;
+// Hitung metrik agregat dari query SQL SUM database
+const totalTerhimpun = donationSummary.totalNominal;
+const totalTransaksi = donationSummary.totalTransaksi;
+const uniqueDonorsCount = donationSummary.totalDonors;
 
 // Parameter filter program awal dari URL query (misal ?program=wakaf)
 const initialProgramParam = (Astro.url.searchParams.get('program') || '').toLowerCase().trim();
@@ -75,7 +78,6 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
     <section class="donatur-hero-banner">
       <div class="banner-overlay"></div>
       <div class="banner-inner">
-        <span class="banner-badge">TRANSPARANSI AMANAH FILANTROPI</span>
         <h1 class="banner-title">Daftar Muhsinin &amp; Donatur Terverifikasi</h1>
         <p class="banner-subtitle">
           Publikasi berkala riwayat penerimaan donasi yang telah diverifikasi lunas oleh tim amil Global Village Fund untuk memastikan akuntabilitas syariah 100%.
