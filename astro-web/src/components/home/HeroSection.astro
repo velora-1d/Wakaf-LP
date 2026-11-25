@@ -3,71 +3,90 @@
 // Hero Slider 4 Slide Sesuai Urutan Program: Shodaqoh, Infaq, Zakat, Wakaf
 // Desain sinematik GVF dengan kepatuhan prinsip typeui-fundamentals
 
+interface HeroSlideButton {
+  text: string;
+  href: string;
+  variant?: string;
+}
+
+interface HeroSlide {
+  id: string;
+  index: string;
+  label: string;
+  badge?: string;
+  taglineEn?: string;
+  title: string;
+  lead: string;
+  image: string;
+  buttons: HeroSlideButton[];
+  ctaText?: string;
+}
+
 interface Props {
   content?: Record<string, any>;
 }
 
 const { content } = Astro.props;
 
-const defaultHeroSlides = [
+const defaultHeroSlides: HeroSlide[] = [
   {
     id: 'slide-1',
     index: '01',
-    label: 'Wakaf Berkelanjutan',
-    badge: 'Wakaf yang Menghadirkan Manfaat Berkelanjutan',
-    title: 'Membangun Aset, Mengembangkan Kemandirian,<br />Menghubungkan Kebermanfaatan.',
-    lead: 'Global Village Fund mengembangkan pengelolaan wakaf untuk mendukung pembangunan aset dan program produktif yang memberikan manfaat berkelanjutan. Melalui pengembangan sarana ibadah, pendidikan, hunian, dan unit usaha produktif, wakaf menjadi bagian dari upaya membangun ekosistem yang mandiri dan produktif.',
-    taglineEn: 'BUILDING ASSETS, FOSTERING INDEPENDENCE, CONNECTING IMPACT',
-    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/drone-lahan-dan-pemukiman.webp',
+    label: 'Global Village Fund',
+    badge: 'GLOBAL VILLAGE FUND',
+    title: 'Masjid sebagai Pusat Kebaikan,<br />Ekosistem sebagai Jalan Kebermanfaatan.',
+    lead: "Lembaga keuangan sosial di bawah Yayasan Permata Cendekia Indonesia yang mengembangkan ekosistem pesantren dan Masjid Taman Khairu Ummah Sughro.",
+    taglineEn: 'GLOBAL VILLAGE FUND',
+    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp',
     buttons: [
-      { text: 'Jelajahi Program', href: '#program-kebaikan', variant: 'primary' },
-      { text: 'Tunaikan Wakaf', href: '/program/wakaf', variant: 'outline' }
+      { text: 'Kenali GVF', href: '/tentang-kami', variant: 'primary' },
+      { text: 'Ambil Bagian', href: '#program-kebaikan', variant: 'outline' }
     ],
-    ctaText: 'Kenali Kami | Lihat Program'
+    ctaText: 'Kenali GVF | Ambil Bagian'
   },
   {
     id: 'slide-2',
     index: '02',
-    label: 'Menghubungkan Kebaikan',
-    badge: 'KOLABORASI PROGRAM KEBAIKAN',
-    taglineEn: 'CONNECTING GOODNESS, DELIVERING BENEFITS',
-    title: 'Menghubungkan Kebaikan,<br />Menghadirkan Kebermanfaatan.',
-    lead: 'Mengintegrasikan kepedulian para muhsinin melalui kolaborasi nyata untuk mendukung majelis ilmu dan bimbingan langsung para asatidz.',
-    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/kajian-santri-ikhwan-ustadz-whiteboard.webp',
+    label: 'Pembangunan Masjid',
+    badge: 'PROGRAM PEMBANGUNAN MASJID',
+    taglineEn: 'PROGRAM PEMBANGUNAN MASJID',
+    title: 'Pembangunan Masjid Taman Khairu Ummah Sughro',
+    lead: 'Mendukung pembangunan masjid sebagai pusat ibadah dan interaksi santri, sekaligus ruang bagi pembinaan karakter dan pengembangan kompetensi di lingkungan pesantren.',
+    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp',
     buttons: [
-      { text: 'Lihat Program', href: '#program-kebaikan', variant: 'primary' }
+      { text: 'Lihat Program', href: '/program/pembangunan-masjid', variant: 'primary' }
     ]
   },
   {
     id: 'slide-3',
     index: '03',
-    label: 'Dari Kepedulian Menuju Kemandirian',
-    badge: 'PENDIDIKAN & PEMBINAAN KARAKTER',
-    taglineEn: 'FROM EMPATHY TO INDEPENDENCE',
-    title: 'Dari Kepedulian,<br />Menuju Kemandirian.',
-    lead: 'Mengembangkan ekosistem pendidikan, adab, pembinaan karakter, dan keterampilan santri untuk mencetak generasi Qurani yang tangguh dan mandiri.',
+    label: 'GOTA SSM',
+    badge: 'PROGRAM GOTA SSM',
+    taglineEn: 'PROGRAM GOTA SSM',
+    title: 'GOTA SSM (Gerakan Orang Tua Asuh & Sahabat Santri Mandiri)',
+    lead: 'Menghubungkan orang tua asuh dan sahabat santri untuk mendukung keberlanjutan pendidikan serta kebutuhan santri Pesantren Skill Village Islamic School.',
     image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/halaqah-santri-melingkar.webp',
     buttons: [
-      { text: 'Dukung Pendidikan', href: '/program/infaq', variant: 'primary' }
+      { text: 'Lihat Program', href: '/program/gota-ssm', variant: 'primary' }
     ]
   },
   {
     id: 'slide-4',
     index: '04',
-    label: 'Menguatkan Sarana Ibadah',
-    badge: 'KAMPANYE KHUSUS SARANA IBADAH',
-    taglineEn: 'STRENGTHENING WORSHIP INFRASTRUCTURE',
-    title: 'Menguatkan Sarana Ibadah,<br />Menumbuhkan Manfaat Abadi.',
-    lead: 'Di bawah naungan atap sementara, santri terus melantunkan ayat suci. Bersama wujudkan penyelesaian Masjid Khairu Ummah sebagai pusat ibadah dan pembinaan.',
-    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/masjid-tampak-dalam-konstruksi.webp',
+    label: 'Zakat Mal & Zakat Fitrah',
+    badge: 'ZAKAT GLOBAL VILLAGE FUND',
+    taglineEn: 'ZAKAT GLOBAL VILLAGE FUND',
+    title: 'Tunaikan Zakat Mal & Zakat Fitrah',
+    lead: 'Bersihkan harta dengan zakat mal dan tunaikan kewajiban zakat lainnya. Sambut Idulfitri dengan menunaikan zakat fitrah, berbagi kebahagiaan, dan menghadirkan manfaat bagi sesama.',
+    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/sections/1795526775417-slide-4-zakat.jpeg',
     buttons: [
-      { text: 'Dukung Pembangunan', href: '/program/wakaf', variant: 'primary' }
+      { text: 'Tunaikan Zakat', href: '/kontribusi/zakat', variant: 'primary' }
     ]
   }
 ];
 
-const heroSlides = Array.isArray(content?.slides) && content.slides.length > 0
-  ? content.slides
+const heroSlides: HeroSlide[] = Array.isArray(content?.slides) && content.slides.length > 0
+  ? (content.slides as HeroSlide[])
   : defaultHeroSlides;
 ---
 
@@ -96,11 +115,6 @@ const heroSlides = Array.isArray(content?.slides) && content.slides.length > 0
           role="tabpanel"
           aria-label={`Slide ${slide.index}: ${slide.label}`}
         >
-          <div class="hero-badge-pill">
-            <span class="hero-badge-dot"></span>
-            <span class="hero-badge-text">{slide.taglineEn || slide.badge || 'FOSTERING PESANTREN ECOSYSTEMS FOR SELF-RELIANCE AND SOCIAL IMPACT'}</span>
-          </div>
-
           {i === 0 ? (
             <h1 class="gvf-hero-title" set:html={slide.title} />
           ) : (
@@ -108,11 +122,17 @@ const heroSlides = Array.isArray(content?.slides) && content.slides.length > 0
           )}
 
           <div class="gvf-hero-sub">
-            <p>{slide.lead}</p>
+            {String(slide.lead || '')
+              .split(/\n\n+/)
+              .map((p: string) => p.trim())
+              .filter(Boolean)
+              .map((para: string) => (
+                <p>{para}</p>
+              ))}
           </div>
 
           <div class="gvf-hero-cta-wrap">
-            {slide.buttons.map((btn) => (
+            {(slide.buttons || []).map((btn: HeroSlideButton) => (
               <a
                 href={btn.href}
                 class={btn.variant === 'primary' ? 'gvf-btn-primary-pill' : 'gvf-btn-outline-pill uiverse-ripple-btn uiverse-ripple-btn-dark'}
@@ -236,30 +256,35 @@ const heroSlides = Array.isArray(content?.slides) && content.slides.length > 0
     object-fit: cover;
     object-position: center;
     display: block;
-    filter: brightness(0.85);
+    filter: brightness(0.95) contrast(1.04);
     transform: scale(1.0);
     transform-origin: center 75%;
     transition: transform 7s cubic-bezier(0.1, 0.9, 0.2, 1);
   }
 
-  /* Khusus Slide 1: Fokuskan framing ke bawah agar santri di lantai terangkat ke atas */
+  /* Slide 1: Framing tengah agar foto Masjid Taman Khairu Ummah Sughro proporsional */
   .hero-bg-item[data-bg-index="0"] .hero-bg-img {
-    object-position: center 80%;
+    object-position: center center;
   }
 
   .hero-bg-item.is-active .hero-bg-img {
     transform: scale(1.06);
   }
 
-  /* Pen.dev exact dark cinematic overlay */
+  /* Scrim gelap netral seragam di seluruh slide agar foto tampil natural dan teks terbaca jelas */
   .hero-bg-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #061829;
-    opacity: 0.72;
+    background: linear-gradient(
+      90deg,
+      rgba(12, 14, 18, 0.72) 0%,
+      rgba(12, 14, 18, 0.48) 52%,
+      rgba(12, 14, 18, 0.24) 100%
+    );
+    opacity: 1;
   }
 
   /* typeui principle: 1280px standard container */
@@ -316,16 +341,14 @@ const heroSlides = Array.isArray(content?.slides) && content.slides.length > 0
 
   .hero-badge-text {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     color: #ffffff;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    font-family: 'Golos Text', system-ui, sans-serif;
+    font-family: var(--font-sans);
   }
 
-  /* Pen.dev 72px Display Title */
+  /* Pen.dev Display Title */
   .gvf-hero-title {
-    font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+    font-size: clamp(2rem, 4.1vw, 3.6rem);
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -336,20 +359,24 @@ const heroSlides = Array.isArray(content?.slides) && content.slides.length > 0
   }
 
   .gvf-hero-sub {
-    max-width: 720px;
+    max-width: 740px;
     margin-bottom: 24px;
   }
 
   .gvf-hero-sub p {
-    font-size: 1.0625rem;
-    line-height: 1.68;
+    font-size: 1rem;
+    line-height: 1.62;
     color: #e2e8f0;
     font-weight: 400;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     text-align: justify;
     text-justify: inter-word;
     text-align-last: left;
+  }
+
+  .gvf-hero-sub p:last-child {
+    margin-bottom: 0;
   }
 
   .hero-tagline-en {
@@ -462,9 +489,10 @@ const heroSlides = Array.isArray(content?.slides) && content.slides.length > 0
     height: 220px;
     width: 260px;
     border-radius: 50%;
-    top: 100%;
-    left: 100%;
-    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    top: -40px;
+    left: -40px;
+    transform: translate(100%, 100%) scale(0.2);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .gvf-btn-outline-pill:hover {
@@ -474,8 +502,7 @@ const heroSlides = Array.isArray(content?.slides) && content.slides.length > 0
   }
 
   .gvf-btn-outline-pill:hover::before {
-    top: -40px;
-    left: -40px;
+    transform: translate(0, 0) scale(1);
   }
 
   .gvf-btn-outline-pill:active {
