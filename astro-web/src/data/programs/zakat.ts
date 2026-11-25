@@ -89,9 +89,9 @@ export const zakatProgram: ProgramData = {
   ],
   
   deepDiveBadge: 'PENYALURAN 8 ASNAF SYARIAT',
-  deepDiveTitle: 'Menunaikan Kewajiban, Menyalurkan Amanah',
-  deepDiveLead: 'Zakat merupakan kewajiban yang memiliki ketentuan khusus dalam syariat Islam. Pengelolaannya memperhatikan jenis zakat, perhitungan, serta golongan penerima yang berhak (asnaf). Melalui pengelolaan yang amanah dan penyaluran yang tepat sasaran, zakat diharapkan dapat membantu memenuhi kebutuhan mustahik serta mendukung peningkatan kesejahteraan mereka.',
-  deepDiveStory1: 'Dana zakat disalurkan kepada delapan golongan penerima (asnaf) sesuai ketentuan syariat: fakir, miskin, amil, mualaf, riqab, gharimin, fisabilillah, dan ibnu sabil. Penyaluran dilakukan dengan memperhatikan kaidah syariat, kelayakan penerima, dan peruntukan dana zakat.',
+  deepDiveTitle: 'Tunaikan Zakat, Sampaikan Amanah',
+  deepDiveLead: 'Zakat merupakan kewajiban bagi setiap Muslim yang telah memenuhi syarat sesuai ketentuan syariat. Melalui layanan zakat, Anda dapat menunaikan zakat mal maupun zakat fitrah dengan memperhatikan ketentuan perhitungan dan penyalurannya.',
+  deepDiveStory1: 'Tunaikan zakat Anda dengan tepat agar hak para mustahik dapat tersampaikan sesuai ketentuan yang telah ditetapkan dalam Islam.',
   deepDiveStory2: '',
   deepDiveBannerImage: `${S3_BASE}/bahan-konten/tangan-beras-zakat-pangan.webp`,
   valueBoxes: [

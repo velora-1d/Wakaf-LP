@@ -3,68 +3,85 @@ import { S3_BASE, type ProgramData } from './types';
 
 export const infaqProgram: ProgramData = {
   slug: 'infaq',
-  title: 'Infak: Menguatkan Program, Mendukung Pengembangan',
-  heroSubtitle: 'Infak merupakan kontribusi sukarela yang memberikan ruang bagi setiap orang untuk mengambil bagian dalam berbagai upaya kebaikan. Dana infak dikelola untuk mendukung kebutuhan pembangunan, operasional, pendidikan, serta pengembangan sarana dan program pemberdayaan.',
-  categoryBadge: 'INFAK PROGRAM & PEMBANGUNAN',
+  title: 'Katalog Infak: Ambil Bagian dalam Pembangunan Masjid',
+  heroSubtitle: 'Dukung pembangunan Masjid Taman Khairu Ummah Sughro melalui pemenuhan kebutuhan material dan perlengkapan. Melalui katalog ini, Anda dapat memilih langsung barang yang ingin dibeli, menentukan jumlahnya, dan mengetahui total kontribusi sebelum melanjutkan ke proses pembayaran.',
+  categoryBadge: 'KATALOG INFAK',
   heroBgImage: `${S3_BASE}/bahan-konten/fasilitas-dan-infrastruktur/tampak-luar-gedung-pesantren-portrait.webp`,
   
-  pricingHeading: 'Pilihan Pos Infak Berkelanjutan',
-  pricingSubheading: 'Salurkan infak Anda untuk mendukung pos Pembangunan & Infrastruktur, Kebutuhan Operasional, Pendidikan & Pembinaan, serta Pemberdayaan & Kemandirian.',
+  pricingHeading: 'Daftar Kebutuhan Pembangunan',
+  pricingSubheading: 'Setiap material memiliki peran dalam proses pembangunan masjid. Pilih kebutuhan yang ingin Anda bantu sediakan melalui daftar berikut.',
   packages: [
     {
-      id: 'infaq-pembangunan-infrastruktur',
-      title: 'Pembangunan & Infrastruktur',
-      subtitle: 'Konstruksi & Material Bangunan',
+      id: 'infaq-semen',
+      title: 'Semen',
+      subtitle: 'Kebutuhan Material Konstruksi',
+      image: '/assets/program/infaq-semen.jpg',
       pricePrefix: 'Rp ',
-      priceAmount: '100.000',
-      priceUnit: '',
-      priceDesc: 'Per paket partisipasi konstruksi',
-      estimation: 'Alokasi: Semen, hebel, besi, baja ringan, atap & sanitasi',
+      priceAmount: '69.000',
+      priceUnit: '/ Sak (50 kg)',
+      priceDesc: 'Satuan: Sak (50 kg)',
+      estimation: 'Pemenuhan kebutuhan semen pembangunan Masjid Taman Khairu Ummah Sughro',
       isPopular: false,
       deliverables: [
-        { bold: 'Material Konstruksi Lengkap', text: 'Semen, pasir split, besi beton, baja ringan, bata hebel, keramik, atap & plafon' },
-        { bold: 'Kusen, Pintu & Jendela', text: 'Pengadaan kusen aluminium, kaca, dan pintu ruang kelas serta asrama santri' },
-        { bold: 'Instalasi Listrik & Air', text: 'Pemasangan instalasi listrik penerangan, air bersih, dan sanitasi sehat' },
-        { bold: 'Pengembangan Fasilitas', text: 'Mencakup masjid, asrama, ruang kelas, dapur, sanitasi, dan sarana penunjang' },
-        { bold: 'Laporan Belanja Terbuka', text: 'Pencatatan nota material dan dokumentasi progres fisik lapangan' }
+        { bold: 'Harga Satuan', text: 'Rp69.000 per Sak (50 kg)' },
+        { bold: 'Peruntukan', text: 'Pembangunan Masjid Taman Khairu Ummah Sughro di Pesantren Skill Village Islamic School' },
+        { bold: 'Ringkasan Infak', text: 'Pilih jumlah barang sesuai kontribusi yang ingin Anda berikan' }
       ],
-      ctaText: 'Salurkan Infak Pembangunan'
+      ctaText: 'Lanjutkan Kontribusi'
     },
     {
-      id: 'infaq-kebutuhan-operasional',
-      title: 'Kebutuhan Operasional',
-      subtitle: 'Pemeliharaan & Utilitas Pesantren',
+      id: 'infaq-pasir',
+      title: 'Pasir',
+      subtitle: 'Kebutuhan Material Konstruksi',
+      image: '/assets/program/infaq-pasir.jpg',
       pricePrefix: 'Rp ',
-      priceAmount: '150.000',
-      priceUnit: '',
-      priceDesc: 'Per paket operasional',
-      estimation: 'Alokasi: Pangan pokok, listrik, air, gas & pemeliharaan',
+      priceAmount: '410.000',
+      priceUnit: '/ m³',
+      priceDesc: 'Satuan: m³',
+      estimation: 'Pemenuhan kebutuhan pasir pembangunan Masjid Taman Khairu Ummah Sughro',
       isPopular: false,
       deliverables: [
-        { bold: 'Bahan Pangan Pokok', text: 'Pemenuhan kebutuhan beras, bahan dapur umum, dan konsumsi harian santri' },
-        { bold: 'Utilitas Air, Listrik & Gas', text: 'Membantu biaya rekening listrik penerangan, air bersih, dan bahan bakar dapur' },
-        { bold: 'Kebersihan & Perawatan', text: 'Perlengkapan sanitasi, kebersihan, dan pemeliharaan fasilitas pesantren' },
-        { bold: 'Kelancaran Aktivitas', text: 'Menjaga rutinitas belajar dan ibadah santri berjalan tertib tanpa kendala' }
+        { bold: 'Harga Satuan', text: 'Rp410.000 per m³' },
+        { bold: 'Peruntukan', text: 'Pembangunan Masjid Taman Khairu Ummah Sughro di Pesantren Skill Village Islamic School' },
+        { bold: 'Ringkasan Infak', text: 'Pilih jumlah barang sesuai kontribusi yang ingin Anda berikan' }
       ],
-      ctaText: 'Salurkan Infak Operasional'
+      ctaText: 'Lanjutkan Kontribusi'
     },
     {
-      id: 'infaq-pendidikan-pembinaan',
-      title: 'Pendidikan & Pembinaan',
-      subtitle: 'Sarana Belajar & Vokasi Santri',
+      id: 'infaq-lantai-vinyl',
+      title: 'Lantai Vinyl',
+      subtitle: 'Kebutuhan Perlengkapan Ruang Shalat',
+      image: '/assets/program/infaq-lantai-vinyl.webp',
       pricePrefix: 'Rp ',
-      priceAmount: '200.000',
-      priceUnit: '',
-      priceDesc: 'Per paket sarana belajar',
-      estimation: 'Alokasi: Buku, ATK, komputer, alat praktik vokasi & media',
+      priceAmount: '350.000',
+      priceUnit: '/ 2,1 m²',
+      priceDesc: 'Satuan: 2,1 m²',
+      estimation: 'Pemenuhan kebutuhan lantai vinyl Masjid Taman Khairu Ummah Sughro',
       isPopular: false,
       deliverables: [
-        { bold: 'Buku & Perlengkapan Belajar', text: 'Kitab pegangan, modul kejuruan, dan alat tulis penunjang belajar santri' },
-        { bold: 'Komputer & Alat Praktik', text: 'Perangkat komputer dan peralatan praktik kejuruan vokasi teknologi' },
-        { bold: 'Media Pembelajaran & Bahasa', text: 'Papan tulis whiteboard, media audio-visual, dan materi penguatan bahasa' },
-        { bold: 'Sarana Pembinaan Karakter', text: 'Peralatan kegiatan ekstrakurikuler, olahraga, dan pembinaan adab santri' }
+        { bold: 'Harga Satuan', text: 'Rp350.000 per 2,1 m²' },
+        { bold: 'Peruntukan', text: 'Pembangunan Masjid Taman Khairu Ummah Sughro di Pesantren Skill Village Islamic School' },
+        { bold: 'Ringkasan Infak', text: 'Pilih jumlah barang sesuai kontribusi yang ingin Anda berikan' }
       ],
-      ctaText: 'Salurkan Infak Pendidikan'
+      ctaText: 'Lanjutkan Kontribusi'
+    },
+    {
+      id: 'infaq-keramik-kamar-mandi',
+      title: 'Keramik Kamar Mandi',
+      subtitle: 'Kebutuhan Sanitasi & Area Wudhu',
+      image: '/assets/program/infaq-keramik.webp',
+      pricePrefix: 'Rp ',
+      priceAmount: '72.000',
+      priceUnit: '/ Dus',
+      priceDesc: 'Satuan: Dus',
+      estimation: 'Pemenuhan kebutuhan keramik sanitasi Masjid Taman Khairu Ummah Sughro',
+      isPopular: false,
+      deliverables: [
+        { bold: 'Harga Satuan', text: 'Rp72.000 per Dus' },
+        { bold: 'Peruntukan', text: 'Pembangunan Masjid Taman Khairu Ummah Sughro di Pesantren Skill Village Islamic School' },
+        { bold: 'Ringkasan Infak', text: 'Pilih jumlah barang sesuai kontribusi yang ingin Anda berikan' }
+      ],
+      ctaText: 'Lanjutkan Kontribusi'
     }
   ],
   addonTitle: 'Infak Pemberdayaan & Kemandirian Usaha',
@@ -90,9 +107,9 @@ export const infaqProgram: ProgramData = {
   ],
   
   deepDiveBadge: 'FUNGSI & PILAR INFAK',
-  deepDiveTitle: 'Menguatkan Program, Mendukung Pengembangan',
-  deepDiveLead: 'Infak merupakan kontribusi sukarela yang memberikan ruang bagi setiap orang untuk mengambil bagian dalam berbagai upaya kebaikan. Dana infak dikelola untuk mendukung kebutuhan pembangunan, operasional, pendidikan, serta pengembangan sarana dan program pemberdayaan.',
-  deepDiveStory1: 'Melalui ragam pos infak terarah: Pembangunan & Infrastruktur, Kebutuhan Operasional, Pendidikan & Pembinaan, serta Pemberdayaan & Kemandirian, setiap rupiah yang Anda titipkan menjadi energi nyata yang menggerakkan roda peradaban di Jonggol.',
+  deepDiveTitle: 'Penuhi Kebutuhan, Dukung Pembangunan Masjid',
+  deepDiveLead: 'Pembangunan Masjid Taman Khairu Ummah Sughro di lingkungan Pesantren Skill Village Islamic School membutuhkan berbagai material dan perlengkapan untuk menunjang penyelesaian fasilitas masjid.',
+  deepDiveStory1: 'Melalui katalog infak, Anda dapat melihat daftar kebutuhan pembangunan beserta jenis barang, satuan, dan harganya. Pilih material yang ingin Anda bantu, tentukan jumlahnya, dan lanjutkan kontribusi melalui proses pembayaran yang tersedia.',
   deepDiveStory2: '',
   deepDiveBannerImage: `${S3_BASE}/bahan-konten/asrama-putra-baru/tampak-samping-asrama-ikhwan-baru-2.jpeg`,
   valueBoxes: [

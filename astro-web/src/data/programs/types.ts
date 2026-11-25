@@ -12,6 +12,7 @@ export interface PricingPackage {
   id: string;
   title: string;
   subtitle: string;
+  image?: string;
   priceAmount: string;
   pricePrefix?: string;
   priceUnit: string;

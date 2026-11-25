@@ -1,0 +1,178 @@
+---
+// src/pages/kontribusi/index.astro
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { programsData } from '../../data/programs';
+import { getBreadcrumbSchema } from '../../lib/seo-schema';
+import '../../styles/program/program-pages.css';
+
+const kontribusiItems = [
+  {
+    id: 'infaq',
+    label: '01. Infak',
+    heading: 'Penuhi Kebutuhan, Dukung Pembangunan Masjid',
+    paragraphs: [
+      'Pembangunan Masjid Taman Khairu Ummah Sughro di lingkungan Pesantren Skill Village Islamic School membutuhkan berbagai material dan perlengkapan untuk menunjang penyelesaian fasilitas masjid.',
+      'Melalui katalog infak, Anda dapat melihat daftar kebutuhan pembangunan beserta jenis barang, satuan, dan harganya. Pilih material yang ingin Anda bantu, tentukan jumlahnya, dan lanjutkan kontribusi melalui proses pembayaran yang tersedia.',
+    ],
+    ctaText: 'Lihat Katalog Infak',
+    ctaHref: '/kontribusi/infaq#paket-pilihan',
+    image: programsData.infaq.heroBgImage,
+    imageAlt: 'Pembangunan Masjid Taman Khairu Ummah Sughro melalui kontribusi infak',
+    reversed: false,
+  },
+  {
+    id: 'sedekah',
+    label: '02. Sedekah',
+    heading: 'Dukung Pendidikan dan Kebutuhan Santri',
+    paragraphs: [
+      'Kesempatan untuk memperoleh pendidikan yang layak perlu didukung dengan pemenuhan kebutuhan belajar dan kehidupan sehari-hari. Bagi sebagian santri, dukungan tersebut menjadi hal penting agar mereka dapat melanjutkan pendidikan dengan lebih baik.',
+      'Melalui sedekah, Anda dapat berpartisipasi dalam GOTA SSM (Gerakan Orang Tua Asuh & Sahabat Santri Mandiri). Tersedia dua bentuk dukungan, yaitu menjadi Orang Tua Asuh yang mendampingi kebutuhan santri secara berkelanjutan atau menjadi Sahabat Santri melalui kontribusi sesuai kemampuan.',
+    ],
+    ctaText: 'Salurkan Sedekah',
+    ctaHref: '/kontribusi/sedekah#paket-pilihan',
+    image: programsData.sedekah.heroBgImage,
+    imageAlt: 'Kegiatan belajar dan pembinaan santri Pesantren Skill Village Islamic School',
+    reversed: true,
+  },
+  {
+    id: 'zakat',
+    label: '03. Zakat',
+    heading: 'Tunaikan Zakat, Sampaikan Amanah',
+    paragraphs: [
+      'Zakat merupakan kewajiban bagi setiap Muslim yang telah memenuhi syarat sesuai ketentuan syariat. Melalui layanan zakat, Anda dapat menunaikan zakat mal maupun zakat fitrah dengan memperhatikan ketentuan perhitungan dan penyalurannya.',
+      'Tunaikan zakat Anda dengan tepat agar hak para mustahik dapat tersampaikan sesuai ketentuan yang telah ditetapkan dalam Islam.',
+    ],
+    ctaText: 'Tunaikan Zakat',
+    ctaHref: '/kontribusi/zakat',
+    image: programsData.zakat.heroBgImage,
+    imageAlt: 'Penyaluran zakat mal dan zakat fitrah sesuai syariat kepada mustahik',
+    reversed: false,
+  },
+  {
+    id: 'wakaf',
+    label: '04. Wakaf',
+    heading: 'Wakaf Hari Ini, Manfaat untuk Masa Depan',
+    paragraphs: [
+      'Wakaf merupakan salah satu bentuk ibadah yang memungkinkan harta dimanfaatkan untuk kepentingan umat secara berkelanjutan. Melalui wakaf, Anda dapat turut mendukung penyediaan sarana dan aset untuk kepentingan ibadah, pendidikan, serta pengembangan ekosistem pesantren.',
+      'Dengan pengelolaan sesuai ikrar dan ketentuan wakaf, aset yang diwakafkan diharapkan dapat terus memberikan manfaat bagi generasi mendatang.',
+    ],
+    ctaText: 'Tunaikan Wakaf',
+    ctaHref: '/kontribusi/wakaf',
+    image: programsData.wakaf.heroBgImage,
+    imageAlt: 'Pengembangan aset wakaf produktif kawasan Pesantren Skill Village',
+    reversed: true,
+  },
+];
+
+const heroImage = programsData.wakaf.heroBgImage;
+const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
+const pageSchema = getBreadcrumbSchema(
+  [
+    { name: 'Beranda', url: '/' },
+    { name: 'Bentuk Kontribusi', url: '/kontribusi' },
+  ],
+  siteUrl
+);
+---
+
+<BaseLayout
+  title="Bentuk Kontribusi • Infak, Sedekah, Zakat & Wakaf | Global Village Fund"
+  description="Pilih bentuk kebaikan yang ingin Anda tunaikan bersama Global Village Fund: Infak pembangunan masjid, Sedekah pendidikan santri GOTA SSM, Zakat, dan Wakaf berkelanjutan."
+  ogImage={heroImage}
+  schema={pageSchema}
+>
+  <!-- 1. Split Hero -->
+  <section class="prog-v2-hero">
+    <div class="prog-container">
+      <div class="prog-v2-hero-grid">
+        <div class="prog-v2-hero-copy">
+          <h1 class="prog-v2-title">
+            Bentuk Kontribusi <span class="prog-v2-accent">Global Village Fund</span>
+          </h1>
+          <p class="prog-v2-lead">
+            Setiap kontribusi dapat menjadi langkah untuk mendukung kebutuhan yang berbeda. Pilih bentuk kebaikan yang ingin Anda tunaikan—mulai dari infak, sedekah, zakat, hingga wakaf—untuk mendukung ibadah, pendidikan, serta pengembangan ekosistem pesantren.
+          </p>
+          <div class="prog-v2-hero-actions">
+            <a href="#daftar-kontribusi" class="prog-btn-primary">
+              Pilih Bentuk Kontribusi
+            </a>
+            <a href="/program" class="prog-btn-primary">
+              Lihat Program Unggulan
+            </a>
+          </div>
+        </div>
+        <div class="prog-v2-hero-media">
+          <img
+            src={heroImage}
+            alt="Ekosistem Global Village Fund di Pesantren Skill Village Islamic School"
+            class="prog-v2-hero-img"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Zig-Zag 4 Bentuk Kontribusi: Infak, Sedekah, Zakat, Wakaf -->
+  <section class="prog-v2-zigzag-band" id="daftar-kontribusi">
+    <div class="prog-container">
+      <div class="prog-v2-zigzag-list">
+        {kontribusiItems.map((item) => (
+          <article
+            class={`prog-v2-zigzag-row ${item.reversed ? 'is-reversed' : ''}`}
+            id={`kontribusi-${item.id}`}
+          >
+            <div class="prog-v2-zigzag-copy">
+              <h2 class="prog-section-title">{item.heading}</h2>
+              {item.paragraphs.map((paragraph) => (
+                <p class="prog-section-desc">{paragraph}</p>
+              ))}
+              <div class="prog-hub-actions">
+                <a href={item.ctaHref} class="prog-btn-primary">
+                  {item.ctaText}
+                </a>
+              </div>
+            </div>
+            <div class="prog-v2-zigzag-media">
+              <div class="prog-v2-diag-accent" aria-hidden="true"></div>
+              <div class="prog-v2-oval-frame">
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Bottom CTA Band: Mari Ambil Bagian -->
+  <section class="prog-v2-cta-band">
+    <svg class="prog-v2-cta-silhouette" viewBox="0 0 1200 180" preserveAspectRatio="none" fill="currentColor" aria-hidden="true">
+      <path d="M0 180V140h120v-40h40V75c0-22 18-40 40-40s40 18 40 40v25h40v40h140V95c0-38 42-68 80-68s80 30 80 68v45h140v-40h40V75c0-22 18-40 40-40s40 18 40 40v25h40v40h280v40H0z" />
+    </svg>
+    <div class="prog-container">
+      <div class="prog-v2-cta-inner">
+        <h2 class="prog-section-title">
+          Mari Ambil <span class="prog-v2-accent-warm">Bagian</span>
+        </h2>
+        <p class="prog-section-desc">
+          Setiap kontribusi dapat menjadi langkah untuk mendukung kebutuhan yang berbeda. Pilih bentuk kebaikan yang ingin Anda tunaikan dan bersama Global Village Fund, ambil bagian dalam mendukung ibadah, pendidikan, serta pengembangan ekosistem pesantren.
+        </p>
+        <div class="prog-v2-cta-actions">
+          <a href="/kontribusi/infaq#paket-pilihan" class="prog-btn-primary">
+            Lihat Katalog Infak
+          </a>
+          <a href="/contact" class="prog-btn-outline-light">
+            Hubungi Kami
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

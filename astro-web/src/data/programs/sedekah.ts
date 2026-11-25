@@ -90,9 +90,9 @@ export const sedekahProgram: ProgramData = {
   ],
   
   deepDiveBadge: 'RAGAM BENTUK SEDEKAH',
-  deepDiveTitle: 'Berbagi dengan Cara, Menghadirkan Manfaat',
-  deepDiveLead: 'Sedekah merupakan bentuk kepedulian yang dapat diwujudkan melalui berbagai bentuk pemberian. Tidak terbatas pada uang, sedekah juga dapat berupa barang, pangan, ilmu, keterampilan, maupun tenaga yang memberikan manfaat.',
-  deepDiveStory1: 'Setiap butir beras, perlengkapan kamar, bantuan mengajar, maupun waktu dan keahlian yang disumbangkan menjadi energi nyata yang menguatkan kehidupan para penuntut ilmu di Sukasirna Jonggol.',
+  deepDiveTitle: 'Dukung Pendidikan dan Kebutuhan Santri',
+  deepDiveLead: 'Kesempatan untuk memperoleh pendidikan yang layak perlu didukung dengan pemenuhan kebutuhan belajar dan kehidupan sehari-hari. Bagi sebagian santri, dukungan tersebut menjadi hal penting agar mereka dapat melanjutkan pendidikan dengan lebih baik.',
+  deepDiveStory1: 'Melalui sedekah, Anda dapat berpartisipasi dalam GOTA SSM (Gerakan Orang Tua Asuh & Sahabat Santri Mandiri). Tersedia dua bentuk dukungan, yaitu menjadi Orang Tua Asuh yang mendampingi kebutuhan santri secara berkelanjutan atau menjadi Sahabat Santri melalui kontribusi sesuai kemampuan.',
   deepDiveStory2: '',
   deepDiveBannerImage: `${S3_BASE}/bahan-konten/kegiatan-dan-prestasi-santri/santri-ramai-menyimak-ustadz-mengajar.webp`,
   valueBoxes: [

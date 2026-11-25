@@ -90,9 +90,9 @@ export const wakafProgram: ProgramData = {
   ],
   
   deepDiveBadge: 'URGENSI & PERUNTUKAN WAKAF',
-  deepDiveTitle: 'Mengelola Aset, Menghadirkan Manfaat Jangka Panjang',
-  deepDiveLead: 'Global Village Fund mengembangkan pengelolaan wakaf untuk mendukung pembangunan aset dan program produktif yang memberikan manfaat berkelanjutan. Melalui pengembangan sarana ibadah, pendidikan, hunian, dan unit usaha produktif, wakaf menjadi bagian dari upaya membangun ekosistem yang mandiri dan produktif.',
-  deepDiveStory1: 'Pengelolaan wakaf di bawah payung Yayasan Permata Cendekia Indonesia (YPCI) memadukan ragam instrumen utama: Wakaf Uang (pokok dijaga, hasil dimanfaatkan), Wakaf Melalui Uang (pembangunan sarana fisik), Wakaf Tanah dan Bangunan (aset abadi tidak bergerak), serta Wakaf Produktif (pertanian terpadu, greenhouse, peternakan, dan unit usaha mandiri).',
+  deepDiveTitle: 'Wakaf Hari Ini, Manfaat untuk Masa Depan',
+  deepDiveLead: 'Wakaf merupakan salah satu bentuk ibadah yang memungkinkan harta dimanfaatkan untuk kepentingan umat secara berkelanjutan. Melalui wakaf, Anda dapat turut mendukung penyediaan sarana dan aset untuk kepentingan ibadah, pendidikan, serta pengembangan ekosistem pesantren.',
+  deepDiveStory1: 'Dengan pengelolaan sesuai ikrar dan ketentuan wakaf, aset yang diwakafkan diharapkan dapat terus memberikan manfaat bagi generasi mendatang.',
   deepDiveStory2: '',
   deepDiveBannerImage: `${S3_BASE}/bahan-konten/asrama-putra-baru/tampak-samping-asrama-ikhwan-baru.jpeg`,
   valueBoxes: [

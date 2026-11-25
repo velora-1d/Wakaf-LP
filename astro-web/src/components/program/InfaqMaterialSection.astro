@@ -16,58 +16,58 @@ const defaultMaterials = [
   {
     id: 'semen',
     number: '01',
-    name: 'Semen Konstruksi SNI',
-    unit: 'sak',
-    price: 65000,
+    name: 'Semen',
+    unit: 'Sak (50 kg)',
+    price: 69000,
     target: 2500,
     collected: 1840,
     image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp',
-    captionTitle: 'Pengecoran Pelataran Masjid',
-    captionDesc: '1 sak semen menyelesaikan ±0.5 m² lantai pelataran ibadah santri dan warga Jonggol.'
+    captionTitle: 'Semen — Sak (50 kg)',
+    captionDesc: 'Pemenuhan kebutuhan semen konstruksi pembangunan Masjid Taman Khairu Ummah Sughro.'
   },
   {
     id: 'pasir',
     number: '02',
-    name: 'Pasir Cor & Pasang',
+    name: 'Pasir',
     unit: 'm³',
-    price: 350000,
+    price: 410000,
     target: 450,
     collected: 310,
     image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/progres-konstruksi-gedung-dan-wudhu.webp',
-    captionTitle: 'Agregat Struktur Lahan Wakaf',
-    captionDesc: '1 m³ pasir mencukupi adukan plester dan pasang dinding studio vokasi SMK.'
+    captionTitle: 'Pasir — m³',
+    captionDesc: 'Agregat pasir untuk pengecoran dan pemasangan dinding Masjid Taman Khairu Ummah Sughro.'
   },
   {
-    id: 'roster',
+    id: 'lantai-vinyl',
     number: '03',
-    name: 'Bata Roster Terakota Alami',
-    unit: 'buah',
-    price: 15000,
-    target: 8000,
-    collected: 5400,
-    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/dinding-hebel-ventilasi-roster-1.webp',
-    captionTitle: 'Sirkulasi Udara Alami Ramah Energi',
-    captionDesc: '10 roster menyusun 1 panel sirkulasi udara sejuk alami ruang ibadah tanpa AC.'
+    name: 'Lantai Vinyl',
+    unit: '2,1 m²',
+    price: 350000,
+    target: 300,
+    collected: 120,
+    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/masjid-tampak-dalam-2.jpeg',
+    captionTitle: 'Lantai Vinyl — 2,1 m²',
+    captionDesc: 'Pelapis lantai ruang shalat dan pembinaan santri agar nyaman dan mudah dibersihkan.'
   },
   {
-    id: 'sanitasi',
+    id: 'keramik-kamar-mandi',
     number: '04',
-    name: 'Kran Sanitasi & Eco-Drainase',
-    unit: 'titik',
-    price: 250000,
-    target: 60,
-    collected: 42,
+    name: 'Keramik Kamar Mandi',
+    unit: 'Dus',
+    price: 72000,
+    target: 400,
+    collected: 180,
     image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/kamar-mandi-wc-masjid.webp',
-    captionTitle: 'Instalasi Sanitasi & Eco-Wudhu',
-    captionDesc: '1 titik kran wudhu melayani ratusan basuhan air suci jamaah setiap waktu salat.'
+    captionTitle: 'Keramik Kamar Mandi — Dus',
+    captionDesc: 'Keramik untuk fasilitas sanitasi dan area wudhu jamaah serta santri.'
   }
 ];
 
 const materials = Array.isArray(content?.materials) && content.materials.length > 0
   ? content.materials
   : defaultMaterials;
-const sectionHeading = content?.heading || 'Wujudkan Bangunan Fisik Lewat Material Nyata';
-const sectionDesc = content?.subheading || 'Bukan sekadar angka di atas kertas. Setiap rupiah infaq Anda dikonversikan langsung menjadi sak semen, pasir cor, dan bata roster yang terpasang nyata pada Pembangunan Masjid Khairu Ummah di Sukasirna, Jonggol.';
+const sectionHeading = content?.heading || 'Katalog Infak: Ambil Bagian dalam Pembangunan Masjid';
+const sectionDesc = content?.subheading || 'Dukung pembangunan Masjid Taman Khairu Ummah Sughro melalui pemenuhan kebutuhan material dan perlengkapan. Melalui katalog ini, Anda dapat memilih langsung barang yang ingin dibeli, menentukan jumlahnya, dan mengetahui total kontribusi sebelum melanjutkan ke proses pembayaran.';
 ---
 
 <section class="gvf-feature-material-section" id="gotong-royong-material">
@@ -168,10 +168,10 @@ const sectionDesc = content?.subheading || 'Bukan sekadar angka di atas kertas. 
         <!-- Alur Partisipasi Fleksibel Menyatu (Flat Flow, Bebas Kontainer Kasir) -->
         <div class="participation-flow-inline">
           <div class="calc-label-row">
-            <span class="flow-kicker">TENTUKAN JUMLAH DUKUNGAN</span>
+            <span class="flow-kicker">Ringkasan Infak — Pilih jumlah setiap barang</span>
             <div class="counter-display-pill">
               <span id="displayCounterNum" class="counter-val">5</span>
-              <span id="displayCounterUnit" class="counter-unit">sak</span>
+              <span id="displayCounterUnit" class="counter-unit">Sak (50 kg)</span>
             </div>
           </div>
 
@@ -207,12 +207,12 @@ const sectionDesc = content?.subheading || 'Bukan sekadar angka di atas kertas. 
           <!-- Total Nilai & Tombol Salur Bersih -->
           <div class="flow-footer-row">
             <div class="total-nominal-block">
-              <span class="total-caption">Total Nilai Infaq:</span>
-              <div class="total-price-large" id="displayTotalInfaq">Rp 325.000</div>
+              <span class="total-caption">Lanjutkan Kontribusi — Total Nilai Infak:</span>
+              <div class="total-price-large" id="displayTotalInfaq">Rp 345.000</div>
             </div>
 
             <a
-              href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20GVF%2C%20saya%20ingin%20berinfaq%205%20sak%20Semen%20sebesar%20Rp%20325.000%20untuk%20pembangunan%20Jonggol."
+              href="https://wa.me/6281226832326?text=Assalamualaikum%20Admin%20GVF%2C%20saya%20ingin%20berinfak%205%20Sak%20(50%20kg)%20Semen%20sebesar%20Rp%20345.000%20untuk%20pembangunan%20Masjid%20Taman%20Khairu%20Ummah%20Sughro."
               target="_blank"
               rel="noopener noreferrer"
               class="btn-salur-pill"
