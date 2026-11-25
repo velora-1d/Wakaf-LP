@@ -3,7 +3,7 @@
 
 import { db } from './client';
 import * as schema from './schema';
-import { eq, and, desc } from 'drizzle-orm';
+import { eq, and, desc, sql, or } from 'drizzle-orm';
 import { setDonorLabels } from './labels';
 
 export type DonationWithDonor = schema.Donation & {
@@ -111,6 +111,71 @@ export async function getVerifiedDonationsByProgram(
 /**
  * Mengambil seluruh donasi terverifikasi (lunas) lintas semua program untuk Halaman Detail Donatur Publik
  */
+export interface VerifiedDonationSummary {
+  totalNominal: number;
+  totalTransaksi: number;
+  totalDonors: number;
+}
+
+/**
+ * Menghitung penjumlahan riil (SQL SUM) nominal donasi terverifikasi (lunas) tanpa batas limit baris
+ */
+export async function getVerifiedDonationSum(
+  programSlugs?: string[]
+): Promise<VerifiedDonationSummary> {
+  try {
+    const conditions = [eq(schema.donations.statusPembayaran, 'lunas')];
+
+    if (Array.isArray(programSlugs) && programSlugs.length > 0) {
+      const programFilters = programSlugs
+        .map((s) => (s || '').toLowerCase().trim())
+        .filter(Boolean)
+        .map((slug) => {
+          if (slug === 'pembangunan-masjid') {
+            return sql`(LOWER(COALESCE(${schema.donations.programTujuan}, '')) = 'pembangunan-masjid' OR LOWER(COALESCE(${schema.donations.akadPeruntukan}, '')) LIKE '%masjid%')`;
+          }
+          if (slug === 'wakaf') {
+            return sql`LOWER(COALESCE(${schema.donations.programTujuan}, '')) LIKE '%wakaf%'`;
+          }
+          if (slug === 'infaq') {
+            return sql`LOWER(COALESCE(${schema.donations.programTujuan}, '')) LIKE '%infaq%'`;
+          }
+          if (slug === 'sedekah') {
+            return sql`(LOWER(COALESCE(${schema.donations.programTujuan}, '')) LIKE '%sedekah%' OR LOWER(COALESCE(${schema.donations.programTujuan}, '')) LIKE '%shodaqoh%')`;
+          }
+          if (slug === 'zakat') {
+            return sql`LOWER(COALESCE(${schema.donations.programTujuan}, '')) LIKE '%zakat%'`;
+          }
+          return sql`LOWER(COALESCE(${schema.donations.programTujuan}, '')) = ${slug}`;
+        });
+
+      if (programFilters.length > 0) {
+        const combined = or(...programFilters);
+        if (combined) conditions.push(combined);
+      }
+    }
+
+    const rows = await db
+      .select({
+        totalNominal: sql<string>`COALESCE(SUM(${schema.donations.nominalTotal}), 0)`,
+        totalTransaksi: sql<number>`COUNT(*)::int`,
+        totalDonors: sql<number>`COUNT(DISTINCT ${schema.donations.donorId})::int`,
+      })
+      .from(schema.donations)
+      .where(and(...conditions));
+
+    const row = rows[0];
+    return {
+      totalNominal: Number(row?.totalNominal || 0),
+      totalTransaksi: Number(row?.totalTransaksi || 0),
+      totalDonors: Number(row?.totalDonors || 0),
+    };
+  } catch (error) {
+    console.error('[DB] Error calculating verified donation sum:', error);
+    return { totalNominal: 0, totalTransaksi: 0, totalDonors: 0 };
+  }
+}
+
 export async function getAllVerifiedDonations(
   limitCount = 500
 ): Promise<VerifiedPublicDonation[]> {

@@ -13,10 +13,12 @@ export const STATIC_PAGES_FALLBACK = [
   { id: 2, slug: 'tentang-kami', title: 'Tentang Kami', description: 'Profil, Sejarah & Ekosistem GVF', isPublished: true, updatedAt: new Date() },
   { id: 3, slug: 'kemitraan', title: 'Kemitraan & Kolaborasi', description: 'Sinergi Strategis CSR & Lembaga', isPublished: true, updatedAt: new Date() },
   { id: 4, slug: 'contact', title: 'Hubungi Kami', description: 'Saluran Komunikasi Resmi GVF', isPublished: true, updatedAt: new Date() },
-  { id: 5, slug: 'wakaf', title: 'Program Wakaf Produktif', description: 'Pembangunan Garden Mosque & Pesantren', isPublished: true, updatedAt: new Date() },
-  { id: 6, slug: 'infaq', title: 'Program Infaq Pemberdayaan', description: 'Dukungan Sarana & Operasional Santri', isPublished: true, updatedAt: new Date() },
-  { id: 7, slug: 'sedekah', title: 'Program Sedekah & Nutrisi', description: 'Sedekah Pangan Santri Vokasi', isPublished: true, updatedAt: new Date() },
-  { id: 8, slug: 'zakat', title: 'Program Zakat Maal & Fitrah', description: 'Penyaluran Zakat Asnaf Berkelanjutan', isPublished: true, updatedAt: new Date() },
+  { id: 5, slug: 'pembangunan-masjid', title: 'Program Pembangunan Masjid', description: 'Pembangunan Masjid Khairu Ummah Sugro & Fasilitas Ibadah Santri', isPublished: true, updatedAt: new Date() },
+  { id: 6, slug: 'gota-ssm', title: 'Program GOTA SSM', description: 'Gerakan Orang Tua Asuh Santri Skill Village Islamic School', isPublished: true, updatedAt: new Date() },
+  { id: 7, slug: 'infaq', title: 'Infak (Material Masjid)', description: 'Kontribusi Infak Katalog Material Pembangunan Masjid & Sarana Dakwah', isPublished: true, updatedAt: new Date() },
+  { id: 8, slug: 'sedekah', title: 'Sedekah (Dukungan GOTA SSM)', description: 'Kontribusi Sedekah Pangan, Perlengkapan & Pembinaan Santri GOTA SSM', isPublished: true, updatedAt: new Date() },
+  { id: 9, slug: 'wakaf', title: 'Wakaf (Objek & Peruntukan)', description: 'Objek dan Peruntukan Wakaf Tanah, Bangunan, Masjid & Produktif', isPublished: true, updatedAt: new Date() },
+  { id: 10, slug: 'zakat', title: 'Zakat (Kampanye Ramadan & Idulfitri)', description: 'Kampanye Zakat Fitrah, Fidyah, Zakat Maal & Profesi Asnaf Berkelanjutan', isPublished: true, updatedAt: new Date() },
 ];
 
 /**

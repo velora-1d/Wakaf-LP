@@ -5,6 +5,7 @@
 export * from './client';
 export * from './pages';
 export * from './news';
+export * from './reports';
 export * from './labels';
 export * from './donations';
 export * from './cashflow';

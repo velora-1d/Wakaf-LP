@@ -1,16 +1,28 @@
 // src/lib/db/news.ts
-// Query Database Artikel Kabar & Warta GVF
+// Query Database Artikel Kabar, Warta & Edukasi Kajian GVF
 
 import { db } from './client';
 import * as schema from './schema';
-import { eq, desc } from 'drizzle-orm';
+import { eq, desc, and } from 'drizzle-orm';
 
-export async function getActiveNewsArticles(limitCount = 6): Promise<schema.NewsArticle[]> {
+export type NewsContentType = 'kabar' | 'edukasi';
+
+export async function getActiveNewsArticles(
+  limitCount = 6,
+  contentType?: NewsContentType
+): Promise<schema.NewsArticle[]> {
   try {
+    const condition = contentType
+      ? and(
+          eq(schema.newsArticles.isPublished, true),
+          eq(schema.newsArticles.contentType, contentType)
+        )
+      : eq(schema.newsArticles.isPublished, true);
+
     return await db
       .select()
       .from(schema.newsArticles)
-      .where(eq(schema.newsArticles.isPublished, true))
+      .where(condition)
       .orderBy(desc(schema.newsArticles.createdAt))
       .limit(limitCount);
   } catch (error) {
@@ -19,12 +31,15 @@ export async function getActiveNewsArticles(limitCount = 6): Promise<schema.News
   }
 }
 
-export async function getAllNewsArticles(): Promise<schema.NewsArticle[]> {
+export async function getAllNewsArticles(contentType?: NewsContentType): Promise<schema.NewsArticle[]> {
   try {
-    return await db
-      .select()
-      .from(schema.newsArticles)
-      .orderBy(desc(schema.newsArticles.createdAt));
+    const query = db.select().from(schema.newsArticles);
+    if (contentType) {
+      return await query
+        .where(eq(schema.newsArticles.contentType, contentType))
+        .orderBy(desc(schema.newsArticles.createdAt));
+    }
+    return await query.orderBy(desc(schema.newsArticles.createdAt));
   } catch (error) {
     console.error('[DB] Error fetching all news articles:', error);
     return [];

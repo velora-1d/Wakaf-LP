@@ -53,12 +53,29 @@ export const newsArticles = pgTable('news_articles', {
   slug: varchar('slug', { length: 150 }).notNull().unique(),
   title: varchar('title', { length: 255 }).notNull(),
   category: varchar('category', { length: 50 }).notNull(),
+  contentType: varchar('content_type', { length: 30 }).default('kabar').notNull(),
   summary: text('summary').notNull(),
   content: text('content').notNull(),
   coverImage: text('cover_image').notNull(),
+  videoUrl: text('video_url'),
+  attachmentUrl: text('attachment_url'),
   author: varchar('author', { length: 100 }).default('Tim GVF').notNull(),
   isPublished: boolean('is_published').default(true).notNull(),
   publishedAt: varchar('published_at', { length: 50 }).default('2026-07-18').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+export const transparencyReports = pgTable('transparency_reports', {
+  id: serial('id').primaryKey(),
+  title: varchar('title', { length: 255 }).notNull(),
+  periodLabel: varchar('period_label', { length: 100 }).notNull(),
+  programScope: varchar('program_scope', { length: 50 }).default('all').notNull(),
+  summary: text('summary').notNull(),
+  fileUrl: text('file_url').notNull(),
+  fileSize: integer('file_size'),
+  isPublished: boolean('is_published').default(true).notNull(),
+  publishedAt: varchar('published_at', { length: 50 }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
@@ -80,6 +97,9 @@ export type NewMediaAsset = typeof mediaAssets.$inferInsert;
 
 export type NewsArticle = typeof newsArticles.$inferSelect;
 export type NewNewsArticle = typeof newsArticles.$inferInsert;
+
+export type TransparencyReport = typeof transparencyReports.$inferSelect;
+export type NewTransparencyReport = typeof transparencyReports.$inferInsert;
 
 export const donors = pgTable('donors', {
   id: serial('id').primaryKey(),
