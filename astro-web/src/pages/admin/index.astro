@@ -22,7 +22,8 @@ const sectionsByPage = allSections.reduce((acc, sec) => {
 
 function getPublicUrl(slug: string) {
   if (slug === 'home') return '/';
-  if (['wakaf', 'infaq', 'sedekah', 'zakat'].includes(slug)) return `/program/${slug}`;
+  if (slug === 'pembangunan-masjid' || slug === 'gota-ssm') return `/program/${slug}`;
+  if (['wakaf', 'infaq', 'sedekah', 'zakat'].includes(slug)) return `/kontribusi/${slug}`;
   return `/${slug}`;
 }
 ---

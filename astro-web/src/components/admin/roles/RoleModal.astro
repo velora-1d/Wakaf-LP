@@ -37,17 +37,17 @@ const { roles, menus } = Astro.props;
       <input type="hidden" id="editUserId" />
 
       <div class="space-y-1.5">
-        <label class="text-xs font-bold text-slate-700">Role Pengguna</label>
+        <label class="text-xs font-bold text-slate-700">Peran Pengguna</label>
         <select id="editUserRole" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs font-medium text-slate-800 focus:outline-none focus:ring-1 focus:ring-slate-950">
           {roles.map(r => (
-            <option value={r.roleKey}>{r.roleName} ({r.roleKey})</option>
+            <option value={r.roleKey}>{r.roleName}</option>
           ))}
         </select>
       </div>
 
       <div class="space-y-3">
         <div class="flex items-center justify-between">
-          <label class="text-xs font-bold text-slate-700 uppercase tracking-wide">Menu yang Diizinkan (Checkbox):</label>
+          <label class="text-xs font-bold text-slate-700 uppercase tracking-wide">Menu yang Diizinkan:</label>
           <div class="flex gap-2">
             <button type="button" id="btnUserSelectAll" class="text-[11px] font-semibold text-[#0969da] hover:underline cursor-pointer">Centang Semua</button>
             <span class="text-slate-300">&bull;</span>

@@ -22,7 +22,8 @@ const sections = await getAllPageSections(slug);
 
 function getPublicUrl(slugStr: string) {
   if (slugStr === 'home') return '/';
-  if (['wakaf', 'infaq', 'sedekah', 'zakat'].includes(slugStr)) return `/program/${slugStr}`;
+  if (slugStr === 'pembangunan-masjid' || slugStr === 'gota-ssm') return `/program/${slugStr}`;
+  if (['wakaf', 'infaq', 'sedekah', 'zakat'].includes(slugStr)) return `/kontribusi/${slugStr}`;
   return `/${slugStr}`;
 }
 
@@ -45,11 +46,11 @@ const publicPageUrl = getPublicUrl(slug);
             <span>Semua Halaman</span>
           </a>
           <span class="text-slate-300">/</span>
-          <span class="text-xs font-mono text-[#0969da] bg-blue-50 px-2 py-0.5 rounded font-medium">/{slug === 'home' ? '' : slug}</span>
+          <span class="text-xs font-medium text-[#0969da]">{currentPage.title}</span>
         </div>
         <h2 class="text-xl font-bold text-slate-900 tracking-tight">{currentPage.title}</h2>
         <p class="text-xs text-slate-500 mt-0.5">
-          {sections.length} Section terdaftar &bull; {sections.filter((s) => s.isEnabled).length} Sedang aktif ditampilkan
+          {sections.length} Bagian tersedia &bull; {sections.filter((s) => s.isEnabled).length} Sedang ditampilkan di web
         </p>
       </div>
 
@@ -78,10 +79,10 @@ const publicPageUrl = getPublicUrl(slug);
         <path d="M12 8h.01"/>
       </svg>
       <div>
-        <p class="font-semibold text-blue-950">Cara Kerja Section Dinamis:</p>
+        <p class="font-semibold text-blue-950">Panduan Pengelolaan Konten Halaman:</p>
         <p class="mt-0.5 text-blue-800">
-          Gunakan toggle switch di kanan kartu untuk <strong>menampilkan atau menyembunyikan (on/off)</strong> section secara instan.
-          Klik tombol <strong>"Edit Teks & Konten"</strong> untuk memperbarui judul, narasi, link, atau data JSON section tersebut.
+          Gunakan tombol <strong>Tampilkan</strong> di kanan kartu untuk menampilkan atau menyembunyikan bagian pada halaman publik.
+          Klik <strong>"Ubah Teks &amp; Konten"</strong> untuk mengganti judul, tulisan, foto, atau tujuan tombol dengan formulir visual yang mudah digunakan.
         </p>
       </div>
     </div>
@@ -104,11 +105,11 @@ const publicPageUrl = getPublicUrl(slug);
             <div class="space-y-3">
               <div class="flex items-center justify-between gap-2 flex-wrap">
                 <div class="flex items-center gap-2">
-                  <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 font-mono font-bold text-xs flex items-center justify-center">
+                  <span class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center">
                     {section.sortOrder || idx + 1}
                   </span>
-                  <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200/60">
-                    {section.sectionKey}
+                  <span class="text-[11px] font-semibold text-slate-500">
+                    Bagian #{section.sortOrder || idx + 1}
                   </span>
                 </div>
                 <span
@@ -172,8 +173,8 @@ const publicPageUrl = getPublicUrl(slug);
                 ) : section.sectionKey === 'prog_details' ? (
                   <div class="mt-2.5 space-y-2 bg-slate-50 border border-slate-200/80 rounded-xl p-3">
                     <div class="flex items-center justify-between">
-                      <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wider font-mono">
-                        Dokumentasi: {Array.isArray((section.content as any)?.portfolioShowcaseItems) ? (section.content as any).portfolioShowcaseItems.length : 4} Showcase &bull; 2 Twin Images
+                      <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">
+                        Dokumentasi: {Array.isArray((section.content as any)?.portfolioShowcaseItems) ? (section.content as any).portfolioShowcaseItems.length : 4} Foto Lapangan &bull; 2 Foto Utama
                       </span>
                     </div>
                     {headingPreview && (
@@ -187,8 +188,8 @@ const publicPageUrl = getPublicUrl(slug);
                           <img src={(section.content as any).imageUrl} alt="Banner" class="w-full h-full object-contain" loading="lazy" />
                         </div>
                         <div class="min-w-0 flex-1">
-                          <span class="text-[10px] font-semibold text-[#0969da] block">Foto Banner Deep-Dive (Neon S3)</span>
-                          <p class="text-[10px] font-mono text-slate-500 truncate mt-0.5">{(section.content as any).imageUrl}</p>
+                          <span class="text-[11px] font-semibold text-[#0969da] block">Foto Banner Utama</span>
+                          <p class="text-[11px] text-slate-500 mt-0.5 mb-0">Tersimpan dan siap ditampilkan</p>
                         </div>
                       </div>
                     )}
@@ -254,9 +255,44 @@ const publicPageUrl = getPublicUrl(slug);
                       )}
                     </div>
 
-                    <div class="pt-2 border-t border-blue-200/50 flex items-center justify-between text-[11px] text-slate-500">
-                      <span>Artikel &amp; Cover Foto dikelola dari modul Kabar.</span>
-                      <span class="font-semibold text-slate-700">Dinamis via Neon DB</span>
+                      <div class="pt-2 border-t border-blue-200/50 flex items-center justify-between text-[11px] text-slate-500">
+                      <span>Artikel &amp; foto warta dikelola dari menu Kabar &amp; Laporan.</span>
+                      <span class="font-semibold text-slate-700">Terhubung Otomatis</span>
+                    </div>
+                  </div>
+                ) : section.sectionKey === 'masjid_progress' ? (
+                  <div class="mt-2.5 space-y-2 bg-blue-50/50 border border-blue-200/60 rounded-xl p-3">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[11px] font-bold text-[#0969da] uppercase tracking-wider font-mono">
+                        Target: {(section.content as any)?.targetLabel || 'Rp 1.310.753.350'}
+                      </span>
+                      <span class="text-[11px] font-mono text-slate-600">
+                        {Array.isArray((section.content as any)?.milestones) ? (section.content as any).milestones.length : 0} Milestone
+                      </span>
+                    </div>
+                    <p class="text-[11px] text-slate-600">
+                      Dana terhimpun dihitung otomatis dari database donasi terverifikasi.
+                    </p>
+                  </div>
+                ) : section.sectionKey === 'gota_schemes' && Array.isArray((section.content as any)?.schemes) ? (
+                  <div class="mt-2.5 space-y-2 bg-blue-50/50 border border-blue-200/60 rounded-xl p-3">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[11px] font-bold text-[#0969da] uppercase tracking-wider font-mono">
+                        Skema Orang Tua Asuh: {((section.content as any).schemes as any[]).length} Skema
+                      </span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {((section.content as any).schemes as any[]).map((sch: any, sIdx: number) => (
+                        <div class="flex items-center gap-2 text-xs text-slate-700 bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 shadow-2xs">
+                          <span class="w-5 h-5 rounded-md bg-blue-50 text-[#0969da] font-mono font-bold text-[11px] flex items-center justify-center shrink-0 border border-blue-200">
+                            {sIdx + 1}
+                          </span>
+                          <div class="min-w-0 flex-1 truncate">
+                            <span class="font-semibold text-slate-800">{sch.title}</span>
+                            <span class="text-[11px] text-slate-500 font-mono ml-1">({sch.amount})</span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 ) : (
@@ -287,9 +323,9 @@ const publicPageUrl = getPublicUrl(slug);
                           />
                         </div>
                         <div class="min-w-0 flex-1">
-                          <span class="text-[10px] font-bold text-[#0969da] uppercase tracking-wider block">Foto / Media Terpasang (Neon S3)</span>
-                          <p class="text-[11px] font-mono text-slate-600 truncate mt-0.5">
-                            {(section.content as any).imageUrl}
+                          <span class="text-[11px] font-bold text-[#0969da] block">Foto Terpasang</span>
+                          <p class="text-[11px] text-slate-500 mt-0.5 mb-0">
+                            Klik Ubah Teks &amp; Konten untuk mengganti foto ini
                           </p>
                         </div>
                       </div>
@@ -332,7 +368,7 @@ const publicPageUrl = getPublicUrl(slug);
                   <path d="M12 20h9"/>
                   <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
                 </svg>
-                <span>Edit Teks & Konten</span>
+                <span>Ubah Teks &amp; Konten</span>
               </button>
             </div>
           </div>

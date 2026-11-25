@@ -1,9 +1,9 @@
 ---
 // src/components/admin/pages/SectionEditorModal.astro
-// Drawer / Modal editor konten section (Visual Form & Raw JSON)
+// Drawer editor konten halaman yang ramah pengguna tanpa istilah teknis
 ---
 
-<!-- Edit Section Slide-Over Drawer dari Kanan (Lebar 70% Layar) -->
+<!-- Drawer Ubah Konten dari Kanan -->
 <div
   id="editModal"
   class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex justify-end items-stretch opacity-0 pointer-events-none transition-opacity duration-200"
@@ -12,7 +12,7 @@
   aria-labelledby="modalTitle"
 >
   <div class="bg-white rounded-l-2xl w-full sm:w-[70vw] sm:max-w-[70vw] h-full flex flex-col shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 ease-out overflow-hidden" id="modalBox">
-    <!-- Modal Header -->
+    <!-- Header Modal -->
     <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50/60">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 text-[#0969da] flex items-center justify-center font-bold text-xs shrink-0">
@@ -22,16 +22,16 @@
           </svg>
         </div>
         <div>
-          <h3 id="modalTitle" class="text-sm font-bold text-slate-900">Edit Konten Section</h3>
-          <p id="modalSubtitle" class="text-[11px] text-slate-500 font-mono mt-0.5"></p>
+          <h3 id="modalTitle" class="text-sm font-bold text-slate-900">Ubah Konten Bagian</h3>
+          <p id="modalSubtitle" class="text-xs text-slate-500 mt-0.5"></p>
         </div>
       </div>
 
       <button
         type="button"
         id="closeModalBtn"
-        class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors"
-        aria-label="Tutup modal"
+        class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors cursor-pointer"
+        aria-label="Tutup panel"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"/>
@@ -40,114 +40,82 @@
       </button>
     </div>
 
-    <!-- Tab Navigation (Form Visual vs JSON) -->
-    <div class="px-6 pt-3 border-b border-slate-200 flex items-center justify-between bg-white">
-      <div class="flex items-center gap-2">
-        <button
-          type="button"
-          id="tabVisualBtn"
-          class="px-3.5 py-2 text-xs font-semibold border-b-2 border-[#0969da] text-[#0969da] flex items-center gap-1.5 transition-colors cursor-pointer"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect width="18" height="18" x="3" y="3" rx="2"/>
-            <path d="M3 9h18"/>
-            <path d="M9 21V9"/>
-          </svg>
-          <span>Formulir Visual (Mudah Digunakan)</span>
-        </button>
-
-        <button
-          type="button"
-          id="tabJsonBtn"
-          class="px-3.5 py-2 text-xs font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-900 flex items-center gap-1.5 transition-colors cursor-pointer"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="16 18 22 12 16 6"/>
-            <polyline points="8 6 2 12 8 18"/>
-          </svg>
-          <span>Mode Teknis (Data JSON)</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Modal Body (Form Fields) -->
-    <div class="px-6 py-5 overflow-y-auto space-y-5 flex-1 max-h-[calc(92vh-140px)]">
+    <!-- Isi Formulir -->
+    <div class="px-6 py-5 overflow-y-auto space-y-5 flex-1">
       <input type="hidden" id="editSectionId" />
 
-      <!-- TAB 1: FORM VISUAL (USER FRIENDLY) -->
       <div id="visualFormContainer" class="space-y-4">
-        <!-- Wrapper Kolom Standar (Dapat disembunyikan jika mode khusus Carousel) -->
+        <!-- Formulir Umum Bagian -->
         <div id="vfGeneralSectionFields" class="space-y-4">
-          <!-- Section 1: Heading & Badge -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="sm:col-span-2">
               <label for="vfHeading" class="block text-xs font-semibold text-slate-700 mb-1">
-                Judul Utama / Heading Section <span class="text-blue-600 font-normal">(Ditampilkan di web)</span>
+                Judul Utama
               </label>
               <input
                 type="text"
                 id="vfHeading"
-                placeholder="Contoh: Membangun Peradaban Melalui Wakaf Berkelanjutan"
+                placeholder="Contoh: Membangun Aset Kebaikan Bersama"
                 class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none transition-all"
               />
             </div>
 
             <div>
               <label for="vfBadge" class="block text-xs font-semibold text-slate-700 mb-1">
-                Badge / Label Tagline Kecil
+                Label Kecil di Atas Judul <span class="text-slate-400 font-normal">(Opsional)</span>
               </label>
               <input
                 type="text"
                 id="vfBadge"
-                placeholder="Contoh: YAYASAN FILANTROPI ISLAM"
+                placeholder="Contoh: GLOBAL VILLAGE FUND"
                 class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none transition-all"
               />
             </div>
 
             <div>
               <label for="vfSubheading" class="block text-xs font-semibold text-slate-700 mb-1">
-                Sub-Judul / Tagline Ringkas
+                Sub-Judul <span class="text-slate-400 font-normal">(Opsional)</span>
               </label>
               <input
                 type="text"
                 id="vfSubheading"
-                placeholder="Ringkasan atau tagline singkat"
+                placeholder="Keterangan singkat di bawah judul"
                 class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none transition-all"
               />
             </div>
           </div>
 
-          <!-- Section 2: Narrative & Paragraphs -->
+          <!-- Paragraf Narasi -->
           <div class="space-y-3">
             <div>
               <label for="vfDesc" class="block text-xs font-semibold text-slate-700 mb-1">
-                Deskripsi / Paragraf Utama
+                Paragraf Utama
               </label>
               <textarea
                 id="vfDesc"
                 rows="3"
-                placeholder="Tuliskan narasi penjelasan lengkap section ini..."
+                placeholder="Tuliskan penjelasan lengkap untuk bagian ini..."
                 class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none leading-relaxed transition-all"
               ></textarea>
             </div>
 
             <div id="vfParagraph2Wrapper">
               <label for="vfParagraph2" class="block text-xs font-semibold text-slate-700 mb-1">
-                Paragraf Tambahan <span class="text-slate-400 font-normal">(Opsional)</span>
+                Paragraf Kedua <span class="text-slate-400 font-normal">(Opsional)</span>
               </label>
               <textarea
                 id="vfParagraph2"
-                rows="2"
-                placeholder="Paragraf lanjutan jika ada..."
+                rows="3"
+                placeholder="Tuliskan paragraf lanjutan jika diperlukan..."
                 class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none leading-relaxed transition-all"
               ></textarea>
             </div>
           </div>
 
-          <!-- Section 3: Call to Action (Buttons) -->
-          <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
-            <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wider block">
-              Tombol Aksi (Call To Action / Link)
+          <!-- Tombol Aksi dengan Dropdown Tujuan Halaman -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+            <span class="text-xs font-bold text-slate-800 block">
+              Pengaturan Tombol &amp; Halaman Tujuan
             </span>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -158,53 +126,127 @@
                 <input
                   type="text"
                   id="vfPrimaryCtaText"
-                  placeholder="Misal: Salurkan Wakaf"
-                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none"
+                  placeholder="Contoh: Kenali GVF"
+                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-2 text-xs text-slate-900 outline-none"
                 />
               </div>
               <div>
-                <label for="vfPrimaryCtaUrl" class="block text-[11px] font-semibold text-slate-600 mb-1">
-                  Link URL Tombol Utama
+                <label for="vfPrimaryCtaUrlSelect" class="block text-[11px] font-semibold text-slate-600 mb-1">
+                  Tujuan Tombol Utama
                 </label>
-                <input
-                  type="text"
-                  id="vfPrimaryCtaUrl"
-                  placeholder="Misal: /program/wakaf atau #donasi"
-                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none font-mono"
-                />
+                <select
+                  id="vfPrimaryCtaUrlSelect"
+                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-2 text-xs text-slate-900 outline-none cursor-pointer"
+                >
+                  <optgroup label="Halaman Utama">
+                    <option value="/">Beranda</option>
+                    <option value="#program-kebaikan">Bagian Pilar Kebaikan (di Beranda)</option>
+                    <option value="#ekosistem">Bagian Ekosistem (di Beranda)</option>
+                    <option value="/tentang-kami">Tentang Kami</option>
+                    <option value="/kemitraan">Kemitraan</option>
+                    <option value="/contact">Kontak &amp; Konsultasi</option>
+                    <option value="/donatur">Daftar Donatur Terverifikasi</option>
+                  </optgroup>
+                  <optgroup label="Program">
+                    <option value="/program">Semua Program</option>
+                    <option value="/program/pembangunan-masjid">Program Pembangunan Masjid</option>
+                    <option value="/program/gota-ssm">Program GOTA SSM</option>
+                  </optgroup>
+                  <optgroup label="Bentuk Kontribusi">
+                    <option value="/kontribusi/infaq#paket-pilihan">Infak (Paket Pilihan)</option>
+                    <option value="/kontribusi/sedekah#paket-pilihan">Sedekah (Paket Pilihan)</option>
+                    <option value="/kontribusi/wakaf">Wakaf</option>
+                    <option value="/kontribusi/zakat">Zakat</option>
+                  </optgroup>
+                  <optgroup label="Publikasi">
+                    <option value="/edukasi">Edukasi &amp; Kajian</option>
+                    <option value="/kabar">Kabar &amp; Laporan</option>
+                    <option value="/kabar?tab=laporan">Laporan Transparansi</option>
+                  </optgroup>
+                  <optgroup label="Lainnya">
+                    <option value="__custom__">Tautan Kustom (WhatsApp / Link Luar)</option>
+                  </optgroup>
+                </select>
+                <div id="vfPrimaryCtaCustomWrap" class="mt-2 hidden">
+                  <input
+                    type="text"
+                    id="vfPrimaryCtaUrl"
+                    placeholder="Contoh: https://wa.me/6281226832326"
+                    class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none"
+                  />
+                </div>
               </div>
 
               <div>
                 <label for="vfSecondaryCtaText" class="block text-[11px] font-semibold text-slate-600 mb-1">
-                  Teks Tombol Sekunder (Opsional)
+                  Teks Tombol Kedua <span class="text-slate-400 font-normal">(Opsional)</span>
                 </label>
                 <input
                   type="text"
                   id="vfSecondaryCtaText"
-                  placeholder="Misal: Jelajahi Ekosistem"
-                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none"
+                  placeholder="Contoh: Ambil Bagian"
+                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-2 text-xs text-slate-900 outline-none"
                 />
               </div>
               <div>
-                <label for="vfSecondaryCtaUrl" class="block text-[11px] font-semibold text-slate-600 mb-1">
-                  Link URL Tombol Sekunder
+                <label for="vfSecondaryCtaUrlSelect" class="block text-[11px] font-semibold text-slate-600 mb-1">
+                  Tujuan Tombol Kedua
                 </label>
-                <input
-                  type="text"
-                  id="vfSecondaryCtaUrl"
-                  placeholder="Misal: #ekosistem atau /tentang-kami"
-                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none font-mono"
-                />
+                <select
+                  id="vfSecondaryCtaUrlSelect"
+                  class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-2 text-xs text-slate-900 outline-none cursor-pointer"
+                >
+                  <option value="">Tanpa Tombol Kedua</option>
+                  <optgroup label="Halaman Utama">
+                    <option value="/">Beranda</option>
+                    <option value="#program-kebaikan">Bagian Pilar Kebaikan (di Beranda)</option>
+                    <option value="#ekosistem">Bagian Ekosistem (di Beranda)</option>
+                    <option value="/tentang-kami">Tentang Kami</option>
+                    <option value="/kemitraan">Kemitraan</option>
+                    <option value="/contact">Kontak &amp; Konsultasi</option>
+                    <option value="/donatur">Daftar Donatur Terverifikasi</option>
+                  </optgroup>
+                  <optgroup label="Program">
+                    <option value="/program">Semua Program</option>
+                    <option value="/program/pembangunan-masjid">Program Pembangunan Masjid</option>
+                    <option value="/program/gota-ssm">Program GOTA SSM</option>
+                  </optgroup>
+                  <optgroup label="Bentuk Kontribusi">
+                    <option value="/kontribusi/infaq#paket-pilihan">Infak (Paket Pilihan)</option>
+                    <option value="/kontribusi/sedekah#paket-pilihan">Sedekah (Paket Pilihan)</option>
+                    <option value="/kontribusi/wakaf">Wakaf</option>
+                    <option value="/kontribusi/zakat">Zakat</option>
+                  </optgroup>
+                  <optgroup label="Publikasi">
+                    <option value="/edukasi">Edukasi &amp; Kajian</option>
+                    <option value="/kabar">Kabar &amp; Laporan</option>
+                    <option value="/kabar?tab=laporan">Laporan Transparansi</option>
+                  </optgroup>
+                  <optgroup label="Lainnya">
+                    <option value="__custom__">Tautan Kustom (WhatsApp / Link Luar)</option>
+                  </optgroup>
+                </select>
+                <div id="vfSecondaryCtaCustomWrap" class="mt-2 hidden">
+                  <input
+                    type="text"
+                    id="vfSecondaryCtaUrl"
+                    placeholder="Contoh: https://wa.me/6281226832326"
+                    class="w-full bg-white border border-slate-300 focus:border-[#0969da] rounded-lg px-3 py-1.5 text-xs text-slate-900 outline-none"
+                  />
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Section 4: Media & Image Link + Neon S3 Upload -->
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <label for="vfImageUrl" class="block text-xs font-semibold text-slate-700">
-                URL Gambar / Media Banner <span class="text-slate-400 font-normal">(Opsional)</span>
-              </label>
+          <!-- Pengaturan Foto / Media -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <div>
+                <span class="block text-xs font-bold text-slate-800">
+                  Foto / Gambar Bagian <span class="text-slate-400 font-normal">(Opsional)</span>
+                </span>
+                <p class="text-[11px] text-slate-500 mt-0.5 mb-0">Pilih gambar JPG, PNG, WEBP atau video MP4 dari komputer Anda.</p>
+              </div>
               <div class="flex items-center gap-2">
                 <input type="file" id="vfFileInput" accept="image/jpeg,image/png,image/webp,image/svg+xml,video/mp4" class="hidden" />
                 <button
@@ -217,74 +259,111 @@
                     <path d="M12 12v9"/>
                     <path d="m16 16-4-4-4 4"/>
                   </svg>
-                  <span id="vfUploadBtnText">Unggah ke Neon S3</span>
+                  <span id="vfUploadBtnText">Pilih / Ganti Foto</span>
+                </button>
+                <button
+                  type="button"
+                  id="vfClearImageBtn"
+                  class="px-3 py-1.5 text-xs font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition-colors cursor-pointer inline-flex items-center gap-1.5 shrink-0 hidden"
+                  title="Hapus foto"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6h18"/>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                  </svg>
+                  <span>Hapus Foto</span>
                 </button>
               </div>
             </div>
 
-            <div class="flex items-center gap-2">
-              <input
-                type="text"
-                id="vfImageUrl"
-                placeholder="/images/... atau https://..."
-                class="flex-1 bg-slate-50 border border-slate-300 focus:bg-white focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/20 rounded-xl px-3.5 py-2 text-xs text-slate-900 outline-none font-mono transition-all"
-              />
-              <button
-                type="button"
-                id="vfClearImageBtn"
-                class="px-3 py-2 text-xs font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition-colors cursor-pointer inline-flex items-center gap-1.5 shrink-0 hidden"
-                title="Hapus media"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6h18"/>
-                  <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
-                  <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
-                </svg>
-                <span>Hapus Media</span>
-              </button>
-            </div>
+            <input type="hidden" id="vfImageUrl" />
+            <div id="vfUploadStatus" class="text-[11px] text-slate-600 hidden"></div>
 
-            <div id="vfUploadStatus" class="text-[11px] text-slate-500 hidden"></div>
-
-            <!-- Pratinjau Gambar / Media Live Sesuai Rasio Asli -->
-            <div id="vfImagePreviewWrapper" class="mt-2 p-3 border border-slate-200 rounded-xl bg-slate-50 space-y-2 hidden">
-              <div class="flex items-center justify-between pb-1.5 border-b border-slate-200">
-                <div class="min-w-0 flex-1 pr-2">
-                  <span class="text-xs font-bold text-slate-800" id="vfPreviewName">Pratinjau Media Sesuai Rasio Asli</span>
-                  <p class="text-[10px] text-slate-500 font-mono truncate" id="vfPreviewUrl">-</p>
-                </div>
+            <!-- Pratinjau Foto -->
+            <div id="vfImagePreviewWrapper" class="p-3 border border-slate-200 rounded-xl bg-white space-y-2 hidden">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                <span class="text-xs font-semibold text-slate-800" id="vfPreviewName">Pratinjau Foto</span>
                 <button
                   type="button"
                   id="vfCardClearBtn"
-                  class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-rose-600 bg-white hover:bg-rose-50 border border-rose-200 rounded-lg shadow-2xs transition-colors cursor-pointer shrink-0"
-                  title="Hapus media terpilih"
+                  class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-lg transition-colors cursor-pointer shrink-0"
+                  title="Hapus foto terpilih"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 6h18"/>
                     <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
                     <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
                   </svg>
-                  <span>Hapus Media</span>
+                  <span>Hapus Foto</span>
                 </button>
               </div>
               <div class="w-full aspect-video max-h-56 rounded-lg bg-slate-900/5 border border-slate-200 overflow-hidden flex items-center justify-center relative">
-                <img id="vfImagePreview" src="" alt="Pratinjau media section" class="w-full h-full object-contain hidden" />
+                <img id="vfImagePreview" src="" alt="Pratinjau foto bagian" class="w-full h-full object-contain hidden" />
                 <video id="vfVideoPreview" src="" class="w-full h-full object-contain hidden" controls playsinline></video>
-                <div id="vfPreviewFallback" class="text-slate-400 text-xs text-center px-2 hidden">Format media tidak didukung atau URL tidak valid</div>
+                <div id="vfPreviewFallback" class="text-slate-400 text-xs text-center px-2 hidden">Foto tidak dapat dimuat</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Section 4B: Visual Package & Deliverables Editor (khusus prog_pricing) -->
+        <!-- Blok 2 Tentang Kami: Masjid Taman Khairu Ummah Sughro -->
+        <div id="vfAboutMasjidSection" class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-3 hidden">
+          <div class="pb-2 border-b border-blue-200/60">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da]">
+              Blok 2: Masjid Taman Khairu Ummah Sughro
+            </span>
+            <p class="text-xs text-slate-600 mt-1 mb-0">
+              Kelola judul, 3 paragraf narasi, dan foto Masjid Taman Khairu Ummah Sughro pada halaman Tentang Kami.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 p-4 space-y-3">
+            <div>
+              <label for="vfAboutMasjidHeading" class="block text-xs font-semibold text-slate-700 mb-1">Judul Blok Masjid</label>
+              <input type="text" id="vfAboutMasjidHeading" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-[#0969da] outline-none" placeholder="Masjid Taman Khairu Ummah Sughro" />
+            </div>
+            <div>
+              <label for="vfAboutMasjidPara1" class="block text-xs font-semibold text-slate-700 mb-1">Paragraf 1</label>
+              <textarea id="vfAboutMasjidPara1" rows="3" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-[#0969da] outline-none leading-relaxed"></textarea>
+            </div>
+            <div>
+              <label for="vfAboutMasjidPara2" class="block text-xs font-semibold text-slate-700 mb-1">Paragraf 2</label>
+              <textarea id="vfAboutMasjidPara2" rows="3" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-[#0969da] outline-none leading-relaxed"></textarea>
+            </div>
+            <div>
+              <label for="vfAboutMasjidPara3" class="block text-xs font-semibold text-slate-700 mb-1">Paragraf 3</label>
+              <textarea id="vfAboutMasjidPara3" rows="3" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-[#0969da] outline-none leading-relaxed"></textarea>
+            </div>
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-semibold text-slate-700">Foto Masjid</span>
+                <div class="flex items-center gap-2">
+                  <button type="button" id="btnUploadAboutMasjidImg" class="px-3 py-1.5 text-xs font-semibold text-[#0969da] bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg cursor-pointer">
+                    Pilih / Ganti Foto
+                  </button>
+                  <button type="button" id="btnClearAboutMasjidImg" class="px-3 py-1.5 text-xs font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-lg cursor-pointer hidden">
+                    Hapus Foto
+                  </button>
+                </div>
+              </div>
+              <input type="hidden" id="vfAboutMasjidImageUrl" />
+              <div class="w-full aspect-video max-h-48 rounded-lg bg-slate-900/5 border border-slate-200 overflow-hidden flex items-center justify-center">
+                <img id="vfAboutMasjidImgPreview" src="" alt="Pratinjau Foto Masjid" class="w-full h-full object-contain hidden" />
+                <span id="vfAboutMasjidImgEmpty" class="text-xs text-slate-400">Belum ada foto terpilih</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pengaturan Paket & Rincian Manfaat (prog_pricing) -->
         <div id="vfPackagesSection" class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-3 hidden">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-blue-200/60">
             <div>
-              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da] uppercase tracking-wider">
-                Pengaturan Paket &amp; Deliverables
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da]">
+                Pengaturan Pilihan Paket Kontribusi
               </span>
               <p class="text-xs text-slate-600 mt-1 mb-0">
-                Kelola nama paket, harga, estimasi, dan daftar poin checklist material (1 Sak Semen, Granit, Besi, dll).
+                Klik judul paket untuk membuka atau melipat rincian harga dan daftar manfaat donasi.
               </p>
             </div>
             <button
@@ -297,21 +376,18 @@
             </button>
           </div>
 
-          <!-- List Paket Container -->
-          <div id="packagesListContainer" class="space-y-4">
-            <!-- Rendered via JS -->
-          </div>
+          <div id="packagesListContainer" class="space-y-3"></div>
         </div>
 
-        <!-- Section 4C: Visual Hero Multi-Slide Editor (khusus hero) -->
-        <div id="vfHeroSlidesSection" class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-4 hidden">
+        <!-- Pengaturan Slide Banner Utama (hero) -->
+        <div id="vfHeroSlidesSection" class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-3 hidden">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-blue-200/60">
             <div>
-              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da] uppercase tracking-wider">
-                Pengaturan 4 Slide Hero Carousel
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da]">
+                Pengaturan Slide Banner Beranda
               </span>
               <p class="text-xs text-slate-600 mt-1 mb-0">
-                Kelola judul, narasi, foto latar Neon S3, dan tombol aksi untuk setiap slide banner beranda.
+                Klik nama slide di bawah untuk membuka atau menutup isi teks, foto latar, dan pilihan tujuan tombol.
               </p>
             </div>
             <button
@@ -324,51 +400,43 @@
             </button>
           </div>
 
-          <!-- Hidden File Input for Slide-specific Image Upload -->
           <input type="file" id="vfSlideFileInput" accept="image/jpeg,image/png,image/webp,image/svg+xml" class="hidden" />
-
-          <!-- List Hero Slides Container -->
-          <div id="heroSlidesListContainer" class="space-y-4">
-            <!-- Rendered via JS -->
-          </div>
+          <div id="heroSlidesListContainer" class="space-y-3"></div>
         </div>
 
-        <!-- Section 4D: Visual Program Details & Showcase Editor (khusus prog_details) -->
-        <div id="vfProgramDetailsSection" class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-5 hidden">
+        <!-- Detail & Dokumentasi Program (prog_details) -->
+        <div id="vfProgramDetailsSection" class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-4 hidden">
           <div class="pb-2 border-b border-blue-200/60">
-            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da] uppercase tracking-wider">
-              Pengaturan Detail &amp; Dokumentasi Program (Deep-Dive)
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da]">
+              Pengaturan Detail &amp; Dokumentasi Program
             </span>
             <p class="text-xs text-slate-600 mt-1 mb-0">
-              Kelola foto dokumentasi riil (twin images &amp; showcase cards), 4 nilai utama, dan jaminan transparansi.
+              Kelola foto dokumentasi lapangan, 4 keunggulan utama, dan daftar poin jaminan kepercayaan donatur.
             </p>
           </div>
 
-          <!-- 1. Twin Images (2 Foto Berdampingan) -->
+          <!-- 2 Foto Berdampingan -->
           <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs space-y-3">
             <div class="flex items-center justify-between pb-1 border-b border-slate-100">
-              <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                2 Foto Berdampingan (Twin Images)
+              <span class="text-xs font-bold text-slate-800">
+                2 Foto Dokumentasi Utama
               </span>
-              <span class="text-[11px] text-slate-500 font-mono">Format 4:3 / Landscape</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Twin Image 1 -->
-              <div class="space-y-1.5">
+              <div class="space-y-2">
                 <div class="flex items-center justify-between">
-                  <label class="block text-[11px] font-semibold text-slate-700">Foto Kiri (Dokumentasi 1)</label>
-                  <span class="text-[10px] text-slate-400 font-mono">Rasio 4:3</span>
+                  <label class="block text-[11px] font-semibold text-slate-700">Foto Kiri</label>
+                  <div class="flex items-center gap-1.5">
+                    <button type="button" class="btn-upload-twin text-xs px-2.5 py-1 bg-blue-50 text-[#0969da] border border-blue-200 hover:bg-blue-100 rounded-lg transition-colors cursor-pointer font-medium" data-twin-idx="0">
+                      Pilih Foto
+                    </button>
+                    <button type="button" class="btn-delete-twin text-xs px-2.5 py-1 bg-rose-50 text-rose-600 border border-rose-200 hover:bg-rose-100 rounded-lg transition-colors cursor-pointer font-medium" data-twin-idx="0">
+                      Hapus
+                    </button>
+                  </div>
                 </div>
-                <div class="flex items-center gap-1.5">
-                  <input type="text" id="vfTwinImg1" class="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-xs text-slate-900 font-mono focus:bg-white focus:border-[#0969da] outline-none" placeholder="https://..." />
-                  <button type="button" class="btn-upload-twin text-xs px-2 py-1 bg-blue-50 text-[#0969da] border border-blue-200 hover:bg-blue-100 rounded-lg transition-colors cursor-pointer shrink-0 font-medium" data-twin-idx="0">
-                    Ganti
-                  </button>
-                  <button type="button" class="btn-delete-twin text-xs px-2 py-1 bg-rose-50 text-rose-600 border border-rose-200 hover:bg-rose-100 rounded-lg transition-colors cursor-pointer shrink-0 font-medium" data-twin-idx="0">
-                    Hapus
-                  </button>
-                </div>
-                <div class="w-full aspect-[4/3] rounded-lg bg-slate-900/5 border border-slate-200 overflow-hidden mt-1 relative flex items-center justify-center">
+                <input type="hidden" id="vfTwinImg1" />
+                <div class="w-full aspect-[4/3] rounded-lg bg-slate-900/5 border border-slate-200 overflow-hidden relative flex items-center justify-center">
                   <img id="vfTwinImg1Preview" src="" alt="Pratinjau Foto Kiri" class="w-full h-full object-contain hidden" />
                   <div id="vfTwinImg1Empty" class="text-slate-400 text-xs text-center p-2 flex flex-col items-center justify-center gap-1">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
@@ -376,22 +444,21 @@
                   </div>
                 </div>
               </div>
-              <!-- Twin Image 2 -->
-              <div class="space-y-1.5">
+
+              <div class="space-y-2">
                 <div class="flex items-center justify-between">
-                  <label class="block text-[11px] font-semibold text-slate-700">Foto Kanan (Dokumentasi 2)</label>
-                  <span class="text-[10px] text-slate-400 font-mono">Rasio 4:3</span>
+                  <label class="block text-[11px] font-semibold text-slate-700">Foto Kanan</label>
+                  <div class="flex items-center gap-1.5">
+                    <button type="button" class="btn-upload-twin text-xs px-2.5 py-1 bg-blue-50 text-[#0969da] border border-blue-200 hover:bg-blue-100 rounded-lg transition-colors cursor-pointer font-medium" data-twin-idx="1">
+                      Pilih Foto
+                    </button>
+                    <button type="button" class="btn-delete-twin text-xs px-2.5 py-1 bg-rose-50 text-rose-600 border border-rose-200 hover:bg-rose-100 rounded-lg transition-colors cursor-pointer font-medium" data-twin-idx="1">
+                      Hapus
+                    </button>
+                  </div>
                 </div>
-                <div class="flex items-center gap-1.5">
-                  <input type="text" id="vfTwinImg2" class="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-xs text-slate-900 font-mono focus:bg-white focus:border-[#0969da] outline-none" placeholder="https://..." />
-                  <button type="button" class="btn-upload-twin text-xs px-2 py-1 bg-blue-50 text-[#0969da] border border-blue-200 hover:bg-blue-100 rounded-lg transition-colors cursor-pointer shrink-0 font-medium" data-twin-idx="1">
-                    Ganti
-                  </button>
-                  <button type="button" class="btn-delete-twin text-xs px-2 py-1 bg-rose-50 text-rose-600 border border-rose-200 hover:bg-rose-100 rounded-lg transition-colors cursor-pointer shrink-0 font-medium" data-twin-idx="1">
-                    Hapus
-                  </button>
-                </div>
-                <div class="w-full aspect-[4/3] rounded-lg bg-slate-900/5 border border-slate-200 overflow-hidden mt-1 relative flex items-center justify-center">
+                <input type="hidden" id="vfTwinImg2" />
+                <div class="w-full aspect-[4/3] rounded-lg bg-slate-900/5 border border-slate-200 overflow-hidden relative flex items-center justify-center">
                   <img id="vfTwinImg2Preview" src="" alt="Pratinjau Foto Kanan" class="w-full h-full object-contain hidden" />
                   <div id="vfTwinImg2Empty" class="text-slate-400 text-xs text-center p-2 flex flex-col items-center justify-center gap-1">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
@@ -402,63 +469,54 @@
             </div>
           </div>
 
-          <!-- 2. 4 Kartu Portfolio / Showcase Lapangan -->
+          <!-- 4 Kartu Dokumentasi Lapangan -->
           <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs space-y-3">
-            <div class="flex items-center justify-between pb-1 border-b border-slate-100">
-              <div>
-                <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                  4 Kartu Dokumentasi Riil Lapangan (Showcase Grid)
-                </span>
-                <p class="text-[11px] text-slate-500 mt-0.5 mb-0">Foto hasil pembangunan, prestasi santri, atau sarana fasilitas.</p>
-              </div>
-            </div>
-            <div id="showcaseListContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <!-- Rendered via JS -->
-            </div>
-          </div>
-
-          <!-- 3. 4 Nilai Utama (Value Boxes) -->
-          <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs space-y-3">
-            <div class="flex items-center justify-between pb-1 border-b border-slate-100">
-              <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                4 Nilai Utama &amp; Kepatuhan (Value Boxes)
+            <div class="pb-1 border-b border-slate-100">
+              <span class="text-xs font-bold text-slate-800">
+                4 Kartu Dokumentasi Lapangan
               </span>
-              <span class="text-[11px] text-slate-500">Ikon SVG bawaan sistem</span>
+              <p class="text-[11px] text-slate-500 mt-0.5 mb-0">Foto hasil pembangunan, kegiatan santri, atau sarana fasilitas.</p>
             </div>
-            <div id="valueBoxesListContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <!-- Rendered via JS -->
-            </div>
+            <div id="showcaseListContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
           </div>
 
-          <!-- 4. Poin Jaminan & Transparansi -->
+          <!-- 4 Nilai Utama -->
+          <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs space-y-3">
+            <div class="pb-1 border-b border-slate-100">
+              <span class="text-xs font-bold text-slate-800">
+                4 Poin Keunggulan Program
+              </span>
+            </div>
+            <div id="valueBoxesListContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+          </div>
+
+          <!-- Poin Jaminan -->
           <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs space-y-3">
             <div class="flex items-center justify-between pb-1 border-b border-slate-100">
               <div>
-                <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                  Daftar Poin Jaminan &amp; Transparansi Donasi
+                <span class="text-xs font-bold text-slate-800">
+                  Daftar Poin Jaminan &amp; Transparansi
                 </span>
-                <p class="text-[11px] text-slate-500 mt-0.5 mb-0">Checklist jaminan resmi (SNI, kwitansi resmi, laporan berkala, dll).</p>
+                <p class="text-[11px] text-slate-500 mt-0.5 mb-0">Poin jaminan resmi seperti kwitansi dan laporan berkala.</p>
               </div>
               <button type="button" id="btnAddGuarantee" class="inline-flex items-center gap-1 text-xs font-semibold text-[#0969da] hover:underline cursor-pointer">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 <span>Tambah Poin</span>
               </button>
             </div>
-            <div id="guaranteesListContainer" class="space-y-2">
-              <!-- Rendered via JS -->
-            </div>
+            <div id="guaranteesListContainer" class="space-y-2"></div>
           </div>
         </div>
 
-        <!-- Section 4E: Visual FAQ Repeater Editor (khusus prog_faq) -->
+        <!-- Pengaturan Tanya Jawab (FAQ) -->
         <div id="vfFaqSection" class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-3 hidden">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-blue-200/60">
             <div>
-              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da] uppercase tracking-wider">
-                Pengaturan Tanya Jawab (FAQ)
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da]">
+                Pengaturan Tanya Jawab
               </span>
               <p class="text-xs text-slate-600 mt-1 mb-0">
-                Kelola daftar pertanyaan dan jawaban seputar akad, hukum, dan penyaluran program ini.
+                Klik pertanyaan untuk membuka atau menutup kolom jawaban.
               </p>
             </div>
             <button
@@ -471,20 +529,77 @@
             </button>
           </div>
 
-          <!-- List FAQ Container -->
-          <div id="faqListContainer" class="space-y-3">
-            <!-- Rendered via JS -->
-          </div>
+          <div id="faqListContainer" class="space-y-3"></div>
         </div>
 
-        <!-- Hidden Generic File Input for Sub-Image Uploads (Twin Images, Showcase Cards) -->
+        <!-- Progres Konstruksi Masjid (masjid_progress) -->
+        <div id="vfMasjidProgressSection" class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-3 hidden">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-blue-200/60">
+            <div>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da]">
+                Target Anggaran &amp; Tahapan Pembangunan Masjid
+              </span>
+              <p class="text-xs text-slate-600 mt-1 mb-0">
+                Atur target kebutuhan dana dan tahapan pengerjaan masjid di lapangan.
+              </p>
+            </div>
+            <button
+              type="button"
+              id="btnAddMasjidMilestone"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#0969da] text-white hover:bg-[#0752a8] transition-colors cursor-pointer self-start sm:self-auto shrink-0"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Tambah Tahapan</span>
+            </button>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 p-4 space-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="vfMasjidTargetAmount" class="block text-[11px] font-semibold text-slate-700 mb-1">Target Nominal Anggaran (Angka Rupiah)</label>
+                <input type="number" id="vfMasjidTargetAmount" min="0" placeholder="1310753350" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-[#0969da] outline-none" />
+              </div>
+              <div>
+                <label for="vfMasjidTarget" class="block text-[11px] font-semibold text-slate-700 mb-1">Teks Target Dana</label>
+                <input type="text" id="vfMasjidTarget" placeholder="Rp 1.310.753.350" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-[#0969da] outline-none" />
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-500 mb-0">
+              Jumlah dana terhimpun dan persentase capaian dihitung otomatis dari donasi lunas yang masuk.
+            </p>
+          </div>
+          <div id="masjidMilestonesListContainer" class="space-y-2.5"></div>
+        </div>
+
+        <!-- Skema Orang Tua Asuh GOTA SSM (gota_schemes) -->
+        <div id="vfGotaSchemesSection" class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-3 hidden">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-blue-200/60">
+            <div>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-[#0969da]">
+                Skema Orang Tua Asuh GOTA SSM
+              </span>
+              <p class="text-xs text-slate-600 mt-1 mb-0">
+                Kelola pilihan paket partisipasi Orang Tua Asuh bulanan atau tahunan untuk santri.
+              </p>
+            </div>
+            <button
+              type="button"
+              id="btnAddGotaScheme"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#0969da] text-white hover:bg-[#0752a8] transition-colors cursor-pointer self-start sm:self-auto shrink-0"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Tambah Skema</span>
+            </button>
+          </div>
+          <div id="gotaSchemesListContainer" class="space-y-3"></div>
+        </div>
+
         <input type="file" id="vfGenericSubFileInput" accept="image/jpeg,image/png,image/webp,image/svg+xml" class="hidden" />
 
-        <!-- Section 5: Meta Info (Internal Title & Order) -->
+        <!-- Nama Bagian & Urutan -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-200">
           <div class="sm:col-span-2">
             <label for="editTitle" class="block text-xs font-semibold text-slate-700 mb-1">
-              Label Internal Section (Admin)
+              Nama Bagian
             </label>
             <input
               type="text"
@@ -494,7 +609,7 @@
           </div>
           <div>
             <label for="editSortOrder" class="block text-xs font-semibold text-slate-700 mb-1">
-              Nomor Urutan
+              Urutan Tampil
             </label>
             <input
               type="number"
@@ -504,30 +619,11 @@
           </div>
         </div>
       </div>
-
-      <!-- TAB 2: MODE LANJUTAN (JSON) -->
-      <div id="jsonFormContainer" class="space-y-2 hidden">
-        <div class="flex items-center justify-between mb-1.5">
-          <label for="editJsonContent" class="block text-xs font-semibold text-slate-700">
-            Struktur JSON Mentah
-          </label>
-          <span class="text-[11px] text-slate-500 font-normal">Sinkron otomatis dengan Form Visual</span>
-        </div>
-        <div class="relative">
-          <textarea
-            id="editJsonContent"
-            rows="14"
-            class="w-full font-mono text-xs bg-slate-900 text-slate-100 border border-slate-800 rounded-xl p-3.5 focus:border-[#0969da] focus:ring-2 focus:ring-[#0969da]/30 outline-none leading-relaxed"
-            spellcheck="false"
-          ></textarea>
-        </div>
-        <p id="jsonError" class="text-xs text-red-600 mt-1 hidden"></p>
-      </div>
     </div>
 
-    <!-- Modal Footer -->
+    <!-- Footer Modal -->
     <div class="px-6 py-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between gap-3">
-      <p class="text-[11px] text-slate-500 hidden sm:block">Perubahan akan langsung aktif di web publik setelah disimpan.</p>
+      <p class="text-[11px] text-slate-500 hidden sm:block">Perubahan akan langsung tampil di website setelah disimpan.</p>
       <div class="flex items-center gap-2.5 ml-auto">
         <button
           type="button"

@@ -28,16 +28,20 @@ const formatDate = (date: Date | string | null) => {
 const ALL_MENUS = [
   { key: 'overview', name: 'Ringkasan Dasbor', category: 'Modul Utama', desc: 'Melihat ringkasan metrik statistik penghimpunan' },
   { key: 'donatur', name: 'Donatur & Arus Kas', category: 'Modul Keuangan', desc: 'Kelola data donatur, verifikasi transfer, & buku kas' },
-  { key: 'kabar', name: 'Kabar & Warta', category: 'Modul Publikasi', desc: 'Kelola berita kegiatan, artikel, & dokumentasi' },
+  { key: 'edukasi', name: 'Edukasi & Kajian', category: 'Modul Publikasi', desc: 'Kelola materi kajian, literasi fiqih, video, & PDF' },
+  { key: 'kabar', name: 'Kabar & Warta', category: 'Modul Publikasi', desc: 'Kelola berita kegiatan, progres lapangan, & dokumentasi' },
+  { key: 'laporan', name: 'Dokumen Laporan PDF', category: 'Modul Publikasi', desc: 'Kelola dan unggah laporan transparansi berkala (PDF)' },
   { key: 'roles', name: 'Hak Akses & Roles', category: 'Modul Sistem', desc: 'Atur wewenang dan izin menu untuk setiap staf' },
-  { key: 'home', name: 'Halaman Beranda', category: 'Editor Landing Page', desc: 'Kelola section & visual halaman utama' },
-  { key: 'tentang-kami', name: 'Halaman Tentang Kami', category: 'Editor Landing Page', desc: 'Kelola profil, sejarah, & legalitas GVF' },
-  { key: 'kemitraan', name: 'Halaman Kemitraan', category: 'Editor Landing Page', desc: 'Kelola sinergi kemitraan CSR & korporasi' },
-  { key: 'contact', name: 'Halaman Kontak', category: 'Editor Landing Page', desc: 'Kelola informasi kontak & saluran resmi' },
-  { key: 'wakaf', name: 'Program Wakaf', category: 'Editor Program', desc: 'Kelola konten & live feed program Wakaf' },
-  { key: 'infaq', name: 'Program Infaq', category: 'Editor Program', desc: 'Kelola konten & live feed program Infaq' },
-  { key: 'sedekah', name: 'Program Sedekah', category: 'Editor Program', desc: 'Kelola konten & live feed program Sedekah' },
-  { key: 'zakat', name: 'Program Zakat', category: 'Editor Program', desc: 'Kelola konten & live feed program Zakat' },
+  { key: 'home', name: 'Halaman Beranda', category: 'Editor Halaman Profil', desc: 'Kelola section & visual halaman utama' },
+  { key: 'tentang-kami', name: 'Halaman Tentang Kami', category: 'Editor Halaman Profil', desc: 'Kelola profil, sejarah, & legalitas GVF' },
+  { key: 'kemitraan', name: 'Halaman Kemitraan', category: 'Editor Halaman Profil', desc: 'Kelola sinergi kemitraan CSR & korporasi' },
+  { key: 'contact', name: 'Halaman Kontak', category: 'Editor Halaman Profil', desc: 'Kelola informasi kontak & saluran resmi' },
+  { key: 'pembangunan-masjid', name: 'Program Pembangunan Masjid', category: 'Program Unggulan', desc: 'Kelola progres konstruksi, arsitektur & galeri Masjid Khairu Ummah' },
+  { key: 'gota-ssm', name: 'Program GOTA SSM', category: 'Program Unggulan', desc: 'Kelola profil & skema Gerakan Orang Tua Asuh Santri SSM' },
+  { key: 'infaq', name: 'Kontribusi Infak (Material Masjid)', category: 'Bentuk Kontribusi', desc: 'Kelola katalog material masjid & live feed Infak' },
+  { key: 'sedekah', name: 'Kontribusi Sedekah (Dukungan GOTA)', category: 'Bentuk Kontribusi', desc: 'Kelola paket dukungan GOTA SSM & live feed Sedekah' },
+  { key: 'wakaf', name: 'Kontribusi Wakaf (Objek & Peruntukan)', category: 'Bentuk Kontribusi', desc: 'Kelola objek, peruntukan & live feed Wakaf' },
+  { key: 'zakat', name: 'Kontribusi Zakat (Kampanye Ramadan)', category: 'Bentuk Kontribusi', desc: 'Kelola kampanye Ramadan & Idulfitri, kalkulator & live feed Zakat' },
 ];
 
 const roleBadges: Record<string, { bg: string; text: string; border: string }> = {
@@ -60,7 +64,7 @@ const roleBadges: Record<string, { bg: string; text: string; border: string }> =
           <span class="text-slate-300 text-xs">&bull;</span>
           <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            12 Menu Terdaftar
+            {ALL_MENUS.length} Menu Terdaftar
           </span>
         </div>
         <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 m-0">Hak Akses Menu &amp; Pengelolaan Role</h1>

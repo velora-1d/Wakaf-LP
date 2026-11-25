@@ -12,9 +12,10 @@ const adminUser = (Astro.locals as any).adminUser || {
   name: 'Administrator GVF', 
   role: 'superadmin',
   permissions: [
-    'overview', 'kabar', 'donatur', 'roles',
+    'overview', 'kabar', 'laporan', 'edukasi', 'donatur', 'roles',
     'home', 'tentang-kami', 'kemitraan', 'contact',
-    'wakaf', 'infaq', 'sedekah', 'zakat'
+    'pembangunan-masjid', 'gota-ssm',
+    'infaq', 'sedekah', 'wakaf', 'zakat'
   ]
 };
 
@@ -22,18 +23,38 @@ const userPerms: string[] = Array.isArray(adminUser.permissions) ? adminUser.per
 const isSuperAdmin = adminUser.role === 'superadmin';
 const canAccess = (key: string) => isSuperAdmin || userPerms.includes(key);
 
-const navPages = [
-  { slug: 'home', name: 'Beranda Utama', icon: 'home' },
-  { slug: 'tentang-kami', name: 'Tentang Kami', icon: 'info' },
-  { slug: 'kemitraan', name: 'Kemitraan', icon: 'handshake' },
-  { slug: 'contact', name: 'Kontak', icon: 'phone' },
-  { slug: 'wakaf', name: 'Program Wakaf', icon: 'layers' },
-  { slug: 'infaq', name: 'Program Infaq', icon: 'gift' },
-  { slug: 'sedekah', name: 'Program Sedekah', icon: 'heart' },
-  { slug: 'zakat', name: 'Program Zakat', icon: 'shield' },
+const profilePages = [
+  { slug: 'home', name: 'Beranda' },
+  { slug: 'tentang-kami', name: 'Tentang Kami' },
+  { slug: 'kemitraan', name: 'Kemitraan' },
+  { slug: 'contact', name: 'Kontak' },
 ];
 
-const hasPermissionForCurrentPage = !activeSlug || canAccess(activeSlug);
+const programPages = [
+  { slug: 'pembangunan-masjid', name: 'Pembangunan Masjid' },
+  { slug: 'gota-ssm', name: 'GOTA SSM' },
+];
+
+const contributionPages = [
+  { slug: 'infaq', name: 'Infak (Material Masjid)' },
+  { slug: 'sedekah', name: 'Sedekah (Dukungan GOTA)' },
+  { slug: 'wakaf', name: 'Wakaf (Objek & Peruntukan)' },
+  { slug: 'zakat', name: 'Zakat (Kampanye Ramadan)' },
+];
+
+function getPublicUrl(slug?: string): string {
+  if (!slug || slug === 'overview' || slug === 'roles' || slug === 'home') return '/';
+  if (slug === 'pembangunan-masjid' || slug === 'gota-ssm') return `/program/${slug}`;
+  if (['wakaf', 'infaq', 'sedekah', 'zakat'].includes(slug)) return `/kontribusi/${slug}`;
+  if (slug === 'edukasi') return '/edukasi';
+  if (slug === 'kabar' || slug === 'laporan') return '/kabar';
+  if (slug === 'donatur') return '/donatur';
+  return `/${slug}`;
+}
+
+const hasPermissionForCurrentPage =
+  !activeSlug ||
+  (activeSlug === 'kabar' ? (canAccess('kabar') || canAccess('laporan')) : canAccess(activeSlug));
 ---
 
 <!doctype html>
@@ -42,6 +63,8 @@ const hasPermissionForCurrentPage = !activeSlug || canAccess(activeSlug);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} - Panel Kendali Admin GVF</title>
+    <link rel="icon" type="image/webp" href="/favicon.webp" />
+    <link rel="apple-touch-icon" href="/favicon.webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -243,8 +266,49 @@ const hasPermissionForCurrentPage = !activeSlug || canAccess(activeSlug);
             </a>
           )}
 
-          <!-- Menu Kelola Kabar & Warta -->
-          {canAccess('kabar') && (
+          <!-- Publikasi & Transparansi -->
+          {(canAccess('edukasi') || canAccess('kabar') || canAccess('laporan')) && (
+            <div class="pt-3 pb-1 px-3">
+              <span class="sidebar-separator-text text-[10px] uppercase font-bold tracking-wider text-slate-400">PUBLIKASI &amp; TRANSPARANSI</span>
+              <div class="sidebar-separator-line hidden h-px bg-slate-200 my-1"></div>
+            </div>
+          )}
+
+          <!-- Menu Edukasi & Kajian -->
+          {canAccess('edukasi') && (
+            <a
+              href="/admin/edukasi"
+              class={`sidebar-nav-item flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs font-semibold transition-all ${
+                activeSlug === 'edukasi'
+                  ? 'bg-[#0969da] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+              title="Edukasi & Kajian"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class={`shrink-0 ${activeSlug === 'edukasi' ? 'text-white' : 'text-slate-400'}`}
+              >
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+              <span class="sidebar-label truncate flex-1">Edukasi &amp; Kajian</span>
+              {activeSlug === 'edukasi' && (
+                <span class="sidebar-badge-dot w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
+              )}
+            </a>
+          )}
+
+          <!-- Menu Kelola Kabar & Laporan -->
+          {(canAccess('kabar') || canAccess('laporan')) && (
             <a
               href="/admin/kabar"
               class={`sidebar-nav-item flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs font-semibold transition-all ${
@@ -252,7 +316,7 @@ const hasPermissionForCurrentPage = !activeSlug || canAccess(activeSlug);
                   ? 'bg-[#0969da] text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
-              title="Kabar & Warta"
+              title="Kabar & Laporan"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -271,7 +335,7 @@ const hasPermissionForCurrentPage = !activeSlug || canAccess(activeSlug);
                 <path d="M15 18h-5"/>
                 <path d="M10 6h8v4h-8V6Z"/>
               </svg>
-              <span class="sidebar-label truncate flex-1">Kabar &amp; Warta</span>
+              <span class="sidebar-label truncate flex-1">Kabar &amp; Laporan</span>
               {activeSlug === 'kabar' && (
                 <span class="sidebar-badge-dot w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
               )}
@@ -311,16 +375,15 @@ const hasPermissionForCurrentPage = !activeSlug || canAccess(activeSlug);
             </a>
           )}
 
-          <!-- Separator Menu Halaman -->
-          {navPages.some((p) => canAccess(p.slug)) && (
+          <!-- Grup 3: Halaman Profil -->
+          {profilePages.some((p) => canAccess(p.slug)) && (
             <div class="pt-3 pb-1 px-3">
-              <span class="sidebar-separator-text text-[10px] uppercase font-bold tracking-wider text-slate-400">MENU HALAMAN</span>
+              <span class="sidebar-separator-text text-[10px] uppercase font-bold tracking-wider text-slate-400">HALAMAN PROFIL</span>
               <div class="sidebar-separator-line hidden h-px bg-slate-200 my-1"></div>
             </div>
           )}
 
-          <!-- Daftar Menu Halaman (Difilter Sesuai Izin Checkbox) -->
-          {navPages
+          {profilePages
             .filter((page) => canAccess(page.slug))
             .map((page) => {
               const isActive = activeSlug === page.slug;
@@ -361,6 +424,78 @@ const hasPermissionForCurrentPage = !activeSlug || canAccess(activeSlug);
                       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                     </svg>
                   )}
+                  <span class="sidebar-label truncate flex-1">{page.name}</span>
+                  {isActive && (
+                    <span class="sidebar-badge-dot w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
+                  )}
+                </a>
+              );
+            })}
+
+          <!-- Grup 4: Program Unggulan -->
+          {programPages.some((p) => canAccess(p.slug)) && (
+            <div class="pt-3 pb-1 px-3">
+              <span class="sidebar-separator-text text-[10px] uppercase font-bold tracking-wider text-slate-400">PROGRAM UNGGULAN</span>
+              <div class="sidebar-separator-line hidden h-px bg-slate-200 my-1"></div>
+            </div>
+          )}
+
+          {programPages
+            .filter((page) => canAccess(page.slug))
+            .map((page) => {
+              const isActive = activeSlug === page.slug;
+              return (
+                <a
+                  href={`/admin/pages/${page.slug}`}
+                  class={`sidebar-nav-item flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs transition-all ${
+                    isActive
+                      ? 'bg-[#0969da] text-white font-bold shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium'
+                  }`}
+                  title={page.name}
+                >
+                  {page.slug === 'pembangunan-masjid' ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                      <path d="M3 21h18"/>
+                      <path d="M5 21V11l7-5 7 5v10"/>
+                      <path d="M9 21v-6h6v6"/>
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                      <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                      <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                    </svg>
+                  )}
+                  <span class="sidebar-label truncate flex-1">{page.name}</span>
+                  {isActive && (
+                    <span class="sidebar-badge-dot w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
+                  )}
+                </a>
+              );
+            })}
+
+          <!-- Grup 5: Bentuk Kontribusi -->
+          {contributionPages.some((p) => canAccess(p.slug)) && (
+            <div class="pt-3 pb-1 px-3">
+              <span class="sidebar-separator-text text-[10px] uppercase font-bold tracking-wider text-slate-400">BENTUK KONTRIBUSI</span>
+              <div class="sidebar-separator-line hidden h-px bg-slate-200 my-1"></div>
+            </div>
+          )}
+
+          {contributionPages
+            .filter((page) => canAccess(page.slug))
+            .map((page) => {
+              const isActive = activeSlug === page.slug;
+              return (
+                <a
+                  href={`/admin/pages/${page.slug}`}
+                  class={`sidebar-nav-item flex items-center gap-3 px-3 py-2.5 min-h-[42px] rounded-lg text-xs transition-all ${
+                    isActive
+                      ? 'bg-[#0969da] text-white font-bold shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium'
+                  }`}
+                  title={page.name}
+                >
                   {page.slug === 'wakaf' && (
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={`shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}>
                       <line x1="3" x2="21" y1="22" y2="22"/>
@@ -456,7 +591,7 @@ const hasPermissionForCurrentPage = !activeSlug || canAccess(activeSlug);
 
           <div class="flex items-center gap-2">
             <a
-              href={activeSlug ? (activeSlug === 'home' ? '/' : (['wakaf','infaq','sedekah','zakat'].includes(activeSlug) ? `/program/${activeSlug}` : `/${activeSlug}`)) : '/'}
+              href={getPublicUrl(activeSlug)}
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 border border-slate-200 h-8 px-2.5 rounded-md transition-colors shadow-2xs"
@@ -496,7 +631,7 @@ const hasPermissionForCurrentPage = !activeSlug || canAccess(activeSlug);
 
           <div class="flex items-center gap-2">
             <a
-              href={activeSlug ? (activeSlug === 'home' ? '/' : (['wakaf','infaq','sedekah','zakat'].includes(activeSlug) ? `/program/${activeSlug}` : `/${activeSlug}`)) : '/'}
+              href={getPublicUrl(activeSlug)}
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200 h-8 px-3 rounded-md transition-colors shadow-2xs"

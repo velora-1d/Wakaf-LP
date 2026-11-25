@@ -97,17 +97,17 @@ const { roles } = Astro.props;
           </button>
         </div>
         <span id="inputUserPasswordHint" class="text-[10px] text-slate-400 mt-1 block">
-          Minimal 6 karakter. Dienkripsi aman dengan bcryptjs.
+          Minimal 6 karakter. Kata sandi tersimpan aman.
         </span>
       </div>
 
       <div>
         <label class="block text-xs font-semibold text-slate-700 mb-1" for="inputUserRoleSelect">
-          Role Jabatan &amp; Wewenang <span class="text-red-500">*</span>
+          Peran &amp; Wewenang <span class="text-red-500">*</span>
         </label>
         <select id="inputUserRoleSelect" required class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
           {roles.map(r => (
-            <option value={r.roleKey}>{r.roleName} ({r.roleKey})</option>
+            <option value={r.roleKey}>{r.roleName}</option>
           ))}
         </select>
       </div>
