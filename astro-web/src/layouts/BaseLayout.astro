@@ -93,6 +93,7 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script is:inline>document.documentElement.classList.add('js-reveal');</script>
 </head>
 <body>
   <Navbar />
@@ -310,9 +311,8 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   }
 
   html, body {
-    font-family: 'Golos Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    overflow-x: hidden;
-    max-width: 100vw;
+    font-family: var(--font-sans);
+    overflow-x: clip;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -324,7 +324,7 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   /* Modern Standard (Firefox) */
   * {
     scrollbar-width: thin;
-    scrollbar-color: #cbd5e1 transparent;
+    scrollbar-color: var(--color-surface-300, #cbd5e1) transparent;
   }
 
   /* WebKit (Chrome, Edge, Safari, Opera, Brave, Vivaldi) */
@@ -338,7 +338,7 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #cbd5e1;
+    background-color: var(--color-surface-300, #cbd5e1);
     border-radius: 9999px;
     border: 2px solid transparent;
     background-clip: content-box;
@@ -346,7 +346,7 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: #0969da;
+    background-color: var(--color-brand, #0969da);
     border: 2px solid transparent;
     background-clip: content-box;
   }
@@ -368,15 +368,15 @@ const allSchemas = [...baseSchemas, ...customSchemas];
      CSS hanya set initial state agar tidak terjadi flash-of-content.
      ========================================================================== */
 
-  /* Initial hidden state — GSAP akan animasikan ke visible */
-  .reveal-on-scroll,
-  .reveal-scale,
-  .reveal-heading {
+  /* Initial hidden state (only when JS is active) — GSAP akan animasikan ke visible */
+  html.js-reveal .reveal-on-scroll,
+  html.js-reveal .reveal-scale,
+  html.js-reveal .reveal-heading {
     opacity: 0;
   }
 
   /* Stagger parent: children akan di-set oleh GSAP, tapi set invisible dulu */
-  .reveal-stagger > * {
+  html.js-reveal .reveal-stagger > * {
     opacity: 0;
   }
 
@@ -660,12 +660,15 @@ const allSchemas = [...baseSchemas, ...customSchemas];
   }
 
   @media (max-width: 768px) {
+    body {
+      padding-bottom: calc(82px + env(safe-area-inset-bottom, 0px));
+    }
     .gvf-scroll-badge {
       display: none;
     }
     .gvf-floating-wa {
-      bottom: 18px;
-      right: 18px;
+      bottom: calc(86px + env(safe-area-inset-bottom, 0px));
+      right: 14px;
       width: 48px;
       height: 48px;
     }
