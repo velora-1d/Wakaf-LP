@@ -190,6 +190,34 @@ const {
           ))}
         </select>
 
+        <!-- Filter Kalender & Rentang Tanggal (Hari / Minggu / Bulan / Tahun / Custom Range) -->
+        <div class="flex flex-wrap items-center gap-1.5 rounded-md border border-slate-200 bg-slate-50/60 p-1 shadow-2xs">
+          <div class="flex items-center gap-1" role="group" aria-label="Preset rentang waktu donasi">
+            <button type="button" class="donatur-period-pill h-7 px-2.5 rounded text-[11px] font-semibold bg-[#0969da] text-white cursor-pointer transition-colors" data-period="all">Semua</button>
+            <button type="button" class="donatur-period-pill h-7 px-2.5 rounded text-[11px] font-semibold text-slate-600 hover:bg-white cursor-pointer transition-colors" data-period="today">Hari</button>
+            <button type="button" class="donatur-period-pill h-7 px-2.5 rounded text-[11px] font-semibold text-slate-600 hover:bg-white cursor-pointer transition-colors" data-period="week">Minggu</button>
+            <button type="button" class="donatur-period-pill h-7 px-2.5 rounded text-[11px] font-semibold text-slate-600 hover:bg-white cursor-pointer transition-colors" data-period="month">Bulan</button>
+            <button type="button" class="donatur-period-pill h-7 px-2.5 rounded text-[11px] font-semibold text-slate-600 hover:bg-white cursor-pointer transition-colors" data-period="year">Tahun</button>
+          </div>
+          <div class="flex items-center gap-1.5 pl-1.5 border-l border-slate-200">
+            <input
+              type="date"
+              id="donaturDateStart"
+              aria-label="Dari tanggal"
+              title="Dari tanggal"
+              class="h-7 rounded border border-slate-200 bg-white px-2 text-[11px] text-slate-700 focus:border-[#0969da] focus:outline-none cursor-pointer"
+            />
+            <span class="text-[11px] text-slate-400 font-semibold">s/d</span>
+            <input
+              type="date"
+              id="donaturDateEnd"
+              aria-label="Sampai tanggal"
+              title="Sampai tanggal"
+              class="h-7 rounded border border-slate-200 bg-white px-2 text-[11px] text-slate-700 focus:border-[#0969da] focus:outline-none cursor-pointer"
+            />
+          </div>
+        </div>
+
         <button
           type="button"
           id="btnResetFilters"
@@ -291,6 +319,7 @@ const {
                   data-program={d.programTujuan}
                   data-nominal={d.nominalTotal}
                   data-labels={JSON.stringify((d.donor.labels || []).map((l: any) => String(l.id)))}
+                  data-created={d.createdAt ? new Date(d.createdAt).toISOString() : ''}
                   data-id={d.id}
                 >
                   <!-- Checkbox -->

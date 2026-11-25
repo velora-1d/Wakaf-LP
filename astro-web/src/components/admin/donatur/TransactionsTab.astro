@@ -1,0 +1,386 @@
+---
+// src/components/admin/donatur/TransactionsTab.astro
+// Tab Khusus Transaksi Masuk (Menunggu Verifikasi / Approve)
+
+interface Props {
+  pendingDonations: any[];
+  leadsMap: Record<string, { label: string; bg: string; text: string; border: string }>;
+  programMap: Record<string, string>;
+  formatRupiah: (val: number) => string;
+  formatDate: (date: Date | string | null) => string;
+  isTransaksiTab: boolean;
+}
+
+const {
+  pendingDonations = [],
+  leadsMap = {},
+  programMap = {},
+  formatRupiah,
+  formatDate,
+  isTransaksiTab,
+} = Astro.props;
+
+const totalPendingNominal = pendingDonations.reduce((acc, d) => acc + (Number(d.nominalTotal) || 0), 0);
+---
+
+<div id="tabContentTransaksi" class={isTransaksiTab ? 'space-y-5' : 'hidden space-y-5'}>
+  <!-- Ringkasan Transaksi Menunggu Approve -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+    <div class="rounded-xl border border-amber-200 bg-amber-50/50 p-4 shadow-2xs">
+      <div class="flex items-center justify-between pb-1.5">
+        <span class="text-xs font-semibold text-amber-800 uppercase tracking-wider">Transaksi Menunggu Approve</span>
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+          Pending
+        </span>
+      </div>
+      <div class="text-2xl font-bold tracking-tight text-slate-900">
+        {pendingDonations.length} <span class="text-xs font-medium text-slate-500">Transaksi</span>
+      </div>
+      <p class="text-[11px] text-amber-700 mt-1 mb-0">
+        Klik <strong>Approve</strong> setelah mengecek bukti transfer agar otomatis masuk ke Data Donatur &amp; halaman publik.
+      </p>
+    </div>
+
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
+      <div class="flex items-center justify-between pb-1.5">
+        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Nominal Menunggu Verifikasi</span>
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-blue-50 text-[#0969da] border border-blue-200">
+          BSI / Transfer
+        </span>
+      </div>
+      <div class="text-2xl font-bold tracking-tight text-[#0969da] font-mono">
+        {formatRupiah(totalPendingNominal)}
+      </div>
+      <p class="text-[11px] text-slate-400 mt-1 mb-0">
+        Belum dihitung sebagai dana lunas sebelum di-approve.
+      </p>
+    </div>
+  </div>
+
+  <!-- Search Bar, Filter Waktu & CRUD Manual Transaksi Masuk -->
+  <div class="rounded-lg border border-slate-200 bg-white p-3 shadow-2xs space-y-2.5">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2 flex-1">
+        <div class="relative flex-1 max-w-md">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            type="text"
+            id="transaksiSearchInput"
+            placeholder="Cari kode transaksi, nama donatur, WA, atau paket..."
+            class="h-9 w-full rounded-md border border-slate-200 bg-slate-50/50 pl-9 pr-3 text-xs text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#0969da] focus:border-[#0969da]"
+          />
+        </div>
+
+        <div class="flex flex-wrap items-center gap-1.5 rounded-md border border-slate-200 bg-slate-50/60 p-1">
+          <div class="flex items-center gap-1" role="group" aria-label="Preset rentang waktu transaksi">
+            <button type="button" class="transaksi-period-pill h-7 px-2.5 rounded text-[11px] font-semibold bg-[#0969da] text-white cursor-pointer transition-colors" data-period="all">Semua</button>
+            <button type="button" class="transaksi-period-pill h-7 px-2.5 rounded text-[11px] font-semibold text-slate-600 hover:bg-white cursor-pointer transition-colors" data-period="today">Hari</button>
+            <button type="button" class="transaksi-period-pill h-7 px-2.5 rounded text-[11px] font-semibold text-slate-600 hover:bg-white cursor-pointer transition-colors" data-period="week">Minggu</button>
+            <button type="button" class="transaksi-period-pill h-7 px-2.5 rounded text-[11px] font-semibold text-slate-600 hover:bg-white cursor-pointer transition-colors" data-period="month">Bulan</button>
+            <button type="button" class="transaksi-period-pill h-7 px-2.5 rounded text-[11px] font-semibold text-slate-600 hover:bg-white cursor-pointer transition-colors" data-period="year">Tahun</button>
+          </div>
+          <div class="flex items-center gap-1.5 pl-1.5 border-l border-slate-200">
+            <input
+              type="date"
+              id="transaksiDateStart"
+              aria-label="Dari tanggal"
+              title="Dari tanggal"
+              class="h-7 rounded border border-slate-200 bg-white px-2 text-[11px] text-slate-700 focus:border-[#0969da] focus:outline-none cursor-pointer"
+            />
+            <span class="text-[11px] text-slate-400 font-semibold">s/d</span>
+            <input
+              type="date"
+              id="transaksiDateEnd"
+              aria-label="Sampai tanggal"
+              title="Sampai tanggal"
+              class="h-7 rounded border border-slate-200 bg-white px-2 text-[11px] text-slate-700 focus:border-[#0969da] focus:outline-none cursor-pointer"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between sm:justify-end gap-3">
+        <span class="text-xs text-slate-500">
+          Menampilkan <strong id="transaksiVisibleCount" class="text-slate-800">{pendingDonations.length}</strong> transaksi
+        </span>
+        <button
+          type="button"
+          id="btnOpenCreateTransaksi"
+          class="inline-flex items-center gap-1.5 h-9 px-3 rounded-md bg-[#0969da] text-white hover:bg-[#0752a8] text-xs font-semibold shadow-2xs cursor-pointer transition-colors"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Catat Transaksi Manual</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Bulk Action Bar -->
+    <div id="transaksiBulkBar" class="hidden flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-slate-100">
+      <span class="text-xs font-semibold text-slate-700">
+        <strong id="transaksiSelectedCount" class="text-[#0969da]">0</strong> transaksi dipilih
+      </span>
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          id="btnBulkRejectTransaksi"
+          class="inline-flex items-center gap-1.5 h-8 px-3 rounded-md bg-amber-50 border border-amber-200 text-amber-800 hover:bg-amber-100 text-xs font-semibold cursor-pointer transition-colors"
+        >
+          <span>Tolak Terpilih</span>
+        </button>
+        <button
+          type="button"
+          id="btnBulkDeleteTransaksi"
+          class="inline-flex items-center gap-1.5 h-8 px-3 rounded-md bg-rose-600 text-white hover:bg-rose-700 text-xs font-semibold cursor-pointer transition-colors"
+        >
+          <span>Hapus Masal</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabel Transaksi Masuk -->
+  <div class="rounded-xl border border-slate-200 bg-white shadow-xs overflow-hidden">
+    {pendingDonations.length === 0 ? (
+      <div class="p-10 text-center">
+        <div class="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 inline-flex items-center justify-center mb-3">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h3 class="text-sm font-bold text-slate-900 m-0">Semua Transaksi Sudah Diverifikasi</h3>
+        <p class="text-xs text-slate-500 mt-1 mb-0">
+          Tidak ada transaksi menunggu verifikasi saat ini. Transaksi baru dari website akan muncul otomatis di sini.
+        </p>
+      </div>
+    ) : (
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+              <th class="px-3 py-3 w-10 text-center">
+                <input
+                  type="checkbox"
+                  id="transaksiCheckAll"
+                  aria-label="Pilih semua transaksi"
+                  class="w-4 h-4 rounded border-slate-300 text-[#0969da] focus:ring-[#0969da] cursor-pointer"
+                />
+              </th>
+              <th class="px-2 py-3 w-10 text-center">No</th>
+              <th class="px-4 py-3">Kode &amp; Waktu</th>
+              <th class="px-4 py-3">Donatur &amp; WA</th>
+              <th class="px-4 py-3">Program &amp; Paket</th>
+              <th class="px-4 py-3 text-right">Nominal</th>
+              <th class="px-4 py-3">Bukti Transfer</th>
+              <th class="px-4 py-3 text-right">Aksi Verifikasi</th>
+            </tr>
+          </thead>
+          <tbody id="transaksiTableBody" class="divide-y divide-slate-100">
+            {pendingDonations.map((d, idx) => {
+              const leadInfo = leadsMap[d.sumberLeads] || {
+                label: d.sumberLeads || 'Website',
+                bg: 'bg-blue-50',
+                text: 'text-[#0969da]',
+                border: 'border-blue-200',
+              };
+              const programTitle = programMap[d.programTujuan] || d.programTujuan;
+              return (
+                <tr
+                  class="transaksi-row hover:bg-slate-50/80 transition-colors"
+                  data-search={`${d.kodeTransaksi} ${d.donor?.namaLengkap || ''} ${d.donor?.noWhatsapp || ''} ${programTitle} ${d.akadPeruntukan || ''}`.toLowerCase()}
+                  data-created={d.createdAt ? new Date(d.createdAt).toISOString() : ''}
+                >
+                  <td class="px-3 py-3.5 text-center align-top">
+                    <input
+                      type="checkbox"
+                      class="transaksi-row-check w-4 h-4 rounded border-slate-300 text-[#0969da] focus:ring-[#0969da] cursor-pointer"
+                      value={d.id}
+                      aria-label={`Pilih transaksi ${d.kodeTransaksi}`}
+                    />
+                  </td>
+
+                  <td class="px-2 py-3.5 text-center font-mono text-slate-500 font-semibold align-top">
+                    {idx + 1}
+                  </td>
+
+                  <td class="px-4 py-3.5 whitespace-nowrap align-top">
+                    <span class="font-mono font-bold text-slate-900 block">{d.kodeTransaksi}</span>
+                    <span class="text-[11px] text-slate-400 block mt-0.5">{formatDate(d.createdAt)}</span>
+                    <span class={`inline-flex mt-1 px-1.5 py-0.5 rounded text-[10px] font-semibold border ${leadInfo.bg} ${leadInfo.text} ${leadInfo.border}`}>
+                      {leadInfo.label}
+                    </span>
+                  </td>
+
+                  <td class="px-4 py-3.5 align-top">
+                    <div class="font-semibold text-slate-900">{d.donor?.namaLengkap || '-'}</div>
+                    {d.donor?.namaTampilan && d.donor?.namaTampilan !== d.donor?.namaLengkap && (
+                      <div class="text-[11px] text-slate-500">Tampil: {d.donor.namaTampilan}</div>
+                    )}
+                    <div class="text-[11px] text-slate-500 font-mono mt-0.5">{d.donor?.noWhatsapp || '-'}</div>
+                  </td>
+
+                  <td class="px-4 py-3.5 align-top max-w-[240px]">
+                    <div class="font-semibold text-slate-800">{programTitle}</div>
+                    {d.akadPeruntukan && (
+                      <div class="text-[11px] text-slate-500 mt-0.5">{d.akadPeruntukan}</div>
+                    )}
+                    {d.doaDonatur && (
+                      <div class="text-[11px] italic text-slate-400 mt-1 line-clamp-2">"{d.doaDonatur}"</div>
+                    )}
+                  </td>
+
+                  <td class="px-4 py-3.5 whitespace-nowrap text-right align-top">
+                    <span class="font-mono font-bold text-sm text-slate-900 block">{formatRupiah(d.nominalTotal)}</span>
+                    <span class="text-[11px] text-slate-400">{d.metodePembayaran || 'BSI Transfer'}</span>
+                  </td>
+
+                  <td class="px-4 py-3.5 whitespace-nowrap align-top">
+                    {d.buktiTransferUrl ? (
+                      <button
+                        type="button"
+                        class="btn-view-proof inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-blue-50 border border-blue-200 text-[#0969da] hover:bg-blue-100 text-[11px] font-semibold cursor-pointer"
+                        data-proof-url={d.buktiTransferUrl}
+                        data-kode={d.kodeTransaksi}
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                          <circle cx="9" cy="9" r="2"></circle>
+                          <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                        </svg>
+                        <span>Lihat Bukti</span>
+                      </button>
+                    ) : (
+                      <span class="text-[11px] text-slate-400">Tanpa bukti</span>
+                    )}
+                  </td>
+
+                  <td class="px-4 py-3.5 whitespace-nowrap text-right align-top">
+                    <div class="inline-flex items-center gap-2">
+                      <button
+                        type="button"
+                        class="inline-flex items-center gap-1.5 h-8 px-3 rounded-md bg-emerald-600 text-white hover:bg-emerald-700 text-xs font-semibold shadow-2xs cursor-pointer transition-colors"
+                        data-action="verify-lunas"
+                        data-id={d.id}
+                        title="Approve &amp; Masukkan ke Data Donatur"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span class="pointer-events-none">Approve</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        class="inline-flex items-center gap-1 h-8 px-2.5 rounded-md bg-white border border-rose-200 text-rose-600 hover:bg-rose-50 text-xs font-semibold cursor-pointer transition-colors"
+                        data-action="verify-batal"
+                        data-id={d.id}
+                        title="Tolak / Batalkan Transaksi"
+                      >
+                        <span class="pointer-events-none">Tolak</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        class="h-8 w-8 rounded-md bg-blue-50 border border-blue-200 text-[#0969da] hover:bg-[#0969da] hover:text-white transition-colors inline-flex items-center justify-center cursor-pointer"
+                        data-action="edit"
+                        data-id={d.id}
+                        data-json={JSON.stringify({
+                          id: d.id,
+                          kodeTransaksi: d.kodeTransaksi,
+                          tanggalTransaksi: d.createdAt ? new Date(d.createdAt).toISOString().split('T')[0] : '',
+                          namaLengkap: d.donor?.namaLengkap || '',
+                          namaTampilan: d.donor?.namaTampilan || '',
+                          tipeDonatur: d.donor?.tipeDonatur || 'individu',
+                          noWhatsapp: d.donor?.noWhatsapp || '',
+                          email: d.donor?.email || '',
+                          kotaDomisili: d.donor?.kotaDomisili || '',
+                          programTujuan: d.programTujuan,
+                          akadPeruntukan: d.akadPeruntukan,
+                          nominal: d.nominal,
+                          kodeUnik: d.kodeUnik,
+                          atasNamaNiat: d.atasNamaNiat || '',
+                          doaDonatur: d.doaDonatur || '',
+                          sumberLeads: d.sumberLeads,
+                          campaignUtm: d.campaignUtm || '',
+                          metodePembayaran: d.metodePembayaran,
+                          statusPembayaran: d.statusPembayaran,
+                          buktiTransferUrl: d.buktiTransferUrl || '',
+                          catatanTransaksi: d.catatanTransaksi || '',
+                          labelIds: (d.donor?.labels || []).map((l: any) => l.id),
+                        })}
+                        title="Edit Transaksi"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none">
+                          <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+                          <path d="m15 5 4 4"></path>
+                        </svg>
+                      </button>
+
+                      <button
+                        type="button"
+                        class="h-8 w-8 rounded-md bg-red-50 border border-red-200 text-red-600 hover:bg-red-600 hover:text-white transition-colors inline-flex items-center justify-center cursor-pointer"
+                        data-action="delete"
+                        data-id={d.id}
+                        data-kode={d.kodeTransaksi}
+                        title="Hapus Transaksi"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    )}
+  </div>
+
+  <!-- Modal Konfirmasi Aksi Masal Transaksi -->
+  <div id="bulkTransaksiConfirmModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs hidden items-center justify-center p-4">
+    <div class="bg-white rounded-lg border border-slate-200 max-w-sm w-full p-5 shadow-xl flex flex-col space-y-4">
+      <div class="flex items-center gap-3">
+        <div id="bulkTransaksiModalIcon" class="w-10 h-10 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+            <path d="M12 9v4"></path>
+            <path d="M12 17h.01"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 id="bulkTransaksiModalTitle" class="text-sm font-bold text-slate-900 m-0">Konfirmasi Aksi Masal</h3>
+          <p class="text-xs text-slate-500 mt-0.5 mb-0">Periksa kembali transaksi yang dipilih.</p>
+        </div>
+      </div>
+      <p id="bulkTransaksiModalDesc" class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-200 m-0 leading-relaxed">
+        Apakah Anda yakin ingin memproses transaksi terpilih?
+      </p>
+      <div class="flex items-center justify-end gap-2 pt-1">
+        <button
+          type="button"
+          id="btnCancelBulkTransaksiModal"
+          class="h-8 px-3 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
+        >
+          Batal
+        </button>
+        <button
+          type="button"
+          id="btnExecuteBulkTransaksiModal"
+          class="h-8 px-3 rounded-md bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 transition-colors cursor-pointer shadow-2xs"
+        >
+          Ya, Lanjutkan
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,9 @@ const btnSubmitDonation = document.getElementById('btnSubmitDonation');
 // Search & Filter Elements
 const searchInput = document.getElementById('tableSearchInput') as HTMLInputElement | null;
 const filterStatus = document.getElementById('filterStatus') as HTMLSelectElement | null;
+const donaturDateStart = document.getElementById('donaturDateStart') as HTMLInputElement | null;
+const donaturDateEnd = document.getElementById('donaturDateEnd') as HTMLInputElement | null;
+const donaturPeriodPills = document.querySelectorAll('.donatur-period-pill') as NodeListOf<HTMLButtonElement>;
 const filterLeads = document.getElementById('filterLeads') as HTMLSelectElement | null;
 const filterProgram = document.getElementById('filterProgram') as HTMLSelectElement | null;
 const btnResetFilters = document.getElementById('btnResetFilters');
@@ -251,12 +254,70 @@ function formatRibuanInput(val: string): string {
   return new Intl.NumberFormat('id-ID').format(Number(raw));
 }
 
+function toLocalYmd(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
+function getPresetDateRange(period: string): { start: string; end: string } {
+  if (!period || period === 'all') return { start: '', end: '' };
+  const now = new Date();
+  const todayStr = toLocalYmd(now);
+  if (period === 'today') return { start: todayStr, end: todayStr };
+  if (period === 'week') {
+    const day = now.getDay();
+    const diffToMon = day === 0 ? 6 : day - 1;
+    const start = new Date(now.getFullYear(), now.getMonth(), now.getDate() - diffToMon);
+    return { start: toLocalYmd(start), end: todayStr };
+  }
+  if (period === 'month') {
+    return { start: toLocalYmd(new Date(now.getFullYear(), now.getMonth(), 1)), end: todayStr };
+  }
+  if (period === 'year') {
+    return { start: toLocalYmd(new Date(now.getFullYear(), 0, 1)), end: todayStr };
+  }
+  return { start: '', end: '' };
+}
+
+function setActivePeriodPill(pills: NodeListOf<HTMLButtonElement>, activePeriod: string) {
+  pills.forEach((btn) => {
+    const isActive = btn.dataset.period === activePeriod;
+    btn.classList.toggle('bg-[#0969da]', isActive);
+    btn.classList.toggle('text-white', isActive);
+    btn.classList.toggle('text-slate-600', !isActive);
+    btn.classList.toggle('hover:bg-white', !isActive);
+  });
+}
+
+function matchesDateRange(isoDateStr: string | null, startYmd: string, endYmd: string): boolean {
+  if (!startYmd && !endYmd) return true;
+  if (!isoDateStr) return false;
+  const dt = new Date(isoDateStr);
+  if (Number.isNaN(dt.getTime())) return false;
+
+  if (startYmd) {
+    const [sy, sm, sd] = startYmd.split('-').map(Number);
+    const startDt = new Date(sy, sm - 1, sd, 0, 0, 0, 0);
+    if (dt < startDt) return false;
+  }
+  if (endYmd) {
+    const [ey, em, ed] = endYmd.split('-').map(Number);
+    const endDt = new Date(ey, em - 1, ed, 23, 59, 59, 999);
+    if (dt > endDt) return false;
+  }
+  return true;
+}
+
 function applyFilters() {
   const q = (searchInput?.value || '').toLowerCase().trim();
   const st = filterStatus?.value || 'all';
   const ld = filterLeads?.value || 'all';
   const pg = filterProgram?.value || 'all';
   const fl = filterLabel?.value || 'all';
+  const startYmd = donaturDateStart?.value || '';
+  const endYmd = donaturDateEnd?.value || '';
 
   // Nominal Range Dinamis (Min & Max)
   const rawMin = (inputNominalMin?.value || '').replace(/\D/g, '');
@@ -283,7 +344,9 @@ function applyFilters() {
       labelMatch = rowLabels.includes(fl);
     }
 
-    if (searchMatch && statusMatch && leadMatch && progMatch && nominalMatch && labelMatch) {
+    const periodMatch = matchesDateRange(row.getAttribute('data-created'), startYmd, endYmd);
+
+    if (searchMatch && statusMatch && leadMatch && progMatch && nominalMatch && labelMatch && periodMatch) {
       donationsMatchedRows.push(row);
     } else {
       const cb = row.querySelector('.row-checkbox') as HTMLInputElement | null;
@@ -314,6 +377,23 @@ donationsPerPageSelect?.addEventListener('change', () => {
 
 searchInput?.addEventListener('input', applyFilters);
 filterStatus?.addEventListener('change', applyFilters);
+donaturPeriodPills.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const period = btn.dataset.period || 'all';
+    const range = getPresetDateRange(period);
+    if (donaturDateStart) donaturDateStart.value = range.start;
+    if (donaturDateEnd) donaturDateEnd.value = range.end;
+    setActivePeriodPill(donaturPeriodPills, period);
+    applyFilters();
+  });
+});
+[donaturDateStart, donaturDateEnd].forEach((inp) => {
+  inp?.addEventListener('change', () => {
+    const hasCustom = Boolean(donaturDateStart?.value || donaturDateEnd?.value);
+    setActivePeriodPill(donaturPeriodPills, hasCustom ? '' : 'all');
+    applyFilters();
+  });
+});
 filterLeads?.addEventListener('change', applyFilters);
 filterProgram?.addEventListener('change', applyFilters);
 filterLabel?.addEventListener('change', applyFilters);
@@ -360,6 +440,9 @@ filterNominal?.addEventListener('change', () => {
 btnResetFilters?.addEventListener('click', () => {
   if (searchInput) searchInput.value = '';
   if (filterStatus) filterStatus.value = 'all';
+  if (donaturDateStart) donaturDateStart.value = '';
+  if (donaturDateEnd) donaturDateEnd.value = '';
+  setActivePeriodPill(donaturPeriodPills, 'all');
   if (filterLeads) filterLeads.value = 'all';
   if (filterProgram) filterProgram.value = 'all';
   if (filterNominal) filterNominal.value = 'all';
@@ -586,19 +669,26 @@ document.addEventListener('click', async (e) => {
     } catch (err: any) {
       alert('Gagal memuat data donasi: ' + err.message);
     }
-  } else if (action === 'verify-lunas' || action === 'verify-pending') {
+  } else if (action === 'verify-lunas' || action === 'verify-pending' || action === 'verify-batal') {
     const isLunas = action === 'verify-lunas';
+    const isBatal = action === 'verify-batal';
     pendingVerifyId = Number(donationId);
-    pendingVerifyStatus = isLunas ? 'lunas' : 'menunggu_verifikasi';
+    pendingVerifyStatus = isLunas ? 'lunas' : isBatal ? 'dibatalkan' : 'menunggu_verifikasi';
     pendingVerifyActionEl = actionEl;
 
     if (verifyModalTitle) {
-      verifyModalTitle.textContent = isLunas ? 'Verifikasi Donasi Lunas?' : 'Kembalikan ke Status Pending?';
+      verifyModalTitle.textContent = isLunas
+        ? 'Approve & Verifikasi Donasi Lunas?'
+        : isBatal
+          ? 'Tolak / Batalkan Transaksi?'
+          : 'Kembalikan ke Status Pending?';
     }
     if (verifyModalDesc) {
       verifyModalDesc.textContent = isLunas
-        ? 'Tandai transaksi ini sebagai LUNAS dan akumulasikan total dana pada data donatur.'
-        : 'Kembalikan status transaksi donasi ini menjadi MENUNGGU VERIFIKASI.';
+        ? 'Tandai transaksi ini sebagai LUNAS agar otomatis masuk ke Data Donatur dan halaman publik.'
+        : isBatal
+          ? 'Tandai transaksi ini sebagai DIBATALKAN dan keluarkan dari daftar menunggu verifikasi.'
+          : 'Kembalikan status transaksi donasi ini menjadi MENUNGGU VERIFIKASI.';
     }
     verifyConfirmModal?.classList.remove('hidden');
     verifyConfirmModal?.classList.add('flex');
@@ -841,51 +931,45 @@ proofModal?.addEventListener('click', (e) => {
 // TAB NAVIGATION & SWITCHING
 // ==========================================
 const tabBtnDonatur = document.getElementById('tabBtnDonatur');
+const tabBtnTransaksi = document.getElementById('tabBtnTransaksi');
 const tabBtnAlokasi = document.getElementById('tabBtnAlokasi');
 const tabContentDonatur = document.getElementById('tabContentDonatur');
+const tabContentTransaksi = document.getElementById('tabContentTransaksi');
 const tabContentAlokasi = document.getElementById('tabContentAlokasi');
 const btnOpenCreateAlokasiHeader = document.getElementById('btnOpenCreateAlokasiHeader');
 
-function switchTab(activeTab: 'donatur' | 'alokasi', updateUrl = true) {
-  if (activeTab === 'donatur') {
-    tabContentDonatur?.classList.remove('hidden');
-    tabContentAlokasi?.classList.add('hidden');
+function switchTab(activeTab: 'donatur' | 'transaksi' | 'alokasi', updateUrl = true) {
+  const tabs: Array<{
+    key: 'donatur' | 'transaksi' | 'alokasi';
+    btn: HTMLElement | null;
+    content: HTMLElement | null;
+  }> = [
+    { key: 'donatur', btn: tabBtnDonatur, content: tabContentDonatur },
+    { key: 'transaksi', btn: tabBtnTransaksi, content: tabContentTransaksi },
+    { key: 'alokasi', btn: tabBtnAlokasi, content: tabContentAlokasi },
+  ];
 
-    tabBtnDonatur?.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
-    tabBtnDonatur?.classList.remove('border-transparent', 'text-slate-500');
-
-    tabBtnAlokasi?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
-    tabBtnAlokasi?.classList.add('border-transparent', 'text-slate-500');
-
-    if (updateUrl) {
-      try {
-        const url = new URL(window.location.href);
-        url.searchParams.set('tab', 'donatur');
-        url.hash = 'tab=donatur';
-        window.history.replaceState(null, '', url.pathname + url.search + url.hash);
-      } catch (e) {}
+  tabs.forEach(({ key, btn, content }) => {
+    const isActive = key === activeTab;
+    content?.classList.toggle('hidden', !isActive);
+    if (isActive) {
+      btn?.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+      btn?.classList.remove('border-transparent', 'text-slate-500');
+    } else {
+      btn?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
+      btn?.classList.add('border-transparent', 'text-slate-500');
     }
-    try { localStorage.setItem('gvf_admin_donatur_active_tab', 'donatur'); } catch (e) {}
-  } else {
-    tabContentDonatur?.classList.add('hidden');
-    tabContentAlokasi?.classList.remove('hidden');
+  });
 
-    tabBtnAlokasi?.classList.add('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
-    tabBtnAlokasi?.classList.remove('border-transparent', 'text-slate-500');
-
-    tabBtnDonatur?.classList.remove('border-[#0969da]', 'text-[#0969da]', 'bg-blue-50/50');
-    tabBtnDonatur?.classList.add('border-transparent', 'text-slate-500');
-
-    if (updateUrl) {
-      try {
-        const url = new URL(window.location.href);
-        url.searchParams.set('tab', 'alokasi');
-        url.hash = 'tab=alokasi';
-        window.history.replaceState(null, '', url.pathname + url.search + url.hash);
-      } catch (e) {}
-    }
-    try { localStorage.setItem('gvf_admin_donatur_active_tab', 'alokasi'); } catch (e) {}
+  if (updateUrl) {
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', activeTab);
+      url.hash = `tab=${activeTab}`;
+      window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+    } catch (e) {}
   }
+  try { localStorage.setItem('gvf_admin_donatur_active_tab', activeTab); } catch (e) {}
 }
 
 function reloadToAlokasiTab() {
@@ -904,8 +988,200 @@ function reloadToDonaturTab() {
   window.location.href = url.pathname + url.search + url.hash;
 }
 
+function reloadToTransaksiTab() {
+  try { localStorage.setItem('gvf_admin_donatur_active_tab', 'transaksi'); } catch (e) {}
+  const url = new URL(window.location.href);
+  url.searchParams.set('tab', 'transaksi');
+  url.hash = 'tab=transaksi';
+  window.location.href = url.pathname + url.search + url.hash;
+}
+
 tabBtnDonatur?.addEventListener('click', () => switchTab('donatur'));
+tabBtnTransaksi?.addEventListener('click', () => switchTab('transaksi'));
 tabBtnAlokasi?.addEventListener('click', () => switchTab('alokasi'));
+
+// Search filter, calendar date range, manual CRUD & bulk selection for Transaksi Masuk tab
+const transaksiSearchInput = document.getElementById('transaksiSearchInput') as HTMLInputElement | null;
+const transaksiDateStart = document.getElementById('transaksiDateStart') as HTMLInputElement | null;
+const transaksiDateEnd = document.getElementById('transaksiDateEnd') as HTMLInputElement | null;
+const transaksiPeriodPills = document.querySelectorAll('.transaksi-period-pill') as NodeListOf<HTMLButtonElement>;
+const btnOpenCreateTransaksi = document.getElementById('btnOpenCreateTransaksi');
+const transaksiVisibleCount = document.getElementById('transaksiVisibleCount');
+const transaksiCheckAll = document.getElementById('transaksiCheckAll') as HTMLInputElement | null;
+const transaksiBulkBar = document.getElementById('transaksiBulkBar');
+const transaksiSelectedCount = document.getElementById('transaksiSelectedCount');
+const btnBulkRejectTransaksi = document.getElementById('btnBulkRejectTransaksi') as HTMLButtonElement | null;
+const btnBulkDeleteTransaksi = document.getElementById('btnBulkDeleteTransaksi') as HTMLButtonElement | null;
+
+btnOpenCreateTransaksi?.addEventListener('click', () => {
+  resetDonationForm();
+  const statusSelect = document.getElementById('inputStatusPembayaran') as HTMLSelectElement | null;
+  if (statusSelect) statusSelect.value = 'menunggu_verifikasi';
+  openDrawer();
+});
+
+function syncTransaksiSelection() {
+  const checkedBoxes = Array.from(document.querySelectorAll('.transaksi-row-check:checked')) as HTMLInputElement[];
+  const visibleBoxes = Array.from(document.querySelectorAll('.transaksi-row:not(.hidden) .transaksi-row-check')) as HTMLInputElement[];
+  const count = checkedBoxes.length;
+
+  if (transaksiSelectedCount) transaksiSelectedCount.textContent = String(count);
+  if (transaksiBulkBar) {
+    transaksiBulkBar.classList.toggle('hidden', count === 0);
+    transaksiBulkBar.classList.toggle('flex', count > 0);
+  }
+  if (transaksiCheckAll) {
+    transaksiCheckAll.checked = visibleBoxes.length > 0 && visibleBoxes.every((cb) => cb.checked);
+    transaksiCheckAll.indeterminate = count > 0 && !transaksiCheckAll.checked;
+  }
+}
+
+function applyTransaksiFilters() {
+  const q = (transaksiSearchInput?.value || '').trim().toLowerCase();
+  const startYmd = transaksiDateStart?.value || '';
+  const endYmd = transaksiDateEnd?.value || '';
+  let visible = 0;
+  document.querySelectorAll('.transaksi-row').forEach((row) => {
+    const searchStr = row.getAttribute('data-search') || '';
+    const searchMatch = !q || searchStr.includes(q);
+    const periodMatch = matchesDateRange(row.getAttribute('data-created'), startYmd, endYmd);
+    const match = searchMatch && periodMatch;
+    row.classList.toggle('hidden', !match);
+    if (!match) {
+      const cb = row.querySelector('.transaksi-row-check') as HTMLInputElement | null;
+      if (cb) cb.checked = false;
+    } else {
+      visible += 1;
+    }
+  });
+  if (transaksiVisibleCount) transaksiVisibleCount.textContent = String(visible);
+  syncTransaksiSelection();
+}
+
+transaksiSearchInput?.addEventListener('input', applyTransaksiFilters);
+transaksiPeriodPills.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const period = btn.dataset.period || 'all';
+    const range = getPresetDateRange(period);
+    if (transaksiDateStart) transaksiDateStart.value = range.start;
+    if (transaksiDateEnd) transaksiDateEnd.value = range.end;
+    setActivePeriodPill(transaksiPeriodPills, period);
+    applyTransaksiFilters();
+  });
+});
+[transaksiDateStart, transaksiDateEnd].forEach((inp) => {
+  inp?.addEventListener('change', () => {
+    const hasCustom = Boolean(transaksiDateStart?.value || transaksiDateEnd?.value);
+    setActivePeriodPill(transaksiPeriodPills, hasCustom ? '' : 'all');
+    applyTransaksiFilters();
+  });
+});
+
+transaksiCheckAll?.addEventListener('change', () => {
+  const checked = transaksiCheckAll.checked;
+  document.querySelectorAll('.transaksi-row:not(.hidden) .transaksi-row-check').forEach((el) => {
+    (el as HTMLInputElement).checked = checked;
+  });
+  syncTransaksiSelection();
+});
+
+document.addEventListener('change', (e) => {
+  const target = e.target as HTMLElement;
+  if (target.classList.contains('transaksi-row-check')) {
+    syncTransaksiSelection();
+  }
+});
+
+const bulkTransaksiConfirmModal = document.getElementById('bulkTransaksiConfirmModal');
+const bulkTransaksiModalIcon = document.getElementById('bulkTransaksiModalIcon');
+const bulkTransaksiModalTitle = document.getElementById('bulkTransaksiModalTitle');
+const bulkTransaksiModalDesc = document.getElementById('bulkTransaksiModalDesc');
+const btnCancelBulkTransaksiModal = document.getElementById('btnCancelBulkTransaksiModal');
+const btnExecuteBulkTransaksiModal = document.getElementById('btnExecuteBulkTransaksiModal') as HTMLButtonElement | null;
+
+let pendingBulkTransaksiAction: 'reject' | 'delete' | null = null;
+let pendingBulkTransaksiIds: number[] = [];
+
+function openBulkTransaksiModal(action: 'reject' | 'delete') {
+  const ids = Array.from(document.querySelectorAll('.transaksi-row-check:checked'))
+    .map((el) => Number((el as HTMLInputElement).value))
+    .filter((n) => Number.isInteger(n) && n > 0);
+  if (ids.length === 0) return;
+
+  pendingBulkTransaksiAction = action;
+  pendingBulkTransaksiIds = ids;
+
+  if (bulkTransaksiModalTitle) {
+    bulkTransaksiModalTitle.textContent =
+      action === 'reject'
+        ? `Tolak ${ids.length} Transaksi Terpilih?`
+        : `Hapus Permanen ${ids.length} Transaksi?`;
+  }
+  if (bulkTransaksiModalDesc) {
+    bulkTransaksiModalDesc.textContent =
+      action === 'reject'
+        ? `${ids.length} transaksi terpilih akan ditandai sebagai DIBATALKAN dan dikeluarkan dari daftar menunggu approve.`
+        : `${ids.length} transaksi terpilih akan dihapus permanen dari database. Tindakan ini tidak bisa dibatalkan.`;
+  }
+  if (bulkTransaksiModalIcon) {
+    bulkTransaksiModalIcon.className =
+      action === 'reject'
+        ? 'w-10 h-10 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center shrink-0'
+        : 'w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0';
+  }
+  if (btnExecuteBulkTransaksiModal) {
+    btnExecuteBulkTransaksiModal.className =
+      action === 'reject'
+        ? 'h-8 px-3 rounded-md bg-amber-600 text-white text-xs font-semibold hover:bg-amber-700 transition-colors cursor-pointer shadow-2xs'
+        : 'h-8 px-3 rounded-md bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 transition-colors cursor-pointer shadow-2xs';
+    btnExecuteBulkTransaksiModal.textContent = action === 'reject' ? 'Ya, Tolak Terpilih' : 'Ya, Hapus Masal';
+  }
+
+  bulkTransaksiConfirmModal?.classList.remove('hidden');
+  bulkTransaksiConfirmModal?.classList.add('flex');
+}
+
+btnCancelBulkTransaksiModal?.addEventListener('click', () => {
+  bulkTransaksiConfirmModal?.classList.add('hidden');
+  bulkTransaksiConfirmModal?.classList.remove('flex');
+  pendingBulkTransaksiAction = null;
+  pendingBulkTransaksiIds = [];
+});
+
+btnExecuteBulkTransaksiModal?.addEventListener('click', async () => {
+  if (!pendingBulkTransaksiAction || pendingBulkTransaksiIds.length === 0) return;
+  const action = pendingBulkTransaksiAction;
+  const ids = [...pendingBulkTransaksiIds];
+
+  btnExecuteBulkTransaksiModal.disabled = true;
+  btnExecuteBulkTransaksiModal.textContent = 'Memproses...';
+  if (btnBulkRejectTransaksi) btnBulkRejectTransaksi.disabled = true;
+  if (btnBulkDeleteTransaksi) btnBulkDeleteTransaksi.disabled = true;
+
+  try {
+    const res = await fetch('/api/admin/donatur/bulk-action', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ids, action }),
+    });
+    const data = await res.json().catch(() => ({ success: false, error: 'Respon server tidak valid' }));
+    if (!res.ok || !data.success) {
+      throw new Error(data.error || 'Gagal menjalankan aksi masal');
+    }
+    reloadToTransaksiTab();
+  } catch (err: any) {
+    alert(`Gagal: ${err.message}`);
+    btnExecuteBulkTransaksiModal.disabled = false;
+    btnExecuteBulkTransaksiModal.textContent = action === 'reject' ? 'Ya, Tolak Terpilih' : 'Ya, Hapus Masal';
+    if (btnBulkRejectTransaksi) btnBulkRejectTransaksi.disabled = false;
+    if (btnBulkDeleteTransaksi) btnBulkDeleteTransaksi.disabled = false;
+    bulkTransaksiConfirmModal?.classList.add('hidden');
+    bulkTransaksiConfirmModal?.classList.remove('flex');
+  }
+});
+
+btnBulkRejectTransaksi?.addEventListener('click', () => openBulkTransaksiModal('reject'));
+btnBulkDeleteTransaksi?.addEventListener('click', () => openBulkTransaksiModal('delete'));
 
 // Header quick button
 btnOpenCreateAlokasiHeader?.addEventListener('click', () => {
@@ -925,6 +1201,8 @@ const donaturHash = window.location.hash;
 
 if (donaturUrlParams.get('tab') === 'alokasi' || donaturHash.includes('alokasi') || (!donaturUrlParams.has('tab') && savedDonaturTab === 'alokasi')) {
   switchTab('alokasi', false);
+} else if (donaturUrlParams.get('tab') === 'transaksi' || donaturHash.includes('transaksi') || (!donaturUrlParams.has('tab') && savedDonaturTab === 'transaksi')) {
+  switchTab('transaksi', false);
 } else {
   switchTab('donatur', false);
 }

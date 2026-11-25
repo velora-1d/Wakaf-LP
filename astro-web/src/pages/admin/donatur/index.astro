@@ -12,6 +12,7 @@ import {
 } from '../../../lib/db';
 
 import DonationsTable from '../../../components/admin/donatur/DonationsTable.astro';
+import TransactionsTab from '../../../components/admin/donatur/TransactionsTab.astro';
 import AllocationsTab from '../../../components/admin/donatur/AllocationsTab.astro';
 import AllocationModal from '../../../components/admin/donatur/AllocationModal.astro';
 import DonationFormModal from '../../../components/admin/donatur/DonationFormModal.astro';
@@ -19,6 +20,8 @@ import LabelManagementModal from '../../../components/admin/donatur/LabelManagem
 import DonorDetailDrawer from '../../../components/admin/donatur/DonorDetailDrawer.astro';
 
 const donations = await getAllDonationsWithDonors();
+const pendingDonations = donations.filter((d) => d.statusPembayaran === 'menunggu_verifikasi');
+const verifiedDonations = donations.filter((d) => d.statusPembayaran !== 'menunggu_verifikasi');
 const metrics = await getDonationDashboardMetrics();
 const allocations = await getAllCashAllocations();
 const allocMetrics = await getCashAllocationMetrics();
@@ -26,6 +29,7 @@ const allLabels = await getAllLabels();
 
 const activeTabParam = Astro.url.searchParams.get('tab');
 const isAlokasiTab = activeTabParam === 'alokasi';
+const isTransaksiTab = activeTabParam === 'transaksi';
 
 const labelColorMap: Record<string, { bg: string; text: string; border: string }> = {
   blue: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
@@ -67,6 +71,7 @@ const leadsMap: Record<string, { label: string; bg: string; text: string; border
   brosur_event: { label: 'Brosur & Event', bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200' },
   relasi_langsung: { label: 'Relasi Langsung', bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
   walk_in: { label: 'Walk-in', bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-200' },
+  website_checkout: { label: 'Checkout Website', bg: 'bg-blue-50', text: 'text-[#0969da]', border: 'border-blue-200' },
 };
 
 const programMap: Record<string, string> = {
@@ -161,12 +166,12 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
     </div>
 
     <!-- Tab Navigation (Shadcn Tabs List) -->
-    <div class="flex items-center gap-1 border-b border-slate-200 pb-px">
+    <div class="flex items-center gap-1 border-b border-slate-200 pb-px overflow-x-auto">
       <button
         type="button"
         id="tabBtnDonatur"
-        class={`tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-t-lg transition-all cursor-pointer ${
-          !isAlokasiTab
+        class={`tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-t-lg transition-all cursor-pointer whitespace-nowrap ${
+          !isAlokasiTab && !isTransaksiTab
             ? 'border-b-2 border-[#0969da] text-[#0969da] bg-blue-50/50'
             : 'border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
         }`}
@@ -179,14 +184,35 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
         </svg>
         <span>Data Donatur &amp; Penerimaan</span>
         <span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-blue-100 text-[#0969da]">
-          {donations.length}
+          {verifiedDonations.length}
+        </span>
+      </button>
+
+      <button
+        type="button"
+        id="tabBtnTransaksi"
+        class={`tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-t-lg transition-all cursor-pointer whitespace-nowrap ${
+          isTransaksiTab
+            ? 'border-b-2 border-[#0969da] text-[#0969da] bg-blue-50/50'
+            : 'border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+        }`}
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        <span>Transaksi Masuk (Approve)</span>
+        <span class={`inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold ${
+          pendingDonations.length > 0 ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-600'
+        }`}>
+          {pendingDonations.length}
         </span>
       </button>
 
       <button
         type="button"
         id="tabBtnAlokasi"
-        class={`tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-t-lg transition-all cursor-pointer ${
+        class={`tab-btn inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-t-lg transition-all cursor-pointer whitespace-nowrap ${
           isAlokasiTab
             ? 'border-b-2 border-[#0969da] text-[#0969da] bg-blue-50/50'
             : 'border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
@@ -205,7 +231,7 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
 
     <!-- TAB 1: RIWAYAT DONATUR & PENERIMAAN -->
     <DonationsTable
-      donations={donations}
+      donations={verifiedDonations}
       metrics={metrics}
       allLabels={allLabels}
       leadsMap={leadsMap}
@@ -213,7 +239,17 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
       labelColorMap={labelColorMap}
       formatRupiah={formatRupiah}
       formatDate={formatDate}
-      isAlokasiTab={isAlokasiTab}
+      isAlokasiTab={isAlokasiTab || isTransaksiTab}
+    />
+
+    <!-- TAB 2: TRANSAKSI MASUK (MENUNGGU APPROVE) -->
+    <TransactionsTab
+      pendingDonations={pendingDonations}
+      leadsMap={leadsMap}
+      programMap={programMap}
+      formatRupiah={formatRupiah}
+      formatDate={formatDate}
+      isTransaksiTab={isTransaksiTab}
     />
 
     <!-- TAB 2: REALISASI ALOKASI KAS (DEBIT • KREDIT • SALDO) -->
