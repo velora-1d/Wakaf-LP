@@ -7,12 +7,12 @@ import type { ProgramData } from '../../data/programs';
 
 interface Props {
   program: ProgramData;
+  content?: Record<string, any>;
 }
 
-const { program } = Astro.props;
+const { program, content } = Astro.props;
 
-// 4 Material Fisik Riil dengan foto lapangan & detail dampak langsung
-const materials = [
+const defaultMaterials = [
   {
     id: 'semen',
     number: '01',
@@ -62,18 +62,39 @@ const materials = [
     captionDesc: '1 titik kran wudhu melayani ratusan basuhan air suci jamaah setiap waktu salat.'
   }
 ];
+
+const materials = Array.isArray(content?.materials) && content.materials.length > 0
+  ? content.materials
+  : defaultMaterials;
+const sectionHeading = content?.heading || 'Wujudkan Bangunan Fisik Lewat Material Nyata';
+const sectionDesc = content?.subheading || 'Bukan sekadar angka di atas kertas. Setiap rupiah infaq Anda dikonversikan langsung menjadi sak semen, pasir cor, dan bata roster yang terpasang nyata pada Pembangunan Masjid Khairu Ummah di Sukasirna, Jonggol.';
 ---
 
 <section class="gvf-feature-material-section" id="gotong-royong-material">
   <div class="gvf-container">
+    <!-- Banner Jembatan ke Program Pembangunan Masjid -->
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; background: #ffffff; border: 1px solid #dbeafe; border-radius: 16px; padding: 16px 24px; margin-bottom: 36px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="display: inline-block; padding: 4px 10px; border-radius: 9999px; background: #eff6ff; color: #0969da; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+          Terhubung Program Unggulan
+        </span>
+        <span style="font-size: 14px; font-weight: 600; color: #0f172a;">
+          Katalog Material Pembangunan Masjid Khairu Ummah Sugro
+        </span>
+      </div>
+      <a href="/program/pembangunan-masjid" style="font-size: 13px; font-weight: 700; color: #0969da; text-decoration: none;">
+        Lihat Progres Pembangunan Masjid &rarr;
+      </a>
+    </div>
+
     <!-- Header Split 2-Kolom Baku -->
     <div class="gvf-section-header">
       <div class="header-right-col">
         <h2 class="gvf-main-title">
-          Wujudkan Bangunan Fisik Lewat <span class="title-accent">Material Nyata</span>
+          {sectionHeading}
         </h2>
         <p class="gvf-main-desc">
-          Bukan sekadar angka di atas kertas. Setiap rupiah infaq Anda dikonversikan langsung menjadi sak semen, pasir cor, dan bata roster yang terpasang nyata di kawasan Sukasirna, Jonggol, Kabupaten Bogor.
+          {sectionDesc}
         </p>
       </div>
     </div>

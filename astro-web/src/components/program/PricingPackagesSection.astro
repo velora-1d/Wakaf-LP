@@ -3,7 +3,7 @@
 // Komponen Pilihan Paket Program GVF & Live Donatur Feed Terintegrasi DB PostgreSQL
 // Menggunakan Vanilla Scoped CSS murni untuk menjamin render 100% akurat dan responsif
 import type { ProgramData, PricingPackage, DeliverableItem } from '../../data/programs';
-import { getVerifiedDonationsByProgram, getProgramPackages } from '../../lib/db';
+import { getVerifiedDonationsByProgram, getProgramPackages, getVerifiedDonationSum } from '../../lib/db';
 
 interface Props {
   program: ProgramData;
@@ -24,9 +24,13 @@ const packages = rawPackages.map((pkg: PricingPackage) => ({
   isPopular: false,
 }));
 
-// Ambil riwayat donatur terverifikasi (lunas) real-time untuk program ini (hingga 100 donatur)
-const verifiedDonations = await getVerifiedDonationsByProgram(program.slug, 100);
-const totalTerhimpun = verifiedDonations.reduce((acc, cur) => acc + (cur.nominalTotal || 0), 0);
+// Ambil riwayat donatur terverifikasi (lunas) real-time dan agregasi SQL SUM tanpa batas limit
+const [verifiedDonations, programSummary] = await Promise.all([
+  getVerifiedDonationsByProgram(program.slug, 100),
+  getVerifiedDonationSum([program.slug]),
+]);
+const totalTerhimpun = programSummary.totalNominal;
+const totalTransaksi = programSummary.totalTransaksi;
 
 // Penomoran resmi murni angka tanpa simbol pagar
 const numberedDonations = verifiedDonations.map((item, idx) => ({
@@ -129,13 +133,6 @@ function formatRelativeDate(date: Date | string): string {
     <!-- DAFTAR DONATUR & MUHSININ TERKINI (LIVE VERIFIED FEED) -->
     <div class="donatur-feed-section" id="daftar-donatur">
       <div class="donatur-section-header">
-        <div class="live-status-pill">
-          <span class="pulse-dot-wrap">
-            <span class="pulse-dot-ping"></span>
-            <span class="pulse-dot-core"></span>
-          </span>
-          <span class="live-pill-text">TRANSAKSI TERVERIFIKASI REAL-TIME</span>
-        </div>
         <h3 class="donatur-section-title">
           Daftar Muhsinin &amp; Donatur Terkini
         </h3>
@@ -170,7 +167,7 @@ function formatRelativeDate(date: Date | string): string {
           </div>
           <div class="metric-chip-content">
             <span class="chip-label">Muhsinin Terdaftar</span>
-            <span class="chip-val">{verifiedDonations.length} Transaksi Lunas</span>
+            <span class="chip-val">{totalTransaksi} Transaksi Lunas</span>
           </div>
         </div>
 
@@ -191,12 +188,12 @@ function formatRelativeDate(date: Date | string): string {
       <!-- Donors Search Toolbar & Counter -->
       <div class="donor-toolbar">
         <div class="donor-counter-badge">
-          <span class="count-total">{verifiedDonations.length}</span>
+          <span class="count-total">{totalTransaksi}</span>
           <span>Transaksi Lunas Terverifikasi</span>
         </div>
 
         <a href={`/donatur?program=${program.slug}`} class="btn-goto-all-donors">
-          <span>Lihat Semua Donatur ({verifiedDonations.length} Transaksi)</span>
+          <span>Lihat Semua Donatur ({totalTransaksi} Transaksi)</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
@@ -267,9 +264,9 @@ function formatRelativeDate(date: Date | string): string {
 
             <!-- Table Bottom Bar -->
             <div class="table-bottom-bar">
-              <span class="table-bottom-hint">Menampilkan {previewDonations.length} dari {verifiedDonations.length} transaksi terkini</span>
+              <span class="table-bottom-hint">Menampilkan {previewDonations.length} dari {totalTransaksi} transaksi terkini</span>
               <a href={`/donatur?program=${program.slug}`} class="btn-more-donors-link">
-                <span>Buka Seluruh Daftar Donatur ({verifiedDonations.length})</span>
+                <span>Buka Seluruh Daftar Donatur ({totalTransaksi})</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -451,12 +448,9 @@ function formatRelativeDate(date: Date | string): string {
   .card-estimation-pill {
     display: inline-block;
     font-family: 'Golos Text', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 600;
     color: #0752a8;
-    background-color: rgba(9, 105, 218, 0.12);
-    padding: 4px 14px;
-    border-radius: 9999px;
     margin-top: 4px;
   }
 

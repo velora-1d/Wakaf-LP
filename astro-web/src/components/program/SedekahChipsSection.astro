@@ -5,53 +5,75 @@ import type { ProgramData } from '../../data/programs';
 
 interface Props {
   program: ProgramData;
+  content?: Record<string, any>;
 }
 
-const { program } = Astro.props;
+const { program, content } = Astro.props;
 
-// Paket Partisipasi Konsumsi Sehat & Nutrisi Santri Vokasi
-const foodPackages = [
+const defaultFoodPackages = [
   {
     id: 'porsi-sehat',
-    name: '1 Porsi Nutrisi Sehat',
+    name: '1 Porsi Nutrisi Sehat Santri',
     unitPrice: 15000,
     unitLabel: 'porsi',
-    desc: 'Asupan makan bernutrisi seimbang (karbohidrat, lauk protein nabati & hewani, sayur segar) untuk 1 sesi makan santri vokasi.'
+    desc: 'Asupan makan bernutrisi seimbang (karbohidrat, lauk protein nabati & hewani, sayur segar) untuk 1 sesi makan santri GOTA SSM.'
   },
   {
     id: 'harian-santri',
-    name: '1 Hari Konsumsi Lengkap',
+    name: '1 Hari Konsumsi Lengkap GOTA',
     unitPrice: 45000,
     unitLabel: 'hari / santri',
     desc: 'Menjamin 3 kali makan sehat (sarapan, makan siang, makan malam) penunjang stamina belajar teori dan praktik bengkel/kebun.'
   },
   {
     id: 'beras-10kg',
-    name: '1 Sak Beras Logistik (10 kg)',
+    name: '1 Sak Beras Logistik Asrama (10 kg)',
     unitPrice: 150000,
     unitLabel: 'sak 10kg',
-    desc: 'Pengadaan beras putih pulen berkualitas untuk cadangan dapur asrama santri vokasi selama sepekan.'
+    desc: 'Pengadaan beras putih pulen berkualitas untuk cadangan dapur asrama santri binaan GOTA SSM selama sepekan.'
   },
   {
-    id: 'beras-25kg',
-    name: '1 Karung Beras Premium (25 kg)',
-    unitPrice: 375000,
-    unitLabel: 'karung 25kg',
-    desc: 'Stok logistik beras utama untuk ketahanan pangan asrama puluhan santri vokasi di Sukasirna Jonggol.'
+    id: 'orang-tua-asuh-bulanan',
+    name: 'Paket Orang Tua Asuh Bulanan',
+    unitPrice: 300000,
+    unitLabel: 'bulan',
+    desc: 'Kontribusi rutin bulanan untuk menunjang pangan, perlengkapan belajar, dan pembinaan karakter santri yatim & dhuafa.'
   }
 ];
+
+const foodPackages = Array.isArray(content?.packages) && content.packages.length > 0
+  ? content.packages
+  : defaultFoodPackages;
+const gotaBadge = content?.badge || 'TERHUBUNG DENGAN PROGRAM GOTA SSM • AMALAN RUTIN BERKAH';
+const gotaHeading = content?.heading || 'Dukungan Sedekah untuk Santri GOTA SSM';
+const gotaDesc = content?.subheading || 'Santri di SMK Skill Village menempuh jadwal padat: pembinaan adab FAST, tahfidz, hingga praktik teknologi industri dan agrobisnis. Sedekah Anda menopang ketahanan pangan dan pembinaan GOTA SSM setiap hari.';
 ---
 
-<section class="sedekah-chips-section" id="dukungan-dapur-santri">
+<section class="sedekah-chips-section" id="dukungan-gota-ssm">
   <div class="sedekah-container">
+    <!-- Banner Jembatan ke Program GOTA SSM -->
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; background: #f8fafc; border: 1px solid #dbeafe; border-radius: 16px; padding: 14px 22px; margin-bottom: 32px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="display: inline-block; padding: 4px 10px; border-radius: 9999px; background: #eff6ff; color: #0969da; font-size: 11px; font-weight: 700; text-transform: uppercase;">
+          Program Terkait
+        </span>
+        <span style="font-size: 14px; font-weight: 600; color: #0f172a;">
+          Gerakan Orang Tua Asuh Santri Skill Village Islamic School (GOTA SSM)
+        </span>
+      </div>
+      <a href="/program/gota-ssm" style="font-size: 13px; font-weight: 700; color: #0969da; text-decoration: none;">
+        Pelajari Program GOTA SSM &rarr;
+      </a>
+    </div>
+
     <!-- Header -->
     <div class="sedekah-header text-center">
-      <span class="sedekah-eyebrow">KETAHANAN PANGAN PESANTREN • AMALAN RUTIN BERKAH</span>
+      <span class="sedekah-eyebrow">{gotaBadge}</span>
       <h2 class="sedekah-title">
-        Dukungan Konsumsi Sehat <span class="sedekah-accent">Santri Vokasi</span>
+        {gotaHeading}
       </h2>
       <p class="sedekah-desc">
-        Santri di SMK Skill Village menempuh jadwal padat: pembinaan adab FAST, penguasaan syariah, hingga praktik teknologi industri dan agrobisnis. Sedekah pangan Anda memastikan asupan gizi mereka terpenuhi setiap hari.
+        {gotaDesc}
       </p>
     </div>
 

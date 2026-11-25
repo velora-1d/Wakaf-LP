@@ -6,15 +6,85 @@ import type { ProgramData } from '../../data/programs';
 
 interface Props {
   program: ProgramData;
+  content?: Record<string, any>;
 }
 
-const { program } = Astro.props;
+const { program, content } = Astro.props;
 
 const PRICE_PER_METER = 150000; // Rp 150.000 / m²
+
+const defaultWakafObjects = [
+  {
+    id: 'wakaf-masjid',
+    title: 'Masjid Khairu Ummah Sugro',
+    location: 'Zona Ibadah Kawasan Sukasirna, Jonggol',
+    allocation: 'Pembangunan ruang shalat utama, mezanin tahfidz, dan area eco-wudhu berkapasitas 500 jamaah.',
+    status: 'Dalam Pembangunan (68%)',
+    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/pelataran-depan-masjid.webp',
+  },
+  {
+    id: 'wakaf-tanah',
+    title: 'Pembebasan Lahan Kawasan Terpadu',
+    location: 'Desa Sukasirna, Kec. Jonggol (±3 Hektare)',
+    allocation: 'Tapak permanen sarana pendidikan SMK Skill Village, asrama santri, dan ruang terbuka hijau.',
+    status: 'Terbuka Rp 150.000 / m²',
+    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/drone-lahan-perkebunan.webp',
+  },
+  {
+    id: 'wakaf-asrama',
+    title: 'Asrama & Studio Vokasi Santri',
+    location: 'Zona Pendidikan Skill Village Islamic School',
+    allocation: 'Penyediaan ruang belajar kejuruan teknologi, asrama mukim santri, dan perpustakaan literasi.',
+    status: 'Pengembangan Berkelanjutan',
+    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/asrama-putra-baru/dalam-asrama-ikhwan-baru.jpeg',
+  },
+  {
+    id: 'wakaf-agro',
+    title: 'Wakaf Produktif Agro-Technopark',
+    location: 'Zona Ketahanan Pangan Kawasan GVF',
+    allocation: 'Greenhouse budidaya hortikultura dan unit peternakan penopang kemandirian ekonomi pesantren.',
+    status: 'Beroperasi & Ekspansi',
+    image: 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/fasilitas-dan-infrastruktur/greenhouse-pertanian.webp',
+  },
+];
+
+const wakafObjects = Array.isArray(content?.objects) && content.objects.length > 0
+  ? content.objects
+  : defaultWakafObjects;
+const objectsBadge = content?.badge || 'OBJEK & PERUNTUKAN WAKAF TERDAFTAR';
+const objectsHeading = content?.heading || 'Objek dan Peruntukan Aset Wakaf Produktif';
+const objectsSubheading = content?.subheading || 'Setiap aset wakaf dikelola secara amanah dengan prinsip kekekalan pokok aset dan kebermanfaatan lintas generasi.';
 ---
 
 <section class="wakaf-slider-section" id="simulasi-wakaf-tanah">
   <div class="wakaf-container">
+    <!-- Objek & Peruntukan Wakaf -->
+    <div style="margin-bottom: 64px;">
+      <div class="wakaf-header text-center" style="margin-bottom: 36px;">
+        <span class="wakaf-eyebrow">{objectsBadge}</span>
+        <h2 class="wakaf-title">{objectsHeading}</h2>
+        <p class="wakaf-desc">{objectsSubheading}</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        {wakafObjects.map((obj: any) => (
+          <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);">
+            <div style="aspect-ratio: 16 / 10; background: #0f172a; overflow: hidden; position: relative;">
+              <img src={obj.image} alt={obj.title} style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" />
+              <span style="position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 9999px; background: rgba(9, 105, 218, 0.92); color: #ffffff; font-size: 11px; font-weight: 700;">
+                {obj.status}
+              </span>
+            </div>
+            <div style="padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1;">
+              <h3 style="margin: 0; font-size: 18px; font-weight: 700; color: #0f172a;">{obj.title}</h3>
+              <p style="margin: 0; font-size: 12px; font-weight: 600; color: #0969da;">{obj.location}</p>
+              <p style="margin: 4px 0 0 0; font-size: 14px; line-height: 1.55; color: #475569;">{obj.allocation}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
     <!-- Header -->
     <div class="wakaf-header text-center">
       <span class="wakaf-eyebrow">AMAL JARIYAH ABADI • DIAWASI BADAN WAKAF INDONESIA</span>

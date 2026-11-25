@@ -7,18 +7,51 @@ import type { ProgramData } from '../../data/programs';
 
 interface Props {
   program: ProgramData;
+  content?: Record<string, any>;
 }
 
-const { program } = Astro.props;
+const { program, content } = Astro.props;
 
-// Acuan Nisab Emas Terkini (85 gram emas)
-const GOLD_PRICE_PER_GRAM = 1450000; // Rp 1.450.000 / gram
-const NISAB_YEARLY = 85 * GOLD_PRICE_PER_GRAM; // Rp 123.250.000 / tahun
-const NISAB_MONTHLY = Math.round(NISAB_YEARLY / 12); // Rp 10.270.833 / bulan
+// Acuan Nisab Emas & Kampanye Ramadan dari Database (fallback aman)
+const GOLD_PRICE_PER_GRAM = Number(content?.goldPricePerGram || 1450000);
+const NISAB_YEARLY = 85 * GOLD_PRICE_PER_GRAM;
+const NISAB_MONTHLY = Math.round(NISAB_YEARLY / 12);
+const campaignActive = content?.campaignActive !== false;
+const campaignBadge = content?.badge || 'KAMPANYE RAMADAN & IDULFITRI';
+const campaignTitle = content?.campaignTitle || 'Tunaikan Zakat Fitrah, Fidyah & Zakat Maal Ramadan';
+const campaignDesc = content?.campaignDesc || 'Menjelang Ramadan dan Hari Raya Idulfitri, salurkan kewajiban zakat Anda agar penyaluran beras layak dan santunan 8 asnaf di Sukasirna Jonggol tersampaikan tepat waktu sebelum shalat Id.';
+const fitrahAmount = Number(content?.fitrahAmount || 45000);
+const fidyahAmount = Number(content?.fidyahAmount || 30000);
 ---
 
 <section class="zakat-calculator-section" id="kalkulator-zakat">
   <div class="calc-container">
+    {campaignActive && (
+      <div style="background: linear-gradient(135deg, #061829 0%, #0969da 100%); color: #ffffff; border-radius: 24px; padding: 32px; margin-bottom: 48px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+        <div style="max-width: 680px;">
+          <span style="display: inline-block; padding: 4px 12px; border-radius: 9999px; background: rgba(255,255,255,0.16); color: #bfdbfe; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px;">
+            {campaignBadge}
+          </span>
+          <h2 style="margin: 0 0 8px 0; font-size: clamp(22px, 3vw, 30px); font-weight: 700; color: #ffffff;">
+            {campaignTitle}
+          </h2>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.88);">
+            {campaignDesc}
+          </p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+          <div style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 12px 18px;">
+            <span style="display: block; font-size: 11px; color: #bfdbfe; text-transform: uppercase; font-weight: 700;">Zakat Fitrah</span>
+            <strong style="font-size: 18px; color: #ffffff;">Rp {fitrahAmount.toLocaleString('id-ID')} / jiwa</strong>
+          </div>
+          <div style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 12px 18px;">
+            <span style="display: block; font-size: 11px; color: #bfdbfe; text-transform: uppercase; font-weight: 700;">Fidyah Harian</span>
+            <strong style="font-size: 18px; color: #ffffff;">Rp {fidyahAmount.toLocaleString('id-ID')} / hari</strong>
+          </div>
+        </div>
+      </div>
+    )}
+
     <div class="calc-header text-center">
       <span class="calc-eyebrow">RUKUN ISLAM KETIGA</span>
       <h2 class="calc-title">
