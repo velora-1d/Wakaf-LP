@@ -537,6 +537,75 @@
   margin-bottom: 10px;
 }
 
+/* GOTA SSM Santri & Bentuk Dukungan Ledger */
+.prog-gota-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px;
+  align-items: start;
+}
+
+.prog-gota-col .prog-section-title {
+  margin-bottom: 12px;
+}
+
+.prog-gota-col > .prog-section-desc {
+  margin-bottom: 24px;
+}
+
+.prog-gota-rows {
+  border-top: 1px solid var(--prog-border-strong);
+  margin-bottom: 28px;
+}
+
+.prog-gota-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--prog-border);
+  font-size: 0.9375rem;
+}
+
+.prog-gota-row-label {
+  color: var(--prog-ink-body);
+  font-weight: 500;
+}
+
+.prog-gota-row-val {
+  color: var(--prog-ink-heading);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.prog-gota-support-item {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 14px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--prog-border);
+}
+
+.prog-gota-index {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--prog-brand);
+  font-variant-numeric: tabular-nums;
+  padding-top: 2px;
+}
+
+.prog-gota-support-body {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .prog-gota-split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+
 /* GOTA SSM Participation Schemes Grid */
 .prog-schemes-grid {
   display: grid;

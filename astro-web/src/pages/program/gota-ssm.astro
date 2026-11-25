@@ -44,8 +44,8 @@ const schemas = [
 ---
 
 <BaseLayout
-  title="Program GOTA SSM • Global Village Fund"
-  description={hero.subheading || 'Gerakan Orang Tua Asuh Santri Skill Village Islamic School (GOTA SSM).'}
+  title="GOTA SSM — Gerakan Orang Tua Asuh & Sahabat Santri Mandiri • Global Village Fund"
+  description="Satu Kepedulian, Satu Kesempatan untuk Melanjutkan Pendidikan. Mendukung keberlanjutan pendidikan 29 santri Pesantren Skill Village Islamic School."
   ogImage={hero.imageUrl}
   schema={schemas}
 >
@@ -59,10 +59,10 @@ const schemas = [
       <div class="prog-hero-scrim" aria-hidden="true"></div>
       <div class="prog-hero-inner">
         <h1 class="prog-hero-title">
-          {hero.heading || 'GOTA SSM: Gerakan Orang Tua Asuh Santri Skill Village'}
+          GOTA SSM: Gerakan Orang Tua Asuh &amp; Sahabat Santri Mandiri
         </h1>
         <p class="prog-hero-lead">
-          {hero.subheading || 'Menjamin keberlanjutan pendidikan, gizi harian, asrama, dan pembinaan karakter santri yatim dan dhuafa agar tumbuh kompeten dan mandiri.'}
+          Satu Kepedulian, Satu Kesempatan untuk Melanjutkan Pendidikan.
         </p>
         <div class="prog-hero-actions">
           <a href={heroPrimaryHref} class="prog-btn-primary">
@@ -82,17 +82,19 @@ const schemas = [
         <div class="prog-split-grid">
           <div class="prog-split-copy">
             <h2 class="prog-section-title">
-              {overview.heading || 'Membekali Santri dengan Adab, Tahfidz, dan Vokasi Industri'}
+              Satu Kepedulian, Satu Kesempatan untuk Melanjutkan Pendidikan
             </h2>
             <p>
-              {overview.paragraph1 || 'GOTA SSM mempertemukan kepedulian para muhsinin dengan kebutuhan riil santri mukim di Sukasirna, Jonggol.'}
+              Pendidikan merupakan kesempatan bagi setiap santri untuk membangun masa depan dan mengembangkan potensi dirinya. Namun, keterbatasan ekonomi dapat menjadi tantangan dalam memenuhi biaya pendidikan maupun kebutuhan sehari-hari selama menempuh pendidikan di pesantren.
             </p>
-            {overview.paragraph2 && <p>{overview.paragraph2}</p>}
+            <p>
+              Melalui <strong>Gerakan Orang Tua Asuh &amp; Sahabat Santri Mandiri (GOTA SSM)</strong>, Global Village Fund mengajak individu dan berbagai pihak untuk bersama-sama mendukung keberlanjutan pendidikan santri Pesantren Skill Village Islamic School. Program ini membuka ruang bagi siapa pun yang ingin mengambil peran sebagai orang tua asuh maupun sahabat santri.
+            </p>
           </div>
           <div class="prog-split-media">
             <img
               src={overview.imageUrl || 'https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/kegiatan-dan-prestasi-santri/ustadz-menulis-materi-di-whiteboard.webp'}
-              alt={overview.heading || 'Pembinaan Santri GOTA SSM'}
+              alt="Pembinaan Santri GOTA SSM"
               class="prog-split-img"
               loading="lazy"
             />
@@ -101,6 +103,70 @@ const schemas = [
       </div>
     </section>
   )}
+
+  <section class="prog-section-canvas">
+    <div class="prog-container">
+      <div class="prog-gota-split">
+        <div class="prog-gota-col">
+          <h2 class="prog-section-title">Santri yang Membutuhkan Dukungan</h2>
+          <p class="prog-section-desc">
+            Saat ini, terdapat 29 santri yang membutuhkan dukungan pembiayaan, dengan rincian:
+          </p>
+
+          <div class="prog-gota-rows">
+            <div class="prog-gota-row">
+              <span class="prog-gota-row-label">Kelas X</span>
+              <strong class="prog-gota-row-val">21 santri</strong>
+            </div>
+            <div class="prog-gota-row">
+              <span class="prog-gota-row-label">Kelas XI</span>
+              <strong class="prog-gota-row-val">4 santri</strong>
+            </div>
+            <div class="prog-gota-row">
+              <span class="prog-gota-row-label">Kelas XII</span>
+              <strong class="prog-gota-row-val">4 santri</strong>
+            </div>
+          </div>
+
+          <div class="prog-ledger-fund">
+            <span class="prog-ledger-label">Pendanaan bulanan yang diperlukan</span>
+            <div class="prog-ledger-amount">Rp22.310.000</div>
+            <p class="prog-section-desc">
+              Setiap bulan untuk membantu memenuhi kebutuhan pendidikan dan kebutuhan bulanan seluruh santri tersebut.
+            </p>
+          </div>
+        </div>
+
+        <div class="prog-gota-col">
+          <h2 class="prog-section-title">Bentuk Dukungan</h2>
+          <p class="prog-section-desc">
+            Melalui GOTA SSM, Anda dapat mengambil bagian melalui dua bentuk partisipasi:
+          </p>
+
+          <div class="prog-gota-rows">
+            <div class="prog-gota-support-item">
+              <span class="prog-gota-index">01</span>
+              <div class="prog-gota-support-body">
+                <h3 class="prog-item-title">Orang Tua Asuh</h3>
+                <p class="prog-item-desc">
+                  Mengambil peran dalam mendukung pembiayaan pendidikan dan kebutuhan bulanan santri secara berkelanjutan.
+                </p>
+              </div>
+            </div>
+            <div class="prog-gota-support-item">
+              <span class="prog-gota-index">02</span>
+              <div class="prog-gota-support-body">
+                <h3 class="prog-item-title">Sahabat Santri</h3>
+                <p class="prog-item-desc">
+                  Memberikan kontribusi sesuai kemampuan untuk membantu memenuhi kebutuhan pendidikan dan keseharian santri.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   {isEnabled('gota_schemes') && schemes.length > 0 && (
     <section class="prog-section-canvas">
@@ -141,10 +207,13 @@ const schemas = [
           <div class="prog-bridge-copy">
             <span class="prog-category-label">Terhubung dengan Bentuk Kontribusi Sedekah</span>
             <h2 class="prog-section-title prog-section-title-on-dark">
-              {bridge.heading || 'Salurkan Dukungan Nyata Melalui Sedekah GOTA SSM'}
+              Mari Menjadi Bagian dari Perjalanan Mereka
             </h2>
+            <p class="prog-section-desc prog-section-desc-on-dark" style="margin-bottom: 12px;">
+              Dukungan Anda bukan sekadar bantuan untuk memenuhi kebutuhan hari ini, tetapi juga bagian dari upaya menjaga kesempatan santri untuk terus belajar, bertumbuh, dan mempersiapkan masa depannya.
+            </p>
             <p class="prog-section-desc prog-section-desc-on-dark">
-              {bridge.desc || 'Pilih paket konsumsi gizi, beras logistik asrama, atau perlengkapan belajar santri melalui halaman Bentuk Kontribusi Sedekah.'}
+              Mari bergabung dalam Gerakan Orang Tua Asuh &amp; Sahabat Santri Mandiri. Bersama, kita bantu lebih banyak santri melanjutkan pendidikan dan meraih cita-citanya.
             </p>
           </div>
           <div>
