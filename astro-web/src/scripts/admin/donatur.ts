@@ -1432,7 +1432,8 @@ const labelBadgeColorMap: Record<string, { bg: string; text: string; border: str
   rose: { bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-200' },
   cyan: { bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200' },
   slate: { bg: 'bg-slate-100', text: 'text-slate-700', border: 'border-slate-200' },
-  indigo: { bg: 'bg-indigo-50', text: 'text-indigo-700', border: 'border-indigo-200' },
+  sky: { bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200' },
+  indigo: { bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200' },
 };
 
 let activeLabelsList: any[] = [];

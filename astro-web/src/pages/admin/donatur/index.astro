@@ -34,7 +34,8 @@ const labelColorMap: Record<string, { bg: string; text: string; border: string }
   rose: { bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-200' },
   cyan: { bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200' },
   slate: { bg: 'bg-slate-100', text: 'text-slate-700', border: 'border-slate-200' },
-  indigo: { bg: 'bg-indigo-50', text: 'text-indigo-700', border: 'border-indigo-200' },
+  sky: { bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200' },
+  indigo: { bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200' },
 };
 
 // Formatter Rupiah
@@ -69,10 +70,12 @@ const leadsMap: Record<string, { label: string; bg: string; text: string; border
 };
 
 const programMap: Record<string, string> = {
-  'wakaf': 'Wakaf (Wakaf Produktif & Lahan)',
-  'infaq': 'Infaq (Infaq Pembangunan Fisik)',
-  'sedekah': 'Shodaqoh (Sedekah Nutrisi & Pangan)',
-  'zakat': 'Zakat (Zakat Maal & Fitrah)',
+  'wakaf': 'Wakaf (Objek & Peruntukan)',
+  'infaq': 'Infak (Material Masjid)',
+  'sedekah': 'Sedekah (Dukungan GOTA SSM)',
+  'zakat': 'Zakat (Kampanye Ramadan & Idulfitri)',
+  'pembangunan-masjid': 'Program Pembangunan Masjid',
+  'gota-ssm': 'Program GOTA SSM',
 };
 
 const programBadgeMap: Record<string, { bg: string; text: string; border: string }> = {
@@ -80,6 +83,8 @@ const programBadgeMap: Record<string, { bg: string; text: string; border: string
   infaq: { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
   sedekah: { bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200' },
   zakat: { bg: 'bg-amber-50', text: 'text-amber-800', border: 'border-amber-200' },
+  'pembangunan-masjid': { bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200' },
+  'gota-ssm': { bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200' },
 };
 ---
 

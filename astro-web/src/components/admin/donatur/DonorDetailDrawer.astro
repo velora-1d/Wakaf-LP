@@ -25,7 +25,6 @@ const { allLabels = [], labelColorMap = {} } = Astro.props;
           <span class="inline-flex px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-[#0969da] border border-blue-200 uppercase">
             Formulir Amil
           </span>
-          <span class="text-xs text-slate-400 font-mono">Slide-Over 70%</span>
         </div>
         <h2 id="drawerTitleText" class="text-base font-bold text-slate-900 m-0">Catat Donasi &amp; Profil Donatur Baru</h2>
       </div>
@@ -199,10 +198,12 @@ const { allLabels = [], labelColorMap = {} } = Astro.props;
                 Program Pilihan <span class="text-red-500">*</span>
               </label>
               <select id="inputProgramTujuan" required class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
-                <option value="wakaf">Wakaf (Wakaf Produktif &amp; Lahan)</option>
-                <option value="infaq">Infaq (Infaq Pembangunan Fisik)</option>
-                <option value="sedekah">Shodaqoh (Sedekah Nutrisi &amp; Pangan)</option>
-                <option value="zakat">Zakat (Zakat Maal &amp; Fitrah)</option>
+                <option value="pembangunan-masjid">Program Pembangunan Masjid</option>
+                <option value="gota-ssm">Program GOTA SSM</option>
+                <option value="infaq">Infak (Material Masjid)</option>
+                <option value="sedekah">Sedekah (Dukungan GOTA SSM)</option>
+                <option value="wakaf">Wakaf (Objek &amp; Peruntukan)</option>
+                <option value="zakat">Zakat (Kampanye Ramadan &amp; Idulfitri)</option>
               </select>
             </div>
 
@@ -212,9 +213,12 @@ const { allLabels = [], labelColorMap = {} } = Astro.props;
               </label>
               <select id="inputAkadPeruntukan" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
                 <option value="Wakaf Muabbad (Abadi)">Wakaf Muabbad (Abadi Pokok Utuh)</option>
-                <option value="Infaq Pembangunan Fisik">Infaq Pembangunan Fisik</option>
-                <option value="Sedekah Nutrisi & Pangan">Sedekah Nutrisi &amp; Pangan Santri</option>
+                <option value="Infaq Material Pembangunan Masjid">Infak Material Pembangunan Masjid</option>
+                <option value="Sedekah Dukungan GOTA SSM">Sedekah Dukungan GOTA SSM</option>
+                <option value="Zakat Kampanye Ramadan & Idulfitri">Zakat (Kampanye Ramadan &amp; Idulfitri)</option>
                 <option value="Zakat Maal 8 Asnaf">Zakat Maal (8 Golongan Asnaf)</option>
+                <option value="Program Pembangunan Masjid">Program Pembangunan Masjid</option>
+                <option value="Program GOTA SSM">Program GOTA SSM</option>
               </select>
             </div>
 
@@ -275,53 +279,53 @@ const { allLabels = [], labelColorMap = {} } = Astro.props;
           </div>
         </div>
 
-        <!-- Section 3: Saluran Perolehan (Leads) -->
+        <!-- Section 3: Asal Informasi Donatur -->
         <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-2xs space-y-4">
           <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100">
             <span class="w-6 h-6 rounded-full bg-[#0969da] text-white text-xs font-bold flex items-center justify-center">3</span>
             <div>
-              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Saluran Perolehan (Leads Tracking)</h3>
-              <p class="text-[11px] text-slate-400 m-0">Lacak saluran marketing &amp; sumber akuisisi donatur.</p>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Asal Informasi Donatur</h3>
+              <p class="text-[11px] text-slate-400 m-0">Catat saluran atau kegiatan tempat donatur mengenal GVF.</p>
             </div>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
             <div>
               <label class="block text-xs font-medium text-slate-700 mb-1" for="inputSumberLeads">
-                Sumber Kanal Leads <span class="text-red-500">*</span>
+                Mengetahui GVF Dari <span class="text-red-500">*</span>
               </label>
               <select id="inputSumberLeads" required class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-950 cursor-pointer">
-                <option value="meta_ads">Meta Ads (Facebook / Instagram Ads)</option>
-                <option value="tiktok_ads">TikTok Ads &amp; Video</option>
-                <option value="google_seo">Google Search / Organik</option>
+                <option value="meta_ads">Iklan Facebook / Instagram</option>
+                <option value="tiktok_ads">Iklan TikTok &amp; Video</option>
+                <option value="google_seo">Pencarian Google</option>
                 <option value="safari_dakwah">Safari Dakwah &amp; Majelis</option>
-                <option value="brosur_event">Brosur Cetak / Event Pameran</option>
-                <option value="relasi_langsung">Relasi Langsung Pengurus / Founder</option>
-                <option value="walk_in">Walk-in / Kunjungan Kawasan</option>
+                <option value="brosur_event">Brosur Cetak / Acara Pameran</option>
+                <option value="relasi_langsung">Relasi Langsung Pengurus / Pendiri</option>
+                <option value="walk_in">Kunjungan Langsung ke Kawasan</option>
               </select>
             </div>
 
             <div>
               <label class="block text-xs font-medium text-slate-700 mb-1" for="inputCampaignUtm">
-                Kode Kampanye / UTM Tag (Opsional)
+                Nama Kampanye / Acara (Opsional)
               </label>
               <input
                 type="text"
                 id="inputCampaignUtm"
-                placeholder="Contoh: fb-wakaf-alpukat-okt26"
+                placeholder="Contoh: Wakaf Masjid Ramadan"
                 class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950"
               />
             </div>
           </div>
         </div>
 
-        <!-- Section 4: Pembayaran & Bukti MinIO S3 -->
+        <!-- Section 4: Pembayaran & Bukti Transfer -->
         <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-2xs space-y-4">
           <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-100">
             <span class="w-6 h-6 rounded-full bg-[#0969da] text-white text-xs font-bold flex items-center justify-center">4</span>
             <div>
-              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Pembayaran &amp; Bukti Transfer (MinIO S3)</h3>
-              <p class="text-[11px] text-slate-400 m-0">Unggah bukti mutasi bank terintegrasi ke cloud storage yayasan.</p>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 m-0">Pembayaran &amp; Bukti Transfer</h3>
+              <p class="text-[11px] text-slate-400 m-0">Unggah foto atau berkas bukti transfer bank donatur.</p>
             </div>
           </div>
 
@@ -351,9 +355,9 @@ const { allLabels = [], labelColorMap = {} } = Astro.props;
               </select>
             </div>
 
-            <!-- Dropzone Bukti S3 -->
+            <!-- Dropzone Bukti -->
             <div class="md:col-span-2">
-              <label class="block text-xs font-medium text-slate-700 mb-1">Unggah Bukti Transfer / Slip Mutasi (MinIO S3)</label>
+              <label class="block text-xs font-medium text-slate-700 mb-1">Unggah Bukti Transfer</label>
               <div id="dropzoneContainer" class="border-2 border-dashed border-slate-200 hover:border-[#0969da] rounded-lg p-5 text-center bg-slate-50/50 hover:bg-blue-50/20 transition-colors cursor-pointer">
                 <input type="file" id="proofFileInput" accept="image/jpeg,image/png,image/webp,application/pdf" class="hidden" />
                 
@@ -371,7 +375,7 @@ const { allLabels = [], labelColorMap = {} } = Astro.props;
 
                 <div id="dropzoneUploadingView" class="hidden flex-col items-center justify-center gap-2 py-3">
                   <div class="w-6 h-6 border-2 border-blue-200 border-t-[#0969da] rounded-full animate-spin"></div>
-                  <span class="text-xs font-medium text-slate-700">Mengunggah berkas ke MinIO S3...</span>
+                  <span class="text-xs font-medium text-slate-700">Sedang mengunggah bukti...</span>
                 </div>
 
                 <div id="dropzonePreviewView" class="hidden items-center gap-3 bg-white border border-slate-200 rounded-md p-2.5 text-left">
@@ -380,7 +384,7 @@ const { allLabels = [], labelColorMap = {} } = Astro.props;
                     <span id="uploadedFileName" class="text-xs font-semibold text-slate-900 block truncate">slip.jpg</span>
                     <span class="text-[10px] font-medium text-emerald-600 flex items-center gap-1 mt-0.5">
                       <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                      Tersimpan di Neon S3 bucket gvf-website
+                      Berkas tersimpan aman
                     </span>
                     <button type="button" id="btnRemoveProof" class="text-[11px] text-red-600 hover:underline mt-1 font-medium cursor-pointer">
                       Hapus Berkas
