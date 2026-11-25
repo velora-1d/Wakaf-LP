@@ -1,0 +1,164 @@
+---
+// src/pages/edukasi/index.astro
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getActiveNewsArticles } from '../../lib/db';
+import { getBreadcrumbSchema } from '../../lib/seo-schema';
+
+const articles = await getActiveNewsArticles(50, 'edukasi');
+const categories = ['Semua', ...new Set(articles.map((a) => a.category))];
+
+function formatDate(dateInput: string | Date | null) {
+  if (!dateInput) return 'Terkini';
+  if (typeof dateInput === 'string') {
+    const parsed = new Date(dateInput);
+    if (isNaN(parsed.getTime())) return dateInput;
+    return new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(parsed);
+  }
+  return new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(dateInput);
+}
+
+const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
+const pageSchema = getBreadcrumbSchema(
+  [
+    { name: 'Beranda', url: '/' },
+    { name: 'Edukasi & Kajian', url: '/edukasi' },
+  ],
+  siteUrl
+);
+---
+
+<BaseLayout
+  title="Edukasi & Kajian Syariah • Global Village Fund"
+  description="Direktori literasi fiqih wakaf produktif, panduan hisab zakat, edukasi infak sedekah, serta rekaman kajian dan modul PDF Global Village Fund."
+  schema={pageSchema}
+>
+  <div style="background-color: #f7f7f8; min-height: 100vh; padding-bottom: 100px;">
+    <section style="position: relative; background: #061829; padding: 140px 0 88px; text-align: center; color: #ffffff; overflow: hidden;">
+      <div style="position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 0 24px;">
+        <h1 style="margin: 0 0 14px; font-size: clamp(32px, 4.5vw, 54px); font-weight: 700; color: #ffffff;">
+          Edukasi &amp; Kajian
+        </h1>
+        <p style="margin: 0 auto 20px; max-width: 720px; font-size: 16px; line-height: 1.65; color: #cbd5e1;">
+          Kajian fiqih muamalah, panduan zakat dan wakaf produktif, serta materi pembinaan syariah untuk memperdalam pemahaman beramal.
+        </p>
+        <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700;">
+          <a href="/" style="color: #94a3b8; text-decoration: none;">BERANDA</a>
+          <span style="color: #64748b;">-</span>
+          <span style="color: #38bdf8;">EDUKASI &amp; KAJIAN</span>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width: 1280px; margin: 0 auto; padding: 48px 24px 0;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 36px;" id="edukasi-filter-bar">
+        {categories.map((cat, idx) => (
+          <button
+            type="button"
+            class={`edu-filter-pill ${idx === 0 ? 'is-active' : ''}`}
+            data-cat={cat}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {articles.length === 0 ? (
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 56px 24px; text-align: center;">
+          <h2 style="margin: 0 0 8px; font-size: 20px; font-weight: 700; color: #0f172a;">Belum Ada Materi Edukasi &amp; Kajian</h2>
+          <p style="margin: 0; font-size: 14px; color: #64748b;">Materi kajian baru akan segera dipublikasikan oleh tim redaksi.</p>
+        </div>
+      ) : (
+        <div id="edukasi-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;">
+          {articles.map((art) => (
+            <article
+              class="edu-card"
+              data-category={art.category}
+              style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 18px rgba(15,23,42,0.04);"
+            >
+              <div style="aspect-ratio: 16 / 10; background: #0f172a; overflow: hidden; position: relative;">
+                <img src={art.coverImage} alt={art.title} style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" />
+              </div>
+              <div style="padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 12px; color: #64748b;">
+                  <span>{formatDate(art.publishedAt)}</span>
+                  <span>&bull;</span>
+                  <span>{art.author}</span>
+                </div>
+                <h2 style="margin: 0; font-size: 19px; font-weight: 700; line-height: 1.35; color: #0f172a;">
+                  <a href={`/edukasi/${art.slug}`} style="color: inherit; text-decoration: none;">{art.title}</a>
+                </h2>
+                <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #475569; flex: 1;">{art.summary}</p>
+                {(art.videoUrl || art.attachmentUrl) && (
+                  <div style="display: flex; flex-wrap: wrap; gap: 6px; padding-top: 4px;">
+                    {art.videoUrl && (
+                      <span style="padding: 3px 8px; border-radius: 6px; background: #eff6ff; color: #0969da; font-size: 11px; font-weight: 700;">Video Kajian</span>
+                    )}
+                    {art.attachmentUrl && (
+                      <span style="padding: 3px 8px; border-radius: 6px; background: #ecfdf5; color: #047857; font-size: 11px; font-weight: 700;">Materi PDF</span>
+                    )}
+                  </div>
+                )}
+                <a
+                  href={`/edukasi/${art.slug}`}
+                  style="display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 14px; font-weight: 700; color: #0969da; text-decoration: none; min-height: 44px;"
+                >
+                  <span>Pelajari Materi</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .edu-filter-pill {
+    min-height: 44px;
+    padding: 8px 18px;
+    border-radius: 9999px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .edu-filter-pill:hover {
+    border-color: #0969da;
+    color: #0969da;
+  }
+  .edu-filter-pill.is-active {
+    background: #0969da;
+    border-color: #0969da;
+    color: #ffffff;
+  }
+</style>
+
+<script>
+  function setupEdukasiFilters() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('#edukasi-filter-bar .edu-filter-pill');
+    const cards = document.querySelectorAll<HTMLElement>('#edukasi-grid .edu-card');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const cat = btn.getAttribute('data-cat') || 'Semua';
+        cards.forEach((card) => {
+          const cardCat = card.getAttribute('data-category');
+          card.style.display = cat === 'Semua' || cardCat === cat ? 'flex' : 'none';
+        });
+      });
+    });
+  }
+  if (document.readyState !== 'loading') setupEdukasiFilters();
+  else document.addEventListener('DOMContentLoaded', setupEdukasiFilters);
+</script>
