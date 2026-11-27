@@ -396,8 +396,7 @@ const aboutMasjidImage = aboutStatsContent?.masjidImageUrl || "https://br-billow
       <div class="pen-facility-header">
         <div>
           <h2 class="pen-section-title">
-            Dokumentasi Kawasan &amp;<br />
-            Fasilitas Skill Village
+            Dokumentasi Kawasan &amp; Fasilitas Skill Village
           </h2>
           <p class="pen-facility-sub">
             Skill Village mengintegrasikan pendidikan dan pembinaan karakter, pengembangan bahasa, budaya kerja profesional, kepemimpinan, keterampilan vokasi, kewirausahaan, pertanian produktif, serta lingkungan kehidupan pesantren.
@@ -855,6 +854,12 @@ const aboutMasjidImage = aboutStatsContent?.masjidImageUrl || "https://br-billow
     align-items: flex-end;
     margin-bottom: 3.5rem;
     gap: 2rem;
+  }
+  @media (min-width: 1024px) {
+    .pen-facility-header .pen-section-title {
+      white-space: nowrap;
+      font-size: clamp(1.85rem, 2.6vw, 2.5rem);
+    }
   }
   .pen-facility-sub {
     font-size: 1.05rem;

@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] FIX-FACILITY-TITLE-1LINE-01: Jadikan judul Dokumentasi Kawasan & Fasilitas Skill Village tampil 1 baris di desktop pada tentang-kami.astro (Terverifikasi Build 100%)
 - [x] HIDE-WORKFLOW-TENTANG-01: Sembunyikan sementara section Bagaimana Kebaikan Bergerak Membangun Ekosistem (pen-workflow-section) pada halaman Tentang Kami (Terverifikasi Build 100%)
 - [x] RESTORE-OUR-PROGRAMS-NEW-COPY-01: Tampilkan kembali OurProgramsSection di halaman Beranda dengan narasi baru 4 pilar (Infak, Sedekah, Zakat, Wakaf) (Terverifikasi Build 100%)
 - [x] HIDE-NEWS-SECTION-HOME-01: Sembunyikan sementara section NewsSection (Kabar GVF) pada halaman Beranda (index.astro) (Terverifikasi Build 100%)
