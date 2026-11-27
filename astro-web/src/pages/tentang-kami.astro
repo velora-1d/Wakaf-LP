@@ -212,6 +212,66 @@ const aboutMasjidImage = aboutStatsContent?.masjidImageUrl || "https://br-billow
     </div>
   </section>
 
+  <section class="pen-two-focus-section">
+    <div class="pen-container">
+      <div class="pen-focus-header">
+        <h2 class="pen-section-title">
+          Dua Fokus Utama, Satu Gerakan Kebaikan
+        </h2>
+        <p class="pen-focus-lead">
+          Global Village Fund memusatkan penghimpunan kontribusi pada dua program utama yang menjadi bagian dari pengembangan ekosistem Pesantren Skill Village Islamic School.
+        </p>
+      </div>
+
+      <div class="pen-focus-grid">
+        <article class="pen-focus-card">
+          <h3 class="pen-focus-card-title">
+            Pembangunan Masjid Taman Khairu Ummah Sugro
+          </h3>
+          <div class="pen-focus-paragraphs">
+            <p class="pen-focus-text">
+              Masjid Taman Khairu Ummah Sugro dikembangkan sebagai pusat ibadah, ilmu, dakwah, dan pembinaan generasi yang berlokasi di Sukasirna, Jonggol, Bogor.
+            </p>
+            <p class="pen-focus-text">
+              Melalui program ini, GVF mengajak masyarakat untuk turut mengambil bagian dalam pembangunan dan penyediaan fasilitas Masjid Taman Khairu Ummah Sugro. Dukungan yang dihimpun diarahkan untuk memenuhi kebutuhan pembangunan agar masjid dapat berfungsi sebagai pusat ibadah, pembelajaran keislaman, kegiatan dakwah, serta pembinaan karakter dan akhlak generasi muda.
+            </p>
+          </div>
+          <a href="/program/pembangunan-masjid" class="pen-focus-link">
+            <span>Pelajari Program Pembangunan Masjid</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </article>
+
+        <article class="pen-focus-card">
+          <h3 class="pen-focus-card-title">
+            Gerakan Orang Tua Asuh dan Sahabat Santri (GOTA)
+          </h3>
+          <div class="pen-focus-paragraphs">
+            <p class="pen-focus-text">
+              GOTA merupakan program yang membuka ruang partisipasi masyarakat dalam mendukung pendidikan santri Pesantren Skill Village Islamic School.
+            </p>
+            <p class="pen-focus-text">
+              Melalui program ini, masyarakat dapat mengambil peran sebagai orang tua asuh maupun sahabat santri dengan memberikan dukungan terhadap pembiayaan pendidikan dan kebutuhan santri. Program ini menjadi salah satu upaya untuk membantu santri, khususnya yang membutuhkan dukungan finansial, agar tetap memperoleh kesempatan mengikuti pendidikan dan pembinaan di pesantren.
+            </p>
+            <p class="pen-focus-text">
+              GOTA menghubungkan kepedulian para donatur dengan kebutuhan pendidikan santri melalui kontribusi yang disesuaikan dengan kebutuhan program.
+            </p>
+          </div>
+          <a href="/program/gota-ssm" class="pen-focus-link">
+            <span>Pelajari Program GOTA SSM</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="pen-ecosystem-section">
     <div class="pen-container">
       <div class="pen-ecosystem-header">
@@ -962,11 +1022,84 @@ const aboutMasjidImage = aboutStatsContent?.masjidImageUrl || "https://br-billow
     transform: scale(0.97);
   }
 
+  /* Two Focus Section */
+  .pen-two-focus-section {
+    background-color: #f8fafc;
+    padding: 96px 0;
+  }
+  .pen-focus-header {
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto 3rem auto;
+  }
+  .pen-focus-lead {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #475569;
+    margin: 0;
+  }
+  .pen-focus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+  }
+  .pen-focus-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+  }
+  .pen-focus-card-title {
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #0a1e3b;
+    margin: 0;
+  }
+  .pen-focus-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    flex: 1;
+  }
+  .pen-focus-text {
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: #475569;
+    margin: 0;
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
+  }
+  .pen-focus-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0969da;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    min-height: 44px;
+    transition: gap 180ms ease, color 180ms ease;
+  }
+  .pen-focus-link:hover {
+    gap: 12px;
+    color: #0752a8;
+  }
+
   /* Responsive Mobile */
   @media (max-width: 1024px) {
     .pen-intro-grid,
     .pen-why-grid,
-    .pen-masjid-grid {
+    .pen-masjid-grid,
+    .pen-focus-grid {
       grid-template-columns: 1fr;
       gap: 2.5rem;
     }

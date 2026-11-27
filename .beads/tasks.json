@@ -192,6 +192,8 @@
     { "id": "UPDATE-LAPORAN-HEADING-COPY-01", "name": "Perbarui judul dan subjudul bagian Laporan Transparansi & Dokumentasi pada halaman /kabar", "status": "closed" },
     { "id": "FIX-REPORT-CARD-GRID-WIDTH-01", "name": "Perbaiki lebar kartu laporan di .kabar-reports-grid agar proporsional (auto-fill) saat hanya ada 1 laporan", "status": "closed" },
     { "id": "HIDE-REPORT-PDF-LIST-01", "name": "Sembunyikan sementara daftar kartu dokumen PDF laporan pada tab Laporan (/kabar) sambil mempertahankan rekap donasi, tombol daftar donatur, dan galeri dokumentasi", "status": "closed" },
-    { "id": "REMOVE-PERCENTAGE-TEXT-01", "name": "Hapus teks persentase (4%) pada halaman Program, Pembangunan Masjid, InfaqMaterialSection, dan DonaturTransparencySection", "status": "closed" }
+    { "id": "REMOVE-PERCENTAGE-TEXT-01", "name": "Hapus teks persentase (4%) pada halaman Program, Pembangunan Masjid, InfaqMaterialSection, dan DonaturTransparencySection", "status": "closed" },
+    { "id": "ADD-TWO-FOCUS-TENTANG-01", "name": "Tambahkan seksi Dua Fokus Utama, Satu Gerakan Kebaikan (Masjid & GOTA) pada halaman Tentang Kami tanpa menghapus teks lama", "status": "closed" },
+    { "id": "REMOVE-AB-PREFIX-TENTANG-01", "name": "Hapus awalan huruf A dan B pada judul kartu Dua Fokus Utama di tentang-kami.astro", "status": "closed" }
   ]
 }

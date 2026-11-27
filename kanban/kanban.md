@@ -8,6 +8,8 @@
 ## In Review / Test
 
 ## Done
+- [x] REMOVE-AB-PREFIX-TENTANG-01: Hapus awalan huruf A dan B pada judul kartu Dua Fokus Utama di tentang-kami.astro (Terverifikasi Build 100%)
+- [x] ADD-TWO-FOCUS-TENTANG-01: Tambahkan seksi Dua Fokus Utama, Satu Gerakan Kebaikan (Masjid & GOTA) pada halaman Tentang Kami tanpa menghapus teks lama (Terverifikasi Build 100%)
 - [x] REMOVE-PERCENTAGE-TEXT-01: Hapus teks persentase (4%) pada halaman Program, Pembangunan Masjid, InfaqMaterialSection, dan DonaturTransparencySection (Terverifikasi Build 100%)
 - [x] HIDE-REPORT-PDF-LIST-01: Sembunyikan sementara daftar kartu dokumen PDF laporan pada tab Laporan (/kabar) sambil mempertahankan rekap donasi, tombol daftar donatur, dan galeri dokumentasi (Terverifikasi Build 100%)
 - [x] FIX-REPORT-CARD-GRID-WIDTH-01: Perbaiki lebar kartu laporan di .kabar-reports-grid agar proporsional (auto-fill) saat hanya ada 1 laporan (Terverifikasi Build 100%)
