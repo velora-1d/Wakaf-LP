@@ -5,7 +5,7 @@ export const prerender = false;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/home/HeroSection.astro';
-// import OurProgramsSection from '../components/home/OurProgramsSection.astro';
+import OurProgramsSection from '../components/home/OurProgramsSection.astro';
 import AboutSplitSection from '../components/home/AboutSplitSection.astro';
 // import InteractiveServicesSection from '../components/home/InteractiveServicesSection.astro';
 import WorkflowSection from '../components/home/WorkflowSection.astro';
@@ -34,7 +34,7 @@ const isEnabled = (key: string) => {
   description="Kawasan Wakaf Terpadu seluas ±3 hektare di Jonggol Bogor. Memadukan Garden Mosque Khairu Ummah, SMK Skill Village Islamic School, dan Agro-Technopark."
 >
   {isEnabled('hero') && <HeroSection content={sectionMap.get('hero')?.content} />}
-  {/* Disembunyikan sementara: {isEnabled('programs_preview') && <OurProgramsSection />} */}
+  {isEnabled('programs_preview') && <OurProgramsSection />}
   {isEnabled('about_split') && <AboutSplitSection content={sectionMap.get('about_split')?.content} />}
   {/* Disembunyikan sementara: {isEnabled('interactive_services') && <InteractiveServicesSection />} */}
   {isEnabled('workflow') && <WorkflowSection />}

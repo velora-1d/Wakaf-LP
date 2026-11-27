@@ -183,6 +183,8 @@
     { "id": "HIDE-KABAR-TAB-PUBLIC-01", "name": "Sembunyikan sementara tab Kabar & Progres pada halaman /kabar dan arahkan tab default ke Laporan", "status": "closed" },
     { "id": "HIDE-INTERACTIVE-SERVICES-HOME-01", "name": "Sembunyikan sementara section InteractiveServicesSection pada halaman Beranda (index.astro)", "status": "closed" },
     { "id": "HIDE-OUR-PROGRAMS-HOME-01", "name": "Sembunyikan sementara section OurProgramsSection (Satu Wadah, Empat Pilar Kebaikan) pada halaman Beranda (index.astro)", "status": "closed" },
-    { "id": "HIDE-NEWS-SECTION-HOME-01", "name": "Sembunyikan sementara section NewsSection (Kabar GVF) pada halaman Beranda (index.astro)", "status": "closed" }
+    { "id": "HIDE-NEWS-SECTION-HOME-01", "name": "Sembunyikan sementara section NewsSection (Kabar GVF) pada halaman Beranda (index.astro)", "status": "closed" },
+    { "id": "RESTORE-OUR-PROGRAMS-NEW-COPY-01", "name": "Tampilkan kembali OurProgramsSection di halaman Beranda dengan narasi baru 4 pilar (Infak, Sedekah, Zakat, Wakaf)", "status": "closed" },
+    { "id": "HIDE-WORKFLOW-TENTANG-01", "name": "Sembunyikan sementara section Bagaimana Kebaikan Bergerak Membangun Ekosistem pada halaman Tentang Kami", "status": "closed" }
   ]
 }
