@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] REMOVE-PERCENTAGE-TEXT-01: Hapus teks persentase (4%) pada halaman Program, Pembangunan Masjid, InfaqMaterialSection, dan DonaturTransparencySection (Terverifikasi Build 100%)
 - [x] HIDE-REPORT-PDF-LIST-01: Sembunyikan sementara daftar kartu dokumen PDF laporan pada tab Laporan (/kabar) sambil mempertahankan rekap donasi, tombol daftar donatur, dan galeri dokumentasi (Terverifikasi Build 100%)
 - [x] FIX-REPORT-CARD-GRID-WIDTH-01: Perbaiki lebar kartu laporan di .kabar-reports-grid agar proporsional (auto-fill) saat hanya ada 1 laporan (Terverifikasi Build 100%)
 - [x] UPDATE-LAPORAN-HEADING-COPY-01: Perbarui judul dan subjudul bagian Laporan Transparansi & Dokumentasi pada halaman /kabar (Terverifikasi Build 100%)
