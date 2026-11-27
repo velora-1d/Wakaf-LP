@@ -194,6 +194,7 @@
     { "id": "HIDE-REPORT-PDF-LIST-01", "name": "Sembunyikan sementara daftar kartu dokumen PDF laporan pada tab Laporan (/kabar) sambil mempertahankan rekap donasi, tombol daftar donatur, dan galeri dokumentasi", "status": "closed" },
     { "id": "REMOVE-PERCENTAGE-TEXT-01", "name": "Hapus teks persentase (4%) pada halaman Program, Pembangunan Masjid, InfaqMaterialSection, dan DonaturTransparencySection", "status": "closed" },
     { "id": "ADD-TWO-FOCUS-TENTANG-01", "name": "Tambahkan seksi Dua Fokus Utama, Satu Gerakan Kebaikan (Masjid & GOTA) pada halaman Tentang Kami tanpa menghapus teks lama", "status": "closed" },
-    { "id": "REMOVE-AB-PREFIX-TENTANG-01", "name": "Hapus awalan huruf A dan B pada judul kartu Dua Fokus Utama di tentang-kami.astro", "status": "closed" }
+    { "id": "REMOVE-AB-PREFIX-TENTANG-01", "name": "Hapus awalan huruf A dan B pada judul kartu Dua Fokus Utama di tentang-kami.astro", "status": "closed" },
+    { "id": "HIDE-GOODS-DONATION-HOME-01", "name": "Sembunyikan sementara section GoodsDonationSection (Ingin Berdonasi dalam Bentuk Barang?) pada halaman Beranda (index.astro)", "status": "closed" }
   ]
 }

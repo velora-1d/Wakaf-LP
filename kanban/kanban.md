@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] HIDE-GOODS-DONATION-HOME-01: Sembunyikan sementara section GoodsDonationSection (Ingin Berdonasi dalam Bentuk Barang?) pada halaman Beranda (index.astro) (Terverifikasi Build 100%)
 - [x] REMOVE-AB-PREFIX-TENTANG-01: Hapus awalan huruf A dan B pada judul kartu Dua Fokus Utama di tentang-kami.astro (Terverifikasi Build 100%)
 - [x] ADD-TWO-FOCUS-TENTANG-01: Tambahkan seksi Dua Fokus Utama, Satu Gerakan Kebaikan (Masjid & GOTA) pada halaman Tentang Kami tanpa menghapus teks lama (Terverifikasi Build 100%)
 - [x] REMOVE-PERCENTAGE-TEXT-01: Hapus teks persentase (4%) pada halaman Program, Pembangunan Masjid, InfaqMaterialSection, dan DonaturTransparencySection (Terverifikasi Build 100%)
