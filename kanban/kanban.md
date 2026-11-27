@@ -8,6 +8,7 @@
 ## In Review / Test
 
 ## Done
+- [x] HIDE-NEWS-SECTION-HOME-01: Sembunyikan sementara section NewsSection (Kabar GVF) pada halaman Beranda (index.astro) (Terverifikasi Build 100%)
 - [x] HIDE-OUR-PROGRAMS-HOME-01: Sembunyikan sementara section OurProgramsSection (Satu Wadah, Empat Pilar Kebaikan) pada halaman Beranda (index.astro) (Terverifikasi Build 100%)
 - [x] HIDE-INTERACTIVE-SERVICES-HOME-01: Sembunyikan sementara section InteractiveServicesSection pada halaman Beranda (index.astro) (Terverifikasi Build 100%)
 - [x] HIDE-KABAR-TAB-PUBLIC-01: Sembunyikan sementara tab Kabar & Progres pada halaman /kabar dan arahkan tab default ke Laporan (Terverifikasi Build 100%)

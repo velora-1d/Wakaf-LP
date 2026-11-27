@@ -182,6 +182,7 @@
     { "id": "CREATE-KONTRIBUSI-HUB-01", "name": "Pembuatan Halaman Hub Bentuk Kontribusi (/kontribusi) dengan Urutan Infak, Sedekah, Zakat, Wakaf, dan Penutup Mari Ambil Bagian", "status": "closed" },
     { "id": "HIDE-KABAR-TAB-PUBLIC-01", "name": "Sembunyikan sementara tab Kabar & Progres pada halaman /kabar dan arahkan tab default ke Laporan", "status": "closed" },
     { "id": "HIDE-INTERACTIVE-SERVICES-HOME-01", "name": "Sembunyikan sementara section InteractiveServicesSection pada halaman Beranda (index.astro)", "status": "closed" },
-    { "id": "HIDE-OUR-PROGRAMS-HOME-01", "name": "Sembunyikan sementara section OurProgramsSection (Satu Wadah, Empat Pilar Kebaikan) pada halaman Beranda (index.astro)", "status": "closed" }
+    { "id": "HIDE-OUR-PROGRAMS-HOME-01", "name": "Sembunyikan sementara section OurProgramsSection (Satu Wadah, Empat Pilar Kebaikan) pada halaman Beranda (index.astro)", "status": "closed" },
+    { "id": "HIDE-NEWS-SECTION-HOME-01", "name": "Sembunyikan sementara section NewsSection (Kabar GVF) pada halaman Beranda (index.astro)", "status": "closed" }
   ]
 }
