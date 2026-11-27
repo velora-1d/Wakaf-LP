@@ -24,8 +24,8 @@ const [articles, reports, cashMetrics, donationMetrics, recentDonations, donatio
   getVerifiedDonationSum(),
 ]);
 
-const activeTabParam = (Astro.url.searchParams.get('tab') || 'kabar').toLowerCase();
-const activeTab = activeTabParam === 'laporan' || activeTabParam === 'donatur' ? activeTabParam : 'kabar';
+const activeTabParam = (Astro.url.searchParams.get('tab') || 'laporan').toLowerCase();
+const activeTab = activeTabParam === 'donatur' ? 'donatur' : 'laporan';
 
 // Daftar kategori unik untuk filter
 const categories = ['Semua', ...new Set(articles.map(a => a.category))];
@@ -93,17 +93,17 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
             <p class="prog-v2-lead">
               Dokumentasi berkala perkembangan pembangunan kawasan, aktivitas santri Pesantren Skill Village Islamic School, laporan realisasi dana, serta daftar muhsinin terverifikasi.
             </p>
-            <!-- 3-Tab Switcher -->
+            <!-- Tab Switcher (Tab Kabar & Progres disembunyikan sementara) -->
             <div class="kabar-tab-bar" role="tablist" aria-label="Kategori Kabar dan Transparansi">
-              <button
+              {/* <button
                 type="button"
                 role="tab"
                 id="pubTabBtnKabar"
-                aria-selected={activeTab === 'kabar' ? 'true' : 'false'}
-                class={`kabar-tab-btn ${activeTab === 'kabar' ? 'is-active' : ''}`}
+                aria-selected="false"
+                class="kabar-tab-btn"
               >
                 Kabar &amp; Progres ({articles.length})
-              </button>
+              </button> */}
               <button
                 type="button"
                 role="tab"
