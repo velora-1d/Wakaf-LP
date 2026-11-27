@@ -66,6 +66,11 @@ export const newsArticles = pgTable('news_articles', {
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 
+export interface ReportGalleryImage {
+  url: string;
+  caption?: string;
+}
+
 export const transparencyReports = pgTable('transparency_reports', {
   id: serial('id').primaryKey(),
   title: varchar('title', { length: 255 }).notNull(),
@@ -74,6 +79,7 @@ export const transparencyReports = pgTable('transparency_reports', {
   summary: text('summary').notNull(),
   fileUrl: text('file_url').notNull(),
   fileSize: integer('file_size'),
+  galleryImages: jsonb('gallery_images').$type<ReportGalleryImage[]>().default([]).notNull(),
   isPublished: boolean('is_published').default(true).notNull(),
   publishedAt: varchar('published_at', { length: 50 }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),

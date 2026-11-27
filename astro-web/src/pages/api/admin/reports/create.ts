@@ -16,7 +16,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
   try {
     const body = await request.json();
-    const { title, periodLabel, programScope, summary, fileUrl, fileSize, isPublished, publishedAt } = body;
+    const { title, periodLabel, programScope, summary, fileUrl, fileSize, galleryImages, isPublished, publishedAt } = body;
 
     if (!title || !periodLabel || !summary || !fileUrl) {
       return new Response(JSON.stringify({
@@ -28,6 +28,15 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       });
     }
 
+    const sanitizedGallery = Array.isArray(galleryImages)
+      ? galleryImages
+          .filter((item: any) => item && typeof item.url === 'string' && item.url.trim().length > 0)
+          .map((item: any) => ({
+            url: String(item.url).trim(),
+            caption: item.caption ? String(item.caption).trim() : '',
+          }))
+      : [];
+
     const report = await createTransparencyReport({
       title: String(title).trim(),
       periodLabel: String(periodLabel).trim(),
@@ -35,6 +44,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       summary: String(summary).trim(),
       fileUrl: String(fileUrl).trim(),
       fileSize: fileSize ? Number(fileSize) : 0,
+      galleryImages: sanitizedGallery,
       isPublished: isPublished !== undefined ? Boolean(isPublished) : true,
       publishedAt: publishedAt
         ? String(publishedAt).trim()

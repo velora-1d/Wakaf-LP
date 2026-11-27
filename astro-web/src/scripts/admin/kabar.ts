@@ -504,6 +504,66 @@ export function setupKabarManager() {
   const rUploadBtn = document.getElementById('btnTriggerReportPdfUpload') as HTMLButtonElement | null;
   const rUploadStatus = document.getElementById('reportUploadStatus');
 
+  const rGalleryInput = document.getElementById('reportGalleryFileInput') as HTMLInputElement | null;
+  const rGalleryBtn = document.getElementById('btnTriggerReportGalleryUpload') as HTMLButtonElement | null;
+  const rGalleryStatus = document.getElementById('reportGalleryUploadStatus');
+  const rGalleryList = document.getElementById('reportGalleryList');
+
+  type ReportGalleryItem = { url: string; caption?: string };
+  let reportGalleryState: ReportGalleryItem[] = [];
+
+  const renderReportGalleryList = () => {
+    if (!rGalleryList) return;
+    if (reportGalleryState.length === 0) {
+      rGalleryList.innerHTML = '<p class="text-xs text-slate-400 col-span-full">Belum ada foto dokumentasi terlampir.</p>';
+      return;
+    }
+    rGalleryList.innerHTML = reportGalleryState
+      .map(
+        (item, idx) => `
+      <div class="border border-slate-200 rounded-xl p-2.5 bg-slate-50 flex flex-col gap-2">
+        <div class="relative aspect-video rounded-lg overflow-hidden bg-slate-200">
+          <img src="${item.url}" alt="Dokumentasi ${idx + 1}" class="w-full h-full object-cover" />
+          <button
+            type="button"
+            data-remove-gallery-idx="${idx}"
+            class="absolute top-1.5 right-1.5 px-2 py-1 text-[11px] font-semibold bg-red-600 hover:bg-red-700 text-white rounded-md cursor-pointer"
+          >
+            Hapus
+          </button>
+        </div>
+        <input
+          type="text"
+          data-caption-gallery-idx="${idx}"
+          value="${(item.caption || '').replace(/"/g, '&quot;')}"
+          placeholder="Keterangan foto (opsional)..."
+          class="form-input text-xs py-1.5"
+        />
+      </div>
+    `
+      )
+      .join('');
+
+    rGalleryList.querySelectorAll<HTMLButtonElement>('[data-remove-gallery-idx]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const idx = Number(btn.getAttribute('data-remove-gallery-idx'));
+        if (!isNaN(idx)) {
+          reportGalleryState.splice(idx, 1);
+          renderReportGalleryList();
+        }
+      });
+    });
+
+    rGalleryList.querySelectorAll<HTMLInputElement>('[data-caption-gallery-idx]').forEach((input) => {
+      input.addEventListener('input', () => {
+        const idx = Number(input.getAttribute('data-caption-gallery-idx'));
+        if (!isNaN(idx) && reportGalleryState[idx]) {
+          reportGalleryState[idx].caption = input.value;
+        }
+      });
+    });
+  };
+
   const openReportModal = () => reportModal?.classList.add('active');
   const closeReportModal = () => reportModal?.classList.remove('active');
 
@@ -525,6 +585,8 @@ export function setupKabarManager() {
     if (rInputFileUrl) rInputFileUrl.value = '';
     if (rInputSummary) rInputSummary.value = '';
     if (rInputIsPublished) rInputIsPublished.checked = true;
+    reportGalleryState = [];
+    renderReportGalleryList();
     openReportModal();
   });
 
@@ -551,6 +613,10 @@ export function setupKabarManager() {
         if (rInputFileUrl) rInputFileUrl.value = rep.fileUrl || '';
         if (rInputSummary) rInputSummary.value = rep.summary || '';
         if (rInputIsPublished) rInputIsPublished.checked = Boolean(rep.isPublished);
+        reportGalleryState = Array.isArray(rep.galleryImages)
+          ? rep.galleryImages.map((img: any) => ({ url: String(img?.url || ''), caption: String(img?.caption || '') })).filter((img: ReportGalleryItem) => img.url)
+          : [];
+        renderReportGalleryList();
         openReportModal();
       } catch (err) {
         console.error('Error parsing report JSON:', err);
@@ -595,6 +661,51 @@ export function setupKabarManager() {
     }
   });
 
+  rGalleryBtn?.addEventListener('click', () => rGalleryInput?.click());
+  rGalleryInput?.addEventListener('change', async () => {
+    const files = Array.from(rGalleryInput.files || []);
+    if (files.length === 0) return;
+
+    if (rGalleryBtn) {
+      rGalleryBtn.disabled = true;
+      rGalleryBtn.textContent = 'Mengunggah...';
+    }
+    if (rGalleryStatus) {
+      rGalleryStatus.textContent = `Mengunggah ${files.length} foto dokumentasi...`;
+      rGalleryStatus.classList.remove('hidden');
+    }
+
+    let uploadedCount = 0;
+    for (const file of files) {
+      const formData = new FormData();
+      formData.append('image', file);
+      try {
+        const res = await fetch('/api/admin/news/upload', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (res.ok && data.success && data.url) {
+          reportGalleryState.push({ url: data.url, caption: '' });
+          uploadedCount++;
+        } else {
+          showToast(data.message || `Gagal mengunggah ${file.name}.`, true);
+        }
+      } catch {
+        showToast(`Koneksi terputus saat mengunggah ${file.name}.`, true);
+      }
+    }
+
+    if (uploadedCount > 0) {
+      renderReportGalleryList();
+      showToast(`${uploadedCount} foto dokumentasi berhasil diunggah ke S3!`);
+    }
+
+    if (rGalleryBtn) {
+      rGalleryBtn.disabled = false;
+      rGalleryBtn.textContent = '+ Unggah Foto Dokumentasi';
+    }
+    if (rGalleryStatus) rGalleryStatus.classList.add('hidden');
+    rGalleryInput.value = '';
+  });
+
   submitReportBtn?.addEventListener('click', async () => {
     const idVal = rInputId?.value ? parseInt(rInputId.value, 10) : null;
     const title = rInputTitle?.value?.trim();
@@ -618,6 +729,7 @@ export function setupKabarManager() {
       publishedAt: rInputPublishedAt?.value?.trim() || '',
       fileUrl,
       fileSize: Number(rInputSize?.value || 0),
+      galleryImages: reportGalleryState,
       summary,
       isPublished: rInputIsPublished?.checked ?? true,
     };

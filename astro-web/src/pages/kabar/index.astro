@@ -4,6 +4,7 @@ export const prerender = false;
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlossomCarousel from '../../components/ui/BlossomCarousel.astro';
+import MasonryGrid from '../../components/ui/MasonryGrid.astro';
 import {
   getActiveNewsArticles,
   getActiveTransparencyReports,
@@ -67,6 +68,18 @@ const scopeLabels: Record<string, string> = {
   wakaf: 'Wakaf (Objek & Peruntukan)',
   zakat: 'Zakat (Ramadan & Idulfitri)',
 };
+
+const reportGalleryItems = reports.flatMap((rep) => {
+  const imgs = Array.isArray(rep.galleryImages) ? rep.galleryImages : [];
+  return imgs
+    .filter((img) => img && typeof img.url === 'string' && img.url.trim().length > 0)
+    .map((img, idx) => ({
+      id: `rep-${rep.id}-${idx}`,
+      src: img.url,
+      alt: img.caption || `${rep.title} (${rep.periodLabel})`,
+      title: img.caption || rep.title,
+    }));
+});
 
 const siteUrl = (Astro.site ? Astro.site.toString() : 'https://globalvillagefund.org').replace(/\/$/, '');
 const breadcrumbs = [
@@ -260,10 +273,12 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
           </div>
         </div>
 
-        <!-- Daftar Dokumen Laporan Berkala -->
+        {/* Daftar Dokumen Laporan Berkala disembunyikan sementara */}
+        {false && (
+          <>
         <div style="margin-bottom: 24px;">
-          <h2 class="prog-section-title" style="margin-bottom: 6px;">Dokumen Laporan Berkala</h2>
-          <p class="prog-section-desc">Unduh dokumen laporan realisasi keuangan dan progres kawasan per periode.</p>
+          <h2 class="prog-section-title" style="margin-bottom: 6px;">Laporan Transparansi &amp; Dokumentasi</h2>
+          <p class="prog-section-desc">Rekap realisasi dana, perkembangan pembangunan masjid, serta dokumentasi penyaluran amanah per periode.</p>
         </div>
 
         {reports.length === 0 ? (
@@ -273,8 +288,28 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
           </div>
         ) : (
           <div class="kabar-reports-grid">
-            {reports.map((rep) => (
+            {reports.map((rep) => {
+              const repImages = Array.isArray(rep.galleryImages)
+                ? rep.galleryImages.filter((img) => img && typeof img.url === 'string' && img.url.trim().length > 0)
+                : [];
+              const coverImg = repImages[0];
+              return (
               <div class="kabar-report-card">
+                {coverImg && (
+                  <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; margin-bottom: 14px; background: #f1f5f9;">
+                    <img
+                      src={coverImg.url}
+                      alt={coverImg.caption || rep.title}
+                      style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                      loading="lazy"
+                    />
+                    {repImages.length > 1 && (
+                      <span style="position: absolute; right: 10px; bottom: 10px; padding: 4px 10px; border-radius: 8px; background: rgba(15, 23, 42, 0.78); color: #ffffff; font-size: 11px; font-weight: 600;">
+                        {repImages.length} foto
+                      </span>
+                    )}
+                  </div>
+                )}
                 <div style="display: flex; flex-direction: column; gap: 10px;">
                   <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px; color: #475569;">
                     <span style="color: #0969da; font-weight: 700;">{rep.periodLabel}</span>
@@ -298,7 +333,20 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
                   </a>
                 </div>
               </div>
-            ))}
+              );
+            })}
+          </div>
+        )}
+          </>
+        )}
+
+        {reportGalleryItems.length > 0 && (
+          <div style="margin-top: 40px;">
+            <div style="margin-bottom: 24px;">
+              <h2 class="prog-section-title" style="margin-bottom: 6px;">Galeri Dokumentasi Progres &amp; Penyaluran</h2>
+              <p class="prog-section-desc">Dokumentasi visual lapangan dari setiap periode laporan transparansi Global Village Fund.</p>
+            </div>
+            <MasonryGrid items={reportGalleryItems} columns="columns-1 sm:columns-2 lg:columns-3" />
           </div>
         )}
       </div>
@@ -577,7 +625,7 @@ const pageSchema = getBreadcrumbSchema(breadcrumbs, siteUrl);
 
   .kabar-reports-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
     gap: 20px;
   }
 

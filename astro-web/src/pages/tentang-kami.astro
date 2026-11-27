@@ -96,14 +96,15 @@ type HeroSectionContent = {
   imageUrl?: string;
 };
 const aboutHeroContent = sectionMap.get('about_hero')?.content as HeroSectionContent | undefined;
-const aboutHeroTitle = aboutHeroContent?.heading || aboutHeroContent?.title || "Tentang Kami";
-const aboutHeroSubtitle = aboutHeroContent?.subheading || aboutHeroContent?.subtitle || aboutHeroContent?.desc || "Mengenal Global Village Fund dan ikhtiar filantropi yang menghubungkan kepedulian dengan pengembangan ekosistem Skill Village.";
+const aboutHeroTitle = aboutHeroContent?.heading || aboutHeroContent?.title || "Menghubungkan Kebaikan, Menghadirkan Kebermanfaatan";
+const aboutHeroSubtitle = aboutHeroContent?.subheading || aboutHeroContent?.subtitle || aboutHeroContent?.desc || "Global Village Fund (GVF) merupakan inisiatif filantropi di bawah naungan Yayasan Permata Cendekia Indonesia (YPCI) yang menjadi wadah penghimpunan kontribusi masyarakat melalui infak, sedekah, zakat, dan wakaf. GVF hadir untuk menghubungkan kepedulian masyarakat dengan kebutuhan nyata melalui pembangunan Masjid Khairu Ummah Sugro serta dukungan pendidikan santri Pesantren Skill Village Islamic School.";
 const aboutHeroBgImage = aboutHeroContent?.imageUrl || "";
 
 const aboutStatsContent = sectionMap.get('about_stats')?.content as any;
-const aboutStatsTitle = aboutStatsContent?.heading || aboutStatsContent?.title || "Global Village Fund";
-const aboutStatsPara1 = aboutStatsContent?.paragraph1 || aboutStatsContent?.desc || "Global Village Fund adalah lembaga keuangan sosial yang berada di bawah naungan Yayasan Permata Cendekia Indonesia. GVF hadir sebagai wadah pengelolaan kontribusi sosial untuk mendukung program-program yang memiliki tujuan dan manfaat nyata.";
-const aboutStatsPara2 = aboutStatsContent?.paragraph2 || "Dalam pengembangannya, GVF mengayomi pilot project ekosistem pesantren di Pesantren Skill Village Islamic School, Desa Sukasirna, Jonggol, Bogor.";
+const aboutStatsTitle = aboutStatsContent?.heading || aboutStatsContent?.title || "Tentang Global Village Fund";
+const aboutStatsPara1 = aboutStatsContent?.paragraph1 || aboutStatsContent?.desc || "Global Village Fund (GVF) merupakan inisiatif filantropi Yayasan Permata Cendekia Indonesia (YPCI) yang dibentuk untuk memfasilitasi partisipasi masyarakat dalam mendukung program-program kebaikan yang menjadi bagian dari pengembangan ekosistem pesantren.";
+const aboutStatsPara2 = aboutStatsContent?.paragraph2 || "Melalui pengelolaan kontribusi berupa infak, sedekah, zakat, dan wakaf, GVF menghubungkan kepedulian para donatur dengan dua fokus utama, yaitu pembangunan Masjid Khairu Ummah Sugro dan dukungan pendidikan santri melalui Gerakan Orang Tua Asuh dan Sahabat Santri (GOTA).";
+const aboutStatsPara3 = aboutStatsContent?.paragraph3 || "Kehadiran GVF diharapkan dapat memudahkan masyarakat untuk mengambil bagian dalam berbagai bentuk kebaikan melalui mekanisme kontribusi yang jelas, terarah, dan dapat dipertanggungjawabkan.";
 const aboutStatsImage = aboutStatsContent?.imageUrl || "https://br-billowing-mountain-aomqpcdy.storage.c-2.ap-southeast-1.aws.neon.tech/gvf-website/gvf/assets/bahan-konten/masjid-dan-kelas/tampak-depan-asrama-putra.jpeg";
 
 const aboutMasjidTitle = aboutStatsContent?.masjidHeading || "Masjid Taman Khairu Ummah Sughro";
@@ -142,6 +143,7 @@ const aboutMasjidImage = aboutStatsContent?.masjidImageUrl || "https://br-billow
           <div class="pen-intro-paragraphs">
             <p class="pen-intro-lead">{aboutStatsPara1}</p>
             {aboutStatsPara2 && <p class="pen-intro-lead">{aboutStatsPara2}</p>}
+            {aboutStatsPara3 && <p class="pen-intro-lead">{aboutStatsPara3}</p>}
           </div>
         </div>
 
@@ -154,6 +156,29 @@ const aboutMasjidImage = aboutStatsContent?.masjidImageUrl || "https://br-billow
               loading="lazy"
             />
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pen-about-why">
+    <div class="pen-container">
+      <div class="pen-why-grid">
+        <div class="pen-why-heading">
+          <h2 class="pen-intro-title">
+            Mengapa Global Village Fund Hadir?
+          </h2>
+        </div>
+        <div class="pen-intro-paragraphs">
+          <p class="pen-intro-lead">
+            Setiap upaya membangun fasilitas ibadah dan menghadirkan pendidikan yang layak membutuhkan kepedulian serta dukungan dari berbagai pihak. Di lingkungan Pesantren Skill Village Islamic School, kebutuhan tersebut tercermin dalam pembangunan Masjid Khairu Ummah Sugro dan upaya memberikan kesempatan pendidikan bagi para santri.
+          </p>
+          <p class="pen-intro-lead">
+            Yayasan Permata Cendekia Indonesia (YPCI) menghadirkan Global Village Fund (GVF) untuk membuka ruang partisipasi masyarakat dalam mendukung kedua kebutuhan tersebut. Melalui GVF, kepedulian masyarakat dihimpun dan diarahkan melalui infak, sedekah, zakat, dan wakaf sesuai dengan tujuan serta ketentuan masing-masing.
+          </p>
+          <p class="pen-intro-lead">
+            Dengan demikian, masyarakat tidak hanya menjadi pihak yang memberikan dukungan, tetapi juga dapat mengambil bagian dalam proses pembangunan masjid dan mendukung perjalanan pendidikan santri Pesantren Skill Village Islamic School.
+          </p>
         </div>
       </div>
     </div>
@@ -600,6 +625,17 @@ const aboutMasjidImage = aboutStatsContent?.masjidImageUrl || "https://br-billow
     flex-direction: column;
     gap: 1rem;
   }
+  .pen-about-why {
+    background-color: #ffffff;
+    padding: 88px 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .pen-why-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 4rem;
+    align-items: start;
+  }
   .pen-about-masjid {
     background-color: #ffffff;
     padding: 96px 0;
@@ -929,8 +965,10 @@ const aboutMasjidImage = aboutStatsContent?.masjidImageUrl || "https://br-billow
   /* Responsive Mobile */
   @media (max-width: 1024px) {
     .pen-intro-grid,
+    .pen-why-grid,
     .pen-masjid-grid {
       grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
     .pen-ecosystem-grid,
     .pen-workflow-grid {

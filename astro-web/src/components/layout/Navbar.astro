@@ -29,15 +29,13 @@ const currentPath = Astro.url.pathname;
             >Beranda</a
           >
         </li>
-        {false && (
-          <li>
-            <a
-              href="/tentang-kami"
-              class={`gvf-nav-link ${currentPath === "/tentang-kami" ? "active" : ""}`}
-              >Tentang Kami</a
-            >
-          </li>
-        )}
+        <li>
+          <a
+            href="/tentang-kami"
+            class={`gvf-nav-link ${currentPath === "/tentang-kami" ? "active" : ""}`}
+            >Tentang Kami</a
+          >
+        </li>
         <li>
           <a
             href="/program"
@@ -163,7 +161,7 @@ const currentPath = Astro.url.pathname;
       </div>
       <nav class="gvf-drawer-nav">
         <a href="/">Beranda</a>
-        {false && <a href="/tentang-kami">Tentang Kami</a>}
+        <a href="/tentang-kami">Tentang Kami</a>
         <details class="gvf-drawer-group" open>
           <summary>Program</summary>
           <div class="gvf-drawer-sublinks">

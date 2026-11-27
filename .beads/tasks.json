@@ -187,6 +187,10 @@
     { "id": "RESTORE-OUR-PROGRAMS-NEW-COPY-01", "name": "Tampilkan kembali OurProgramsSection di halaman Beranda dengan narasi baru 4 pilar (Infak, Sedekah, Zakat, Wakaf)", "status": "closed" },
     { "id": "HIDE-WORKFLOW-TENTANG-01", "name": "Sembunyikan sementara section Bagaimana Kebaikan Bergerak Membangun Ekosistem pada halaman Tentang Kami", "status": "closed" },
     { "id": "FIX-FACILITY-TITLE-1LINE-01", "name": "Jadikan judul Dokumentasi Kawasan & Fasilitas Skill Village tampil 1 baris di desktop pada tentang-kami.astro", "status": "closed" },
-    { "id": "HIDE-TENTANG-KAMI-MENU-01", "name": "Sembunyikan sementara menu Tentang Kami pada Navbar (desktop & mobile) dan Footer", "status": "closed" }
+    { "id": "HIDE-TENTANG-KAMI-MENU-01", "name": "Sembunyikan sementara menu Tentang Kami pada Navbar (desktop & mobile) dan Footer", "status": "closed" },
+    { "id": "ADD-REPORT-GALLERY-IMAGES-01", "name": "Tambah fitur galeri foto dokumentasi pada menu Laporan (/kabar?tab=laporan) beserta upload multi-foto MinIO S3 di Admin (/admin/kabar)", "status": "closed" },
+    { "id": "UPDATE-LAPORAN-HEADING-COPY-01", "name": "Perbarui judul dan subjudul bagian Laporan Transparansi & Dokumentasi pada halaman /kabar", "status": "closed" },
+    { "id": "FIX-REPORT-CARD-GRID-WIDTH-01", "name": "Perbaiki lebar kartu laporan di .kabar-reports-grid agar proporsional (auto-fill) saat hanya ada 1 laporan", "status": "closed" },
+    { "id": "HIDE-REPORT-PDF-LIST-01", "name": "Sembunyikan sementara daftar kartu dokumen PDF laporan pada tab Laporan (/kabar) sambil mempertahankan rekap donasi, tombol daftar donatur, dan galeri dokumentasi", "status": "closed" }
   ]
 }

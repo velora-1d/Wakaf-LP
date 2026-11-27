@@ -32,6 +32,16 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     if (body.summary !== undefined) updatePayload.summary = String(body.summary).trim();
     if (body.fileUrl !== undefined) updatePayload.fileUrl = String(body.fileUrl).trim();
     if (body.fileSize !== undefined) updatePayload.fileSize = Number(body.fileSize) || 0;
+    if (body.galleryImages !== undefined) {
+      updatePayload.galleryImages = Array.isArray(body.galleryImages)
+        ? body.galleryImages
+            .filter((item: any) => item && typeof item.url === 'string' && item.url.trim().length > 0)
+            .map((item: any) => ({
+              url: String(item.url).trim(),
+              caption: item.caption ? String(item.caption).trim() : '',
+            }))
+        : [];
+    }
     if (body.isPublished !== undefined) updatePayload.isPublished = Boolean(body.isPublished);
     if (body.publishedAt !== undefined) updatePayload.publishedAt = String(body.publishedAt).trim();
 
